@@ -16,21 +16,12 @@ export const appHotkeys: HotkeysListOptions = {
       },
     },
   },
-  apps: {
-    title: 'Apps',
+  contacts: {
+    title: 'Contacts',
     hotkeys: {
       createApp: {
-        label: 'Create new app',
+        label: 'Create new contact',
         command: '⌥ N',
-      },
-    },
-  },
-  markdown: {
-    title: 'Markdown',
-    hotkeys: {
-      b: {
-        label: 'Bold',
-        command: '***Text***',
       },
     },
   },
