@@ -1,0 +1,14 @@
+{
+  "name": "@saas-ui/sparklines",
+  "exports": {
+    "default": "./src/index.ts"
+  },
+  "dependencies": {
+    "react-sparklines": "^1.7.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=1.7.0",
+    "framer-motion": ">=5.5.0",
+    "react": ">=16.8.6"
+  }
+}

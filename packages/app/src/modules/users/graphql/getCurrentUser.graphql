@@ -1,0 +1,13 @@
+query GetCurrentUser {
+  currentUser {
+    id
+    name
+    email
+    organizations {
+      id
+      name
+      slug
+      plan
+    }
+  }
+}

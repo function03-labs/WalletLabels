@@ -1,0 +1,6 @@
+{
+  "name": "@saas-ui/utils",
+  "exports": {
+    "default": "./src/index.ts"
+  }
+}

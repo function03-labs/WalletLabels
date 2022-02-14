@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "incremental": true,
+    "baseUrl": "../../app/",
+    "paths": {
+      "pages/*": ["src/pages/*"],
+      "@/config/*": ["src/config/*"],
+      "@/layouts/*": ["src/client/layouts/*"],
+      "@/components/*": ["src/client/components/*"],
+      "@/ui/*": ["src/ui/*"],
+      "@modules/*": ["src/modules/*"],
+      "@/helpers/*": ["src/helpers/*"],
+      "@/graphql/*": ["src/client/graphql/*"]
+    }
+  }
+}

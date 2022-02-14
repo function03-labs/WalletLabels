@@ -1,0 +1,6 @@
+{
+  "name": "@app/nextjs",
+  "description": "Next.js specific shared code",
+  "private": true,
+  "main": "src/index.ts"
+}

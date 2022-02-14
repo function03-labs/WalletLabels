@@ -1,0 +1,3 @@
+mutation InviteToOrganization($email: String!, $organizationId: String!) {
+  inviteToOrganization(email: $email, organizationId: $organizationId)
+}

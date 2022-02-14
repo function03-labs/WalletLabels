@@ -1,0 +1,8 @@
+query GetOrganizations {
+  organizations {
+    id
+    name
+    slug
+    plan
+  }
+}

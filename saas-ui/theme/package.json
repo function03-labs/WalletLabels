@@ -1,0 +1,15 @@
+{
+  "name": "@saas-ui/pro-theme",
+  "version": "0.0.0",
+  "description": "Saas UI Pro theme",
+  "sideEffects": false,
+  "author": "Eelco Wiersma <eelco@appulse.nl>",
+  "homepage": "https://saas-ui.dev/",
+  "dependencies": {
+    "@saas-ui/theme": "*"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=1.7.0",
+    "@chakra-ui/system": ">=1.0.0"
+  }
+}

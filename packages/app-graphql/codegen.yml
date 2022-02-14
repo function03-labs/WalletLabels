@@ -1,0 +1,21 @@
+require:
+  - ts-node/register
+schema: ../mock-graphql/src/schema.ts
+documents:
+  - '../app/src/**/*.graphql'
+generates:
+  src/types.generated.ts:
+    plugins:
+      - typescript
+  src/api.generated.ts:
+    # preset: near-operation-file
+    presetConfig:
+      baseTypesPath: ./types.generated.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-query
+    config:
+      fetcher:
+        #func: ./fetcher#useFetchData
+        func: ./mocks-fetcher#useFetchData
+        isReactHook: true

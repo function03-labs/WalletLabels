@@ -1,0 +1,26 @@
+{
+  "name": "nextjs-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "predev": "yarn run generate",
+    "dev": "next dev",
+    "prebuild": "yarn run generate",
+    "generate": "yarn workspace @app/graphql generate",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@saas-ui/next-workspaces": "^0.1.1",
+    "@saas-ui/utils": "workspace:*",
+    "@ui/core": "workspace:*",
+    "@ui/theme": "workspace:*",
+    "app": "workspace:*",
+    "next": "^12.0.10",
+    "next-svgr": "^0.0.2"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "5.5.0"
+  }
+}

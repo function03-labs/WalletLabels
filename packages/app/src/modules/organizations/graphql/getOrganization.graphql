@@ -1,0 +1,13 @@
+query GetOrganization($id: String, $slug: String) {
+  organization(id: $id, slug: $slug) {
+    id
+    name
+    slug
+    plan
+    users {
+      id
+      name
+      email
+    }
+  }
+}
