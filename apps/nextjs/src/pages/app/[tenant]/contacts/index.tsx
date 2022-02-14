@@ -1,10 +1,10 @@
 import { createPage } from '@app/nextjs'
 
-import { OverviewPage } from '@modules/organizations'
+import { ContactsListPage } from '@modules/contacts'
 
 export default createPage({
-  title: 'Dashboard',
+  title: 'Contacts',
   renderComponent: () => {
-    return <OverviewPage />
+    return <ContactsListPage />
   },
 })
