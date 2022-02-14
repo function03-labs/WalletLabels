@@ -1,6 +1,11 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import { SaasProvider, AuthProvider, AuthProviderProps } from '@saas-ui/react'
+import {
+  SaasProvider,
+  AuthProvider,
+  AuthProviderProps,
+  ModalsProvider,
+} from '@saas-ui/react'
 
 import { TenancyProvider } from '@saas-ui/pro'
 
@@ -44,9 +49,11 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
       >
         <AuthProvider {...authService}>
           <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-            <AppLayout isPublic={isPublic} layout={layout} sidebar={sidebar}>
-              {children}
-            </AppLayout>
+            <ModalsProvider>
+              <AppLayout isPublic={isPublic} layout={layout} sidebar={sidebar}>
+                {children}
+              </AppLayout>
+            </ModalsProvider>
           </TenancyProvider>
         </AuthProvider>
       </SaasProvider>
