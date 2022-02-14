@@ -21,17 +21,17 @@ import {
   useTenancy,
 } from '@saas-ui/pro'
 
-import { SearchInput } from '@saas-ui/react'
+import { SearchInput, MenuItem, MenuDivider } from '@saas-ui/react'
 
 import { BillingStatus } from './billing-status'
-import { ProjectsMenu } from './projects-menu'
+import { TenantMenu } from './tenant-menu'
 import { UserMenu } from './user-menu'
 import { ElectronNav } from './electron-nav'
 
 export const Sidebar = () => {
   const { tenant } = useTenancy()
 
-  const projectPath = (path?: string) => {
+  const getPath = (path?: string) => {
     return path ? `/app/${tenant}/${path}` : `/app/${tenant}`
   }
 
@@ -40,7 +40,17 @@ export const Sidebar = () => {
       <SidebarContainer>
         <ElectronNav />
         <SidebarNav direction="row">
-          <ProjectsMenu />
+          <TenantMenu title="Organizations">
+            <MenuDivider />
+            <MenuItem
+              href={getPath('settings/organization')}
+              label="Organization settings"
+            />
+            <MenuItem
+              href="/app/getting-started"
+              label="Create an organization"
+            />
+          </TenantMenu>
           <Spacer />
           <UserMenu />
         </SidebarNav>
@@ -51,24 +61,14 @@ export const Sidebar = () => {
           <SidebarNav flex="1" spacing={6}>
             <SidebarNavGroup>
               <SidebarLink
-                href={projectPath()}
-                label="Overview"
+                href={getPath()}
+                label="Dashboard"
                 icon={<FiHome />}
               />
               <SidebarLink
-                href={projectPath('contacts')}
+                href={getPath('contacts')}
                 label="Contacts"
                 icon={<FiUsers />}
-              />
-              <SidebarLink
-                href={projectPath('apps')}
-                label="Apps"
-                icon={<FiBox />}
-              />
-              <SidebarLink
-                href={projectPath('connections')}
-                label="Connections"
-                icon={<FiLink />}
               />
             </SidebarNavGroup>
 

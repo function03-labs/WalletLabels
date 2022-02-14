@@ -41,11 +41,17 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       color: 'muted',
       transitionProperty: 'common',
       transitionDuration: 'normal',
+      '&.sui-collapse-toggle .chakra-icon': {
+        opacity: 0,
+      },
       '&.sui-collapse-toggle': {
         cursor: 'pointer',
         borderRadius: 'md',
         _hover: {
           bg: mode('blackAlpha.100', 'whiteAlpha.200')(props),
+          '& .chakra-icon': {
+            opacity: 1,
+          },
         },
       },
     },

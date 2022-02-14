@@ -30,6 +30,8 @@ export {
   MenuDivider as SidebarMenuDivider,
 } from '@chakra-ui/menu'
 
+import { ChevronDown, ChevronRight } from './icons'
+
 export interface SidebarProps
   extends HTMLChakraProps<'div'>,
     ThemingProps<'Sidebar'> {
@@ -111,33 +113,48 @@ SidebarNav.defaultProps = {
   direction: 'column',
 }
 
-export interface SidebarNavGroupTitleProps extends HTMLChakraProps<'p'> {
-  icon?: React.ReactElement
+export interface SidebarNavGroupTitleProps extends HTMLChakraProps<'div'> {
+  leftIcon?: React.ReactElement
+  isCollapsible?: boolean
 }
 
 export const SidebarNavGroupTitle: React.FC<SidebarNavGroupTitleProps> = (
   props,
 ) => {
-  const { icon, children } = props
+  /* @todo add isCollapsible to collapse context in @saas-ui/collapse */
+  const { leftIcon, isCollapsible, children, ...rest } = props
   const styles = useStyles()
 
-  const { getToggleProps } = useCollapseContext()
+  const { getToggleProps, isOpen } = useCollapseContext()
 
   const iconStyles = { display: 'inline-flex', marginEnd: 2 }
 
+  // @todo fix PropsGetter in @saas-ui/collapse package
+  const containerProps = getToggleProps(rest) as SidebarNavGroupTitleProps
+
+  let collapseIcon
+  if (isCollapsible) {
+    collapseIcon = isOpen ? <ChevronDown /> : <ChevronRight />
+  }
+
   return (
-    <chakra.p {...getToggleProps(props)} __css={styles.groupTitle}>
-      {icon && (
+    <chakra.div {...containerProps} __css={styles.groupTitle}>
+      {leftIcon && (
         <chakra.span __css={{ ...iconStyles, ...styles.groupIcon }}>
-          {icon}
+          {leftIcon}
         </chakra.span>
       )}
-      {children}
-    </chakra.p>
+      <chakra.span flex="1">
+        {typeof children === 'function' ? children({ isOpen }) : children}{' '}
+      </chakra.span>
+      {collapseIcon}
+    </chakra.div>
   )
 }
 
-export interface SidebarNavGroupProps extends StackProps {
+export interface SidebarNavGroupProps
+  extends Omit<HTMLChakraProps<'div'>, 'title'> {
+  title?: React.ReactNode
   isCollapsible?: boolean
   defaultIsOpen?: boolean
   onOpen?: () => void
@@ -149,7 +166,6 @@ export const SidebarNavGroup: React.FC<SidebarNavGroupProps> = (props) => {
   const {
     title,
     icon,
-    spacing,
     isCollapsible,
     defaultIsOpen,
     onOpen,
@@ -161,16 +177,18 @@ export const SidebarNavGroup: React.FC<SidebarNavGroupProps> = (props) => {
 
   const collapse = useCollapse(props)
 
-  const { isOpen } = collapse
+  const { getCollapseProps } = collapse
 
   const header = title && (
-    <SidebarNavGroupTitle icon={icon}>{title}</SidebarNavGroupTitle>
+    <SidebarNavGroupTitle leftIcon={icon} isCollapsible={isCollapsible}>
+      {title}
+    </SidebarNavGroupTitle>
   )
 
   let content = <chakra.div>{children}</chakra.div>
 
   if (isCollapsible) {
-    content = <Collapse in={isOpen}>{content}</Collapse>
+    content = <Collapse {...getCollapseProps()}>{content}</Collapse>
   }
 
   return (
@@ -191,8 +209,8 @@ export const SidebarNavGroup: React.FC<SidebarNavGroupProps> = (props) => {
 }
 
 SidebarNavGroup.defaultProps = {
-  spacing: 1,
   defaultIsOpen: true,
+  isCollapsible: false,
 }
 
 export interface SidebarLinkLabelProps

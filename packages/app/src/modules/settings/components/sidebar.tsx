@@ -43,9 +43,9 @@ export const SettingsSidebar = () => {
             </Heading>
           </SidebarNav>
           <SidebarNav flex="1" spacing={6}>
-            <SidebarNavGroup title="Project" icon={<FiFolder />}>
+            <SidebarNavGroup title="Organization" icon={<FiFolder />}>
               <SettingsLink path="/" label="Overview" />
-              <SettingsLink path="project" label="Project" />
+              <SettingsLink path="organization" label="Organization" />
               <SettingsLink path="billing" label="Billing" />
             </SidebarNavGroup>
 
