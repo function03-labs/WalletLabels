@@ -6589,7 +6589,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/page-shell@workspace:saas-ui/page-shell"
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
     "@saas-ui/react": ">=0.5.0"
     framer-motion: ">=5.5.0"
@@ -6603,7 +6603,7 @@ __metadata:
   dependencies:
     "@saas-ui/app": "workspace:^"
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
     "@saas-ui/react": ">=0.5.0"
     framer-motion: ">=5.5.0"
@@ -6680,7 +6680,7 @@ __metadata:
   dependencies:
     "@saas-ui/theme": "*"
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
   languageName: unknown
   linkType: soft
@@ -6689,6 +6689,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/pro@workspace:saas-ui/pro"
   dependencies:
+    "@babel/core": ^7.16.5
     "@saas-ui/page": "workspace:*"
     "@saas-ui/page-shell": "workspace:*"
     "@saas-ui/sparklines": "workspace:*"
@@ -6704,8 +6705,9 @@ __metadata:
     react-dom: ^17.0.2
     react-is: ^17.0.2
     storybook-addon-performance: ^0.16.1
+    webpack: ^5.68.0
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
     "@saas-ui/react": ">=0.7.0"
     framer-motion: ">=5.5.0"
@@ -6832,7 +6834,7 @@ __metadata:
   dependencies:
     react-sparklines: ^1.7.0
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
   languageName: unknown
@@ -6862,7 +6864,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/tenancy@workspace:saas-ui/tenancy"
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
     "@saas-ui/react": ">=0.5.0"
     framer-motion: ">=5.5.0"
@@ -6906,7 +6908,7 @@ __metadata:
   dependencies:
     react-joyride: ^2.3.2
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
   languageName: unknown
@@ -9302,6 +9304,7 @@ __metadata:
     react-icons: ^4.3.1
     react-is: ^17.0.2
     storybook-addon-performance: ^0.16.1
+    webpack: ^5.68.0
     yup: ^0.32.11
   languageName: unknown
   linkType: soft
@@ -9313,7 +9316,7 @@ __metadata:
     "@fontsource/inter": ^4.2.2
     "@saas-ui/pro-theme": "workspace:^"
   peerDependencies:
-    "@chakra-ui/react": ">=1.7.0"
+    "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
   languageName: unknown
   linkType: soft
@@ -14346,6 +14349,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"enhanced-resolve@npm:^5.8.3":
+  version: 5.9.0
+  resolution: "enhanced-resolve@npm:5.9.0"
+  dependencies:
+    graceful-fs: ^4.2.4
+    tapable: ^2.2.0
+  checksum: 06435f52670229eb7fd8d92ea2d988a275f9a1b8c08b9023ba45767c6ed844bc87aa9c9c7e6d044eef99ad73fc3b066b78101163696e5c53121909e5bf8efe8b
+  languageName: node
+  linkType: hard
+
 "enquirer@npm:^2.3.5":
   version: 2.3.6
   resolution: "enquirer@npm:2.3.6"
@@ -14460,6 +14473,13 @@ __metadata:
   version: 0.7.1
   resolution: "es-module-lexer@npm:0.7.1"
   checksum: c66fb633cc521529862818caf603897d58d30442c885a1a1ed16823ddbbb8a437e3952454a4b2650242df1c1b4d0efa42fedbe49594e3ef2ceb3c891cf1211dd
+  languageName: node
+  linkType: hard
+
+"es-module-lexer@npm:^0.9.0":
+  version: 0.9.3
+  resolution: "es-module-lexer@npm:0.9.3"
+  checksum: 84bbab23c396281db2c906c766af58b1ae2a1a2599844a504df10b9e8dc77ec800b3211fdaa133ff700f5703d791198807bba25d9667392d27a5e9feda344da8
   languageName: node
   linkType: hard
 
@@ -16603,7 +16623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.9, graceful-fs@npm:^4.2.4":
+"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.9, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.9":
   version: 4.2.9
   resolution: "graceful-fs@npm:4.2.9"
   checksum: 68ea4e07ff2c041ada184f9278b830375f8e0b75154e3f080af6b70f66172fabb4108d19b3863a96b53fc068a310b9b6493d86d1291acc5f3861eb4b79d26ad6
@@ -27874,7 +27894,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"watchpack@npm:^2.2.0":
+"watchpack@npm:^2.2.0, watchpack@npm:^2.3.1":
   version: 2.3.1
   resolution: "watchpack@npm:2.3.1"
   dependencies:
@@ -28142,6 +28162,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"webpack-sources@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "webpack-sources@npm:3.2.3"
+  checksum: 989e401b9fe3536529e2a99dac8c1bdc50e3a0a2c8669cbafad31271eadd994bc9405f88a3039cd2e29db5e6d9d0926ceb7a1a4e7409ece021fe79c37d9c4607
+  languageName: node
+  linkType: hard
+
 "webpack-virtual-modules@npm:^0.2.2":
   version: 0.2.2
   resolution: "webpack-virtual-modules@npm:0.2.2"
@@ -28223,6 +28250,43 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: f55c40e0a215d68633976ea54acbd9e92bf43f18593d25ffa2f4f1c33e7017d9c475ceabaddf1742d60310d84ec4600e564c1125e061378032948c11a2b18245
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.68.0":
+  version: 5.68.0
+  resolution: "webpack@npm:5.68.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.0
+    "@types/estree": ^0.0.50
+    "@webassemblyjs/ast": 1.11.1
+    "@webassemblyjs/wasm-edit": 1.11.1
+    "@webassemblyjs/wasm-parser": 1.11.1
+    acorn: ^8.4.1
+    acorn-import-assertions: ^1.7.6
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.8.3
+    es-module-lexer: ^0.9.0
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-better-errors: ^1.0.2
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.1.3
+    watchpack: ^2.3.1
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: ac6efd861a0bfb35d8a467fba0d87f905ef6e1a9a9f7e3db42ea459cf191268094cedd025d3eb36a1464e2208a0c193f3f4a92531ba58850246f3c6b8f210b03
   languageName: node
   linkType: hard
 
