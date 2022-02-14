@@ -7,7 +7,7 @@
     "@saas-ui/app": "workspace:^"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=1.7.0",
+    "@chakra-ui/react": ">=1.8.0",
     "@chakra-ui/system": ">=1.0.0",
     "@saas-ui/react": ">=0.5.0",
     "framer-motion": ">=5.5.0",

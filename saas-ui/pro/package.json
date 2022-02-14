@@ -15,13 +15,14 @@
     "@saas-ui/tour": "workspace:*"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=1.7.0",
+    "@chakra-ui/react": ">=1.8.0",
     "@chakra-ui/system": ">=1.0.0",
     "@saas-ui/react": ">=0.7.0",
     "framer-motion": ">=5.5.0",
     "react": ">=16.8.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
     "@storybook/addon-actions": "^6.4.3",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.3",
@@ -31,6 +32,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "storybook-addon-performance": "^0.16.1"
+    "storybook-addon-performance": "^0.16.1",
+    "webpack": "^5.68.0"
   }
 }

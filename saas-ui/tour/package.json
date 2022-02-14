@@ -7,7 +7,7 @@
     "react-joyride": "^2.3.2"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=1.7.0",
+    "@chakra-ui/react": ">=1.8.0",
     "framer-motion": ">=5.5.0",
     "react": ">=16.8.6"
   }
