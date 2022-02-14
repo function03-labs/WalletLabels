@@ -30,6 +30,7 @@
     "babel-loader": "^8.2.3",
     "react-is": "^17.0.2",
     "storybook-addon-performance": "^0.16.1",
+    "webpack": "^5.68.0",
     "yup": "^0.32.11"
   },
   "packageManager": "yarn@3.1.1"
