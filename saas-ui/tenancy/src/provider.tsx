@@ -36,6 +36,12 @@ export function TenancyProvider(props: TenancyProviderProps) {
 
   const [_tenant, setTenant] = useLocalStorage(localStorageKey, tenant)
 
+  React.useEffect(() => {
+    if (tenant && tenant !== _tenant) {
+      setTenant(tenant)
+    }
+  }, [tenant])
+
   const context = React.useMemo(
     () => ({
       tenant: _tenant,
