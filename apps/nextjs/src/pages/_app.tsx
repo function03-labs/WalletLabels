@@ -14,13 +14,13 @@ function App({ Component, pageProps }: AppProps) {
       cookies={pageProps.cookies}
       linkComponent={Link}
       onError={(error, info) => console.error(error, info)}
-      tenant={router.query.slug as string}
+      tenant={router.query.tenant as string}
       onTenantChange={(key) => {
         router.push({
           ...router,
           query: {
             ...router.query,
-            slug: key,
+            tenant: key,
           },
         })
       }}
