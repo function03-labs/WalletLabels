@@ -12,7 +12,34 @@ export type { IMockServer }
 
 import slug from 'slug'
 
-import * as data from './data'
+let DATA: any = {}
+
+const initData = () => {
+  try {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const json = localStorage.getItem('@app/graphql/data')
+    if (json) {
+      DATA = JSON.parse(json)
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+const updateStorage = () => {
+  try {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    localStorage.setItem('@app/mock-graphql/data', JSON.stringify(DATA))
+  } catch (e) {
+    console.error(e)
+  }
+}
 
 /**
  * Create a Mock Graphql server
@@ -22,40 +49,14 @@ import * as data from './data'
  */
 export const createMockServer = (supabase: any) => {
   const mocks: IMocks = {
-    Query: {
-      currentUser: () => {
-        const user = supabase.auth.user()
-        console.log('USER', user)
-        return (
-          user && {
-            id: user.id,
-            name: user.user_metadata?.name || '',
-            email: user.email,
-            organizations: [],
-          }
-        )
+    Organization: () =>
+      DATA.Organization || {
+        name: 'Saas UI',
+        slug: 'saas-ui',
       },
-      organization: (params: any) => {
-        console.log(params)
-        return {
-          name: 'Saas UI',
-        }
-      },
-    },
-    User: () => {
-      return {
-        organizations: () => {
-          return []
-        },
-      }
-    },
-    // Organization: () => {
-    //   console.log(params)
-    //   return {
-    //     name: 'Saas UI',
-    //   }
-    // },
   }
+
+  initData()
 
   const resolvers = (store: IMockStore) => {
     return {
@@ -69,7 +70,7 @@ export const createMockServer = (supabase: any) => {
             id: user.id,
             name: user.user_metadata?.name || '',
             email: user.email,
-            organizations: [],
+            organizations: [store.get('Query', 'organizations')],
           }
 
           return store.get('User', user.id, _user)
@@ -90,10 +91,16 @@ export const createMockServer = (supabase: any) => {
             id: slug(name),
             name,
             slug: slug(name),
+            users: [store.get('Query', 'currentUser')],
           }
 
           store.set('Organization', organization.slug, organization)
           store.set('User', user.id, 'organizations', [organization])
+
+          DATA['Organization'] = organization
+          updateStorage()
+
+          return store.get('Organization', organization.slug)
         },
       },
     }
