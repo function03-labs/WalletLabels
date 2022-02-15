@@ -121,16 +121,12 @@ export interface SidebarNavGroupTitleProps extends HTMLChakraProps<'div'> {
 export const SidebarNavGroupTitle: React.FC<SidebarNavGroupTitleProps> = (
   props,
 ) => {
-  /* @todo add isCollapsible to collapse context in @saas-ui/collapse */
-  const { leftIcon, isCollapsible, children, ...rest } = props
+  const { leftIcon, children, ...rest } = props
   const styles = useStyles()
 
-  const { getToggleProps, isOpen } = useCollapseContext()
+  const { getToggleProps, isOpen, isCollapsible } = useCollapseContext()
 
   const iconStyles = { display: 'inline-flex', marginEnd: 2 }
-
-  // @todo fix PropsGetter in @saas-ui/collapse package
-  const containerProps = getToggleProps(rest) as SidebarNavGroupTitleProps
 
   let collapseIcon
   if (isCollapsible) {
@@ -138,7 +134,7 @@ export const SidebarNavGroupTitle: React.FC<SidebarNavGroupTitleProps> = (
   }
 
   return (
-    <chakra.div {...containerProps} __css={styles.groupTitle}>
+    <chakra.div {...getToggleProps(rest)} __css={styles.groupTitle}>
       {leftIcon && (
         <chakra.span __css={{ ...iconStyles, ...styles.groupIcon }}>
           {leftIcon}
@@ -180,9 +176,7 @@ export const SidebarNavGroup: React.FC<SidebarNavGroupProps> = (props) => {
   const { getCollapseProps } = collapse
 
   const header = title && (
-    <SidebarNavGroupTitle leftIcon={icon} isCollapsible={isCollapsible}>
-      {title}
-    </SidebarNavGroupTitle>
+    <SidebarNavGroupTitle leftIcon={icon}>{title}</SidebarNavGroupTitle>
   )
 
   let content = <chakra.div>{children}</chakra.div>
