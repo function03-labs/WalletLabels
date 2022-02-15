@@ -11,6 +11,7 @@ import { schema } from './schema'
 export type { IMockServer }
 
 import slug from 'slug'
+import { randEmail, randFullName, randUser, User } from '@ngneat/falso'
 
 let DATA: any = {}
 
@@ -48,7 +49,19 @@ const updateStorage = () => {
  * @param supabase Supabase client
  */
 export const createMockServer = (supabase: any) => {
+  const mapContact = (user: User) => {
+    const { id, firstName, lastName, email } = user
+    return {
+      id,
+      firstName,
+      lastName,
+      fullName: [firstName, lastName].join(' '),
+      email,
+    }
+  }
+
   const mocks: IMocks = {
+    Contact: () => mapContact(randUser()),
     Organization: () =>
       DATA.Organization || {
         name: 'Saas UI',
@@ -80,6 +93,9 @@ export const createMockServer = (supabase: any) => {
         },
         organizations: () => {
           return store.get('Organization')
+        },
+        contacts: () => {
+          return randUser({ length: 20 }).map(mapContact)
         },
       },
       Mutation: {

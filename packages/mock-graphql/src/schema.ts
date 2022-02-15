@@ -19,6 +19,7 @@ const typeDefs = gql`
       slug: String
     ): Organization
     updateUser(name: String, userId: String!): User
+    createContact(name: String!): Contact
   }
 
   enum BillingPlan {
@@ -47,6 +48,7 @@ const typeDefs = gql`
     currentUser: User
     organization(id: String, slug: String): Organization
     organizations: [Organization]
+    contacts: [Contact]
   }
 
   type User {
@@ -64,6 +66,14 @@ const typeDefs = gql`
   input UserWhereUniqueInput {
     email: String
     id: String
+  }
+
+  type Contact {
+    id: String!
+    email: String!
+    firstName: String
+    lastName: String
+    fullName: String
   }
 `
 
