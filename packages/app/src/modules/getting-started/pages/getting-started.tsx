@@ -1,14 +1,11 @@
-import Link from 'next/link'
+import * as React from 'react'
 import * as Yup from 'yup'
 import { useRouter } from 'next/router'
-import { useState, useRef } from 'react'
 
-import { Container } from '@chakra-ui/layout'
+import { Container, Text, useDisclosure } from '@chakra-ui/react'
 
-import { useAuth } from '@saas-ui/auth'
-
-import { Form, Field, FormLayout, Button, Card, CardBody } from '@saas-ui/react'
-import { Page, Section } from '@saas-ui/pro'
+import { Form, Field, FormLayout, SubmitButton, Modal } from '@saas-ui/react'
+import { Page } from '@saas-ui/pro'
 
 import { useCreateOrganizationMutation } from '@app/graphql'
 
@@ -25,51 +22,66 @@ export function GettingStartedPage(props: any) {
 
   const { mutateAsync: createOrganization } = useCreateOrganizationMutation()
 
-  const ref = useRef<HTMLFormElement>(null)
+  const ref = React.useRef<HTMLFormElement>(null)
 
   const handleSubmit = () => {
     ref.current?.requestSubmit()
   }
 
+  const disclosure = useDisclosure()
+
+  React.useLayoutEffect(() => {
+    disclosure.onOpen()
+  })
+
   return (
     <Page title="Getting started" fullWidth>
       <Container py="40">
-        <Card
+        <Modal
           title="Let's get you set up"
-          subtitle="We need a little more information before continueing."
+          hideCloseButton
+          hideOverlay
+          isCentered
+          motionPreset="slideInBottom"
+          {...disclosure}
         >
-          <CardBody>
-            <Form
-              ref={ref}
-              schema={schema}
-              defaultValues={{
-                name: '',
-              }}
-              onSubmit={(data) => {
-                return createOrganization({ name: data.name }).then(
-                  (result) => {
-                    const slug = result?.createOrganization?.slug
-                    if (slug) {
-                      router.push(`/app/${slug}`)
-                    }
-                  },
-                )
-              }}
-            >
-              <FormLayout>
-                <Field name="name" label="Organization name" />
+          <Form
+            ref={ref}
+            schema={schema}
+            defaultValues={{
+              name: '',
+            }}
+            onSubmit={(data) => {
+              return createOrganization({ name: data.name })
+                .then((result) => {
+                  const slug = result?.createOrganization?.slug
+                  if (slug) {
+                    disclosure.onClose()
+                    return slug
+                  } else {
+                    throw new Error('Could not create a new organization.')
+                  }
+                })
+                .then((slug) => router.push(`/app/${slug}`))
+            }}
+          >
+            <FormLayout mb="2">
+              <Text fontSize="lg">
+                We need a little more information before continuing.
+              </Text>
 
-                <Button
-                  label="Create organization"
-                  isPrimary
-                  onClick={handleSubmit}
-                  size="md"
-                  width="full"
-                />
-              </FormLayout>
-            </Form>
-          </CardBody>
-        </Card>
+              <Field name="name" label="Organization name" />
+
+              <SubmitButton
+                label="Create organization"
+                isPrimary
+                onClick={handleSubmit}
+                size="md"
+                width="full"
+              />
+            </FormLayout>
+          </Form>
+        </Modal>
       </Container>
     </Page>
   )
