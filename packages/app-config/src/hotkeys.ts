@@ -19,9 +19,9 @@ export const appHotkeys: HotkeysListOptions = {
   contacts: {
     title: 'Contacts',
     hotkeys: {
-      createApp: {
-        label: 'Create new contact',
-        command: '⌥ N',
+      add: {
+        label: 'Add a person',
+        command: 'A',
       },
     },
   },

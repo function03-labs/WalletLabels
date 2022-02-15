@@ -7,9 +7,9 @@ export const ChevronDown: React.FC<IconProps> = (props) => (
       points="6 9 12 15 18 9"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     ></polyline>
   </Icon>
 )
@@ -20,9 +20,9 @@ export const ChevronRight: React.FC<IconProps> = (props) => (
       points="9 18 15 12 9 6"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     ></polyline>
   </Icon>
 )

@@ -3,71 +3,73 @@ import * as React from 'react'
 import {
   chakra,
   forwardRef,
-  Box,
   IconButton,
   Tooltip,
   TooltipProps,
   Divider,
   ButtonGroup,
-  Spacer,
   omitThemingProps,
+  useMultiStyleConfig,
   useStyles,
   StylesProvider,
   HTMLChakraProps,
   ThemingProps,
 } from '@chakra-ui/react'
 
-import { useMultiStyleConfig } from '@saas-ui/system'
-
-import { Button, ButtonProps } from '@saas-ui/button'
-
-const styleConfig = {
-  parts: ['toolbar', 'divider'],
-  baseStyle: {
-    container: { display: 'flex', flex: 1, justifyContent: 'flex-end' },
-    divider: {
-      px: 2,
-      flexShrink: 0,
-      height: '100%',
-    },
-  },
-}
+import { Button, ButtonProps } from '@saas-ui/react'
 
 export interface ToolbarButtonProps extends ButtonProps {
   label: string
   icon?: React.ReactElement
-  tooltipProps?: TooltipProps
+  tooltipProps?: Omit<TooltipProps, 'children'>
 }
 
 export const ToolbarButton = forwardRef<ToolbarButtonProps, 'button'>(
   (props, ref) => {
-    const { label, icon, tooltipProps, isDisabled, ...buttonProps } = props
+    const { label, icon, tooltipProps, ...buttonProps } = props
 
+    let button
     if (icon) {
+      button = (
+        <IconButton ref={ref} icon={icon} {...buttonProps} aria-label={label} />
+      )
+    } else {
+      button = (
+        <Button ref={ref} {...buttonProps}>
+          {label}
+        </Button>
+      )
+    }
+
+    if (icon || tooltipProps) {
       return (
-        <Tooltip label={label} {...tooltipProps}>
-          <IconButton
-            ref={ref}
-            icon={icon}
-            {...buttonProps}
-            aria-label={label}
-          />
+        <Tooltip
+          label={label}
+          closeOnClick={true}
+          openDelay={400}
+          {...tooltipProps}
+        >
+          {button}
         </Tooltip>
       )
     }
 
-    return (
-      <Button ref={ref} {...buttonProps}>
-        {label}
-      </Button>
-    )
+    return button
   },
 )
 
 export const ToolbarDivider: React.FC = () => {
   const styles = useStyles()
+
+  const dividerStyles = {
+    px: 2,
+    flexShrink: 0,
+    height: '100%',
+    ...styles.divider,
+  }
+
   return (
-    <chakra.div __css={styles.divider}>
+    <chakra.div __css={dividerStyles}>
       <Divider orientation="vertical" />
     </chakra.div>
   )
@@ -79,18 +81,23 @@ export interface ToolbarProps
 
 export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
   const { children, variant, ...rest } = props
-  const styles = useMultiStyleConfig('Toolbar', props, {
-    defaultStyleConfig: styleConfig,
-  })
+  const styles = useMultiStyleConfig('Toolbar', props)
 
   const toolbarProps = omitThemingProps(rest)
+
+  const containerStyles = {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-end',
+    ...styles.container,
+  }
 
   return (
     <StylesProvider value={styles}>
       <chakra.div
         ref={ref}
         role="toolbar"
-        __css={styles.container}
+        __css={containerStyles}
         {...toolbarProps}
       >
         <ButtonGroup variant={variant}>{children}</ButtonGroup>

@@ -69,7 +69,7 @@ export const PageBody: React.FC<PageBodyProps> = (props) => {
 
   return (
     <chakra.div __css={styles.body}>
-      <chakra.div>{children}</chakra.div>
+      <chakra.div maxW={innerWidth}>{children}</chakra.div>
     </chakra.div>
   )
 }
@@ -81,7 +81,7 @@ interface PageContainerProps
 }
 
 export const PageContainer: React.FC<PageContainerProps> = (props) => {
-  const { children, ...containerProps } = omitThemingProps(props)
+  const { children, fullWidth, ...containerProps } = omitThemingProps(props)
 
   const styles = useMultiStyleConfig('Page', props)
 
@@ -131,7 +131,7 @@ export const Page: React.FC<PageProps> = (props) => {
         )
       }
     >
-      <PageContainer {...rest}>
+      <PageContainer fullWidth={fullWidth} {...rest}>
         <PageHeader>
           {nav}
           <chakra.div>
