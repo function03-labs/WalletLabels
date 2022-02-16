@@ -1,6 +1,6 @@
 import { Stack, Text, Progress } from '@chakra-ui/react'
 
-// import UpgradeButton from '../UpgradeButton'
+import { UpgradeButton } from '@saas-ui/billing'
 
 export const BillingStatus = () => {
   return (
@@ -10,7 +10,7 @@ export const BillingStatus = () => {
           Plan: <strong>Professional</strong>
         </Text>
 
-        {/* <UpgradeButton projectId={projectId} variant="subtle" /> */}
+        <UpgradeButton variant="subtle" />
       </Stack>
       <Progress colorScheme="green" size="xs" borderRadius="0" value={53} />
     </Stack>

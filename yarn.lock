@@ -6203,6 +6203,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/billing@workspace:saas-ui/billing":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/billing@workspace:saas-ui/billing"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/button@npm:0.2.1":
   version: 0.2.1
   resolution: "@saas-ui/button@npm:0.2.1"

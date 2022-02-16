@@ -4,7 +4,7 @@ interface UpgradeButtonProps extends ButtonProps {
   projectId: string
 }
 
-const UpgradeButton: React.FC<UpgradeButtonProps> = ({
+export const UpgradeButton: React.FC<UpgradeButtonProps> = ({
   projectId,
   ...props
 }) => {
@@ -16,5 +16,3 @@ const UpgradeButton: React.FC<UpgradeButtonProps> = ({
     </Button>
   )
 }
-
-export default UpgradeButton

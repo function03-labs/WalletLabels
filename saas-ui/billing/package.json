@@ -1,0 +1,4 @@
+{
+  "name": "@saas-ui/billing",
+  "main": "src/index.ts"
+}
