@@ -8,7 +8,7 @@ import {
 
 import * as Yup from 'yup'
 
-import { Tag, Kbd } from '@chakra-ui/react'
+import { Tag, Kbd, MenuItem } from '@chakra-ui/react'
 import { FiUser, FiUploadCloud } from 'react-icons/fi'
 import {
   Button,
@@ -20,7 +20,7 @@ import {
 import { Toolbar, ToolbarButton, useTenant } from '@saas-ui/pro'
 import { ListPage } from '@modules/core/components/list-page'
 
-type Dict = Record<string, any>
+import { OverflowMenu } from '@ui/overflow-menu'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
@@ -46,6 +46,14 @@ const StatusCell = (cell: any) => {
   }
 }
 
+const ActionCell = () => {
+  return (
+    <OverflowMenu size="xs">
+      <MenuItem>Delete</MenuItem>
+    </OverflowMenu>
+  )
+}
+
 const schema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too short')
@@ -62,12 +70,14 @@ export function ContactsListPage() {
     organizationId: tenant,
   })
 
+  const mutation = useCreateContactMutation()
+
   const addPerson = () => {
     modals.form?.({
       title: 'Add person',
       schema: schema,
       submitLabel: 'Save',
-      onSubmit: () => Promise.resolve(),
+      onSubmit: (contact) => mutation.mutateAsync(contact),
     })
   }
 
@@ -105,6 +115,14 @@ export function ContactsListPage() {
       id: 'status',
       Header: 'Status',
       Cell: StatusCell,
+      width: '1%',
+    },
+    {
+      id: 'action',
+      disableSortBy: true,
+      Header: '',
+      Cell: ActionCell,
+      width: '1%',
     },
   ]
 

@@ -22,6 +22,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     data = [],
     isLoading,
     onSelectedRowsChange,
+    ...rest
   } = props
 
   let content
@@ -42,7 +43,13 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   }
 
   return (
-    <Page title={title} toolbar={toolbar} isLoading={isLoading} fullWidth>
+    <Page
+      title={title}
+      toolbar={toolbar}
+      isLoading={isLoading}
+      fullWidth
+      {...rest}
+    >
       {content}
     </Page>
   )
