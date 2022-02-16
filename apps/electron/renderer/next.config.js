@@ -2,7 +2,7 @@ const path = require('path')
 const withWorkspaces = require('@saas-ui/next-workspaces')
 
 module.exports = withWorkspaces({
-  workspaces: ['packages', 'libs'],
+  workspaces: ['packages', 'libs', 'saas-ui'],
   basePath: '../../',
 })({
   experimental: {

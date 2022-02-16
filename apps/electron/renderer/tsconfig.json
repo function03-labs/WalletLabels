@@ -6,6 +6,7 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
+      "src/*": ["../../nextjs/src"],
       "@modules/*": ["../../../packages/app/src/modules/*"],
       "@app/config/*": ["../../../packages/app-config/src/*"]
     }

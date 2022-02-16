@@ -1,38 +1,19 @@
-<p align="center"><img src="https://i.imgur.com/NZfsD1p.png"></p>
+## Saas UI Pro Electron
 
-## Usage
+## Installation
 
-### Create an App
-
-```
-# with npx
-$ npx create-nextron-app my-app --example with-typescript
-
-# with yarn
-$ yarn create nextron-app my-app --example with-typescript
-
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-typescript
+```bash
+yarn install
 ```
 
-### Install Dependencies
+## Run the app
 
 ```
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
+yarn dev
 ```
 
-### Use it
+## Build the app
 
 ```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
-
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
+yarn build
 ```
