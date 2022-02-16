@@ -13,9 +13,9 @@ export const SaasUILogo = () => {
           y2="45.54"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#652ee3" />
-          <stop offset=".55" stop-color="#4662e4" />
-          <stop offset="1" stop-color="#48a2e5" />
+          <stop offset="0" stopColor="#652ee3" />
+          <stop offset=".55" stopColor="#4662e4" />
+          <stop offset="1" stopColor="#48a2e5" />
         </linearGradient>
       </defs>
       <path
@@ -29,8 +29,8 @@ export const SaasUILogo = () => {
         height="87.08"
         rx="12"
         fill="none"
-        stroke-miterlimit="10"
-        stroke-width="4"
+        strokeMiterlimit="10"
+        strokeWidth="4"
         stroke="url(#linear-gradient)"
       />
     </svg>
