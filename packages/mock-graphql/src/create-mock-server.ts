@@ -71,6 +71,11 @@ export const createMockServer = (context: MockContext) => {
         name: 'Saas UI',
         slug: 'saas-ui',
       },
+    Query: {
+      contacts: () => {
+        return randUser({ length: 20 }).map(mapContact)
+      },
+    },
   }
 
   initData()
@@ -97,9 +102,6 @@ export const createMockServer = (context: MockContext) => {
         },
         organizations: () => {
           return store.get('Organization')
-        },
-        contacts: () => {
-          return randUser({ length: 20 }).map(mapContact)
         },
       },
       Mutation: {
