@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router'
-
 import {
   useGetContactsQuery,
   Contact,
@@ -66,9 +64,7 @@ export function ContactsListPage() {
   const tenant = useTenant()
   const modals = useModals()
 
-  const { data, isLoading } = useGetContactsQuery({
-    organizationId: tenant,
-  })
+  const { data, isLoading } = useGetContactsQuery()
 
   const mutation = useCreateContactMutation()
 
@@ -116,6 +112,7 @@ export function ContactsListPage() {
       Header: 'Status',
       Cell: StatusCell,
       width: '1%',
+      disableSortBy: true,
     },
     {
       id: 'action',
