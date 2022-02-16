@@ -1,5 +1,8 @@
-import { createPage } from '@/helpers/createPage'
+import * as React from 'react'
+import router from 'next/router'
 
+import { useAuth, Loading } from '@saas-ui/react'
+import { createPage } from '@app/nextjs'
 import { LoginPage } from '@modules/auth'
 
 /**
@@ -9,8 +12,17 @@ import { LoginPage } from '@modules/auth'
 
 export default createPage({
   title: 'Login',
+  layout: 'auth',
   // isPublic: true,
   renderComponent: () => {
+    const { isAuthenticated } = useAuth()
+
+    React.useEffect(() => {
+      if (isAuthenticated) {
+        router.push('/')
+      }
+    }, [isAuthenticated])
+
     return <LoginPage />
   },
 })

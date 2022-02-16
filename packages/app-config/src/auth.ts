@@ -1,14 +1,11 @@
 import { AvailableProviders } from '@saas-ui/auth'
-import { createAuthService } from '@saas-ui/auth/services/supabase'
 
 import { FaGoogle, FaGithub } from 'react-icons/fa'
-
-import { supabase } from './supabase'
 
 /**
  * The authentication type, magiclink or password
  */
-export const authType = 'magiclink'
+export const authType = 'password'
 
 /**
  * Available OAuth providers for single sign on.
@@ -43,5 +40,3 @@ export const authPaths: Record<string, any> = {
     view: 'update_password',
   },
 }
-
-export const authService = createAuthService(supabase)

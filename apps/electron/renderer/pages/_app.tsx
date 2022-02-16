@@ -1,36 +1,43 @@
-import type { AppProps } from 'next/app'
-import { Provider } from 'urql'
-import { SaasProvider } from '@saas-ui/provider'
-import Link from 'next/link'
+import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
-import Logo from '/public/logo.svg'
+import { NProgressNextRouter } from '@saas-ui/react'
 
-const LinkWrapper = ({
-  href,
-  children,
-  ...props
-}: {
-  href: string
-  children: React.ReactNode
-}) => (
-  <Link href={href} passHref {...props}>
-    {children}
-  </Link>
-)
+import { AppProvider } from '@modules/core/providers/app'
+
+// import { authService } from '../lib/supabase'
+// import { authService } from '../lib/magic'
+import { authService } from '@app/config/mock-auth-service'
 
 function App({ Component, pageProps }: AppProps) {
-  const nextRouter = useRouter()
+  const router = useRouter()
+
+  const tenant = router.query.tenant ? (router.query.tenant as string) : null
 
   return (
-    <SaasProvider
-      appName="Appulse"
-      // logo={<Logo />}
+    <AppProvider
+      authService={authService}
       cookies={pageProps.cookies}
-      linkComponent={LinkWrapper}
+      linkComponent={Link}
+      onError={(error, info) => console.error(error, info)}
+      tenant={tenant}
+      onTenantChange={(key) => {
+        router.push({
+          ...router,
+          query: {
+            ...router.query,
+            tenant: key,
+          },
+        })
+      }}
+      isPublic={Component.isPublic}
+      layout={Component.layout}
+      sidebar={pageProps.sidebar}
     >
-      <Component />
-    </SaasProvider>
+      <NProgressNextRouter router={router} />
+      <Component {...pageProps} />
+    </AppProvider>
   )
 }
 

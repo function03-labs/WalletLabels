@@ -3,14 +3,14 @@ import * as React from 'react'
 import { createContext } from '@chakra-ui/react-utils'
 import { useLocalStorage } from '@saas-ui/react'
 
-type Tenant = string
+export type Tenant = string
 
 export interface Tenancy {
   setTenant: (tenant: Tenant) => Tenant
 }
 
 export interface TenancyContextValue {
-  tenant?: Tenant
+  tenant?: Tenant | null
   setTenant: (tenant: Tenant) => void
 }
 
@@ -20,7 +20,7 @@ export const [TenancyContextProvider, useTenancy] =
   })
 
 interface TenancyProviderProps {
-  tenant?: Tenant
+  tenant?: Tenant | null
   onChange?: (tenant: string) => void
   localStorageKey?: string
   children: React.ReactNode

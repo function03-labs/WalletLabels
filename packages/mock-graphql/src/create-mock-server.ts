@@ -13,6 +13,10 @@ export type { IMockServer }
 import slug from 'slug'
 import { randEmail, randFullName, randUser, User } from '@ngneat/falso'
 
+export interface MockContext {
+  user: () => Promise<any>
+}
+
 let DATA: any = {}
 
 const initData = () => {
@@ -48,7 +52,7 @@ const updateStorage = () => {
  * We use the supabase client here directly to simulate authentication.
  * @param supabase Supabase client
  */
-export const createMockServer = (supabase: any) => {
+export const createMockServer = (context: MockContext) => {
   const mapContact = (user: User) => {
     const { id, firstName, lastName, email } = user
     return {
@@ -74,14 +78,14 @@ export const createMockServer = (supabase: any) => {
   const resolvers = (store: IMockStore) => {
     return {
       Query: {
-        currentUser: () => {
-          const user = supabase.auth.user()
+        currentUser: async () => {
+          const user = await context.user()
 
           if (!user) return null
 
           const _user = {
             id: user.id,
-            name: user.user_metadata?.name || '',
+            name: user.name || user.user_metadata?.name || '',
             email: user.email,
             organizations: [store.get('Query', 'organizations')],
           }
@@ -99,8 +103,8 @@ export const createMockServer = (supabase: any) => {
         },
       },
       Mutation: {
-        createOrganization: (_: any, params: any, ctx: any) => {
-          const user = supabase.auth.user()
+        createOrganization: async (_: any, params: any, ctx: any) => {
+          const user = await context.user()
           const { name } = params
 
           const organization = {

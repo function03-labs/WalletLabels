@@ -4,16 +4,10 @@
   "exclude": ["node_modules"],
   "compilerOptions": {
     "incremental": true,
-    "baseUrl": "../../app/",
+    "baseUrl": "./",
     "paths": {
-      "pages/*": ["src/pages/*"],
-      "@/config/*": ["src/config/*"],
-      "@/layouts/*": ["src/client/layouts/*"],
-      "@/components/*": ["src/client/components/*"],
-      "@/ui/*": ["src/ui/*"],
-      "@modules/*": ["src/modules/*"],
-      "@/helpers/*": ["src/helpers/*"],
-      "@/graphql/*": ["src/client/graphql/*"]
+      "@modules/*": ["../../../packages/app/src/modules/*"],
+      "@app/config/*": ["../../../packages/app-config/src/*"]
     }
   }
 }

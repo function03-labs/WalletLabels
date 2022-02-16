@@ -1,9 +1,15 @@
 import { Container, Stack } from '@chakra-ui/react'
 import Link from '@modules/core/components/link'
 
-import { SignupForm } from '@saas-ui/auth'
+import { Loading, SignupForm, useAuth } from '@saas-ui/react'
 
 export const SignupPage = () => {
+  const { isAuthenticated } = useAuth()
+
+  if (isAuthenticated) {
+    return <Loading />
+  }
+
   return (
     <Stack flex="1" direction="row">
       <Stack

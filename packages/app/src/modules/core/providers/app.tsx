@@ -7,9 +7,8 @@ import {
   ModalsProvider,
 } from '@saas-ui/react'
 
-import { TenancyProvider } from '@saas-ui/pro'
+import { TenancyProvider, Tenant } from '@saas-ui/pro'
 
-import { authService } from '@app/config'
 import { theme } from '@ui/theme'
 import AppLayout from '@modules/core/layouts/app-layout'
 
@@ -18,7 +17,7 @@ const queryClient = new QueryClient()
 export interface AppProviderProps {
   linkComponent?: React.ReactNode
   authService?: AuthProviderProps
-  tenant?: string
+  tenant?: Tenant | null
   onTenantChange?: (key: string) => void
   cookies?: any
   onError?: (error: Error, info: any) => void
@@ -34,6 +33,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
     onTenantChange,
     cookies,
     onError,
+    authService,
     isPublic,
     layout,
     sidebar,

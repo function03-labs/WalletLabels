@@ -9,7 +9,6 @@ const parts = anatomy('page').parts(
 )
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
-  console.log(props)
   return {
     container: {
       display: 'flex',

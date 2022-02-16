@@ -1,5 +1,8 @@
-import { createPage } from '@/helpers/createPage'
+import * as React from 'react'
+import router from 'next/router'
 
+import { useAuth } from '@saas-ui/react'
+import { createPage } from '@app/nextjs'
 import { SignupPage } from '@modules/auth'
 
 /**
@@ -7,12 +10,18 @@ import { SignupPage } from '@modules/auth'
  * Defaults to the default Auth component in AppLayout
  */
 
-const SignupPage = createPage({
+export default createPage({
   title: 'Signup',
   // isPublic: true,
   renderComponent: () => {
+    const { isAuthenticated } = useAuth()
+
+    React.useEffect(() => {
+      if (isAuthenticated) {
+        router.push('/')
+      }
+    }, [isAuthenticated])
+
     return <SignupPage />
   },
 })
-
-export default SignupPage

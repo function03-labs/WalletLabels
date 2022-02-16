@@ -6380,9 +6380,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui/auth@npm:0.4.3":
-  version: 0.4.3
-  resolution: "@saas-ui/auth@npm:0.4.3"
+"@saas-ui/auth@npm:0.4.4":
+  version: 0.4.4
+  resolution: "@saas-ui/auth@npm:0.4.4"
   dependencies:
     "@saas-ui/button": 0.2.1
     "@saas-ui/forms": 0.2.5
@@ -6392,7 +6392,7 @@ __metadata:
     "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
     react: ">=16.8.6"
-  checksum: 0253a1d23c24826ab89bbd245f08ae114af277db1d4d4f99d99684275d1f048c47518e6d4e56673d6b23c54ea247964b4517c9f797c8c5d652e646ff07c3ddb1
+  checksum: a078ca7eedc73c262b2c5259d6090e4aa5237c1c849fd46d61eab6d88e23af82c1c6056cc6ce83fb5d15e6a54f9c0cd8f3ac91113cb8a0e3feb5dc950971181d
   languageName: node
   linkType: hard
 
@@ -6761,11 +6761,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/react@npm:^0.7.4":
-  version: 0.7.4
-  resolution: "@saas-ui/react@npm:0.7.4"
+"@saas-ui/react@npm:^0.7.5":
+  version: 0.7.5
+  resolution: "@saas-ui/react@npm:0.7.5"
   dependencies:
-    "@saas-ui/auth": 0.4.3
+    "@saas-ui/auth": 0.4.4
     "@saas-ui/button": 0.2.1
     "@saas-ui/card": 0.2.1
     "@saas-ui/collapse": 0.2.3
@@ -6798,7 +6798,7 @@ __metadata:
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
-  checksum: 23685ac28a9376fa22ce483f909d2687ddfc3a5e8f89d7bf18dc06a26fc553dd52359901d741e2433afd5a4d07fca24688b7e94bfcbd98ffa06d8103424b34f1
+  checksum: 38211001271f80d1371ca97492ac71179cc5d2f8704449d62c5f9074fc4655ddc64853d1024f4a243d8167e0e34ca54f6b40416a6dab35ab92c0616484445929
   languageName: node
   linkType: hard
 
@@ -9314,7 +9314,7 @@ __metadata:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.7.4
+    "@saas-ui/react": ^0.7.5
     "@storybook/addon-actions": ^6.4.3
     "@storybook/addon-essentials": ^6.4.9
     "@storybook/addon-links": ^6.4.3

@@ -3,7 +3,7 @@ import { useAuth } from '@saas-ui/react'
 const getAPIUrl = (): string => {
   const apiPath = '/api/graphql'
 
-  if (process.browser) return apiPath
+  if (typeof window !== 'undefined') return apiPath
 
   // Infer the deploy URL if we're in production
   // VERCEL_URL = Vercel, DEPLOY_URL = Netlify, ROOT_URL = Custom

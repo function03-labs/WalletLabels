@@ -6,15 +6,22 @@ import { NProgressNextRouter } from '@saas-ui/react'
 
 import { AppProvider } from '@modules/core/providers/app'
 
+// import { authService } from '../lib/supabase'
+// import { authService } from '../lib/magic'
+import { authService } from '@app/config/mock-auth-service'
+
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
+  const tenant = router.query.tenant ? (router.query.tenant as string) : null
+
   return (
     <AppProvider
+      authService={authService}
       cookies={pageProps.cookies}
       linkComponent={Link}
       onError={(error, info) => console.error(error, info)}
-      tenant={router.query.tenant as string}
+      tenant={tenant}
       onTenantChange={(key) => {
         router.push({
           ...router,
