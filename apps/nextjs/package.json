@@ -9,7 +9,8 @@
     "generate": "yarn workspace @app/graphql generate",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@saas-ui/next-workspaces": "^0.1.1",
@@ -21,6 +22,7 @@
     "next-svgr": "^0.0.2"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^12.0.10",
     "@svgr/webpack": "5.5.0"
   }
 }

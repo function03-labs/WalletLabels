@@ -5857,6 +5857,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/eslint-plugin-next@npm:^12.0.10":
+  version: 12.0.10
+  resolution: "@next/eslint-plugin-next@npm:12.0.10"
+  dependencies:
+    glob: 7.1.7
+  checksum: ceb95880458ab6fc67fb58350e9f87ca8ac0adf0b50bf099e03bb84b4d7d48888d29518e09cf281a1181d9c240d3babdfb5b8649e7dad79332f77f0f7d01293c
+  languageName: node
+  linkType: hard
+
 "@next/swc-android-arm64@npm:12.0.10":
   version: 12.0.10
   resolution: "@next/swc-android-arm64@npm:12.0.10"
@@ -6658,6 +6667,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/sparklines@workspace:saas-ui/sparklines"
   dependencies:
+    "@types/react-sparklines": ^1.7.2
     react-sparklines: ^1.7.0
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
@@ -8773,6 +8783,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 4d5730dffbef86c887cecad7e3cecda424ce6a64d0b5441c63b5b015d48219868660a2bb1aa15e897e565ad8867fa6b885d4358b04e1c4e589ba4c07c3fda55c
+  languageName: node
+  linkType: hard
+
+"@types/react-sparklines@npm:^1.7.2":
+  version: 1.7.2
+  resolution: "@types/react-sparklines@npm:1.7.2"
+  dependencies:
+    "@types/react": "*"
+  checksum: e0e8479c256731c3fe9405a5d3061f81838f8708bc585203afa89ff81f266f06f5b497b1db77e6a488d6073de623c4093afd9cbf3626bb7c89f996632749c281
   languageName: node
   linkType: hard
 
@@ -16072,6 +16091,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glob@npm:7.1.7":
+  version: 7.1.7
+  resolution: "glob@npm:7.1.7"
+  dependencies:
+    fs.realpath: ^1.0.0
+    inflight: ^1.0.4
+    inherits: 2
+    minimatch: ^3.0.4
+    once: ^1.3.0
+    path-is-absolute: ^1.0.0
+  checksum: b61f48973bbdcf5159997b0874a2165db572b368b931135832599875919c237fc05c12984e38fe828e69aa8a921eb0e8a4997266211c517c9cfaae8a93988bb8
+  languageName: node
+  linkType: hard
+
 "glob@npm:^7.1.1, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6, glob@npm:^7.1.7":
   version: 7.2.0
   resolution: "glob@npm:7.2.0"
@@ -20429,6 +20462,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nextjs-app@workspace:apps/nextjs"
   dependencies:
+    "@next/eslint-plugin-next": ^12.0.10
     "@saas-ui/next-workspaces": ^0.1.1
     "@saas-ui/utils": "workspace:*"
     "@svgr/webpack": 5.5.0

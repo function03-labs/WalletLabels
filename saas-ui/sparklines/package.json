@@ -4,6 +4,7 @@
     "default": "./src/index.ts"
   },
   "dependencies": {
+    "@types/react-sparklines": "^1.7.2",
     "react-sparklines": "^1.7.0"
   },
   "peerDependencies": {

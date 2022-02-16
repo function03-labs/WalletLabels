@@ -6,7 +6,7 @@ import { SplitPage } from '@modules/core/components/split-page'
 import { InboxViewPage } from './view'
 import { InboxList } from '../components/inbox-list'
 
-export function InboxListPage({ query }) {
+export function InboxListPage({ query }: any) {
   const toolbar = (
     <Toolbar>
       <ToolbarButton icon={<FiFilter />} label="Filter" />

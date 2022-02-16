@@ -20,9 +20,10 @@
     "build:tokens": "chakra-cli tokens packages/saas-ui-theme/src/saas-ui",
     "build:packages": "turbo run build  --scope='@saas-ui/*' --concurrency=5 --no-deps --continue && yarn build:tokens",
     "clean:packages": "turbo run clean",
-    "eslint": "eslint --cache --cache-location=node_modules/.cache/.eslintcache --fix",
+    "eslint2": "eslint --cache --cache-location=node_modules/.cache/.eslintcache --fix",
     "lint": "yarn run eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:staged": "lint-staged --allow-empty --config lint-staged.config.js"
+    "lint:staged": "lint-staged --allow-empty --config lint-staged.config.js",
+    "typecheck": "tsc"
   },
   "workspaces": [
     "saas-ui/*",

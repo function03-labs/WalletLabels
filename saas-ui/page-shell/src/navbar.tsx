@@ -1,5 +1,10 @@
 import * as React from 'react'
-import { chakra, omitThemingProps } from '@chakra-ui/react'
+import {
+  chakra,
+  omitThemingProps,
+  HTMLChakraProps,
+  ThemingProps,
+} from '@chakra-ui/react'
 import { useMultiStyleConfig } from '@saas-ui/system'
 
 // bg={useColorModeValue("white", "gray.800")}
@@ -24,7 +29,9 @@ const defaultStyleConfig = {
   },
 }
 
-export const Navbar = (props) => {
+interface NavbarProps extends HTMLChakraProps<'div'>, ThemingProps<'Navbar'> {}
+
+export const Navbar: React.FC<NavbarProps> = (props) => {
   const styles = useMultiStyleConfig('Navbar', props, {
     defaultStyleConfig,
   })
