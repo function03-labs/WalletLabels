@@ -9971,7 +9971,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:packages/app"
   dependencies:
+    "@app/config": "workspace:*"
     "@types/react-table": ^7.7.9
+    "@ui/core": "workspace:*"
   languageName: unknown
   linkType: soft
 

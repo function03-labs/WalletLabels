@@ -5,7 +5,7 @@ import { Box, Spacer } from '@chakra-ui/react'
 import {
   FiHome,
   FiBox,
-  FiLink,
+  FiInbox,
   FiHelpCircle,
   FiHash,
   FiUsers,
@@ -66,32 +66,36 @@ export const Sidebar = () => {
                 icon={<FiHome />}
               />
               <SidebarLink
+                href={getPath('inbox')}
+                label="Inbox"
+                icon={<FiInbox />}
+              />
+              <SidebarLink
                 href={getPath('contacts')}
                 label="Contacts"
                 icon={<FiUsers />}
               />
             </SidebarNavGroup>
 
-            <SidebarNavGroup title="Teams" isCollapsible>
-              <SidebarLink href="/apps" label="Saas UI" />
-              <SidebarLink href="/apps" label="Appulse" />
-            </SidebarNavGroup>
             <SidebarNavGroup title="Tags" isCollapsible>
               <SidebarLink
-                href="/apps"
+                href={getPath('contacts/tag/design-system')}
                 label="Design system"
                 icon={<FiHash />}
               />
-              <SidebarLink href="/apps" label="Framework" icon={<FiHash />} />
               <SidebarLink
-                href="/apps"
+                href={getPath('contacts/framework')}
+                label="Framework"
+                icon={<FiHash />}
+              />
+              <SidebarLink
+                href={getPath('contacts/tag/chakra-ui')}
                 label="Chakra UI"
                 inset={5}
                 icon={<FiHash />}
               />
-
               <SidebarLink
-                href="/apps"
+                href={getPath('contacts/tag/react')}
                 label="React"
                 inset={5}
                 icon={<FiHash />}
