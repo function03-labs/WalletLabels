@@ -1,13 +1,13 @@
-import LogoDark from '/public/img/saasui.svg'
-import LogoLight from '/public/img/saasui-dark.svg'
+import { Flex, FlexProps } from '@chakra-ui/react'
+import React from 'react'
 
-import { Flex, useColorModeValue } from '@chakra-ui/react'
+import { SaasUILogo } from './saas-ui'
 
-export const Logo = (props) => {
-  const Logo = useColorModeValue(LogoLight, LogoDark)
+export const Logo = (props: FlexProps & { logo?: React.ReactNode }) => {
+  const { logo } = props
   return (
     <Flex width="160px" {...props}>
-      <Logo />
+      {logo || <SaasUILogo />}
     </Flex>
   )
 }
