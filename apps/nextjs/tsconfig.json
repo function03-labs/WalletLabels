@@ -16,7 +16,8 @@
     "baseUrl": "./",
     "paths": {
       "@modules/*": ["../../packages/app/src/modules/*"],
-      "@app/config/*": ["../../packages/app-config/src/*"]
+      "@app/config/*": ["../../packages/app-config/src/*"],
+      "@ui/*": ["../../packages/ui-core/src/*"]
     },
     "incremental": true
   },

@@ -4,7 +4,8 @@
     "baseUrl": "./",
     "paths": {
       "@app/config/*": ["../app-config/src/*"],
-      "@modules/*": ["src/modules/*"]
+      "@modules/*": ["src/modules/*"],
+      "@ui/*": ["../ui-core/src/*"]
     }
   },
   "include": ["src"],
