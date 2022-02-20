@@ -68,11 +68,15 @@ export function ContactsListPage() {
   const mutation = useCreateContactMutation()
 
   const addPerson = () => {
+    /** @todo the FormModal doesn't have a generic type yet, so the onSubmit result it's typed. */
     modals.form?.({
       title: 'Add person',
       schema: schema,
       submitLabel: 'Save',
-      onSubmit: (contact) => mutation.mutateAsync(contact),
+      onSubmit: (contact) =>
+        mutation.mutateAsync({
+          name: contact.name,
+        }),
     })
   }
 
