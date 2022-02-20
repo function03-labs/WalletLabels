@@ -12,6 +12,7 @@ import {
   StatHelpText,
   StatArrow,
   Progress,
+  useMultiStyleConfig,
 } from '@chakra-ui/react'
 
 import { FiShare, FiShare2, FiFilter } from 'react-icons/fi'
@@ -46,6 +47,12 @@ const steps = [
     content: 'This is another awesome feature!',
   },
 ]
+
+const Test = () => {
+  const styles = useMultiStyleConfig('Card', {})
+  console.log(styles)
+  return null
+}
 
 export function OverviewPage() {
   const router = useRouter()
@@ -97,6 +104,7 @@ export function OverviewPage() {
       <Flex wrap="wrap" p="4">
         <Section size={1 / 3}>
           <Card>
+            <Test />
             <CardBody>
               <Stat className="appulse-tour-revenue">
                 <StatLabel>Revenue</StatLabel>

@@ -135,11 +135,7 @@ const TourTooltip = forwardRef(
               </Button>
             )}
             {continuous && (
-              <Button
-                {...primaryProps}
-                bg="primary.600"
-                _hover={{ bg: 'primary.700' }}
-              >
+              <Button {...primaryProps} variant="subtle">
                 {isLastStep ? last : next}
               </Button>
             )}
@@ -155,7 +151,12 @@ const TourTooltip = forwardRef(
           <PopoverTrigger>
             <span />
           </PopoverTrigger>
-          <PopoverContent position="relative" bg="primary.500" fontSize="md">
+          <PopoverContent
+            position="relative"
+            bg="primary.500"
+            fontSize="md"
+            color="white"
+          >
             <PopoverArrow bg="primary.500" />
             {title && !hideCloseButton && (
               <PopoverCloseButton {...closeProps} />

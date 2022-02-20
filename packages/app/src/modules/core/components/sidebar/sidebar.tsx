@@ -114,7 +114,7 @@ export const Sidebar = () => {
             </SidebarNavGroup>
           </SidebarNav>
         </SidebarOverflow>
-        <SidebarDivider />
+        <SidebarDivider m="0" />
         <BillingStatus />
       </SidebarContainer>
     </>

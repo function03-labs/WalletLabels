@@ -5,11 +5,9 @@
   "sideEffects": false,
   "author": "Eelco Wiersma <eelco@appulse.nl>",
   "homepage": "https://saas-ui.dev/",
-  "dependencies": {
-    "@saas-ui/theme": "*"
-  },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/system": ">=1.0.0",
+    "@saas-ui/react": ">=0.8.0"
   }
 }

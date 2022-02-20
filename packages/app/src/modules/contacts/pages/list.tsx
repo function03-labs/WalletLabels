@@ -11,14 +11,13 @@ import { FiUser, FiUploadCloud } from 'react-icons/fi'
 import {
   Button,
   EmptyState,
+  OverflowMenu,
   Column,
   useModals,
   useHotkeysShortcut,
 } from '@saas-ui/react'
 import { Toolbar, ToolbarButton, useTenant } from '@saas-ui/pro'
 import { ListPage } from '@modules/core/components/list-page'
-
-import { OverflowMenu } from '@ui/overflow-menu'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
