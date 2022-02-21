@@ -14,7 +14,7 @@ function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   const tenant = router.query.tenant ? (router.query.tenant as string) : null
-  console.log(tenant)
+
   return (
     <AppProvider
       authService={authService}

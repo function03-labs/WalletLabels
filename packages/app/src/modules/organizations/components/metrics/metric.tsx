@@ -34,7 +34,7 @@ export const Metric = (props: MetricProps) => {
       </Stat>
       {data && (
         <Box flex="1">
-          <Sparklines data={data} height="32px" strokeWidth="1" color={color} />
+          <Sparklines data={data} height="32px" strokeWidth={1} color={color} />
         </Box>
       )}
     </HStack>

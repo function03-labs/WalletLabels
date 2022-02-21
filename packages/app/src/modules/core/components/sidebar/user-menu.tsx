@@ -19,7 +19,7 @@ export const UserMenu = () => {
   const { user, logOut } = useAuth()
 
   const tenant = useTenant()
-  console.log(tenant)
+
   const { toggleColorMode, colorMode } = useColorMode()
 
   const hotkeysWindow = useDisclosure()
