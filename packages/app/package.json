@@ -6,5 +6,9 @@
     "@app/i18n": "workspace:*",
     "@types/react-table": "^7.7.9",
     "@ui/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "@saas-ui/pro": "workspace:*",
+    "@saas-ui/react": ">=0.8.0"
   }
 }

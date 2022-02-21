@@ -23,9 +23,12 @@ import Joyride, {
   TooltipRenderProps,
   Props,
   Locale,
+  Step,
   STATUS,
   LIFECYCLE,
 } from 'react-joyride'
+
+export type { Step }
 
 const pulse = keyframes`
   0% {
@@ -43,7 +46,7 @@ const pulse = keyframes`
 
 const { useCallback, forwardRef } = React
 
-const TourBeacon = forwardRef(
+export const Beacon = forwardRef(
   ({ ...props }: BeaconRenderProps, ref: ForwardedRef<any>) => {
     return (
       <chakra.div
@@ -144,9 +147,11 @@ const TourTooltip = forwardRef(
       )
     }
 
+    const placement = step.placement === 'center' ? 'bottom' : step.placement
+
     return (
       <div {...tooltipProps}>
-        <Popover isOpen placement={step.placement as Placement}>
+        <Popover isOpen placement={placement}>
           {/* this makes sure the arrow is rendered correctly */}
           <PopoverTrigger>
             <span />
@@ -218,7 +223,7 @@ export function Tour({
     <Joyride
       steps={steps}
       locale={Object.assign({}, defaultLocale, locale || {})}
-      beaconComponent={TourBeacon as React.ElementType<BeaconRenderProps>}
+      beaconComponent={Beacon as React.ElementType<BeaconRenderProps>}
       tooltipComponent={TourTooltip}
       showProgress
       floaterProps={{ hideArrow: true }}

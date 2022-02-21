@@ -1,43 +1,50 @@
 import * as React from 'react'
 
-import { Tour } from '@saas-ui/pro'
+import { Tour, Step } from '@saas-ui/pro'
+import { useLocalStorage } from '@saas-ui/react'
+import { ErrorBoundary } from '@saas-ui/app'
 
 /**
  * @todo move this to a TourManager context provider
  */
 export const IntroTour = () => {
-  const steps = [
+  const [runTour, setRunTour] = useLocalStorage('saas-ui.intro-tour', true)
+
+  const steps: Step[] = [
+    {
+      target: '.tenant-menu',
+      title: 'Welcome to Saas UI!',
+      content: 'Press next to start a quick introduction.',
+      disableBeacon: true,
+      showSkipButton: true,
+      placement: 'center',
+    },
     {
       target: '.tenant-menu',
       title: 'Switch workspaces',
       content: 'Saas UI Pro supports multiple workspaces.',
+      disableBeacon: true,
     },
     {
-      target: '.appulse-tour-customers',
-      title: 'Edit your profile',
-      content: 'This is another awesome feature!',
-    },
-    {
-      target: '.appulse-tour-users',
-      title: 'Upgrade your account',
-      content: 'This is another awesome feature!',
+      target: '.pre-order',
+      title: 'Share the love ❤️',
+      content: 'Pre-order now and get 50% discount.',
     },
   ]
 
-  const runTour = true // get value from user profile
   const onTourComplete = () => {
-    console.log('Tour complete')
-    // update user profile
+    // setRunTour(false)
   }
 
   return (
-    <Tour
-      continuous
-      steps={steps}
-      run={runTour}
-      showSkipButton
-      disableOverlay
-      onComplete={onTourComplete}
-    />
+    <ErrorBoundary errorComponent={() => null}>
+      <Tour
+        continuous
+        steps={steps}
+        run={runTour}
+        disableOverlay
+        onComplete={onTourComplete}
+      />
+    </ErrorBoundary>
   )
 }
