@@ -13,11 +13,12 @@ import {
   SystemProps,
   useMultiStyleConfig,
   useStyleConfig,
+  MenuListProps,
 } from '@chakra-ui/react'
 
 import { cx } from '@chakra-ui/utils'
 
-import { Menu, MenuButton, MenuList } from '@saas-ui/menu'
+import { Menu, MenuButton, MenuButtonProps, MenuList } from '@saas-ui/menu'
 import { useLink, useActivePath } from '@saas-ui/provider'
 import {
   CollapseProvider,
@@ -332,11 +333,13 @@ export type SidebarMenuProps = {
   label?: string
   icon?: React.ReactNode
   children: React.ReactNode
+  buttonProps?: MenuButtonProps
+  menuListProps?: MenuListProps
 }
 
 export const SidebarMenu = forwardRef<SidebarMenuProps, typeof MenuButton>(
   (props, ref) => {
-    const { label, icon, children, ...rest } = props
+    const { label, icon, children, buttonProps, menuListProps, ...rest } = props
     return (
       <Menu {...rest}>
         <MenuButton
@@ -344,8 +347,9 @@ export const SidebarMenu = forwardRef<SidebarMenuProps, typeof MenuButton>(
           isTruncated
           icon={icon}
           label={label}
+          {...buttonProps}
         />
-        <MenuList zIndex="dropdown" ref={ref}>
+        <MenuList zIndex="dropdown" ref={ref} {...menuListProps}>
           {children}
         </MenuList>
       </Menu>

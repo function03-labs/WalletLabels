@@ -50,6 +50,7 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
     <SidebarMenu
       label={activeTenant?.label}
       icon={<TenantLogo label={activeTenant?.label} />}
+      buttonProps={{ className: 'tenant-menu' }}
     >
       <MenuGroup title={title}>
         {tenants.map(({ id, label, ...props }) => {
