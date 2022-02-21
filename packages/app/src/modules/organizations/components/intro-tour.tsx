@@ -8,7 +8,7 @@ import { ErrorBoundary } from '@saas-ui/app'
  * @todo move this to a TourManager context provider
  */
 export const IntroTour = () => {
-  const [runTour, setRunTour] = useLocalStorage('saas-ui.intro-tour', true)
+  const [tour, setTour] = useLocalStorage('saas-ui.intro-tour', false)
 
   const steps: Step[] = [
     {
@@ -33,7 +33,7 @@ export const IntroTour = () => {
   ]
 
   const onTourComplete = () => {
-    // setRunTour(false)
+    setTour(true)
   }
 
   return (
@@ -41,7 +41,7 @@ export const IntroTour = () => {
       <Tour
         continuous
         steps={steps}
-        run={runTour}
+        run={!tour}
         disableOverlay
         onComplete={onTourComplete}
       />
