@@ -1,16 +1,35 @@
 import * as React from 'react'
-import { IconButton, IconButtonProps } from '@saas-ui/button'
-
+import { IconButton, IconButtonProps, Link } from '@saas-ui/react'
+import { forwardRef } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 
 export interface BackButtonProps extends Omit<IconButtonProps, 'aria-label'> {
   'aria-label'?: string
+  href?: string | object
 }
 
-export const BackButton: React.FC<BackButtonProps> = (props) => {
-  const icon = props.icon || <ArrowBackIcon />
-  return <IconButton aria-label="back" {...props} icon={icon} />
-}
+export const BackButton = forwardRef<BackButtonProps, 'button'>(
+  (props, ref) => {
+    const { href, ...rest } = props
+    const icon = rest.icon || <ArrowBackIcon />
+
+    let as
+    if (href) {
+      as = Link
+    }
+
+    return (
+      <IconButton
+        aria-label="back"
+        href={href}
+        as={as}
+        icon={icon}
+        ref={ref}
+        {...rest}
+      />
+    )
+  },
+)
 
 BackButton.defaultProps = {
   variant: 'ghost',

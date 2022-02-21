@@ -1,4 +1,8 @@
+import * as React from 'react'
 import { Heading } from '@chakra-ui/react'
+import { FiFolder, FiUser } from 'react-icons/fi'
+
+import { useHotkeysShortcut } from '@saas-ui/hotkeys'
 
 import {
   Sidebar as SidebarContainer,
@@ -7,29 +11,28 @@ import {
   SidebarNavGroup,
   SidebarOverflow,
   SidebarLinkProps,
-} from '@saas-ui/page-shell'
-
-import { BackButton } from '@saas-ui/page'
-
-import { useHotkeysShortcut } from '@saas-ui/hotkeys'
-
-import { FiFolder, FiUser } from 'react-icons/fi'
-
-import { useRouter } from 'next/router'
+  BackButton,
+  useTenant,
+} from '@saas-ui/pro'
 
 const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
-  const router = useRouter()
+  const tenant = useTenant()
+
   const { path, ...rest } = props
-  const href = `/app/${router.query.slug}/settings/${path}`
+  const href = `/app/${tenant}/settings/${path}`
     .replace(/\/\//, '/')
     .replace(/\/$/, '')
   return <SidebarLink inset={5} href={href} {...rest} />
 }
 
 export const SettingsSidebar = () => {
-  const router = useRouter()
+  const tenant = useTenant()
+
+  const backRef = React.useRef<HTMLButtonElement>(null)
+
   useHotkeysShortcut('settings.close', () => {
-    router.push('/app')
+    // Simply triggering a click here, so we don't need to reference the router.
+    backRef.current?.click()
   })
 
   return (
@@ -37,7 +40,7 @@ export const SettingsSidebar = () => {
       <SidebarContainer>
         <SidebarOverflow>
           <SidebarNav direction="row" alignItems="center" mb="8">
-            <BackButton onClick={() => router.push('/app')} />
+            <BackButton href={`/app/${tenant}`} ref={backRef} />
             <Heading as="h1" fontSize="xl">
               Settings
             </Heading>
