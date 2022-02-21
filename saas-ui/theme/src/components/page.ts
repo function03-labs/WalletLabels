@@ -49,19 +49,26 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
 const variantHero: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
-    headerWrapper: {
-      bg: mode(`${c}.400`, `${c}.500`)(props),
+    headerContainer: {
+      bg: mode(`${c}.500`, `${c}.500`)(props),
       mb: 8,
     },
     header: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
       borderBottomWidth: 0,
       width: 'container.xl',
       margin: '0 auto',
-      p: 0,
-      minH: 48,
+      py: 14,
     },
     title: {
       fontSize: '2xl',
+      color: 'white',
+    },
+    description: {
+      fontSize: 'xl',
+      color: 'whiteAlpha.700',
+      mb: 4,
     },
   }
 }

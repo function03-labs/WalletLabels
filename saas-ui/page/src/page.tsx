@@ -8,6 +8,7 @@ import {
   omitThemingProps,
   useStyles,
   useMultiStyleConfig,
+  SystemProps,
 } from '@chakra-ui/react'
 
 import { ErrorBoundary } from '@saas-ui/app'
@@ -17,7 +18,7 @@ import { ErrorPage } from './error-page'
 
 export interface PageOptions {
   /**
-   * The page title, can be a string or Component
+   * The page title
    */
   title?: React.ReactNode
   description?: React.ReactNode
@@ -28,6 +29,7 @@ export interface PageOptions {
   isLoading?: boolean
   skeleton?: React.ReactNode
   fullWidth?: boolean
+  contentWidth?: SystemProps['maxW']
   errorComponent?: React.ReactNode
 }
 
@@ -55,12 +57,13 @@ export const PageHeader: React.FC<HTMLChakraProps<'header'>> = (props) => {
 
 interface PageBodyProps extends HTMLChakraProps<'div'> {
   fullWidth?: boolean
+  contentWidth?: SystemProps['maxW']
 }
 
 export const PageBody: React.FC<PageBodyProps> = (props) => {
-  const { fullWidth, children } = props
+  const { fullWidth, contentWidth = 'container.xl', children } = props
 
-  let innerWidth = 'container.xl'
+  let innerWidth = contentWidth
   if (fullWidth) {
     innerWidth = '100%'
   }
@@ -108,6 +111,7 @@ export const Page: React.FC<PageProps> = (props) => {
     isLoading,
     skeleton,
     fullWidth,
+    contentWidth,
     errorComponent,
     children,
     ...rest
@@ -145,7 +149,9 @@ export const Page: React.FC<PageProps> = (props) => {
           {toolbar}
           {tabbar}
         </PageHeader>
-        <PageBody fullWidth={fullWidth}>{content}</PageBody>
+        <PageBody fullWidth={fullWidth} contentWidth={contentWidth}>
+          {content}
+        </PageBody>
       </PageContainer>
     </ErrorBoundary>
   )

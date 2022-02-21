@@ -8,9 +8,9 @@
     "build": "build-storybook"
   },
   "dependencies": {
+    "@saas-ui/charts": "workspace:*",
     "@saas-ui/page": "workspace:*",
     "@saas-ui/page-shell": "workspace:*",
-    "@saas-ui/sparklines": "workspace:*",
     "@saas-ui/tenancy": "workspace:*",
     "@saas-ui/tour": "workspace:*"
   },

@@ -1,15 +1,13 @@
 {
-  "name": "@saas-ui/sparklines",
+  "name": "@saas-ui/charts",
   "exports": {
     "default": "./src/index.ts"
   },
   "dependencies": {
-    "@types/react-sparklines": "^1.7.2",
-    "react-sparklines": "^1.7.0"
+    "recharts": "^2.1.9"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
-    "framer-motion": ">=5.5.0",
     "react": ">=16.8.6"
   }
 }

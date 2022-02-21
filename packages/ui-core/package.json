@@ -12,6 +12,7 @@
     "@emotion/styled": "^11",
     "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": "^0.8.7",
+    "date-fns": "^2.28.0",
     "framer-motion": "^5.5.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

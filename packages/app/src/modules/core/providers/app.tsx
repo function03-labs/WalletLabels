@@ -9,6 +9,8 @@ import {
 
 import { TenancyProvider, Tenant } from '@saas-ui/pro'
 
+import { I18nProvider } from '@app/i18n'
+
 import { theme } from '@ui/theme'
 import AppLayout from '@modules/core/layouts/app-layout'
 
@@ -48,13 +50,19 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
         theme={theme}
       >
         <AuthProvider {...authService}>
-          <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-            <ModalsProvider>
-              <AppLayout isPublic={isPublic} layout={layout} sidebar={sidebar}>
-                {children}
-              </AppLayout>
-            </ModalsProvider>
-          </TenancyProvider>
+          <I18nProvider>
+            <TenancyProvider tenant={tenant} onChange={onTenantChange}>
+              <ModalsProvider>
+                <AppLayout
+                  isPublic={isPublic}
+                  layout={layout}
+                  sidebar={sidebar}
+                >
+                  {children}
+                </AppLayout>
+              </ModalsProvider>
+            </TenancyProvider>
+          </I18nProvider>
         </AuthProvider>
       </SaasProvider>
     </QueryClientProvider>
