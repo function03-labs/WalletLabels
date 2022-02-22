@@ -29,7 +29,7 @@ export function ContactsViewPage() {
 
   return (
     <Page title={<Skeleton width="100px" />} isLoading={true}>
-      <Section title="Contact details" annotated>
+      <Section title="Contact details" isAnnotated>
         <Card>
           <Form
             defaultValues={{}}
