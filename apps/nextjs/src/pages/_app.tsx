@@ -2,6 +2,8 @@ import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import '@fontsource/inter/variable.css'
+
 import { NProgressNextRouter } from '@saas-ui/react'
 
 import { AppProvider } from '@modules/core/providers/app'
