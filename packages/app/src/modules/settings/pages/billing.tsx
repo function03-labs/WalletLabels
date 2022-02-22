@@ -1,18 +1,72 @@
 import { useRouter } from 'next/router'
-// import UpgradeButton from '@/components/upgrade'
+import { UpgradeButton } from '@saas-ui/billing'
 import { useGetOrganizationQuery } from '@app/graphql'
 
-import { Page, Section } from '@saas-ui/pro'
-import { Card, CardBody } from '@saas-ui/react'
+import { Text } from '@chakra-ui/react'
 
-function OrganizationBilling({ project }: any) {
+import { Section } from '@saas-ui/pro'
+import {
+  Button,
+  Card,
+  CardBody,
+  Field,
+  Form,
+  FormLayout,
+  SubmitButton,
+} from '@saas-ui/react'
+import { SettingsPage } from '@modules/core/components/settings-page'
+
+function BillingPlan({ organization }: any) {
   return (
-    <Section title="Billing" isAnnotated>
+    <Section
+      title="Billing plan"
+      description="Update your billing plan."
+      isAnnotated
+    >
       <Card>
         <CardBody>
-          {!project?.paidPlan ? null : ( // <UpgradeButton projectId={project?.id} />
-            <button onClick={() => null}>Manage billing</button>
+          {!organization?.plan ? (
+            <UpgradeButton />
+          ) : (
+            <Button label="Manage billing" onClick={() => null} />
           )}
+        </CardBody>
+      </Card>
+    </Section>
+  )
+}
+
+function BillingEmail({ organization }: any) {
+  return (
+    <Section
+      title="Billing email"
+      description="Send invoices to an alternative address."
+      isAnnotated
+    >
+      <Card>
+        <CardBody>
+          <Form onSubmit={() => null}>
+            <FormLayout>
+              <Field name="billing.email" label="Email address" type="email" />
+              <SubmitButton label="Update" />
+            </FormLayout>
+          </Form>
+        </CardBody>
+      </Card>
+    </Section>
+  )
+}
+
+function BillingInvoices({ organization }: any) {
+  return (
+    <Section
+      title="Invoices"
+      description="Invoices are sent on the first of every month."
+      isAnnotated
+    >
+      <Card>
+        <CardBody>
+          <Text color="muted">No invoices received yet.</Text>
         </CardBody>
       </Card>
     </Section>
@@ -30,13 +84,14 @@ export function BillingPage() {
   const organization = data?.organization
 
   return (
-    <Page
+    <SettingsPage
       isLoading={isLoading}
-      variant="settings"
       title="Billing"
       description="Manage your billing information and invoices"
     >
-      <OrganizationBilling organization={organization} />
-    </Page>
+      <BillingPlan organization={organization} />
+      <BillingEmail organization={organization} />
+      <BillingInvoices organization={organization} />
+    </SettingsPage>
   )
 }

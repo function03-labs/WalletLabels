@@ -12,7 +12,7 @@ export const SettingsCard: React.FC<SettingsCardProps> = (props) => {
     <Card
       title={title}
       subtitle={subtitle}
-      avatar={avatar || <Icon as={icon} boxSize="8" />}
+      avatar={icon ? <Icon as={icon} boxSize="8" /> : avatar}
     >
       {children}
       <CardFooter px="4" py="2" justifyContent="flex-end" borderTopWidth="1px">

@@ -1,23 +1,64 @@
-import { useSnackbar } from '@saas-ui/react'
-import { Page, Section } from '@saas-ui/pro'
+import { Stack, Text, useClipboard } from '@chakra-ui/react'
+import { Button, IconButton, List, ListItem } from '@saas-ui/react'
+import { Section } from '@saas-ui/pro'
 
-import {
-  Form,
-  Field,
-  DisplayField,
-  FormLayout,
-  Card,
-  CardBody,
-  CardFooter,
-} from '@saas-ui/react'
+import { SettingsPage } from '@modules/core/components/settings-page'
+import { SettingsCard } from '@modules/settings/components/settings-card'
+import { FiCopy, FiCheck, FiX } from 'react-icons/fi'
+import Link from '@modules/core/components/link'
+
+function AccessToken({ token, onRemove }: any) {
+  const { value, onCopy, hasCopied } = useClipboard(token)
+
+  const handleRemove = () => {
+    onRemove?.(token)
+  }
+
+  return (
+    <ListItem
+      primary={token}
+      tertiary={hasCopied ? <FiCheck /> : <FiCopy />}
+      onClick={onCopy}
+      action={
+        <IconButton
+          icon={<FiX />}
+          aria-label="Remove access token"
+          onClick={handleRemove}
+        />
+      }
+    />
+  )
+}
+
+function PersonalAccessTokens() {
+  const onRemove = () => null
+
+  return (
+    <Section
+      title="Personal access tokens"
+      description={
+        <Stack spacing="2">
+          <Text>Use personal access tokens to access the API.</Text>
+          <Link href="#">Read documentation</Link>
+        </Stack>
+      }
+      isAnnotated
+    >
+      <SettingsCard
+        footer={<Button label="Create new token" colorScheme="primary" />}
+      >
+        <List variant="settings" p="0">
+          <AccessToken token="12345" onRemove={onRemove} />
+        </List>
+      </SettingsCard>
+    </Section>
+  )
+}
 
 export function AccountApiPage() {
   return (
-    <Page
-      title="Api"
-      description="Access our api"
-      variant="settings"
-      isLoading={false}
-    ></Page>
+    <SettingsPage title="API access" description="Access the Saas UI API.">
+      <PersonalAccessTokens />
+    </SettingsPage>
   )
 }

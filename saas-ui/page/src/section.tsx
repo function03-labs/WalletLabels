@@ -3,6 +3,7 @@ import {
   StylesProvider,
   HTMLChakraProps,
   ThemingProps,
+  omitThemingProps,
   useMultiStyleConfig,
   useStyles,
 } from '@chakra-ui/react'
@@ -10,10 +11,10 @@ import {
 import { Loading } from '@saas-ui/react'
 
 export interface SectionProps
-  extends HTMLChakraProps<'div'>,
+  extends Omit<HTMLChakraProps<'div'>, 'title'>,
     ThemingProps<'Section'> {
-  title?: string
-  description?: string
+  title?: React.ReactNode
+  description?: React.ReactNode
   isAnnotated?: boolean
   isLoading?: boolean
   children: React.ReactNode
@@ -65,8 +66,10 @@ export const SectionBody: React.FC<SectionBodyProps> = (props) => {
 }
 
 export const SectionContainer: React.FC<SectionProps> = (props) => {
-  const { children, variant, ...rest } = props
+  const { children, title, description, isAnnotated, variant, ...rest } = props
   const styles = useMultiStyleConfig('Section', props)
+
+  const containerProps = omitThemingProps(rest)
 
   const containerStyles = {
     display: 'flex',
@@ -77,7 +80,7 @@ export const SectionContainer: React.FC<SectionProps> = (props) => {
 
   return (
     <StylesProvider value={styles}>
-      <chakra.div __css={containerStyles} {...rest}>
+      <chakra.div __css={containerStyles} {...containerProps}>
         {children}
       </chakra.div>
     </StylesProvider>
@@ -97,8 +100,6 @@ export const SectionHeading: React.FC<SectionHeadingProps> = (props) => {
 
   const headingStyles = {
     flexShrink: 0,
-    mb: 8,
-    mt: 4,
     ...styles.heading,
   }
 

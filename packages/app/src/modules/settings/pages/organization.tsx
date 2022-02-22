@@ -15,7 +15,7 @@ const schema = Yup.object().shape({
     .label('Name'),
 })
 
-import { Page, Section, useTenant } from '@saas-ui/pro'
+import { Section, useTenant } from '@saas-ui/pro'
 
 import {
   Button,
@@ -23,9 +23,11 @@ import {
   CardBody,
   CardFooter,
   Form,
+  FormLayout,
   Field,
   useSnackbar,
 } from '@saas-ui/react'
+import { SettingsPage } from '@modules/core/components/settings-page'
 
 interface OrganizationDetailsProps {
   organization?: GetOrganizationQuery['organization'] | null
@@ -56,7 +58,10 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
         }}
       >
         <CardBody>
-          <Field name="name" label="Organization name" />
+          <FormLayout>
+            <Field name="name" label="Organization name" />
+            <Field name="email" label="Email address" />
+          </FormLayout>
         </CardBody>
         <CardFooter>
           <Button
@@ -72,7 +77,11 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
     )
   }
   return (
-    <Section title="Organization details">
+    <Section
+      title="Organization details"
+      description="Basic details about your organization."
+      isAnnotated
+    >
       <Card>{form}</Card>
     </Section>
   )
@@ -88,13 +97,12 @@ export function OrganizationSettingsPage() {
   const organization = data?.organization
 
   return (
-    <Page
+    <SettingsPage
       isLoading={isLoading}
-      variant="settings"
       title="Organization"
       description="Manage your organization settings"
     >
       <OrganizationDetails organization={organization} />
-    </Page>
+    </SettingsPage>
   )
 }

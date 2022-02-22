@@ -1,8 +1,6 @@
-import { useRef, useState, MouseEvent } from 'react'
+import { useRef, useState } from 'react'
 import { useGetCurrentUserQuery } from '@app/graphql'
 import { useUpdateUserMutation } from '@app/graphql'
-// import { useCreateSignedAvatarUrlMutation } from '@/graphql/User/createSignedAvatarUrl.generated'
-// import { useUpdateProjectMutation } from '@graphql/updateProject.generated'
 
 import * as Yup from 'yup'
 const schema = Yup.object().shape({
@@ -11,75 +9,76 @@ const schema = Yup.object().shape({
     .max(25, 'Too long')
     .required()
     .label('Name'),
+  email: Yup.string().required().email().label('Email'),
 })
 
-import { Box, Button, Skeleton, Avatar, Tooltip } from '@chakra-ui/react'
-
-import { useSnackbar } from '@saas-ui/react'
-
-import { Page, Section } from '@saas-ui/pro'
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Avatar,
+  Tooltip,
+} from '@chakra-ui/react'
 
 import {
   Form,
   Field,
-  DisplayField,
   FormLayout,
   Card,
   CardBody,
-  CardFooter,
+  useSnackbar,
 } from '@saas-ui/react'
 
-// import ImageUploadModal from '@/ui/ImageUpload/Modal'
+import { Section } from '@saas-ui/pro'
+
+import { SettingsPage } from '@modules/core/components/settings-page'
 
 function ProfileDetails({ user }: any) {
   const snackbar = useSnackbar()
   const { isLoading, mutateAsync: updateUser } = useUpdateUserMutation()
 
-  let form
-  if (!user) {
-    form = <Skeleton width="100%" />
-  } else {
-    form = (
-      <Form
-        schema={schema}
-        defaultValues={{
-          name: user?.name,
-        }}
-        onSubmit={(data) => {
-          updateUser({
-            userId: user.id,
-            name: data.name,
-          }).then(() =>
-            snackbar({
-              description: 'Profile updated',
-            }),
-          )
-        }}
-      >
-        <CardBody>
-          <FormLayout>
-            <Field name="name" label="Name" />
-          </FormLayout>
-        </CardBody>
-        <CardFooter>
-          <Button colorScheme="primary" type="submit" isLoading={isLoading}>
-            Save
-          </Button>
-        </CardFooter>
-      </Form>
-    )
-  }
   return (
-    <Section title="Basic details" annotated>
-      <Card>{form}</Card>
+    <Section
+      title="Basic details"
+      description="Update your personal information."
+      isAnnotated
+    >
+      <Card>
+        <Form
+          schema={schema}
+          defaultValues={{
+            name: user?.name,
+            email: user?.email,
+          }}
+          onSubmit={(data) => {
+            updateUser({
+              userId: user.id,
+              name: data.name,
+            }).then(() =>
+              snackbar({
+                description: 'Profile updated',
+              }),
+            )
+          }}
+        >
+          <CardBody>
+            <FormLayout>
+              <ProfileAvatar user={user} />
+              <Field name="name" label="Name" />
+              <Field name="email" label="Email" />
+              <Button colorScheme="primary" type="submit" isLoading={isLoading}>
+                Save
+              </Button>
+            </FormLayout>
+          </CardBody>
+        </Form>
+      </Card>
     </Section>
   )
 }
 
 function ProfileAvatar({ user }: any) {
   const snackbar = useSnackbar()
-  // const [{ fetching }, updateUser] = useUpdateUserMutation()
-  // const [, createSignedAvatarUrl] = useCreateSignedAvatarUrlMutation()
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -104,53 +103,19 @@ function ProfileAvatar({ user }: any) {
     setIsOpen(true)
   }
 
-  let form
-  if (!user) {
-    form = <Skeleton width="100%" />
-  } else {
-    form = (
-      <Form
-        schema={schema}
-        defaultValues={{
-          name: user?.name,
-        }}
-        onSubmit={(data) => {
-          // return createSignedAvatarUrl({
-          //   fileName: 'test.png',
-          //   size: '1231232',
-          //   type: 'image/png',
-          // }).then(({ url }: any) =>
-          //   snackbar({
-          //     description: url,
-          //   }),
-          // )
-        }}
-      >
-        <CardBody>
-          <FormLayout>
-            <Tooltip label="Edit avatar">
-              <Avatar
-                name={user.name}
-                src={previewUrl}
-                size="xl"
-                onClick={showModal}
-                cursor="pointer"
-              />
-            </Tooltip>
-            {/* <ImageUploadModal
-              isOpen={isOpen}
-              onClose={onClose}
-              title="Upload avatar"
-            /> */}
-          </FormLayout>
-        </CardBody>
-      </Form>
-    )
-  }
   return (
-    <Section title="Avatar" annotated>
-      <Card>{form}</Card>
-    </Section>
+    <FormControl>
+      <FormLabel>Profile picture</FormLabel>
+      <Tooltip label="Upload a picture">
+        <Avatar
+          name={user.name}
+          src={previewUrl}
+          size="lg"
+          onClick={showModal}
+          cursor="pointer"
+        />
+      </Tooltip>
+    </FormControl>
   )
 }
 
@@ -160,9 +125,12 @@ export function AccountProfilePage() {
   const user = data?.currentUser
 
   return (
-    <Page title="Profile" variant="settings" isLoading={isLoading}>
+    <SettingsPage
+      title="Profile"
+      description="Manage your profile"
+      isLoading={isLoading}
+    >
       <ProfileDetails user={user} />
-      <ProfileAvatar user={user} />
-    </Page>
+    </SettingsPage>
   )
 }
