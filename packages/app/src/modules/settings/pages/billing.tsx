@@ -7,7 +7,7 @@ import { Card, CardBody } from '@saas-ui/react'
 
 function OrganizationBilling({ project }: any) {
   return (
-    <Section title="Billing" annotated>
+    <Section title="Billing" isAnnotated>
       <Card>
         <CardBody>
           {!project?.paidPlan ? null : ( // <UpgradeButton projectId={project?.id} />
