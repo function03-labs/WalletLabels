@@ -1,52 +1,31 @@
-import { Flex, Box, BoxProps, Heading, Text } from '@chakra-ui/react'
+import {
+  chakra,
+  StylesProvider,
+  HTMLChakraProps,
+  ThemingProps,
+  useMultiStyleConfig,
+  useStyles,
+} from '@chakra-ui/react'
 
 import { Loading } from '@saas-ui/react'
 
-export interface SectionProps extends BoxProps {
+export interface SectionProps
+  extends HTMLChakraProps<'div'>,
+    ThemingProps<'Section'> {
   title?: string
   description?: string
-  annotated?: boolean
-  size?: number
+  isAnnotated?: boolean
   isLoading?: boolean
   children: React.ReactNode
 }
 
-export function Section({
-  title,
-  description,
-  annotated,
-  size,
-  isLoading,
-  children,
-  ...otherProps
-}: SectionProps) {
-  let heading
-  if (title || description || annotated) {
-    heading = (
-      <Box mb="4" w={annotated ? '30%' : ''} flexShrink={0}>
-        <Heading size="md" mb="4">
-          {title}
-        </Heading>
-        {description && (
-          <Text size="md" color="gray.400">
-            {description}
-          </Text>
-        )}
-      </Box>
-    )
-  }
+export const Section: React.FC<SectionProps> = (props) => {
+  const { title, description, isAnnotated, isLoading, children, ...rest } =
+    props
 
-  let basis
-  switch (size) {
-    case 1 / 2:
-      basis = '34em'
-      break
-    case 1 / 3:
-      basis = '18em'
-      break
-    default:
-      basis = '48em'
-  }
+  const showHeading = title || description || isAnnotated
+
+  const variant = isAnnotated ? 'annotated' : props.variant
 
   let content
   if (isLoading) {
@@ -56,25 +35,81 @@ export function Section({
   }
 
   return (
-    <Flex
-      direction={annotated ? 'row' : 'column'}
-      mr="4"
-      mt="4"
-      grow={1}
-      shrink={1}
-      basis={basis}
-      borderBottomWidth={annotated ? 1 : 0}
-      pb={annotated ? 8 : 0}
-      mb={annotated ? 4 : 0}
-      maxWidth="100%"
-      {...otherProps}
-    >
-      {heading}
-      <Box flex="1" minWidth="0">
-        {' '}
-        {/* set minWidth to prevent long text without breaks from overflowing */}
-        {content}
-      </Box>
-    </Flex>
+    <SectionContainer {...rest} variant={variant}>
+      {showHeading && (
+        <SectionHeading title={title} description={description} />
+      )}
+      <SectionBody>{content}</SectionBody>
+    </SectionContainer>
+  )
+}
+
+export interface SectionBodyProps extends HTMLChakraProps<'div'> {}
+
+export const SectionBody: React.FC<SectionBodyProps> = (props) => {
+  const { children, ...rest } = props
+
+  const styles = useStyles()
+
+  const bodyStyles = {
+    flex: 1,
+    minWidth: 0,
+    ...styles.body,
+  }
+
+  return (
+    <chakra.div __css={bodyStyles} {...rest}>
+      {children}
+    </chakra.div>
+  )
+}
+
+export const SectionContainer: React.FC<SectionProps> = (props) => {
+  const { children, variant, ...rest } = props
+  const styles = useMultiStyleConfig('Section', props)
+
+  const containerStyles = {
+    display: 'flex',
+    flexDirection: variant === 'annotated' ? 'row' : 'column',
+    maxWidth: '100%',
+    ...styles.container,
+  }
+
+  return (
+    <StylesProvider value={styles}>
+      <chakra.div __css={containerStyles} {...rest}>
+        {children}
+      </chakra.div>
+    </StylesProvider>
+  )
+}
+
+export interface SectionHeadingProps
+  extends Omit<HTMLChakraProps<'div'>, 'title'> {
+  title: React.ReactNode
+  description: React.ReactNode
+}
+
+export const SectionHeading: React.FC<SectionHeadingProps> = (props) => {
+  const { title, description } = props
+
+  const styles = useStyles()
+
+  const headingStyles = {
+    flexShrink: 0,
+    mb: 8,
+    mt: 4,
+    ...styles.heading,
+  }
+
+  return (
+    <chakra.div __css={headingStyles}>
+      <chakra.h3 __css={styles.title} textStyle="h3">
+        {title}
+      </chakra.h3>
+      {description && (
+        <chakra.p __css={styles.description}>{description}</chakra.p>
+      )}
+    </chakra.div>
   )
 }
