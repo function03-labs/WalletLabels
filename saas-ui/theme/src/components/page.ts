@@ -73,6 +73,27 @@ const variantHero: PartsStyleFunction<typeof parts> = (props) => {
   }
 }
 
+const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
+  return {
+    header: {
+      width: 'container.lg',
+      margin: '0 auto',
+      p: 0,
+      my: 8,
+      minH: 24,
+    },
+    title: {
+      fontSize: '2xl',
+    },
+    body: {
+      '& > div': {
+        margin: '0 auto',
+        maxWidth: props.fullWidth ? '100%' : 'container.lg',
+      },
+    },
+  }
+}
+
 export default {
   parts: parts.keys,
   defaultProps: {
@@ -81,18 +102,7 @@ export default {
   baseStyle,
   variants: {
     app: {},
-    settings: {
-      header: {
-        width: 'container.xl',
-        margin: '0 auto',
-        p: 0,
-        my: 8,
-        minH: 24,
-      },
-      title: {
-        fontSize: '2xl',
-      },
-    },
     hero: variantHero,
+    settings: variantSettings,
   },
 }
