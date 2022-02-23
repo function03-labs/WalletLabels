@@ -46,12 +46,8 @@ export const Authenticated: React.FC = ({ children, ...rest }) => {
             providers={authProviders}
             view={view}
             type={authType}
-            signupLink={
-              <Link href="/signup">Don't have an account yet? Sign up.</Link>
-            }
-            loginLink={
-              <Link href="/login">Already have an account? Log in.</Link>
-            }
+            signupLink={<Link href="/signup">Sign up</Link>}
+            loginLink={<Link href="/login">Log in</Link>}
             {...rest}
           />
         </Container>

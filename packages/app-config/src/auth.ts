@@ -35,8 +35,10 @@ export const authPaths: Record<string, any> = {
   },
   '/forgot_password': {
     view: 'forgot_password',
+    title: 'Reset your password',
   },
   '/reset_password': {
     view: 'update_password',
+    title: 'Enter a new password',
   },
 }
