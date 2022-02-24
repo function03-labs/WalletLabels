@@ -1,5 +1,5 @@
 import { SimpleGrid } from '@chakra-ui/react'
-import { Button, PersonaAvatar, List, Property } from '@saas-ui/react'
+import { Button, PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
 import { SettingsPage } from '@modules/core/components/settings-page'
@@ -38,10 +38,10 @@ export function SettingsOverviewPage() {
               </Button>
             }
           >
-            <List borderTopWidth="1px" px="4">
+            <PropertyList borderTopWidth="1px" px="4">
               <Property label="Billing plan" value="Professional" />
               <Property label="Trial ends" value="28-09-2022" />
-            </List>
+            </PropertyList>
           </SettingsCard>
           <SettingsCard
             title="Organization"
@@ -49,10 +49,10 @@ export function SettingsOverviewPage() {
             avatar={<PersonaAvatar name={data?.organization?.name} size="sm" />}
             footer={<Button>Update</Button>}
           >
-            <List borderTopWidth="1px" px="4">
+            <PropertyList borderTopWidth="1px" px="4">
               <Property label="Name" value={data?.organization?.name} />
               <Property label="Email" value="hello@saas-ui.dev" />
-            </List>
+            </PropertyList>
           </SettingsCard>
         </SimpleGrid>
       </Section>
