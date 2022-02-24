@@ -1,4 +1,4 @@
-import { anatomy, mode } from '@chakra-ui/theme-tools'
+import { anatomy, mode, transparentize } from '@chakra-ui/theme-tools'
 
 import type {
   PartsStyleFunction,
@@ -48,18 +48,18 @@ const baseStyle: PartsStyleObject<typeof parts> = {
 }
 
 const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
-  const { colorScheme: c } = props
+  const { colorScheme: c, theme } = props
 
   return {
     th: {
       color: mode('gray.600', 'gray.400')(props),
       borderBottom: '1px',
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      borderColor: mode('blackAlpha.200', 'whiteAlpha.300')(props),
       ...numericStyles,
     },
     td: {
       borderBottom: '1px',
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      borderColor: mode('blackAlpha.200', 'whiteAlpha.300')(props),
       ...numericStyles,
     },
     caption: {
@@ -68,15 +68,25 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
     tbody: {
       'tr[data-hover]:hover': {
         td: {
-          background: mode(`${c}.50`, `${c}.700`)(props),
+          background: mode('blackAlpha.50', 'whiteAlpha.50')(props),
         },
       },
       'tr[data-selected]': {
         td: {
-          background: mode('primary.50', 'primary.700')(props),
+          background: mode(
+            `${c}.50`,
+            transparentize(`${c}.500`, 0.3)(theme),
+          )(props),
+          borderColor: transparentize(
+            mode(`${c}.400`, `${c}.500`)(props),
+            0.2,
+          )(theme),
         },
         '&[data-hover]:hover td': {
-          background: mode('primary.100', 'primary.800')(props),
+          background: mode(
+            `${c}.100`,
+            transparentize(`${c}.500`, 0.4)(theme),
+          )(props),
         },
       },
     },
@@ -136,7 +146,7 @@ const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
 
 const variants = {
   simple: variantSimple,
-  striped: variantStripe,
+  stripe: variantStripe,
   unstyled: {},
 }
 
@@ -219,7 +229,7 @@ const sizes: Record<string, PartsStyleObject<typeof parts>> = {
 const defaultProps = {
   variant: 'simple',
   size: 'md',
-  colorScheme: 'gray',
+  colorScheme: 'primary',
 }
 
 export default {
