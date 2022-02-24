@@ -1,3 +1,4 @@
+export * from '@saas-ui/data-grid'
 export * from '@saas-ui/page'
 export * from '@saas-ui/page-shell'
 export * from '@saas-ui/tenancy'

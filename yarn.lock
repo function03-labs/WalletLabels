@@ -6378,6 +6378,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/data-grid@workspace:saas-ui/data-grid":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/data-grid@workspace:saas-ui/data-grid"
+  dependencies:
+    "@chakra-ui/icons": ^1.1.1
+    "@types/react-table": ^7.7.9
+    react-table: ^7.7.0
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@saas-ui/react": ">=0.10.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/data-table@npm:0.2.0":
   version: 0.2.0
   resolution: "@saas-ui/data-table@npm:0.2.0"

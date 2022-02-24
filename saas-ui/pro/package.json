@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@saas-ui/charts": "workspace:*",
+    "@saas-ui/data-grid": "workspace:*",
     "@saas-ui/page": "workspace:*",
     "@saas-ui/page-shell": "workspace:*",
     "@saas-ui/tenancy": "workspace:*",

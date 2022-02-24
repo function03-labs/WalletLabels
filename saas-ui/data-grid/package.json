@@ -1,0 +1,44 @@
+{
+  "name": "@saas-ui/data-grid",
+  "version": "0.0.0",
+  "description": "Data grid component",
+  "private": true,
+  "exports": {
+    "default": "./src/index.ts"
+  },
+  "author": "Eelco Wiersma <eelco@appulse.nl>",
+  "homepage": "https://saas-ui.dev/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saas-js/saas-ui-pro",
+    "directory": "saas-ui/data-grid"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "chakra-ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library"
+  ],
+  "storybook": {
+    "title": "Saas UI",
+    "url": "https://storybook.saas-ui.dev"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "react-table": "^7.7.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=1.8.0",
+    "@saas-ui/react": ">=0.10.0",
+    "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "@types/react-table": "^7.7.9"
+  }
+}
