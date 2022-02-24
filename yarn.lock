@@ -6378,7 +6378,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/data-grid@workspace:saas-ui/data-grid":
+"@saas-ui/data-grid@workspace:*, @saas-ui/data-grid@workspace:saas-ui/data-grid":
   version: 0.0.0-use.local
   resolution: "@saas-ui/data-grid@workspace:saas-ui/data-grid"
   dependencies:
@@ -6648,6 +6648,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.16.5
     "@saas-ui/charts": "workspace:*"
+    "@saas-ui/data-grid": "workspace:*"
     "@saas-ui/page": "workspace:*"
     "@saas-ui/page-shell": "workspace:*"
     "@saas-ui/tenancy": "workspace:*"
