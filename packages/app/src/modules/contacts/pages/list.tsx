@@ -6,7 +6,7 @@ import {
 
 import * as Yup from 'yup'
 
-import { Tag, Kbd, MenuItem } from '@chakra-ui/react'
+import { Box, Tag, Kbd, MenuItem } from '@chakra-ui/react'
 import { FiUser, FiUploadCloud } from 'react-icons/fi'
 import {
   Button,
@@ -45,9 +45,11 @@ const StatusCell = (cell: any) => {
 
 const ActionCell = () => {
   return (
-    <OverflowMenu size="xs">
-      <MenuItem>Delete</MenuItem>
-    </OverflowMenu>
+    <Box onClick={(e) => e.stopPropagation()}>
+      <OverflowMenu size="xs">
+        <MenuItem>Delete</MenuItem>
+      </OverflowMenu>
+    </Box>
   )
 }
 
@@ -68,7 +70,7 @@ export function ContactsListPage() {
   const mutation = useCreateContactMutation()
 
   const addPerson = () => {
-    /** @todo the FormModal doesn't have a generic type yet, so the onSubmit result it's typed. */
+    /** @todo the FormModal doesn't have a generic type yet, so the onSubmit result isn't typed. */
     modals.form?.({
       title: 'Add person',
       schema: schema,
@@ -102,9 +104,10 @@ export function ContactsListPage() {
 
   const columns: Column<Contact>[] = [
     {
-      id: 'fullName',
+      id: 'name',
+      accessor: 'fullName',
       Header: 'Name',
-      href: ({ id }) => `/app/${tenant}/contacts/${id}`,
+      href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
     },
     {
       id: 'email',

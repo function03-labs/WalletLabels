@@ -5,6 +5,7 @@ import SidebarLink from './sidebar-link'
 import SidebarMenuButton from './sidebar-menu-button'
 import SidebarMenu from './sidebar-menu'
 import Sidebar from './sidebar'
+import DataGrid from './data-grid'
 
 export default {
   List,
@@ -14,4 +15,5 @@ export default {
   SidebarMenuButton,
   SidebarMenu,
   Sidebar,
+  DataGrid,
 }
