@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Container, Stack } from '@chakra-ui/react'
 import Link from '@modules/core/components/link'
 
-import { Loading, LoginForm, useAuth } from '@saas-ui/react'
+import { Loading, LoginView, useAuth } from '@saas-ui/react'
 
 export const LoginPage = () => {
   const { isAuthenticated } = useAuth()
@@ -22,7 +22,7 @@ export const LoginPage = () => {
         spacing="8"
       >
         <Container>
-          <LoginForm title="Log in" type="magiclink" />
+          <LoginView title="Log in" type="magiclink" />
         </Container>
 
         <Link href="/signup">Don't have an account yet? Sign up.</Link>
