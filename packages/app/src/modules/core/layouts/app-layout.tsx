@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 import { Flex, Container } from '@chakra-ui/react'
 
 import { PageShell, PageShellProps } from '@saas-ui/pro'
-import { Loading, HotkeysListOptions } from '@saas-ui/react'
-import { useAuth, Auth } from '@saas-ui/auth'
+import { HotkeysListOptions } from '@saas-ui/react'
+import { Auth } from '@saas-ui/auth'
 import { Hotkeys } from '@modules/core/components/hotkeys'
 import Link from '@modules/core/components/link'
 import { Logo } from '@modules/core/components/logo'
@@ -16,27 +16,20 @@ import { SettingsSidebar } from '@modules/settings/components/sidebar'
 import { authType, authProviders, authPaths } from '@app/config/auth'
 import { settingsHotkeys, fullscreenHotkeys } from '@app/config/hotkeys'
 
-import { useGetCurrentUserQuery } from '@app/graphql'
+import { useInitApp } from '../hooks/use-init-app'
+
+import { AppLoader } from '../components/app-loader'
 
 export const Authenticated: React.FC = ({ children, ...rest }) => {
-  const { isLoading, isAuthenticated, isLoggingIn } = useAuth()
   const router = useRouter()
 
-  // Load current user and tenant data
-  const currentUser = useGetCurrentUserQuery(
-    {},
-    {
-      enabled: isAuthenticated,
-    },
-  )
+  const { isInitializing, isAuthenticated } = useInitApp()
 
   const { view, title } = authPaths[router.pathname]
     ? authPaths[router.pathname]
     : authPaths['/login']
 
-  if (isLoading || isLoggingIn || (isAuthenticated && !currentUser.isFetched)) {
-    return <Loading />
-  } else if (!isAuthenticated) {
+  if (!isInitializing && !isAuthenticated) {
     return (
       <AuthLayout>
         <Container>
@@ -55,7 +48,12 @@ export const Authenticated: React.FC = ({ children, ...rest }) => {
     )
   }
 
-  return <>{children}</>
+  return (
+    <>
+      <AppLoader isLoading={isInitializing} />
+      {!isInitializing && children}
+    </>
+  )
 }
 
 export const AuthLayout: React.FC = ({ children, ...rest }) => {
