@@ -1,6 +1,6 @@
 import { useGetCurrentUserQuery } from '@app/graphql'
 
-const useGetTenants = () => {
+export const useGetTenants = () => {
   const { data } = useGetCurrentUserQuery({})
 
   return (
@@ -12,5 +12,3 @@ const useGetTenants = () => {
     })) || []
   )
 }
-
-export default useGetTenants
