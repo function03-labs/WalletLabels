@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Loading, useAuth } from '@saas-ui/react'
+import { Loader, useAuth } from '@saas-ui/react'
 import { useEffect } from 'react'
 import { useTenant } from '@saas-ui/tenancy'
 import { useGetCurrentUserQuery } from '@app/graphql'
@@ -27,7 +27,7 @@ export function HomePage() {
     }
   }, [isLoggingIn, data])
 
-  return <Loading />
+  return <Loader />
 }
 
 export default HomePage

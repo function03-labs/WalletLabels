@@ -1,13 +1,13 @@
 import { Container, Stack } from '@chakra-ui/react'
 import Link from '@modules/core/components/link'
 
-import { Loading, SignupView, useAuth } from '@saas-ui/react'
+import { Loader, SignupView, useAuth } from '@saas-ui/react'
 
 export const SignupPage = () => {
   const { isAuthenticated } = useAuth()
 
   if (isAuthenticated) {
-    return <Loading />
+    return <Loader />
   }
 
   return (

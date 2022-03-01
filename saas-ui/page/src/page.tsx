@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 
 import { ErrorBoundary } from '@saas-ui/app'
-import { Loading } from '@saas-ui/react'
+import { Loader } from '@saas-ui/react'
 
 import { ErrorPage } from './error-page'
 
@@ -119,7 +119,7 @@ export const Page: React.FC<PageProps> = (props) => {
 
   let content
   if (isLoading) {
-    content = skeleton || <Loading />
+    content = skeleton || <Loader />
   } else {
     content = children
   }

@@ -8,7 +8,7 @@ import {
   useStyles,
 } from '@chakra-ui/react'
 
-import { Loading } from '@saas-ui/react'
+import { Loader } from '@saas-ui/react'
 
 export interface SectionProps
   extends Omit<HTMLChakraProps<'div'>, 'title'>,
@@ -30,7 +30,7 @@ export const Section: React.FC<SectionProps> = (props) => {
 
   let content
   if (isLoading) {
-    content = <Loading p={4} />
+    content = <Loader p={4} />
   } else {
     content = children
   }

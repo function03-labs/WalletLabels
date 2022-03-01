@@ -40,7 +40,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
         margin: '0 auto',
         maxWidth: props.fullWidth ? '100%' : 'container.xl',
         minHeight: '100%',
-        height: '1px', // hack to make sure the Loading 100% height is working
+        height: '1px', // hack to make sure the Loader 100% height is working
       },
     },
   }
