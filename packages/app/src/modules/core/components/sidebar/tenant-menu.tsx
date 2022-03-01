@@ -6,7 +6,7 @@ import { MenuDivider, MenuGroup, MenuItem } from '@saas-ui/menu'
 import { CheckIcon } from '@chakra-ui/icons'
 import { useTenancy } from '@saas-ui/tenancy'
 
-import useGetTenants from '../../hooks/use-get-tenants'
+import { useGetTenants } from '../../hooks/use-get-tenants'
 
 interface TenantLogoProps {
   label: string
