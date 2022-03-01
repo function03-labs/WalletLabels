@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Loading } from '@saas-ui/react'
+import { Loader } from '@saas-ui/react'
 import { useTenant } from '@saas-ui/pro'
 import { useEffect } from 'react'
 
@@ -15,5 +15,5 @@ export default () => {
     }
   }, [])
 
-  return <Loading />
+  return <Loader />
 }

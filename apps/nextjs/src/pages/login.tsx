@@ -1,7 +1,7 @@
 import * as React from 'react'
 import router from 'next/router'
 
-import { useAuth, Loading } from '@saas-ui/react'
+import { useAuth, Loader } from '@saas-ui/react'
 import { createPage } from '@app/nextjs'
 import { LoginPage } from '@modules/auth'
 
