@@ -94,7 +94,7 @@ export interface SectionHeadingProps
 }
 
 export const SectionHeading: React.FC<SectionHeadingProps> = (props) => {
-  const { title, description } = props
+  const { title, description, ...rest } = props
 
   const styles = useStyles()
 
@@ -104,12 +104,12 @@ export const SectionHeading: React.FC<SectionHeadingProps> = (props) => {
   }
 
   return (
-    <chakra.div __css={headingStyles}>
+    <chakra.div __css={headingStyles} {...rest}>
       <chakra.h3 __css={styles.title} textStyle="h3">
         {title}
       </chakra.h3>
       {description && (
-        <chakra.p __css={styles.description}>{description}</chakra.p>
+        <chakra.div __css={styles.description}>{description}</chakra.div>
       )}
     </chakra.div>
   )
