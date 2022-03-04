@@ -11,7 +11,7 @@ import {
   SystemProps,
 } from '@chakra-ui/react'
 
-import { ErrorBoundary } from '@saas-ui/app'
+import { ErrorBoundary } from '@saas-ui/pro'
 import { Loader } from '@saas-ui/react'
 
 import { ErrorPage } from './error-page'

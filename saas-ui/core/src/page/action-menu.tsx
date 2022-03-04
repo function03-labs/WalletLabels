@@ -6,28 +6,28 @@ import {
   MenuItem,
   MenuDivider,
   Button,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react'
 
-import Template, { TemplateConfig, TemplateComponents } from "../Template";
+import Template, { TemplateConfig, TemplateComponents } from '../Template'
 
 export type ActionMenuProps = {
-  label: string;
-  items: Array<TemplateConfig>;
-};
+  label: string
+  items: Array<TemplateConfig>
+}
 
 export interface ActionMenuItemProps {
-  label: string;
+  label: string
 }
 
 function ActionMenuItem({ label, ...props }: ActionMenuItemProps) {
-  return <MenuItem {...props}>{label}</MenuItem>;
+  return <MenuItem {...props}>{label}</MenuItem>
 }
 
 const defaultComponents: TemplateComponents = {
   group: MenuGroup,
   item: ActionMenuItem,
   divider: MenuDivider,
-};
+}
 
 export default function ActionMenu({ label, items }: ActionMenuProps) {
   return (
@@ -37,11 +37,11 @@ export default function ActionMenu({ label, items }: ActionMenuProps) {
       </MenuButton>
       <MenuList>
         <Template
-          defaultType={"item"}
+          defaultType={'item'}
           config={items}
           components={defaultComponents}
         />
       </MenuList>
     </Menu>
-  );
+  )
 }

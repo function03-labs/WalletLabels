@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Loader, useAuth } from '@saas-ui/react'
 import { useEffect } from 'react'
-import { useTenant } from '@saas-ui/tenancy'
+import { useTenant } from '@saas-ui/pro'
 import { useGetCurrentUserQuery } from '@app/graphql'
 
 export function HomePage() {

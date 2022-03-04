@@ -3565,11 +3565,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/cli@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "@chakra-ui/cli@npm:1.7.0"
+"@chakra-ui/cli@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@chakra-ui/cli@npm:1.9.0"
   dependencies:
-    "@chakra-ui/utils": ^1.9.0
+    "@chakra-ui/utils": ^1.10.4
     cli-check-node: ^1.3.4
     cli-handle-unhandled: ^1.1.1
     cli-welcome: ^2.2.2
@@ -3583,7 +3583,7 @@ __metadata:
     update-notifier: ^5.0.1
   bin:
     chakra-cli: bin/index.js
-  checksum: 4d7b65cdd4755d2f5a3c16e868e4d47af679d1786e9a1ba71485ed9a4d8cdc22dff5a04a85f668cd9f92c379199ad0c1e7648a53893aa3b6e749cfd72b54083e
+  checksum: b8c0d63c07904dfdfe327f48493ebd66ef3e7ad3fcafa8cc6c0869d6365ec5a9d8b517b1555fe43842ed67286c4aa84b73b135a195a88df72dc8991d19ec05fa
   languageName: node
   linkType: hard
 
@@ -4466,7 +4466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/utils@npm:1.9.1, @chakra-ui/utils@npm:^1.9.0, @chakra-ui/utils@npm:^1.9.1":
+"@chakra-ui/utils@npm:1.9.1, @chakra-ui/utils@npm:^1.9.1":
   version: 1.9.1
   resolution: "@chakra-ui/utils@npm:1.9.1"
   dependencies:
@@ -6373,12 +6373,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/app@workspace:^, @saas-ui/app@workspace:saas-ui/app":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/app@workspace:saas-ui/app"
-  languageName: unknown
-  linkType: soft
-
 "@saas-ui/auth@npm:0.6.1":
   version: 0.6.1
   resolution: "@saas-ui/auth@npm:0.6.1"
@@ -6413,12 +6407,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/billing@workspace:saas-ui/billing":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/billing@workspace:saas-ui/billing"
-  languageName: unknown
-  linkType: soft
-
 "@saas-ui/button@npm:0.3.0":
   version: 0.3.0
   resolution: "@saas-ui/button@npm:0.3.0"
@@ -6446,17 +6434,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/charts@workspace:*, @saas-ui/charts@workspace:saas-ui/charts":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/charts@workspace:saas-ui/charts"
-  dependencies:
-    recharts: ^2.1.9
-  peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    react: ">=16.8.6"
-  languageName: unknown
-  linkType: soft
-
 "@saas-ui/collapse@npm:0.3.0":
   version: 0.3.0
   resolution: "@saas-ui/collapse@npm:0.3.0"
@@ -6469,20 +6446,6 @@ __metadata:
   checksum: 6fc27edb1b0bcd6a18fd5283b7dbc01f76b4690ab3a7defaa47a24d586c3a03d98983176338b395af790c559d493677f1d05de2e0e6bcc1b13e9e5e429532159
   languageName: node
   linkType: hard
-
-"@saas-ui/data-grid@workspace:*, @saas-ui/data-grid@workspace:saas-ui/data-grid":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/data-grid@workspace:saas-ui/data-grid"
-  dependencies:
-    "@chakra-ui/icons": ^1.1.1
-    "@types/react-table": ^7.7.9
-    react-table: ^7.7.0
-  peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@saas-ui/react": ">=0.10.0"
-    react: ">=16.8.6"
-  languageName: unknown
-  linkType: soft
 
 "@saas-ui/data-table@npm:0.2.3":
   version: 0.2.3
@@ -6649,32 +6612,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/page-shell@workspace:*, @saas-ui/page-shell@workspace:saas-ui/page-shell":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/page-shell@workspace:saas-ui/page-shell"
-  peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/react": ">=0.5.0"
-    framer-motion: ">=5.5.0"
-    react: ">=16.8.6"
-  languageName: unknown
-  linkType: soft
-
-"@saas-ui/page@workspace:*, @saas-ui/page@workspace:saas-ui/page":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/page@workspace:saas-ui/page"
-  dependencies:
-    "@saas-ui/app": "workspace:^"
-  peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/react": ">=0.5.0"
-    framer-motion: ">=5.5.0"
-    react: ">=16.8.6"
-  languageName: unknown
-  linkType: soft
-
 "@saas-ui/palette@npm:0.5.0":
   version: 0.5.0
   resolution: "@saas-ui/palette@npm:0.5.0"
@@ -6725,38 +6662,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/pro-theme@workspace:^, @saas-ui/pro-theme@workspace:saas-ui/theme":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/pro-theme@workspace:saas-ui/theme"
+"@saas-ui/pro@file:../../saas-ui/dist/@saas-ui-pro-0.0.1-beta.tgz::locator=%40ui%2Ftheme%40workspace%3Apackages%2Fui-theme":
+  version: 0.0.1-beta
+  resolution: "@saas-ui/pro@file:../../saas-ui/dist/@saas-ui-pro-0.0.1-beta.tgz::locator=%40ui%2Ftheme%40workspace%3Apackages%2Fui-theme"
+  dependencies:
+    react-joyride: ^2.3.2
+    recharts: ^2.1.9
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/react": ">=0.8.0"
-  languageName: unknown
-  linkType: soft
+    "@saas-ui/react": ">=0.7.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  checksum: ed99d40a67c096d9ba09c8f73feeadfa17fd853ce4c5a1d513d2042404a6fc696df9bd10cab19886bf617fa1299933d99b68bf9d5e165fdbacdf124f754d2f35
+  languageName: node
+  linkType: hard
 
-"@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:^, @saas-ui/pro@workspace:saas-ui/pro":
+"@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:^, @saas-ui/pro@workspace:saas-ui/core":
   version: 0.0.0-use.local
-  resolution: "@saas-ui/pro@workspace:saas-ui/pro"
+  resolution: "@saas-ui/pro@workspace:saas-ui/core"
   dependencies:
-    "@babel/core": ^7.16.5
-    "@saas-ui/charts": "workspace:*"
-    "@saas-ui/data-grid": "workspace:*"
-    "@saas-ui/page": "workspace:*"
-    "@saas-ui/page-shell": "workspace:*"
-    "@saas-ui/tenancy": "workspace:*"
-    "@saas-ui/tour": "workspace:*"
-    "@storybook/addon-actions": ^6.4.3
-    "@storybook/addon-essentials": ^6.4.9
-    "@storybook/addon-links": ^6.4.3
-    "@storybook/react": ^6.4.3
-    babel-loader: ^8.2.3
-    framer-motion: ^5
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-is: ^17.0.2
-    storybook-addon-performance: ^0.16.1
-    webpack: ^5.68.0
+    react-joyride: ^2.3.2
+    recharts: ^2.1.9
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
@@ -6908,6 +6835,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/storybook@workspace:saas-ui/storybook":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/storybook@workspace:saas-ui/storybook"
+  dependencies:
+    "@babel/core": ^7.16.5
+    "@storybook/addon-actions": ^6.4.3
+    "@storybook/addon-essentials": ^6.4.9
+    "@storybook/addon-links": ^6.4.3
+    "@storybook/react": ^6.4.3
+    babel-loader: ^8.2.3
+    framer-motion: ^5
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    react-is: ^17.0.2
+    storybook-addon-performance: ^0.16.1
+    webpack: ^5.68.0
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    "@saas-ui/pro": "workspace:*"
+    "@saas-ui/react": ">=0.7.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/system@npm:0.4.0":
   version: 0.4.0
   resolution: "@saas-ui/system@npm:0.4.0"
@@ -6917,18 +6870,6 @@ __metadata:
   checksum: 68835e5ec14ddb02a8124dc9b504890c72bceb5aa24ed8aa1ac5edd4ca45029cce3a267201ae67de3eee121508680a82a809d6d1bf7026e2803d43df2d5ff040
   languageName: node
   linkType: hard
-
-"@saas-ui/tenancy@workspace:*, @saas-ui/tenancy@workspace:saas-ui/tenancy":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/tenancy@workspace:saas-ui/tenancy"
-  peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/react": ">=0.5.0"
-    framer-motion: ">=5.5.0"
-    react: ">=16.8.6"
-  languageName: unknown
-  linkType: soft
 
 "@saas-ui/theme@npm:0.6.0":
   version: 0.6.0
@@ -6944,24 +6885,6 @@ __metadata:
   checksum: 22f69983176f0ff4b71a8dffd92795b376bcc8e3c3ddac152cd52cdfc3bbb25b26240628ef3b899d670c36070fced35428ab0a72abdbbc038724c0234060d251
   languageName: node
   linkType: hard
-
-"@saas-ui/tour@workspace:*, @saas-ui/tour@workspace:saas-ui/tour":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/tour@workspace:saas-ui/tour"
-  dependencies:
-    react-joyride: ^2.3.2
-  peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    framer-motion: ">=5.5.0"
-    react: ">=16.8.6"
-  languageName: unknown
-  linkType: soft
-
-"@saas-ui/utils@workspace:*, @saas-ui/utils@workspace:saas-ui/utils":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/utils@workspace:saas-ui/utils"
-  languageName: unknown
-  linkType: soft
 
 "@samverschueren/stream-to-observable@npm:^0.3.0":
   version: 0.3.1
@@ -9432,7 +9355,7 @@ __metadata:
   resolution: "@ui/theme@workspace:packages/ui-theme"
   dependencies:
     "@fontsource/inter": ^4.2.2
-    "@saas-ui/pro-theme": "workspace:^"
+    "@saas-ui/pro": ../../saas-ui/dist/@saas-ui-pro-0.0.1-beta.tgz
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
@@ -20881,7 +20804,7 @@ __metadata:
   dependencies:
     "@next/eslint-plugin-next": ^12.0.10
     "@saas-ui/next-workspaces": ^0.1.1
-    "@saas-ui/utils": "workspace:*"
+    "@saas-ui/pro": "workspace:*"
     "@svgr/webpack": 5.5.0
     "@ui/core": "workspace:*"
     "@ui/theme": "workspace:*"
@@ -24562,7 +24485,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "saas-ui-pro@workspace:."
   dependencies:
-    "@chakra-ui/cli": ^1.7.0
+    "@chakra-ui/cli": ^1.9.0
     "@typescript-eslint/eslint-plugin": ^5.7.0
     "@typescript-eslint/parser": ^5.7.0
     cross-env: ^7.0.3

@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router'
-import { UpgradeButton } from '@saas-ui/billing'
+import { UpgradeButton, Section } from '@saas-ui/pro'
 import { useGetOrganizationQuery } from '@app/graphql'
 
 import { Text } from '@chakra-ui/react'
 
-import { Section } from '@saas-ui/pro'
 import {
   Button,
   Card,

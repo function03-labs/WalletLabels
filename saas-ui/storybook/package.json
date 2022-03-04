@@ -1,23 +1,10 @@
 {
-  "name": "@saas-ui/pro",
-  "exports": {
-    "default": "./index.ts"
-  },
-  "scripts": {
-    "dev": "start-storybook -p 6007",
-    "build": "build-storybook"
-  },
-  "dependencies": {
-    "@saas-ui/charts": "workspace:*",
-    "@saas-ui/data-grid": "workspace:*",
-    "@saas-ui/page": "workspace:*",
-    "@saas-ui/page-shell": "workspace:*",
-    "@saas-ui/tenancy": "workspace:*",
-    "@saas-ui/tour": "workspace:*"
-  },
+  "name": "@saas-ui/storybook",
+  "private": true,
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
     "@chakra-ui/system": ">=1.0.0",
+    "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": ">=0.7.0",
     "framer-motion": ">=5.5.0",
     "react": ">=16.8.6"

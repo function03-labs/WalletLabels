@@ -1,6 +1,6 @@
 import { Stack, Text, Progress } from '@chakra-ui/react'
 
-import { UpgradeButton } from '@saas-ui/billing'
+import { UpgradeButton } from '@saas-ui/pro'
 
 export const BillingStatus = () => {
   return (
