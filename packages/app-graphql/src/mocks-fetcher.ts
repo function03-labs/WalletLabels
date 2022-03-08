@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-import { createMockServer, IMockServer } from '@app/mock-graphql'
-
-import { useAuth } from '@saas-ui/react'
+import { useMockServer } from './mocks-provider'
 
 /**
  * Consider moving mocks to service workers
@@ -13,13 +11,7 @@ import { useAuth } from '@saas-ui/react'
 export const useFetchData = <TData, TVariables>(
   query: string,
 ): ((variables?: TVariables) => Promise<TData>) => {
-  const { user } = useAuth()
-
-  const server: IMockServer = React.useMemo(() => {
-    return createMockServer({
-      user: async () => user,
-    })
-  }, [user])
+  const server = useMockServer()
 
   return async (variables?: TVariables) => {
     const result = await server.query(query, variables)

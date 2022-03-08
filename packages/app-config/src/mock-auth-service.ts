@@ -1,5 +1,11 @@
 import { AuthParams, User } from '@saas-ui/auth'
 
+const defaultUser = {
+  id: '1',
+  name: 'Demo User',
+  email: 'hello@saas-ui.dev',
+}
+
 const getSession = () => {
   try {
     if (typeof window === 'undefined') return
@@ -33,8 +39,8 @@ let user: User | null = getSession()
 export const authService = {
   onLogin: async (params: AuthParams) => {
     user = {
-      id: Math.round(Math.random() * 100).toString(),
-      email: params.email as string,
+      ...defaultUser,
+      ...params,
     }
 
     setSession(user)
@@ -43,8 +49,8 @@ export const authService = {
   },
   onSignup: async (params: AuthParams) => {
     user = {
-      id: Math.round(Math.random() * 100).toString(),
-      email: params.email as string,
+      ...defaultUser,
+      ...params,
     }
 
     setSession(user)

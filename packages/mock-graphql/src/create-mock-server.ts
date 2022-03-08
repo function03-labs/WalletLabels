@@ -11,7 +11,13 @@ import { schema } from './schema'
 export type { IMockServer }
 
 import slug from 'slug'
-import { randEmail, randFullName, randUser, User } from '@ngneat/falso'
+import {
+  randEmail,
+  randFullName,
+  randUser,
+  randNumber,
+  User,
+} from '@ngneat/falso'
 
 export interface MockContext {
   user: () => Promise<any>
@@ -25,7 +31,10 @@ const initData = () => {
       return
     }
 
-    const json = localStorage.getItem('@app/graphql/data')
+    const json = localStorage.getItem('@app/mock-graphql/data')
+
+    console.log('Init mock data', json)
+
     if (json) {
       DATA = JSON.parse(json)
     }
@@ -48,9 +57,6 @@ const updateStorage = () => {
 
 /**
  * Create a Mock Graphql server
- *
- * We use the supabase client here directly to simulate authentication.
- * @param supabase Supabase client
  */
 export const createMockServer = (context: MockContext) => {
   const mapContact = (user: User) => {
@@ -66,12 +72,39 @@ export const createMockServer = (context: MockContext) => {
 
   const mocks: IMocks = {
     Contact: () => mapContact(randUser()),
-    Organization: () =>
-      DATA.Organization || {
-        name: 'Saas UI',
-        slug: 'saas-ui',
-      },
+    Organization: () => {
+      return (
+        DATA.Organization || {
+          name: 'Saas UI',
+          slug: 'saas-ui',
+        }
+      )
+    },
+    User: () => {
+      return {
+        id: randNumber(),
+        name: randFullName(),
+        email: randEmail(),
+        status: 'active',
+      }
+    },
+    OrganizationMember: () => {
+      return {
+        roles: ['member'],
+      }
+    },
     Query: {
+      currentUser: async () => {
+        const user = await context.user()
+
+        if (!user) return null
+
+        return {
+          id: user.id,
+          name: user.name || user.user_metadata?.name || '',
+          email: user.email,
+        }
+      },
       contacts: () => {
         return randUser({ length: 20 }).map(mapContact)
       },
@@ -81,21 +114,23 @@ export const createMockServer = (context: MockContext) => {
   initData()
 
   const resolvers = (store: IMockStore) => {
+    console.log(store)
     return {
       Query: {
         currentUser: async () => {
           const user = await context.user()
-
+          console.log(user)
           if (!user) return null
 
           const _user = {
             id: user.id,
             name: user.name || user.user_metadata?.name || '',
             email: user.email,
-            organizations: [store.get('Query', 'organizations')],
+            organizations: [store.get('Organization')],
           }
 
-          return store.get('User', user.id, _user)
+          store.set('User', user.id, _user)
+          return _user
         },
         organization: (_: any, { slug }: any) => {
           return store.get('Organization', slug)
@@ -112,17 +147,64 @@ export const createMockServer = (context: MockContext) => {
           const organization = {
             id: slug(name),
             name,
+            plan: store.get('BillingPlan', 'pro'),
             slug: slug(name),
-            users: [store.get('Query', 'currentUser')],
+            members: [store.get('OrganizationMember', user.id)],
           }
 
           store.set('Organization', organization.slug, organization)
-          store.set('User', user.id, 'organizations', [organization])
+          store.set('User', user.id, 'organizations', [
+            store.get('Organization', organization.slug),
+          ])
+
+          const member = {
+            id: user.id,
+            roles: ['admin'],
+            user: store.get('User', user.id),
+            organization: store.get('Organization', organization.slug),
+          }
+
+          store.set('OrganizationMember', user.id, member)
 
           DATA['Organization'] = organization
+          DATA['OrganizationMember'] = [member]
           updateStorage()
 
           return store.get('Organization', organization.slug)
+        },
+        inviteToOrganization: async (_: any, params: any, ctx: any) => {
+          const members: any[] = []
+          params.emails.forEach(() => {
+            const id = randNumber()
+            store.set('User', id, {
+              email: params.email,
+              status: 'invited',
+            })
+            members.push(store.get('User', id))
+          })
+          const existingMembers = store.get(
+            'Organization',
+            'saas-ui',
+            'members',
+          ) as any[]
+
+          store.set(
+            'Organization',
+            'saas-ui',
+            'members',
+            existingMembers.concat(members),
+          )
+
+          DATA['Organization'].members = existingMembers.concat(members)
+          DATA['OrganizationMember'].concat(members)
+          updateStorage()
+
+          return true
+        },
+        updateMemberRoles: async (_: any, params: any) => {
+          store.set('OrganizationMember', params.userId, 'roles', params.roles)
+
+          return store.get('OrganizationMember', params.userId)
         },
       },
     }

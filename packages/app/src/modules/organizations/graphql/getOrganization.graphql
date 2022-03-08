@@ -4,10 +4,14 @@ query GetOrganization($id: String, $slug: String) {
     name
     slug
     plan
-    users {
-      id
-      name
-      email
+    members {
+      roles
+      user {
+        id
+        name
+        email
+        status
+      }
     }
   }
 }

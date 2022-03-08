@@ -5,6 +5,7 @@ const styles: Styles = {
     body: {
       color: 'app.text',
       bg: 'app.background',
+      fontSize: 'sm',
     },
     '*::placeholder': {
       color: mode('blackAlpha.400', 'whiteAlpha.400')(props),

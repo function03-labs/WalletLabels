@@ -49,6 +49,7 @@ export const SettingsSidebar = () => {
             <SidebarNavGroup title="Organization" icon={<FiFolder />}>
               <SettingsLink path="/" label="Overview" />
               <SettingsLink path="organization" label="Organization" />
+              <SettingsLink path="members" label="Members" />
               <SettingsLink path="billing" label="Billing" />
             </SidebarNavGroup>
 

@@ -1,3 +1,4 @@
+import EmptyState from './empty-state'
 import List from './list'
 import Page from './page'
 import Section from './section'
@@ -8,6 +9,7 @@ import Sidebar from './sidebar'
 import DataGrid from './data-grid'
 
 export default {
+  EmptyState,
   List,
   Page,
   Section,

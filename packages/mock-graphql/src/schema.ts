@@ -8,7 +8,11 @@ const typeDefs = gql`
 
   type Mutation {
     createOrganization(name: String!, slug: String): Organization
-    inviteToOrganization(email: String!, organizationId: String!): Boolean
+    inviteToOrganization(
+      emails: [String]!
+      organizationId: String!
+      role: String
+    ): Boolean
     removeUserFromOrganization(
       organizationId: String!
       userId: String!
@@ -19,6 +23,11 @@ const typeDefs = gql`
       slug: String
     ): Organization
     updateUser(name: String, userId: String!): User
+    updateMemberRoles(
+      userId: String!
+      organizationId: String!
+      roles: [String]!
+    ): OrganizationMember
     createContact(name: String!): Contact
   }
 
@@ -31,12 +40,19 @@ const typeDefs = gql`
     name: String!
     plan: BillingPlan
     slug: String!
-    users(
+    members(
       after: UserWhereUniqueInput
       before: UserWhereUniqueInput
       first: Int
       last: Int
-    ): [User!]!
+    ): [OrganizationMember!]!
+  }
+
+  type OrganizationMember {
+    id: String!
+    user: User!
+    organization: Organization!
+    roles: [String]!
   }
 
   input OrganizationWhereUniqueInput {
@@ -55,6 +71,7 @@ const typeDefs = gql`
     email: String!
     id: String!
     name: String
+    status: String
     organizations(
       after: OrganizationWhereUniqueInput
       before: OrganizationWhereUniqueInput
