@@ -1,7 +1,6 @@
 import { FiInbox, FiFilter } from 'react-icons/fi'
 import { EmptyState } from '@saas-ui/react'
-import { Toolbar, ToolbarButton } from '@saas-ui/pro'
-import { SplitPage } from '@modules/core/components/split-page'
+import { SplitPage, Toolbar, ToolbarButton } from '@saas-ui/pro'
 
 import { InboxViewPage } from './view'
 import { InboxList } from '../components/inbox-list'
