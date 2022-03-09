@@ -13,7 +13,9 @@ export interface UseSearchQueryOptions<T> {
   fields?: string[]
 }
 
-export const useSearchQuery = <T = Result>(props: UseSearchQueryOptions<T>) => {
+export const useSearchQuery = <T extends object = Result>(
+  props: UseSearchQueryOptions<T>,
+) => {
   const { items, fields = ['id'] } = props
 
   const [query, setQuery] = React.useState('')
