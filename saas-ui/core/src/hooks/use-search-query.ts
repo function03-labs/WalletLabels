@@ -6,14 +6,17 @@ function escapeRegExp(value: string) {
   return value.replace(regExpSyntaxCharacter, '\\$&')
 }
 
-type Result = Record<string, any>
+interface Result {
+  id?: string
+  [key: string]: any
+}
 
 export interface UseSearchQueryOptions<T> {
   items: Array<T>
   fields?: string[]
 }
 
-export const useSearchQuery = <T extends object = Result>(
+export const useSearchQuery = <T extends Result = Result>(
   props: UseSearchQueryOptions<T>,
 ) => {
   const { items, fields = ['id'] } = props
