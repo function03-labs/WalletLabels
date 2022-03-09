@@ -6568,16 +6568,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/modals@npm:0.3.4":
-  version: 0.3.4
-  resolution: "@saas-ui/modals@npm:0.3.4"
+"@saas-ui/modals@npm:0.3.5":
+  version: 0.3.5
+  resolution: "@saas-ui/modals@npm:0.3.5"
   dependencies:
     "@saas-ui/button": 0.3.0
     "@saas-ui/forms": 0.5.3
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     react: ">=16.8.6"
-  checksum: f1af8f2d19b79cbbdcabf26e3e237bf5ed8bfa0bf1139e95b534f1023f9072f3d648e25df78e6fe6e78dca188720a0c18f276306fd1509ca9f258161837f17d1
+  checksum: b16d729272156cc29ea5f672249f4413d2b85e4d2c91512bb090f8b41317c24c71b699e30d2be8a8383f0aa5e5780359c9366b5ff3d5138d8a7fec4c33de93a9
   languageName: node
   linkType: hard
 
@@ -6722,9 +6722,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/react@npm:^0.11.6":
-  version: 0.11.6
-  resolution: "@saas-ui/react@npm:0.11.6"
+"@saas-ui/react@npm:^0.11.7":
+  version: 0.11.7
+  resolution: "@saas-ui/react@npm:0.11.7"
   dependencies:
     "@saas-ui/auth": 0.6.5
     "@saas-ui/banner": 0.0.1
@@ -6739,7 +6739,7 @@ __metadata:
     "@saas-ui/layout": 0.2.4
     "@saas-ui/list": 0.4.0
     "@saas-ui/menu": 0.4.4
-    "@saas-ui/modals": 0.3.4
+    "@saas-ui/modals": 0.3.5
     "@saas-ui/nprogress": 0.3.0
     "@saas-ui/number-input": 0.3.0
     "@saas-ui/palette": 0.5.0
@@ -6761,7 +6761,7 @@ __metadata:
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
-  checksum: c6d963cf66b4cfc6b1672badaf82ff3aa2aedd19c0bf14b1cdf6eb66ad9445bb8bab5832f2b3c3482c67fa2dee2dbb713773d9aed40084f8633beeda8740d47d
+  checksum: 132d1a6d3248820266fc43e9e1d33b01a0e5380e51a46a4456fdc746efb19020d2d5216fe2c22bff7185524082406f206118625723ed705668e08c5fba5c5b74
   languageName: node
   linkType: hard
 
@@ -9317,7 +9317,7 @@ __metadata:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.11.6
+    "@saas-ui/react": ^0.11.7
     "@storybook/addon-actions": ^6.4.3
     "@storybook/addon-essentials": ^6.4.9
     "@storybook/addon-links": ^6.4.3

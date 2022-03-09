@@ -4,7 +4,7 @@ import { Box, Spacer } from '@chakra-ui/react'
 
 import {
   FiHome,
-  FiBox,
+  FiPlus,
   FiInbox,
   FiHelpCircle,
   FiHash,
@@ -21,15 +21,18 @@ import {
   useTenancy,
 } from '@saas-ui/pro'
 
-import { SearchInput, MenuItem, MenuDivider } from '@saas-ui/react'
+import { SearchInput, MenuItem, MenuDivider, useModals } from '@saas-ui/react'
 
 import { BillingStatus } from './billing-status'
 import { TenantMenu } from './tenant-menu'
 import { UserMenu } from './user-menu'
 import { ElectronNav } from './electron-nav'
 
+import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
+
 export const Sidebar = () => {
   const { tenant } = useTenancy()
+  const modals = useModals()
 
   const getPath = (path?: string) => {
     return path ? `/app/${tenant}/${path}` : `/app/${tenant}`
@@ -105,6 +108,17 @@ export const Sidebar = () => {
             <Spacer />
 
             <SidebarNavGroup>
+              <SidebarLink
+                onClick={() =>
+                  modals.open({
+                    title: 'Invite people',
+                    component: MembersInviteDialog,
+                  })
+                }
+                label="Invite people"
+                color="muted"
+                icon={<FiPlus />}
+              />
               <SidebarLink
                 href="https://saas-ui.dev/docs"
                 label="Documentation"
