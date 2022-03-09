@@ -5,7 +5,11 @@
 First of all, thanks a lot for signing up!
 
 If you have any questions, problems, ideas feel free to share them on the discord server.
-https://discord.gg/rhr358q5BQ
+https://discord.gg/DFPtCfpTzG
+
+## Roadmap
+
+https://github.com/orgs/saas-js/projects/1/views/6
 
 ## Installation
 

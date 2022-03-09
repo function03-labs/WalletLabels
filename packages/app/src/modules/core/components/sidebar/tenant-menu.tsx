@@ -1,10 +1,7 @@
 import { HStack, Text, Avatar, Spacer } from '@chakra-ui/react'
-
-import { SidebarMenu } from '@saas-ui/page-shell'
-import { MenuDivider, MenuGroup, MenuItem } from '@saas-ui/menu'
-
 import { CheckIcon } from '@chakra-ui/icons'
-import { useTenancy } from '@saas-ui/tenancy'
+import { SidebarMenu, useTenancy } from '@saas-ui/pro'
+import { MenuDivider, MenuGroup, MenuItem } from '@saas-ui/menu'
 
 import { useGetTenants } from '../../hooks/use-get-tenants'
 

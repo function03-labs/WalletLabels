@@ -7,10 +7,13 @@ mutation RemoveUserFromOrganization(
     name
     slug
     plan
-    users {
-      id
-      name
-      email
+    members {
+      roles
+      user {
+        id
+        email
+        name
+      }
     }
   }
 }

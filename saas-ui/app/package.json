@@ -1,7 +1,0 @@
-{
-  "name": "@saas-ui/app",
-  "description": "Main application package",
-  "exports": {
-    "default": "./src/index"
-  }
-}

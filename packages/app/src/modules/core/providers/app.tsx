@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import {
@@ -5,9 +7,12 @@ import {
   AuthProvider,
   AuthProviderProps,
   ModalsProvider,
+  useAuth,
 } from '@saas-ui/react'
 
 import { TenancyProvider, Tenant } from '@saas-ui/pro'
+
+import { GraphqlMocksProvider } from '@app/graphql'
 
 import { I18nProvider } from '@app/i18n'
 
@@ -17,7 +22,7 @@ import AppLayout from '@modules/core/layouts/app-layout'
 const queryClient = new QueryClient()
 
 export interface AppProviderProps {
-  linkComponent?: React.ReactNode
+  linkComponent?: React.ElementType<any>
   authService?: AuthProviderProps
   tenant?: Tenant | null
   onTenantChange?: (key: string) => void
@@ -26,6 +31,16 @@ export interface AppProviderProps {
   isPublic?: boolean
   layout?: React.ReactNode
   sidebar?: React.ReactNode
+}
+
+const GqlProvider: React.FC = (props) => {
+  const { user } = useAuth()
+
+  const getUser = React.useCallback(async () => {
+    return user
+  }, [user])
+
+  return <GraphqlMocksProvider context={{ user: getUser }} {...props} />
 }
 
 export const AppProvider: React.FC<AppProviderProps> = (props) => {
@@ -50,19 +65,21 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
         theme={theme}
       >
         <AuthProvider {...authService}>
-          <I18nProvider>
-            <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-              <ModalsProvider>
-                <AppLayout
-                  isPublic={isPublic}
-                  layout={layout}
-                  sidebar={sidebar}
-                >
-                  {children}
-                </AppLayout>
-              </ModalsProvider>
-            </TenancyProvider>
-          </I18nProvider>
+          <GqlProvider>
+            <I18nProvider>
+              <TenancyProvider tenant={tenant} onChange={onTenantChange}>
+                <ModalsProvider>
+                  <AppLayout
+                    isPublic={isPublic}
+                    layout={layout}
+                    sidebar={sidebar}
+                  >
+                    {children}
+                  </AppLayout>
+                </ModalsProvider>
+              </TenancyProvider>
+            </I18nProvider>
+          </GqlProvider>
         </AuthProvider>
       </SaasProvider>
     </QueryClientProvider>

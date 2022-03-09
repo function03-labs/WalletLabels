@@ -1,147 +1,117 @@
-import { useRouter } from 'next/router'
-
-import { useGetOrganizationQuery } from '@app/graphql'
-
-import { useState } from 'react'
-import { useInviteToOrganizationMutation } from '@app/graphql'
-
-import { useRemoveUserFromOrganizationMutation } from '@app/graphql'
-
-import { useUpdateOrganizationMutation } from '@app/graphql'
-
-import * as Yup from 'yup'
-const schema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too short')
-    .max(25, 'Too long')
-    .required()
-    .label('Name'),
-})
-
-import { FiX, FiCopy } from 'react-icons/fi'
-
-import { Box, Input, InputGroup, Avatar, Tag } from '@chakra-ui/react'
-
-import { Page, Section } from '@saas-ui/pro'
+import * as React from 'react'
+import { useSnackbar, useModals, useCurrentUser } from '@saas-ui/react'
+import { Page, Section, useTenant } from '@saas-ui/pro'
 
 import {
-  Card,
-  CardBody,
-  CardFooter,
-  List,
-  Form,
-  Field,
-  Loader,
-  InputRightButton,
-  useSnackbar,
-} from '@saas-ui/react'
+  useGetOrganizationQuery,
+  useRemoveUserFromOrganizationMutation,
+  useInviteToOrganizationMutation,
+} from '@app/graphql'
 
-function InvitationForm({ organizationId }: { organizationId: string }) {
+import {
+  MembersList,
+  Member,
+} from '@modules/organizations/components/members-list'
+import { MembersInviteData } from '@modules/organizations/components/members-invite-dialog'
+
+export function MembersSettingsPage() {
+  const tenant = useTenant()
   const snackbar = useSnackbar()
-  const [email, setEmail] = useState('')
-  const { isLoading, mutateAsync: inviteToOrganization } =
-    useInviteToOrganizationMutation()
+  const modals = useModals()
 
-  return (
-    <form
-      onSubmit={(evt) => {
-        evt.preventDefault()
-        snackbar
-          .promise(
-            inviteToOrganization({
-              organizationId,
-              email,
-            }),
-            {
-              loading: `Inviting ${email}...`,
-              success: `Invited ${email}!`,
-              error: (err: Error) => err,
-            },
-          )
-          .then(() => {
-            setEmail('')
-          })
-      }}
-    >
-      <InputGroup>
-        <Input
-          type="email"
-          placeholder="colleague@company.com"
-          value={email}
-          onChange={(evt) => setEmail(evt.target.value)}
-          border="0"
-        />
-        <InputRightButton
-          colorScheme="primary"
-          disabled={email.length === 0}
-          isLoading={isLoading}
-          type="submit"
-        >
-          Invite
-        </InputRightButton>
-      </InputGroup>
-    </form>
-  )
-}
-
-function OrganizationUsers({ organization }: any) {
-  const snackbar = useSnackbar()
-  const { mutateAsync: removeUserFromOrganization } =
-    useRemoveUserFromOrganizationMutation()
-
-  const users = organization?.users.map((user: any) => ({
-    id: user.id,
-    icon: <Avatar name={user.name || user.email} />,
-    primary: user.name || user.email,
-    secondary: user.name ? user.email : undefined,
-    tertiary: <Tag>Owner</Tag>,
-    action: {
-      icon: <FiX />,
-      'aria-label': 'Remove user',
-      onClick: () => {
-        if (
-          window.confirm(
-            `Are you sure you want to remove ${user.email} from ${
-              organization.name || 'this organization'
-            }?`,
-          )
-        ) {
-          snackbar.promise(
-            removeUserFromOrganization({
-              organizationId: organization.id,
-              userId: user.id,
-            }),
-            {
-              loading: `Removing ${user.email}...`,
-              success: `Removed ${user.email}!`,
-              error: (err: Error) => err,
-            },
-          )
-        }
-      },
-    },
-  }))
-  return (
-    <Section title="Users" description="Invite your colleagues" annotated>
-      <Card>
-        <List items={users || []} />
-        <Box p="2">
-          <InvitationForm organizationId={organization?.id} />
-        </Box>
-      </Card>
-    </Section>
-  )
-}
-
-export function OrganizationMembersPage() {
-  const router = useRouter()
-  const { slug } = router.query
-
-  const { data, isLoading, error } = useGetOrganizationQuery({
-    slug: String(slug),
+  const { data, isLoading } = useGetOrganizationQuery({
+    slug: tenant,
   })
 
   const organization = data?.organization
+
+  if (!isLoading && !organization) {
+    return null
+  }
+
+  const members =
+    organization?.members.map(
+      ({ roles, user: { id, email, name, status } }) => {
+        return {
+          id,
+          email,
+          name,
+          status,
+          roles,
+        } as Member
+      },
+    ) || []
+
+  const inviteToOrganization = useInviteToOrganizationMutation()
+
+  const removeUserFromOrganization = useRemoveUserFromOrganizationMutation()
+
+  const onInvite = async ({ emails, role }: MembersInviteData) => {
+    if (!organization) return
+
+    return snackbar.promise(
+      inviteToOrganization.mutateAsync({
+        organizationId: organization.id,
+        emails,
+        role,
+      }),
+      {
+        loading:
+          emails.length === 1
+            ? `Inviting ${emails[0]}...`
+            : `Inviting ${emails.length} people...`,
+        success: `Invitation(s) have been sent.`,
+        error: (err: Error) => err,
+      },
+    )
+  }
+
+  const onCancelInvite = async (member: Member) => {
+    if (!organization) return
+
+    return snackbar.promise(
+      removeUserFromOrganization.mutateAsync({
+        userId: member.id,
+        organizationId: organization.id,
+      }),
+      {
+        loading: `Removing ${member.email}...`,
+        success: `Removed ${member.email}!`,
+        error: (err: Error) => err,
+      },
+    )
+  }
+
+  const onRemove = (member: Member) => {
+    if (!organization) return
+
+    modals.confirm?.({
+      title: 'Remove member',
+      body: `Are you sure you want to remove ${member.email} from ${
+        organization.name || 'this organization'
+      }?`,
+      confirmProps: {
+        colorScheme: 'red',
+        label: 'Remove',
+      },
+      onConfirm: () =>
+        snackbar.promise(
+          removeUserFromOrganization.mutateAsync({
+            organizationId: organization.id,
+            userId: member.id,
+          }),
+          {
+            loading: `Removing ${member.email}...`,
+            success: `Removed ${member.email}!`,
+            error: (err: Error) => err,
+          },
+        ),
+    })
+  }
+
+  const onUpdateRoles = async (member: Member, roles: string[]) => {
+    return null
+  }
 
   return (
     <Page
@@ -150,7 +120,15 @@ export function OrganizationMembersPage() {
       title="Members"
       description="Manage who can access your organization"
     >
-      <OrganizationUsers organization={organization} />
+      <Section title="Members" description="Invite your colleagues" isAnnotated>
+        <MembersList
+          members={members}
+          onInvite={onInvite}
+          onCancelInvite={onCancelInvite}
+          onRemove={onRemove}
+          onUpdateRoles={onUpdateRoles}
+        />
+      </Section>
     </Page>
   )
 }

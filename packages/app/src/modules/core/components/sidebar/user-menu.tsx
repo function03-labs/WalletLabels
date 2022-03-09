@@ -1,6 +1,6 @@
 import { useColorMode, useDisclosure } from '@chakra-ui/react'
 
-import { SidebarMenu } from '@saas-ui/pro'
+import { SidebarMenu, useTenant } from '@saas-ui/pro'
 
 import {
   MenuItem,
@@ -12,8 +12,6 @@ import {
 } from '@saas-ui/react'
 
 import { HotkeysWindow } from '@modules/core/components/hotkeys'
-
-import { useTenant } from '@saas-ui/tenancy'
 
 export const UserMenu = () => {
   const { user, logOut } = useAuth()
