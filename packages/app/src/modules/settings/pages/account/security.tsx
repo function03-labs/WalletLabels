@@ -1,7 +1,6 @@
-import { Card, List, ListItem, useModals } from '@saas-ui/react'
+import { Card, List, ListItem, useModals, useSnackbar } from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
-import { useDisclosure } from '@chakra-ui/hooks'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
 import { SettingsPage } from '@modules/core/components/settings-page'
@@ -20,13 +19,21 @@ function TwoFactorAuthItem() {
 }
 
 function PasswordListItem() {
-  const disclosure = useDisclosure()
-
   const modals = useModals()
+  const snackbar = useSnackbar()
 
   return (
     <ListItem
-      onClick={() => modals.open?.(UpdatePasswordDialog)}
+      onClick={() => {
+        const id = modals.open({
+          title: 'Update your password',
+          component: UpdatePasswordDialog,
+          onSuccess() {
+            snackbar.success('Your password has been updated.')
+            modals.close(id)
+          },
+        })
+      }}
       primary="Password"
       tertiary="Last changed January 1st 2022"
       action={<ChevronRightIcon />}

@@ -12,11 +12,12 @@ export interface ConfirmPasswordProps extends Omit<FieldProps, 'name'> {
 export const ConfirmPasswordField: React.FC<ConfirmPasswordProps> = (props) => {
   const form = useFormContext()
 
-  const { name = 'confirmPassword', confirmField = 'password' } = props
+  const { name = 'confirmPassword', confirmField = 'password', ...rest } = props
 
   const validatePassword = React.useCallback(
     (confirmPassword) => {
       const password = form.getValues(confirmField)
+      console.log(password)
       return confirmPassword === password
     },
     [confirmField],
@@ -24,7 +25,7 @@ export const ConfirmPasswordField: React.FC<ConfirmPasswordProps> = (props) => {
 
   return (
     <Field
-      {...props}
+      {...rest}
       name={name}
       type="password"
       rules={{ validate: validatePassword }}

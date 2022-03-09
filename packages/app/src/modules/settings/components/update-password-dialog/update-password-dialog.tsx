@@ -4,7 +4,6 @@ import {
   FormLayout,
   Field,
   FormDialog,
-  SubmitButton,
   useUpdatePassword,
   FormDialogProps,
 } from '@saas-ui/react'
@@ -20,12 +19,11 @@ interface SubmitParams {
 }
 
 export interface UpdatePasswordFormProps
-  extends Omit<FormDialogProps, 'onSubmit'> {
-  schema?: any
+  extends Omit<FormDialogProps<SubmitParams>, 'onSubmit'> {
   label?: string
   confirmLabel?: string
   helpText?: string
-  onSuccess?: (error: any) => void
+  onSuccess?: (data: any) => void
   onError?: (error: any) => void
   onValidationError?: (error: any) => void
   newLabel?: string
@@ -33,7 +31,6 @@ export interface UpdatePasswordFormProps
 }
 
 export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
-  schema,
   onSuccess = () => null,
   onError = () => null,
   onValidationError,
@@ -45,17 +42,16 @@ export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
   children,
   ...formProps
 }) => {
-  const [{ isLoading }, submit] = useUpdatePassword()
+  const [, submit] = useUpdatePassword()
 
-  const handleSubmit: SubmitHandler<any> = ({ newPassword }) => {
+  const handleSubmit: SubmitHandler<SubmitParams> = ({ newPassword }) => {
     return submit({ password: newPassword }).then(onSuccess).catch(onError)
   }
 
   return (
-    <FormDialog
-      schema={schema}
+    <FormDialog<SubmitParams>
       onSubmit={handleSubmit}
-      defaultValues={{ password: '', confirmPassword: '' }}
+      defaultValues={{ password: '', newPassword: '', confirmPassword: '' }}
       {...formProps}
     >
       <FormLayout>
@@ -66,17 +62,21 @@ export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
           rules={{ required: true }}
         />
 
-        <ConfirmPasswordField confirmField="newPassword" />
+        <Field
+          name="newPassword"
+          label={newLabel}
+          type="password"
+          rules={{ required: true }}
+        />
 
-        <SubmitButton type="submit" isFullWidth isLoading={isLoading}>
-          {submitLabel}
-        </SubmitButton>
+        <ConfirmPasswordField label={confirmLabel} confirmField="newPassword" />
       </FormLayout>
     </FormDialog>
   )
 }
 
 UpdatePasswordDialog.defaultProps = {
+  title: 'Update your password',
   submitLabel: 'Update your password',
   label: 'Current password',
   newLabel: 'New password',
