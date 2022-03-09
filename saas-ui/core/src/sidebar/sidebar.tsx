@@ -9,14 +9,22 @@ import {
   StylesProvider,
   omitThemingProps,
   HTMLChakraProps,
+  ChakraProps,
   ThemingProps,
   SystemProps,
   useMultiStyleConfig,
   useStyleConfig,
   MenuListProps,
+  Tooltip,
+  useBreakpointValue,
+  SystemStyleObject,
+  IconButton,
+  IconButtonProps,
 } from '@chakra-ui/react'
 
 import { cx } from '@chakra-ui/utils'
+
+import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
 import { Menu, MenuButton, MenuButtonProps, MenuList } from '@saas-ui/menu'
 import { useLink, useActivePath } from '@saas-ui/provider'
@@ -31,35 +39,171 @@ export {
   MenuDivider as SidebarMenuDivider,
 } from '@chakra-ui/menu'
 
-import { ChevronDown, ChevronRight } from './icons'
+import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from './icons'
+
+import { SidebarProvider, useSidebarContext } from './use-sidebar'
 
 export interface SidebarProps
-  extends HTMLChakraProps<'div'>,
+  extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
+    Omit<ChakraProps, 'css'>,
     ThemingProps<'Sidebar'> {
+  variant?: string
+  size?: string
+  /**
+   * Spacing between child elements.
+   */
   spacing?: SystemProps['margin']
+  /**
+   * Define breakpoints for the mobile nav.
+   *
+   * @default object { sm: true, lg: false }
+   */
+  breakpoints?: Record<string, boolean>
 }
 
+const MotionBox = chakra(motion.div)
+
 export const Sidebar: React.FC<SidebarProps> = (props) => {
+  const { children, breakpoints = { sm: true, lg: false } } = props
+
+  const isMobile = useBreakpointValue(breakpoints)
+
+  return (
+    <>
+      <SidebarContainer>
+        {isMobile && <SidebarToggleButton />}
+        {children}
+      </SidebarContainer>
+    </>
+  )
+}
+
+export const SidebarContainer: React.FC<SidebarProps> = (props) => {
   const styles = useMultiStyleConfig('Sidebar', props)
 
-  const { spacing = 4, children, ...containerProps } = omitThemingProps(props)
+  const { variant, size } = props
 
-  const containerStyles = {
+  const {
+    spacing = 4,
+    children,
+    breakpoints = { sm: true, lg: false },
+    ...containerProps
+  } = omitThemingProps(props)
+
+  const isMobile = useBreakpointValue(breakpoints)
+
+  const collapse = useCollapse({
+    defaultIsOpen: !isMobile,
+  })
+
+  const { isOpen, onClose } = collapse
+
+  const containerStyles: SystemStyleObject = {
     '& > *:not(style) ~ *:not(style)': { marginTop: spacing },
+    ...(isMobile
+      ? {
+          position: 'absolute',
+          zIndex: 'modal',
+          top: 0,
+          left: { sm: '-100%', lg: '0' },
+          bottom: 0,
+        }
+      : {}),
+  }
+
+  React.useEffect(() => {
+    if (isMobile) {
+      onClose()
+    }
+  }, [isMobile])
+
+  const context = {
+    ...collapse,
+    isMobile,
+    variant,
+    size,
   }
 
   return (
-    <StylesProvider value={styles}>
-      <chakra.div
-        __css={{
-          ...containerStyles,
-          ...styles.container,
-        }}
-        {...containerProps}
-      >
-        {children}
-      </chakra.div>
-    </StylesProvider>
+    <SidebarProvider value={context}>
+      <StylesProvider value={styles}>
+        <>
+          <MotionBox
+            animate={!isMobile || isOpen ? 'enter' : 'exit'}
+            variants={{
+              enter: {
+                left: 0,
+                transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
+              },
+              exit: { left: '-100%' },
+            }}
+            __css={{
+              ...containerStyles,
+              ...styles.container,
+            }}
+            {...containerProps}
+          >
+            {children}
+          </MotionBox>
+          {isMobile && <SidebarOverlay />}
+        </>
+      </StylesProvider>
+    </SidebarProvider>
+  )
+}
+
+export const SidebarToggleButton: React.FC<
+  Omit<IconButtonProps, 'aria-label'>
+> = (props) => {
+  const sidebar = useSidebarContext()
+
+  const styles = useStyles()
+
+  const buttonStyles = {
+    position: 'fixed',
+    top: 3,
+    left: 4,
+    ...styles.toggle,
+  }
+
+  return (
+    <IconButton
+      variant="ghost"
+      icon={<HamburgerIcon />}
+      {...sidebar.getToggleProps(props)}
+      {...props}
+      aria-label="Toggle sidebar"
+      sx={buttonStyles}
+    />
+  )
+}
+
+const SidebarOverlay = () => {
+  const { onClose, isOpen } = useSidebarContext()
+
+  const styles = useStyles()
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <MotionBox
+          animate={isOpen ? 'enter' : 'exit'}
+          initial="exit"
+          variants={{
+            enter: { opacity: 1 },
+            exit: { opacity: 0 },
+          }}
+          position="fixed"
+          top="0"
+          right="0"
+          bottom="0"
+          left="0"
+          zIndex="overlay"
+          onClick={onClose}
+          __css={styles.overlay}
+        />
+      )}
+    </AnimatePresence>
   )
 }
 
@@ -131,7 +275,7 @@ export const SidebarNavGroupTitle: React.FC<SidebarNavGroupTitleProps> = (
 
   let collapseIcon
   if (isCollapsible) {
-    collapseIcon = isOpen ? <ChevronDown /> : <ChevronRight />
+    collapseIcon = isOpen ? <ChevronDownIcon /> : <ChevronRightIcon />
   }
 
   return (
@@ -257,6 +401,7 @@ export interface SidebarLinkProps
   label: string
   icon?: React.ReactElement
   inset?: SystemProps['paddingLeft']
+  tooltip?: React.ReactNode
 }
 
 export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
@@ -266,10 +411,12 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
     icon,
     inset,
     className,
+    tooltip,
     ...rest
   } = omitThemingProps(props)
   const RouterLink = useLink()
   const isActive = useActivePath(href)
+  const { onClose } = useSidebarContext()
 
   const styles = useMultiStyleConfig('SidebarLink', { isActive, ...props })
 
@@ -301,7 +448,11 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
 
   return (
     <StylesProvider value={styles}>
-      <chakra.div __css={styles.container}>{link}</chakra.div>
+      <Tooltip label={tooltip} placement="right" openDelay={400}>
+        <chakra.div __css={styles.container} onClick={onClose}>
+          {link}
+        </chakra.div>
+      </Tooltip>
     </StylesProvider>
   )
 })

@@ -130,6 +130,12 @@ export const createMockServer = (context: MockContext) => {
           }
 
           store.set('User', user.id, _user)
+
+          store.set('OrganizationMember', user.id, {
+            roles: ['admin'],
+            user: store.get('User', user.id),
+          })
+
           return _user
         },
         organization: (_: any, { slug }: any) => {
@@ -163,7 +169,7 @@ export const createMockServer = (context: MockContext) => {
             user: store.get('User', user.id),
             organization: store.get('Organization', organization.slug),
           }
-
+          console.log('member', member)
           store.set('OrganizationMember', user.id, member)
 
           DATA['Organization'] = organization

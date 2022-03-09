@@ -7,7 +7,7 @@ import { PageShell, PageShellProps } from '@saas-ui/pro'
 import { HotkeysListOptions } from '@saas-ui/react'
 import { Auth } from '@saas-ui/auth'
 import { Hotkeys } from '@modules/core/components/hotkeys'
-import Link from '@modules/core/components/link'
+import { Link } from '@modules/core/components/link'
 import { Logo } from '@modules/core/components/logo'
 
 import { Sidebar } from '@modules/core/components/sidebar'

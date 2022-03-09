@@ -6,6 +6,8 @@ const parts = anatomy('sidebar').parts(
   'group',
   'groupTitle',
   'menuButton',
+  'overlay',
+  'toggle',
 )
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
@@ -55,6 +57,9 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
         },
       },
     },
+    overlay: {
+      bg: 'blackAlpha.200',
+    },
   }
 }
 
@@ -67,22 +72,26 @@ export default {
   sizes: {
     xs: {
       container: {
-        py: 2,
+        pt: { sm: 10, lg: 2 },
+        pb: 2,
       },
     },
     sm: {
       container: {
-        py: 2,
+        pt: { sm: 10, lg: 2 },
+        pb: 2,
       },
     },
     md: {
       container: {
-        py: 3,
+        pt: { sm: 10, lg: 3 },
+        pb: 3,
       },
     },
     lg: {
       container: {
-        py: 4,
+        pt: { sm: 10, lg: 4 },
+        pb: 4,
       },
     },
   },

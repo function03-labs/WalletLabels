@@ -64,6 +64,7 @@ export const Sidebar = () => {
                 href={getPath()}
                 label="Dashboard"
                 icon={<FiHome />}
+                tooltip="Dashboard "
               />
               <SidebarLink
                 href={getPath('inbox')}
