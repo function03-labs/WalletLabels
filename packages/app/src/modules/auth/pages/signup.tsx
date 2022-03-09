@@ -1,5 +1,5 @@
 import { Container, Stack } from '@chakra-ui/react'
-import Link from '@modules/core/components/link'
+import { Link } from '@modules/core/components/link'
 
 import { Loader, SignupView, useAuth } from '@saas-ui/react'
 

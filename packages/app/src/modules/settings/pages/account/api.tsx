@@ -5,7 +5,7 @@ import { Section } from '@saas-ui/pro'
 import { SettingsPage } from '@modules/core/components/settings-page'
 import { SettingsCard } from '@modules/settings/components/settings-card'
 import { FiCopy, FiCheck, FiX } from 'react-icons/fi'
-import Link from '@modules/core/components/link'
+import { Link } from '@modules/core/components/link'
 
 function AccessToken({ token, onRemove }: any) {
   const { value, onCopy, hasCopied } = useClipboard(token)
