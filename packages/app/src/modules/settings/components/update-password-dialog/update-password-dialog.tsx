@@ -3,13 +3,15 @@ import * as React from 'react'
 import {
   FormLayout,
   Field,
-  UseFormReturn,
   FormDialog,
   SubmitButton,
   useUpdatePassword,
+  FormDialogProps,
 } from '@saas-ui/react'
 
 import { SubmitHandler } from 'react-hook-form'
+
+import { ConfirmPasswordField } from '@modules/core/components/confirm-password-field'
 
 interface SubmitParams {
   password: string
@@ -17,7 +19,8 @@ interface SubmitParams {
   confirmPassword: string
 }
 
-export interface UpdatePasswordFormProps {
+export interface UpdatePasswordFormProps
+  extends Omit<FormDialogProps, 'onSubmit'> {
   schema?: any
   label?: string
   confirmLabel?: string
@@ -44,24 +47,15 @@ export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
 }) => {
   const [{ isLoading }, submit] = useUpdatePassword()
 
-  const formRef = React.useRef<UseFormReturn<SubmitParams>>(null)
-
-  const handleSubmit: SubmitHandler<SubmitParams> = ({ newPassword }) => {
+  const handleSubmit: SubmitHandler<any> = ({ newPassword }) => {
     return submit({ password: newPassword }).then(onSuccess).catch(onError)
   }
-
-  const validatePassword = React.useCallback((confirmPassword) => {
-    const password = formRef.current?.getValues('newPassword')
-    return confirmPassword === password
-  }, [])
 
   return (
     <FormDialog
       schema={schema}
       onSubmit={handleSubmit}
-      onError={onValidationError}
       defaultValues={{ password: '', confirmPassword: '' }}
-      ref={formRef}
       {...formProps}
     >
       <FormLayout>
@@ -72,19 +66,7 @@ export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
           rules={{ required: true }}
         />
 
-        <Field
-          name="newPassword"
-          label={newLabel}
-          type="password"
-          rules={{ required: true }}
-        />
-
-        <Field
-          name="confirmPassword"
-          label={confirmLabel}
-          type="password"
-          rules={{ validate: validatePassword }}
-        />
+        <ConfirmPasswordField confirmField="newPassword" />
 
         <SubmitButton type="submit" isFullWidth isLoading={isLoading}>
           {submitLabel}
