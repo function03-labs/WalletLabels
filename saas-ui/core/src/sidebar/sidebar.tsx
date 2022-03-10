@@ -70,7 +70,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
 
   return (
     <>
-      <SidebarContainer>
+      <SidebarContainer {...props}>
         {isMobile && <SidebarToggleButton />}
         {children}
       </SidebarContainer>
@@ -83,10 +83,13 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
 
   const { variant, size } = props
 
+  const isCondensed = variant === 'condensed'
+
   const {
     spacing = 4,
     children,
     breakpoints = { base: true, lg: false },
+    className,
     ...containerProps
   } = omitThemingProps(props)
 
@@ -141,6 +144,11 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
               ...containerStyles,
               ...styles.container,
             }}
+            className={cx(
+              'saas-sidebar__container',
+              isCondensed && 'saas-sidebar__condensed',
+              className,
+            )}
             {...containerProps}
           >
             {children}
@@ -416,9 +424,15 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
   } = omitThemingProps(props)
   const RouterLink = useLink()
   const isActive = useActivePath(href)
-  const { onClose } = useSidebarContext()
+  const { onClose, variant } = useSidebarContext()
 
-  const styles = useMultiStyleConfig('SidebarLink', { isActive, ...props })
+  const isCondensed = variant === 'condensed'
+
+  const styles = useMultiStyleConfig('SidebarLink', {
+    isActive,
+    isCondensed,
+    ...props,
+  })
 
   let link = (
     <chakra.a
@@ -430,9 +444,7 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
     >
       <chakra.span
         __css={{
-          display: 'flex',
-          flex: 1,
-          alignItems: 'center',
+          ...styles.inner,
           pl: inset,
         }}
       >
@@ -446,9 +458,11 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
     link = <RouterLink href={href}>{link}</RouterLink>
   }
 
+  const tooltipLabel = isCondensed && !tooltip ? label : tooltip
+
   return (
     <StylesProvider value={styles}>
-      <Tooltip label={tooltip} placement="right" openDelay={400}>
+      <Tooltip label={tooltipLabel} placement="right" openDelay={400}>
         <chakra.div __css={styles.container} onClick={onClose}>
           {link}
         </chakra.div>

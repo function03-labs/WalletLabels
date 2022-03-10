@@ -9,10 +9,12 @@ import {
   FiHelpCircle,
   FiHash,
   FiUsers,
+  FiSearch,
 } from 'react-icons/fi'
 
 import {
-  Sidebar as SidebarContainer,
+  Sidebar,
+  SidebarProps,
   SidebarNav,
   SidebarLink,
   SidebarDivider,
@@ -21,7 +23,13 @@ import {
   useTenancy,
 } from '@saas-ui/pro'
 
-import { SearchInput, MenuItem, MenuDivider, useModals } from '@saas-ui/react'
+import {
+  IconButton,
+  SearchInput,
+  MenuItem,
+  MenuDivider,
+  useModals,
+} from '@saas-ui/react'
 
 import { BillingStatus } from './billing-status'
 import { TenantMenu } from './tenant-menu'
@@ -30,7 +38,9 @@ import { ElectronNav } from './electron-nav'
 
 import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
 
-export const Sidebar = () => {
+export interface AppSidebarProps extends SidebarProps {}
+
+export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const { tenant } = useTenancy()
   const modals = useModals()
 
@@ -38,9 +48,18 @@ export const Sidebar = () => {
     return path ? `/app/${tenant}/${path}` : `/app/${tenant}`
   }
 
+  const { variant, colorScheme } = props
+
+  const isCondensed = variant === 'condensed'
+
   return (
     <>
-      <SidebarContainer>
+      <Sidebar
+        variant={variant}
+        colorScheme={colorScheme}
+        breakpoints={{ base: false }}
+        {...props}
+      >
         <ElectronNav />
         <SidebarNav direction="row">
           <TenantMenu title="Organizations">
@@ -54,11 +73,19 @@ export const Sidebar = () => {
               label="Create an organization"
             />
           </TenantMenu>
-          <Spacer />
-          <UserMenu />
+          {!isCondensed && (
+            <>
+              <Spacer />
+              <UserMenu />
+            </>
+          )}
         </SidebarNav>
         <Box px={4}>
-          <SearchInput size="sm" />
+          {isCondensed ? (
+            <IconButton icon={<FiSearch />} aria-label="Search" />
+          ) : (
+            <SearchInput size="sm" />
+          )}
         </Box>
         <SidebarOverflow>
           <SidebarNav flex="1" spacing={6}>
@@ -80,30 +107,32 @@ export const Sidebar = () => {
               />
             </SidebarNavGroup>
 
-            <SidebarNavGroup title="Tags" isCollapsible>
-              <SidebarLink
-                href={getPath('contacts/tag/design-system')}
-                label="Design system"
-                icon={<FiHash />}
-              />
-              <SidebarLink
-                href={getPath('contacts/framework')}
-                label="Framework"
-                icon={<FiHash />}
-              />
-              <SidebarLink
-                href={getPath('contacts/tag/chakra-ui')}
-                label="Chakra UI"
-                inset={5}
-                icon={<FiHash />}
-              />
-              <SidebarLink
-                href={getPath('contacts/tag/react')}
-                label="React"
-                inset={5}
-                icon={<FiHash />}
-              />
-            </SidebarNavGroup>
+            {!isCondensed && (
+              <SidebarNavGroup title="Tags" isCollapsible>
+                <SidebarLink
+                  href={getPath('contacts/tag/design-system')}
+                  label="Design system"
+                  icon={<FiHash />}
+                />
+                <SidebarLink
+                  href={getPath('contacts/framework')}
+                  label="Framework"
+                  icon={<FiHash />}
+                />
+                <SidebarLink
+                  href={getPath('contacts/tag/chakra-ui')}
+                  label="Chakra UI"
+                  inset={5}
+                  icon={<FiHash />}
+                />
+                <SidebarLink
+                  href={getPath('contacts/tag/react')}
+                  label="React"
+                  inset={5}
+                  icon={<FiHash />}
+                />
+              </SidebarNavGroup>
+            )}
 
             <Spacer />
 
@@ -129,8 +158,14 @@ export const Sidebar = () => {
           </SidebarNav>
         </SidebarOverflow>
         <SidebarDivider m="0" />
-        <BillingStatus />
-      </SidebarContainer>
+        {isCondensed ? (
+          <SidebarNav>
+            <UserMenu />
+          </SidebarNav>
+        ) : (
+          <BillingStatus />
+        )}
+      </Sidebar>
     </>
   )
 }

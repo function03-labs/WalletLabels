@@ -10,7 +10,7 @@ import { Hotkeys } from '@modules/core/components/hotkeys'
 import { Link } from '@modules/core/components/link'
 import { Logo } from '@modules/core/components/logo'
 
-import { Sidebar } from '@modules/core/components/sidebar'
+import { AppSidebar } from '@modules/core/components/sidebar'
 import { SettingsSidebar } from '@modules/settings/components/sidebar'
 
 import { authType, authProviders, authPaths } from '@app/config/auth'
@@ -87,7 +87,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
 export const DefaultLayout: React.FC<LayoutProps> = ({
   children,
-  sidebar = <Sidebar />,
+  sidebar = <AppSidebar />,
   ...rest
 }) => {
   return (

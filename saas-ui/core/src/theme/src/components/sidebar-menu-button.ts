@@ -16,6 +16,9 @@ const baseStyle: SystemStyleFunction = (props) => {
     _hover: { bg: hover },
     _expanded: { bg: active },
     _focus: { bg: active },
+    '.saas-sidebar__condensed &': {
+      px: 1,
+    },
   }
 }
 

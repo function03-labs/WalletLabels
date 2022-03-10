@@ -11,9 +11,13 @@ const parts = anatomy('sidebar').parts(
 )
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
+  const { colorScheme: c } = props
+
+  const bg = c ? `${c}.500` : 'sidebar.background'
+
   return {
     container: {
-      bg: `sidebar.background`,
+      bg,
       display: 'flex',
       flexDirection: 'column',
       borderRightWidth: '1px',
@@ -63,12 +67,23 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
   }
 }
 
+const variantCondensed: PartsStyleFunction<typeof parts> = (props) => {
+  return {
+    container: {
+      width: '64px',
+    },
+  }
+}
+
 export default {
   parts: parts.keys,
   defaultProps: {
     size: 'md',
   },
   baseStyle,
+  variants: {
+    condensed: variantCondensed,
+  },
   sizes: {
     xs: {
       container: {
