@@ -1,6 +1,7 @@
 export * from './app'
 export * from './billing'
 export * from './charts'
+export * from './command'
 export * from './data-grid'
 export * from './features'
 export * from './page'

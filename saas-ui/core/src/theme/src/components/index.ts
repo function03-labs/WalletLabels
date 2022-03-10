@@ -1,4 +1,6 @@
+import Command from './command'
 import EmptyState from './empty-state'
+import Kbd from './kbd'
 import List from './list'
 import Page from './page'
 import Section from './section'
@@ -7,9 +9,12 @@ import SidebarMenuButton from './sidebar-menu-button'
 import SidebarMenu from './sidebar-menu'
 import Sidebar from './sidebar'
 import DataGrid from './data-grid'
+import Tooltip from './tooltip'
 
 export default {
+  Command,
   EmptyState,
+  Kbd,
   List,
   Page,
   Section,
@@ -18,4 +23,5 @@ export default {
   SidebarMenu,
   Sidebar,
   DataGrid,
+  Tooltip,
 }

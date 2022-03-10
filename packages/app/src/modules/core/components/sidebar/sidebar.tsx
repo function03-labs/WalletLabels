@@ -20,6 +20,7 @@ import {
   SidebarDivider,
   SidebarNavGroup,
   SidebarOverflow,
+  Command,
   useTenancy,
 } from '@saas-ui/pro'
 

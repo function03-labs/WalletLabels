@@ -16,7 +16,7 @@ import {
   useModals,
   useHotkeysShortcut,
 } from '@saas-ui/react'
-import { Toolbar, ToolbarButton, useTenant } from '@saas-ui/pro'
+import { Command, Toolbar, ToolbarButton, useTenant } from '@saas-ui/pro'
 import { ListPage } from '@modules/core/components/list-page'
 
 const StatusCell = (cell: any) => {
@@ -90,11 +90,12 @@ export function ContactsListPage() {
       <ToolbarButton
         label="Add person"
         variant="solid"
+        colorScheme="primary"
         onClick={addPerson}
         tooltipProps={{
           label: (
             <>
-              Add a person <Kbd>{addCommand}</Kbd>
+              Add a person <Command>{addCommand}</Command>
             </>
           ),
         }}
