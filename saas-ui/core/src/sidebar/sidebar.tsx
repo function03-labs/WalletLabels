@@ -64,7 +64,7 @@ export interface SidebarProps
 const MotionBox = chakra(motion.div)
 
 export const Sidebar: React.FC<SidebarProps> = (props) => {
-  const { children, breakpoints = { sm: true, lg: false } } = props
+  const { children, breakpoints = { base: true, lg: false } } = props
 
   const isMobile = useBreakpointValue(breakpoints)
 
@@ -86,7 +86,7 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
   const {
     spacing = 4,
     children,
-    breakpoints = { sm: true, lg: false },
+    breakpoints = { base: true, lg: false },
     ...containerProps
   } = omitThemingProps(props)
 
@@ -105,7 +105,7 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
           position: 'absolute',
           zIndex: 'modal',
           top: 0,
-          left: { sm: '-100%', lg: '0' },
+          left: { base: '-100%', lg: '0' },
           bottom: 0,
         }
       : {}),

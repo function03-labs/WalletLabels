@@ -21,7 +21,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       alignItems: 'center',
       justifyContent: 'stretch',
       py: 2,
-      px: { sm: 14, lg: 4 },
+      px: { base: 14, lg: 4 },
       minH: 14,
       borderBottomWidth: '1px',
     },
