@@ -103,6 +103,13 @@ export function ContactsListPage() {
     </Toolbar>
   )
 
+  const bulkActions = (
+    <>
+      <Button>Add to segment</Button>
+      <Button>Add tags</Button>
+    </>
+  )
+
   const columns: Column<Contact>[] = [
     {
       id: 'name',
@@ -151,6 +158,7 @@ export function ContactsListPage() {
     <ListPage<Contact>
       title="Contacts"
       toolbar={toolbar}
+      bulkActions={bulkActions}
       emptyState={emptyState}
       columns={columns}
       data={data?.contacts as Contact[]}
