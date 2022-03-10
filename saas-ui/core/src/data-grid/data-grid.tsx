@@ -3,6 +3,7 @@ import {
   useTable,
   useSortBy,
   useRowSelect,
+  usePagination,
   TableInstance,
   TableOptions,
   CellProps,
@@ -10,7 +11,6 @@ import {
   Hooks,
   IdType,
   Row,
-  RowPropGetter,
 } from 'react-table'
 import {
   chakra,
@@ -28,11 +28,23 @@ import {
 
 import { dataAttr } from '@chakra-ui/utils'
 
+import { createContext } from '@chakra-ui/react-utils'
+
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
 
 import { Link } from '@saas-ui/react'
+import { DataGridPagination } from './data-grid-pagination'
 
 export type { Column, Row, TableInstance } from 'react-table'
+
+interface DataGridContextValue<Data extends object>
+  extends TableInstance<Data> {}
+
+export const [DataGridProvider, useDataGridContext] = createContext<
+  DataGridContextValue<any>
+>({
+  name: 'DataGridContext',
+})
 
 export interface DataGridProps<Data extends object> extends TableOptions<Data> {
   /**
@@ -56,6 +68,10 @@ export interface DataGridProps<Data extends object> extends TableOptions<Data> {
    * Callback fired when a row is clicked.
    */
   onRowClick?: (row: Row<Data>, e: React.MouseEvent, meta?: any) => void
+  /**
+   * Use this for controlled pagination.
+   */
+  pageCount?: number
 }
 
 export const DataGrid = React.forwardRef(
@@ -80,6 +96,8 @@ export const DataGrid = React.forwardRef(
       isHoverable,
       onSelectedRowsChange,
       onRowClick,
+      pageCount,
+      children,
       ...rest
     } = props
 
@@ -109,8 +127,11 @@ export const DataGrid = React.forwardRef(
         getRowId,
         manualRowSelectKey,
         autoResetSelectedRow,
+        manualPagination: pageCount !== undefined,
+        pageCount,
       },
       useSortBy,
+      usePagination,
       useRowSelect,
       useCheckboxColumn(isSelectable),
     )
@@ -123,6 +144,7 @@ export const DataGrid = React.forwardRef(
       getTableBodyProps,
       headerGroups,
       rows,
+      page,
       prepareRow,
       state,
     } = instance
@@ -132,52 +154,52 @@ export const DataGrid = React.forwardRef(
     }, [onSelectedRowsChange, state.selectedRowIds])
 
     return (
-      <Table {...getTableProps()} styleConfig={styleConfig} {...rest}>
-        <Thead>
-          {headerGroups.map((headerGroup) => (
-            <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <DataGridHeader
-                  key={column.id}
-                  column={column}
-                  isSortable={isSortable}
-                />
-              ))}
-            </Tr>
-          ))}
-        </Thead>
-        <Tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
-            prepareRow(row)
-
-            const onClick = React.useCallback(
-              (e) => onRowClick?.(row, e),
-              [onRowClick],
-            )
-
-            return (
-              <Tr
-                {...row.getRowProps()}
-                onClick={onClick}
-                data-selected={dataAttr(row.isSelected)}
-                data-hover={dataAttr(isHoverable)}
-              >
-                {row.cells.map((cell) => {
-                  return (
-                    <Td
-                      {...cell.getCellProps()}
-                      isNumeric={cell.column.isNumeric}
-                      isTruncated
-                    >
-                      {cell.render('Cell')}
-                    </Td>
-                  )
-                })}
+      <DataGridProvider value={instance}>
+        <Table {...getTableProps()} styleConfig={styleConfig} {...rest}>
+          <Thead>
+            {headerGroups.map((headerGroup) => (
+              <Tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <DataGridHeader
+                    key={column.id}
+                    column={column}
+                    isSortable={isSortable}
+                  />
+                ))}
               </Tr>
-            )
-          })}
-        </Tbody>
-      </Table>
+            ))}
+          </Thead>
+          <Tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row)
+
+              const onClick = (e: React.MouseEvent) => onRowClick?.(row, e)
+
+              return (
+                <Tr
+                  {...row.getRowProps()}
+                  onClick={onClick}
+                  data-selected={dataAttr(row.isSelected)}
+                  data-hover={dataAttr(isHoverable)}
+                >
+                  {row.cells.map((cell) => {
+                    return (
+                      <Td
+                        {...cell.getCellProps()}
+                        isNumeric={cell.column.isNumeric}
+                        isTruncated
+                      >
+                        {cell.render('Cell')}
+                      </Td>
+                    )
+                  })}
+                </Tr>
+              )
+            })}
+          </Tbody>
+        </Table>
+        <DataGridPagination />
+      </DataGridProvider>
     )
   },
 ) as <Data extends object>(

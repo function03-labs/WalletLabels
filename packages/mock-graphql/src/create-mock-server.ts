@@ -106,7 +106,7 @@ export const createMockServer = (context: MockContext) => {
         }
       },
       contacts: () => {
-        return randUser({ length: 20 }).map(mapContact)
+        return randUser({ length: 100 }).map(mapContact)
       },
     },
   }
@@ -114,12 +114,11 @@ export const createMockServer = (context: MockContext) => {
   initData()
 
   const resolvers = (store: IMockStore) => {
-    console.log(store)
     return {
       Query: {
         currentUser: async () => {
           const user = await context.user()
-          console.log(user)
+
           if (!user) return null
 
           const _user = {
@@ -169,7 +168,7 @@ export const createMockServer = (context: MockContext) => {
             user: store.get('User', user.id),
             organization: store.get('Organization', organization.slug),
           }
-          console.log('member', member)
+
           store.set('OrganizationMember', user.id, member)
 
           DATA['Organization'] = organization

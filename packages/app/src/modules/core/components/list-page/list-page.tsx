@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box } from '@chakra-ui/react'
+import { Box, useColorModeValue } from '@chakra-ui/react'
 
 import { EmptyState } from '@saas-ui/react'
 
@@ -35,6 +35,9 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     isLoading,
     onSelectedRowsChange,
     bulkActions,
+    initialState = {
+      pageSize: 20,
+    },
     ...rest
   } = props
 
@@ -69,9 +72,19 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         isHoverable
         onSelectedRowsChange={_onSelectedRowsChange}
         onRowClick={onRowClick}
+        initialState={initialState}
         sx={{ cursor: 'pointer' }}
       />
     )
+  }
+
+  const stickyStyles = {
+    position: 'sticky',
+    zIndex: 1,
+    bg: useColorModeValue('whiteAlpha.400', 'blackAlpha.300'),
+    backdropFilter: 'blur(5px)',
+    borderBottomWidth: '1px',
+    borderColor: useColorModeValue('blackAlpha.200', 'whiteAlpha.300'),
   }
 
   return (
@@ -81,6 +94,30 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
       isLoading={isLoading}
       fullWidth
       position="relative"
+      sx={{
+        '& thead th': {
+          ...stickyStyles,
+          top: 0,
+          borderWidth: 0,
+        },
+        '& thead tr': {
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          boxShadow: useColorModeValue(
+            '0 1px 2px 0 rgba(0, 0, 0, 0.08)',
+            '0 1px 2px 0 rgba(255, 255, 255, 0.08)',
+          ),
+        },
+        '& .saas-data-grid__pagination': {
+          ...stickyStyles,
+          bottom: 0,
+          borderTopWidth: '1px',
+        },
+        '& tbody tr:last-of-type td': {
+          borderBottomWidth: 0,
+        },
+      }}
       {...rest}
     >
       <BulkActions selections={selections} actions={bulkActions} />

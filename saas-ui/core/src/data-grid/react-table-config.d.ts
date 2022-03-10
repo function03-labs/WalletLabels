@@ -5,6 +5,9 @@ import {
   UseSortByInstanceProps,
   UseSortByOptions,
   UseSortByState,
+  UsePaginationInstanceProps,
+  UsePaginationOptions,
+  UsePaginationState,
   UseRowSelectInstanceProps,
   UseRowSelectState,
   UseRowSelectHooks,
@@ -33,16 +36,19 @@ declare module 'react-table' {
   export interface TableInstance<
     D extends Record<string, unknown> = Record<string, unknown>,
   > extends UseSortByInstanceProps<D>,
+      UsePaginationInstanceProps<D>,
       UseRowSelectInstanceProps<D> {}
 
   export interface TableState<
     D extends Record<string, unknown> = Record<string, unknown>,
   > extends UseSortByState<D>,
+      UsePaginationState<D>,
       UseRowSelectState<D> {}
 
   export interface ColumnInterface<
     D extends Record<string, unknown> = Record<string, unknown>,
   > extends UseSortByColumnOptions<D>,
+      UsePaginationOptions<D>,
       DataTableColumn {}
 
   export interface ColumnInstance<
