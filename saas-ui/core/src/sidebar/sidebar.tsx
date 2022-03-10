@@ -64,14 +64,14 @@ export interface SidebarProps
 const MotionBox = chakra(motion.div)
 
 export const Sidebar: React.FC<SidebarProps> = (props) => {
-  const { children, breakpoints = { base: true, lg: false } } = props
+  const { children, variant, breakpoints = { base: true, lg: false } } = props
 
   const isMobile = useBreakpointValue(breakpoints)
 
   return (
     <>
       <SidebarContainer {...props}>
-        {isMobile && <SidebarToggleButton />}
+        {isMobile && variant !== 'condensed' && <SidebarToggleButton />}
         {children}
       </SidebarContainer>
     </>
@@ -95,6 +95,8 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
 
   const isMobile = useBreakpointValue(breakpoints)
 
+  const shouldCollapse = isMobile && variant !== 'condensed'
+
   const collapse = useCollapse({
     defaultIsOpen: !isMobile,
   })
@@ -103,7 +105,7 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
 
   const containerStyles: SystemStyleObject = {
     '& > *:not(style) ~ *:not(style)': { marginTop: spacing },
-    ...(isMobile
+    ...(shouldCollapse
       ? {
           position: 'absolute',
           zIndex: 'modal',

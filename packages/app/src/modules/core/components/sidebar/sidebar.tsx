@@ -54,12 +54,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
 
   return (
     <>
-      <Sidebar
-        variant={variant}
-        colorScheme={colorScheme}
-        breakpoints={{ base: false }}
-        {...props}
-      >
+      <Sidebar variant={variant} colorScheme={colorScheme} {...props}>
         <ElectronNav />
         <SidebarNav direction="row">
           <TenantMenu title="Organizations">
