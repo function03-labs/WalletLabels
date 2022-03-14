@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import { Flex, Container } from '@chakra-ui/react'
 
-import { PageShell, PageShellProps } from '@saas-ui/pro'
+import { AppShell, AppShellProps } from '@saas-ui/pro'
 import { HotkeysListOptions } from '@saas-ui/react'
 import { Auth } from '@saas-ui/auth'
 import { Hotkeys } from '@modules/core/components/hotkeys'
@@ -64,7 +64,7 @@ export const AuthLayout: React.FC = ({ children, ...rest }) => {
   )
 }
 
-interface LayoutProps extends PageShellProps {
+interface LayoutProps extends AppShellProps {
   hotkeys: HotkeysListOptions
 }
 
@@ -77,9 +77,9 @@ export const Layout: React.FC<LayoutProps> = ({
   return (
     <Authenticated>
       <Hotkeys hotkeys={hotkeys}>
-        <PageShell sidebar={sidebar} {...rest}>
+        <AppShell sidebar={sidebar} {...rest}>
           {children}
-        </PageShell>
+        </AppShell>
       </Hotkeys>
     </Authenticated>
   )
@@ -121,11 +121,11 @@ export const FullscreenLayout: React.FC<LayoutProps> = ({
   )
 }
 
-export const PublicLayout: React.FC<PageShellProps> = ({
+export const PublicLayout: React.FC<AppShellProps> = ({
   children,
   ...rest
 }) => {
-  return <PageShell {...rest}>{children}</PageShell>
+  return <AppShell {...rest}>{children}</AppShell>
 }
 
 interface AppLayoutProps {

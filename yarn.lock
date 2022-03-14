@@ -6659,6 +6659,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/billing@workspace:*, @saas-ui/billing@workspace:saas-ui/billing":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/billing@workspace:saas-ui/billing"
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    "@saas-ui/react": ">=0.7.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/button@npm:0.3.0":
   version: 0.3.0
   resolution: "@saas-ui/button@npm:0.3.0"
@@ -6686,6 +6698,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/charts@workspace:*, @saas-ui/charts@workspace:saas-ui/charts":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/charts@workspace:saas-ui/charts"
+  dependencies:
+    recharts: ^2.1.9
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/collapse@npm:0.3.0":
   version: 0.3.0
   resolution: "@saas-ui/collapse@npm:0.3.0"
@@ -6712,6 +6735,20 @@ __metadata:
   checksum: 6d7b6b270c06ce42dfa2f5abce04c05cd15baf0eecea5bfc7dcd4e39b320c12184c15583188d5a1846400b16998d52b74de18ffef35ae9a0dcb74b995e78ce2c
   languageName: node
   linkType: hard
+
+"@saas-ui/features@workspace:saas-ui/features":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/features@workspace:saas-ui/features"
+  dependencies:
+    react-joyride: ^2.3.2
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    "@saas-ui/react": ">=0.7.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
 
 "@saas-ui/forms@npm:0.5.3":
   version: 0.5.3
@@ -6865,6 +6902,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/onboarding@workspace:*, @saas-ui/onboarding@workspace:saas-ui/onboarding":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/onboarding@workspace:saas-ui/onboarding"
+  dependencies:
+    react-joyride: ^2.3.2
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    "@saas-ui/react": ">=0.7.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/palette@npm:0.5.0":
   version: 0.5.0
   resolution: "@saas-ui/palette@npm:0.5.0"
@@ -6915,12 +6966,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:^, @saas-ui/pro@workspace:saas-ui/core":
+"@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:^, @saas-ui/pro@workspace:saas-ui/pro":
   version: 0.0.0-use.local
-  resolution: "@saas-ui/pro@workspace:saas-ui/core"
+  resolution: "@saas-ui/pro@workspace:saas-ui/pro"
   dependencies:
-    react-joyride: ^2.3.2
-    recharts: ^2.1.9
+    "@saas-ui/billing": "workspace:*"
+    "@saas-ui/charts": "workspace:*"
+    "@saas-ui/onboarding": "workspace:*"
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
@@ -7071,32 +7123,6 @@ __metadata:
   checksum: 3b77e3673dd6478dedf9d339901287435c953b8ee62a0f5ec7812ac9c792494ec3b36ab70a70dd532ca3519382f3bbfd3f9ca0da1d49ffc7d9feda31132e0d53
   languageName: node
   linkType: hard
-
-"@saas-ui/storybook@workspace:saas-ui/storybook":
-  version: 0.0.0-use.local
-  resolution: "@saas-ui/storybook@workspace:saas-ui/storybook"
-  dependencies:
-    "@babel/core": ^7.16.5
-    "@storybook/addon-actions": ^6.4.3
-    "@storybook/addon-essentials": ^6.4.9
-    "@storybook/addon-links": ^6.4.3
-    "@storybook/react": ^6.4.3
-    babel-loader: ^8.2.3
-    framer-motion: ^5
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-is: ^17.0.2
-    storybook-addon-performance: ^0.16.1
-    webpack: ^5.68.0
-  peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ">=0.7.0"
-    framer-motion: ">=5.5.0"
-    react: ">=16.8.6"
-  languageName: unknown
-  linkType: soft
 
 "@saas-ui/system@npm:0.4.0":
   version: 0.4.0
@@ -25057,7 +25083,7 @@ __metadata:
     prettier: ^2.2.1
     rimraf: ^3.0.2
     ts-node: ^9.1.1
-    turbo: ^1.1.2
+    turbo: ^1.1.6
     typescript: ^4.5.2
   languageName: unknown
   linkType: soft
@@ -25999,6 +26025,32 @@ __metadata:
   checksum: c595ca0adda8776c8b375ff66159cf0208315df7546e84230039ea7a5187bd9d30cb705534b933493e700f2347a1d134d7587d1ece542daf6ec33b8ac7c041af
   languageName: node
   linkType: hard
+
+"storybook@workspace:saas-ui/storybook":
+  version: 0.0.0-use.local
+  resolution: "storybook@workspace:saas-ui/storybook"
+  dependencies:
+    "@babel/core": ^7.16.5
+    "@storybook/addon-actions": ^6.4.3
+    "@storybook/addon-essentials": ^6.4.9
+    "@storybook/addon-links": ^6.4.3
+    "@storybook/react": ^6.4.3
+    babel-loader: ^8.2.3
+    framer-motion: ^5
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    react-is: ^17.0.2
+    storybook-addon-performance: ^0.16.1
+    webpack: ^5.68.0
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    "@saas-ui/pro": "workspace:*"
+    "@saas-ui/react": ">=0.7.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
 
 "stream-browserify@npm:^2.0.1":
   version: 2.0.2
@@ -27200,106 +27252,106 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-darwin-64@npm:1.1.2"
+"turbo-darwin-64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-darwin-64@npm:1.1.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-darwin-arm64@npm:1.1.2"
+"turbo-darwin-arm64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-darwin-arm64@npm:1.1.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-freebsd-64@npm:1.1.2"
+"turbo-freebsd-64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-freebsd-64@npm:1.1.6"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-arm64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-freebsd-arm64@npm:1.1.2"
+"turbo-freebsd-arm64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-freebsd-arm64@npm:1.1.6"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-32@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-linux-32@npm:1.1.2"
+"turbo-linux-32@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-linux-32@npm:1.1.6"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-linux-64@npm:1.1.2"
+"turbo-linux-64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-linux-64@npm:1.1.6"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-linux-arm64@npm:1.1.2"
+"turbo-linux-arm64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-linux-arm64@npm:1.1.6"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-linux-arm@npm:1.1.2"
+"turbo-linux-arm@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-linux-arm@npm:1.1.6"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"turbo-linux-mips64le@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-linux-mips64le@npm:1.1.2"
+"turbo-linux-mips64le@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-linux-mips64le@npm:1.1.6"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"turbo-linux-ppc64le@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-linux-ppc64le@npm:1.1.2"
+"turbo-linux-ppc64le@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-linux-ppc64le@npm:1.1.6"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"turbo-windows-32@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-windows-32@npm:1.1.2"
+"turbo-windows-32@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-windows-32@npm:1.1.6"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.1.2":
-  version: 1.1.2
-  resolution: "turbo-windows-64@npm:1.1.2"
+"turbo-windows-64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "turbo-windows-64@npm:1.1.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "turbo@npm:1.1.2"
+"turbo@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "turbo@npm:1.1.6"
   dependencies:
-    turbo-darwin-64: 1.1.2
-    turbo-darwin-arm64: 1.1.2
-    turbo-freebsd-64: 1.1.2
-    turbo-freebsd-arm64: 1.1.2
-    turbo-linux-32: 1.1.2
-    turbo-linux-64: 1.1.2
-    turbo-linux-arm: 1.1.2
-    turbo-linux-arm64: 1.1.2
-    turbo-linux-mips64le: 1.1.2
-    turbo-linux-ppc64le: 1.1.2
-    turbo-windows-32: 1.1.2
-    turbo-windows-64: 1.1.2
+    turbo-darwin-64: 1.1.6
+    turbo-darwin-arm64: 1.1.6
+    turbo-freebsd-64: 1.1.6
+    turbo-freebsd-arm64: 1.1.6
+    turbo-linux-32: 1.1.6
+    turbo-linux-64: 1.1.6
+    turbo-linux-arm: 1.1.6
+    turbo-linux-arm64: 1.1.6
+    turbo-linux-mips64le: 1.1.6
+    turbo-linux-ppc64le: 1.1.6
+    turbo-windows-32: 1.1.6
+    turbo-windows-64: 1.1.6
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -27327,7 +27379,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 2eb7377a480a4d48ead31da7d61ea4cd359b1027039982005896d29da538173ece3a57e7507e1d5a9d3c96a6064ab1d8a5d9d8cb10cf1fa13ca09b062174d6c9
+  checksum: 560b4b6cf54e1b24784e2be0f5f911d6782dcdd8766ed2cb7e7bcc34429a4e6adbe76daef0de0ebd5135075ae8eb55a51c03b30851bf2ea7f227a9a6d5144a46
   languageName: node
   linkType: hard
 

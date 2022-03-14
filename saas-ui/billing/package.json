@@ -1,0 +1,25 @@
+{
+  "name": "@saas-ui/billing",
+  "version": "0.1.0",
+  "exports": {
+    "default": "./src/index.ts"
+  },
+  "publishConfig": {
+    "registry": "https://npm.saas-ui.dev"
+  },
+  "scripts": {
+    "bundle": "yarn pack --out ../dist/%s-%v.tgz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saas-js/saas-ui-pro.git",
+    "directory": "saas-ui/pro"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=1.8.0",
+    "@chakra-ui/system": ">=1.0.0",
+    "@saas-ui/react": ">=0.7.0",
+    "framer-motion": ">=5.5.0",
+    "react": ">=16.8.6"
+  }
+}

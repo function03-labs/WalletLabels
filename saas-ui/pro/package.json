@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.0.1-beta",
+  "version": "0.1.0",
   "exports": {
     "default": "./src/index.ts"
   },
@@ -16,8 +16,9 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "react-joyride": "^2.3.2",
-    "recharts": "^2.1.9"
+    "@saas-ui/billing": "workspace:*",
+    "@saas-ui/charts": "workspace:*",
+    "@saas-ui/onboarding": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",

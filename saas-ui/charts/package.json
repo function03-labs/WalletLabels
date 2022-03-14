@@ -1,7 +1,14 @@
 {
   "name": "@saas-ui/charts",
+  "version": "0.0.0",
   "exports": {
     "default": "./src/index.ts"
+  },
+  "publishConfig": {
+    "registry": "https://npm.saas-ui.dev"
+  },
+  "scripts": {
+    "bundle": "yarn pack --out ../dist/%s-%v.tgz"
   },
   "dependencies": {
     "recharts": "^2.1.9"

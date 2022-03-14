@@ -7,19 +7,20 @@ import {
   omitThemingProps,
 } from '@chakra-ui/react'
 
-export interface PageShellProps
+export interface AppShellProps
   extends HTMLChakraProps<'div'>,
-    ThemingProps<'PageShell'> {
+    ThemingProps<'AppShell'> {
   navbar?: React.ReactNode
   sidebar?: React.ReactNode
   hideSidebar?: boolean
+  footer?: React.ReactNode
   children: React.ReactNode
 }
 
-export function PageShell(props: PageShellProps) {
-  const styles = useMultiStyleConfig('PageShell', props)
+export function AppShell(props: AppShellProps) {
+  const styles = useMultiStyleConfig('AppShell', props)
 
-  const { navbar, sidebar, hideSidebar, children, ...containerProps } =
+  const { navbar, sidebar, hideSidebar, footer, children, ...containerProps } =
     omitThemingProps(props)
 
   return (
@@ -32,6 +33,7 @@ export function PageShell(props: PageShellProps) {
             {children}
           </Flex>
         </Flex>
+        {footer}
       </Flex>
     </StylesProvider>
   )

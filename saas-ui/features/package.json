@@ -1,0 +1,25 @@
+{
+  "name": "@saas-ui/features",
+  "version": "0.1.0",
+  "exports": {
+    "default": "./src/index.ts"
+  },
+  "publishConfig": {
+    "registry": "https://npm.saas-ui.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saas-js/saas-ui-pro.git",
+    "directory": "saas-ui/pro"
+  },
+  "dependencies": {
+    "react-joyride": "^2.3.2"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=1.8.0",
+    "@chakra-ui/system": ">=1.0.0",
+    "@saas-ui/react": ">=0.7.0",
+    "framer-motion": ">=5.5.0",
+    "react": ">=16.8.6"
+  }
+}
