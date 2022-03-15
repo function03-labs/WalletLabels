@@ -1,5 +1,5 @@
-import { chakra, HTMLChakraProps } from '@chakra-ui/system'
-import { IconButton, useMultiStyleConfig } from '@saas-ui/react'
+import { chakra, HTMLChakraProps, useMultiStyleConfig } from '@chakra-ui/system'
+import { IconButton } from '@saas-ui/react'
 import { useDataGridContext } from './data-grid'
 
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'

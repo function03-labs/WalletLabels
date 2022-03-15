@@ -12,9 +12,6 @@
     "url": "git://github.com/saas-js/saas-ui-pro.git",
     "directory": "saas-ui/pro"
   },
-  "dependencies": {
-    "react-joyride": "^2.3.2"
-  },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
     "@chakra-ui/system": ">=1.0.0",

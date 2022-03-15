@@ -21,6 +21,16 @@ import AppLayout from '@modules/core/layouts/app-layout'
 
 const queryClient = new QueryClient()
 
+import { Form } from '@saas-ui/react'
+import { yupResolver, yupFieldResolver } from '@saas-ui/forms/yup'
+import { AnyObjectSchema } from 'yup'
+
+/**
+ * Use the Yup resolver as default in all forms
+ */
+Form.getResolver = (schema: AnyObjectSchema) => yupResolver(schema)
+Form.getFieldResolver = (schema: AnyObjectSchema) => yupFieldResolver(schema)
+
 export interface AppProviderProps {
   linkComponent?: React.ElementType<any>
   authService?: AuthProviderProps

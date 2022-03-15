@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { chakra, Kbd, HTMLChakraProps } from '@chakra-ui/react'
-import { useStyleConfig } from '@saas-ui/react'
+import { chakra, Kbd, HTMLChakraProps, useStyleConfig } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
 
 const Key: React.FC<HTMLChakraProps<'span'>> = ({ children }) => {
