@@ -9,7 +9,7 @@ https://discord.gg/DFPtCfpTzG
 
 ## Roadmap
 
-https://github.com/orgs/saas-js/projects/1/views/6
+https://github.com/saas-js/saas-ui-pro/projects/1
 
 ## Installation
 
