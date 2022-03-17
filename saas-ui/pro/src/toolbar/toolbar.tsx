@@ -16,6 +16,8 @@ import {
   ThemingProps,
 } from '@chakra-ui/react'
 
+import { cx, __DEV__ } from '@chakra-ui/utils'
+
 import { Button, ButtonProps } from '@saas-ui/react'
 
 export interface ToolbarButtonProps extends ButtonProps {
@@ -80,7 +82,7 @@ export interface ToolbarProps
     ThemingProps<'Toolbar'> {}
 
 export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
-  const { children, variant, ...rest } = props
+  const { children, className, variant, ...rest } = props
   const styles = useMultiStyleConfig('Toolbar', props)
 
   const toolbarProps = omitThemingProps(rest)
@@ -95,12 +97,15 @@ export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
   return (
     <StylesProvider value={styles}>
       <chakra.div
-        ref={ref}
         role="toolbar"
-        __css={containerStyles}
         {...toolbarProps}
+        ref={ref}
+        __css={containerStyles}
+        className={cx('saas-toolbar', className)}
       >
-        <ButtonGroup variant={variant}>{children}</ButtonGroup>
+        <ButtonGroup width="100%" justifyContent="flex-end" variant={variant}>
+          {children}
+        </ButtonGroup>
       </chakra.div>
     </StylesProvider>
   )
@@ -108,4 +113,8 @@ export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
 
 Toolbar.defaultProps = {
   variant: 'ghost',
+}
+
+if (__DEV__) {
+  Toolbar.displayName = 'Toolbar'
 }

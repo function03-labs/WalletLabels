@@ -10,6 +10,10 @@ export const appHotkeys: HotkeysListOptions = {
         label: 'Show this window',
         command: '?',
       },
+      filter: {
+        label: 'Add filter',
+        command: 'F',
+      },
       logout: {
         label: 'Log out',
         command: platformSelect({ mac: '⌥ ⇧ Q' }, 'Ctrl+Shift+Q'),

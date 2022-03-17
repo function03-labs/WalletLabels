@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import {
   useGetContactsQuery,
   Contact,
@@ -6,7 +8,7 @@ import {
 
 import * as Yup from 'yup'
 
-import { Box, Tag, Kbd, MenuItem } from '@chakra-ui/react'
+import { Box, Tag, Spacer, MenuItem } from '@chakra-ui/react'
 import { FiUser, FiUploadCloud } from 'react-icons/fi'
 import {
   Button,
@@ -16,8 +18,16 @@ import {
   useModals,
   useHotkeysShortcut,
 } from '@saas-ui/react'
-import { Command, Toolbar, ToolbarButton, useTenant } from '@saas-ui/pro'
+import {
+  Command,
+  Filter,
+  Toolbar,
+  ToolbarButton,
+  useTenant,
+} from '@saas-ui/pro'
 import { ListPage } from '@modules/core/components/list-page'
+
+import { AddFilterButton } from '../components/contact-filters'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
@@ -84,8 +94,18 @@ export function ContactsListPage() {
 
   const addCommand = useHotkeysShortcut('contacts.add', addPerson)
 
+  const [activeFilters, setFilters] = React.useState<Filter[]>([])
+
+  const onFilterSelect = (filter: Filter) => {
+    setFilters(activeFilters.concat([filter]))
+  }
+
+  const addFilterBtn = <AddFilterButton onSelect={onFilterSelect} />
+
   const toolbar = (
     <Toolbar>
+      {!activeFilters.length && addFilterBtn}
+      <Spacer />
       <ToolbarButton icon={<FiUploadCloud />} label="Import data" />
       <ToolbarButton
         label="Add person"

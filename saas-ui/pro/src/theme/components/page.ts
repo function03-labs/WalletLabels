@@ -21,9 +21,13 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       alignItems: 'center',
       justifyContent: 'stretch',
       py: 2,
-      px: { base: 14, lg: 4 },
+      px: 4,
+      ps: { base: 14, lg: 4 },
       minH: 14,
       borderBottomWidth: '1px',
+      '& > .saas-toolbar': {
+        ms: 4,
+      },
     },
     title: {
       fontWeight: 'bold',
