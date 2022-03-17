@@ -10,5 +10,6 @@
   "peerDependencies": {
     "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": ">=0.8.0"
-  }
+  },
+  "version": null
 }

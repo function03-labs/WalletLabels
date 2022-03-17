@@ -6853,9 +6853,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/modals@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@saas-ui/modals@npm:0.4.0"
+"@saas-ui/modals@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@saas-ui/modals@npm:0.4.1"
   dependencies:
     "@saas-ui/button": 0.4.0
     "@saas-ui/forms": 0.6.0
@@ -6863,7 +6863,7 @@ __metadata:
     "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
     react: ">=16.8.6"
-  checksum: 1a2bf1d30c47153225c5d53640bde3e306e515ff6fea637c92573fd220b2cd042d7ccf3cdd43e42dadb5de7d03765b90b88330d16531542c5e5e2d2f6d1369da
+  checksum: e48c86ccdadcdc0ea3b568bce3ce32b9c5b7fcea02186479ac664e47569159fe29f9ae22046a4d60a4799ec89126e48f16a746dbc58cf1def17dd4c94e7d41b0
   languageName: node
   linkType: hard
 
@@ -6971,7 +6971,7 @@ __metadata:
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/react": ">=0.7.0"
+    "@saas-ui/react": ">=0.12.0"
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
@@ -7022,9 +7022,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/react@npm:^0.12.0":
-  version: 0.12.0
-  resolution: "@saas-ui/react@npm:0.12.0"
+"@saas-ui/react@npm:^0.12.1":
+  version: 0.12.1
+  resolution: "@saas-ui/react@npm:0.12.1"
   dependencies:
     "@saas-ui/auth": 0.7.0
     "@saas-ui/banner": 0.0.2
@@ -7039,7 +7039,7 @@ __metadata:
     "@saas-ui/layout": 0.3.0
     "@saas-ui/list": 0.5.0
     "@saas-ui/menu": 0.5.0
-    "@saas-ui/modals": 0.4.0
+    "@saas-ui/modals": 0.4.1
     "@saas-ui/nprogress": 0.4.0
     "@saas-ui/number-input": 0.3.0
     "@saas-ui/palette": 0.5.0
@@ -7060,7 +7060,7 @@ __metadata:
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
-  checksum: 56044910d0b442ecd2730398d71a972fe470f20fa356e96e4789de9c7393d35496e3cf65458aca9346f478d34cceb44c5f5323f16cf4163b2c621d57c7644ee8
+  checksum: 94ce8d3ebeb5619fc78b8513992c2261cd53f9e5abe507da8d58a8117cd2cd062604538c9b1c2fda4735251eceada08520f58f22e8c3d769a83513f588d85a54
   languageName: node
   linkType: hard
 
@@ -9611,7 +9611,7 @@ __metadata:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.12.0
+    "@saas-ui/react": ^0.12.1
     "@storybook/addon-actions": ^6.4.3
     "@storybook/addon-essentials": ^6.4.9
     "@storybook/addon-links": ^6.4.3

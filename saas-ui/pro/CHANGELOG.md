@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.2.0
+
+### Minor Changes
+
+- Updated Minimal @saas-ui/react version to 0.12.0
+
 ## 0.1.0
 
 ### Minor Changes
