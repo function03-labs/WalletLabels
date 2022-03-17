@@ -16,6 +16,7 @@ import {
 } from '@saas-ui/react'
 
 import { ResponsiveMenuList, MenuListFilter, MenuFilterItem } from '../menu'
+import { useSearchQuery } from '..'
 
 export interface Filter {
   id: string
@@ -44,16 +45,29 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       icon,
       buttonProps,
       onSelect,
+      isOpen: isOpenProp,
+      defaultIsOpen,
+      onOpen: onOpenProp,
+      onClose: onCloseProp,
       ...rest
     } = props
 
     const { isOpen, onOpen, onClose } = useDisclosure({
+      isOpen: isOpenProp,
+      defaultIsOpen,
       onOpen() {
+        onOpenProp?.()
+
         if (!isOpen) {
           setActiveFilter(null)
         }
 
         filterRef.current?.focus()
+      },
+      onClose() {
+        onReset()
+
+        onCloseProp?.()
       },
     })
 
@@ -64,6 +78,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     const onFilterClick = (filter: Filter) => {
       if (filter.type === 'array') {
         setActiveFilter(filter)
+        onReset()
         filterRef.current?.focus()
       } else {
         onSelect?.(filter)
@@ -71,17 +86,23 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       }
     }
 
+    const { results, onReset, ...inputProps } = useSearchQuery<Filter>({
+      items: activeFilter?.items || filters,
+      fields: ['id', 'label'],
+    })
+
     const input = (
       <MenuListFilter
         placeholder={activeFilter?.label || label}
         ref={filterRef}
         command={command}
+        {...inputProps}
       />
     )
 
     const items = React.useMemo(() => {
       return (
-        (activeFilter?.items || filters)?.map((filter) => {
+        results?.map((filter) => {
           const { id, label, type, items, value, ...itemProps } = filter
           return (
             <MenuFilterItem
@@ -94,7 +115,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
           )
         }) || null
       )
-    }, [filters, activeFilter])
+    }, [results, activeFilter])
 
     return (
       <chakra.div>
