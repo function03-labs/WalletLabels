@@ -31,7 +31,7 @@ export const useSearchQuery = <T extends Result = Result>(
     const re = query && new RegExp(escapeRegExp(query), 'i')
 
     return items.filter((item) => fields.find((field) => item[field].match(re)))
-  }, [query])
+  }, [query, items])
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     setQuery(target.value)
