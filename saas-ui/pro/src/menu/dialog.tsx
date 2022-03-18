@@ -6,7 +6,7 @@ import {
   useMenuList,
   chakra,
   StylesProvider,
-  useMultiStyleConfig,
+  useStyles,
   forwardRef,
   useMenuContext,
   Menu,
@@ -22,11 +22,7 @@ export interface MenuDialogProps extends BaseModalProps {
 }
 
 export const MenuDialog: React.FC<MenuDialogProps> = (props) => {
-  return <Menu {...props} />
-}
-
-MenuDialog.defaultProps = {
-  variant: 'dialog',
+  return <Menu variant="dialog" {...props} />
 }
 
 export interface MenuDialogListProps
@@ -52,7 +48,7 @@ export const MenuDialogList = forwardRef<MenuDialogListProps, 'div'>(
 
     const ownProps = useMenuList(rest, ref)
 
-    const styles = useMultiStyleConfig('Menu', props)
+    const styles = useStyles()
 
     return (
       <BaseModal
@@ -63,6 +59,7 @@ export const MenuDialogList = forwardRef<MenuDialogListProps, 'div'>(
         hideCloseButton={hideCloseButton}
         motionPreset={motionPreset}
       >
+        {/* We forward the styles again, otherwise the modal styles will be picked up */}
         <StylesProvider value={styles}>
           <chakra.div
             {...ownProps}

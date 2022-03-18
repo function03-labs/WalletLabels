@@ -12,7 +12,6 @@ import {
   Menu,
   MenuProps,
   MenuButton,
-  useHotkeysShortcut,
 } from '@saas-ui/react'
 
 import { ResponsiveMenuList, MenuListFilter, MenuFilterItem } from '../menu'

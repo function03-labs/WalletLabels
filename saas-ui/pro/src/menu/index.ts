@@ -1,2 +1,2 @@
 export * from './filter-menu'
-export * from './responsive-menu'
+export * from './responsive-menu-list'
