@@ -1,5 +1,5 @@
 import { HStack, Text, Avatar, Spacer } from '@chakra-ui/react'
-import { CheckIcon } from '@chakra-ui/icons'
+import { FiCheck } from 'react-icons/fi'
 import { SidebarMenu, useTenancy } from '@saas-ui/pro'
 import { MenuDivider, MenuGroup, MenuItem } from '@saas-ui/menu'
 
@@ -63,7 +63,7 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
               <HStack>
                 <Text>{label}</Text>
                 <Spacer />
-                {id === activeTenant?.id ? <CheckIcon /> : null}
+                {id === activeTenant?.id ? <FiCheck /> : null}
               </HStack>
             </MenuItem>
           )

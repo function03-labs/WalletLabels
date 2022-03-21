@@ -1,7 +1,7 @@
 import { Card, List, ListItem, useModals, useSnackbar } from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
-import { ChevronRightIcon } from '@chakra-ui/icons'
+import { FiChevronRight } from 'react-icons/fi'
 
 import { SettingsPage } from '@modules/core/components/settings-page'
 
@@ -13,7 +13,7 @@ function TwoFactorAuthItem() {
       onClick={() => null}
       primary="Two-factor authentication"
       tertiary="Not enabled"
-      action={<ChevronRightIcon />}
+      action={<FiChevronRight />}
     />
   )
 }
@@ -36,7 +36,7 @@ function PasswordListItem() {
       }}
       primary="Password"
       tertiary="Last changed January 1st 2022"
-      action={<ChevronRightIcon />}
+      action={<FiChevronRight />}
     />
   )
 }

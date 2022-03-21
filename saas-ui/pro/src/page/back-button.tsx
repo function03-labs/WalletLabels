@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { IconButton, IconButtonProps, Link } from '@saas-ui/react'
-import { forwardRef } from '@chakra-ui/react'
-import { ArrowBackIcon } from '@chakra-ui/icons'
+import { forwardRef } from '@chakra-ui/system'
+import { ArrowLeftIcon } from './icons'
 
 export interface BackButtonProps extends Omit<IconButtonProps, 'aria-label'> {
   'aria-label'?: string
@@ -11,7 +11,7 @@ export interface BackButtonProps extends Omit<IconButtonProps, 'aria-label'> {
 export const BackButton = forwardRef<BackButtonProps, 'button'>(
   (props, ref) => {
     const { href, ...rest } = props
-    const icon = rest.icon || <ArrowBackIcon />
+    const icon = rest.icon || <ArrowLeftIcon />
 
     let as
     if (href) {

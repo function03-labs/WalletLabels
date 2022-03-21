@@ -30,7 +30,7 @@ import { dataAttr } from '@chakra-ui/utils'
 
 import { createContext } from '@chakra-ui/react-utils'
 
-import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons'
+import { ChevronUpIcon, ChevronDownIcon } from './icons'
 
 import { Link } from '@saas-ui/react'
 import { DataGridPagination } from './data-grid-pagination'
@@ -231,9 +231,9 @@ export const DataGridSort = <Data extends object>(
     <chakra.span __css={sorterStyles} {...rest}>
       {column.isSorted ? (
         column.isSortedDesc ? (
-          <TriangleDownIcon aria-label="sorted descending" />
+          <ChevronDownIcon aria-label="sorted descending" />
         ) : (
-          <TriangleUpIcon aria-label="sorted ascending" />
+          <ChevronUpIcon aria-label="sorted ascending" />
         )
       ) : (
         ''

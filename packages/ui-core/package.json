@@ -1,11 +1,11 @@
 {
   "name": "@ui/core",
+  "version": "0.0.0",
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build:storybook": "build-storybook"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "^1.8.1",
     "@chakra-ui/system": "^1.10.3",
     "@emotion/react": "^11",
