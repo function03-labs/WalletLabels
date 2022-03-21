@@ -22,6 +22,5 @@
     "react-is": "^17.0.2",
     "storybook-addon-performance": "^0.16.1",
     "webpack": "^5.68.0"
-  },
-  "version": null
+  }
 }

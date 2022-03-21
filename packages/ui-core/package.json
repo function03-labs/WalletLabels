@@ -11,7 +11,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": "^0.12.1",
+    "@saas-ui/react": "^0.12.3",
     "date-fns": "^2.28.0",
     "framer-motion": "^5.5.6",
     "react": "^17.0.2",
@@ -34,6 +34,5 @@
     "webpack": "^5.68.0",
     "yup": "^0.32.11"
   },
-  "packageManager": "yarn@3.1.1",
-  "version": null
+  "packageManager": "yarn@3.1.1"
 }
