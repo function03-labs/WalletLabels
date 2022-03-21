@@ -15,7 +15,7 @@
     "dev:vite": "yarn workspace vite-app dev",
     "storybook": "yarn workspace @ui/core dev",
     "build-storybook": "yarn workspace @ui/core build-storybook",
-    "storybook:saas-ui": "yarn workspace @saas-ui/storybook start-storybook -p 6007",
+    "storybook:saas-ui": "yarn workspace saas-ui-storybook start-storybook -p 6007",
     "build:tokens": "chakra-cli tokens packages/ui-theme/src",
     "clean:packages": "turbo run clean",
     "publish:saas-ui": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish && yarn changeset tag",

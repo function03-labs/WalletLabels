@@ -1,18 +1,46 @@
 const path = require('path')
+
 const webpack = require('webpack')
+
+const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin')
+
 const toPath = (_path) => path.join(process.cwd(), _path)
 
 module.exports = {
-  stories: [path.resolve('../../libs/**/stories/*.stories.tsx')],
+  stories: [
+    path.resolve('../**/stories/*.stories.@(tsx|mdx)'),
+    path.resolve('../docs/**/*.mdx'),
+  ],
   addons: [
     'storybook-addon-performance/register',
     '@storybook/addon-a11y',
     '@storybook/addon-toolbars',
     '@storybook/addon-storysource',
+    '@storybook/addon-viewport',
+    '@storybook/addon-docs',
   ],
   staticDirs: ['./static'],
   typescript: {
     reactDocgen: false,
+  },
+  refs: (config, { configType }) => {
+    const refs = {
+      '@chakra-ui/react': {
+        disable: true, // Make sure Chakra gets loaded last
+      },
+      chakra: {
+        title: 'Chakra UI',
+        url: 'https://storybook.chakra-ui.com',
+      },
+    }
+
+    return {
+      '@saas-ui/react': {
+        title: 'Saas UI',
+        url: 'https://storybook.saas-ui.dev',
+      },
+      ...refs,
+    }
   },
   webpackFinal: async (config) => {
     return {
@@ -37,5 +65,8 @@ module.exports = {
         ]),
       },
     }
+  },
+  core: {
+    builder: 'webpack5',
   },
 }

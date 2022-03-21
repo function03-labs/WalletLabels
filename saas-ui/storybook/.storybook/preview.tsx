@@ -1,5 +1,4 @@
 import {
-  ChakraProvider,
   extendTheme,
   Flex,
   IconButton,
@@ -10,15 +9,28 @@ import {
   MenuItemOption,
   useColorMode,
   useColorModeValue,
-  localStorageManager,
 } from '@chakra-ui/react'
 import { StoryContext } from '@storybook/react'
 import * as React from 'react'
-// import { FaMoon, FaSun } from 'react-icons/fa'
+
 import { FiMoon, FiSun } from 'react-icons/fi'
 import { withPerformance } from 'storybook-addon-performance'
 
-import { baseTheme, theme } from '@saas-ui/theme'
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
+
+import { SaasProvider } from '@saas-ui/react'
+import { theme } from '@saas-ui/pro'
+
+export const parameters = {
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+  },
+  options: {
+    storySort: {
+      order: ['Introduction', 'Changelog', 'Getting started'],
+    },
+  },
+}
 
 /**
  * Add global context for RTL-LTR switching
@@ -36,14 +48,13 @@ export const globalTypes = {
 }
 
 const ThemeSelect = ({ value, onChange }) => {
-  const themes = ['Chakra UI', 'Saas UI']
+  const themes = ['Saas UI Pro']
   return (
     <Menu>
       <MenuButton>Theme: {themes[value]}</MenuButton>
       <MenuList>
         <MenuOptionGroup defaultValue={value} type="radio" onChange={onChange}>
-          <MenuItemOption value="0">Chakra UI</MenuItemOption>
-          <MenuItemOption value="1">Saas UI</MenuItemOption>
+          <MenuItemOption value="0">Saas UI Pro</MenuItemOption>
         </MenuOptionGroup>
       </MenuList>
     </Menu>
@@ -80,13 +91,20 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
     if (themeId === '1') {
       return theme
     }
-    return baseTheme
+    return theme
   }, [themeId])
 
   return (
-    <ChakraProvider theme={extendTheme({ ...getTheme(), direction: dir })}>
+    <SaasProvider theme={extendTheme({ ...getTheme(), direction: dir })}>
       <div dir={dir} id="story-wrapper" style={{ minHeight: '100vh' }}>
-        <Flex justify="flex-end" mb={4}>
+        <Flex
+          justify="flex-end"
+          mb={4}
+          position="fixed"
+          zIndex="overlay"
+          top="0"
+          right="0"
+        >
           <ThemeSelect
             value={themeId}
             onChange={(id) => {
@@ -98,7 +116,7 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
         </Flex>
         <StoryFn />
       </div>
-    </ChakraProvider>
+    </SaasProvider>
   )
 }
 
