@@ -14,7 +14,7 @@
     "dev:electron": "yarn workspace electron-app dev",
     "dev:vite": "yarn workspace vite-app dev",
     "storybook": "yarn workspace @ui/core dev",
-    "build-storybook": "yarn workspace @ui/core build-storybook",
+    "build:storybook": "yarn workspace @ui/core build-storybook",
     "storybook:saas-ui": "yarn workspace saas-ui-storybook start-storybook -p 6007",
     "build:tokens": "chakra-cli tokens packages/ui-theme/src",
     "clean:packages": "turbo run clean",
