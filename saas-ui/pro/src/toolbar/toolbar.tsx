@@ -3,22 +3,77 @@ import * as React from 'react'
 import {
   chakra,
   forwardRef,
-  IconButton,
-  Tooltip,
-  TooltipProps,
-  Divider,
-  ButtonGroup,
   omitThemingProps,
   useMultiStyleConfig,
   useStyles,
   StylesProvider,
   HTMLChakraProps,
   ThemingProps,
-} from '@chakra-ui/react'
+} from '@chakra-ui/system'
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
 
-import { Button, ButtonProps } from '@saas-ui/react'
+import { Tooltip, TooltipProps } from '@chakra-ui/tooltip'
+
+import { Divider } from '@saas-ui/layout'
+
+import {
+  Button,
+  ButtonProps,
+  ButtonGroup,
+  ButtonGroupProps,
+  IconButton,
+  useButtonGroup,
+} from '@chakra-ui/button'
+
+import { MenuOptionGroupProps, useMenuOptionGroup } from '@chakra-ui/menu'
+
+export interface ToolbarProps
+  extends HTMLChakraProps<'div'>,
+    ThemingProps<'Toolbar'> {}
+
+export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
+  const { children, className, variant, size, ...rest } = props
+  const styles = useMultiStyleConfig('Toolbar', props)
+
+  const toolbarProps = omitThemingProps(rest)
+
+  const containerStyles = {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-end',
+    ...styles.container,
+  }
+
+  return (
+    <StylesProvider value={styles}>
+      <chakra.div
+        role="toolbar"
+        {...toolbarProps}
+        ref={ref}
+        __css={containerStyles}
+        className={cx('saas-toolbar', className)}
+      >
+        <ButtonGroup
+          width="100%"
+          justifyContent="flex-end"
+          variant={variant}
+          size={size}
+        >
+          {children}
+        </ButtonGroup>
+      </chakra.div>
+    </StylesProvider>
+  )
+})
+
+Toolbar.defaultProps = {
+  variant: 'ghost',
+}
+
+if (__DEV__) {
+  Toolbar.displayName = 'Toolbar'
+}
 
 export interface ToolbarButtonProps extends ButtonProps {
   label: string
@@ -47,7 +102,7 @@ export const ToolbarButton = forwardRef<ToolbarButtonProps, 'button'>(
       return (
         <Tooltip
           label={label}
-          closeOnClick={true}
+          closeOnClick={false}
           openDelay={400}
           {...tooltipProps}
         >
@@ -60,61 +115,95 @@ export const ToolbarButton = forwardRef<ToolbarButtonProps, 'button'>(
   },
 )
 
-export const ToolbarDivider: React.FC = () => {
+export const ToolbarDivider: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const styles = useStyles()
 
   const dividerStyles = {
-    px: 2,
     flexShrink: 0,
     height: '100%',
     ...styles.divider,
   }
 
   return (
-    <chakra.div __css={dividerStyles}>
+    <chakra.div
+      {...props}
+      __css={dividerStyles}
+      className={cx('saas-toolbar__divider', props.className)}
+    >
       <Divider orientation="vertical" />
     </chakra.div>
   )
 }
 
-export interface ToolbarProps
-  extends HTMLChakraProps<'div'>,
-    ThemingProps<'Toolbar'> {}
+if (__DEV__) {
+  ToolbarDivider.displayName = 'ToolbarDivider'
+}
 
-export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
-  const { children, className, variant, ...rest } = props
-  const styles = useMultiStyleConfig('Toolbar', props)
-
-  const toolbarProps = omitThemingProps(rest)
-
-  const containerStyles = {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'flex-end',
-    ...styles.container,
-  }
-
+export const ToolbarGroup: React.FC<ButtonGroupProps> = (props) => {
+  const groupProps = useButtonGroup()
   return (
-    <StylesProvider value={styles}>
-      <chakra.div
-        role="toolbar"
-        {...toolbarProps}
-        ref={ref}
-        __css={containerStyles}
-        className={cx('saas-toolbar', className)}
-      >
-        <ButtonGroup width="100%" justifyContent="flex-end" variant={variant}>
-          {children}
-        </ButtonGroup>
-      </chakra.div>
-    </StylesProvider>
+    <ButtonGroup
+      {...groupProps}
+      {...props}
+      className={cx('saas-toolbar__group', props.className)}
+    />
   )
-})
-
-Toolbar.defaultProps = {
-  variant: 'ghost',
 }
 
 if (__DEV__) {
-  Toolbar.displayName = 'Toolbar'
+  ToolbarGroup.displayName = 'ToolbarGroup'
+}
+
+export interface ToolbarToggleGroupProps
+  extends Omit<ButtonGroupProps, 'value' | 'defaultValue' | 'onChange'>,
+    MenuOptionGroupProps {}
+
+export const ToolbarToggleGroup: React.FC<ToolbarToggleGroupProps> = (
+  props,
+) => {
+  const groupProps = useMenuOptionGroup(props)
+  const { onChange, ...rest } = props
+  return (
+    <ToolbarGroup
+      {...rest}
+      {...groupProps}
+      className={cx('saas-toolbar__toggle-group', props.className)}
+    />
+  )
+}
+
+if (__DEV__) {
+  ToolbarToggleGroup.displayName = 'ToolbarToggleGroup'
+}
+
+export interface ToolbarToggleButtonProps
+  extends Omit<ToolbarButtonProps, 'type'> {
+  value?: string
+  isChecked?: boolean
+  type?: 'radio' | 'checkbox'
+}
+
+export const ToolbarToggleButton = forwardRef<
+  ToolbarToggleButtonProps,
+  'button'
+>((props, ref) => {
+  const { type = 'radio', isChecked, ...rest } = props
+
+  const { colorScheme, variant } = useButtonGroup()
+  return (
+    <ToolbarButton
+      ref={ref}
+      aria-checked={isChecked}
+      colorScheme={isChecked ? 'primary' : colorScheme}
+      variant={isChecked ? 'subtle' : variant}
+      {...rest}
+      className={cx('saas-toolbar__toggle-button', props.className)}
+    />
+  )
+})
+
+ToolbarToggleButton.id = 'MenuItemOption' // this allows us to use `useMenuOptionGroup` for toggle management.
+
+if (__DEV__) {
+  ToolbarToggleButton.displayName = 'ToolbarToggleButton'
 }
