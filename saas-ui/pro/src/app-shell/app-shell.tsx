@@ -1,11 +1,17 @@
+import * as React from 'react'
+
 import {
-  Flex,
+  chakra,
   StylesProvider,
   HTMLChakraProps,
   ThemingProps,
   useMultiStyleConfig,
   omitThemingProps,
-} from '@chakra-ui/react'
+} from '@chakra-ui/system'
+
+import { Flex } from '@chakra-ui/layout'
+
+import { cx, __DEV__ } from '@chakra-ui/utils'
 
 export interface AppShellProps
   extends HTMLChakraProps<'div'>,
@@ -23,15 +29,33 @@ export function AppShell(props: AppShellProps) {
   const { navbar, sidebar, hideSidebar, footer, children, ...containerProps } =
     omitThemingProps(props)
 
+  const containerStyles = {
+    flexDirection: 'column',
+    ...styles.container,
+  }
+
+  const innerStyles = {
+    flex: 1,
+    ...styles.inner,
+  }
+
+  const mainStyles = {
+    flex: 1,
+    flexDirection: 'column',
+    ...styles.main,
+  }
+
   return (
     <StylesProvider value={styles}>
-      <Flex direction="column" {...containerProps}>
+      <Flex
+        {...containerProps}
+        sx={containerStyles}
+        className={cx('saas-app-shell', props.className)}
+      >
         {navbar}
-        <Flex flex="1">
+        <Flex sx={innerStyles}>
           {sidebar && !hideSidebar && sidebar}
-          <Flex flex="1" direction="column">
-            {children}
-          </Flex>
+          <Flex sx={mainStyles}>{children}</Flex>
         </Flex>
         {footer}
       </Flex>

@@ -1,3 +1,4 @@
+import AppShell from './app-shell'
 import Command from './command'
 import EmptyState from './empty-state'
 import Kbd from './kbd'
@@ -12,6 +13,7 @@ import DataGrid from './data-grid'
 import Tooltip from './tooltip'
 
 export default {
+  AppShell,
   Command,
   EmptyState,
   Kbd,
