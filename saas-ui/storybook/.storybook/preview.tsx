@@ -21,6 +21,8 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import { SaasProvider } from '@saas-ui/react'
 import { theme } from '@saas-ui/pro'
 
+import '@fontsource/inter/variable.css'
+
 export const parameters = {
   viewport: {
     viewports: INITIAL_VIEWPORTS,

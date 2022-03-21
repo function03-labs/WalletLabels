@@ -26986,6 +26986,7 @@ __metadata:
   resolution: "saas-ui-storybook@workspace:saas-ui/storybook"
   dependencies:
     "@babel/core": ^7.16.5
+    "@fontsource/inter": ^4.2.2
     "@storybook/addon-a11y": ^6.4.19
     "@storybook/addon-actions": ^6.4.19
     "@storybook/addon-docs": ^6.4.19
