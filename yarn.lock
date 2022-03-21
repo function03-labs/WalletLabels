@@ -3815,19 +3815,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/icons@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "@chakra-ui/icons@npm:1.1.5"
-  dependencies:
-    "@chakra-ui/icon": 2.0.3
-    "@types/react": ^17.0.15
-  peerDependencies:
-    "@chakra-ui/system": ">=1.0.0"
-    react: ">=16.8.6"
-  checksum: f8bfb2ff466fe9f072d596f7b293ad159a6fd579090db00e76304406f60a2ab8b20c85bc3868a55d820055b3f8793e672ee86a69320cb918246ded2b97eb10a1
-  languageName: node
-  linkType: hard
-
 "@chakra-ui/image@npm:1.1.5":
   version: 1.1.5
   resolution: "@chakra-ui/image@npm:1.1.5"
@@ -10896,7 +10883,6 @@ __metadata:
     "@babel/preset-env": ^7.16.7
     "@babel/preset-react": ^7.16.7
     "@babel/preset-typescript": ^7.16.7
-    "@chakra-ui/icons": ^1.1.5
     "@chakra-ui/react": ^1.8.1
     "@chakra-ui/system": ^1.10.3
     "@emotion/react": ^11
@@ -13616,6 +13602,17 @@ __metadata:
   dependencies:
     cross-env: ^6.0.3
   checksum: abbd70377446e3cc401ac58c40cdac6c70c41a349e6aca08881d0deb775051ba69c93099f4d47ef83c41b4562b0480b5dfd56d77e2e6f3a81ebb6667ce8d4627
+  languageName: node
+  linkType: hard
+
+"chromatic@npm:^6.5.3":
+  version: 6.5.3
+  resolution: "chromatic@npm:6.5.3"
+  bin:
+    chroma: bin/main.cjs
+    chromatic: bin/main.cjs
+    chromatic-cli: bin/main.cjs
+  checksum: 42b824ec1e767d48fee6e2849e338264dbf20413d46074548340958e9d6407c37bb3d06429bf6101ff1c48bb5afbb2b95b48b24481112ca797e98c2c903521fa
   languageName: node
   linkType: hard
 
@@ -26578,6 +26575,7 @@ __metadata:
     "@storybook/manager-webpack5": ^6.4.19
     "@storybook/react": ^6.4.19
     babel-loader: ^8.2.3
+    chromatic: ^6.5.3
     framer-motion: ^5
     react: ^17.0.2
     react-dom: ^17.0.2

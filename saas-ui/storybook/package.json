@@ -1,6 +1,7 @@
 {
   "name": "saas-ui-storybook",
   "private": true,
+  "version": "0.0.1",
   "scripts": {
     "dev": "start-storybook -p 6007",
     "build": "build-storybook"
@@ -26,12 +27,12 @@
     "@storybook/manager-webpack5": "^6.4.19",
     "@storybook/react": "^6.4.19",
     "babel-loader": "^8.2.3",
+    "chromatic": "^6.5.3",
     "framer-motion": "^5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
     "storybook-addon-performance": "^0.16.1",
     "webpack": "^5.68.0"
-  },
-  "version": null
+  }
 }
