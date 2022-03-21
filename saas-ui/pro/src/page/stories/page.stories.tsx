@@ -2,10 +2,10 @@ import { Container } from '@chakra-ui/react'
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
 
-import { Page } from '../src'
+import { Page } from '..'
 
 export default {
-  title: 'Saas UI Pro/Components/Layout/Page',
+  title: 'Components/Layout/Page',
   decorators: [
     (Story: any) => (
       <Container mt="40px">
