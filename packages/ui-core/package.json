@@ -1,6 +1,6 @@
 {
   "name": "@ui/core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build:storybook": "build-storybook"
