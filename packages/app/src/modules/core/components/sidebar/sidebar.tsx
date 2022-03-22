@@ -21,6 +21,7 @@ import {
   SidebarNavGroup,
   SidebarOverflow,
   Command,
+  ResizeHandler,
   useTenancy,
 } from '@saas-ui/pro'
 
@@ -30,6 +31,7 @@ import {
   MenuItem,
   MenuDivider,
   useModals,
+  useLocalStorage,
 } from '@saas-ui/react'
 
 import { BillingStatus } from './billing-status'
@@ -44,6 +46,7 @@ export interface AppSidebarProps extends SidebarProps {}
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const { tenant } = useTenancy()
   const modals = useModals()
+  const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
 
   const getPath = (path?: string) => {
     return path ? `/app/${tenant}/${path}` : `/app/${tenant}`
@@ -53,9 +56,20 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
 
   const isCondensed = variant === 'condensed'
 
+  const onResize: ResizeHandler = ({ width }) => {
+    setWidth(width)
+  }
+
   return (
     <>
-      <Sidebar variant={variant} colorScheme={colorScheme} {...props}>
+      <Sidebar
+        variant={variant}
+        colorScheme={colorScheme}
+        isResizable
+        onResize={onResize}
+        defaultWidth={width}
+        {...props}
+      >
         <ElectronNav />
         <SidebarNav direction="row">
           <TenantMenu title="Organizations">

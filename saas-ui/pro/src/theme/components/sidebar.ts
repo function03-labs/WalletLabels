@@ -21,7 +21,6 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       display: 'flex',
       flexDirection: 'column',
       borderRightWidth: '1px',
-      width: ['200px', '280px'],
     },
     divider: {
       my: '0.5rem',
@@ -67,6 +66,16 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
   }
 }
 
+const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
+  return {
+    container: {
+      width: ['220px', '280px'],
+      maxWidth: '320px',
+      minWidth: '220px',
+    },
+  }
+}
+
 const variantCondensed: PartsStyleFunction<typeof parts> = (props) => {
   return {
     container: {
@@ -81,10 +90,12 @@ const variantCondensed: PartsStyleFunction<typeof parts> = (props) => {
 export default {
   parts: parts.keys,
   defaultProps: {
+    variant: 'default',
     size: 'md',
   },
   baseStyle,
   variants: {
+    default: variantDefault,
     condensed: variantCondensed,
   },
   sizes: {

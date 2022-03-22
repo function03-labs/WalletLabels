@@ -83,6 +83,14 @@ WithHorizontalNav.args = {
   ),
 }
 
+export const WithResize = Template.bind({})
+WithResize.args = {
+  isResizable: true,
+  minWidth: 220,
+  maxWidth: 500,
+  children: <SidebarNav></SidebarNav>,
+}
+
 export const WithCollapsibleGroup = Template.bind({})
 WithCollapsibleGroup.args = {
   children: (

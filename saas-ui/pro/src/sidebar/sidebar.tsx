@@ -42,13 +42,12 @@ export {
 import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from './icons'
 
 import { SidebarProvider, useSidebarContext } from './use-sidebar'
+import { ResizeHandle, ResizeHandler, useResize } from '../resize'
 
 export interface SidebarProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
     Omit<ChakraProps, 'css'>,
     ThemingProps<'Sidebar'> {
-  variant?: string
-  size?: string
   /**
    * Spacing between child elements.
    */
@@ -59,6 +58,18 @@ export interface SidebarProps
    * @default object { sm: true, lg: false }
    */
   breakpoints?: Record<string, boolean>
+  /**
+   * Allow the sidebar to be resized.
+   */
+  isResizable?: boolean
+  /**
+   * Callback called when resize is completed.
+   */
+  onResize?: ResizeHandler
+  /**
+   * The default sidebar width in pixels.
+   */
+  defaultWidth?: number
 }
 
 const MotionBox = chakra(motion.div)
@@ -85,7 +96,7 @@ if (__DEV__) {
 export const SidebarContainer: React.FC<SidebarProps> = (props) => {
   const styles = useMultiStyleConfig('Sidebar', props)
 
-  const { variant, size } = props
+  const { variant, size, isResizable, onResize, defaultWidth } = props
 
   const isCondensed = variant === 'condensed'
 
@@ -105,7 +116,19 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
     defaultIsOpen: !isMobile,
   })
 
+  const resize = useResize({
+    defaultWidth,
+    onResize,
+    isResizable: !isMobile && isResizable,
+  })
+
   const { isOpen, onClose } = collapse
+
+  React.useEffect(() => {
+    if (isMobile) {
+      onClose()
+    }
+  }, [isMobile])
 
   const containerStyles: SystemStyleObject = {
     '& > *:not(style) ~ *:not(style)': { marginTop: spacing },
@@ -119,12 +142,6 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
         }
       : {}),
   }
-
-  React.useEffect(() => {
-    if (isMobile) {
-      onClose()
-    }
-  }, [isMobile])
 
   const context = {
     ...collapse,
@@ -150,14 +167,18 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
               ...containerStyles,
               ...styles.container,
             }}
+            {...containerProps}
             className={cx(
-              'saas-sidebar__container',
+              'saas-sidebar',
               isCondensed && 'saas-sidebar__condensed',
               className,
             )}
-            {...containerProps}
+            {...resize.getContainerProps(props)}
           >
             {children}
+            {!isMobile && isResizable && (
+              <ResizeHandle {...resize.getHandleProps()} />
+            )}
           </MotionBox>
           {isMobile && <SidebarOverlay />}
         </>

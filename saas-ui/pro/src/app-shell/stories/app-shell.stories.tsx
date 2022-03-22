@@ -16,20 +16,49 @@ export default {
 } as Meta
 
 const Template: Story = ({ children, ...args }) => (
-  <AppShell {...args}>{children}</AppShell>
+  <AppShell borderWidth="1px" {...args}>
+    {children}
+  </AppShell>
 )
 
 export const Basic = Template.bind({})
 Basic.args = {
+  height: '400px',
   navbar: (
-    <Box bg="gray.300" height="16">
+    <Box height="16" borderBottomWidth="1px">
       Navbar
     </Box>
   ),
   sidebar: (
-    <Box bg="gray.400" width="300px">
+    <Box width="300px" borderRightWidth="1px">
       Sidebar
     </Box>
   ),
   children: <Box as="main">Main content</Box>,
+  footer: (
+    <Box height="16" borderTopWidth="1px">
+      Footer
+    </Box>
+  ),
+}
+
+export const VariantFullscreen = Template.bind({})
+VariantFullscreen.args = {
+  variant: 'fullscreen',
+  navbar: (
+    <Box height="16" borderBottomWidth="1px">
+      Navbar
+    </Box>
+  ),
+  sidebar: (
+    <Box width="300px" borderRightWidth="1px">
+      Sidebar
+    </Box>
+  ),
+  children: <Box as="main">Main content</Box>,
+  footer: (
+    <Box height="16" borderTopWidth="1px">
+      Footer
+    </Box>
+  ),
 }
