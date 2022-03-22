@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- @ui/core@0.0.2
+
+## null
+
+### Patch Changes
+
 - Updated dependencies [6d0b31f]
   - @ui/core@0.0.1
 

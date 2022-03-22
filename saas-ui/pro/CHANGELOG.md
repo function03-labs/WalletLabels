@@ -1,5 +1,15 @@
 # @saas-ui/pro
 
+## 0.2.2
+
+### Patch Changes
+
+- be3eab9: Added displayNames to all Sidebar components.
+- 5787f35: New default variant for Page and fixed padding issue.
+- 51b3e22: Improved AppShell fullscreen variant and added new default variant
+- 4eb7b3f: Condensed SidebarNav now aligns items center.
+- be3eab9: SidebarLink now accepts isActive prop
+
 ## 0.2.1
 
 ### Patch Changes
