@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.2.3
+
+### Patch Changes
+
+- c42cd5d: Added new useResize hook, Sidebar is now resizable.
+
 ## 0.2.2
 
 ### Patch Changes

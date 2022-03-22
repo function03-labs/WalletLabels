@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- @ui/core@0.0.3
+
+## null
+
+### Patch Changes
+
 - @ui/core@0.0.2
 
 ## null
