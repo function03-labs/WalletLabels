@@ -11,4 +11,6 @@ export interface UseSidebarReturn extends UseCollapseReturn {
 export const [SidebarProvider, useSidebarContext] =
   createContext<UseSidebarReturn>({
     name: 'SidebarContext',
+    errorMessage:
+      'SidebarContext not available, SidebarLink needs to be a child of Sidebar.',
   })

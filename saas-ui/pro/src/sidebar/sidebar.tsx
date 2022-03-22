@@ -22,7 +22,7 @@ import {
   IconButtonProps,
 } from '@chakra-ui/react'
 
-import { cx } from '@chakra-ui/utils'
+import { cx, __DEV__ } from '@chakra-ui/utils'
 
 import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
@@ -76,6 +76,10 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
       </SidebarContainer>
     </>
   )
+}
+
+if (__DEV__) {
+  Sidebar.displayName = 'Sidebar'
 }
 
 export const SidebarContainer: React.FC<SidebarProps> = (props) => {
@@ -162,6 +166,10 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
   )
 }
 
+if (__DEV__) {
+  SidebarContainer.displayName = 'SidebarContainer'
+}
+
 export const SidebarToggleButton: React.FC<
   Omit<IconButtonProps, 'aria-label'>
 > = (props) => {
@@ -217,6 +225,10 @@ const SidebarOverlay = () => {
   )
 }
 
+if (__DEV__) {
+  SidebarToggleButton.displayName = 'SidebarToggleButton'
+}
+
 export interface SidebarDividerProps extends HTMLChakraProps<'hr'> {}
 
 export const SidebarDivider: React.FC<SidebarDividerProps> = (props) => {
@@ -232,6 +244,10 @@ export const SidebarDivider: React.FC<SidebarDividerProps> = (props) => {
   )
 }
 
+if (__DEV__) {
+  SidebarDivider.displayName = 'SidebarDivider'
+}
+
 export const SidebarOverflow: React.FC<HTMLChakraProps<'div'>> = (props) => {
   return (
     <chakra.div
@@ -244,6 +260,10 @@ export const SidebarOverflow: React.FC<HTMLChakraProps<'div'>> = (props) => {
       {...props}
     />
   )
+}
+
+if (__DEV__) {
+  SidebarOverflow.displayName = 'SidebarOverflow'
 }
 
 export const SidebarNav: React.FC<StackProps> = (props) => {
@@ -266,6 +286,10 @@ export const SidebarNav: React.FC<StackProps> = (props) => {
 SidebarNav.defaultProps = {
   spacing: 2,
   direction: 'column',
+}
+
+if (__DEV__) {
+  SidebarNav.displayName = 'SidebarNav'
 }
 
 export interface SidebarNavGroupTitleProps extends HTMLChakraProps<'div'> {
@@ -301,6 +325,10 @@ export const SidebarNavGroupTitle: React.FC<SidebarNavGroupTitleProps> = (
       {collapseIcon}
     </chakra.div>
   )
+}
+
+if (__DEV__) {
+  SidebarNavGroupTitle.displayName = 'SidebarNavGroupTitle'
 }
 
 export interface SidebarNavGroupProps
@@ -357,6 +385,10 @@ export const SidebarNavGroup: React.FC<SidebarNavGroupProps> = (props) => {
   )
 }
 
+if (__DEV__) {
+  SidebarNavGroup.displayName = 'SidebarNavGroup'
+}
+
 SidebarNavGroup.defaultProps = {
   defaultIsOpen: true,
   isCollapsible: false,
@@ -376,6 +408,10 @@ export const SidebarLinkLabel = forwardRef<SidebarLinkLabelProps, 'div'>(
     )
   },
 )
+
+if (__DEV__) {
+  SidebarLinkLabel.displayName = 'SidebSidebarLinkLabelarMenu'
+}
 
 const SidebarLinkIcon: React.FC<HTMLChakraProps<'span'>> = (props) => {
   const styles = useStyles()
@@ -404,6 +440,10 @@ const SidebarLinkIcon: React.FC<HTMLChakraProps<'span'>> = (props) => {
   )
 }
 
+if (__DEV__) {
+  SidebarLinkIcon.displayName = 'SidebarLinkIcon'
+}
+
 export interface SidebarLinkProps
   extends HTMLChakraProps<'a'>,
     ThemingProps<'SidebarLink'> {
@@ -412,6 +452,7 @@ export interface SidebarLinkProps
   icon?: React.ReactElement
   inset?: SystemProps['paddingLeft']
   tooltip?: React.ReactNode
+  isActive?: boolean
 }
 
 export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
@@ -473,6 +514,10 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
   )
 })
 
+if (__DEV__) {
+  SidebarLink.displayName = 'SidebarLink'
+}
+
 export interface SidebarMenuButton
   extends HTMLChakraProps<'button'>,
     ThemingProps<'SidebarMenuButton'> {
@@ -495,6 +540,10 @@ const SidebarMenuButton = forwardRef<SidebarMenuButton, 'button'>(
     )
   },
 )
+
+if (__DEV__) {
+  SidebarMenuButton.displayName = 'SidebarMenuButton'
+}
 
 export type SidebarMenuProps = {
   label?: string
@@ -523,3 +572,7 @@ export const SidebarMenu = forwardRef<SidebarMenuProps, typeof MenuButton>(
     )
   },
 )
+
+if (__DEV__) {
+  SidebarMenu.displayName = 'SidebarMenu'
+}
