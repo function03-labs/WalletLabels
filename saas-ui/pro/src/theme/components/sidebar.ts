@@ -72,6 +72,9 @@ const variantCondensed: PartsStyleFunction<typeof parts> = (props) => {
     container: {
       width: '64px',
     },
+    nav: {
+      alignItems: 'center',
+    },
   }
 }
 
