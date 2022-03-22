@@ -4,23 +4,26 @@ const parts = anatomy('app-shell').parts('container', 'inner', 'main')
 
 const baseStyle: PartsStyleFunction<typeof parts> = () => {
   return {
-    container: {
-      minHeight: '100%',
-    },
+    container: {},
   }
 }
 
 export default {
   parts: parts.keys,
   defaultProps: {
-    variant: 'fullscreen',
+    variant: 'default',
   },
   variants: {
+    default: {
+      minHeight: '100%',
+    },
     fullscreen: {
       container: {
         position: 'absolute',
-        width: '100vw',
-        height: '100vh',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       },
     },
   },
