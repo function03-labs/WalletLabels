@@ -22,12 +22,8 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       justifyContent: 'stretch',
       py: 2,
       px: 4,
-      ps: { base: 14, lg: 4 },
       minH: 14,
       borderBottomWidth: '1px',
-      '& > .saas-toolbar': {
-        ms: 4,
-      },
     },
     title: {
       fontWeight: 'bold',
@@ -45,6 +41,17 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
         maxWidth: props.fullWidth ? '100%' : 'container.xl',
         minHeight: '100%',
         height: '1px', // hack to make sure the Loader 100% height is working
+      },
+    },
+  }
+}
+
+const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
+  return {
+    header: {
+      ps: { base: 14, lg: 4 },
+      '& > .saas-toolbar': {
+        ms: 4,
       },
     },
   }
@@ -101,11 +108,12 @@ const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
 export default {
   parts: parts.keys,
   defaultProps: {
+    variant: 'default',
     colorScheme: 'gray',
   },
   baseStyle,
   variants: {
-    app: {},
+    default: variantDefault,
     hero: variantHero,
     settings: variantSettings,
   },
