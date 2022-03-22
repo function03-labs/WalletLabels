@@ -8,11 +8,11 @@ import { AppShell } from '../../app-shell'
 
 import { Toolbar, ToolbarButton } from '../../toolbar'
 
-import { Page, BackButton } from '..'
+import { SplitPage, Page } from '..'
 import { EmptyState } from '@saas-ui/react'
 
 export default {
-  title: 'Components/Layout/Page',
+  title: 'Components/Layout/SplitPage',
   decorators: [
     (Story: any) => (
       <AppShell borderWidth="1px" variant="default" height="calc(100vh - 40px)">
@@ -22,7 +22,7 @@ export default {
   ],
 } as Meta
 
-const Template: Story = (args) => <Page {...args} />
+const Template: Story = (args) => <SplitPage {...args} />
 
 const PageContent = (props: BoxProps) => {
   return (
@@ -50,6 +50,34 @@ Basic.args = {
   children: <PageContent />,
 }
 
+export const WithContent = Template.bind({})
+WithContent.args = {
+  title: 'Page with content',
+  toolbar: (
+    <Toolbar>
+      <ToolbarButton label="Save" colorScheme="primary" variant="solid" />
+    </Toolbar>
+  ),
+  children: <PageContent />,
+  content: (
+    <Page>
+      <PageContent />
+    </Page>
+  ),
+}
+
+export const WithEmptyContent = Template.bind({})
+WithEmptyContent.args = {
+  title: 'Page with empty content',
+  toolbar: (
+    <Toolbar>
+      <ToolbarButton label="Save" colorScheme="primary" variant="solid" />
+    </Toolbar>
+  ),
+  children: <PageContent />,
+  content: <EmptyState title="Nothing here" />,
+}
+
 export const WithToolbar = Template.bind({})
 WithToolbar.args = {
   title: 'Page with toolbar',
@@ -68,18 +96,19 @@ WithDescription.args = {
   children: <PageContent />,
 }
 
-export const WithFullWidth = Template.bind({})
-WithFullWidth.args = {
-  title: 'Page with full width',
-  fullWidth: true,
-  children: <PageContent />,
-}
-
 export const WithLoading = Template.bind({})
 WithLoading.args = {
   title: 'Page with loading',
   isLoading: true,
   children: <PageContent />,
+}
+
+export const WithLoadingContent = Template.bind({})
+WithLoadingContent.args = {
+  title: 'Page with loading',
+  isLoading: true,
+  children: <PageContent />,
+  content: <Page isLoading />,
 }
 
 export const WithError = Template.bind({})
@@ -93,33 +122,4 @@ WithError.args = {
       description="We've been notified about the problem"
     />
   ),
-}
-
-export const VariantHero = Template.bind({})
-VariantHero.args = {
-  title: 'Hero page',
-  description: 'My hero page',
-  variant: 'hero',
-  colorScheme: 'purple',
-  toolbar: (
-    <Toolbar>
-      <ToolbarButton label="Save" colorScheme="white" variant="subtle" />
-    </Toolbar>
-  ),
-  children: <PageContent />,
-}
-
-export const VariantSettings = Template.bind({})
-VariantSettings.args = {
-  title: 'Settings page',
-  description: 'Manage your settings',
-  variant: 'settings',
-  children: <PageContent px="0" />,
-}
-
-export const WithBackButton = Template.bind({})
-WithBackButton.args = {
-  title: 'Page with back button',
-  nav: <BackButton />,
-  children: <PageContent />,
 }
