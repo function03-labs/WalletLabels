@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import { chakra, useStyleConfig } from '@chakra-ui/react'
 
 import { Page, PageProps } from './page'
