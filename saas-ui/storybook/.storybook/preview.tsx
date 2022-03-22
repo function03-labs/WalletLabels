@@ -1,19 +1,7 @@
-import {
-  extendTheme,
-  Flex,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuOptionGroup,
-  MenuItemOption,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { chakra, extendTheme, useColorMode } from '@chakra-ui/react'
 import { StoryContext } from '@storybook/react'
 import * as React from 'react'
 
-import { FiMoon, FiSun } from 'react-icons/fi'
 import { withPerformance } from 'storybook-addon-performance'
 
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
@@ -47,45 +35,40 @@ export const globalTypes = {
       items: ['LTR', 'RTL'],
     },
   },
+  theme: {
+    name: 'Theme',
+    description: 'Global theme for components',
+    defaultValue: 'pro',
+    toolbar: {
+      icon: 'paintbrush',
+      items: ['pro'],
+      showName: true,
+    },
+  },
+  colorMode: {
+    name: 'ColorMode',
+    description: 'Color mode',
+    defaultValue: 'light',
+    toolbar: {
+      icon: 'circlehollow',
+      items: ['light', 'dark'],
+    },
+  },
 }
 
-const ThemeSelect = ({ value, onChange }) => {
-  const themes = ['Saas UI Pro']
-  return (
-    <Menu>
-      <MenuButton>Theme: {themes[value]}</MenuButton>
-      <MenuList>
-        <MenuOptionGroup defaultValue={value} type="radio" onChange={onChange}>
-          <MenuItemOption value="0">Saas UI Pro</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>
-  )
-}
+const ColorModeToggle = ({ colorMode }) => {
+  const { setColorMode } = useColorMode()
 
-const ColorModeToggle = () => {
-  const { toggleColorMode } = useColorMode()
-  const SwitchIcon = useColorModeValue(FiMoon, FiSun)
-  const nextMode = useColorModeValue('dark', 'light')
+  React.useEffect(() => {
+    setColorMode(colorMode)
+  }, [colorMode])
 
-  return (
-    <IconButton
-      size="md"
-      fontSize="lg"
-      aria-label={`Switch to ${nextMode} mode`}
-      variant="ghost"
-      color="current"
-      marginLeft="2"
-      onClick={toggleColorMode}
-      icon={<SwitchIcon />}
-    />
-  )
+  return null
 }
 
 const withChakra = (StoryFn: Function, context: StoryContext) => {
-  const [themeId, setTheme] = React.useState(
-    localStorage.getItem('storybook.theme') || '0',
-  )
+  const { theme: themeId, colorMode } = context.globals
+
   const { direction } = context.globals
   const dir = direction.toLowerCase()
 
@@ -97,27 +80,17 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   }, [themeId])
 
   return (
-    <SaasProvider theme={extendTheme({ ...getTheme(), direction: dir })}>
-      <div dir={dir} id="story-wrapper" style={{ minHeight: '100vh' }}>
-        <Flex
-          justify="flex-end"
-          mb={4}
-          position="fixed"
-          zIndex="overlay"
-          top="0"
-          right="0"
-        >
-          <ThemeSelect
-            value={themeId}
-            onChange={(id) => {
-              setTheme(id)
-              localStorage.setItem('storybook.theme', id)
-            }}
-          />
-          <ColorModeToggle />
-        </Flex>
+    <SaasProvider
+      theme={extendTheme({
+        ...getTheme(),
+        direction: dir,
+        styles: { global: { 'html, body, #root': { height: '100%' } } },
+      })}
+    >
+      <chakra.div dir={dir} id="story-wrapper" height="100%">
+        <ColorModeToggle colorMode={colorMode} />
         <StoryFn />
-      </div>
+      </chakra.div>
     </SaasProvider>
   )
 }
