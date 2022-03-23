@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-import { Tour, Step, ErrorBoundary } from '@saas-ui/pro'
+import { ErrorBoundary } from '@saas-ui/pro'
+import { Tour, Step } from '@saas-ui/onboarding'
+
 import { useLocalStorage } from '@saas-ui/react'
 
 /**

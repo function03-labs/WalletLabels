@@ -15,11 +15,6 @@
     "url": "git://github.com/saas-js/saas-ui-pro.git",
     "directory": "saas-ui/pro"
   },
-  "dependencies": {
-    "@saas-ui/billing": "workspace:*",
-    "@saas-ui/charts": "workspace:*",
-    "@saas-ui/onboarding": "workspace:*"
-  },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
     "@saas-ui/react": ">=0.12.0",

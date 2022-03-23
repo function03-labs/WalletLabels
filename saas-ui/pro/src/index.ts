@@ -13,7 +13,3 @@ export * from './utils'
 export * from './hooks'
 export * from './sidebar'
 export * from './resize'
-
-export * from '@saas-ui/charts'
-export * from '@saas-ui/onboarding'
-export * from '@saas-ui/billing'

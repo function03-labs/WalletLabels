@@ -7140,13 +7140,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:^, @saas-ui/pro@workspace:saas-ui/pro":
+"@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:saas-ui/pro":
   version: 0.0.0-use.local
   resolution: "@saas-ui/pro@workspace:saas-ui/pro"
-  dependencies:
-    "@saas-ui/billing": "workspace:*"
-    "@saas-ui/charts": "workspace:*"
-    "@saas-ui/onboarding": "workspace:*"
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@saas-ui/react": ">=0.12.0"
@@ -12047,6 +12043,9 @@ __metadata:
     "@ui/core": "workspace:*"
     yup: ^0.32.11
   peerDependencies:
+    "@saas-ui/billing": "workspace:*"
+    "@saas-ui/charts": "workspace:*"
+    "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ">=0.12.0"
     react: ">=16.8.6"
@@ -16076,8 +16075,11 @@ __metadata:
     "@chakra-ui/system": ^1.11.2
     "@emotion/react": ^11
     "@emotion/styled": ^11
+    "@saas-ui/billing": "workspace:*"
+    "@saas-ui/charts": "workspace:*"
     "@saas-ui/next-workspaces": ^0.1.1
-    "@saas-ui/pro": "workspace:^"
+    "@saas-ui/onboarding": "workspace:*"
+    "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ^0.12.5
     "@types/node": ^14.14.31
     "@types/react": ^17.0.38
@@ -23112,7 +23114,10 @@ __metadata:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@next/eslint-plugin-next": ^12.0.10
+    "@saas-ui/billing": "workspace:*"
+    "@saas-ui/charts": "workspace:*"
     "@saas-ui/next-workspaces": ^0.1.1
+    "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ^0.12.5
     "@svgr/webpack": 5.5.0

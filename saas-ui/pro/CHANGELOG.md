@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- Fix: Not passing down resize props to Sidebar container element.
+- Fix: No longer passing down resize props to Sidebar container element.
 
 ## 0.2.5
 

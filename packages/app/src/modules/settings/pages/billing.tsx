@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import { UpgradeButton, Section } from '@saas-ui/pro'
+import { Section } from '@saas-ui/pro'
+import { UpgradeButton } from '@saas-ui/billing'
 import { useGetOrganizationQuery } from '@app/graphql'
 
 import { Text } from '@chakra-ui/react'
