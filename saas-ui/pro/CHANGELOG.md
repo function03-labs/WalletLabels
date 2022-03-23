@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.2.6
+
+### Patch Changes
+
+- Fix: Not passing down resize props to Sidebar container element.
+
 ## 0.2.5
 
 ### Patch Changes

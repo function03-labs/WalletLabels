@@ -98,7 +98,7 @@ if (__DEV__) {
 export const SidebarContainer: React.FC<SidebarProps> = (props) => {
   const styles = useMultiStyleConfig('Sidebar', props)
 
-  const { variant, size, isResizable, onResize, defaultWidth } = props
+  const { variant, size } = props
 
   const isCondensed = variant === 'condensed'
 
@@ -107,6 +107,9 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
     children,
     breakpoints = { base: true, lg: false },
     className,
+    isResizable,
+    onResize,
+    defaultWidth,
     ...containerProps
   } = omitThemingProps(props)
 
