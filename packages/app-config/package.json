@@ -5,6 +5,5 @@
     "@supabase/supabase-js": "^1.18.0",
     "@ui/core": "workspace:*",
     "magic-sdk": "^8.0.1"
-  },
-  "version": null
+  }
 }
