@@ -1,5 +1,11 @@
 # @saas-ui/charts
 
+## 0.0.1
+
+### Patch Changes
+
+- Updated peer dependencies
+
 ## null
 
 ### Minor Changes

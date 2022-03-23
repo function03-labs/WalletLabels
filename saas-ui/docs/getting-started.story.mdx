@@ -39,11 +39,19 @@ The same configuration can be used for CI and deployments.
 
 ### NPM & PNPM
 
+On your development machine you can run this and enter your Github username as user and license key as password.
+
+```bash
+pnpm login --registry=https://npm.saas-ui.dev/
+```
+
+#### Manual & CI configuration.
+
 Edit `.npmrc` in the root of your project and add the following lines.
 
 ```
 @saas-ui:registry=https://npm.saas-ui.dev
-//npm.saas-ui.dev/:_authToken=[base64 of ${SAAS_UI_TOKEN}]
+//npm.saas-ui.dev/:_auth={{base64 of SAAS_UI_TOKEN}}
 //npm.saas-ui.dev/:always-auth=true
 ```
 

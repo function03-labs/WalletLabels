@@ -1,6 +1,6 @@
 {
   "name": "nextjs-app",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "scripts": {
     "predev": "yarn run generate",
@@ -14,12 +14,11 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
-    "@chakra-ui/system": "^1.11.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@saas-ui/next-workspaces": "^0.1.1",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": "^0.12.4",
+    "@saas-ui/react": "^0.12.5",
     "@ui/core": "workspace:*",
     "@ui/theme": "workspace:*",
     "app": "workspace:*",

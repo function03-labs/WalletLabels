@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/features",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "exports": {
     "default": "./src/index.ts"
   },
@@ -14,8 +14,7 @@
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
-    "@chakra-ui/system": ">=1.0.0",
-    "@saas-ui/react": ">=0.7.0",
+    "@saas-ui/react": ">=0.12.0",
     "framer-motion": ">=5.5.0",
     "react": ">=16.8.6"
   }

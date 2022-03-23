@@ -1,5 +1,15 @@
 # @saas-ui/pro
 
+## 0.2.5
+
+### Patch Changes
+
+- Updated peer dependencies
+- Updated dependencies
+  - @saas-ui/billing@0.1.1
+  - @saas-ui/charts@0.0.1
+  - @saas-ui/onboarding@0.1.1
+
 ## 0.2.4
 
 ### Patch Changes
