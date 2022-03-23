@@ -1,7 +1,20 @@
-import { useBreakpointValue } from '@chakra-ui/react'
-import { MenuList } from '@chakra-ui/menu'
+import * as React from 'react'
 
-import { MenuDialogList, MenuDialogListProps } from './dialog'
+import { useBreakpointValue } from '@chakra-ui/react'
+
+import {
+  Menu,
+  MenuProps,
+  MenuList,
+  MenuDialogList,
+  MenuDialogListProps,
+} from '@saas-ui/react'
+
+export const ResponsiveMenu: React.FC<MenuProps> = (props) => {
+  const isMobile = useBreakpointValue({ base: 'true', md: false })
+
+  return <Menu variant={isMobile ? 'dialog' : 'menu'} {...props} />
+}
 
 export const ResponsiveMenuList: React.FC<MenuDialogListProps> = (props) => {
   const {

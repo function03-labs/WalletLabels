@@ -1,1 +1,1 @@
-export * from './filters'
+export * from './filter-menu'
