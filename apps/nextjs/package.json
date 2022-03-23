@@ -13,13 +13,21 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.8.6",
+    "@chakra-ui/system": "^1.11.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@saas-ui/next-workspaces": "^0.1.1",
     "@saas-ui/pro": "workspace:*",
+    "@saas-ui/react": "^0.12.4",
     "@ui/core": "workspace:*",
     "@ui/theme": "workspace:*",
     "app": "workspace:*",
-    "next": "^12.0.10",
-    "next-svgr": "^0.0.2"
+    "framer-motion": "^6",
+    "next": "^12.1.0",
+    "next-svgr": "^0.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.0.10",

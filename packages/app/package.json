@@ -6,10 +6,12 @@
     "@app/config": "workspace:*",
     "@app/i18n": "workspace:*",
     "@types/react-table": "^7.7.9",
-    "@ui/core": "workspace:*"
+    "@ui/core": "workspace:*",
+    "yup": "^0.32.11"
   },
   "peerDependencies": {
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": ">=0.8.0"
+    "@saas-ui/react": ">=0.8.0",
+    "react": ">=16.8.6"
   }
 }
