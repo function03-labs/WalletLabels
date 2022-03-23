@@ -1,5 +1,15 @@
 # nextjs-app
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies [42f165c]
+  - @saas-ui/pro@0.2.4
+  - app@0.0.4
+  - @ui/core@0.0.4
+
 ## 1.0.5
 
 ### Patch Changes

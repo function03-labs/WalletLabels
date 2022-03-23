@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.2.4
+
+### Patch Changes
+
+- Fixed useActivePath SSR issue.
+- 42f165c: Added ResponsiveMenu component
+
 ## 0.2.3
 
 ### Patch Changes

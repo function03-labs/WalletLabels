@@ -27,7 +27,7 @@ import { cx, __DEV__ } from '@chakra-ui/utils'
 import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
 import { Menu, MenuButton, MenuButtonProps, MenuList } from '@saas-ui/menu'
-import { useLink, useActivePath } from '@saas-ui/provider'
+import { useLink } from '@saas-ui/provider'
 import {
   CollapseProvider,
   useCollapseContext,
@@ -43,6 +43,8 @@ import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from './icons'
 
 import { SidebarProvider, useSidebarContext } from './use-sidebar'
 import { ResizeHandle, ResizeHandler, useResize } from '../resize'
+
+import { useActivePath } from '..'
 
 export interface SidebarProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,

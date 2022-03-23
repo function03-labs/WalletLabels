@@ -1,5 +1,15 @@
 # app
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies [42f165c]
+  - @saas-ui/pro@0.2.4
+  - @ui/core@0.0.4
+  - @app/config@null
+
 ## 0.0.3
 
 ### Patch Changes
