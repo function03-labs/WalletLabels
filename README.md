@@ -11,6 +11,10 @@ https://discord.gg/DFPtCfpTzG
 
 https://github.com/saas-js/saas-ui-pro/projects/1
 
+## Storybook
+
+https://storybook.saas-ui.pro
+
 ## Installation
 
 In case you use this repository as a reference or for testing purposes, go ahead and clone the repo.
@@ -29,49 +33,9 @@ And then run the generators to generate the React Query hooks.
 yarn generate
 ```
 
-### Installing from the private NPM registery
+## Install from NPM
 
-** This is bleeding edge **
-
-`@saas-ui/pro` can also be installed from NPM, follow these steps to set it up.
-
-1. Edit `.yarnrc.yml` in your project root and add:
-
-```yml
-npmScopes:
-  saas-ui:
-    npmRegistryServer: 'https://npm.saas-ui.dev'
-npmRegistries:
-  //npm.saas-ui.dev:
-    npmAuthIdent: '${SAAS_UI_TOKEN:-}'
-```
-
-2. Authentication works with your Github username (The account you used on the redeem page) and your license key.
-
-To set it up on your dev machine add this to `~/.profile`. The same environment variable can be used for deployments.
-
-```bash
-SAAS_UI_TOKEN="GithubUsername:licenseKey"
-```
-
-3. The packages are published in Typescript and are NOT transpiled, so you need to configure your app/bundler to do this.
-
-Here's an example Webpack config for Next.js
-
-```
-// next.config.js
-
-module.exports = {
-  webpack(config) {
-     config.module.rules.push({
-      test: /node_modules\/@saas-ui\/(pro|charts|billing|features|onboarding)\/.*\.tsx?/,
-      use: [defaultLoaders.babel],
-    })
-    return config
-  }
-}
-
-```
+Instructions for installing `@saas-ui/pro` from NPM can be found in the [Storybook documentation](https://storybook.saas-ui.pro/?path=/story/docs-getting-started--page).
 
 ## Configuration
 

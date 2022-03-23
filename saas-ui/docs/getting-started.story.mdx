@@ -1,5 +1,86 @@
 import { Meta } from '@storybook/addon-docs/blocks'
 
-<Meta title="Getting started" />
+<Meta title="Docs/Getting started" />
 
 # Getting started
+
+In the next steps we'll show you how to install `@saas-ui/pro`.
+
+You'll need a valid license to install `@saas-ui/pro`, you can order one at [saas-ui.dev](https://saas-ui.dev/#pricing).
+
+## Configuration
+
+All pro packages are installed from our private NPM registry at https://npm.saas-ui.dev.
+After [redeeming](https://saas-ui.dev/redeem) your license, an account will be automatically created.
+
+Your NPM account is a combination of the Github username you used to redeem your license and the license code (`username:licenseKey`).
+
+### Yarn
+
+In the root of your project edit `.yarnrc.yml` and add the following lines.
+
+```yml
+npmScopes:
+  saas-ui:
+    npmRegistryServer: 'https://npm.saas-ui.dev'
+npmRegistries:
+  //npm.saas-ui.dev:
+    npmAuthIdent: '${SAAS_UI_TOKEN:-}'
+    npmAlwaysAuth: true
+```
+
+To set it up on your dev machine add this to `~/.profile`.
+
+```bash
+SAAS_UI_TOKEN="GithubUsername:licenseKey"
+```
+
+The same configuration can be used for CI and deployments.
+
+### NPM & PNPM
+
+Edit `.npmrc` in the root of your project and add the following lines.
+
+```
+@saas-ui:registry=https://npm.saas-ui.dev
+//npm.saas-ui.dev/:_authToken=[base64 of ${SAAS_UI_TOKEN}]
+//npm.saas-ui.dev/:always-auth=true
+```
+
+### Configure your bundler
+
+The packages are published in Typescript, this might not work out of the box wity your app.
+You'll need to configure your bundler to transpile the `@saas-ui/pro` code to plain Javascript.
+
+#### Next.js
+
+Edit `next.config.js` and add a custom webpack config.
+This will work for both Babel and SWC transpilers.
+
+```js
+module.exports = {
+  webpack: (config, { defaultLoaders }) => {
+    config.module.rules.push({
+      test: /node_modules\/@saas-ui\/(pro|charts|billing|features|onboarding)\/.*\.tsx?/,
+      use: [defaultLoaders.babel],
+    })
+    return config
+  },
+}
+```
+
+## Install
+
+After configuring your app with the previous steps, you can simply run this to install.
+
+```
+yarn add @saas-ui/pro
+```
+
+```
+pnpm install @saas-ui/pro
+```
+
+```
+npm install @saas-ui/pro
+```
