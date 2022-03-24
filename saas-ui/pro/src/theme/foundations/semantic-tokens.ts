@@ -24,9 +24,9 @@ export default {
       default: 'black',
       _dark: 'white',
     },
-    muted: {
-      default: 'blackAlpha.500',
-      _dark: 'whiteAlpha.500',
+    'default-border-color': {
+      default: 'blackAlpha.200',
+      _dark: 'whiteAlpha.300',
     },
   },
 }

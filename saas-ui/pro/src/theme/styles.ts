@@ -11,7 +11,7 @@ const styles: Styles = {
       color: mode('blackAlpha.400', 'whiteAlpha.400')(props),
     },
     '*, *::before, &::after': {
-      borderColor: mode('blackAlpha.200', 'whiteAlpha.300')(props),
+      borderColor: 'default-border-color',
       wordWrap: 'break-word',
     },
   }),
