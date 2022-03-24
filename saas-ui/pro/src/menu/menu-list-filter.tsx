@@ -54,7 +54,9 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
           borderBottomRadius="0"
           borderWidth="0"
           borderBottomWidth="1px"
+          borderColor="default-border-color"
           _focus={{ outline: 'none' }}
+          _hover={{}}
           ref={mergeRefs(forwardRef, ref)}
           {...inputProps}
           onKeyDown={(event) => {
