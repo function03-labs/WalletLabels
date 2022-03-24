@@ -7,7 +7,7 @@ import { withPerformance } from 'storybook-addon-performance'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 import { SaasProvider } from '@saas-ui/react'
-import { theme } from '@saas-ui/pro'
+import { theme as proTheme } from '@saas-ui/pro'
 
 import '@fontsource/inter/variable.css'
 
@@ -73,19 +73,26 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   const dir = direction.toLowerCase()
 
   const getTheme = React.useCallback(() => {
-    if (themeId === '1') {
-      return theme
+    if (themeId === 'pro') {
+      return proTheme
     }
-    return theme
+    return proTheme
   }, [themeId])
 
+  const theme = getTheme()
   return (
     <SaasProvider
-      theme={extendTheme({
-        ...getTheme(),
-        direction: dir,
-        styles: { global: { 'html, body, #root': { height: '100%' } } },
-      })}
+      theme={extendTheme(
+        {
+          ...theme,
+          direction: dir,
+        },
+        {
+          styles: {
+            global: { 'html, body, #root': { height: '100%' } },
+          },
+        },
+      )}
     >
       <chakra.div dir={dir} id="story-wrapper" height="100%">
         <ColorModeToggle colorMode={colorMode} />
