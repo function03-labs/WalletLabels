@@ -4,7 +4,7 @@ import { chakra, forwardRef } from '@chakra-ui/system'
 
 import { useDisclosure } from '@chakra-ui/hooks'
 
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx, callAllHandlers, __DEV__ } from '@chakra-ui/utils'
 
 import {
   Button,
@@ -14,32 +14,39 @@ import {
   MenuButton,
 } from '@saas-ui/react'
 
-import { ResponsiveMenuList, MenuListFilter, MenuFilterItem } from '../menu'
+import {
+  ResponsiveMenu,
+  ResponsiveMenuList,
+  MenuListFilter,
+  MenuFilterItem,
+} from '../menu'
 import { useSearchQuery } from '..'
 
-export interface Filter {
+export interface FilterMenuItem {
   id: string
   label?: string
   icon?: React.ReactElement
   type?: string
-  items?: Filter[]
+  items?: FilterMenuItem[]
   value?: string | number | boolean | Date
 }
 
 export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
-  filters: Filter[]
+  items: FilterMenuItem[]
   icon?: React.ReactNode
-  label?: string
+  label?: React.ReactNode
+  placeholder?: string
   command?: string
-  onSelect?(filter: Filter): void
+  onSelect?(item: FilterMenuItem): void
   buttonProps?: ButtonProps
 }
 
 export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
   (props, forwardedRef) => {
     const {
-      filters,
+      items,
       label = 'Filter',
+      placeholder = 'Filter...',
       command,
       icon,
       buttonProps,
@@ -58,7 +65,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
         onOpenProp?.()
 
         if (!isOpen) {
-          setActiveFilter(null)
+          setActiveItem(null)
         }
 
         filterRef.current?.focus()
@@ -72,79 +79,81 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
     const filterRef = React.useRef<HTMLInputElement>(null)
 
-    const [activeFilter, setActiveFilter] = React.useState<Filter | null>(null)
+    const [activeItem, setActiveItem] = React.useState<FilterMenuItem | null>(
+      null,
+    )
 
-    const onFilterClick = (filter: Filter) => {
-      if (filter.type === 'array') {
-        setActiveFilter(filter)
-        onReset()
-        filterRef.current?.focus()
-      } else {
-        onSelect?.(filter)
-        onClose()
-      }
-    }
-
-    const { results, onReset, ...inputProps } = useSearchQuery<Filter>({
-      items: activeFilter?.items || filters,
+    const { results, onReset, ...inputProps } = useSearchQuery<FilterMenuItem>({
+      items: activeItem?.items || items,
       fields: ['id', 'label'],
     })
 
+    const onItemClick = React.useCallback(
+      (item: FilterMenuItem) => {
+        if (item.type === 'array') {
+          setActiveItem(item)
+          onReset()
+          filterRef.current?.focus()
+        } else {
+          onSelect?.(item)
+          onClose()
+        }
+      },
+      [onReset, onClose, onSelect],
+    )
+
     const input = (
       <MenuListFilter
-        placeholder={activeFilter?.label || label}
+        placeholder={activeItem?.label || placeholder}
         ref={filterRef}
         command={command}
         {...inputProps}
       />
     )
 
-    const items = React.useMemo(() => {
+    const filteredItems = React.useMemo(() => {
       return (
-        results?.map((filter) => {
-          const { id, label, type, items, value, ...itemProps } = filter
+        results?.map((item) => {
+          const { id, label, type, items, value, ...itemProps } = item
           return (
             <MenuFilterItem
               key={id}
               {...itemProps}
-              onClick={() => onFilterClick(filter)}
+              onClick={() => onItemClick(item)}
             >
-              {filter.label}
+              {item.label}
             </MenuFilterItem>
           )
         }) || null
       )
-    }, [results, activeFilter])
+    }, [results, activeItem, onItemClick])
 
     return (
-      <chakra.div>
-        <Menu
-          isOpen={isOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          closeOnSelect={false}
-          {...rest}
+      <ResponsiveMenu
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        closeOnSelect={false}
+        {...rest}
+      >
+        <MenuButton
+          as={Button}
+          leftIcon={icon}
+          {...buttonProps}
+          ref={forwardedRef}
         >
-          <MenuButton
-            as={Button}
-            leftIcon={icon}
-            variant="outline"
-            {...buttonProps}
-            ref={forwardedRef}
-          >
-            {label}
-          </MenuButton>
-          <ResponsiveMenuList
-            zIndex="dropdown"
-            pt="0"
-            overflow="auto"
-            initialFocusRef={filterRef}
-            hideCloseButton={true}
-          >
-            {input} {items}
-          </ResponsiveMenuList>
-        </Menu>
-      </chakra.div>
+          {label}
+        </MenuButton>
+        <ResponsiveMenuList
+          zIndex="dropdown"
+          pt="0"
+          overflow="auto"
+          initialFocusRef={filterRef}
+          hideCloseButton={true}
+        >
+          {input} {filteredItems}
+        </ResponsiveMenuList>
+      </ResponsiveMenu>
     )
   },
 )
