@@ -1,5 +1,5 @@
 import { Card, DataTable, Column, DataTableCell } from '@saas-ui/react'
-import { Sparklines } from '@saas-ui/pro'
+import { Sparklines } from '@saas-ui/charts'
 
 // @todo get this from graphql
 interface Data {

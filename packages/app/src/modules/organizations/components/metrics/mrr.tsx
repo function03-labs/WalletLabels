@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Card, CardBody } from '@saas-ui/react'
 
-import { LineChart, LineChartProps, ChartData } from '@saas-ui/pro'
+import { LineChart, LineChartProps, ChartData } from '@saas-ui/charts'
 
 import { format, subDays, eachDayOfInterval } from 'date-fns'
 

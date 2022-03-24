@@ -8,7 +8,7 @@ import {
   StatArrow,
 } from '@chakra-ui/react'
 
-import { Sparklines } from '@saas-ui/pro'
+import { Sparklines } from '@saas-ui/charts'
 
 export interface MetricProps {
   label: string
