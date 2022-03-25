@@ -94,7 +94,7 @@ export function ContactsListPage() {
   const modals = useModals()
 
   const { data, isLoading } = useGetContactsQuery()
-  console.log(data)
+
   const mutation = useCreateContactMutation()
 
   const addPerson = () => {

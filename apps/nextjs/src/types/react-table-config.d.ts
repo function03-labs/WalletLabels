@@ -1,1 +1,1 @@
-export * from '@saas-ui/data-table/src/react-table-config.d'
+export * from '@saas-ui/pro/src/data-grid/react-table-config.d'
