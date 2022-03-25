@@ -1,18 +1,14 @@
 import * as React from 'react'
 
-import { chakra, forwardRef } from '@chakra-ui/system'
+import { forwardRef } from '@chakra-ui/system'
 
 import { useDisclosure } from '@chakra-ui/hooks'
 
-import { cx, callAllHandlers, __DEV__ } from '@chakra-ui/utils'
+import { __DEV__ } from '@chakra-ui/utils'
 
-import {
-  Button,
-  ButtonProps,
-  Menu,
-  MenuProps,
-  MenuButton,
-} from '@saas-ui/react'
+import { Portal } from '@chakra-ui/portal'
+
+import { Button, ButtonProps, MenuProps, MenuButton } from '@saas-ui/react'
 
 import {
   ResponsiveMenu,
@@ -22,22 +18,22 @@ import {
 } from '../menu'
 import { useSearchQuery } from '..'
 
-export interface FilterMenuItem {
+export interface FilterItem {
   id: string
   label?: string
   icon?: React.ReactElement
   type?: string
-  items?: FilterMenuItem[]
+  items?: FilterItem[]
   value?: string | number | boolean | Date
 }
 
 export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
-  items: FilterMenuItem[]
+  items: FilterItem[]
   icon?: React.ReactNode
   label?: React.ReactNode
   placeholder?: string
   command?: string
-  onSelect?(item: FilterMenuItem): void
+  onSelect?(item: FilterItem): void
   buttonProps?: ButtonProps
 }
 
@@ -79,27 +75,32 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
     const filterRef = React.useRef<HTMLInputElement>(null)
 
-    const [activeItem, setActiveItem] = React.useState<FilterMenuItem | null>(
-      null,
-    )
+    const [activeItem, setActiveItem] = React.useState<FilterItem | null>(null)
 
-    const { results, onReset, ...inputProps } = useSearchQuery<FilterMenuItem>({
+    const { results, onReset, ...inputProps } = useSearchQuery<FilterItem>({
       items: activeItem?.items || items,
       fields: ['id', 'label'],
     })
 
     const onItemClick = React.useCallback(
-      (item: FilterMenuItem) => {
-        if (item.type === 'array') {
+      (item: FilterItem) => {
+        if (item.items?.length) {
           setActiveItem(item)
           onReset()
           filterRef.current?.focus()
         } else {
-          onSelect?.(item)
+          onSelect?.(
+            activeItem
+              ? {
+                  ...activeItem,
+                  value: item.id,
+                }
+              : item,
+          )
           onClose()
         }
       },
-      [onReset, onClose, onSelect],
+      [onReset, onClose, onSelect, activeItem],
     )
 
     const input = (
@@ -144,15 +145,17 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
         >
           {label}
         </MenuButton>
-        <ResponsiveMenuList
-          zIndex="dropdown"
-          pt="0"
-          overflow="auto"
-          initialFocusRef={filterRef}
-          hideCloseButton={true}
-        >
-          {input} {filteredItems}
-        </ResponsiveMenuList>
+        <Portal>
+          <ResponsiveMenuList
+            zIndex="dropdown"
+            pt="0"
+            overflow="auto"
+            initialFocusRef={filterRef}
+            hideCloseButton={true}
+          >
+            {input} {filteredItems}
+          </ResponsiveMenuList>
+        </Portal>
       </ResponsiveMenu>
     )
   },

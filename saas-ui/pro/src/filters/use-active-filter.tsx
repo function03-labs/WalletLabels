@@ -7,24 +7,24 @@ import {
 import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext } from '@chakra-ui/react-utils'
 
-import { FilterMenuItem } from './filter-menu'
+import { FilterItem } from './filter-menu'
+
+import { FilterOperator, FilterOperators } from './provider'
 
 export interface Filter {
-  id?: string
+  id: string
   value?: FilterValue
   operator?: FilterOperator
 }
-
-export type FilterOperator = 'is' | 'isNot' | 'before' | 'after' | 'contains'
 
 export type FilterValue = string | string[] | number | boolean | Date | null
 
 export interface ActiveFilterContextValue {
   label?: string
-  operators?: FilterOperator[]
+  operators?: FilterOperators
   operator?: FilterOperator
   value?: FilterValue
-  items?: FilterMenuItem[]
+  items?: FilterItem[]
 }
 
 export const [ActiveFilterProvider, useActiveFilterContext] =
@@ -33,7 +33,7 @@ export const [ActiveFilterProvider, useActiveFilterContext] =
   })
 
 export interface ActiveFilterValueOptions {
-  items?: FilterMenuItem[]
+  items?: FilterItem[]
   value?: FilterValue
   onChange?(value: FilterValue): void
   defaultValue?: FilterValue
@@ -41,6 +41,7 @@ export interface ActiveFilterValueOptions {
 }
 
 export interface UseActiveFilterProps {
+  id: string
   value?: FilterValue
   defaultValue?: FilterValue
   operator?: FilterOperator
@@ -52,6 +53,7 @@ export interface UseActiveFilterProps {
 
 export const useActiveFilter = (props: UseActiveFilterProps) => {
   const {
+    id,
     defaultValue,
     defaultOperator,
     onChange,
@@ -61,6 +63,7 @@ export const useActiveFilter = (props: UseActiveFilterProps) => {
 
   const [filter, setFilter] = useControllableState<Filter>({
     defaultValue: {
+      id,
       value: defaultValue,
       operator: defaultOperator ?? 'is',
     },
@@ -82,6 +85,7 @@ export const useActiveFilter = (props: UseActiveFilterProps) => {
   }
 
   return {
+    filter,
     onOperatorChange: callAllHandlers(onOperatorChange, onOperatorChangeProp),
     onValueChange: callAllHandlers(onValueChange, onValueChangeProp),
   }
@@ -89,7 +93,7 @@ export const useActiveFilter = (props: UseActiveFilterProps) => {
 
 export interface UseFilterOperatorProps
   extends UseControllableStateProps<FilterOperator> {
-  items?: FilterMenuItem[]
+  items?: FilterItem[]
 }
 
 export const useFilterOperator = (props: UseFilterOperatorProps) => {

@@ -12,6 +12,8 @@ import {
 
 import { cx, callAllHandlers, __DEV__ } from '@chakra-ui/utils'
 
+import { Wrap, WrapProps, WrapItem } from '@chakra-ui/layout'
+
 import {
   ButtonGroup,
   Button,
@@ -24,14 +26,13 @@ import {
   ButtonProps,
 } from '@saas-ui/react'
 
-import { FilterMenu, FilterMenuItem } from './filter-menu'
+import { FilterMenu, FilterItem } from './filter-menu'
 
 import { FiX } from 'react-icons/fi'
 import { ResponsiveMenu, ResponsiveMenuList } from '../menu'
 
 import {
   Filter,
-  FilterOperator,
   FilterValue,
   useActiveFilter,
   useFilterValue,
@@ -42,14 +43,17 @@ import {
   UseFilterOperatorProps,
 } from './use-active-filter'
 
+import { useFiltersContext, FilterOperators, FilterOperator } from './provider'
+
 export interface ActiveFilterProps
   extends Omit<HTMLChakraProps<'div'>, 'onChange' | 'defaultValue'> {
+  id: string
   icon?: React.ReactNode
-  label?: React.ReactNode
+  label?: string
   value?: FilterValue
   defaultValue?: FilterValue
-  items?: FilterMenuItem[]
-  operators?: FilterMenuItem[]
+  items?: FilterItem[]
+  operators?: FilterOperators
   operator?: FilterOperator
   defaultOperator?: FilterOperator
   onRemove?(): void
@@ -75,25 +79,32 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
     ...containerProps
   } = props
 
-  const { onOperatorChange, onValueChange } = useActiveFilter(props)
+  const { filter, onOperatorChange, onValueChange } = useActiveFilter(props)
+
+  const context: ActiveFilterContextValue = {
+    ...filter,
+    label,
+  }
 
   return (
-    <ActiveFilterContainer {...containerProps}>
-      <ActiveFilterLabel icon={icon}>{label}</ActiveFilterLabel>
-      <ActiveFilterOperator
-        items={operators}
-        value={operator}
-        defaultValue={defaultOperator}
-        onChange={callAllHandlers(onOperatorChange, onOperatorChangeProp)}
-      />
-      <ActiveFilterValue
-        items={items}
-        value={value}
-        defaultValue={defaultValue}
-        onChange={callAllHandlers(onValueChange, onValueChangeProp)}
-      />
-      <ActiveFilterRemove onClick={onRemove} />
-    </ActiveFilterContainer>
+    <ActiveFilterProvider value={context}>
+      <ActiveFilterContainer {...containerProps}>
+        <ActiveFilterLabel icon={icon}>{label}</ActiveFilterLabel>
+        <ActiveFilterOperator
+          items={operators}
+          value={operator}
+          defaultValue={defaultOperator}
+          onChange={callAllHandlers(onOperatorChange, onOperatorChangeProp)}
+        />
+        <ActiveFilterValue
+          items={items}
+          value={value}
+          defaultValue={defaultValue}
+          onChange={callAllHandlers(onValueChange, onValueChangeProp)}
+        />
+        <ActiveFilterRemove onClick={onRemove} />
+      </ActiveFilterContainer>
+    </ActiveFilterProvider>
   )
 }
 
@@ -112,26 +123,21 @@ export const ActiveFilterContainer: React.FC<HTMLChakraProps<'div'>> = (
     borderWidth: '1px',
     borderRadius: 'md',
     display: 'flex',
-
     ...styles.container,
   }
 
-  const context: ActiveFilterContextValue = {}
-
   return (
-    <ActiveFilterProvider value={context}>
-      <StylesProvider value={styles}>
-        <ButtonGroup
-          variant="ghost"
-          isAttached
-          {...rest}
-          sx={containerStyles}
-          className={cx('saas-active-filter', props.className)}
-        >
-          {children}
-        </ButtonGroup>
-      </StylesProvider>
-    </ActiveFilterProvider>
+    <StylesProvider value={styles}>
+      <ButtonGroup
+        variant="ghost"
+        isAttached
+        {...rest}
+        sx={containerStyles}
+        className={cx('saas-active-filter', props.className)}
+      >
+        {children}
+      </ButtonGroup>
+    </StylesProvider>
   )
 }
 
@@ -190,7 +196,7 @@ if (__DEV__) {
 export interface ActiveFilterOperatorProps
   extends Omit<MenuProps, 'children'>,
     UseFilterOperatorProps {
-  items?: FilterMenuItem[]
+  items?: FilterItem[]
   buttonProps?: MenuButtonProps
   menuListProps?: MenuDialogListProps
   children?: React.ReactNode
@@ -242,7 +248,9 @@ if (__DEV__) {
 
 export interface ActiveFilterValueProps
   extends ActiveFilterValueOptions,
-    Omit<HTMLChakraProps<'div'>, 'onChange' | 'defaultValue'> {}
+    Omit<HTMLChakraProps<'div'>, 'onChange' | 'defaultValue'> {
+  format?(value: FilterValue): FilterValue
+}
 
 export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
   const {
@@ -250,6 +258,9 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
     onChange,
     value: valueProp,
     defaultValue,
+    format = (value: FilterValue) => {
+      return value?.toString()
+    },
     ...htmlProps
   } = props
 
@@ -281,7 +292,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
       __css={valueStyles}
       className={cx('saas-active-filter__value', props.className)}
     >
-      {value || children}
+      {format(value) || children}
     </chakra.div>
   )
 }
@@ -323,6 +334,7 @@ const ActiveFilterButton = forwardRef<ButtonProps, 'div'>((props, ref) => {
     <Button
       as="div"
       role="button"
+      tabIndex={0}
       {...props}
       fontWeight="normal"
       px="2"
@@ -333,4 +345,44 @@ const ActiveFilterButton = forwardRef<ButtonProps, 'div'>((props, ref) => {
 
 if (__DEV__) {
   ActiveFilterButton.displayName = 'ActiveFilterButton'
+}
+
+export interface ActiveFiltersList extends WrapProps {
+  filters: FilterItem[]
+}
+
+export const ActiveFiltersList = () => {
+  const {
+    activeFilters,
+    getOperators,
+    getFilter,
+    enableFilter,
+    disableFilter,
+  } = useFiltersContext()
+
+  return activeFilters?.length ? (
+    <Wrap px="4" py="2" borderBottomWidth="1px" zIndex="2">
+      {activeFilters?.map((activeFilter, i) => {
+        const { key, id, value, operator } = activeFilter
+        const filter = getFilter(id)
+        const operators = getOperators(filter?.type)
+        return (
+          <WrapItem key={key}>
+            <ActiveFilter
+              id={id}
+              icon={filter?.icon}
+              label={filter?.label}
+              placeholder={filter?.label}
+              defaultValue={value}
+              defaultOperator={operator}
+              items={filter?.items}
+              operators={operators}
+              onChange={(filter) => enableFilter({ key, ...filter })}
+              onRemove={() => disableFilter(key)}
+            />
+          </WrapItem>
+        )
+      })}
+    </Wrap>
+  ) : null
 }
