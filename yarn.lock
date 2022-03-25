@@ -6798,6 +6798,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/auth@npm:0.7.3":
+  version: 0.7.3
+  resolution: "@saas-ui/auth@npm:0.7.3"
+  dependencies:
+    "@saas-ui/button": 0.4.0
+    "@saas-ui/forms": 0.6.2
+    "@saas-ui/hooks": 0.4.0
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    react: ">=16.8.6"
+  checksum: 55d2c1d5a620c238720c0e14813c15d6248259794b23faa1b7cbb306f98a862b42605c468858e32c643191bbbb4fc313356afa319f53a53a620927e023b1e4c3
+  languageName: node
+  linkType: hard
+
 "@saas-ui/banner@npm:0.0.2":
   version: 0.0.2
   resolution: "@saas-ui/banner@npm:0.0.2"
@@ -6945,6 +6960,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/forms@npm:0.6.2":
+  version: 0.6.2
+  resolution: "@saas-ui/forms@npm:0.6.2"
+  dependencies:
+    "@chakra-ui/icons": ^1.1.1
+    "@chakra-ui/react-utils": ^1.2.1
+    "@chakra-ui/utils": ^1.10.4
+    "@hookform/resolvers": ^2.8.3
+    "@saas-ui/button": 0.4.0
+    "@saas-ui/input-right-button": 0.3.1
+    "@saas-ui/number-input": 0.3.0
+    "@saas-ui/password-input": 0.3.1
+    "@saas-ui/pin-input": 0.3.0
+    "@saas-ui/radio": 0.3.0
+    "@saas-ui/react-utils": 0.1.0
+    "@saas-ui/select": 0.4.0
+    react-hook-form: ^7.22.0
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    react: ">=16.8.6"
+  checksum: cdae3a797a8bcbefa20af0035161e77dc6c24a2d04e35cffb8ffa5cab727128a189eeb93027ba8581d2f094f2a804b759785cb8a53046c500b18b45b5170a784
+  languageName: node
+  linkType: hard
+
 "@saas-ui/hooks@npm:0.4.0":
   version: 0.4.0
   resolution: "@saas-ui/hooks@npm:0.4.0"
@@ -7067,6 +7107,21 @@ __metadata:
     "@chakra-ui/system": ">=1.0.0"
     react: ">=16.8.6"
   checksum: 68dff4d8577fdebe650d77112cbf31a521059f9a47cb4b5499e98cbaacf04bf64a60772431619f1e107d227531bec049cd310832af999d2482341d086f49f11c
+  languageName: node
+  linkType: hard
+
+"@saas-ui/modals@npm:0.5.2":
+  version: 0.5.2
+  resolution: "@saas-ui/modals@npm:0.5.2"
+  dependencies:
+    "@saas-ui/button": 0.4.0
+    "@saas-ui/forms": 0.6.2
+    "@saas-ui/menu": 0.5.3
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/system": ">=1.0.0"
+    react: ">=16.8.6"
+  checksum: 05ee604002fbccc4c74caef7a4aec579ec9f282cde2798c6bfd5c609f34f0c1f18a62e7a525286a2d4d4eb6d10a46b68037d4cf4e4801361e776fef21bfe694b
   languageName: node
   linkType: hard
 
@@ -7276,25 +7331,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/react@npm:^0.12.5":
-  version: 0.12.5
-  resolution: "@saas-ui/react@npm:0.12.5"
+"@saas-ui/react@npm:^0.12.6":
+  version: 0.12.6
+  resolution: "@saas-ui/react@npm:0.12.6"
   dependencies:
     "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/auth": 0.7.2
+    "@saas-ui/auth": 0.7.3
     "@saas-ui/banner": 0.0.2
     "@saas-ui/button": 0.4.0
     "@saas-ui/card": 0.4.0
     "@saas-ui/collapse": 0.3.0
     "@saas-ui/data-table": 0.3.3
-    "@saas-ui/forms": 0.6.1
+    "@saas-ui/forms": 0.6.2
     "@saas-ui/hooks": 0.4.0
     "@saas-ui/hotkeys": 0.5.0
     "@saas-ui/input-right-button": 0.3.1
     "@saas-ui/layout": 0.3.3
     "@saas-ui/list": 0.5.0
     "@saas-ui/menu": 0.5.3
-    "@saas-ui/modals": 0.5.1
+    "@saas-ui/modals": 0.5.2
     "@saas-ui/nprogress": 0.4.0
     "@saas-ui/number-input": 0.3.0
     "@saas-ui/palette": 0.5.0
@@ -7316,7 +7371,7 @@ __metadata:
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
-  checksum: 8760b4e09e9265b91c04a3b57a971c387b63755b7b6f356e75ab481ec20d4238c81fe068c55ad0874bd1bfd35cb43e3076214a42c07c88e2d7ddc2da29019a91
+  checksum: 4344402038d68b3eccee5dda4cf4599d9d17517fe69c3e7cf37065ffa09fa356f94fd98302200af7aec451a386a869c6188927dae50878a9fffd3a3b202c7364
   languageName: node
   linkType: hard
 
@@ -16105,7 +16160,7 @@ __metadata:
     "@saas-ui/next-workspaces": ^0.1.1
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.12.5
+    "@saas-ui/react": ^0.12.6
     "@types/node": ^14.14.31
     "@types/react": ^17.0.38
     "@ui/core": "workspace:*"
@@ -23144,7 +23199,7 @@ __metadata:
     "@saas-ui/next-workspaces": ^0.1.1
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.12.5
+    "@saas-ui/react": ^0.12.6
     "@svgr/webpack": 5.5.0
     "@ui/core": "workspace:*"
     "@ui/theme": "workspace:*"
