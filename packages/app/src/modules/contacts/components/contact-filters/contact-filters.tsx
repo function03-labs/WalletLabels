@@ -4,10 +4,43 @@ import { FiCircle, FiUser, FiFilter } from 'react-icons/fi'
 
 import { Badge, useDisclosure } from '@chakra-ui/react'
 
-import { Filter, FilterMenu, FilterMenuProps } from '@saas-ui/pro'
+import {
+  FilterItem,
+  FilterMenu,
+  FilterMenuProps,
+  useFiltersContext,
+} from '@saas-ui/pro'
 import { useHotkeysShortcut } from '@saas-ui/react'
 
-export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'filters'>> = (
+export const filters: FilterItem[] = [
+  {
+    id: 'status',
+    label: 'Status',
+    icon: <FiCircle />,
+    type: 'enum',
+    items: [
+      {
+        id: 'new',
+        label: 'New',
+        icon: <Badge boxSize="8px" borderRadius="full" bg="blue.400" />,
+      },
+      {
+        id: 'active',
+        label: 'Active',
+        icon: <Badge boxSize="8px" borderRadius="full" bg="green.400" />,
+      },
+    ],
+  },
+  {
+    id: 'type',
+    label: 'Is lead',
+    icon: <FiUser />,
+    type: 'enum',
+    value: 'lead',
+  },
+]
+
+export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'items'>> = (
   props,
 ) => {
   const disclosure = useDisclosure()
@@ -18,38 +51,20 @@ export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'filters'>> = (
 
   const menuRef = React.useRef<HTMLButtonElement>(null)
 
-  const filters: Filter[] = [
-    {
-      id: 'status',
-      label: 'Status',
-      type: 'array',
-      icon: <FiCircle />,
-      items: [
-        {
-          id: 'new',
-          label: 'New',
-          icon: <Badge boxSize="8px" borderRadius="full" bg="blue.400" />,
-        },
-        {
-          id: 'active',
-          label: 'Active',
-          icon: <Badge boxSize="8px" borderRadius="full" bg="green.400" />,
-        },
-      ],
-    },
-    {
-      id: 'lead',
-      label: 'Is lead',
-      type: 'boolean',
-      icon: <FiUser />,
-    },
-  ]
+  const { enableFilter } = useFiltersContext()
+
+  const onSelect = ({ id, value }: FilterItem) => {
+    enableFilter({ id, value, operator: 'is' }) // @todo make operator dynamic
+  }
+
   return (
     <FilterMenu
-      filters={filters}
+      items={filters}
       icon={<FiFilter />}
       ref={menuRef}
       command={filterCommand}
+      buttonProps={{ variant: 'outline' }}
+      onSelect={onSelect}
       {...disclosure}
       {...props}
     />

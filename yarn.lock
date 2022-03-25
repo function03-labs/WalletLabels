@@ -6665,6 +6665,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-hookz/deep-equal@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@react-hookz/deep-equal@npm:1.0.1"
+  checksum: 23394b28357b87650aed9fbc425d53824acd64ee3c8c5800273271410c93fe51712c6935c1f632c0c53eeb5f8afd813d544713ba4cda86b2681b18dad3d31d2a
+  languageName: node
+  linkType: hard
+
+"@react-hookz/web@npm:^13.1.0":
+  version: 13.1.0
+  resolution: "@react-hookz/web@npm:13.1.0"
+  dependencies:
+    "@react-hookz/deep-equal": ^1.0.1
+  peerDependencies:
+    js-cookie: ^3.0.1
+    react: ^16.8 || ^17 || ^18
+    react-dom: ^16.8 || ^17 || ^18
+  peerDependenciesMeta:
+    js-cookie:
+      optional: true
+  checksum: d9d07cafd52fab1f1462348f77b0fd6300b54f4640d645448a530c5753f35922a9de62bcd93e7d7567888757f848ad2783997b980131cfe9923a2c5f57b8ade2
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-alias@npm:^3.1.1":
   version: 3.1.8
   resolution: "@rollup/plugin-alias@npm:3.1.8"
@@ -7143,6 +7166,8 @@ __metadata:
 "@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:saas-ui/pro":
   version: 0.0.0-use.local
   resolution: "@saas-ui/pro@workspace:saas-ui/pro"
+  dependencies:
+    "@react-hookz/web": ^13.1.0
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@saas-ui/react": ">=0.12.0"

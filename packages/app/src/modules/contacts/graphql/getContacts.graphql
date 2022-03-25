@@ -5,5 +5,7 @@ query GetContacts {
     lastName
     fullName
     email
+    status
+    type
   }
 }

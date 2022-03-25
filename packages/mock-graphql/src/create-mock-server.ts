@@ -67,6 +67,8 @@ export const createMockServer = (context: MockContext) => {
       lastName,
       fullName: [firstName, lastName].join(' '),
       email,
+      status: 'new',
+      type: 'lead',
     }
   }
 

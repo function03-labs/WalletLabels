@@ -27,7 +27,7 @@ import {
 } from '@saas-ui/pro'
 import { ListPage } from '@modules/core/components/list-page'
 
-import { AddFilterButton } from '../components/contact-filters'
+import { filters, AddFilterButton } from '../components/contact-filters'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
@@ -48,6 +48,24 @@ const StatusCell = (cell: any) => {
       return (
         <Tag colorScheme="blue" size="sm">
           New
+        </Tag>
+      )
+  }
+}
+
+const TypeCell = (cell: any) => {
+  switch (cell.status) {
+    case 'contact':
+      return (
+        <Tag colorScheme="yellow" size="sm" variant="outline">
+          Contact
+        </Tag>
+      )
+    case 'lead':
+    default:
+      return (
+        <Tag colorScheme="purple" size="sm" variant="outline">
+          Lead
         </Tag>
       )
   }
@@ -76,7 +94,7 @@ export function ContactsListPage() {
   const modals = useModals()
 
   const { data, isLoading } = useGetContactsQuery()
-
+  console.log(data)
   const mutation = useCreateContactMutation()
 
   const addPerson = () => {
@@ -94,17 +112,9 @@ export function ContactsListPage() {
 
   const addCommand = useHotkeysShortcut('contacts.add', addPerson)
 
-  const [activeFilters, setFilters] = React.useState<Filter[]>([])
-
-  const onFilterSelect = (filter: Filter) => {
-    setFilters(activeFilters.concat([filter]))
-  }
-
-  const addFilterBtn = <AddFilterButton onSelect={onFilterSelect} />
-
   const toolbar = (
     <Toolbar>
-      {!activeFilters.length && addFilterBtn}
+      <AddFilterButton />
       <Spacer />
       <ToolbarButton icon={<FiUploadCloud />} label="Import data" />
       <ToolbarButton
@@ -142,11 +152,18 @@ export function ContactsListPage() {
       Header: 'Email',
     },
     {
+      id: 'type',
+      Header: 'Type',
+      Cell: TypeCell,
+      width: '50px',
+      filter: 'equals',
+    },
+    {
       id: 'status',
       Header: 'Status',
       Cell: StatusCell,
-      width: '1%',
-      disableSortBy: true,
+      width: 50,
+      filter: 'equals',
     },
     {
       id: 'action',
@@ -179,6 +196,7 @@ export function ContactsListPage() {
       title="Contacts"
       toolbar={toolbar}
       bulkActions={bulkActions}
+      filters={filters}
       emptyState={emptyState}
       columns={columns}
       data={data?.contacts as Contact[]}

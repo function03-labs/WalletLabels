@@ -7,17 +7,27 @@ import { EmptyState } from '@saas-ui/react'
 import {
   Page,
   PageProps,
+  PageBody,
   DataGrid,
   DataGridProps,
+  DataGridPagination,
   TableInstance,
   BulkActions,
   Row,
+  ActiveFiltersList,
+  Filter,
+  FilterItem,
+  FilterOperators,
+  FiltersProvider,
 } from '@saas-ui/pro'
-import { IdType } from 'react-table'
+
+import { Filters, IdType } from 'react-table'
 
 interface ListPageProps<D extends object> extends PageProps, DataGridProps<D> {
   emptyState: React.ReactNode
   bulkActions?: React.ReactNode
+  filters?: FilterItem[]
+  operators?: FilterOperators
 }
 
 /**
@@ -35,6 +45,8 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     isLoading,
     onSelectedRowsChange,
     bulkActions,
+    filters,
+    operators,
     initialState = {
       pageSize: 20,
     },
@@ -53,6 +65,10 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     const link: HTMLAnchorElement | null = e.currentTarget.querySelector('td a')
     link?.click()
   }
+
+  const onFilter = React.useCallback((filters: Filter[]) => {
+    gridRef.current?.setAllFilters(filters as Filters<D>)
+  }, [])
 
   const gridRef = React.useRef<TableInstance<D>>(null)
 
@@ -73,8 +89,9 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         onSelectedRowsChange={_onSelectedRowsChange}
         onRowClick={onRowClick}
         initialState={initialState}
-        sx={{ cursor: 'pointer' }}
-      />
+      >
+        <DataGridPagination />
+      </DataGrid>
     )
   }
 
@@ -88,40 +105,47 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   }
 
   return (
-    <Page
-      title={title}
-      toolbar={toolbar}
-      isLoading={isLoading}
-      fullWidth
-      position="relative"
-      sx={{
-        '& thead th': {
-          ...stickyStyles,
-          top: 0,
-          borderWidth: 0,
-        },
-        '& thead tr': {
-          position: 'sticky',
-          top: 0,
-          zIndex: 1,
-          boxShadow: useColorModeValue(
-            '0 1px 2px 0 rgba(0, 0, 0, 0.08)',
-            '0 1px 2px 0 rgba(255, 255, 255, 0.08)',
-          ),
-        },
-        '& .saas-data-grid__pagination': {
-          ...stickyStyles,
-          bottom: 0,
-          borderTopWidth: '1px',
-        },
-        '& tbody tr:last-of-type td': {
-          borderBottomWidth: 0,
-        },
-      }}
-      {...rest}
+    <FiltersProvider
+      filters={filters}
+      operators={operators}
+      onChange={onFilter}
     >
-      <BulkActions selections={selections} actions={bulkActions} />
-      {content}
-    </Page>
+      <Page
+        title={title}
+        toolbar={toolbar}
+        isLoading={isLoading}
+        fullWidth
+        position="relative"
+        sx={{
+          '& thead th': {
+            ...stickyStyles,
+            top: 0,
+            borderWidth: 0,
+          },
+          '& thead tr': {
+            position: 'sticky',
+            top: 0,
+            zIndex: 1,
+            boxShadow: useColorModeValue(
+              '0 1px 2px 0 rgba(0, 0, 0, 0.08)',
+              '0 1px 2px 0 rgba(255, 255, 255, 0.08)',
+            ),
+          },
+          '& .saas-data-grid__pagination': {
+            ...stickyStyles,
+            bottom: 0,
+            borderTopWidth: '1px',
+          },
+          '& tbody tr:last-of-type td': {
+            borderBottomWidth: 0,
+          },
+        }}
+        {...rest}
+      >
+        <BulkActions selections={selections} actions={bulkActions} />
+        <ActiveFiltersList />
+        <PageBody fullWidth>{content}</PageBody>
+      </Page>
+    </FiltersProvider>
   )
 }

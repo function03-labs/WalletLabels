@@ -91,6 +91,8 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     fullName: String
+    status: String
+    type: String
   }
 `
 
