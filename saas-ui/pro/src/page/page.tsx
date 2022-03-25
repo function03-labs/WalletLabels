@@ -9,10 +9,11 @@ import {
   useStyles,
   useMultiStyleConfig,
   SystemProps,
-} from '@chakra-ui/react'
-
+} from '@chakra-ui/system'
+import { cx, __DEV__ } from '@chakra-ui/utils'
 import { ErrorBoundary } from '@saas-ui/pro'
 import { Loader } from '@saas-ui/react'
+import { getChildOfType } from '@saas-ui/react-utils'
 
 import { ErrorPage } from './error-page'
 
@@ -38,9 +39,17 @@ export const PageTitle: React.FC<HTMLChakraProps<'div'>> = (props) => {
   return <chakra.div __css={styles.title} as="h2" {...props} />
 }
 
+if (__DEV__) {
+  PageTitle.displayName = 'PageTitle'
+}
+
 export const PageDescription: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const styles = useStyles()
   return <chakra.div __css={styles.description} {...props} />
+}
+
+if (__DEV__) {
+  PageDescription.displayName = 'PageDescription'
 }
 
 export const PageHeader: React.FC<HTMLChakraProps<'header'>> = (props) => {
@@ -49,10 +58,18 @@ export const PageHeader: React.FC<HTMLChakraProps<'header'>> = (props) => {
   const styles = useStyles()
 
   return (
-    <chakra.header __css={styles.headerContainer} {...rest}>
+    <chakra.header
+      __css={styles.headerContainer}
+      {...rest}
+      className={cx('saas-page__header', props.className)}
+    >
       <chakra.div __css={styles.header}>{children}</chakra.div>
     </chakra.header>
   )
+}
+
+if (__DEV__) {
+  PageHeader.displayName = 'PageHeader'
 }
 
 interface PageBodyProps extends HTMLChakraProps<'div'> {
@@ -71,10 +88,17 @@ export const PageBody: React.FC<PageBodyProps> = (props) => {
   const styles = useStyles()
 
   return (
-    <chakra.div __css={styles.body}>
+    <chakra.div
+      __css={styles.body}
+      className={cx('saas-page__body', props.className)}
+    >
       <chakra.div maxW={innerWidth}>{children}</chakra.div>
     </chakra.div>
   )
+}
+
+if (__DEV__) {
+  PageBody.displayName = 'PageBody'
 }
 
 interface PageContainerProps
@@ -90,11 +114,19 @@ export const PageContainer: React.FC<PageContainerProps> = (props) => {
 
   return (
     <StylesProvider value={styles}>
-      <chakra.main {...containerProps} __css={styles.container}>
+      <chakra.main
+        {...containerProps}
+        __css={styles.container}
+        className={cx('saas-page', props.className)}
+      >
         {children}
       </chakra.main>
     </StylesProvider>
   )
+}
+
+if (__DEV__) {
+  PageContainer.displayName = 'PageContainer'
 }
 
 export interface PageProps
@@ -124,6 +156,16 @@ export const Page: React.FC<PageProps> = (props) => {
     content = children
   }
 
+  const bodyComponent = getChildOfType(content, PageBody)
+
+  if (!bodyComponent) {
+    content = (
+      <PageBody fullWidth={fullWidth} contentWidth={contentWidth}>
+        {content}
+      </PageBody>
+    )
+  }
+
   return (
     <ErrorBoundary
       errorComponent={
@@ -149,10 +191,13 @@ export const Page: React.FC<PageProps> = (props) => {
           {toolbar}
           {tabbar}
         </PageHeader>
-        <PageBody fullWidth={fullWidth} contentWidth={contentWidth}>
-          {content}
-        </PageBody>
+
+        {content}
       </PageContainer>
     </ErrorBoundary>
   )
+}
+
+if (__DEV__) {
+  Page.displayName = 'Page'
 }
