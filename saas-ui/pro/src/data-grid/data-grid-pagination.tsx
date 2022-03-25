@@ -8,7 +8,10 @@ import { ButtonGroup, FormControl, FormLabel, Input } from '@chakra-ui/react'
 
 export const DataGridPagination: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const { className, ...rest } = props
-  const instance = useDataGridContext()
+  const {
+    instance,
+    state: { pageIndex },
+  } = useDataGridContext()
 
   const styles = useMultiStyleConfig('DataGridPagination', props)
 
@@ -21,7 +24,6 @@ export const DataGridPagination: React.FC<HTMLChakraProps<'div'>> = (props) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
   } = instance
 
   const containerStyles = {
