@@ -1,5 +1,20 @@
 # @saas-ui/pro
 
+## 0.3.0
+
+### Minor Changes
+
+- 7abed42: BREAKING: Removed billing, charts and onboarding packages from core.
+
+### Patch Changes
+
+- 3b8a68a: Added filters plugin to DataGrid
+- 197c626: Added new ActiveFilter component.
+- 1103d79: Added new default-border-color semantic token.
+- 44c5397: New FiltersProvider and ActiveFiltersList components
+- 93f54b6: Removed hover style from MenuListFilter input.
+- 3b8a68a: DataGridPagination no longer included by default.
+
 ## 0.2.6
 
 ### Patch Changes
