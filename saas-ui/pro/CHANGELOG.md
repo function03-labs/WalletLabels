@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.3.1
+
+### Patch Changes
+
+- c516bcb: Added new onSortChange callback to DataGrid to enable remote sorting.
+- c516bcb: Disabled user select on DataGrid headers.
+
 ## 0.3.0
 
 ### Minor Changes
