@@ -23,7 +23,16 @@ import {
 
 import { Filters, IdType } from 'react-table'
 
-interface ListPageProps<D extends object> extends PageProps, DataGridProps<D> {
+interface ListPageProps<D extends object>
+  extends PageProps,
+    Pick<
+      DataGridProps<D>,
+      | 'columns'
+      | 'data'
+      | 'onSelectedRowsChange'
+      | 'onSortChange'
+      | 'initialState'
+    > {
   emptyState: React.ReactNode
   bulkActions?: React.ReactNode
   filters?: FilterItem[]
@@ -44,6 +53,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     data = [],
     isLoading,
     onSelectedRowsChange,
+    onSortChange,
     bulkActions,
     filters,
     operators,
@@ -89,6 +99,8 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         onSelectedRowsChange={_onSelectedRowsChange}
         onRowClick={onRowClick}
         initialState={initialState}
+        onSortChange={onSortChange}
+        manualSortBy={!!onSortChange}
       >
         <DataGridPagination />
       </DataGrid>

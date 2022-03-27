@@ -14,6 +14,7 @@ import {
   IdType,
   Row,
   PluginHook,
+  SortingRule,
 } from 'react-table'
 import {
   chakra,
@@ -87,9 +88,13 @@ export interface DataGridProps<Data extends object> extends TableOptions<Data> {
   isHoverable?: boolean
   /**
    * Triggers whenever the row selection changes.
-   * @returns {string[]}
    */
   onSelectedRowsChange?: (rows: IdType<Data>[]) => void
+  /**
+   * Triggers when sort changed.
+   * Use incombination with `manualSortBy` to enable remote sorting.
+   */
+  onSortChange?: (columns: SortingRule<Data>[]) => void
   /**
    * Callback fired when a row is clicked.
    */
@@ -125,6 +130,7 @@ export const DataGrid = React.forwardRef(
       isSelectable,
       isHoverable,
       onSelectedRowsChange,
+      onSortChange,
       onRowClick,
       pageCount,
       plugins = [],
@@ -189,6 +195,10 @@ export const DataGrid = React.forwardRef(
       onSelectedRowsChange?.(Object.keys(state.selectedRowIds))
     }, [onSelectedRowsChange, state.selectedRowIds])
 
+    React.useEffect(() => {
+      onSortChange?.(state.sortBy)
+    }, [onSortChange, state.sortBy])
+
     return (
       <DataGridProvider<Data> instance={instance}>
         <chakra.div className="saas-data-grid">
@@ -201,7 +211,7 @@ export const DataGrid = React.forwardRef(
           >
             <Thead>
               {headerGroups.map((headerGroup) => (
-                <Tr {...headerGroup.getHeaderGroupProps()}>
+                <Tr {...headerGroup.getHeaderGroupProps()} userSelect="none">
                   {headerGroup.headers.map((column) => (
                     <DataGridHeader
                       key={column.id}
