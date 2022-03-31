@@ -19,6 +19,8 @@ module.exports = {
     '@storybook/addon-storysource',
     '@storybook/addon-viewport',
     '@storybook/addon-docs',
+    '@storybook/addon-controls',
+    '@storybook/addon-links',
   ],
   staticDirs: ['./static'],
   typescript: {

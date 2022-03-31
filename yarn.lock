@@ -7575,7 +7575,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-actions@npm:^6.4.19":
+"@storybook/addon-actions@npm:6.4.19":
   version: 6.4.19
   resolution: "@storybook/addon-actions@npm:6.4.19"
   dependencies:
@@ -7638,6 +7638,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-backgrounds@npm:6.4.19":
+  version: 6.4.19
+  resolution: "@storybook/addon-backgrounds@npm:6.4.19"
+  dependencies:
+    "@storybook/addons": 6.4.19
+    "@storybook/api": 6.4.19
+    "@storybook/client-logger": 6.4.19
+    "@storybook/components": 6.4.19
+    "@storybook/core-events": 6.4.19
+    "@storybook/csf": 0.0.2--canary.87bc651.0
+    "@storybook/theming": 6.4.19
+    core-js: ^3.8.2
+    global: ^4.4.0
+    memoizerific: ^1.11.3
+    regenerator-runtime: ^0.13.7
+    ts-dedent: ^2.0.0
+    util-deprecate: ^1.0.2
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 338d844b185ab4e9bf099d39e8e6c077e3804db1eea5651c73717ece1320926e89eec178075437bf2385e255e2e47af7872671cc2fd0bbcd8e212f6169a5f91d
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-controls@npm:6.4.10":
   version: 6.4.10
   resolution: "@storybook/addon-controls@npm:6.4.10"
@@ -7663,6 +7692,34 @@ __metadata:
     react-dom:
       optional: true
   checksum: 2db0ab09323363e98ba107815d1af5001c375c0d0bee3560b1dddc6e7d6546ac1d14d9efff45244619cc44e00938f7a759740d7821965f72d5b035912f5bf761
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-controls@npm:6.4.19":
+  version: 6.4.19
+  resolution: "@storybook/addon-controls@npm:6.4.19"
+  dependencies:
+    "@storybook/addons": 6.4.19
+    "@storybook/api": 6.4.19
+    "@storybook/client-logger": 6.4.19
+    "@storybook/components": 6.4.19
+    "@storybook/core-common": 6.4.19
+    "@storybook/csf": 0.0.2--canary.87bc651.0
+    "@storybook/node-logger": 6.4.19
+    "@storybook/store": 6.4.19
+    "@storybook/theming": 6.4.19
+    core-js: ^3.8.2
+    lodash: ^4.17.21
+    ts-dedent: ^2.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 352c2bc79796b82c9122cfd9d9985dd53bf7b13aad6e5e899fbe0f5078c0e1a8d2ad6d37138b7599aa4e0c649987d6f295ddd20c184adda0b329157bb69587a6
   languageName: node
   linkType: hard
 
@@ -7764,7 +7821,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-docs@npm:^6.4.19":
+"@storybook/addon-docs@npm:6.4.19":
   version: 6.4.19
   resolution: "@storybook/addon-docs@npm:6.4.19"
   dependencies:
@@ -7862,6 +7919,50 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-essentials@npm:^6.4.19":
+  version: 6.4.19
+  resolution: "@storybook/addon-essentials@npm:6.4.19"
+  dependencies:
+    "@storybook/addon-actions": 6.4.19
+    "@storybook/addon-backgrounds": 6.4.19
+    "@storybook/addon-controls": 6.4.19
+    "@storybook/addon-docs": 6.4.19
+    "@storybook/addon-measure": 6.4.19
+    "@storybook/addon-outline": 6.4.19
+    "@storybook/addon-toolbars": 6.4.19
+    "@storybook/addon-viewport": 6.4.19
+    "@storybook/addons": 6.4.19
+    "@storybook/api": 6.4.19
+    "@storybook/node-logger": 6.4.19
+    core-js: ^3.8.2
+    regenerator-runtime: ^0.13.7
+    ts-dedent: ^2.0.0
+  peerDependencies:
+    "@babel/core": ^7.9.6
+    "@storybook/vue": 6.4.19
+    "@storybook/web-components": 6.4.19
+    babel-loader: ^8.0.0
+    lit-html: ^1.4.1 || ^2.0.0-rc.3
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+    webpack: "*"
+  peerDependenciesMeta:
+    "@storybook/vue":
+      optional: true
+    "@storybook/web-components":
+      optional: true
+    lit-html:
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+    webpack:
+      optional: true
+  checksum: ad5b41e82ccbc564230ace6c17c1d7f9f8056d9846f123379b0a42d70c6ed5e7fa3ff57fee7aaaa65557dad59e90573faacf5a08d9a64ac4fd10772dcba5be2b
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-essentials@npm:^6.4.9":
   version: 6.4.10
   resolution: "@storybook/addon-essentials@npm:6.4.10"
@@ -7903,34 +8004,6 @@ __metadata:
     webpack:
       optional: true
   checksum: f4064f783a24c2ef60f69a2bbfc14b08ff1dccbe5018fc6478c413f64fcb58b8fd4c39d85b54764a1df304f78164d8b0a6db67697fcd90fb3fc64bed9bba003a
-  languageName: node
-  linkType: hard
-
-"@storybook/addon-links@npm:^6.4.19":
-  version: 6.4.19
-  resolution: "@storybook/addon-links@npm:6.4.19"
-  dependencies:
-    "@storybook/addons": 6.4.19
-    "@storybook/client-logger": 6.4.19
-    "@storybook/core-events": 6.4.19
-    "@storybook/csf": 0.0.2--canary.87bc651.0
-    "@storybook/router": 6.4.19
-    "@types/qs": ^6.9.5
-    core-js: ^3.8.2
-    global: ^4.4.0
-    prop-types: ^15.7.2
-    qs: ^6.10.0
-    regenerator-runtime: ^0.13.7
-    ts-dedent: ^2.0.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-dom:
-      optional: true
-  checksum: 1327c8722c0b5f67ab8a8d6dac532134adf94d5ab9e227bd7262483d37d5eb3953cdcbc287d251615536700c9e60d0ce71475de772467f27fe37d42af5a8c024
   languageName: node
   linkType: hard
 
@@ -7986,6 +8059,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-measure@npm:6.4.19":
+  version: 6.4.19
+  resolution: "@storybook/addon-measure@npm:6.4.19"
+  dependencies:
+    "@storybook/addons": 6.4.19
+    "@storybook/api": 6.4.19
+    "@storybook/client-logger": 6.4.19
+    "@storybook/components": 6.4.19
+    "@storybook/core-events": 6.4.19
+    "@storybook/csf": 0.0.2--canary.87bc651.0
+    core-js: ^3.8.2
+    global: ^4.4.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: bc9ff0cdc54d085027b02a2c1894c22900db6ddbe79b6e5d01de82ae0605fe95dca6a9bb2a100853fea242c473db47f8b2eb1e8daae55157a4383a64840358f4
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-outline@npm:6.4.10":
   version: 6.4.10
   resolution: "@storybook/addon-outline@npm:6.4.10"
@@ -8009,6 +8106,32 @@ __metadata:
     react-dom:
       optional: true
   checksum: 2f827566ff8b14a5b58b25a7665abe3bbdf55e4d48f01eef0960a037c5ef0905d6656afd38b368d1560ea21e5ab6761c446c55ae9bf0bd9f4e9c8f2f8e223c8a
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-outline@npm:6.4.19":
+  version: 6.4.19
+  resolution: "@storybook/addon-outline@npm:6.4.19"
+  dependencies:
+    "@storybook/addons": 6.4.19
+    "@storybook/api": 6.4.19
+    "@storybook/client-logger": 6.4.19
+    "@storybook/components": 6.4.19
+    "@storybook/core-events": 6.4.19
+    "@storybook/csf": 0.0.2--canary.87bc651.0
+    core-js: ^3.8.2
+    global: ^4.4.0
+    regenerator-runtime: ^0.13.7
+    ts-dedent: ^2.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: c8f6fcae9ca03717b1b767a7504c49cf9a0c5ae81d5489e960544fc1a986eeac4e183cceecbb5e6200aeec2e39b3821caf8e5ec64acda381dd6ffb1b8e41dd09
   languageName: node
   linkType: hard
 
@@ -8064,6 +8187,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-toolbars@npm:6.4.19":
+  version: 6.4.19
+  resolution: "@storybook/addon-toolbars@npm:6.4.19"
+  dependencies:
+    "@storybook/addons": 6.4.19
+    "@storybook/api": 6.4.19
+    "@storybook/components": 6.4.19
+    "@storybook/theming": 6.4.19
+    core-js: ^3.8.2
+    regenerator-runtime: ^0.13.7
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 32e8e1ff57c55a5db57efc3703331dc11472abd86c8cfac28c622465ea3f76bf819c80623f10166d034cf9e1db71cdf1db4d069a4cec6124f60514a8c712d210
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-viewport@npm:6.4.10":
   version: 6.4.10
   resolution: "@storybook/addon-viewport@npm:6.4.10"
@@ -8091,7 +8236,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-viewport@npm:^6.4.19":
+"@storybook/addon-viewport@npm:6.4.19":
   version: 6.4.19
   resolution: "@storybook/addon-viewport@npm:6.4.19"
   dependencies:
@@ -27129,11 +27274,8 @@ __metadata:
   dependencies:
     "@fontsource/inter": ^4.2.2
     "@storybook/addon-a11y": ^6.4.19
-    "@storybook/addon-actions": ^6.4.19
-    "@storybook/addon-docs": ^6.4.19
-    "@storybook/addon-links": ^6.4.19
+    "@storybook/addon-essentials": ^6.4.19
     "@storybook/addon-storysource": ^6.4.19
-    "@storybook/addon-viewport": ^6.4.19
     "@storybook/builder-webpack5": ^6.4.19
     "@storybook/cli": ^6.4.19
     "@storybook/manager-webpack5": ^6.4.19
