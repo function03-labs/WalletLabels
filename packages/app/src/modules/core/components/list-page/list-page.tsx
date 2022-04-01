@@ -77,7 +77,18 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   }
 
   const onFilter = React.useCallback((filters: Filter[]) => {
-    gridRef.current?.setAllFilters(filters as Filters<D>)
+    gridRef.current?.setAllFilters(
+      filters.map((filter) => {
+        return {
+          id: filter.id,
+          operator: filter.operator,
+          value: {
+            value: filter.value,
+            operator: filter.operator,
+          },
+        }
+      }) as Filters<D>,
+    )
   }, [])
 
   const gridRef = React.useRef<TableInstance<D>>(null)

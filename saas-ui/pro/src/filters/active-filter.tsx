@@ -43,7 +43,8 @@ import {
   UseFilterOperatorProps,
 } from './use-active-filter'
 
-import { useFiltersContext, FilterOperators, FilterOperator } from './provider'
+import { useFiltersContext } from './provider'
+import { FilterOperators, FilterOperatorId } from './operators'
 
 export interface ActiveFilterProps
   extends Omit<HTMLChakraProps<'div'>, 'onChange' | 'defaultValue'> {
@@ -54,11 +55,11 @@ export interface ActiveFilterProps
   defaultValue?: FilterValue
   items?: FilterItem[]
   operators?: FilterOperators
-  operator?: FilterOperator
-  defaultOperator?: FilterOperator
+  operator?: FilterOperatorId
+  defaultOperator?: FilterOperatorId
   onRemove?(): void
   onChange?(filter: Filter): void
-  onOperatorChange?(id: FilterOperator): void
+  onOperatorChange?(id: FilterOperatorId): void
   onValueChange?(id: FilterValue): void
 }
 

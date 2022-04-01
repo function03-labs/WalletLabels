@@ -24,10 +24,13 @@ import {
   Toolbar,
   ToolbarButton,
   useTenant,
+  useDataGridFilter,
 } from '@saas-ui/pro'
 import { ListPage } from '@modules/core/components/list-page'
 
 import { filters, AddFilterButton } from '../components/contact-filters'
+
+import { FilterTypes } from 'react-table'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
@@ -156,14 +159,14 @@ export function ContactsListPage() {
       Header: 'Type',
       Cell: TypeCell,
       width: '50px',
-      filter: 'equals',
+      filter: useDataGridFilter('string'),
     },
     {
       id: 'status',
       Header: 'Status',
       Cell: StatusCell,
       width: 50,
-      filter: 'equals',
+      filter: useDataGridFilter('string'),
     },
     {
       id: 'action',
