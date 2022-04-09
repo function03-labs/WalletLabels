@@ -21,7 +21,7 @@
     "@saas-ui/next-workspaces": "^0.1.1",
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": "^0.12.6",
+    "@saas-ui/react": "^0.12.7",
     "@ui/core": "workspace:*",
     "@ui/theme": "workspace:*",
     "app": "workspace:*",
