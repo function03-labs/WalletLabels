@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import {
-  chakra,
   StylesProvider,
   HTMLChakraProps,
   ThemingProps,
@@ -20,10 +19,9 @@ export interface AppShellProps
   sidebar?: React.ReactNode
   hideSidebar?: boolean
   footer?: React.ReactNode
-  children: React.ReactNode
 }
 
-export function AppShell(props: AppShellProps) {
+export const AppShell: React.FC<AppShellProps> = (props: AppShellProps) => {
   const styles = useMultiStyleConfig('AppShell', props)
 
   const { navbar, sidebar, hideSidebar, footer, children, ...containerProps } =
@@ -36,6 +34,7 @@ export function AppShell(props: AppShellProps) {
 
   const innerStyles = {
     flex: 1,
+    minHeight: 0, // make sure child flex divs get correct height.
     ...styles.inner,
   }
 
@@ -53,12 +52,18 @@ export function AppShell(props: AppShellProps) {
         className={cx('saas-app-shell', props.className)}
       >
         {navbar}
-        <Flex sx={innerStyles}>
+        <Flex sx={innerStyles} className="saas-app-shell__inner">
           {sidebar && !hideSidebar && sidebar}
-          <Flex sx={mainStyles}>{children}</Flex>
+          <Flex sx={mainStyles} className="saas-app-shell__main">
+            {children}
+          </Flex>
         </Flex>
         {footer}
       </Flex>
     </StylesProvider>
   )
+}
+
+if (__DEV__) {
+  AppShell.displayName = 'AppShell'
 }
