@@ -1,5 +1,5 @@
 import * as React from 'react'
-
+import { cx, __DEV__ } from '@chakra-ui/utils'
 import { chakra, HTMLChakraProps } from '@chakra-ui/system'
 
 export const ResizeHandle: React.FC<HTMLChakraProps<'div'>> = (props) => {
@@ -12,5 +12,15 @@ export const ResizeHandle: React.FC<HTMLChakraProps<'div'>> = (props) => {
     right: '-5px',
     cursor: 'col-resize',
   }
-  return <chakra.div {...props} __css={styles} />
+  return (
+    <chakra.div
+      {...props}
+      __css={styles}
+      className={cx('saas-resize-handle', props.className)}
+    />
+  )
+}
+
+if (__DEV__) {
+  ResizeHandle.displayName = 'ResizeHandle'
 }
