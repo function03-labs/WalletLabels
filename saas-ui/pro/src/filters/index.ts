@@ -3,5 +3,6 @@ export * from './active-filter'
 export * from './use-active-filter'
 export * from './provider'
 export * from './use-data-grid-filter'
+export * from './no-filtered-results'
 
 export type { FilterOperators, FilterType } from './operators'

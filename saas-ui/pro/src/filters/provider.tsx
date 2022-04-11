@@ -37,14 +37,14 @@ export interface FiltersProviderProps {
 export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   const { children, filters, operators = defaultOperators, onChange } = props
 
-  const map = useMap<string, Filter>([])
+  const activeFilterMap = useMap<string, Filter>([])
 
   const getFilter = (id: string) => {
     return filters?.find((filter) => filter.id === id)
   }
 
   const getActiveFilters = (): ActiveFilter[] =>
-    [...map].map(([key, filter]) => ({
+    [...activeFilterMap].map(([key, filter]) => ({
       key,
       ...filter,
     }))
@@ -54,20 +54,20 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   }
 
   const enableFilter = (filter: ActiveFilter) => {
-    const key = filter.key || `${filter.id}-${map.size}`
-    map.set(key, filter)
+    const key = filter.key || `${filter.id}-${activeFilterMap.size}`
+    activeFilterMap.set(key, filter)
 
     onChange?.(getActiveFilters())
   }
 
   const disableFilter = (key: string) => {
-    map.delete(key)
+    activeFilterMap.delete(key)
 
     onChange?.(getActiveFilters())
   }
 
   const reset = () => {
-    map.clear()
+    activeFilterMap.clear()
     onChange?.([])
   }
 

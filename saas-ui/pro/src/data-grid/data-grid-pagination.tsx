@@ -52,6 +52,7 @@ export const DataGridPagination: React.FC<HTMLChakraProps<'div'>> = (props) => {
           onFocus={(e) => e.target.select()}
           w="20"
           size="sm"
+          isDisabled={pageCount === 0}
         />
         <chakra.span ms="2"> of {pageCount}</chakra.span>
       </FormControl>

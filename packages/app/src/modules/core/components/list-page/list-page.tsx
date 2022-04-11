@@ -19,6 +19,7 @@ import {
   FilterItem,
   FilterOperators,
   FiltersProvider,
+  NoFilteredResults,
 } from '@saas-ui/pro'
 
 import { Filters, IdType } from 'react-table'
@@ -111,7 +112,9 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         onRowClick={onRowClick}
         initialState={initialState}
         onSortChange={onSortChange}
+        noResults={NoFilteredResults}
         manualSortBy={!!onSortChange}
+        autoResetFilters={false}
       >
         <DataGridPagination />
       </DataGrid>
@@ -158,6 +161,12 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
             ...stickyStyles,
             bottom: 0,
             borderTopWidth: '1px',
+          },
+          '& tbody tr': {
+            cursor: 'pointer',
+          },
+          '& tbody tr a:hover': {
+            textDecoration: 'none',
           },
           '& tbody tr:last-of-type td': {
             borderBottomWidth: 0,

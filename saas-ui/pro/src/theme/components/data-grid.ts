@@ -7,6 +7,8 @@ import type {
 } from '@chakra-ui/theme-tools'
 
 const parts = anatomy('data-grid').parts(
+  'container',
+  'inner',
   'table',
   'thead',
   'tbody',
@@ -24,6 +26,16 @@ const numericStyles: SystemStyleObject = {
 }
 
 const baseStyle: PartsStyleObject<typeof parts> = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    height: '100%',
+  },
+  inner: {
+    flex: 1,
+    overflow: 'auto',
+  },
   table: {
     fontVariantNumeric: 'lining-nums tabular-nums',
     borderCollapse: 'collapse',
