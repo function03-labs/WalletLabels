@@ -94,10 +94,10 @@ export const useResize = (props: UseResizeOptions) => {
   useEventListener('mouseup', stopResizing)
 
   const getContainerProps = React.useCallback(
-    (props) =>
-      isResizable
+    (props) => ({
+      ref: containerRef,
+      ...(isResizable
         ? {
-            ref: containerRef,
             onMouseDown: (e: React.MouseEvent<HTMLDivElement>) =>
               e.preventDefault(),
             sx: {
@@ -106,8 +106,9 @@ export const useResize = (props: UseResizeOptions) => {
             },
             style: { width },
           }
-        : {},
-    [width, isResizable],
+        : {}),
+    }),
+    [width, isResizable, containerRef],
   )
 
   const getHandleProps = React.useCallback(

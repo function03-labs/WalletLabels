@@ -136,7 +136,6 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
   }, [isMobile])
 
   const containerStyles: SystemStyleObject = {
-    '& > *:not(style) ~ *:not(style)': { marginTop: spacing },
     ...(shouldCollapse
       ? {
           position: 'absolute',
@@ -146,6 +145,15 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
           bottom: 0,
         }
       : {}),
+  }
+
+  const innerStyles: SystemStyleObject = {
+    '& > *:not(style) ~ *:not(style, .saas-resize-handler)': {
+      marginTop: spacing,
+    },
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
   }
 
   const context = {
@@ -158,35 +166,33 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
   return (
     <SidebarProvider value={context}>
       <StylesProvider value={styles}>
-        <>
-          <MotionBox
-            animate={!isMobile || isOpen ? 'enter' : 'exit'}
-            variants={{
-              enter: {
-                left: 0,
-                transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
-              },
-              exit: { left: '-100%' },
-            }}
-            __css={{
-              ...containerStyles,
-              ...styles.container,
-            }}
-            {...containerProps}
-            className={cx(
-              'saas-sidebar',
-              isCondensed && 'saas-sidebar__condensed',
-              className,
-            )}
-            {...resize.getContainerProps(props)}
-          >
-            {children}
-            {!isMobile && isResizable && (
-              <ResizeHandle {...resize.getHandleProps()} />
-            )}
-          </MotionBox>
-          {isMobile && <SidebarOverlay />}
-        </>
+        <MotionBox
+          animate={!isMobile || isOpen ? 'enter' : 'exit'}
+          variants={{
+            enter: {
+              left: 0,
+              transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
+            },
+            exit: { left: '-100%' },
+          }}
+          __css={{
+            ...containerStyles,
+            ...styles.container,
+          }}
+          {...containerProps}
+          className={cx(
+            'saas-sidebar',
+            isCondensed && 'saas-sidebar__condensed',
+            className,
+          )}
+          {...resize.getContainerProps(props)}
+        >
+          <chakra.div __css={innerStyles}>{children}</chakra.div>
+          {!isMobile && isResizable && (
+            <ResizeHandle {...resize.getHandleProps()} />
+          )}
+        </MotionBox>
+        {isMobile && <SidebarOverlay />}
       </StylesProvider>
     </SidebarProvider>
   )
