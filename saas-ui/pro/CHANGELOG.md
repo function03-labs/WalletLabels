@@ -1,5 +1,15 @@
 # @saas-ui/pro
 
+## 0.3.2
+
+### Patch Changes
+
+- 948e812: DataGrid now accepts all filter operators.
+- eb1073b: Added classnames to AppShell
+- 3833c56: Added ResizeHandle classnames and display name
+- 8709e3a: Improved DataGrid styles and new NoResults/NoFilteredResults components
+- a51f156: Fixed Resize container ref not being set.
+
 ## 0.3.1
 
 ### Patch Changes
