@@ -9,12 +9,12 @@ import { createContext } from '@chakra-ui/react-utils'
 
 import { FilterItem } from './filter-menu'
 
-import { FilterOperator, FilterOperators } from './provider'
+import { FilterOperatorId, FilterOperators } from './operators'
 
 export interface Filter {
   id: string
   value?: FilterValue
-  operator?: FilterOperator
+  operator?: FilterOperatorId
 }
 
 export type FilterValue = string | string[] | number | boolean | Date | null
@@ -22,7 +22,7 @@ export type FilterValue = string | string[] | number | boolean | Date | null
 export interface ActiveFilterContextValue {
   label?: string
   operators?: FilterOperators
-  operator?: FilterOperator
+  operator?: FilterOperatorId
   value?: FilterValue
   items?: FilterItem[]
 }
@@ -44,10 +44,10 @@ export interface UseActiveFilterProps {
   id: string
   value?: FilterValue
   defaultValue?: FilterValue
-  operator?: FilterOperator
-  defaultOperator?: FilterOperator
+  operator?: FilterOperatorId
+  defaultOperator?: FilterOperatorId
   onChange?(filter: Filter): void
-  onOperatorChange?(id: FilterOperator): void
+  onOperatorChange?(id: FilterOperatorId): void
   onValueChange?(id: FilterValue): void
 }
 
@@ -70,7 +70,7 @@ export const useActiveFilter = (props: UseActiveFilterProps) => {
     onChange,
   })
 
-  const onOperatorChange = (operator: FilterOperator) => {
+  const onOperatorChange = (operator: FilterOperatorId) => {
     setFilter({
       ...filter,
       operator,
@@ -92,7 +92,7 @@ export const useActiveFilter = (props: UseActiveFilterProps) => {
 }
 
 export interface UseFilterOperatorProps
-  extends UseControllableStateProps<FilterOperator> {
+  extends UseControllableStateProps<FilterOperatorId> {
   items?: FilterItem[]
 }
 
@@ -104,7 +104,7 @@ export const useFilterOperator = (props: UseFilterOperatorProps) => {
     onChange: onChangeProp,
   } = props
 
-  const [value, setValue] = useControllableState<FilterOperator>({
+  const [value, setValue] = useControllableState<FilterOperatorId>({
     defaultValue: defaultValue || 'is',
     value: valueProp,
     onChange: onChangeProp,

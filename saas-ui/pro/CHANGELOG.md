@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.3.3
+
+### Patch Changes
+
+- Fixed useActiveFilter typings
+
 ## 0.3.2
 
 ### Patch Changes
