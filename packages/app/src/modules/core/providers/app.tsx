@@ -8,7 +8,10 @@ import {
   AuthProviderProps,
   ModalsProvider,
   useAuth,
+  Form,
 } from '@saas-ui/react'
+import { yupResolver, yupFieldResolver } from '@saas-ui/forms/yup'
+import { AnyObjectSchema } from 'yup'
 
 import { TenancyProvider, Tenant } from '@saas-ui/pro'
 
@@ -20,10 +23,6 @@ import { theme } from '@ui/theme'
 import AppLayout from '@modules/core/layouts/app-layout'
 
 const queryClient = new QueryClient()
-
-import { Form } from '@saas-ui/react'
-import { yupResolver, yupFieldResolver } from '@saas-ui/forms/yup'
-import { AnyObjectSchema } from 'yup'
 
 /**
  * Use the Yup resolver as default in all forms

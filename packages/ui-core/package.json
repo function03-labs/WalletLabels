@@ -1,6 +1,6 @@
 {
   "name": "@ui/core",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build:storybook": "build-storybook"
@@ -23,7 +23,7 @@
     "@chakra-ui/system": "^1.10.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@saas-ui/react": "^0.12.7",
+    "@saas-ui/react": "^0.12.8",
     "@storybook/addon-actions": "^6.4.3",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.3",

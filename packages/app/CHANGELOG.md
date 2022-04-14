@@ -1,5 +1,13 @@
 # app
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @ui/core@0.0.11
+  - @app/config@0.0.2
+
 ## 1.0.3
 
 ### Patch Changes

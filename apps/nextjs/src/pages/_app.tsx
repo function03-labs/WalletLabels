@@ -8,9 +8,9 @@ import { NProgressNextRouter } from '@saas-ui/react'
 
 import { AppProvider } from '@modules/core/providers/app'
 
-// import { authService } from '../lib/supabase'
+import { authService } from '../lib/supabase'
 // import { authService } from '../lib/magic'
-import { authService } from '@app/config/mock-auth-service'
+// import { authService } from '@app/config/mock-auth-service'
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()

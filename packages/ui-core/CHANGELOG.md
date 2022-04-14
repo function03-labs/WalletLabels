@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.0.11
+
+### Patch Changes
+
+- Updated to @saas-ui/react@0.12.8
+
 ## 0.0.10
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # nextjs-app
 
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies
+  - @ui/core@0.0.11
+  - app@1.0.4
+
 ## 1.0.12
 
 ### Patch Changes
