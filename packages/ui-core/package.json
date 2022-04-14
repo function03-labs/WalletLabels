@@ -23,7 +23,7 @@
     "@chakra-ui/system": "^1.10.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@saas-ui/react": "^0.12.8",
+    "@saas-ui/react": "^0.12.12",
     "@storybook/addon-actions": "^6.4.3",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.3",
