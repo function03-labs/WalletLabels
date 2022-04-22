@@ -12,8 +12,7 @@ import {
 
 import * as Yup from 'yup'
 
-import { Page, PageBody, Section, SplitPage } from '@saas-ui/pro'
-import { Card, CardBody, Form } from '@saas-ui/react'
+import { SplitPage } from '@saas-ui/pro'
 
 import { ContactSidebar } from '../components/contact-sidebar'
 

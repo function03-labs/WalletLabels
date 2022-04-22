@@ -7,7 +7,7 @@ import { PageSidebar, PageSidebarHeader, PageSidebarBody } from '@saas-ui/pro'
 import { Contact } from '@app/graphql'
 
 export interface ContactSidebarProps {
-  contact?: Contact
+  contact?: Contact | null
 }
 
 export const ContactSidebar: React.FC<ContactSidebarProps> = (props) => {
