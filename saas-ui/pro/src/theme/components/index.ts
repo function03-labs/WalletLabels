@@ -4,6 +4,7 @@ import EmptyState from './empty-state'
 import Kbd from './kbd'
 import List from './list'
 import Page from './page'
+import PageSidebar from './page-sidebar'
 import Section from './section'
 import SidebarLink from './sidebar-link'
 import SidebarMenuButton from './sidebar-menu-button'
@@ -19,6 +20,7 @@ export default {
   Kbd,
   List,
   Page,
+  PageSidebar,
   Section,
   SidebarLink,
   SidebarMenuButton,
