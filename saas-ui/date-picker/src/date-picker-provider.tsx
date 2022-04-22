@@ -17,6 +17,8 @@ export type InputDate = Date | null
 
 export type UseDatePickerReturnType = ReturnType<typeof useDatepicker> & {
   orientation: 'horizontal' | 'vertical'
+  setAction: (action: DatePickerAction) => void
+  action: DatePickerAction
 }
 
 export interface DatePickerFormatProps {
@@ -50,6 +52,8 @@ export interface DatePickerContextProps
 
 export interface DatePickerProviderProps
   extends Partial<DatePickerContextProps> {}
+
+export type DatePickerAction = 'calendar' | 'years'
 
 const defaultBase: DatePickerContextBaseProps = {
   startDate: null,
@@ -91,6 +95,8 @@ const defaultUseDatePicker: UseDatePickerReturnType = {
   onDateSelect: () => undefined,
   onResetDates: () => undefined,
   orientation: 'horizontal',
+  setAction: () => undefined,
+  action: 'calendar',
 }
 
 export const datepickerContextDefaultValue: DatePickerContextProps = {

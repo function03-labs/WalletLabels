@@ -6904,11 +6904,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/datepicker@workspace:saas-ui/datepicker":
+"@saas-ui/date-picker@workspace:saas-ui/date-picker":
   version: 0.0.0-use.local
-  resolution: "@saas-ui/datepicker@workspace:saas-ui/datepicker"
+  resolution: "@saas-ui/date-picker@workspace:saas-ui/date-picker"
   dependencies:
     "@datepicker-react/hooks": ^2.8.4
+    date-fns: ^2.28.0
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@saas-ui/react": ">=0.7.0"

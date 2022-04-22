@@ -24,6 +24,12 @@ const $popperBg = cssVar('popper-bg')
 const $arrowBg = cssVar('popper-arrow-bg')
 const $arrowShadowColor = cssVar('popper-arrow-shadow-color')
 
+const baseStyleContainer: SystemStyleObject = {
+  position: 'relative',
+  display: 'inline-block',
+  p: 2,
+}
+
 const baseStylePopper: SystemStyleObject = {
   zIndex: 10,
 }
@@ -42,6 +48,7 @@ const baseStyleContent: SystemStyleFunction = (props) => {
     borderRadius: 'md',
     boxShadow: 'sm',
     zIndex: 'inherit',
+    p: 2,
   }
 }
 
@@ -80,13 +87,21 @@ const baseStyleDay: SystemStyleObject = {
   transitionDuration: 'normal',
 }
 
+const baseStyleYear: SystemStyleObject = {
+  py: 2,
+  px: 3,
+  borderRadius: 'md',
+  transitionProperty: 'common',
+  transitionDuration: 'normal',
+}
+
 const baseStyleNav: SystemStyleObject = {
   display: 'flex',
 }
 
 const baseStyleNavButton: SystemStyleObject = {
   position: 'absolute',
-  top: 2,
+  top: 3,
 }
 
 const baseStylePreviousButton: SystemStyleObject = {
@@ -106,6 +121,13 @@ const baseStylemMonthLabel: SystemStyleObject = {
   fontSize: ['md', 'lg'],
 }
 
+const baseStylemYearsLabel: SystemStyleObject = {
+  justifyContent: 'center',
+  fontWeight: 'bold',
+  mb: 2,
+  fontSize: ['md', 'lg'],
+}
+
 const baseStylemWeekdayLabel: SystemStyleObject = {
   justifyContent: 'center',
   color: 'gray.500',
@@ -114,6 +136,7 @@ const baseStylemWeekdayLabel: SystemStyleObject = {
 }
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
+  container: baseStyleContainer,
   popper: baseStylePopper,
   content: baseStyleContent(props),
   header: baseStyleHeader,
@@ -125,7 +148,9 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
   previousButton: baseStylePreviousButton,
   nextButton: baseStyleNextButton,
   day: baseStyleDay,
+  year: baseStyleYear,
   monthLabel: baseStylemMonthLabel,
+  yearsLabel: baseStylemYearsLabel,
   weekdayLabel: baseStylemWeekdayLabel,
 })
 
@@ -186,6 +211,19 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
       '&[data-week-start], &[data-month-start]': { borderStartRadius: 'md' },
       '&[data-week-end], &[data-month-end]': {
         borderEndRadius: 'md',
+      },
+    },
+    year: {
+      _hover: {
+        bg: mode('blackAlpha.100', 'whiteAlpha.100')(props),
+        borderRadius: 'md',
+      },
+      _active: {
+        bg: `${c}.500`,
+        color: 'white',
+      },
+      _disabled: {
+        color: 'muted',
       },
     },
   }

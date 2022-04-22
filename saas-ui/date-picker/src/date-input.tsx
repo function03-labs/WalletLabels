@@ -1,10 +1,4 @@
-import {
-  Box,
-  PopoverAnchor,
-  useDisclosure,
-  useMergeRefs,
-  useOutsideClick,
-} from '@chakra-ui/react'
+import { useDisclosure, useMergeRefs, useOutsideClick } from '@chakra-ui/react'
 import {
   getInputValue,
   OnDatesChangeProps,
@@ -15,9 +9,9 @@ import React, { forwardRef, Ref, useEffect, useRef, useState } from 'react'
 import { Input, InputProps } from './components'
 import {
   DatePicker,
-  DatePickerTrigger,
-  DatePickerElement,
+  DatePickerDialog,
   DatePickerProps,
+  DatePickerAnchor,
 } from './date-picker'
 import { DateInputLocale, dateInputLocale } from './locale'
 import { InputDate } from './date-picker-provider'
@@ -110,7 +104,6 @@ export const DateInput = forwardRef(
 
     return (
       <DatePicker
-        ref={datePickerRef}
         changeActiveMonthOnSelect={changeActiveMonthOnSelect}
         dayLabelFormat={dayLabelFormat}
         displayFormat={displayFormat}
@@ -139,7 +132,7 @@ export const DateInput = forwardRef(
         closeOnBlur={false}
         closeOnSelect={closeOnSelect}
       >
-        <PopoverAnchor>
+        <DatePickerAnchor>
           <Input
             ref={useMergeRefs(ref, inputRef)}
             name={name}
@@ -168,7 +161,8 @@ export const DateInput = forwardRef(
             isReadOnly={allowEditableInputs === false}
             {...inputProps}
           />
-        </PopoverAnchor>
+        </DatePickerAnchor>
+        <DatePickerDialog ref={datePickerRef} />
       </DatePicker>
     )
   },

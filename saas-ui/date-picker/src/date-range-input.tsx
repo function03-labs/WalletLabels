@@ -18,7 +18,13 @@ import {
 } from '@datepicker-react/hooks'
 import React, { Ref, useEffect, useRef, useState } from 'react'
 import { Input, InputProps } from './components'
-import { DatePicker, DatePickerElement, DatePickerProps } from './date-picker'
+import {
+  DatePicker,
+  DatePickerAnchor,
+  DatePickerDialog,
+  DatePickerElement,
+  DatePickerProps,
+} from './date-picker'
 import { dateRangeInputLocale, DateRangeInputLocale } from './locale'
 import { InputDate } from './date-picker-provider'
 import { defaultDisplayFormat } from './utils/formatters'
@@ -218,7 +224,6 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
 
   return (
     <DatePicker
-      ref={datePickerRef}
       dpRef={dpRef}
       isOpen={isOpen}
       onClose={onClose}
@@ -249,7 +254,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
       closeOnBlur={false}
       arrowOffset={arrowOffset}
     >
-      <PopoverAnchor>
+      <DatePickerAnchor>
         <Stack
           isInline={!isMobile}
           divider={showDivider ? <StackDivider /> : undefined}
@@ -257,7 +262,8 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
           {startInput}
           {endInput}
         </Stack>
-      </PopoverAnchor>
+      </DatePickerAnchor>
+      <DatePickerDialog ref={datePickerRef} />
     </DatePicker>
   )
 }
