@@ -65,6 +65,7 @@ const typeDefs = gql`
     organization(id: String, slug: String): Organization
     organizations: [Organization]
     contacts: [Contact]
+    contact(id: String): Contact
   }
 
   type User {

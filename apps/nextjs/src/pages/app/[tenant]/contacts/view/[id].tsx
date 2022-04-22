@@ -4,7 +4,7 @@ import { ContactsViewPage } from '@modules/contacts'
 
 export default createPage({
   title: 'Contact',
-  renderComponent: () => {
-    return <ContactsViewPage />
+  renderComponent: ({ query }) => {
+    return <ContactsViewPage id={query.id} />
   },
 })

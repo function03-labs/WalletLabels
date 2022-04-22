@@ -1,16 +1,22 @@
 import React from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 interface CreatePageProps {
   title?: string
   layout?: React.ReactNode
   isPublic?: boolean
-  renderComponent: React.FC
+  renderComponent: React.FC<PageProps>
 }
 
 interface PageFC extends React.FC {
   layout?: React.ReactNode
   isPublic?: boolean
+}
+
+interface PageProps {
+  query: Record<string, any>
+  locale?: string
 }
 
 /**
@@ -23,13 +29,14 @@ export const createPage = (props: CreatePageProps): PageFC => {
   const { title, layout, isPublic, renderComponent: PageComponent } = props
 
   const Page: PageFC = (props) => {
+    const router = useRouter()
     return (
       <>
         <Head>
           <title>{title}</title>
         </Head>
 
-        <PageComponent />
+        <PageComponent query={router.query} locale={router.locale} />
       </>
     )
   }

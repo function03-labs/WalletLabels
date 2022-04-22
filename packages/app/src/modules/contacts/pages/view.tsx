@@ -1,13 +1,21 @@
 import { useRouter } from 'next/router'
 
-// import { useGetContactQuery } from '@app/graphql'
+import { useGetContactQuery } from '@app/graphql'
 
-import { Skeleton } from '@chakra-ui/react'
+import {
+  Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Skeleton,
+} from '@chakra-ui/react'
 
 import * as Yup from 'yup'
 
-import { Page, Section } from '@saas-ui/pro'
+import { Page, PageBody, Section, SplitPage } from '@saas-ui/pro'
 import { Card, CardBody, Form } from '@saas-ui/react'
+
+import { ContactSidebar } from '../components/contact-sidebar'
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -17,20 +25,36 @@ const schema = Yup.object().shape({
     .label('Name'),
 })
 
-export function ContactsViewPage() {
-  // const {data, isLoading, error} = useGetContactQuery({
-  //   variables: {
-  //     id: String(id),
-  //   },
-  // })
+interface ContactsViewPageProps {
+  id: string
+}
+
+export function ContactsViewPage({ id }: ContactsViewPageProps) {
+  const { data, isLoading, error } = useGetContactQuery({
+    id: String(id),
+  })
+
+  const breadcrumbs = (
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink>Contacts</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrentPage>
+        <BreadcrumbLink>{data?.contact?.fullName}</BreadcrumbLink>
+      </BreadcrumbItem>
+    </Breadcrumb>
+  )
+
+  const sidebar = <ContactSidebar contact={data?.contact} />
 
   return (
-    <Page title="Contact" variant="hero">
-      <Section title="Contact details" isAnnotated>
-        <Card>
-          <CardBody>Todo...</CardBody>
-        </Card>
-      </Section>
-    </Page>
+    <SplitPage
+      title={breadcrumbs}
+      isLoading={isLoading}
+      fullWidth
+      width="auto"
+      maxW="100%"
+      content={sidebar}
+    ></SplitPage>
   )
 }
