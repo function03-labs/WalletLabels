@@ -7,4 +7,4 @@ export {
 
 export const dayLabelFormatFn = (date: Date) => dateFormat(date, 'd')
 
-export const defaultDisplayFormat = 'MM/dd/yyyy'
+export const defaultDateFormat = 'MM/dd/yyyy'

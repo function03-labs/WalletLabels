@@ -8,7 +8,7 @@ import { datePickerMessages, DatePickerMessages } from './i18n'
 
 import {
   dayLabelFormatFn,
-  defaultDisplayFormat,
+  defaultDateFormat,
   monthLabelFormatFn,
   weekdayLabelFormatFn,
 } from './utils/formatters'
@@ -37,7 +37,7 @@ export type OnDayRenderType = {
 }
 
 export interface DatePickerContextBaseProps {
-  displayFormat: FormatFunction | string
+  dateFormat: FormatFunction | string
   startDate: InputDate
   endDate: InputDate
   messages: DatePickerMessages
@@ -60,7 +60,7 @@ const defaultBase: DatePickerContextBaseProps = {
   endDate: null,
   focusedInput: null,
   onDayRender: undefined,
-  displayFormat: defaultDisplayFormat,
+  dateFormat: defaultDateFormat,
   messages: datePickerMessages,
 }
 

@@ -9,9 +9,85 @@ import getYear from 'date-fns/getYear'
 import getMonth from 'date-fns/getMonth'
 import isSameYear from 'date-fns/isSameYear'
 
-import { useDatePickerContext } from './date-picker-provider'
+import {
+  useDatePickerContext,
+  DatePickerFormatProps,
+} from './date-picker-provider'
+import { datePickerMessages, DatePickerMessages } from './i18n'
+import { defaultDateFormat } from './utils/formatters'
 
-import { useMonth } from '@datepicker-react/hooks'
+import { START_DATE } from '@datepicker-react/hooks'
+
+import { useMonth, UseDatepickerProps } from '@datepicker-react/hooks'
+
+export interface DatePickerOptions
+  extends Partial<UseDatepickerProps>,
+    Partial<DatePickerFormatProps> {
+  dateFormat?: string
+  onDayRender?(date: Date): React.ReactNode
+  messages?: DatePickerMessages
+  hideCloseButton?: boolean
+  closeOnSelect?: boolean
+  orientation?: 'horizontal' | 'vertical'
+}
+
+export const useDatePicker = (props: DatePickerOptions) => {
+  const {
+    closeOnSelect,
+    changeActiveMonthOnSelect,
+    dayLabelFormat,
+    dateFormat = defaultDateFormat,
+    endDate = null,
+    exactMinBookingDays = false,
+    firstDayOfWeek,
+    focusedInput = START_DATE,
+    initialVisibleMonth,
+    isDateBlocked = () => false,
+    maxBookingDate,
+    minBookingDate,
+    minBookingDays = 1,
+    monthLabelFormat,
+    numberOfMonths = 1,
+    onDatesChange = () => null,
+    onDayRender,
+    messages = datePickerMessages,
+    startDate = null,
+    unavailableDates = [],
+    weekdayLabelFormat,
+    orientation = 'horizontal',
+    ...contentProps
+  } = props
+
+  const containerProps = {
+    closeOnSelect,
+    changeActiveMonthOnSelect,
+    dayLabelFormat,
+    dateFormat,
+    endDate,
+    exactMinBookingDays,
+    firstDayOfWeek,
+    focusedInput,
+    initialVisibleMonth,
+    isDateBlocked,
+    maxBookingDate,
+    minBookingDate,
+    minBookingDays,
+    monthLabelFormat,
+    numberOfMonths,
+    onDatesChange,
+    onDayRender,
+    messages,
+    startDate,
+    unavailableDates,
+    weekdayLabelFormat,
+    orientation,
+  }
+
+  return {
+    containerProps,
+    contentProps,
+  }
+}
 
 export const useYears = () => {
   const {

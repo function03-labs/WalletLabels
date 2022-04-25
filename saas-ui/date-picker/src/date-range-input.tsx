@@ -27,7 +27,7 @@ import {
 } from './date-picker'
 import { dateRangeInputMessages, DateRangeInputMessages } from './i18n'
 import { InputDate } from './date-picker-provider'
-import { defaultDisplayFormat } from './utils/formatters'
+import { defaultDateFormat } from './utils/formatters'
 
 export interface DateRangeInputProps extends Partial<DatePickerProps> {
   startDateInputProps?: Partial<InputProps>
@@ -57,7 +57,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
     endDate: endDateProp = null,
     startDate: startDateProp = null,
     focusedInput: focusedInputProp = null,
-    displayFormat = defaultDisplayFormat,
+    dateFormat = defaultDateFormat,
     endShowCalendarIcon = true,
     isDateBlocked = () => false,
     minBookingDays = 1,
@@ -181,7 +181,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
       ref={useMergeRefs(startRefProp, startRef)}
       showCalendarIcon={startShowCalendarIcon}
       aria-label={messages.startDateAriaLabel}
-      dateFormat={displayFormat}
+      dateFormat={dateFormat}
       isActive={isOpen && focusedInput === START_DATE}
       onChange={onInputChange}
       onCalendarClick={onOpen}
@@ -189,7 +189,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
         onFocusChange(START_DATE)
         onFocus()
       }}
-      value={getInputValue(startDate, displayFormat, '')}
+      value={getInputValue(startDate, dateFormat, '')}
       isReadOnly={isReadOnly}
     />
   )
@@ -202,7 +202,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
       placeholder={endPlaceholder || messages.endDatePlaceholder}
       showCalendarIcon={endShowCalendarIcon}
       aria-label={messages.endDateAriaLabel}
-      dateFormat={displayFormat}
+      dateFormat={dateFormat}
       disableAccessibility={focusedInput === START_DATE}
       isActive={isOpen && focusedInput === END_DATE}
       onChange={onInputChange}
@@ -211,7 +211,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
         onFocusChange(!startDate ? START_DATE : END_DATE)
         onFocus()
       }}
-      value={getInputValue(endDate, displayFormat, '')}
+      value={getInputValue(endDate, dateFormat, '')}
       isReadOnly={isReadOnly}
     />
   )
@@ -245,7 +245,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
       onDayRender={onDayRender}
       messages={messages}
       unavailableDates={unavailableDates}
-      displayFormat={displayFormat}
+      dateFormat={dateFormat}
       hideCloseButton={hideCloseButton}
       orientation={orientation}
       weekdayLabelFormat={weekdayLabelFormat}

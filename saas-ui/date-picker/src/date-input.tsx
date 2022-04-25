@@ -12,10 +12,11 @@ import {
   DatePickerDialog,
   DatePickerProps,
   DatePickerAnchor,
+  DatePickerElement,
 } from './date-picker'
 import { DateInputMessages, dateInputMessages } from './i18n'
 import { InputDate } from './date-picker-provider'
-import { defaultDisplayFormat } from './utils/formatters'
+import { defaultDateFormat } from './utils/formatters'
 
 export interface OnDateChangeProps {
   date: InputDate
@@ -39,7 +40,7 @@ export const DateInput = forwardRef(
       date: dateProp = null,
       changeActiveMonthOnSelect,
       dayLabelFormat,
-      displayFormat = defaultDisplayFormat,
+      dateFormat = defaultDateFormat,
       firstDayOfWeek,
       icon,
       initialVisibleMonth,
@@ -47,7 +48,7 @@ export const DateInput = forwardRef(
       maxBookingDate,
       minBookingDate,
       monthLabelFormat,
-      name = 'startDate',
+      name = 'date',
       numberOfMonths = 1,
       onChange: onChange,
       onClick,
@@ -68,7 +69,8 @@ export const DateInput = forwardRef(
       ...inputProps
     } = props
 
-    const datePickerRef = useRef<HTMLDivElement>(null)
+    const dialogRef = useRef<HTMLDivElement>(null)
+    const datePickerRef = useRef<DatePickerElement>(null)
 
     const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -81,7 +83,7 @@ export const DateInput = forwardRef(
     useOutsideClick({
       ref: inputRef,
       handler: (e: Event) => {
-        if (!datePickerRef.current?.contains(e.target as Element)) {
+        if (!dialogRef.current?.contains(e.target as Element)) {
           onClose()
         }
       },
@@ -99,14 +101,16 @@ export const DateInput = forwardRef(
     }
 
     const onInputChange = (date: Date) => {
-      // datepickerRef.current?.onDateSelect?.(date)
+      datePickerRef.current?.onDateSelect?.(date)
+      setDate(date)
     }
 
     return (
       <DatePicker
+        ref={datePickerRef}
         changeActiveMonthOnSelect={changeActiveMonthOnSelect}
         dayLabelFormat={dayLabelFormat}
-        displayFormat={displayFormat}
+        displayFormat={dateFormat}
         endDate={date}
         exactMinBookingDays
         firstDayOfWeek={firstDayOfWeek}
@@ -137,9 +141,9 @@ export const DateInput = forwardRef(
             ref={useMergeRefs(ref, inputRef)}
             name={name}
             aria-label={messages.dateAriaLabel}
-            value={getInputValue(date, displayFormat, '')}
+            value={getInputValue(date, dateFormat, '')}
             placeholder={placeholder}
-            dateFormat={displayFormat}
+            dateFormat={dateFormat}
             showCalendarIcon={showCalendarIcon}
             onCalendarClick={onOpen}
             isActive={isOpen}
@@ -161,7 +165,7 @@ export const DateInput = forwardRef(
             {...inputProps}
           />
         </DatePickerAnchor>
-        <DatePickerDialog ref={datePickerRef} />
+        <DatePickerDialog ref={dialogRef} />
       </DatePicker>
     )
   },

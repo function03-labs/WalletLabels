@@ -12,7 +12,7 @@ import { dataAttr } from '@chakra-ui/utils'
 import { parseDate } from '@datepicker-react/hooks'
 import { useDebouncedCallback } from '@react-hookz/web'
 import { InputDate } from '../date-picker-provider'
-import { defaultDisplayFormat } from '../utils/formatters'
+import { defaultDateFormat } from '../utils/formatters'
 import { InputRightButton } from '@saas-ui/react'
 
 export interface InputProps {
@@ -38,7 +38,7 @@ interface BaseProps
 export const Input = forwardRef(
   (props: BaseProps, inputRef: React.Ref<any>) => {
     const {
-      dateFormat = defaultDisplayFormat,
+      dateFormat = defaultDateFormat,
       disableAccessibility,
       icon = CalendarIcon,
       id,

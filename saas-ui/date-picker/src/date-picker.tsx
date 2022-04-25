@@ -23,24 +23,24 @@ import {
   MonthType,
   START_DATE,
   useDatepicker,
-  UseDatepickerProps,
 } from '@datepicker-react/hooks'
 import { ButtonGroup } from '@saas-ui/react'
 import React, { Ref, useImperativeHandle, useRef } from 'react'
 import { ActionButton, Month, Years } from './components'
 import {
-  DatePickerFormatProps,
   DatePickerProvider,
   DatePickerAction,
   useDatePickerContext,
 } from './date-picker-provider'
-import { DatePickerMessages, datePickerMessages } from './i18n'
+import { datePickerMessages } from './i18n'
 import {
   dayLabelFormatFn,
-  defaultDisplayFormat,
+  defaultDateFormat,
   monthLabelFormatFn,
   weekdayLabelFormatFn,
 } from './utils/formatters'
+
+import { useDatePicker, DatePickerOptions } from './use-date-picker'
 
 import defaultStyleConfig from './styles'
 
@@ -49,21 +49,16 @@ export interface DatePickerElement {
 }
 
 export interface DatePickerContainerProps
-  extends Omit<PopoverProps, 'variant' | 'size'>,
-    ThemingProps<'DataPicker'>,
-    Partial<DatePickerFormatProps>,
-    Partial<UseDatepickerProps> {
-  displayFormat?: string
-  onDayRender?(date: Date): React.ReactNode
-  messages?: DatePickerMessages
-}
+  extends DatePickerOptions,
+    Omit<PopoverProps, 'variant' | 'size'>,
+    ThemingProps<'DataPicker'> {}
 
 export const DatePickerContainer = React.forwardRef(
   (props: DatePickerContainerProps, ref: Ref<DatePickerElement>) => {
     const {
       changeActiveMonthOnSelect,
       dayLabelFormat,
-      displayFormat = defaultDisplayFormat,
+      dateFormat = defaultDateFormat,
       endDate = null,
       exactMinBookingDays = false,
       firstDayOfWeek,
@@ -104,6 +99,7 @@ export const DatePickerContainer = React.forwardRef(
 
     useImperativeHandle(ref, () => ({
       onDateSelect: (date: Date) => {
+        console.log('OnDateSelect', date)
         dp.onDateSelect(date)
       },
     }))
@@ -115,7 +111,7 @@ export const DatePickerContainer = React.forwardRef(
         {...dp}
         focusedInput={focusedInput}
         dayLabelFormat={dayLabelFormat || dayLabelFormatFn}
-        displayFormat={displayFormat}
+        dateFormat={dateFormat}
         endDate={endDate}
         monthLabelFormat={monthLabelFormat || monthLabelFormatFn}
         onDayRender={onDayRender}
@@ -190,68 +186,7 @@ export const DatePickerContent = forwardRef((props, ref) => {
 
 export interface DatePickerProps
   extends Omit<DatePickerContainerProps, 'children'>,
-    Omit<PopoverProps, 'variant' | 'size'> {
-  hideCloseButton?: boolean
-  closeOnSelect?: boolean
-}
-
-const useDatePicker = (props: DatePickerProps) => {
-  const {
-    closeOnSelect,
-    changeActiveMonthOnSelect,
-    dayLabelFormat,
-    displayFormat = defaultDisplayFormat,
-    endDate = null,
-    exactMinBookingDays = false,
-    firstDayOfWeek,
-    focusedInput = START_DATE,
-    initialVisibleMonth,
-    isDateBlocked = () => false,
-    maxBookingDate,
-    minBookingDate,
-    minBookingDays = 1,
-    monthLabelFormat,
-    numberOfMonths = 1,
-    onDatesChange = () => null,
-    onDayRender,
-    messages = datePickerMessages,
-    startDate = null,
-    unavailableDates = [],
-    weekdayLabelFormat,
-    orientation = 'horizontal',
-    ...contentProps
-  } = props
-
-  const containerProps = {
-    closeOnSelect,
-    changeActiveMonthOnSelect,
-    dayLabelFormat,
-    displayFormat,
-    endDate,
-    exactMinBookingDays,
-    firstDayOfWeek,
-    focusedInput,
-    initialVisibleMonth,
-    isDateBlocked,
-    maxBookingDate,
-    minBookingDate,
-    minBookingDays,
-    monthLabelFormat,
-    numberOfMonths,
-    onDatesChange,
-    onDayRender,
-    messages,
-    startDate,
-    unavailableDates,
-    weekdayLabelFormat,
-    orientation,
-  }
-
-  return {
-    containerProps,
-    contentProps,
-  }
-}
+    Omit<PopoverProps, 'variant' | 'size'> {}
 
 export const DatePicker = forwardRef((props: DatePickerProps, ref) => {
   const { containerProps, contentProps } = useDatePicker(props)

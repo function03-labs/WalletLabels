@@ -43,3 +43,8 @@ export const CloseOnSelect = Template.bind({})
 CloseOnSelect.args = {
   closeOnSelect: true,
 }
+
+export const DateFormat = Template.bind({})
+DateFormat.args = {
+  dateFormat: 'yyyy/dd/MM',
+}
