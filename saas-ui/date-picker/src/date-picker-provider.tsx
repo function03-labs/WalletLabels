@@ -4,7 +4,7 @@ import {
   useDatepicker,
 } from '@datepicker-react/hooks'
 import React, { useContext } from 'react'
-import { datePickerLocale, DatePickerLocale } from './locale'
+import { datePickerMessages, DatePickerMessages } from './i18n'
 
 import {
   dayLabelFormatFn,
@@ -40,7 +40,7 @@ export interface DatePickerContextBaseProps {
   displayFormat: FormatFunction | string
   startDate: InputDate
   endDate: InputDate
-  locale: DatePickerLocale
+  messages: DatePickerMessages
   focusedInput: FocusedInput
   onDayRender?(date: Date, state: OnDayRenderType): React.ReactNode
 }
@@ -61,7 +61,7 @@ const defaultBase: DatePickerContextBaseProps = {
   focusedInput: null,
   onDayRender: undefined,
   displayFormat: defaultDisplayFormat,
-  locale: datePickerLocale,
+  messages: datePickerMessages,
 }
 
 const defaultFormatters: DatePickerFormatProps = {

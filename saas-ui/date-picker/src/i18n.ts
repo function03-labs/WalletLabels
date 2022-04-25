@@ -1,9 +1,9 @@
-export interface DateSingleInputLocale extends DatePickerLocale {
+export interface DateSingleInputMessages extends DatePickerMessages {
   dateAriaLabel: string
   datePlaceholder: string
 }
 
-export const datePickerLocale = {
+export const datePickerMessages = {
   datepickerStartDatePlaceholder: 'Select',
   datepickerStartDateLabel: 'Start date:',
   datepickerEndDatePlaceholder: 'Select',
@@ -12,10 +12,10 @@ export const datePickerLocale = {
   close: 'Close',
 }
 
-export type DatePickerLocale = typeof datePickerLocale
+export type DatePickerMessages = typeof datePickerMessages
 
-export const dateRangeInputLocale = {
-  ...datePickerLocale,
+export const dateRangeInputMessages = {
+  ...datePickerMessages,
 
   startDateAriaLabel: 'Start date',
   endDateAriaLabel: 'End date',
@@ -24,12 +24,12 @@ export const dateRangeInputLocale = {
   endDatePlaceholder: 'End date',
 }
 
-export type DateRangeInputLocale = typeof dateRangeInputLocale
+export type DateRangeInputMessages = typeof dateRangeInputMessages
 
-export const dateInputLocale = {
-  ...datePickerLocale,
+export const dateInputMessages = {
+  ...datePickerMessages,
   dateAriaLabel: 'Select date',
   datePlaceholder: 'Select date',
 }
 
-export type DateInputLocale = typeof dateInputLocale
+export type DateInputMessages = typeof dateInputMessages

@@ -13,7 +13,7 @@ import {
   DatePickerProps,
   DatePickerAnchor,
 } from './date-picker'
-import { DateInputLocale, dateInputLocale } from './locale'
+import { DateInputMessages, dateInputMessages } from './i18n'
 import { InputDate } from './date-picker-provider'
 import { defaultDisplayFormat } from './utils/formatters'
 
@@ -25,7 +25,7 @@ export interface OnDateChangeProps {
 export interface DateInputProps
   extends Partial<InputProps>,
     Partial<DatePickerProps> {
-  locale?: DateInputLocale
+  messages?: DateInputMessages
   placement?: 'top' | 'bottom'
   showDatePicker?: boolean
   date?: InputDate
@@ -54,7 +54,7 @@ export const DateInput = forwardRef(
       onClose: onCloseProp,
       onDayRender,
       openOnFocus,
-      locale = dateInputLocale,
+      messages = dateInputMessages,
       placeholder,
       placement = 'bottom',
       showCalendarIcon = true,
@@ -122,7 +122,7 @@ export const DateInput = forwardRef(
         onClose={onClose}
         onDatesChange={onDatesChange}
         onDayRender={onDayRender}
-        locale={locale}
+        messages={messages}
         hideCloseButton={hideCloseButton}
         startDate={date}
         unavailableDates={unavailableDates}
@@ -136,7 +136,7 @@ export const DateInput = forwardRef(
           <Input
             ref={useMergeRefs(ref, inputRef)}
             name={name}
-            aria-label={locale.dateAriaLabel}
+            aria-label={messages.dateAriaLabel}
             value={getInputValue(date, displayFormat, '')}
             placeholder={placeholder}
             dateFormat={displayFormat}
@@ -156,7 +156,6 @@ export const DateInput = forwardRef(
                 }
               }
             }}
-            disableAccessibility={false}
             icon={icon}
             isReadOnly={allowEditableInputs === false}
             {...inputProps}

@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/react'
 import { dataAttr } from '@chakra-ui/utils'
 import { parseDate } from '@datepicker-react/hooks'
-import format from 'date-fns/format'
 import { useDebouncedCallback } from '@react-hookz/web'
 import { InputDate } from '../date-picker-provider'
 import { defaultDisplayFormat } from '../utils/formatters'
@@ -54,8 +53,6 @@ export const Input = forwardRef(
       ...inputProps
     } = props
 
-    const ref = React.useRef<any>(null)
-
     const [value, setValue] = React.useState(valueProp)
 
     React.useEffect(() => {
@@ -79,9 +76,7 @@ export const Input = forwardRef(
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const dateValue = e.target.value
-
       setValue(dateValue)
-
       parse(dateValue)
     }
 
@@ -93,7 +88,7 @@ export const Input = forwardRef(
           id={id}
           name={name}
           value={value}
-          placeholder={placeholder || format(new Date(), dateFormat)}
+          placeholder={placeholder}
           tabIndex={disableAccessibility ? -1 : 0}
           autoComplete="off"
           data-focus={dataAttr(isActive)}

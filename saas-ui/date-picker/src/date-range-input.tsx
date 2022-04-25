@@ -25,14 +25,14 @@ import {
   DatePickerElement,
   DatePickerProps,
 } from './date-picker'
-import { dateRangeInputLocale, DateRangeInputLocale } from './locale'
+import { dateRangeInputMessages, DateRangeInputMessages } from './i18n'
 import { InputDate } from './date-picker-provider'
 import { defaultDisplayFormat } from './utils/formatters'
 
 export interface DateRangeInputProps extends Partial<DatePickerProps> {
   startDateInputProps?: Partial<InputProps>
   endDateInputProps?: Partial<InputProps>
-  locale?: DateRangeInputLocale
+  messages?: DateRangeInputMessages
   showDivider?: boolean
   placement?: 'top' | 'bottom'
   onFocusChange?(focusedInput: FocusedInput): void
@@ -61,7 +61,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
     endShowCalendarIcon = true,
     isDateBlocked = () => false,
     minBookingDays = 1,
-    locale = dateRangeInputLocale,
+    messages = dateRangeInputMessages,
     placement = 'bottom-start',
     hideCloseButton,
     showDivider = false,
@@ -177,10 +177,10 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
     <Input
       icon={startIcon}
       name={startName || 'startDate'}
-      placeholder={startPlaceholder || locale.startDatePlaceholder}
+      placeholder={startPlaceholder || messages.startDatePlaceholder}
       ref={useMergeRefs(startRefProp, startRef)}
       showCalendarIcon={startShowCalendarIcon}
-      aria-label={locale.startDateAriaLabel}
+      aria-label={messages.startDateAriaLabel}
       dateFormat={displayFormat}
       isActive={isOpen && focusedInput === START_DATE}
       onChange={onInputChange}
@@ -199,9 +199,9 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
       name={endName || 'endDate'}
       ref={useMergeRefs(endRefProp, endRef)}
       icon={endIcon}
-      placeholder={endPlaceholder || locale.endDatePlaceholder}
+      placeholder={endPlaceholder || messages.endDatePlaceholder}
       showCalendarIcon={endShowCalendarIcon}
-      aria-label={locale.endDateAriaLabel}
+      aria-label={messages.endDateAriaLabel}
       dateFormat={displayFormat}
       disableAccessibility={focusedInput === START_DATE}
       isActive={isOpen && focusedInput === END_DATE}
@@ -243,7 +243,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = (props) => {
       monthLabelFormat={monthLabelFormat}
       numberOfMonths={isVertical ? 1 : numberOfMonths}
       onDayRender={onDayRender}
-      locale={locale}
+      messages={messages}
       unavailableDates={unavailableDates}
       displayFormat={displayFormat}
       hideCloseButton={hideCloseButton}

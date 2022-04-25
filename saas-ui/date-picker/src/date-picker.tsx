@@ -10,11 +10,9 @@ import {
   PopoverContentProps,
   PopoverArrow,
   PopoverTrigger,
-  PopoverBody,
   useStyles,
   ThemingProps,
   SystemProps,
-  SimpleGrid,
   StylesProvider,
   useMultiStyleConfig,
   PopoverAnchor,
@@ -27,7 +25,7 @@ import {
   useDatepicker,
   UseDatepickerProps,
 } from '@datepicker-react/hooks'
-import { Button, ButtonGroup } from '@saas-ui/react'
+import { ButtonGroup } from '@saas-ui/react'
 import React, { Ref, useImperativeHandle, useRef } from 'react'
 import { ActionButton, Month, Years } from './components'
 import {
@@ -36,7 +34,7 @@ import {
   DatePickerAction,
   useDatePickerContext,
 } from './date-picker-provider'
-import { DatePickerLocale, datePickerLocale } from './locale'
+import { DatePickerMessages, datePickerMessages } from './i18n'
 import {
   dayLabelFormatFn,
   defaultDisplayFormat,
@@ -57,7 +55,7 @@ export interface DatePickerContainerProps
     Partial<UseDatepickerProps> {
   displayFormat?: string
   onDayRender?(date: Date): React.ReactNode
-  locale?: DatePickerLocale
+  messages?: DatePickerMessages
 }
 
 export const DatePickerContainer = React.forwardRef(
@@ -79,7 +77,7 @@ export const DatePickerContainer = React.forwardRef(
       numberOfMonths = 1,
       onDatesChange = () => null,
       onDayRender,
-      locale = datePickerLocale,
+      messages = datePickerMessages,
       startDate = null,
       unavailableDates = [],
       weekdayLabelFormat,
@@ -121,7 +119,7 @@ export const DatePickerContainer = React.forwardRef(
         endDate={endDate}
         monthLabelFormat={monthLabelFormat || monthLabelFormatFn}
         onDayRender={onDayRender}
-        locale={locale}
+        messages={messages}
         startDate={startDate}
         weekdayLabelFormat={weekdayLabelFormat || weekdayLabelFormatFn}
         orientation={orientation}
@@ -216,7 +214,7 @@ const useDatePicker = (props: DatePickerProps) => {
     numberOfMonths = 1,
     onDatesChange = () => null,
     onDayRender,
-    locale = datePickerLocale,
+    messages = datePickerMessages,
     startDate = null,
     unavailableDates = [],
     weekdayLabelFormat,
@@ -242,7 +240,7 @@ const useDatePicker = (props: DatePickerProps) => {
     numberOfMonths,
     onDatesChange,
     onDayRender,
-    locale,
+    messages,
     startDate,
     unavailableDates,
     weekdayLabelFormat,
