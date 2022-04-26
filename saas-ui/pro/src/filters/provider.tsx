@@ -8,13 +8,11 @@ import { FilterItem } from './filter-menu'
 import { Filter } from './use-active-filter'
 import { defaultOperators, FilterOperators, FilterType } from './operators'
 
-type ActiveFilter = Filter & { key: string }
-
 interface FiltersContextValue {
   filters?: FilterItem[]
   operators?: FilterItem[]
-  activeFilters?: ActiveFilter[]
-  enableFilter(filter: Filter | ActiveFilter): void
+  activeFilters?: Filter[]
+  enableFilter(filter: Filter): void
   disableFilter(key: string): void
   getFilter(id: string): FilterItem | undefined
   getOperators(type?: string): FilterOperators
@@ -31,11 +29,21 @@ export { useFiltersContext }
 export interface FiltersProviderProps {
   filters?: FilterItem[]
   operators?: FilterOperators
-  onChange?(activeFilters: ActiveFilter[]): void
+  onChange?(activeFilters: Filter[]): void
+  onBeforeEnableFilter?(
+    filter: Filter,
+    filterItem?: FilterItem,
+  ): Promise<Filter>
 }
 
 export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
-  const { children, filters, operators = defaultOperators, onChange } = props
+  const {
+    children,
+    filters,
+    operators = defaultOperators,
+    onChange,
+    onBeforeEnableFilter,
+  } = props
 
   const activeFilterMap = useMap<string, Filter>([])
 
@@ -43,7 +51,7 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
     return filters?.find((filter) => filter.id === id)
   }
 
-  const getActiveFilters = (): ActiveFilter[] =>
+  const getActiveFilters = (): Filter[] =>
     [...activeFilterMap].map(([key, filter]) => ({
       key,
       ...filter,
@@ -53,11 +61,24 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
     return operators.filter(({ types }) => types.includes(type))
   }
 
-  const enableFilter = (filter: ActiveFilter) => {
-    const key = filter.key || `${filter.id}-${activeFilterMap.size}`
-    activeFilterMap.set(key, filter)
+  const enableFilter = async (filter: Filter) => {
+    const _enable = (filter: Filter) => {
+      const key = filter.key || `${filter.id}-${activeFilterMap.size}`
 
-    onChange?.(getActiveFilters())
+      activeFilterMap.set(key, filter)
+
+      onChange?.(getActiveFilters())
+    }
+
+    if (onBeforeEnableFilter) {
+      try {
+        return _enable(await onBeforeEnableFilter(filter, getFilter(filter.id)))
+      } catch (e) {
+        /* ignore */
+      }
+    }
+
+    _enable(filter)
   }
 
   const disableFilter = (key: string) => {

@@ -17,6 +17,7 @@ import {
   MenuFilterItem,
 } from '../menu'
 import { useSearchQuery } from '..'
+import { FilterOperatorId } from './operators'
 
 export interface FilterItem {
   id: string
@@ -25,6 +26,7 @@ export interface FilterItem {
   type?: string
   items?: FilterItem[]
   value?: string | number | boolean | Date
+  operators?: FilterOperatorId[]
 }
 
 export interface FilterMenuProps extends Omit<MenuProps, 'children'> {

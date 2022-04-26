@@ -249,9 +249,7 @@ if (__DEV__) {
 
 export interface ActiveFilterValueProps
   extends ActiveFilterValueOptions,
-    Omit<HTMLChakraProps<'div'>, 'onChange' | 'defaultValue'> {
-  format?(value: FilterValue): FilterValue
-}
+    Omit<HTMLChakraProps<'div'>, 'onChange' | 'defaultValue'> {}
 
 export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
   const {
@@ -259,9 +257,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
     onChange,
     value: valueProp,
     defaultValue,
-    format = (value: FilterValue) => {
-      return value?.toString()
-    },
+    format,
     ...htmlProps
   } = props
 
@@ -274,7 +270,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
     ...styles.value,
   }
 
-  const { value, getMenuProps } = useFilterValue(props)
+  const { label, getMenuProps } = useFilterValue(props)
 
   const { icon, ...menuProps } = getMenuProps(props)
 
@@ -293,7 +289,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
       __css={valueStyles}
       className={cx('saas-active-filter__value', props.className)}
     >
-      {format(value) || children}
+      {label || children}
     </chakra.div>
   )
 }
@@ -363,10 +359,19 @@ export const ActiveFiltersList = () => {
 
   return activeFilters?.length ? (
     <Wrap px="4" py="2" borderBottomWidth="1px" zIndex="2">
-      {activeFilters?.map((activeFilter, i) => {
+      {activeFilters?.map((activeFilter) => {
         const { key, id, value, operator } = activeFilter
+
         const filter = getFilter(id)
-        const operators = getOperators(filter?.type)
+
+        const operators = getOperators(filter?.type).filter(({ id }) => {
+          if (filter?.operators && !filter.operators.includes(id)) {
+            return false
+          }
+
+          return true
+        })
+
         return (
           <WrapItem key={key}>
             <ActiveFilter
@@ -379,7 +384,7 @@ export const ActiveFiltersList = () => {
               items={filter?.items}
               operators={operators}
               onChange={(filter) => enableFilter({ key, ...filter })}
-              onRemove={() => disableFilter(key)}
+              onRemove={() => key && disableFilter(key)}
             />
           </WrapItem>
         )
