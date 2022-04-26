@@ -1,5 +1,22 @@
 # app
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/date-picker@0.1.1
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [ae2083f]
+- Updated dependencies [ae2083f]
+  - @saas-ui/pro@0.3.4
+  - @ui/core@0.0.12
+  - @app/config@0.0.3
+
 ## 1.0.4
 
 ### Patch Changes

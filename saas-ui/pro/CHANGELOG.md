@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.3.4
+
+### Patch Changes
+
+- ae2083f: Filter operators can now be configured in the FilterItem config.
+- ae2083f: New async onBeforeEnableFilter callback to allow custom user input when enabling filters.
+
 ## 0.3.3
 
 ### Patch Changes
