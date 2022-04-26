@@ -50,8 +50,9 @@ export interface DatePickerElement {
 
 export interface DatePickerContainerProps
   extends DatePickerOptions,
-    Omit<PopoverProps, 'variant' | 'size'>,
-    ThemingProps<'DataPicker'> {}
+    ThemingProps<'DatePicker'> {
+  children: React.ReactNode
+}
 
 export const DatePickerContainer = React.forwardRef(
   (props: DatePickerContainerProps, ref: Ref<DatePickerElement>) => {

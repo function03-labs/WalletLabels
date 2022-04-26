@@ -20,7 +20,6 @@ import {
 } from '@saas-ui/react'
 import {
   Command,
-  Filter,
   Toolbar,
   ToolbarButton,
   useTenant,
@@ -29,8 +28,6 @@ import {
 import { ListPage } from '@modules/core/components/list-page'
 
 import { filters, AddFilterButton } from '../components/contact-filters'
-
-import { FilterTypes } from 'react-table'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
@@ -153,6 +150,10 @@ export function ContactsListPage() {
     {
       id: 'email',
       Header: 'Email',
+    },
+    {
+      id: 'createdAt',
+      Header: 'Created at',
     },
     {
       id: 'type',

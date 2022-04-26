@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { FiCircle, FiUser, FiFilter } from 'react-icons/fi'
+import { FiCircle, FiUser, FiFilter, FiCalendar } from 'react-icons/fi'
 
 import { Badge, useDisclosure } from '@chakra-ui/react'
 
@@ -11,6 +11,9 @@ import {
   useFiltersContext,
 } from '@saas-ui/pro'
 import { useHotkeysShortcut } from '@saas-ui/react'
+
+import startOfDay from 'date-fns/startOfDay'
+import subDays from 'date-fns/subDays'
 
 export const filters: FilterItem[] = [
   {
@@ -38,6 +41,49 @@ export const filters: FilterItem[] = [
     type: 'enum',
     value: 'lead',
   },
+  {
+    id: 'createdAt',
+    label: 'Created at',
+    icon: <FiCalendar />,
+    type: 'date',
+    operators: ['after', 'before'],
+    items: [
+      {
+        id: '1day',
+        label: '1 day ago',
+        value: startOfDay(subDays(new Date(), 1)),
+      },
+      {
+        id: '2days',
+        label: '2 days ago',
+        value: startOfDay(subDays(new Date(), 2)),
+      },
+      {
+        id: '3days',
+        label: '3 days ago',
+        value: startOfDay(subDays(new Date(), 3)),
+      },
+      {
+        id: '1week',
+        label: '1 week ago',
+        value: startOfDay(subDays(new Date(), 7)),
+      },
+      {
+        id: '1weeks',
+        label: '2 weeks ago',
+        value: startOfDay(subDays(new Date(), 14)),
+      },
+      {
+        id: '1month',
+        label: '1 month ago',
+        value: startOfDay(subDays(new Date(), 30)),
+      },
+      {
+        id: 'custom',
+        label: 'Custom',
+      },
+    ],
+  },
 ]
 
 export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'items'>> = (
@@ -53,8 +99,9 @@ export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'items'>> = (
 
   const { enableFilter } = useFiltersContext()
 
-  const onSelect = ({ id, value }: FilterItem) => {
-    enableFilter({ id, value, operator: 'is' }) // @todo make operator dynamic
+  const onSelect = (item: FilterItem) => {
+    const { id, value } = item
+    enableFilter({ id, value, operator: 'is' })
   }
 
   return (

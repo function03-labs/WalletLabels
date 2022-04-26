@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Box, useColorModeValue } from '@chakra-ui/react'
 
-import { EmptyState } from '@saas-ui/react'
+import { EmptyState, useModals } from '@saas-ui/react'
 
 import {
   Page,
@@ -23,6 +23,7 @@ import {
 } from '@saas-ui/pro'
 
 import { Filters, IdType } from 'react-table'
+import { DatePickerModal } from '@saas-ui/date-picker'
 
 interface ListPageProps<D extends object>
   extends PageProps,
@@ -92,6 +93,32 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     )
   }, [])
 
+  const modals = useModals()
+
+  const onBeforeEnableFilter = React.useCallback(
+    (activeFilter, filter): Promise<Filter> => {
+      return new Promise((resolve, reject) => {
+        const { id, value } = activeFilter
+        const { type, label } = filter
+
+        if (type === 'date' && value === 'custom') {
+          return modals.open({
+            title: label,
+            date: new Date(),
+            onSubmit: (date: Date) => {
+              resolve({ id, value: date, operator: 'after' })
+            },
+            onClose: () => reject(),
+            component: DatePickerModal,
+          })
+        }
+
+        resolve(activeFilter)
+      })
+    },
+    [],
+  )
+
   const gridRef = React.useRef<TableInstance<D>>(null)
 
   let content
@@ -135,6 +162,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
       filters={filters}
       operators={operators}
       onChange={onFilter}
+      onBeforeEnableFilter={onBeforeEnableFilter}
     >
       <Page
         title={title}
