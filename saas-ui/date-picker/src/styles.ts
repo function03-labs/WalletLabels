@@ -158,13 +158,14 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
   return {
     day: {
-      borderRadius: 'none',
+      borderRadius: 'md',
       _hover: {
         bg: mode('blackAlpha.100', 'whiteAlpha.100')(props),
         borderRadius: 'md',
       },
       _selected: {
         bg: `${c}.100`,
+        borderRadius: 'none',
         _hover: {
           borderRadius: 'none',
         },
@@ -183,6 +184,9 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
         },
         '&[data-last], &[data-last]:hover': {
           borderEndRadius: 'md',
+        },
+        '&[data-first][data-last]': {
+          bg: 'transparent',
         },
       },
       _highlighted: {
