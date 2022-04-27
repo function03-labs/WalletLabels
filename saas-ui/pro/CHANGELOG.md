@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.3.5
+
+### Patch Changes
+
+- ebfa994: ActiveFilter is now controlled, allowing change action to be cancelled on custom filter input.
+- ebfa994: Now using filter values to render active filter labels.
+
 ## 0.3.4
 
 ### Patch Changes

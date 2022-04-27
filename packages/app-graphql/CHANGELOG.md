@@ -1,5 +1,12 @@
 # @app/graphql
 
+## 0.0.4
+
+### Patch Changes
+
+- ebfa994: Added dates to Contact
+  - @app/config@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
