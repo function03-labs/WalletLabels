@@ -27,6 +27,7 @@ export interface FilterItem {
   items?: FilterItem[]
   value?: string | number | boolean | Date
   operators?: FilterOperatorId[]
+  defaultOperator?: FilterOperatorId
 }
 
 export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
@@ -95,7 +96,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
             activeItem
               ? {
                   ...activeItem,
-                  value: item.id,
+                  value: item.value || item.id,
                 }
               : item,
           )
@@ -117,7 +118,16 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     const filteredItems = React.useMemo(() => {
       return (
         results?.map((item) => {
-          const { id, label, type, items, value, ...itemProps } = item
+          const {
+            id,
+            label,
+            type,
+            items,
+            value,
+            operators,
+            defaultOperator,
+            ...itemProps
+          } = item
           return (
             <MenuFilterItem
               key={id}

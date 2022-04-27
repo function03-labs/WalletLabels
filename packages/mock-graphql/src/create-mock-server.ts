@@ -16,6 +16,7 @@ import {
   randFullName,
   randUser,
   randNumber,
+  randBetweenDate,
   User,
 } from '@ngneat/falso'
 
@@ -69,6 +70,14 @@ export const createMockServer = (context: MockContext) => {
       email,
       status: 'new',
       type: 'lead',
+      createdAt: randBetweenDate({
+        from: new Date('01/01/2020'),
+        to: new Date(),
+      }),
+      updatedAt: randBetweenDate({
+        from: new Date('01/01/2020'),
+        to: new Date(),
+      }),
     }
   }
 

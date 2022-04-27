@@ -94,6 +94,8 @@ const typeDefs = gql`
     fullName: String
     status: String
     type: String
+    createdAt: DateTime
+    updatedAt: DateTime
   }
 `
 

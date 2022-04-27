@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/hooks'
 import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext } from '@chakra-ui/react-utils'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict'
 import isAfter from 'date-fns/isAfter'
 
 import { FilterItem } from './filter-menu'
@@ -141,7 +141,7 @@ const defaultFormatter = (value: FilterValue) => {
     if (isAfter(value, new Date())) {
       return format(value, 'PP')
     }
-    return formatDistanceToNow(value, { addSuffix: true })
+    return formatDistanceToNowStrict(value, { addSuffix: true })
   }
 
   return value?.toString()
@@ -168,7 +168,9 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
   })
 
   const onSelect = React.useCallback(
-    (item) => setValue(item.id),
+    (item) => {
+      setValue(item.value || item.id)
+    },
     [value, setValue],
   )
 

@@ -95,13 +95,13 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
           items={operators}
           value={operator}
           defaultValue={defaultOperator}
-          onChange={callAllHandlers(onOperatorChange, onOperatorChangeProp)}
+          onChange={onOperatorChange}
         />
         <ActiveFilterValue
           items={items}
           value={value}
           defaultValue={defaultValue}
-          onChange={callAllHandlers(onValueChange, onValueChangeProp)}
+          onChange={onValueChange}
         />
         <ActiveFilterRemove onClick={onRemove} />
       </ActiveFilterContainer>
@@ -379,11 +379,16 @@ export const ActiveFiltersList = () => {
               icon={filter?.icon}
               label={filter?.label}
               placeholder={filter?.label}
-              defaultValue={value}
+              value={value}
               defaultOperator={operator}
               items={filter?.items}
               operators={operators}
-              onChange={(filter) => enableFilter({ key, ...filter })}
+              onValueChange={(value) => {
+                enableFilter({ key, ...activeFilter, value })
+              }}
+              onOperatorChange={(operator) => {
+                enableFilter({ key, ...activeFilter, operator })
+              }}
               onRemove={() => key && disableFilter(key)}
             />
           </WrapItem>

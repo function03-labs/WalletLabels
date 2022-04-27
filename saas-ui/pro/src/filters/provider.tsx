@@ -62,9 +62,11 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   }
 
   const enableFilter = async (filter: Filter) => {
-    const _enable = (filter: Filter) => {
-      const key = filter.key || `${filter.id}-${activeFilterMap.size}`
+    const key = filter.key || `${filter.id}-${activeFilterMap.size}`
 
+    const def = getFilter(filter.id)
+
+    const _enable = (key: string, filter: Filter) => {
       activeFilterMap.set(key, filter)
 
       onChange?.(getActiveFilters())
@@ -72,13 +74,23 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
 
     if (onBeforeEnableFilter) {
       try {
-        return _enable(await onBeforeEnableFilter(filter, getFilter(filter.id)))
+        const result = await onBeforeEnableFilter(
+          {
+            ...filter,
+            key,
+            operator: filter.operator || def?.defaultOperator || 'is',
+          },
+          def,
+        )
+
+        return _enable(result.key || key, result)
       } catch (e) {
         /* ignore */
+        return
       }
     }
 
-    _enable(filter)
+    _enable(key, filter)
   }
 
   const disableFilter = (key: string) => {

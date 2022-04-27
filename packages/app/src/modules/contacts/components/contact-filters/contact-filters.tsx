@@ -14,6 +14,9 @@ import { useHotkeysShortcut } from '@saas-ui/react'
 
 import startOfDay from 'date-fns/startOfDay'
 import subDays from 'date-fns/subDays'
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict'
+
+const days = [1, 2, 3, 7, 14, 21, 31, 60]
 
 export const filters: FilterItem[] = [
   {
@@ -47,42 +50,17 @@ export const filters: FilterItem[] = [
     icon: <FiCalendar />,
     type: 'date',
     operators: ['after', 'before'],
-    items: [
-      {
-        id: '1day',
-        label: '1 day ago',
-        value: startOfDay(subDays(new Date(), 1)),
-      },
-      {
-        id: '2days',
-        label: '2 days ago',
-        value: startOfDay(subDays(new Date(), 2)),
-      },
-      {
-        id: '3days',
-        label: '3 days ago',
-        value: startOfDay(subDays(new Date(), 3)),
-      },
-      {
-        id: '1week',
-        label: '1 week ago',
-        value: startOfDay(subDays(new Date(), 7)),
-      },
-      {
-        id: '1weeks',
-        label: '2 weeks ago',
-        value: startOfDay(subDays(new Date(), 14)),
-      },
-      {
-        id: '1month',
-        label: '1 month ago',
-        value: startOfDay(subDays(new Date(), 30)),
-      },
-      {
-        id: 'custom',
-        label: 'Custom',
-      },
-    ],
+    defaultOperator: 'after',
+    items: days
+      .map((day): FilterItem => {
+        const date = startOfDay(subDays(new Date(), day))
+        return {
+          id: `${day}days`,
+          label: formatDistanceToNowStrict(date, { addSuffix: true }),
+          value: date,
+        }
+      })
+      .concat([{ id: 'custom', label: 'Custom' }]),
   },
 ]
 
@@ -101,7 +79,7 @@ export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'items'>> = (
 
   const onSelect = (item: FilterItem) => {
     const { id, value } = item
-    enableFilter({ id, value, operator: 'is' })
+    enableFilter({ id, value })
   }
 
   return (

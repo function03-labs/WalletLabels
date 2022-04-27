@@ -7,5 +7,7 @@ query GetContact($id: String) {
     email
     status
     type
+    createdAt
+    updatedAt
   }
 }

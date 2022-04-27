@@ -98,7 +98,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   const onBeforeEnableFilter = React.useCallback(
     (activeFilter, filter): Promise<Filter> => {
       return new Promise((resolve, reject) => {
-        const { id, value } = activeFilter
+        const { key, id, value } = activeFilter
         const { type, label } = filter
 
         if (type === 'date' && value === 'custom') {
@@ -106,7 +106,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
             title: label,
             date: new Date(),
             onSubmit: (date: Date) => {
-              resolve({ id, value: date, operator: 'after' })
+              resolve({ key, id, value: date, operator: 'after' })
             },
             onClose: () => reject(),
             component: DatePickerModal,

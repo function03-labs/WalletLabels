@@ -28,6 +28,7 @@ import {
 import { ListPage } from '@modules/core/components/list-page'
 
 import { filters, AddFilterButton } from '../components/contact-filters'
+import { format } from 'date-fns'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
@@ -69,6 +70,10 @@ const TypeCell = (cell: any) => {
         </Tag>
       )
   }
+}
+
+const DateCell = (cell: any) => {
+  return format(cell.value, 'PP')
 }
 
 const ActionCell = () => {
@@ -154,6 +159,8 @@ export function ContactsListPage() {
     {
       id: 'createdAt',
       Header: 'Created at',
+      Cell: DateCell,
+      filter: useDataGridFilter('date'),
     },
     {
       id: 'type',
