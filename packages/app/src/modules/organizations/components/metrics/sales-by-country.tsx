@@ -1,5 +1,6 @@
 import { Card, DataTable, Column, DataTableCell } from '@saas-ui/react'
 import { Sparklines } from '@saas-ui/charts'
+import { CellProps } from 'react-table'
 
 // @todo get this from graphql
 interface Data {
@@ -34,7 +35,7 @@ const data: Data[] = [
   },
 ]
 
-const MetricsCell: typeof DataTableCell = ({ value }) => {
+const MetricsCell = ({ value }: CellProps<Data>) => {
   return <Sparklines data={value} height="20px" width="100px" color="primary" />
 }
 
