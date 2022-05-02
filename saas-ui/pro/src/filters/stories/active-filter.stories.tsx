@@ -13,8 +13,10 @@ import {
   ActiveFilterValue,
   ActiveFilterRemove,
   FilterValue,
-  FilterOperator,
+  FilterOperators,
+  FilterOperatorId,
 } from '..'
+import { ActiveFilterProvider, useActiveFilter } from '../..'
 
 export default {
   title: 'Components/Filters/ActiveFilter',
@@ -64,12 +66,10 @@ const operators = [
   {
     id: 'is',
     label: 'is',
-    icon: <FiPlus />,
   },
   {
     id: 'isNot',
     label: 'is not',
-    icon: <FiX />,
   },
 ]
 
@@ -93,8 +93,9 @@ WithCallbacks.args = {
   onRemove: () => console.log('onRemove'),
 }
 
+/** @TODO this api is likely to change, ActiveFilterProvider will be moved into Container, to keep the api similar as other components. */
 export const Composed = () => {
-  const [operator, setOperator] = React.useState<FilterOperator>('is')
+  const [operator, setOperator] = React.useState<FilterOperatorId>('is')
   const [value, setValue] = React.useState<FilterValue>('new')
 
   const onReset = () => {
@@ -102,21 +103,27 @@ export const Composed = () => {
     setValue('new')
   }
 
+  const { filter } = useActiveFilter({
+    id: 'composed-filter',
+  })
+
   return (
-    <ActiveFilterContainer>
-      <ActiveFilterLabel icon={<FiCircle />}>Status</ActiveFilterLabel>
-      <ActiveFilterOperator
-        items={operators}
-        value={operator}
-        onChange={(val) => setOperator(val)}
-      />
-      <ActiveFilterValue
-        items={filters[0].items}
-        value={value}
-        onChange={(val) => setValue(val)}
-        placeholder="Status"
-      />
-      <ActiveFilterRemove onClick={onReset} />
-    </ActiveFilterContainer>
+    <ActiveFilterProvider value={filter}>
+      <ActiveFilterContainer>
+        <ActiveFilterLabel icon={<FiCircle />}>Status</ActiveFilterLabel>
+        <ActiveFilterOperator
+          items={operators}
+          value={operator}
+          onChange={(val) => setOperator(val)}
+        />
+        <ActiveFilterValue
+          items={filters[0].items}
+          value={value}
+          onChange={(val) => setValue(val)}
+          placeholder="Status"
+        />
+        <ActiveFilterRemove onClick={onReset} />
+      </ActiveFilterContainer>
+    </ActiveFilterProvider>
   )
 }

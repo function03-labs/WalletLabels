@@ -26,8 +26,10 @@ function isTargetMenuItem(target: EventTarget | null) {
   )
 }
 
+export interface UseMenuFilterItemProps extends UseMenuItemProps {}
+
 export function useMenuFilterItem(
-  props: UseMenuItemProps = {},
+  props: UseMenuFilterItemProps = {},
   externalRef: React.Ref<any> = null,
 ) {
   const {

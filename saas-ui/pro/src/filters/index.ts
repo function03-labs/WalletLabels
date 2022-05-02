@@ -5,4 +5,4 @@ export * from './provider'
 export * from './use-data-grid-filter'
 export * from './no-filtered-results'
 
-export type { FilterOperators, FilterType } from './operators'
+export type { FilterOperators, FilterOperatorId, FilterType } from './operators'

@@ -33,7 +33,7 @@ type HTMLAttributes = React.HTMLAttributes<HTMLElement>
 
 const navigationKeys = ['ArrowUp', 'ArrowDown', 'Escape']
 
-export interface MenuListFilterProps extends InputProps {
+export interface MenuListFilterProps extends Omit<InputProps, 'type'> {
   command?: string
 }
 
@@ -49,6 +49,7 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
     return (
       <InputGroup role={role}>
         <Input
+          type="text"
           position="sticky"
           placeholder={placeholder}
           borderBottomRadius="0"

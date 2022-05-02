@@ -54,7 +54,7 @@ export interface ActiveFilterProps
   value?: FilterValue
   defaultValue?: FilterValue
   items?: FilterItem[]
-  operators?: FilterOperators
+  operators?: FilterItem[]
   operator?: FilterOperatorId
   defaultOperator?: FilterOperatorId
   onRemove?(): void
