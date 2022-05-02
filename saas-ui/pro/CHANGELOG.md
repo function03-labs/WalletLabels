@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.3.6
+
+### Patch Changes
+
+- baed105: Fixed MenuListFilter types
+
 ## 0.3.5
 
 ### Patch Changes

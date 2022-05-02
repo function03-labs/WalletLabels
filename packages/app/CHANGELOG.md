@@ -1,5 +1,14 @@
 # app
 
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies [baed105]
+  - @saas-ui/pro@0.3.6
+  - @ui/core@0.0.14
+  - @app/config@0.0.5
+
 ## 1.0.7
 
 ### Patch Changes
