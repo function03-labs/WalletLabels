@@ -1,5 +1,4 @@
 import * as React from 'react'
-import type { ForwardedRef } from 'react'
 
 import {
   chakra,
@@ -30,46 +29,7 @@ import Joyride, {
 
 export type { Step }
 
-const pulse = keyframes`
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  55% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-`
-
-const { useCallback, forwardRef } = React
-
-export const Beacon = forwardRef(
-  ({ ...props }: BeaconRenderProps, ref: ForwardedRef<any>) => {
-    return (
-      <chakra.div
-        bg="green.400"
-        borderRadius="50%"
-        h="4"
-        w="4"
-        _before={{
-          content: '""',
-          d: 'block',
-          w: '4',
-          h: '4',
-          animation: `${pulse} 1s ease-in-out infinite`,
-          boxShadow: '0 0 2px 2px',
-          color: 'green.400',
-          borderRadius: '50%',
-        }}
-        ref={ref}
-        {...props}
-      />
-    )
-  },
-)
+import { Beacon } from './beacon'
 
 function renderProgress(
   progress: React.ReactNode,
@@ -85,7 +45,7 @@ function renderProgress(
   return progress
 }
 
-const TourTooltip = forwardRef(
+const TourTooltip = React.forwardRef(
   (
     {
       tooltipProps,
@@ -206,7 +166,7 @@ export function Tour({
   onComplete,
   ...props
 }: TourProps) {
-  const _handleCallback = useCallback((data) => {
+  const _handleCallback = React.useCallback((data) => {
     if (callback) {
       callback(data)
     }
@@ -223,6 +183,7 @@ export function Tour({
     <Joyride
       steps={steps}
       locale={Object.assign({}, defaultLocale, locale || {})}
+      /* @ts-ignore */
       beaconComponent={Beacon as React.ElementType<BeaconRenderProps>}
       tooltipComponent={TourTooltip}
       showProgress

@@ -13,7 +13,8 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "react-joyride": "^2.3.2"
+    "react-joyride": "^2.3.2",
+    "@chakra-ui/utils": "^1.10.4"
   },
   "devDependencies": {
     "prop-types": "^15.8.1"
