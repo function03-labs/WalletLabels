@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.3.7
+
+### Patch Changes
+
+- Added seperate export for theme to support Chakra Theme tokens
+
 ## 0.3.6
 
 ### Patch Changes

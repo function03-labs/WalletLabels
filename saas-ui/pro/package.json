@@ -1,8 +1,13 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "exports": {
-    "default": "./src/index.ts"
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./theme": {
+      "default": "./src/theme/index.ts"
+    }
   },
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
