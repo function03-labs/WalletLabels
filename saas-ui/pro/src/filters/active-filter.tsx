@@ -8,9 +8,10 @@ import {
   useStyles,
   StylesProvider,
   SystemProps,
+  ThemingProps,
 } from '@chakra-ui/system'
 
-import { cx, callAllHandlers, __DEV__ } from '@chakra-ui/utils'
+import { cx, __DEV__ } from '@chakra-ui/utils'
 
 import { Wrap, WrapProps, WrapItem } from '@chakra-ui/layout'
 
@@ -24,6 +25,7 @@ import {
   MenuDialogListProps,
   MenuProps,
   ButtonProps,
+  ButtonGroupProps,
 } from '@saas-ui/react'
 
 import { FilterMenu, FilterItem } from './filter-menu'
@@ -44,10 +46,10 @@ import {
 } from './use-active-filter'
 
 import { useFiltersContext } from './provider'
-import { FilterOperators, FilterOperatorId } from './operators'
+import { FilterOperatorId } from './operators'
 
 export interface ActiveFilterProps
-  extends Omit<HTMLChakraProps<'div'>, 'onChange' | 'defaultValue'> {
+  extends Omit<ActiveFilterContainerProps, 'onChange' | 'defaultValue'> {
   id: string
   icon?: React.ReactNode
   label?: string
@@ -113,7 +115,11 @@ if (__DEV__) {
   ActiveFilter.displayName = 'ActiveFilter'
 }
 
-export const ActiveFilterContainer: React.FC<HTMLChakraProps<'div'>> = (
+export interface ActiveFilterContainerProps
+  extends Omit<ButtonGroupProps, 'size' | 'variant' | 'colorScheme'>,
+    ThemingProps<'ActiveFilter'> {}
+
+export const ActiveFilterContainer: React.FC<ActiveFilterContainerProps> = (
   props,
 ) => {
   const { children, ...rest } = props
