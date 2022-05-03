@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@app/config": "workspace:*",
-    "graphql": "^16.3.0",
+    "graphql": "15.8.0",
     "react-query": "^3.34.14"
   },
   "devDependencies": {

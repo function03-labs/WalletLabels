@@ -8,10 +8,15 @@ module.exports = {
     path.resolve('../../saas-ui/**/*.stories.tsx'),
   ],
   addons: [
+    'storybook-addon-swc',
     'storybook-addon-performance/register',
     '@storybook/addon-a11y',
     '@storybook/addon-toolbars',
     '@storybook/addon-storysource',
+    '@storybook/addon-viewport',
+    '@storybook/addon-docs',
+    '@storybook/addon-controls',
+    '@storybook/addon-links',
   ],
   staticDirs: ['./static'],
   typescript: {

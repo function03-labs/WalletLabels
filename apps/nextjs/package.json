@@ -10,15 +10,17 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "typecheck": "tsc"
+    "typecheck": "next lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
+    "@chakra-ui/system": "^1.12.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@saas-ui/auth": ">=0.7.0",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
+    "@saas-ui/date-picker": "workspace:*",
     "@saas-ui/next-workspaces": "^0.1.1",
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/pro": "workspace:*",
