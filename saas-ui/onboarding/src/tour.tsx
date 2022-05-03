@@ -30,7 +30,7 @@ function renderProgress(
 ) {
   if (typeof progress === 'string') {
     return progress
-      .replace(':step', String(step))
+      .replace(':current', String(step))
       .replace(':total', String(total))
   }
 
@@ -103,7 +103,7 @@ const TourTooltip = React.forwardRef(
         {!hideFooter && (
           <TourDialogFooter>
             {showProgress && (
-              <Text>{renderProgress(progress, index, size)}</Text>
+              <Text>{renderProgress(progress, index + 1, size)}</Text>
             )}
 
             <TourDialogActions />
