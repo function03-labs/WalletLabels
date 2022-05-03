@@ -7093,6 +7093,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/onboarding@workspace:saas-ui/onboarding"
   dependencies:
+    "@chakra-ui/utils": ^1.10.4
     prop-types: ^15.8.1
     react-joyride: ^2.3.2
   peerDependencies:
