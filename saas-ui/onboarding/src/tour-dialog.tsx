@@ -1,18 +1,10 @@
 import * as React from 'react'
 
 import {
-  chakra,
   forwardRef,
   Popover,
   useTheme,
-  HTMLChakraProps,
-} from '@chakra-ui/react'
-
-import { cx, __DEV__ } from '@chakra-ui/utils'
-
-import { getChildOfType } from '@saas-ui/react-utils'
-
-import {
+  CloseButtonProps,
   PopoverTrigger as TourDialogTrigger,
   PopoverAnchor as TourDialogAnchor,
   PopoverContent as TourDialogContent,
@@ -23,7 +15,10 @@ import {
   PopoverFooter as TourDialogFooter,
 } from '@chakra-ui/react'
 
-import defaultStyleConfig from './tour-dialog.styles'
+import { __DEV__ } from '@chakra-ui/utils'
+
+import { getChildOfType } from '@saas-ui/react-utils'
+
 import {
   Button,
   ButtonProps,
@@ -38,11 +33,13 @@ import {
   TourDialogContextProvider,
 } from './use-tour-dialog'
 
+import defaultStyleConfig from './tour-dialog.styles'
+
 export interface TourDialogProps extends TourDialogContainerProps {
   hideFooter?: boolean
   hideArrow?: boolean
   hideCloseButton?: boolean
-  closeProps?: ButtonProps
+  closeProps?: CloseButtonProps
 }
 
 export const TourDialog = forwardRef<
