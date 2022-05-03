@@ -1,5 +1,13 @@
 # @app/config
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [09d4444]
+- Updated dependencies [a44ee13]
+  - @ui/core@0.0.16
+
 ## 0.0.6
 
 ### Patch Changes

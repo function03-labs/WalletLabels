@@ -1,5 +1,14 @@
 # @ui/core
 
+## 0.0.16
+
+### Patch Changes
+
+- 09d4444: Updated to Chakra 1.8.8
+- a44ee13: Fixed peer dep issues, and silenced non critical warnings.
+- Updated dependencies [8cfcd9e]
+  - @saas-ui/pro@0.3.8
+
 ## 0.0.15
 
 ### Patch Changes

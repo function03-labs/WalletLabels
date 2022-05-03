@@ -1,5 +1,13 @@
 # saas-ui-storybook
 
+## 1.0.8
+
+### Patch Changes
+
+- a44ee13: Fixed peer dep issues, and silenced non critical warnings.
+- Updated dependencies [8cfcd9e]
+  - @saas-ui/pro@0.3.8
+
 ## 1.0.7
 
 ### Patch Changes

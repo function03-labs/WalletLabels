@@ -1,5 +1,21 @@
 # nextjs-app
 
+## 1.0.19
+
+### Patch Changes
+
+- 09d4444: Updated to Chakra 1.8.8
+- a44ee13: Fixed peer dep issues, and silenced non critical warnings.
+- Updated dependencies [7a6413b]
+- Updated dependencies [fc48900]
+- Updated dependencies [09d4444]
+- Updated dependencies [a44ee13]
+- Updated dependencies [8cfcd9e]
+  - @saas-ui/onboarding@0.2.0
+  - @ui/core@0.0.16
+  - @saas-ui/pro@0.3.8
+  - app@2.0.0
+
 ## 1.0.18
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "@app/config",
   "main": "src/index.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "dependencies": {
     "@supabase/supabase-js": "^1.18.0",
     "@ui/core": "workspace:*",
