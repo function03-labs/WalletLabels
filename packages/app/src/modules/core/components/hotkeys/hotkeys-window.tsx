@@ -15,7 +15,7 @@ import {
   HotkeysSearch,
   HotkeysListItems,
   useHotkeysContext,
-} from '@saas-ui/hotkeys'
+} from '@saas-ui/react'
 
 export interface HotkeysWindowProps extends Omit<DrawerProps, 'children'> {
   /**
