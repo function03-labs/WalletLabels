@@ -16,7 +16,8 @@ const baseStylePopper: SystemStyleObject = {
 }
 
 const baseStyleContent: SystemStyleFunction = (props) => {
-  const bg = 'primary.500'
+  const { colorScheme: c } = props
+  const bg = `${c}.500`
   const shadowColor = mode('blackAlpha.200', 'whiteAlpha.300')(props)
 
   return {
@@ -74,6 +75,9 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => ({
 })
 
 export default {
+  defaultProps: {
+    colorScheme: 'primary',
+  },
   parts: parts.keys,
   baseStyle,
 }

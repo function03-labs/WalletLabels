@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { Text } from '@chakra-ui/react'
+
 import Joyride, {
   BeaconRenderProps,
   TooltipRenderProps,
@@ -18,9 +20,22 @@ import {
   TourDialogActions,
   TourDialogBody,
   TourDialogFooter,
-  TourDialogProgress,
   TourDialogTrigger,
 } from './tour-dialog'
+
+function renderProgress(
+  progress: React.ReactNode,
+  step: number,
+  total: number,
+) {
+  if (typeof progress === 'string') {
+    return progress
+      .replace(':step', String(step))
+      .replace(':total', String(total))
+  }
+
+  return progress
+}
 
 const TourTooltip = React.forwardRef(
   (
@@ -87,7 +102,9 @@ const TourTooltip = React.forwardRef(
         <TourDialogBody>{content}</TourDialogBody>
         {!hideFooter && (
           <TourDialogFooter>
-            {showProgress && <TourDialogProgress label={progress} />}
+            {showProgress && (
+              <Text>{renderProgress(progress, index, size)}</Text>
+            )}
 
             <TourDialogActions />
           </TourDialogFooter>

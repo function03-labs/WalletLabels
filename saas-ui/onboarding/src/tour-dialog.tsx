@@ -66,7 +66,6 @@ export const TourDialog = forwardRef<
   if (!hideFooter) {
     footer = footerComponent || (
       <TourDialogFooter>
-        <TourDialogProgress />
         <TourDialogActions />
       </TourDialogFooter>
     )
@@ -122,49 +121,6 @@ export const TourDialogContainer: React.FC<TourDialogContainerProps> = (
 
 if (__DEV__) {
   TourDialogContainer.displayName = 'TourDialogContainer'
-}
-
-export interface TourDialogProgressProps extends HTMLChakraProps<'p'> {
-  /**
-   * The current step
-   */
-  step?: number
-  /**
-   * Total steps
-   */
-  total?: number
-  /**
-   * The progress label
-   * Accepts :step and :total string template vars
-   */
-  label?: React.ReactNode
-}
-
-function renderProgress(
-  progress: React.ReactNode,
-  step: number,
-  total: number,
-) {
-  if (typeof progress === 'string') {
-    return progress
-      .replace(':step', String(step))
-      .replace(':total', String(total))
-  }
-
-  return progress
-}
-
-export const TourDialogProgress: React.FC<TourDialogProgressProps> = (
-  props,
-) => {
-  const { step = 1, total, label = 'Step :step of :total', ...rest } = props
-  return total ? (
-    <chakra.p {...rest}>{renderProgress(label, step, total)}</chakra.p>
-  ) : null
-}
-
-if (__DEV__) {
-  TourDialogProgress.displayName = 'TourDialogProgress'
 }
 
 export interface TourDialogActionsProps extends ButtonGroupProps {
