@@ -4,9 +4,13 @@ import { createContext, PropGetterV2, mergeRefs } from '@chakra-ui/react-utils'
 import { callAllHandlers } from '@chakra-ui/utils'
 import { PopoverProps, useDisclosure } from '@chakra-ui/react'
 
+import { ButtonProps } from '@saas-ui/react'
+
 export interface TourDialogOptions extends PopoverProps {
   title: React.ReactNode
   onSubmit?(): Promise<any>
+  primaryAction?: ButtonProps | null
+  secondaryAction?: ButtonProps | null
 }
 
 export type TourDialogContext = ReturnType<typeof useTourDialog>
@@ -21,6 +25,8 @@ export const useTourDialog = (props: TourDialogOptions) => {
     isOpen: isOpenProp,
     onClose: onCloseProp,
     defaultIsOpen,
+    primaryAction,
+    secondaryAction,
   } = props
 
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
@@ -36,13 +42,18 @@ export const useTourDialog = (props: TourDialogOptions) => {
       return {
         variant: 'subtle',
         label: 'OK',
+        ...primaryAction,
         ...props,
         ref: mergeRefs(primaryActionRef, ref),
-        onClick: callAllHandlers(async () => {
-          await onSubmit?.()
+        onClick: callAllHandlers(
+          async () => {
+            await onSubmit?.()
 
-          onClose()
-        }, props?.onClick),
+            onClose()
+          },
+          props?.onClick,
+          primaryAction?.onClick,
+        ),
       }
     },
     [onSubmit, onClose, primaryActionRef],
@@ -53,8 +64,13 @@ export const useTourDialog = (props: TourDialogOptions) => {
       return {
         variant: 'ghost',
         label: 'Dismiss',
+        ...secondaryAction,
         ...props,
-        onClick: callAllHandlers(() => onClose?.(), props?.onClick),
+        onClick: callAllHandlers(
+          () => onClose?.(),
+          props?.onClick,
+          secondaryAction?.onClick,
+        ),
       }
     },
     [onClose],

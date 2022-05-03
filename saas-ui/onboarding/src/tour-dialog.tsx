@@ -137,7 +137,7 @@ export interface TourDialogProgressProps extends HTMLChakraProps<'p'> {
    * The progress label
    * Accepts :step and :total string template vars
    */
-  label?: string
+  label?: React.ReactNode
 }
 
 function renderProgress(

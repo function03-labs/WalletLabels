@@ -17,6 +17,7 @@ export const IntroTour = () => {
       title: 'Welcome to Saas UI!',
       content: 'Press next to start a quick introduction.',
       disableBeacon: true,
+      disableOverlay: true,
       showSkipButton: true,
       placement: 'center',
     },
@@ -39,13 +40,7 @@ export const IntroTour = () => {
 
   return (
     <ErrorBoundary errorComponent={() => null}>
-      <Tour
-        continuous
-        steps={steps}
-        run={!tour}
-        disableOverlay
-        onComplete={onTourComplete}
-      />
+      <Tour continuous steps={steps} run={!tour} onComplete={onTourComplete} />
     </ErrorBoundary>
   )
 }

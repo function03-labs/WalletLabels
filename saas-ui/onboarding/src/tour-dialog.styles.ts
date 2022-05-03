@@ -17,7 +17,7 @@ const baseStylePopper: SystemStyleObject = {
 
 const baseStyleContent: SystemStyleFunction = (props) => {
   const bg = 'primary.500'
-  const shadowColor = mode('gray.200', 'whiteAlpha.300')(props)
+  const shadowColor = mode('blackAlpha.200', 'whiteAlpha.300')(props)
 
   return {
     [$popperBg.variable]: `colors.${bg}`,

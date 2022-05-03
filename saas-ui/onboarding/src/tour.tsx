@@ -1,22 +1,5 @@
 import * as React from 'react'
 
-import {
-  chakra,
-  Text,
-  ButtonGroup,
-  Button,
-  Placement,
-  Popover,
-  PopoverTrigger,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
-  keyframes,
-} from '@chakra-ui/react'
-
 import Joyride, {
   BeaconRenderProps,
   TooltipRenderProps,
@@ -30,20 +13,14 @@ import Joyride, {
 export type { Step }
 
 import { Beacon } from './beacon'
-
-function renderProgress(
-  progress: React.ReactNode,
-  current: number,
-  total: number,
-) {
-  if (typeof progress === 'string') {
-    return progress
-      .replace(':current', String(current))
-      .replace(':total', String(total))
-  }
-
-  return progress
-}
+import {
+  TourDialog,
+  TourDialogActions,
+  TourDialogBody,
+  TourDialogFooter,
+  TourDialogProgress,
+  TourDialogTrigger,
+} from './tour-dialog'
 
 const TourTooltip = React.forwardRef(
   (
@@ -58,6 +35,7 @@ const TourTooltip = React.forwardRef(
       backProps,
       primaryProps,
       closeProps,
+      ...rest
     }: TooltipRenderProps,
     ref,
   ) => {
@@ -71,71 +49,50 @@ const TourTooltip = React.forwardRef(
       title,
     } = step
 
-    const { progress, back, close, last, next, skip } =
-      step.locale as TourLocale
+    const { progress, back, last, next, skip } = step.locale as TourLocale
 
-    let footer
-    if (!hideFooter) {
-      footer = (
-        <PopoverFooter
-          border="0"
-          d="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          {showProgress && (
-            <Text>{renderProgress(progress, index + 1, size)}</Text>
-          )}
-          <ButtonGroup size="sm">
-            {showSkipButton && (
-              <Button {...skipProps} variant="ghost">
-                {skip}
-              </Button>
-            )}
-            {index > 0 && !hideBackButton && (
-              <Button {...backProps} variant="ghost">
-                {back}
-              </Button>
-            )}
-            {continuous && (
-              <Button {...primaryProps} variant="subtle">
-                {isLastStep ? last : next}
-              </Button>
-            )}
-          </ButtonGroup>
-        </PopoverFooter>
-      )
+    let secondaryAction = null
+    if (index > 0 && !hideBackButton) {
+      secondaryAction = {
+        label: back,
+        ...backProps,
+      }
+    } else if (showSkipButton) {
+      secondaryAction = {
+        label: skip,
+        ...skipProps,
+      }
     }
 
-    const placement = step.placement === 'center' ? 'bottom' : step.placement
+    const dialogProps = {
+      title,
+      placement: step.placement === 'center' ? 'bottom' : step.placement,
+      hideCloseButton,
+      isOpen: true,
+      primaryAction: continuous
+        ? {
+            label: isLastStep ? last : next,
+            ...primaryProps,
+          }
+        : null,
+      secondaryAction,
+      ...rest,
+    }
 
     return (
-      <div {...tooltipProps}>
-        <Popover isOpen placement={placement}>
-          {/* this makes sure the arrow is rendered correctly */}
-          <PopoverTrigger>
-            <span />
-          </PopoverTrigger>
-          <PopoverContent
-            position="relative"
-            bg="primary.500"
-            fontSize="md"
-            color="white"
-          >
-            <PopoverArrow bg="primary.500" />
-            {title && !hideCloseButton && (
-              <PopoverCloseButton {...closeProps} />
-            )}
-            {title && (
-              <PopoverHeader fontWeight="bold" border="0">
-                {step.title}
-              </PopoverHeader>
-            )}
-            <PopoverBody>{content}</PopoverBody>
-            {footer}
-          </PopoverContent>
-        </Popover>
-      </div>
+      <TourDialog {...dialogProps}>
+        <TourDialogTrigger>
+          <span {...tooltipProps} />
+        </TourDialogTrigger>
+        <TourDialogBody>{content}</TourDialogBody>
+        {!hideFooter && (
+          <TourDialogFooter>
+            {showProgress && <TourDialogProgress label={progress} />}
+
+            <TourDialogActions />
+          </TourDialogFooter>
+        )}
+      </TourDialog>
     )
   },
 )
@@ -183,8 +140,9 @@ export function Tour({
     <Joyride
       steps={steps}
       locale={Object.assign({}, defaultLocale, locale || {})}
-      /* @ts-ignore */
-      beaconComponent={Beacon as React.ElementType<BeaconRenderProps>}
+      beaconComponent={
+        Beacon as unknown as React.ElementType<BeaconRenderProps>
+      }
       tooltipComponent={TourTooltip}
       showProgress
       floaterProps={{ hideArrow: true }}
