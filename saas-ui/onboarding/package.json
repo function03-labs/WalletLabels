@@ -10,11 +10,11 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",
-    "directory": "saas-ui/pro"
+    "directory": "saas-ui/onboarding"
   },
   "dependencies": {
-    "react-joyride": "^2.3.2",
-    "@chakra-ui/utils": "^1.10.4"
+    "@chakra-ui/utils": "^1.10.4",
+    "react-joyride": "^2.3.2"
   },
   "devDependencies": {
     "prop-types": "^15.8.1"
