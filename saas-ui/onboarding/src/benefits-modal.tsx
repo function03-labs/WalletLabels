@@ -146,4 +146,9 @@ if (__DEV__) {
   BenefitsModalActions.displayName = 'BenefitsModalActions'
 }
 
-export { BenefitsModalHeader, BenefitsModalBody, BenefitsModalFooter }
+export {
+  BenefitsModalCloseButton,
+  BenefitsModalHeader,
+  BenefitsModalBody,
+  BenefitsModalFooter,
+}

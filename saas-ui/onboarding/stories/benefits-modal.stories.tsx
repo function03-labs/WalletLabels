@@ -1,4 +1,4 @@
-import { Container, Text, useDisclosure, VStack } from '@chakra-ui/react'
+import { Container, useDisclosure } from '@chakra-ui/react'
 import { Button } from '@saas-ui/react'
 import { Meta, Story } from '@storybook/react'
 import React from 'react'
