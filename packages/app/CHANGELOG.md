@@ -1,5 +1,12 @@
 # app
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [3b14bcf]
+  - @saas-ui/onboarding@0.2.1
+
 ## 2.0.0
 
 ### Patch Changes

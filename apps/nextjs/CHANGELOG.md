@@ -1,5 +1,13 @@
 # nextjs-app
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [3b14bcf]
+  - @saas-ui/onboarding@0.2.1
+  - app@2.0.1
+
 ## 1.0.19
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.2.1
+
+### Patch Changes
+
+- 3b14bcf: Added new BenefitsModal component
+
 ## 0.2.0
 
 ### Minor Changes
