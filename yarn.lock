@@ -86,6 +86,12 @@ __metadata:
 "@app/nextjs@workspace:packages/app-nextjs":
   version: 0.0.0-use.local
   resolution: "@app/nextjs@workspace:packages/app-nextjs"
+  dependencies:
+    "@saas-ui/router": "workspace:*"
+  peerDependencies:
+    next: ">=12"
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
   languageName: unknown
   linkType: soft
 
@@ -7208,6 +7214,17 @@ __metadata:
   checksum: 2141260fea8c9140b616d23ed1215d2e706c5b6df9016f423a0bcb0e50cfe875bd34a1258ecb627a3fa72f5876a160238345c5e92992c1ea14bdc4378ef04336
   languageName: node
   linkType: hard
+
+"@saas-ui/router@workspace:*, @saas-ui/router@workspace:saas-ui/router":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/router@workspace:saas-ui/router"
+  dependencies:
+    query-string: ^7.1.1
+  peerDependencies:
+    react: ">=16.8.6"
+    react-dom: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
 
 "@saas-ui/search-input@npm:0.5.0":
   version: 0.5.0
@@ -16806,6 +16823,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"filter-obj@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "filter-obj@npm:1.1.0"
+  checksum: cf2104a7c45ff48e7f505b78a3991c8f7f30f28bd8106ef582721f321f1c6277f7751aacd5d83026cb079d9d5091082f588d14a72e7c5d720ece79118fa61e10
+  languageName: node
+  linkType: hard
+
 "finalhandler@npm:~1.1.2":
   version: 1.1.2
   resolution: "finalhandler@npm:1.1.2"
@@ -24437,6 +24461,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"query-string@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "query-string@npm:7.1.1"
+  dependencies:
+    decode-uri-component: ^0.2.0
+    filter-obj: ^1.1.0
+    split-on-first: ^1.0.0
+    strict-uri-encode: ^2.0.0
+  checksum: b227d1f588ae93f9f0ad078c6b811295fa151dc5a160a03bb2bac5fa0e6919cb1daa570aad1d288e77c8e89fde5362ba505b1014e6e793da9b1e885b59a690a6
+  languageName: node
+  linkType: hard
+
 "querystring-es3@npm:^0.2.0":
   version: 0.2.1
   resolution: "querystring-es3@npm:0.2.1"
@@ -26865,6 +26901,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"split-on-first@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "split-on-first@npm:1.1.0"
+  checksum: 16ff85b54ddcf17f9147210a4022529b343edbcbea4ce977c8f30e38408b8d6e0f25f92cd35b86a524d4797f455e29ab89eb8db787f3c10708e0b47ebf528d30
+  languageName: node
+  linkType: hard
+
 "split-string@npm:^3.0.1, split-string@npm:^3.0.2":
   version: 3.1.0
   resolution: "split-string@npm:3.1.0"
@@ -27070,6 +27113,13 @@ __metadata:
   version: 1.1.0
   resolution: "strict-uri-encode@npm:1.1.0"
   checksum: 9466d371f7b36768d43f7803f26137657559e4c8b0161fb9e320efb8edba3ae22f8e99d4b0d91da023b05a13f62ec5412c3f4f764b5788fac11d1fea93720bb3
+  languageName: node
+  linkType: hard
+
+"strict-uri-encode@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "strict-uri-encode@npm:2.0.0"
+  checksum: eaac4cf978b6fbd480f1092cab8b233c9b949bcabfc9b598dd79a758f7243c28765ef7639c876fa72940dac687181b35486ea01ff7df3e65ce3848c64822c581
   languageName: node
   linkType: hard
 

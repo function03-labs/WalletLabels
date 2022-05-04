@@ -2,5 +2,13 @@
   "name": "@app/nextjs",
   "description": "Next.js specific shared code",
   "private": true,
-  "main": "src/index.ts"
+  "main": "src/index.ts",
+  "dependencies": {
+    "@saas-ui/router": "workspace:*"
+  },
+  "peerDependencies": {
+    "next": ">=12",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  }
 }

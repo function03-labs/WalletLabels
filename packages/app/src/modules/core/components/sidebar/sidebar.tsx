@@ -23,6 +23,7 @@ import {
   Command,
   ResizeHandler,
   useTenancy,
+  SidebarLinkProps,
 } from '@saas-ui/pro'
 
 import {
@@ -32,6 +33,7 @@ import {
   MenuDivider,
   useModals,
   useLocalStorage,
+  useHotkeysShortcut,
 } from '@saas-ui/react'
 
 import { BillingStatus } from './billing-status'
@@ -40,6 +42,8 @@ import { UserMenu } from './user-menu'
 import { ElectronNav } from './electron-nav'
 
 import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
+import { useNavigate } from '@saas-ui/router'
+import { useRouter } from 'next/router'
 
 export interface AppSidebarProps extends SidebarProps {}
 
@@ -100,20 +104,23 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
         <SidebarOverflow>
           <SidebarNav flex="1" spacing={6}>
             <SidebarNavGroup>
-              <SidebarLink
+              <AppSidebarLink
                 href={getPath()}
                 label="Dashboard"
                 icon={<FiHome />}
+                hotkey="navigation.dashboard"
               />
-              <SidebarLink
+              <AppSidebarLink
                 href={getPath('inbox')}
                 label="Inbox"
                 icon={<FiInbox />}
+                hotkey="navigation.inbox"
               />
-              <SidebarLink
+              <AppSidebarLink
                 href={getPath('contacts')}
                 label="Contacts"
                 icon={<FiUsers />}
+                hotkey="navigation.contacts"
               />
             </SidebarNavGroup>
 
@@ -177,5 +184,36 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
         )}
       </Sidebar>
     </>
+  )
+}
+
+interface AppSidebarlink extends SidebarLinkProps {
+  hotkey: string
+  href: string
+}
+
+const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
+  const { href, label, hotkey, ...rest } = props
+  const router = useRouter()
+
+  const command = useHotkeysShortcut(
+    hotkey,
+    () => {
+      router.push(href)
+    },
+    [router, href],
+  )
+
+  return (
+    <SidebarLink
+      href={href}
+      label={label}
+      {...rest}
+      tooltip={
+        <>
+          {label} <Command>{command}</Command>
+        </>
+      }
+    />
   )
 }

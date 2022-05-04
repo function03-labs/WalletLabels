@@ -1,2 +1,2 @@
 export * from './helpers/create-page'
-export * from './hooks/use-params'
+export * from './context/router-provider'

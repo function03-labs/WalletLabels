@@ -20,6 +20,23 @@ export const appHotkeys: HotkeysListOptions = {
       },
     },
   },
+  navigation: {
+    title: 'Navigation',
+    hotkeys: {
+      dashboard: {
+        label: 'Go to Dashboard',
+        command: 'G then D',
+      },
+      inbox: {
+        label: 'Go to Inbox',
+        command: 'G then I',
+      },
+      contacts: {
+        label: 'Go to Contacts',
+        command: 'G then C',
+      },
+    },
+  },
   contacts: {
     title: 'Contacts',
     hotkeys: {
