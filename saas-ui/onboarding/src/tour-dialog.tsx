@@ -36,6 +36,7 @@ import {
 import defaultStyleConfig from './tour-dialog.styles'
 
 export interface TourDialogProps extends TourDialogContainerProps {
+  title?: React.ReactNode
   hideFooter?: boolean
   hideArrow?: boolean
   hideCloseButton?: boolean
@@ -126,7 +127,7 @@ export interface TourDialogActionsProps extends ButtonGroupProps {
 }
 
 export const TourDialogActions: React.FC<TourDialogActionsProps> = (props) => {
-  const { primaryActionProps, secondaryActionProps } = props
+  const { children, primaryActionProps, secondaryActionProps } = props
 
   const { getPrimaryActionProps, getSecondaryActionProps } =
     useTourDialogContext()
@@ -139,8 +140,11 @@ export const TourDialogActions: React.FC<TourDialogActionsProps> = (props) => {
       justifyContent="flex-end"
       {...props}
     >
+      {children}
       <Button {...getSecondaryActionProps(secondaryActionProps)} />
-      <Button {...getPrimaryActionProps(primaryActionProps)} />
+      <Button
+        {...getPrimaryActionProps({ variant: 'subtle', ...primaryActionProps })}
+      />
     </ButtonGroup>
   )
 }

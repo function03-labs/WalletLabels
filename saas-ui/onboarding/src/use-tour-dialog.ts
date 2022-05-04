@@ -7,7 +7,6 @@ import { PopoverProps, useDisclosure } from '@chakra-ui/react'
 import { ButtonProps } from '@saas-ui/react'
 
 export interface TourDialogOptions extends PopoverProps {
-  title: React.ReactNode
   onSubmit?(): Promise<any>
   primaryAction?: ButtonProps | null
   secondaryAction?: ButtonProps | null
@@ -40,7 +39,6 @@ export const useTourDialog = (props: TourDialogOptions) => {
   const getPrimaryActionProps: PropGetterV2<'button'> = React.useCallback(
     (props, ref) => {
       return {
-        variant: 'subtle',
         label: 'OK',
         ...primaryAction,
         ...props,
@@ -62,7 +60,6 @@ export const useTourDialog = (props: TourDialogOptions) => {
   const getSecondaryActionProps: PropGetterV2<'button'> = React.useCallback(
     (props) => {
       return {
-        variant: 'ghost',
         label: 'Dismiss',
         ...secondaryAction,
         ...props,

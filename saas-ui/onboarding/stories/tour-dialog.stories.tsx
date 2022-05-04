@@ -76,10 +76,7 @@ export const Composed = () => {
       <TourDialogBody>Start the tour to see how it works.</TourDialogBody>
       <TourDialogFooter>
         <Text>Step 1 of 2</Text>
-        <TourDialogActions>
-          <Button label="Skip" />
-          <Button label="Next" variant="subtle" />
-        </TourDialogActions>
+        <TourDialogActions />
       </TourDialogFooter>
     </TourDialog>
   )
