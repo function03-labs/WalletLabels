@@ -1,5 +1,12 @@
 # nextjs-app
 
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies [0e27926]
+  - app@2.0.2
+
 ## 1.0.20
 
 ### Patch Changes

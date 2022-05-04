@@ -1,5 +1,11 @@
 # app
 
+## 2.0.2
+
+### Patch Changes
+
+- 0e27926: Added hotkey navigation to sidebar navigation.
+
 ## 2.0.1
 
 ### Patch Changes
