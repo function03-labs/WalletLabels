@@ -37,6 +37,13 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       _hover: {
         textDecoration: 'none',
       },
+      _focus: {
+        outline: 0,
+        boxShadow: 'outline',
+        '&:not(:focus-visible)': {
+          boxShadow: 'none',
+        },
+      },
       '.saas-sidebar__condensed &': {
         padding: 0,
         justifyContent: 'center',

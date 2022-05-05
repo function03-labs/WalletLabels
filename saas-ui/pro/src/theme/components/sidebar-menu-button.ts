@@ -15,7 +15,14 @@ const baseStyle: SystemStyleFunction = (props) => {
     transitionDuration: 'normal',
     _hover: { bg: hover },
     _expanded: { bg: active },
-    _focus: { bg: active },
+    _focus: {
+      bg: active,
+      outline: 0,
+      '&:focus-visible': {
+        boxShadow: 'outline',
+      },
+    },
+
     '.saas-sidebar__condensed &': {
       px: 1,
     },
