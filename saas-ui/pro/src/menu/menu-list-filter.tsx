@@ -47,7 +47,7 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
     const descendants = useMenuDescendantsContext()
 
     return (
-      <InputGroup role={role}>
+      <InputGroup role={role} className={cx('saas-menu-list__filter')}>
         <Input
           type="text"
           position="sticky"

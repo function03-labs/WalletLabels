@@ -27,7 +27,7 @@ export default {
 const Template: Story<MenuListFilterProps> = (args) => (
   <Menu isOpen>
     <MenuButton>Menu list filter</MenuButton>
-    <MenuList>
+    <MenuList pt="0">
       <MenuListFilter {...args} />
       <MenuFilterItem>Edit</MenuFilterItem>
       <MenuFilterItem>Delete</MenuFilterItem>
@@ -47,7 +47,7 @@ export const Playground = () => {
   return (
     <Menu>
       <MenuButton as={Button}>Menu</MenuButton>
-      <MenuList position="static">
+      <MenuList position="static" pt="0">
         <MenuListFilter placeholder="Filter..." />
         <MenuFilterItem>Edit</MenuFilterItem>
         <MenuFilterItem>Delete</MenuFilterItem>
