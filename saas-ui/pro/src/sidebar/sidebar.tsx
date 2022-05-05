@@ -511,11 +511,11 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
 
   let link = (
     <chakra.a
+      {...rest}
       ref={ref}
-      __css={styles.link}
       href={href}
       className={cx('sui-sidebar-link', className)}
-      {...rest}
+      __css={styles.link}
     >
       <chakra.span
         __css={{

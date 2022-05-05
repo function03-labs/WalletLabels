@@ -42,7 +42,6 @@ import { UserMenu } from './user-menu'
 import { ElectronNav } from './electron-nav'
 
 import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
-import { useNavigate } from '@saas-ui/router'
 import { useRouter } from 'next/router'
 
 export interface AppSidebarProps extends SidebarProps {}

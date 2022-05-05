@@ -1,6 +1,14 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Box, BoxProps, Spacer, Text } from '@chakra-ui/react'
+import {
+  Box,
+  BoxProps,
+  Heading,
+  HStack,
+  Icon,
+  Spacer,
+  Text,
+} from '@chakra-ui/react'
 
 import { FiHome, FiUsers, FiSettings, FiHash } from 'react-icons/fi'
 
@@ -149,10 +157,61 @@ VariantCondensedColor.args = {
         <SaasUIGlyph width="24px" variant="solid" color="white" />
       </SidebarNav>
       <SidebarNav>
-        <SidebarLink label="Home" icon={<FiHome />} />
-        <SidebarLink label="Users" icon={<FiUsers />} />
-        <SidebarLink label="Settings" icon={<FiSettings />} />
+        <SidebarLink label="Home" icon={<FiHome />} color="white" />
+        <SidebarLink label="Users" icon={<FiUsers />} color="white" />
+        <SidebarLink label="Settings" icon={<FiSettings />} color="white" />
       </SidebarNav>
     </>
   ),
+}
+
+export const DoubleSidebar = () => {
+  return (
+    <HStack alignItems="stretch" spacing="0">
+      <Sidebar variant="condensed" colorScheme="purple" border="0">
+        <SidebarNav py="1">
+          <SaasUIGlyph width="24px" variant="solid" color="white" />
+        </SidebarNav>
+        <SidebarOverflow>
+          <SidebarNav>
+            <SidebarLink
+              label="Users"
+              icon={<FiUsers />}
+              color="white"
+              isActive
+            />
+            <SidebarLink label="Settings" icon={<FiSettings />} color="white" />
+          </SidebarNav>
+        </SidebarOverflow>
+        <Spacer />
+        <SidebarNav>
+          <SidebarMenu icon={<PersonaAvatar presence="online" size="xs" />}>
+            <MenuItem>Sign out</MenuItem>
+          </SidebarMenu>
+        </SidebarNav>
+      </Sidebar>
+      <Sidebar>
+        <SidebarNav direction="row">
+          <Heading size="sm" py="2">
+            Users
+          </Heading>
+          <Spacer />
+        </SidebarNav>
+        <SidebarOverflow>
+          <SidebarNav>
+            <SidebarNavGroup>
+              <SidebarLink label="Overview" icon={<FiUsers />} isActive />
+            </SidebarNavGroup>
+
+            <SidebarNavGroup title="Tags" isCollapsible>
+              <SidebarLink label="Design system" icon={<FiHash />} />
+              <SidebarLink label="Framework" icon={<FiHash />} />
+              <SidebarLink label="Chakra UI" inset={5} icon={<FiHash />} />
+              <SidebarLink label="React" inset={5} icon={<FiHash />} />
+            </SidebarNavGroup>
+          </SidebarNav>
+        </SidebarOverflow>
+      </Sidebar>
+    </HStack>
+  )
 }

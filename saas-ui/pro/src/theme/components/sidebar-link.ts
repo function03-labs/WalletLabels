@@ -63,7 +63,6 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
     },
     icon: {
       display: 'flex',
-      boxSize: '1.2em',
       '.saas-sidebar__condensed &': {
         me: 0,
         alignItems: 'center',
@@ -194,24 +193,28 @@ export default {
       link: baseTheme.components.Button.sizes.xs,
       icon: {
         me: 2,
+        fontSize: '1em',
       },
     },
     sm: {
       link: baseTheme.components.Button.sizes.sm,
       icon: {
         me: 2,
+        fontSize: '1.1em',
       },
     },
     md: {
       link: baseTheme.components.Button.sizes.md,
       icon: {
-        me: 3,
+        me: 2,
+        fontSize: '1.2em',
       },
     },
     lg: {
       link: baseTheme.components.Button.sizes.lg,
       icon: {
-        me: 4,
+        me: 3,
+        fontSize: '1.4em',
       },
     },
   },

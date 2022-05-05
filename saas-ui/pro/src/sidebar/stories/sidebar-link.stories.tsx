@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Center } from '@chakra-ui/react'
+import { Center, Stack } from '@chakra-ui/react'
 
 import { FiHome } from 'react-icons/fi'
 
@@ -60,4 +60,39 @@ VariantSolid.args = {
   icon: <FiHome />,
   variant: 'solid',
   isActive: true,
+}
+
+export const Sizes = () => {
+  return (
+    <Stack>
+      <Template
+        label="Link xs"
+        size="xs"
+        icon={<FiHome />}
+        variant="solid"
+        isActive
+      />
+      <Template
+        label="Link sm"
+        size="sm"
+        icon={<FiHome />}
+        variant="solid"
+        isActive
+      />
+      <Template
+        label="Link md"
+        size="md"
+        icon={<FiHome />}
+        variant="solid"
+        isActive
+      />
+      <Template
+        label="Link lg"
+        size="lg"
+        icon={<FiHome />}
+        variant="solid"
+        isActive
+      />
+    </Stack>
+  )
 }
