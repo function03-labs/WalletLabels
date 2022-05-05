@@ -98,8 +98,6 @@ export const useResize = (props: UseResizeOptions) => {
       ref: containerRef,
       ...(isResizable
         ? {
-            onMouseDown: (e: React.MouseEvent<HTMLDivElement>) =>
-              e.preventDefault(),
             sx: {
               ...props.sx,
               position: 'relative',
