@@ -1,5 +1,18 @@
 # app
 
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [1f12e2d]
+- Updated dependencies [b61928d]
+- Updated dependencies [7d3e2b0]
+- Updated dependencies [b3a90d0]
+- Updated dependencies [8fdb19a]
+  - @saas-ui/pro@0.3.9
+  - @ui/core@0.0.17
+  - @app/config@0.0.8
+
 ## 2.0.2
 
 ### Patch Changes

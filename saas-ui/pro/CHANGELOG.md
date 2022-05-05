@@ -1,5 +1,15 @@
 # @saas-ui/pro
 
+## 0.3.9
+
+### Patch Changes
+
+- 1f12e2d: Added classname to MenuListFilter
+- b61928d: Fixed lg fontSize definition.
+- 7d3e2b0: Addd proper focus styles on SidebarButton and SidebarLink elements.
+- b3a90d0: Fixed issue where useResize would prevent all container click events.
+- 8fdb19a: Improved SidebarLink icon sizing
+
 ## 0.3.8
 
 ### Patch Changes
