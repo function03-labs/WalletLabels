@@ -50,6 +50,11 @@ const baseStyle: PartsStyleObject<typeof parts> = {
   },
   td: {
     textAlign: 'start',
+    a: {
+      _hover: {
+        textDecoration: 'none',
+      },
+    },
   },
   caption: {
     mt: 4,

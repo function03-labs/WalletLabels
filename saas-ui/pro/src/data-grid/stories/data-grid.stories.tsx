@@ -3,11 +3,18 @@ import { Story, Meta } from '@storybook/react'
 
 import { Container, Stack, Button } from '@chakra-ui/react'
 
-import { DataTable, TableInstance, Column } from '../src'
+import { DataGridPagination } from '../data-grid-pagination'
+import {
+  DataGrid,
+  DataGridProps,
+  TableInstance,
+  Column,
+  Row,
+} from '../data-grid'
 
 export default {
-  title: 'Components/Data Display/DataTable',
-  component: DataTable,
+  title: 'Components/Data Display/DataGrid',
+  component: DataGrid,
   decorators: [
     (Story: any) => (
       <Container mt="40px" maxW="container.xl">
@@ -17,8 +24,13 @@ export default {
   ],
 } as Meta
 
-const Template: Story = ({ data, columns, initialState, ...args }) => (
-  <DataTable<ExampleData>
+const Template: Story<DataGridProps<ExampleData>> = ({
+  data,
+  columns,
+  initialState,
+  ...args
+}) => (
+  <DataGrid<ExampleData>
     data={data}
     columns={columns}
     initialState={initialState}
@@ -155,7 +167,7 @@ SelectedChange.args = {
   data,
   initialState,
   isSelectable: true,
-  onSelectedRowsChange: (rows) => console.log(rows),
+  onSelectedRowsChange: (rows: string[]) => console.log(rows),
 }
 
 export const SelectableAndSortable = Template.bind({})
@@ -178,15 +190,16 @@ Numeric.args = {
 
 export const WithLink = Template.bind({})
 WithLink.args = {
-  columns: Object.assign(columns).map((column) => {
+  columns: Object.assign(columns).map((column: Column) => {
     if (column.accessor === 'name') {
       return Object.assign({}, column, {
-        href: (row) => `/customers/${row.id}`,
+        href: (row: Row) => `#${row.id}`,
       })
     }
     return column
   }),
   data,
+  isHoverable: true,
   initialState: {
     hiddenColumns: ['phone'],
   },
@@ -202,7 +215,7 @@ export const TableInstanceRef = () => {
           Toggle select all
         </Button>
       </Stack>
-      <DataTable<ExampleData>
+      <DataGrid<ExampleData>
         ref={ref}
         columns={columns}
         data={data}
@@ -210,5 +223,13 @@ export const TableInstanceRef = () => {
         isSortable
       />
     </>
+  )
+}
+
+export const WithPagination = () => {
+  return (
+    <Template data={data} columns={columns}>
+      <DataGridPagination />
+    </Template>
   )
 }
