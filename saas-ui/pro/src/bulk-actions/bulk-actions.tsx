@@ -1,40 +1,67 @@
 import {
   Banner,
+  BannerProps,
   BannerContent,
   BannerTitle,
   BannerActions,
-} from '@saas-ui/banner'
+} from '@saas-ui/react'
 
-export interface BulkActionsProps {
-  selections: string[]
+import { __DEV__ } from '@chakra-ui/utils'
+
+export interface BulkActionsProps extends BannerProps {
+  /**
+   * Array with selected ids.
+   */
+  selections: string[] | number[]
+  /**
+   * The title
+   *
+   * ":selections" will be replaced with the amount of selected items.
+   *
+   * @default ":selections selected"
+   */
+  title?: string
+  /**
+   * The action buttons.
+   */
   actions: React.ReactNode
 }
 
+/**
+ * BulkActions will open when there are 1 or more selections.
+ */
 export const BulkActions: React.FC<BulkActionsProps> = (props) => {
-  const { selections, actions, ...rest } = props
+  const {
+    selections = [],
+    title = ':selections selected',
+    actions,
+    ...rest
+  } = props
 
   const isOpen = !!selections?.length
-
-  const bannerStyles = {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    minHeight: 14,
-  }
 
   return (
     <Banner
       initial="exit"
       isOpen={isOpen}
-      sx={bannerStyles}
       colorScheme="primary"
       variant="solid"
+      position="absolute"
+      right="0"
+      top="0"
+      minH="14"
       {...rest}
     >
       <BannerContent>
-        <BannerTitle>{selections.length} selected</BannerTitle>
+        <BannerTitle>
+          {title.replace(':selections', selections.length.toString())}
+        </BannerTitle>
       </BannerContent>
       <BannerActions flexShrink={0}>{actions}</BannerActions>
     </Banner>
   )
+}
+
+if (__DEV__) {
+  BulkActions.displayName = 'BulkActions'
 }
