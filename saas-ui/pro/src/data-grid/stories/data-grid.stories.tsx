@@ -11,6 +11,8 @@ import {
   Column,
   Row,
 } from '../data-grid'
+import { ActiveFilter } from '../../filters'
+import { ButtonGroup } from '@saas-ui/react'
 
 export default {
   title: 'Components/Data Display/DataGrid',
@@ -45,6 +47,7 @@ interface ExampleData {
   company: string
   country: string
   employees: number
+  status: string
 }
 
 const columns: Column<ExampleData>[] = [
@@ -73,6 +76,10 @@ const columns: Column<ExampleData>[] = [
     Header: 'Employees',
     isNumeric: true,
   },
+  {
+    accessor: 'status',
+    Header: 'Status',
+  },
 ]
 
 const data = [
@@ -84,6 +91,7 @@ const data = [
     company: 'Luctus Et Industries',
     country: 'China',
     employees: 139,
+    status: 'new',
   },
   {
     id: 2,
@@ -93,6 +101,7 @@ const data = [
     company: 'Nunc Ullamcorper Industries',
     country: 'Sweden',
     employees: 234,
+    status: 'new',
   },
   {
     id: 3,
@@ -102,6 +111,7 @@ const data = [
     company: 'Venenatis Lacus LLC',
     country: 'Italy',
     employees: 32,
+    status: 'new',
   },
   {
     id: 4,
@@ -111,6 +121,7 @@ const data = [
     company: 'Maecenas Ornare Incorporated',
     country: 'China',
     employees: 1322,
+    status: 'active',
   },
   {
     id: 5,
@@ -120,6 +131,7 @@ const data = [
     company: 'Hendrerit Consectetuer Associates',
     country: 'Peru',
     employees: 4,
+    status: 'active',
   },
 ]
 
@@ -231,5 +243,66 @@ export const WithPagination = () => {
     <Template data={data} columns={columns}>
       <DataGridPagination />
     </Template>
+  )
+}
+
+export const WithFilteredData = () => {
+  const ref = React.useRef<TableInstance<ExampleData>>(null)
+
+  const filters = React.useMemo(() => {
+    return [
+      {
+        id: 'status',
+        operator: 'is',
+        value: 'new',
+      },
+    ]
+  }, [])
+
+  const [status, setStatus] = React.useState('new')
+
+  React.useEffect(() => {
+    ref.current?.setFilter('status', status)
+  }, [status])
+
+  return (
+    <>
+      <ButtonGroup isAttached mb="8">
+        <Button isActive={status === 'new'} onClick={() => setStatus('new')}>
+          New
+        </Button>
+        <Button
+          isActive={status === 'active'}
+          onClick={() => setStatus('active')}
+        >
+          Active
+        </Button>
+        <Button
+          isActive={status === 'deleted'}
+          onClick={() => setStatus('deleted')}
+        >
+          Deleted
+        </Button>
+      </ButtonGroup>
+      <DataGrid<ExampleData>
+        ref={ref}
+        columns={columns}
+        data={data}
+        isSelectable
+        isSortable
+        initialState={{
+          pageSize: 20,
+          filters: filters.map(({ id, value, operator }) => {
+            return {
+              id,
+              value: {
+                value,
+                operator,
+              },
+            }
+          }),
+        }}
+      />
+    </>
   )
 }
