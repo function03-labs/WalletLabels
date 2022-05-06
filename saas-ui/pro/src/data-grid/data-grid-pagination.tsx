@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import { chakra, HTMLChakraProps, useMultiStyleConfig } from '@chakra-ui/system'
 import { IconButton } from '@saas-ui/react'
 import { useDataGridContext } from './data-grid'
@@ -6,11 +8,18 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { cx } from '@chakra-ui/utils'
 import { ButtonGroup, FormControl, FormLabel, Input } from '@chakra-ui/react'
 
-export const DataGridPagination: React.FC<HTMLChakraProps<'div'>> = (props) => {
-  const { className, ...rest } = props
+export interface DataGridPaginationProps
+  extends Omit<HTMLChakraProps<'div'>, 'onChange'> {
+  onChange?(props: { pageIndex: number; pageSize: number }): void
+}
+
+export const DataGridPagination: React.FC<DataGridPaginationProps> = (
+  props,
+) => {
+  const { className, onChange, ...rest } = props
   const {
     instance,
-    state: { pageIndex },
+    state: { pageIndex, pageSize },
   } = useDataGridContext()
 
   const styles = useMultiStyleConfig('DataGridPagination', props)
@@ -33,6 +42,10 @@ export const DataGridPagination: React.FC<HTMLChakraProps<'div'>> = (props) => {
     flexDirection: 'row',
     ...styles.container,
   }
+
+  React.useEffect(() => {
+    onChange?.({ pageIndex, pageSize })
+  }, [pageIndex, pageSize])
 
   return (
     <chakra.div

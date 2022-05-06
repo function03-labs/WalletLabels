@@ -3,6 +3,8 @@ import { Story, Meta } from '@storybook/react'
 
 import { Container, Stack, Button } from '@chakra-ui/react'
 
+import { SortingRule } from 'react-table'
+
 import { DataGridPagination } from '../data-grid-pagination'
 import {
   DataGrid,
@@ -10,6 +12,7 @@ import {
   TableInstance,
   Column,
   Row,
+  DataGridSortProps,
 } from '../data-grid'
 import { ActiveFilter } from '../../filters'
 import { ButtonGroup } from '@saas-ui/react'
@@ -246,6 +249,61 @@ export const WithPagination = () => {
   )
 }
 
+export const WithRemotePagination = () => {
+  const [page, setPage] = React.useState(0)
+
+  const paginatedData = React.useMemo(() => {
+    return data.slice(page, page + 1)
+  }, [page])
+
+  return (
+    <Template
+      data={paginatedData}
+      columns={columns}
+      pageCount={data.length}
+      initialState={{
+        pageSize: 1,
+      }}
+    >
+      <DataGridPagination onChange={({ pageIndex }) => setPage(pageIndex)} />
+    </Template>
+  )
+}
+
+export const WithRemoteSort = () => {
+  const [sort, setSort] = React.useState<SortingRule<ExampleData>[]>([])
+
+  const sortedData = React.useMemo(() => {
+    const key = sort[0]?.id
+    const desc = sort[0]?.desc
+
+    return data.concat().sort((a: any, b: any) => {
+      if (key && a[key] > b[key]) {
+        return desc ? -1 : 1
+      }
+
+      if (key && a[key] < b[key]) {
+        return desc ? 1 : -1
+      }
+
+      return 0
+    })
+  }, [sort])
+
+  return (
+    <Template
+      data={sortedData}
+      columns={columns}
+      isSortable
+      manualSortBy
+      disableMultiSort
+      onSortChange={(sort) => {
+        setSort(sort)
+      }}
+    ></Template>
+  )
+}
+
 export const WithFilteredData = () => {
   const ref = React.useRef<TableInstance<ExampleData>>(null)
 
@@ -253,7 +311,6 @@ export const WithFilteredData = () => {
     return [
       {
         id: 'status',
-        operator: 'is',
         value: 'new',
       },
     ]
@@ -292,15 +349,51 @@ export const WithFilteredData = () => {
         isSortable
         initialState={{
           pageSize: 20,
-          filters: filters.map(({ id, value, operator }) => {
-            return {
-              id,
-              value: {
-                value,
-                operator,
-              },
-            }
-          }),
+          filters,
+        }}
+      />
+    </>
+  )
+}
+
+export const WithRemoteFilters = () => {
+  const ref = React.useRef<TableInstance<ExampleData>>(null)
+
+  const [status, setStatus] = React.useState('new')
+
+  const filteredData = React.useMemo(() => {
+    return data.filter((row) => {
+      return row.status === status
+    })
+  }, [status])
+
+  return (
+    <>
+      <ButtonGroup isAttached mb="8">
+        <Button isActive={status === 'new'} onClick={() => setStatus('new')}>
+          New
+        </Button>
+        <Button
+          isActive={status === 'active'}
+          onClick={() => setStatus('active')}
+        >
+          Active
+        </Button>
+        <Button
+          isActive={status === 'deleted'}
+          onClick={() => setStatus('deleted')}
+        >
+          Deleted
+        </Button>
+      </ButtonGroup>
+      <DataGrid<ExampleData>
+        ref={ref}
+        columns={columns}
+        data={filteredData}
+        isSelectable
+        isSortable
+        initialState={{
+          pageSize: 20,
         }}
       />
     </>
