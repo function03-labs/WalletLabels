@@ -1,5 +1,16 @@
 # @saas-ui/pro
 
+## 0.3.10
+
+### Patch Changes
+
+- f96b1e1: Improved platformSelect types.
+- 446c114: Links in DataGrid no longer have an underline on hover by default.
+- ebd6a26: BulkActions title can now be configured.
+- ebd6a26: BulkActions selections now supports strings or numbers.
+- ebd6a26: BulkActions now supports all Banner props.
+- 0ddbf5c: DataGridPagination now supports onChange handler to be used for remote pagination.
+
 ## 0.3.9
 
 ### Patch Changes
