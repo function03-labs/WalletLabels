@@ -1,1 +1,2 @@
-export * from './use-features'
+export * from './flags'
+export * from './provider'

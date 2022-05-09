@@ -1,6 +1,7 @@
 {
   "name": "@saas-ui/features",
-  "version": "0.1.1",
+  "description": "Feature flags for Saas UI",
+  "version": "0.2.0",
   "exports": {
     "default": "./src/index.ts"
   },
@@ -11,6 +12,9 @@
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",
     "directory": "saas-ui/pro"
+  },
+  "dependencies": {
+    "zustand": "^3.7.2"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",

@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.2.0
+
+### Minor Changes
+
+- Initial implementation
+
 ## 0.1.1
 
 ### Patch Changes
