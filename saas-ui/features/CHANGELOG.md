@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- Initial implementation
+- Initial feature falgs implementation
 
 ## 0.1.1
 
