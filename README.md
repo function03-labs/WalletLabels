@@ -4,8 +4,7 @@
 
 First of all, thanks a lot for signing up!
 
-If you have any questions, problems, ideas feel free to share them on the discord server.
-https://discord.gg/DFPtCfpTzG
+Come say hello at [Discord](https://discord.gg/DFPtCfpTzG), I'm always around to help and your feedback will really help move the project forward.
 
 ## Roadmap
 
