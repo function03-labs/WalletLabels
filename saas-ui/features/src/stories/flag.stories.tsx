@@ -6,7 +6,7 @@ import { FeaturesProvider, Flag, Flags } from '..'
 import options from './config'
 
 const meta: Meta = {
-  title: 'Components/FeatureFlags/FlagEnabled',
+  title: 'Components/FeatureFlags/Flags',
   component: FeaturesProvider,
   parameters: {
     controls: { expanded: true },
