@@ -7065,6 +7065,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@saas-ui/paddle@workspace:*, @saas-ui/paddle@workspace:saas-ui/paddle":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/paddle@workspace:saas-ui/paddle"
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@saas-ui/react": ">=0.12.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/palette@npm:0.5.0":
   version: 0.5.0
   resolution: "@saas-ui/palette@npm:0.5.0"
@@ -11244,6 +11255,7 @@ __metadata:
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ">=0.12.0"
+    "@saas-ui/router": "workspace:*"
     next: ">=12"
     react: ">=16.8.6"
   languageName: unknown
@@ -22233,8 +22245,10 @@ __metadata:
     "@saas-ui/date-picker": "workspace:*"
     "@saas-ui/next-workspaces": ^0.1.1
     "@saas-ui/onboarding": "workspace:*"
+    "@saas-ui/paddle": "workspace:*"
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ^0.13.3
+    "@saas-ui/router": "workspace:*"
     "@svgr/webpack": 5.5.0
     "@ui/core": "workspace:*"
     "@ui/theme": "workspace:*"

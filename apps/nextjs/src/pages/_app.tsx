@@ -5,12 +5,14 @@ import Link from 'next/link'
 import '@fontsource/inter/variable.css'
 
 import { NProgressNextRouter } from '@saas-ui/react'
-
+import { NextRouterProvider } from '@app/nextjs'
 import { AppProvider } from '@modules/core/providers/app'
 
 // import { authService } from '../lib/supabase'
 // import { authService } from '../lib/magic'
 import { authService } from '@app/config/mock-auth-service'
+
+import { Paddle } from '../lib/paddle'
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -18,28 +20,31 @@ function App({ Component, pageProps }: AppProps) {
   const tenant = router.query.tenant ? (router.query.tenant as string) : null
 
   return (
-    <AppProvider
-      authService={authService}
-      cookies={pageProps.cookies}
-      linkComponent={Link}
-      onError={(error, info) => console.error(error, info)}
-      tenant={tenant}
-      onTenantChange={(key) => {
-        router.push({
-          ...router,
-          query: {
-            ...router.query,
-            tenant: key,
-          },
-        })
-      }}
-      isPublic={Component.isPublic}
-      layout={Component.layout}
-      sidebar={pageProps.sidebar}
-    >
-      <NProgressNextRouter router={router} />
-      <Component {...pageProps} />
-    </AppProvider>
+    <NextRouterProvider>
+      <AppProvider
+        authService={authService}
+        cookies={pageProps.cookies}
+        linkComponent={Link}
+        onError={(error, info) => console.error(error, info)}
+        tenant={tenant}
+        onTenantChange={(key) => {
+          router.push({
+            ...router,
+            query: {
+              ...router.query,
+              tenant: key,
+            },
+          })
+        }}
+        isPublic={Component.isPublic}
+        layout={Component.layout}
+        sidebar={pageProps.sidebar}
+      >
+        <Paddle />
+        <NProgressNextRouter router={router} />
+        <Component {...pageProps} />
+      </AppProvider>
+    </NextRouterProvider>
   )
 }
 

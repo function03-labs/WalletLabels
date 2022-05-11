@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
-import { Section } from '@saas-ui/pro'
-import { UpgradeButton } from '@saas-ui/billing'
+import { Section, useTenant } from '@saas-ui/pro'
 import { useGetOrganizationQuery } from '@app/graphql'
 
-import { Text } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
+
+import format from 'date-fns/format'
 
 import {
   Button,
@@ -15,8 +15,15 @@ import {
   SubmitButton,
 } from '@saas-ui/react'
 import { SettingsPage } from '@modules/core/components/settings-page'
+import { Link } from '@modules/core/components/link'
 
 function BillingPlan({ organization }: any) {
+  const tenant = useTenant()
+
+  const plan = 'Bootstrap'
+  const isTrial = true
+  const trialEnds = format(new Date(), 'PPP')
+
   return (
     <Section
       title="Billing plan"
@@ -25,11 +32,19 @@ function BillingPlan({ organization }: any) {
     >
       <Card>
         <CardBody>
-          {!organization?.plan ? (
-            <UpgradeButton />
-          ) : (
-            <Button label="Manage billing" onClick={() => null} />
-          )}
+          <Stack alignItems="flex-start">
+            <Text>
+              You are currently on the <strong>{plan}</strong> plan.
+            </Text>
+
+            {isTrial && <Text>Your trial ends {trialEnds}.</Text>}
+
+            <Button
+              label="View plans and upgrade"
+              as={Link}
+              href={`/app/${tenant}/settings/plans`}
+            />
+          </Stack>
         </CardBody>
       </Card>
     </Section>
@@ -74,11 +89,10 @@ function BillingInvoices({ organization }: any) {
 }
 
 export function BillingPage() {
-  const router = useRouter()
-  const { slug } = router.query
+  const tenant = useTenant()
 
   const { data, isLoading, error } = useGetOrganizationQuery({
-    slug: String(slug),
+    slug: tenant,
   })
 
   const organization = data?.organization

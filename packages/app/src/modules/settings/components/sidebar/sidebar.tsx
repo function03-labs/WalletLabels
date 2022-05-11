@@ -50,6 +50,7 @@ export const SettingsSidebar = () => {
               <SettingsLink path="/" label="Overview" />
               <SettingsLink path="organization" label="Organization" />
               <SettingsLink path="members" label="Members" />
+              <SettingsLink path="plans" label="Plans" />
               <SettingsLink path="billing" label="Billing" />
             </SidebarNavGroup>
 

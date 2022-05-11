@@ -163,7 +163,7 @@ export const createMockServer = (context: MockContext) => {
           const organization = {
             id: slug(name),
             name,
-            plan: store.get('BillingPlan', 'pro'),
+            plan: store.get('BillingPlan', 'bootstrap_monthly'),
             slug: slug(name),
             members: [store.get('OrganizationMember', user.id)],
           }

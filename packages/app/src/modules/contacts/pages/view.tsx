@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router'
-
 import { useGetContactQuery } from '@app/graphql'
 
 import {
