@@ -4,10 +4,13 @@
   "private": true,
   "main": "src/index.ts",
   "dependencies": {
+    "@app/graphql": "workspace:*",
     "@graphql-tools/mock": "^8.5.1",
     "@graphql-tools/schema": "^8.3.1",
     "@ngneat/falso": "^2.24.0",
     "graphql": "^16.3.0",
+    "localforage": "^1.10.0",
+    "msw": "^0.39.2",
     "slug": "^5.2.0"
   },
   "devDependencies": {

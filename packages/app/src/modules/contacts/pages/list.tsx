@@ -73,7 +73,7 @@ const TypeCell = (cell: any) => {
 }
 
 const DateCell = (cell: any) => {
-  return format(cell.value, 'PP')
+  return format(new Date(cell.value), 'PP')
 }
 
 const ActionCell = () => {

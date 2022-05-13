@@ -74,21 +74,21 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
         theme={theme}
       >
         <AuthProvider {...authService}>
-          <GqlProvider>
-            <I18nProvider>
-              <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-                <ModalsProvider>
-                  <AppLayout
-                    isPublic={isPublic}
-                    layout={layout}
-                    sidebar={sidebar}
-                  >
-                    {children}
-                  </AppLayout>
-                </ModalsProvider>
-              </TenancyProvider>
-            </I18nProvider>
-          </GqlProvider>
+          {/* <GqlProvider> */}
+          <I18nProvider>
+            <TenancyProvider tenant={tenant} onChange={onTenantChange}>
+              <ModalsProvider>
+                <AppLayout
+                  isPublic={isPublic}
+                  layout={layout}
+                  sidebar={sidebar}
+                >
+                  {children}
+                </AppLayout>
+              </ModalsProvider>
+            </TenancyProvider>
+          </I18nProvider>
+          {/* </GqlProvider> */}
         </AuthProvider>
       </SaasProvider>
     </QueryClientProvider>
