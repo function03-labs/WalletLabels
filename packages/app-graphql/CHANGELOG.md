@@ -1,5 +1,11 @@
 # @app/graphql
 
+## 0.1.0
+
+### Minor Changes
+
+- 5fbf9ae: Now using MSW to mock api requests
+
 ## 0.0.9
 
 ### Patch Changes
