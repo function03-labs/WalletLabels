@@ -15,8 +15,6 @@ import { AnyObjectSchema } from 'yup'
 
 import { TenancyProvider, Tenant } from '@saas-ui/pro'
 
-import { GraphqlMocksProvider } from '@app/graphql'
-
 import { I18nProvider } from '@app/i18n'
 
 import { theme } from '@ui/theme'
@@ -42,16 +40,6 @@ export interface AppProviderProps {
   sidebar?: React.ReactNode
 }
 
-const GqlProvider: React.FC = (props) => {
-  const { user } = useAuth()
-
-  const getUser = React.useCallback(async () => {
-    return user
-  }, [user])
-
-  return <GraphqlMocksProvider context={{ user: getUser }} {...props} />
-}
-
 export const AppProvider: React.FC<AppProviderProps> = (props) => {
   const {
     linkComponent,
@@ -74,21 +62,19 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
         theme={theme}
       >
         <AuthProvider {...authService}>
-          <GqlProvider>
-            <I18nProvider>
-              <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-                <ModalsProvider>
-                  <AppLayout
-                    isPublic={isPublic}
-                    layout={layout}
-                    sidebar={sidebar}
-                  >
-                    {children}
-                  </AppLayout>
-                </ModalsProvider>
-              </TenancyProvider>
-            </I18nProvider>
-          </GqlProvider>
+          <I18nProvider>
+            <TenancyProvider tenant={tenant} onChange={onTenantChange}>
+              <ModalsProvider>
+                <AppLayout
+                  isPublic={isPublic}
+                  layout={layout}
+                  sidebar={sidebar}
+                >
+                  {children}
+                </AppLayout>
+              </ModalsProvider>
+            </TenancyProvider>
+          </I18nProvider>
         </AuthProvider>
       </SaasProvider>
     </QueryClientProvider>

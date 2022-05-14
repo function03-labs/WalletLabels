@@ -12,6 +12,12 @@ import { AppProvider } from '@modules/core/providers/app'
 // import { authService } from '../lib/magic'
 import { authService } from '@app/config/mock-auth-service'
 
+// Normally you only run this on development.
+import { worker } from '@app/mock-graphql'
+if (worker) {
+  worker.start()
+}
+
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 

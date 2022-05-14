@@ -1,12 +1,16 @@
 require:
   - ts-node/register
-schema: ../mock-graphql/src/schema.ts
+schema: ../app-mock-graphql/src/schema.ts
 documents:
   - '../app/src/**/*.graphql'
 generates:
   src/types.generated.ts:
     plugins:
       - typescript
+    config:
+      scalars:
+        JSON: string
+        DateTime: string
   src/api.generated.ts:
     # preset: near-operation-file
     presetConfig:
@@ -18,5 +22,5 @@ generates:
     config:
       fetcher:
         #func: ./fetcher#useFetchData
-        func: ./mocks-fetcher#useFetchData
+        func: ./fetcher#useFetchData
         isReactHook: true
