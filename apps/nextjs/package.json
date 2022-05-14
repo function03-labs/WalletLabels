@@ -39,5 +39,8 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.0.10",
     "@svgr/webpack": "5.5.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

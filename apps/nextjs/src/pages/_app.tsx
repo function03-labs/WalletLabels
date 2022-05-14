@@ -14,6 +14,12 @@ import { authService } from '@app/config/mock-auth-service'
 
 import { Paddle } from '../lib/paddle'
 
+// Normally you only run this on development.
+import { worker } from '@app/mock-graphql'
+if (worker) {
+  worker.start()
+}
+
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
