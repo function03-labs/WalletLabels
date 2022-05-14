@@ -70,17 +70,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@app/mock-graphql@workspace:packages/mock-graphql":
+"@app/mock-graphql@workspace:packages/app-mock-graphql":
   version: 0.0.0-use.local
-  resolution: "@app/mock-graphql@workspace:packages/mock-graphql"
+  resolution: "@app/mock-graphql@workspace:packages/app-mock-graphql"
   dependencies:
     "@app/graphql": "workspace:*"
-    "@graphql-tools/mock": ^8.5.1
     "@graphql-tools/schema": ^8.3.1
     "@ngneat/falso": ^2.24.0
     "@types/slug": ^5.0.3
     graphql: ^16.3.0
-    localforage: ^1.10.0
     msw: ^0.39.2
     slug: ^5.2.0
   languageName: unknown
@@ -5829,20 +5827,6 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: b2c126fc697ad1cf0fb2c09d3766d791ba6243a318edfa24932b558628244f822b9454bd47cd98f5a7eee90caca264573695c582e10730b7a67785fea21c346c
-  languageName: node
-  linkType: hard
-
-"@graphql-tools/mock@npm:^8.5.1":
-  version: 8.5.1
-  resolution: "@graphql-tools/mock@npm:8.5.1"
-  dependencies:
-    "@graphql-tools/schema": ^8.3.1
-    "@graphql-tools/utils": ^8.6.0
-    fast-json-stable-stringify: ^2.1.0
-    tslib: ~2.3.0
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: c52b3e3d60a4d77f4a6a62aacb91a2833910ecf93543754c34a594960fcf8c6effc571a7b5297587c7119b1eec6a099ebc1a7aadc92b7f7b54fe605bdede6788
   languageName: node
   linkType: hard
 
@@ -16722,7 +16706,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-json-stable-stringify@npm:^2.0.0, fast-json-stable-stringify@npm:^2.1.0":
+"fast-json-stable-stringify@npm:^2.0.0":
   version: 2.1.0
   resolution: "fast-json-stable-stringify@npm:2.1.0"
   checksum: b191531e36c607977e5b1c47811158733c34ccb3bfde92c44798929e9b4154884378536d26ad90dfecd32e1ffc09c545d23535ad91b3161a27ddbb8ebe0cbecb
@@ -21002,7 +20986,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"localforage@npm:^1.10.0, localforage@npm:^1.7.4":
+"localforage@npm:^1.7.4":
   version: 1.10.0
   resolution: "localforage@npm:1.10.0"
   dependencies:

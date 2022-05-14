@@ -91,13 +91,16 @@ export const getContacts = () => {
 
 export const getOrganization = () => {
   return {
+    id: '1',
     name: 'Saas UI',
     slug: 'saas-ui',
+    plan: 'pro',
   }
 }
 
 export const getOrganizationMember = () => ({
   roles: ['member'],
+  user: getUser(),
 })
 
 export const getOrganizations = () => {
@@ -106,6 +109,7 @@ export const getOrganizations = () => {
       id: '1',
       name: 'Saas UI',
       slug: 'saas-ui',
+      plan: 'pro',
     },
   ]
 }

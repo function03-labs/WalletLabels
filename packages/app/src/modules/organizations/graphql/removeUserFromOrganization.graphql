@@ -2,18 +2,5 @@ mutation RemoveUserFromOrganization(
   $userId: String!
   $organizationId: String!
 ) {
-  removeUserFromOrganization(userId: $userId, organizationId: $organizationId) {
-    id
-    name
-    slug
-    plan
-    members {
-      roles
-      user {
-        id
-        email
-        name
-      }
-    }
-  }
+  removeUserFromOrganization(userId: $userId, organizationId: $organizationId)
 }

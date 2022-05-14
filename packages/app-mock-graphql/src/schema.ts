@@ -16,7 +16,7 @@ const typeDefs = gql`
     removeUserFromOrganization(
       organizationId: String!
       userId: String!
-    ): Organization
+    ): Boolean
     updateOrganization(
       name: String!
       organizationId: String!
@@ -31,14 +31,10 @@ const typeDefs = gql`
     createContact(name: String!): Contact
   }
 
-  enum BillingPlan {
-    pro
-  }
-
   type Organization {
     id: String!
     name: String!
-    plan: BillingPlan
+    plan: String!
     slug: String!
     members(
       after: UserWhereUniqueInput
