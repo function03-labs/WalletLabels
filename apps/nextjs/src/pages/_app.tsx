@@ -14,7 +14,7 @@ import { authService } from '@app/config/mock-auth-service'
 
 // Normally you only run this on development.
 import { worker } from '@app/mock-graphql'
-if (typeof window !== 'undefined') {
+if (worker) {
   worker.start()
 }
 
