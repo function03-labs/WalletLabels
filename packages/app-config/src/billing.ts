@@ -6,6 +6,7 @@ export const plans = [
     period: 'monthly',
     price: '€50,-',
     priceLabel: 'per user/month',
+    trialDays: 14,
     features: {
       users: 'Max 3',
       inbox: true,
@@ -22,6 +23,7 @@ export const plans = [
     period: 'yearly',
     price: '€40,-',
     priceLabel: 'per user/month',
+    trialDays: 14,
     features: {
       users: 'Max 3',
       inbox: true,
@@ -38,6 +40,7 @@ export const plans = [
     period: 'monthly',
     price: '€100,-',
     priceLabel: 'per user/month',
+    trialDays: 14,
     features: {
       users: 'Unlimited',
       inbox: true,
@@ -49,11 +52,12 @@ export const plans = [
   },
   {
     id: 'enterprise_yearly',
-    name: 'Enterprice',
+    name: 'Enterprise',
     description: 'Complete package for growing teams.',
     period: 'yearly',
     price: '€80,-',
     priceLabel: 'per user/month',
+    trialDays: 14,
     features: {
       users: 'Unlimited',
       inbox: true,
