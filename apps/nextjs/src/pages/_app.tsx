@@ -7,6 +7,7 @@ import '@fontsource/inter/variable.css'
 import { NProgressNextRouter } from '@saas-ui/react'
 import { NextRouterProvider } from '@app/nextjs'
 import { AppProvider } from '@modules/core/providers/app'
+import { AppLayout } from '@modules/core/layouts/app-layout'
 
 // import { authService } from '../lib/supabase'
 // import { authService } from '../lib/magic'
@@ -42,13 +43,17 @@ function App({ Component, pageProps }: AppProps) {
             },
           })
         }}
-        isPublic={Component.isPublic}
-        layout={Component.layout}
-        sidebar={pageProps.sidebar}
       >
-        <Paddle />
-        <NProgressNextRouter router={router} />
-        <Component {...pageProps} />
+        <AppLayout
+          publicRoutes={['/']}
+          isPublic={Component.isPublic}
+          layout={Component.layout}
+          sidebar={pageProps.sidebar}
+        >
+          <Paddle />
+          <NProgressNextRouter router={router} />
+          <Component {...pageProps} />
+        </AppLayout>
       </AppProvider>
     </NextRouterProvider>
   )
