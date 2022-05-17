@@ -12,22 +12,16 @@ import {
   SidebarOverflow,
   SidebarLinkProps,
   BackButton,
-  useTenant,
 } from '@saas-ui/pro'
 
-const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
-  const tenant = useTenant()
+import { usePath } from '@modules/core/hooks/use-path'
 
+const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
   const { path, ...rest } = props
-  const href = `/app/${tenant}/settings/${path}`
-    .replace(/\/\//, '/')
-    .replace(/\/$/, '')
-  return <SidebarLink inset={5} href={href} {...rest} />
+  return <SidebarLink inset={5} href={usePath(`/settings/${path}`)} {...rest} />
 }
 
 export const SettingsSidebar = () => {
-  const tenant = useTenant()
-
   const backRef = React.useRef<HTMLButtonElement>(null)
 
   useHotkeysShortcut('settings.close', () => {
@@ -40,7 +34,7 @@ export const SettingsSidebar = () => {
       <SidebarContainer>
         <SidebarOverflow>
           <SidebarNav direction="row" alignItems="center" mb="8">
-            <BackButton href={`/app/${tenant}`} ref={backRef} />
+            <BackButton href={usePath()} ref={backRef} />
             <Heading as="h1" fontSize="xl">
               Settings
             </Heading>

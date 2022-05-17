@@ -43,17 +43,13 @@ import { ElectronNav } from './electron-nav'
 
 import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
 import { useRouter } from 'next/router'
+import { usePath } from '@modules/core/hooks/use-path'
 
 export interface AppSidebarProps extends SidebarProps {}
 
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
-  const { tenant } = useTenancy()
   const modals = useModals()
   const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
-
-  const getPath = (path?: string) => {
-    return path ? `/app/${tenant}/${path}` : `/app/${tenant}`
-  }
 
   const { variant, colorScheme } = props
 
@@ -78,7 +74,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           <TenantMenu title="Organizations">
             <MenuDivider />
             <MenuItem
-              href={getPath('settings/organization')}
+              href={usePath('settings/organization')}
               label="Organization settings"
             />
             <MenuItem
@@ -104,19 +100,19 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           <SidebarNav flex="1" spacing={6}>
             <SidebarNavGroup>
               <AppSidebarLink
-                href={getPath()}
+                href={usePath()}
                 label="Dashboard"
                 icon={<FiHome />}
                 hotkey="navigation.dashboard"
               />
               <AppSidebarLink
-                href={getPath('inbox')}
+                href={usePath('inbox')}
                 label="Inbox"
                 icon={<FiInbox />}
                 hotkey="navigation.inbox"
               />
               <AppSidebarLink
-                href={getPath('contacts')}
+                href={usePath('contacts')}
                 label="Contacts"
                 icon={<FiUsers />}
                 hotkey="navigation.contacts"
@@ -126,23 +122,23 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             {!isCondensed && (
               <SidebarNavGroup title="Tags" isCollapsible>
                 <SidebarLink
-                  href={getPath('contacts/tag/design-system')}
+                  href={usePath('contacts/tag/design-system')}
                   label="Design system"
                   icon={<FiHash />}
                 />
                 <SidebarLink
-                  href={getPath('contacts/framework')}
+                  href={usePath('contacts/framework')}
                   label="Framework"
                   icon={<FiHash />}
                 />
                 <SidebarLink
-                  href={getPath('contacts/tag/chakra-ui')}
+                  href={usePath('contacts/tag/chakra-ui')}
                   label="Chakra UI"
                   inset={5}
                   icon={<FiHash />}
                 />
                 <SidebarLink
-                  href={getPath('contacts/tag/react')}
+                  href={usePath('contacts/tag/react')}
                   label="React"
                   inset={5}
                   icon={<FiHash />}

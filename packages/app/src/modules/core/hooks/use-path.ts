@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTenant } from '@saas-ui/pro'
 
 /**
@@ -7,6 +8,8 @@ import { useTenant } from '@saas-ui/pro'
  */
 export const usePath = (path = '/') => {
   const tenant = useTenant()
-
-  return `/app/${tenant}/${path}`.replace('//', '/')
+  return React.useMemo(
+    () => `/app/${tenant}/${path}`.replace(/\/\//, '/').replace(/\/$/, ''),
+    [path, tenant],
+  )
 }
