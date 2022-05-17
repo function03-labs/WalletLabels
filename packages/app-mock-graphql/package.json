@@ -8,11 +8,14 @@
     "@app/graphql": "workspace:*",
     "@graphql-tools/schema": "^8.3.1",
     "@ngneat/falso": "^2.24.0",
+    "date-fns": "^2.28.0",
     "graphql": "^16.3.0",
     "msw": "^0.39.2",
-    "slug": "^5.2.0"
+    "slug": "^5.2.0",
+    "zustand": "^3.7.2"
   },
   "devDependencies": {
-    "@types/slug": "^5.0.3"
+    "@types/slug": "^5.0.3",
+    "react": "^17.0.2"
   }
 }

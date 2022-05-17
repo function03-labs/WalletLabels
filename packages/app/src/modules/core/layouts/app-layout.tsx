@@ -22,8 +22,7 @@ import { useInitApp } from '../hooks/use-init-app'
 import { AppLoader } from '../components/app-loader'
 
 import { PublicLayout } from './public-layout'
-import { BillingProvider, BillingStatus } from '@saas-ui/billing'
-import { plans } from '@app/config/billing'
+import { BillingProvider } from '@saas-ui/billing'
 
 /**
  * Wrapper component for Authenticated pages.
@@ -34,7 +33,7 @@ import { plans } from '@app/config/billing'
 export const Authenticated: React.FC = ({ children, ...rest }) => {
   const location = useLocation()
 
-  const { isInitializing, isAuthenticated, subscription } = useInitApp()
+  const { isInitializing, isAuthenticated, billing } = useInitApp()
 
   const { view, title } = authPaths[location.pathname]
     ? authPaths[location.pathname]
@@ -61,17 +60,8 @@ export const Authenticated: React.FC = ({ children, ...rest }) => {
     )
   }
 
-  const billingContext = React.useMemo(() => {
-    return {
-      plans: plans,
-      status: subscription?.status as BillingStatus,
-      planId: subscription?.plan,
-      trialEndsAt: subscription?.trialEndsAt,
-    }
-  }, [])
-
   return (
-    <BillingProvider value={billingContext}>
+    <BillingProvider value={billing}>
       <AppLoader isLoading={isInitializing} />
       {!isInitializing && children}
     </BillingProvider>

@@ -1,12 +1,11 @@
+import * as React from 'react'
+
 import { Section, useTenant } from '@saas-ui/pro'
 import { useGetOrganizationQuery } from '@app/graphql'
 
 import { Stack, Text } from '@chakra-ui/react'
 
-import format from 'date-fns/format'
-
 import {
-  Button,
   Card,
   CardBody,
   Field,
@@ -15,14 +14,15 @@ import {
   SubmitButton,
 } from '@saas-ui/react'
 import { SettingsPage } from '@modules/core/components/settings-page'
-import { Link } from '@modules/core/components/link'
+import { Button } from '@modules/core/components/button'
+import { usePath } from '@modules/core/hooks/use-path'
 
-function BillingPlan({ organization }: any) {
-  const tenant = useTenant()
+import { useBilling } from '@saas-ui/billing'
 
-  const plan = 'Bootstrap'
-  const isTrial = true
-  const trialEnds = format(new Date(), 'PPP')
+import { FormattedDate } from '@app/i18n'
+
+function BillingPlan() {
+  const { isTrialing, isTrialExpired, trialEndsAt, currentPlan } = useBilling()
 
   return (
     <Section
@@ -33,16 +33,28 @@ function BillingPlan({ organization }: any) {
       <Card>
         <CardBody>
           <Stack alignItems="flex-start">
-            <Text>
-              You are currently on the <strong>{plan}</strong> plan.
-            </Text>
+            {!isTrialExpired && (
+              <Text>
+                You are currently on the <strong>{currentPlan?.name}</strong>{' '}
+                plan.
+              </Text>
+            )}
 
-            {isTrial && <Text>Your trial ends {trialEnds}.</Text>}
+            {isTrialing && (
+              <Text>
+                Your trial ends <FormattedDate value={trialEndsAt} />.
+              </Text>
+            )}
+
+            {isTrialExpired && (
+              <Text>
+                Your trial ended on <FormattedDate value={trialEndsAt} />.
+              </Text>
+            )}
 
             <Button
               label="View plans and upgrade"
-              as={Link}
-              href={`/app/${tenant}/settings/plans`}
+              href={usePath('/settings/plans')}
             />
           </Stack>
         </CardBody>
@@ -51,7 +63,7 @@ function BillingPlan({ organization }: any) {
   )
 }
 
-function BillingEmail({ organization }: any) {
+function BillingEmail() {
   return (
     <Section
       title="Billing email"
@@ -72,7 +84,7 @@ function BillingEmail({ organization }: any) {
   )
 }
 
-function BillingInvoices({ organization }: any) {
+function BillingInvoices() {
   return (
     <Section
       title="Invoices"
@@ -103,9 +115,9 @@ export function BillingPage() {
       title="Billing"
       description="Manage your billing information and invoices"
     >
-      <BillingPlan organization={organization} />
-      <BillingEmail organization={organization} />
-      <BillingInvoices organization={organization} />
+      <BillingPlan />
+      <BillingEmail />
+      <BillingInvoices />
     </SettingsPage>
   )
 }
