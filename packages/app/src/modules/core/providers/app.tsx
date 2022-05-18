@@ -13,10 +13,13 @@ import { yupResolver, yupFieldResolver } from '@saas-ui/forms/yup'
 import { AnyObjectSchema } from 'yup'
 
 import { TenancyProvider, Tenant } from '@saas-ui/pro'
+import { FeaturesProvider } from '@saas-ui/features'
 
 import { I18nProvider } from '@app/i18n'
 
 import { theme } from '@ui/theme'
+
+import features from '@app/config/feature-flags'
 
 const queryClient = new QueryClient()
 
@@ -54,11 +57,13 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
         theme={theme}
       >
         <AuthProvider {...authService}>
-          <I18nProvider>
-            <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-              <ModalsProvider>{children}</ModalsProvider>
-            </TenancyProvider>
-          </I18nProvider>
+          <FeaturesProvider value={features}>
+            <I18nProvider>
+              <TenancyProvider tenant={tenant} onChange={onTenantChange}>
+                <ModalsProvider>{children}</ModalsProvider>
+              </TenancyProvider>
+            </I18nProvider>
+          </FeaturesProvider>
         </AuthProvider>
       </SaasProvider>
     </QueryClientProvider>

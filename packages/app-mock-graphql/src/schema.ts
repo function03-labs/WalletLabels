@@ -89,6 +89,7 @@ const typeDefs = gql`
     id: String!
     name: String
     status: String
+    avatar: String
     organizations(
       after: OrganizationWhereUniqueInput
       before: OrganizationWhereUniqueInput

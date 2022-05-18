@@ -36,6 +36,7 @@ import {
   getOrganizationMember,
   organizationStore,
   getSubscription,
+  getCurrentUser,
 } from './mock-data'
 
 export const handlers = [
@@ -44,10 +45,7 @@ export const handlers = [
     (req, res, ctx) => {
       return res(
         ctx.data({
-          currentUser: {
-            ...getUser(),
-            organizations: getOrganizations(),
-          },
+          currentUser: getCurrentUser(),
         }),
       )
     },
@@ -59,7 +57,13 @@ export const handlers = [
         ctx.data({
           organization: {
             ...getOrganization(),
-            members: [getOrganizationMember()],
+            members: [
+              {
+                user: getCurrentUser(),
+                roles: ['owner', 'admin'],
+              },
+              getOrganizationMember(),
+            ],
           },
         }),
       )

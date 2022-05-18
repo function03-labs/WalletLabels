@@ -14,6 +14,7 @@
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
     "@saas-ui/date-picker": "workspace:*",
+    "@saas-ui/features": "workspace:*",
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": ">=0.12.0",

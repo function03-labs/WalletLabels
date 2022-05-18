@@ -52,6 +52,16 @@ export const getUser = () => {
   }
 }
 
+export const getCurrentUser = () => {
+  return {
+    id: '1',
+    email: 'hello@saas-ui.dev',
+    name: 'Renata Alink',
+    avatar: 'https://www.saas-ui.dev/showcase-avatar.jpg',
+    organizations: getOrganizations(),
+  }
+}
+
 export const getContact = () => mapContact(randUser())
 
 export const getContacts = () => {

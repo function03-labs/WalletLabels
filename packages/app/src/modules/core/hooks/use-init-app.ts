@@ -8,7 +8,12 @@ import { useTenant } from '@saas-ui/pro'
 import { BillingStatus } from '@saas-ui/billing'
 import { plans } from '@app/config/billing'
 
-import { useGetCurrentUserQuery, useGetSubscriptionQuery } from '@app/graphql'
+import {
+  useGetCurrentUserQuery,
+  useGetOrganizationQuery,
+  useGetSubscriptionQuery,
+} from '@app/graphql'
+import { useFeatures } from '@saas-ui/features'
 
 /**
  * Use this hook to load all required data for the app to function.
@@ -23,26 +28,41 @@ export const useInitApp = () => {
    */
   const tenant = useTenant()
 
-  // Load current user and tenant data
-  const currentUserQuery = useGetCurrentUserQuery(
-    {},
-    {
-      enabled: isAuthenticated,
-    },
-  )
+  /**
+   * The features context
+   */
+  const features = useFeatures()
 
-  const subscriptionQuery = useGetSubscriptionQuery(
-    {
-      slug: tenant,
-    },
-    {
-      enabled: isAuthenticated,
-    },
-  )
+  // Load current user and tenant data
+  const { data: { currentUser } = {}, isFetched: currentUserIsFetched } =
+    useGetCurrentUserQuery(
+      {},
+      {
+        enabled: isAuthenticated,
+      },
+    )
+
+  const { data: { organization } = {}, isFetched: organizationIsFetched } =
+    useGetOrganizationQuery(
+      {
+        slug: tenant,
+      },
+      {
+        enabled: isAuthenticated,
+      },
+    )
+
+  const { data: { subscription } = {}, isFetched: subscriptionIsFetched } =
+    useGetSubscriptionQuery(
+      {
+        slug: tenant,
+      },
+      {
+        enabled: isAuthenticated,
+      },
+    )
 
   const billing = React.useMemo(() => {
-    const subscription = subscriptionQuery.data?.subscription
-
     return {
       plans: plans,
       status: subscription?.status as BillingStatus,
@@ -51,15 +71,30 @@ export const useInitApp = () => {
       trialEndsAt:
         subscription?.trialEndsAt && parseISO(subscription?.trialEndsAt),
     }
-  }, [subscriptionQuery.data?.subscription])
+  }, [subscription])
+
+  React.useEffect(() => {
+    if (currentUser && organization && subscription) {
+      const member = organization.members.find(
+        (member) => member.user.id === currentUser.id,
+      )
+
+      features.identify({
+        id: currentUser.id,
+        roles: member?.roles || [],
+        plan: subscription.plan,
+      })
+    }
+  }, [currentUser?.id, organization?.members, subscription?.plan])
 
   return {
     isInitializing:
       isLoading ||
       isLoggingIn ||
       (isAuthenticated &&
-        !currentUserQuery.isFetched &&
-        !subscriptionQuery.isFetched),
+        !currentUserIsFetched &&
+        !subscriptionIsFetched &&
+        !organizationIsFetched),
     isAuthenticated,
     billing,
   }

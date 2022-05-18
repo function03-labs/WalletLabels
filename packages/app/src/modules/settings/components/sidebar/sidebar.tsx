@@ -15,6 +15,7 @@ import {
 } from '@saas-ui/pro'
 
 import { usePath } from '@modules/core/hooks/use-path'
+import { Flag } from '@saas-ui/features'
 
 const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
   const { path, ...rest } = props
@@ -40,13 +41,15 @@ export const SettingsSidebar = () => {
             </Heading>
           </SidebarNav>
           <SidebarNav flex="1" spacing={6}>
-            <SidebarNavGroup title="Organization" icon={<FiFolder />}>
-              <SettingsLink path="/" label="Overview" />
-              <SettingsLink path="/organization" label="Organization" />
-              <SettingsLink path="/members" label="Members" />
-              <SettingsLink path="/plans" label="Plans" />
-              <SettingsLink path="/billing" label="Billing" />
-            </SidebarNavGroup>
+            <Flag flag="settings">
+              <SidebarNavGroup title="Organization" icon={<FiFolder />}>
+                <SettingsLink path="/" label="Overview" />
+                <SettingsLink path="/organization" label="Organization" />
+                <SettingsLink path="/members" label="Members" />
+                <SettingsLink path="/plans" label="Plans" />
+                <SettingsLink path="/billing" label="Billing" />
+              </SidebarNavGroup>
+            </Flag>
 
             <SidebarNavGroup title="Account" icon={<FiUser />}>
               <SettingsLink path="/account" label="Profile" />
