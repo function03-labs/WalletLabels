@@ -69,12 +69,7 @@ export const getContacts = () => {
 }
 
 export const getOrganization = () => {
-  return {
-    id: '1',
-    name: 'Saas UI',
-    slug: 'saas-ui',
-    plan: 'pro',
-  }
+  return getOrganizations()[0]
 }
 
 export const getOrganizationMember = () => ({
@@ -89,6 +84,7 @@ export const getOrganizations = () => {
       id: '1',
       name: 'Saas UI',
       slug: 'saas-ui',
+      email: 'hello@saas-ui.dev',
       subscription: {
         id: '1',
         plan: 'pro',
@@ -101,6 +97,7 @@ export const getOrganizations = () => {
       id: '2',
       name: 'ACME Corp',
       slug: 'acme-corp',
+      email: 'info@acme-corp.com',
       subscription: {
         id: '2',
         plan: 'pro',

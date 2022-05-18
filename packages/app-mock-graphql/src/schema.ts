@@ -17,11 +17,7 @@ const typeDefs = gql`
       organizationId: String!
       userId: String!
     ): Boolean
-    updateOrganization(
-      name: String!
-      organizationId: String!
-      slug: String
-    ): Organization
+    updateOrganization(id: String!, name: String!, email: String): Organization
     updateUser(name: String, userId: String!): User
     updateMemberRoles(
       userId: String!
@@ -36,6 +32,7 @@ const typeDefs = gql`
     name: String!
     slug: String!
     plan: String
+    email: String
     members(
       after: UserWhereUniqueInput
       before: UserWhereUniqueInput
