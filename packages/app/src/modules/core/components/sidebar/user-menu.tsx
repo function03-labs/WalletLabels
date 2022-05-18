@@ -12,9 +12,14 @@ import {
 } from '@saas-ui/react'
 
 import { HotkeysWindow } from '@modules/core/components/hotkeys'
+import { useGetCurrentUserQuery } from '@app/graphql'
+import { usePath } from '@modules/core/hooks/use-path'
+import { Flag } from '@saas-ui/features'
 
 export const UserMenu = () => {
-  const { user, logOut } = useAuth()
+  const { logOut } = useAuth()
+
+  const { data: { currentUser } = {} } = useGetCurrentUserQuery()
 
   const tenant = useTenant()
 
@@ -29,22 +34,22 @@ export const UserMenu = () => {
     logOut()
   })
 
-  const metaData = user?.user_metadata
-
   return (
     <>
       <SidebarMenu
         icon={
           <PersonaAvatar
             size="xs"
-            name={metaData?.name}
-            src={metaData?.avatar_url}
+            name={currentUser?.name || ''}
+            src={currentUser?.avatar || undefined}
           />
         }
       >
-        <MenuGroup title={metaData?.name}>
-          <MenuItem href={`/app/${tenant}/settings/account`} label="Profile" />
-          <MenuItem href={`/app/${tenant}/settings`} label="Settings" />
+        <MenuGroup title={currentUser?.name || ''}>
+          <MenuItem href={usePath(`/settings/account`)} label="Profile" />
+          <Flag flag="settings">
+            <MenuItem href={`/app/${tenant}/settings`} label="Settings" />
+          </Flag>
         </MenuGroup>
         <MenuDivider />
         <MenuItem label="Changelog" />
