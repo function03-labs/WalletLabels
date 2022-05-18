@@ -110,7 +110,13 @@ const initFeatures = (options: FeaturesOptions) => {
 
 const matchSegments = (segments: Segment[], attr: UserAttributes) => {
   return segments.filter((segment) => {
-    return segment.attr.every(({ key, value }) => attr[key] === value)
+    return segment.attr.every(({ key, value }) => {
+      if (Array.isArray(attr[key])) {
+        return attr[key].includes(value)
+      }
+
+      return attr[key] === value
+    })
   })
 }
 
