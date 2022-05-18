@@ -18,7 +18,7 @@ import { usePath } from '@modules/core/hooks/use-path'
 
 const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
   const { path, ...rest } = props
-  return <SidebarLink inset={5} href={usePath(`/settings/${path}`)} {...rest} />
+  return <SidebarLink inset={5} href={usePath(`/settings${path}`)} {...rest} />
 }
 
 export const SettingsSidebar = () => {
@@ -42,20 +42,20 @@ export const SettingsSidebar = () => {
           <SidebarNav flex="1" spacing={6}>
             <SidebarNavGroup title="Organization" icon={<FiFolder />}>
               <SettingsLink path="/" label="Overview" />
-              <SettingsLink path="organization" label="Organization" />
-              <SettingsLink path="members" label="Members" />
-              <SettingsLink path="plans" label="Plans" />
-              <SettingsLink path="billing" label="Billing" />
+              <SettingsLink path="/organization" label="Organization" />
+              <SettingsLink path="/members" label="Members" />
+              <SettingsLink path="/plans" label="Plans" />
+              <SettingsLink path="/billing" label="Billing" />
             </SidebarNavGroup>
 
             <SidebarNavGroup title="Account" icon={<FiUser />}>
-              <SettingsLink path="account" label="Profile" />
-              <SettingsLink path="account/security" label="Security" />
+              <SettingsLink path="/account" label="Profile" />
+              <SettingsLink path="/account/security" label="Security" />
               <SettingsLink
-                path="account/notifications"
+                path="/account/notifications"
                 label="Notifications"
               />
-              <SettingsLink path="account/api" label="Api" />
+              <SettingsLink path="/account/api" label="Api" />
             </SidebarNavGroup>
           </SidebarNav>
         </SidebarOverflow>
