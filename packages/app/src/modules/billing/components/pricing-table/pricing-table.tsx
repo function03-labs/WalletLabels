@@ -124,6 +124,7 @@ export const PricingTable: React.FC<PricingTableProps> = (props) => {
               const isDowngrade =
                 currentPlan &&
                 allPlans.indexOf(plan) < allPlans.indexOf(currentPlan)
+
               return (
                 <Th key={plan.id} textTransform="none" fontWeight="normal">
                   <Stack pb="10" spacing="4">

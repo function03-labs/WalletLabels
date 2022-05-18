@@ -169,7 +169,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             </SidebarNavGroup>
           </SidebarNav>
         </SidebarOverflow>
-        <SidebarDivider m="0" />
+
         {isCondensed ? (
           <SidebarNav>
             <UserMenu />
