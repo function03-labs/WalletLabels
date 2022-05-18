@@ -1,5 +1,11 @@
 # app
 
+## 2.1.0
+
+### Minor Changes
+
+- 5fbf9ae: Now using MSW to mock api requests
+
 ## 2.0.4
 
 ### Patch Changes
