@@ -19,7 +19,7 @@ export function PlansPage() {
   const { planId, currentPlan } = useBilling()
 
   const onUpgrade = (plan: PricingPlan) => {
-    navigate(`/app/${tenant}/checkout?product=${plan.productId}`)
+    navigate(`/app/${tenant}/checkout?plan=${plan.id}`)
   }
 
   return (

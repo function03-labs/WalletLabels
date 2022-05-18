@@ -8,6 +8,6 @@ export default createPage({
   renderComponent: (props) => {
     const { query } = props
 
-    return <CheckoutPage product={query.product} />
+    return <CheckoutPage plan={query.plan} />
   },
 })
