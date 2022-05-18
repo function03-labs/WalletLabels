@@ -68,7 +68,7 @@ export interface PricingTableProps {
 
 export const PricingTable: React.FC<PricingTableProps> = (props) => {
   const {
-    currentPlan,
+    currentPlan: planId,
     plans: allPlans,
     features,
     onUpgrade,
@@ -81,6 +81,8 @@ export const PricingTable: React.FC<PricingTableProps> = (props) => {
   const plans = React.useMemo(() => {
     return allPlans.filter((plan) => plan.period === period)
   }, [period])
+
+  const currentPlan = allPlans.find((plan) => plan.id === planId)
 
   return (
     <Box {...rest}>
@@ -118,7 +120,10 @@ export const PricingTable: React.FC<PricingTableProps> = (props) => {
           </Tr>
           <Tr borderBottomWidth="1px">
             {plans.map((plan) => {
-              const isCurrent = plan.id === currentPlan
+              const isCurrent = plan.id === currentPlan?.id
+              const isDowngrade =
+                currentPlan &&
+                allPlans.indexOf(plan) < allPlans.indexOf(currentPlan)
               return (
                 <Th key={plan.id} textTransform="none" fontWeight="normal">
                   <Stack pb="10" spacing="4">
@@ -134,7 +139,7 @@ export const PricingTable: React.FC<PricingTableProps> = (props) => {
                         colorScheme="primary"
                         onClick={() => onUpgrade?.(plan)}
                       >
-                        Upgrade
+                        {isDowngrade ? 'Downgrade' : 'Upgrade'}
                       </Button>
                     )}
                   </Stack>
