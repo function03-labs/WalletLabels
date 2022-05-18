@@ -67,7 +67,9 @@ export function SettingsOverviewPage() {
             subtitle="Manage your organization details."
             avatar={<PersonaAvatar name={data?.organization?.name} size="sm" />}
             footer={
-              <Button href={usePath('/settings/organization')}>Update</Button>
+              <Button href={usePath('/settings/organization')} variant="subtle">
+                Update
+              </Button>
             }
           >
             <PropertyList borderTopWidth="1px" px="4">
@@ -88,6 +90,7 @@ export function SettingsOverviewPage() {
             footer={
               <Button
                 label="Enable two-factor authentication"
+                variant="subtle"
                 colorScheme="primary"
               />
             }
