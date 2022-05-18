@@ -4,30 +4,70 @@ import { Box, BoxProps, useColorMode } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
 import { usePaddle } from './use-paddle'
 
-export interface InlineCheckoutProps extends BoxProps {
-  product: number
+interface PaddleCheckoutParams {
+  product: number | string
+  title?: string
+  message?: string
+  coupon?: string
   email?: string
+  marketingConsent?: string
+  country?: string
+  postcode?: string
+  allowQuantity?: string | boolean
+  quantity?: string | number
+  disableLogout?: string | boolean
+  locale?: string
   passthrough?: string
-  allowQuantity?: boolean
-  disableLogout?: boolean
+  referring_domain?: string
+  success?: string
   successCallback?(data: any): void
   closeCallback?(data: any): void
+  loadCallback?(): void
+  upsell?: string | number
+  upsellTitle?: string
+  upsellText?: string
+  upsellAction?: string
+  upsellCoupon?: string
+  upsellPassthrough?: string
+  override?: string
+  displayModeTheme?: string
 }
 
+export interface InlineCheckoutProps extends BoxProps, PaddleCheckoutParams {}
+
 export const InlineCheckout: React.FC<InlineCheckoutProps> = (props) => {
+  const { colorMode } = useColorMode()
   const {
     product,
+    title,
+    message,
+    coupon,
     email,
-    passthrough = {},
+    marketingConsent,
+    country,
+    postcode,
     allowQuantity,
+    quantity,
     disableLogout,
+    locale,
+    passthrough,
+    referring_domain,
+    success,
     successCallback,
     closeCallback,
+    loadCallback,
+    upsell,
+    upsellTitle,
+    upsellText,
+    upsellAction,
+    upsellCoupon,
+    upsellPassthrough,
+    override,
+    displayModeTheme = colorMode,
     ...rest
   } = props
 
   const className = 'saas-ui-paddle__inline-checkout'
-  const { colorMode: displayModeTheme } = useColorMode()
 
   const Paddle = usePaddle()
 
@@ -39,12 +79,30 @@ export const InlineCheckout: React.FC<InlineCheckoutProps> = (props) => {
     Paddle.Checkout.open({
       method: 'inline',
       product,
+      title,
+      message,
+      coupon,
       email,
+      marketingConsent,
+      country,
+      postcode,
+      allowQuantity,
+      quantity,
+      disableLogout,
+      locale,
       passthrough,
+      referring_domain,
+      success,
       successCallback,
       closeCallback,
-      allowQuantity,
-      disableLogout,
+      loadCallback,
+      upsell,
+      upsellTitle,
+      upsellText,
+      upsellAction,
+      upsellCoupon,
+      upsellPassthrough,
+      override,
       displayModeTheme,
       frameTarget: className,
       frameInitialHeight: 416,
