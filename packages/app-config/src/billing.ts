@@ -23,6 +23,7 @@ export const plans = [
     period: 'yearly',
     price: '€40,-',
     priceLabel: 'per user/month',
+    discount: '20%',
     trialDays: 14,
     features: {
       users: 'Max 3',
@@ -57,6 +58,7 @@ export const plans = [
     period: 'yearly',
     price: '€80,-',
     priceLabel: 'per user/month',
+    discount: '20%',
     trialDays: 14,
     features: {
       users: 'Unlimited',

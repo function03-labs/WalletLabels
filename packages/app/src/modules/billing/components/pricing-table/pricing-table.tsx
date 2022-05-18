@@ -15,6 +15,7 @@ import {
   Tr,
   Tooltip,
   StackProps,
+  Tag,
 } from '@chakra-ui/react'
 
 import { FiCheck } from 'react-icons/fi'
@@ -24,11 +25,11 @@ import { Button, ButtonGroup } from '@saas-ui/react'
 const defaultPeriods = [
   {
     id: 'monthly',
-    label: 'Per month',
+    label: 'Pay monthly',
   },
   {
     id: 'yearly',
-    label: 'Per year',
+    label: 'Pay yearly',
   },
 ]
 
@@ -100,14 +101,16 @@ export const PricingTable: React.FC<PricingTableProps> = (props) => {
               return (
                 <Th key={plan.id} textTransform="none">
                   <Stack>
-                    <Heading size="md">{plan.name}</Heading>
-                    <Text>
-                      {plan.description && (
-                        <Text color="muted" fontWeight="normal">
-                          {plan.description}
-                        </Text>
-                      )}
-                    </Text>
+                    <Heading size="md">
+                      {plan.name}{' '}
+                      {plan.discount && <Tag size="sm">-{plan.discount}</Tag>}
+                    </Heading>
+
+                    {plan.description && (
+                      <Text color="muted" fontWeight="normal">
+                        {plan.description}
+                      </Text>
+                    )}
                   </Stack>
                 </Th>
               )
@@ -204,7 +207,11 @@ const PricingTablePeriod: React.FC<PricingTablePeriodProps> = (props) => {
       <Text>Billing period</Text>
       <ButtonGroup isAttached variant="outline">
         {periods.map(({ id, label }) => (
-          <Button isActive={period === id} onClick={() => onChange(id)}>
+          <Button
+            key={id}
+            isActive={period === id}
+            onClick={() => onChange(id)}
+          >
             {label}
           </Button>
         ))}
