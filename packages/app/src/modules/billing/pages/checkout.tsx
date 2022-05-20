@@ -1,13 +1,34 @@
 import * as React from 'react'
-import { BackButton, Page, useTenant } from '@saas-ui/pro'
-import { InlineCheckout } from '@saas-ui/paddle'
-import { Loader, EmptyState, useSnackbar } from '@saas-ui/react'
+import { BackButton, Page, PageBody, useTenant } from '@saas-ui/pro'
+import { InlineCheckout, usePaddle } from '@saas-ui/paddle'
+import {
+  Loader,
+  EmptyState,
+  useSnackbar,
+  Link,
+  Card,
+  CardBody,
+} from '@saas-ui/react'
 import { useNavigate } from '@saas-ui/router'
 import { useGetOrganizationQuery } from '@app/graphql'
 import { usePath } from '@modules/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
 import { Button } from '@modules/core/components/button'
-import { Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
+import {
+  Container,
+  Heading,
+  HStack,
+  Stack,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react'
+import { FormattedNumber } from '@app/i18n'
 
 interface CheckoutPageProps {
   plan: string
@@ -15,6 +36,8 @@ interface CheckoutPageProps {
 
 export function CheckoutPage({ plan }: CheckoutPageProps) {
   const tenant = useTenant()
+  const navigate = useNavigate()
+  const snackbar = useSnackbar()
   const settingsPath = usePath('/settings/plans')
   const [isReady, setReady] = React.useState(false)
 
@@ -26,9 +49,13 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
     slug: tenant,
   })
 
-  const navigate = useNavigate()
+  const [checkoutData, setCheckoutData] = React.useState<any>(null)
 
-  const snackbar = useSnackbar()
+  usePaddle({
+    onEvent: ({ detail }) => {
+      setCheckoutData(detail.eventData.checkout)
+    },
+  })
 
   const onSuccess = (data: any) => {
     snackbar.success({
@@ -46,6 +73,8 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
     setReady(true)
   }
 
+  const period = selectedPlan?.period === 'monthly' ? 'Per month' : 'Per year'
+
   let body
   if (!selectedPlan) {
     body = (
@@ -61,35 +90,94 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
       />
     )
   } else {
+    const prices = checkoutData?.prices.customer || {}
     body = (
       <>
-        <Loader variant="overlay" isLoading={isLoading || !isReady} />
-        <HStack width="full" alignItems="flex-start" py={[8, null, 20]}>
+        <Loader variant="fill" isLoading={isLoading || !isReady} />
+        <HStack
+          width="full"
+          alignItems="flex-start"
+          py={[8, null, 20]}
+          spacing="20"
+        >
           <Stack flex="1" spacing="0" py={[8, null, 20]}>
-            <Text fontSize="xl" color="muted">
-              {selectedPlan && `Subscribe to ${selectedPlan.name}`}
-            </Text>
-            <HStack>
-              <Text fontSize="4xl" fontWeight="bold">
-                {selectedPlan.price}
-              </Text>
-              <Text fontSize="lg" color="muted">
-                {selectedPlan.period === 'monthly' ? 'per month' : 'per year'}
-              </Text>
-            </HStack>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>Your subscription</Th>
+                  <Th isNumeric>{period}</Th>
+                </Tr>
+              </Thead>
+              <Tfoot>
+                <Tr>
+                  <Td border="0">VAT</Td>
+                  <Td border="0" isNumeric>
+                    <FormattedNumber
+                      value={prices.total_tax}
+                      style="currency"
+                      currency={prices.currency}
+                    />
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Th border="0" color="inherit">
+                    Total due
+                  </Th>
+                  <Th border="0" color="inherit" isNumeric>
+                    <FormattedNumber
+                      value={prices.total}
+                      style="currency"
+                      currency={prices.currency}
+                    />
+                  </Th>
+                </Tr>
+              </Tfoot>
+              <Tbody>
+                <Tr>
+                  <Td border="0">
+                    {selectedPlan.name}{' '}
+                    <Link href={settingsPath} color="muted">
+                      (Change plan)
+                    </Link>
+                  </Td>
+                  <Td border="0" />
+                </Tr>
+                <Tr>
+                  <Td ps="8" py="2" border="0">
+                    {organization?.members.length} users
+                  </Td>
+                  <Td isNumeric py="2" border="0">
+                    <FormattedNumber
+                      value={
+                        parseFloat(prices.total) - parseFloat(prices.total_tax)
+                      }
+                      style="currency"
+                      currency={prices.currency}
+                    />
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td border="0" py="2" />
+                  <Td border="0" py="2" />
+                </Tr>
+              </Tbody>
+            </Table>
           </Stack>
-          <InlineCheckout
-            display={isReady ? 'block' : 'none'}
-            flex="1"
-            product={selectedPlan.productId}
-            allowQuantity={false}
-            quantity={organization?.members.length}
-            email={organization?.email || undefined}
-            passthrough={organization?.id}
-            successCallback={onSuccess}
-            closeCallback={onClose}
-            loadCallback={onLoad}
-          />
+          <Card flex="1">
+            <CardBody>
+              <InlineCheckout
+                display={isReady ? 'block' : 'none'}
+                product={selectedPlan.productId}
+                allowQuantity={false}
+                quantity={organization?.members.length}
+                email={organization?.email || undefined}
+                passthrough={organization?.id}
+                successCallback={onSuccess}
+                closeCallback={onClose}
+                loadCallback={onLoad}
+              />
+            </CardBody>
+          </Card>
         </HStack>
       </>
     )
@@ -100,9 +188,8 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
       title="Checkout"
       description={selectedPlan && `Subscribe to ${selectedPlan.name}`}
       nav={<BackButton href={settingsPath} />}
-      contentWidth="container.xl"
     >
-      {body}
+      <PageBody contentWidth="container.2xl">{body}</PageBody>
     </Page>
   )
 }
