@@ -1,5 +1,11 @@
 # app
 
+## 3.1.0
+
+### Minor Changes
+
+- New Paddle integration and checkout page.
+
 ## 3.0.0
 
 ### Minor Changes

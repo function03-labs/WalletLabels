@@ -1,5 +1,17 @@
 # nextjs-app
 
+## 1.2.0
+
+### Minor Changes
+
+- New Paddle integration and checkout page.
+
+### Patch Changes
+
+- Updated dependencies
+  - app@3.1.0
+  - @saas-ui/paddle@0.1.0
+
 ## 1.1.0
 
 ### Minor Changes
