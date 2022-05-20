@@ -1,5 +1,32 @@
 # nextjs-app
 
+## 1.1.0
+
+### Minor Changes
+
+- e80e0c2: Moved AppLayout out of AppProvider, should be included manually in your app root now.
+
+### Patch Changes
+
+- c3771bd: New home page
+- Updated dependencies [d1ef2d5]
+- Updated dependencies [a49e48c]
+- Updated dependencies [370e2be]
+- Updated dependencies [6a892ce]
+- Updated dependencies [ed7ddea]
+- Updated dependencies [b5f9eac]
+- Updated dependencies [717f3a9]
+- Updated dependencies [e01ca96]
+- Updated dependencies [e80e0c2]
+- Updated dependencies [e80e0c2]
+- Updated dependencies [c3b91e4]
+  - app@3.0.0
+  - @saas-ui/features@0.2.1
+  - @saas-ui/pro@0.3.11
+  - @saas-ui/billing@0.2.0
+  - @saas-ui/router@0.1.0
+  - @ui/core@0.0.19
+
 ## 1.0.24
 
 ### Patch Changes

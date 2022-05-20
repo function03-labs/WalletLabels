@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.3.11
+
+### Patch Changes
+
+- 370e2be: Fixed issue where PageBody maxW could not be overwritten.
+- 717f3a9: Updated SidebarMenu label type to ReactNode.
+
 ## 0.3.10
 
 ### Patch Changes

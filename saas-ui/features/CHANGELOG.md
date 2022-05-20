@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.2.1
+
+### Patch Changes
+
+- a49e48c: Feature flags now support array attributes.
+
 ## 0.2.0
 
 ### Minor Changes

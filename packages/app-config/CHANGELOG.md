@@ -1,5 +1,12 @@
 # @app/config
 
+## 0.0.10
+
+### Patch Changes
+
+- 8873747: Added trialDays option to billing config.
+  - @ui/core@0.0.19
+
 ## 0.0.9
 
 ### Patch Changes

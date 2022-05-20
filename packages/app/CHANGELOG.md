@@ -1,5 +1,35 @@
 # app
 
+## 3.0.0
+
+### Minor Changes
+
+- e01ca96: Added new BillingProvider to handle billing subscriptions.
+- e80e0c2: New useLocation hook that can be used to get the current pathname.
+- e80e0c2: Moved AppLayout out of AppProvider, should be included manually in your app root now.
+
+### Patch Changes
+
+- d1ef2d5: TenantMenu now correctly sets slug instead of id on change.
+- 6a892ce: Added new usePath hook
+- ed7ddea: Added avatar to currentUser mock data.
+- b5f9eac: Added FeaturesProvider to AppProvider to enable features flags.
+- c3b91e4: New Button wrapper component that supports href.
+- Updated dependencies [a49e48c]
+- Updated dependencies [8873747]
+- Updated dependencies [412d774]
+- Updated dependencies [370e2be]
+- Updated dependencies [717f3a9]
+- Updated dependencies [e01ca96]
+- Updated dependencies [e80e0c2]
+  - @saas-ui/features@0.2.1
+  - @app/config@0.0.10
+  - @app/i18n@null
+  - @saas-ui/pro@0.3.11
+  - @saas-ui/billing@0.2.0
+  - @saas-ui/router@0.1.0
+  - @ui/core@0.0.19
+
 ## 2.1.0
 
 ### Minor Changes

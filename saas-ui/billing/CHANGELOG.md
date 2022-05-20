@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.2.0
+
+### Minor Changes
+
+- e01ca96: Added new BillingProvider to handle billing subscriptions.
+
 ## 0.1.1
 
 ### Patch Changes
