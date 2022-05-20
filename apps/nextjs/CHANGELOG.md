@@ -1,5 +1,12 @@
 # nextjs-app
 
+## 1.0.24
+
+### Patch Changes
+
+- Updated dependencies [5fbf9ae]
+  - app@2.1.0
+
 ## 1.0.23
 
 ### Patch Changes

@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { useRouter } from 'next/router'
 
 import { Flex, Container } from '@chakra-ui/react'
 
 import { AppShell, AppShellProps } from '@saas-ui/pro'
 import { HotkeysListOptions } from '@saas-ui/react'
 import { Auth } from '@saas-ui/auth'
+import { useLocation } from '@saas-ui/router'
+
 import { Hotkeys } from '@modules/core/components/hotkeys'
 import { Link } from '@modules/core/components/link'
 import { Logo } from '@modules/core/components/logo'
@@ -20,15 +21,26 @@ import { useInitApp } from '../hooks/use-init-app'
 
 import { AppLoader } from '../components/app-loader'
 
+import { PublicLayout } from './public-layout'
+import { BillingProvider } from '@saas-ui/billing'
+
+/**
+ * Wrapper component for Authenticated pages.
+ *
+ * Loads the minimal required user data for the app and
+ * renders authentication screens when the user isn't authenticated.
+ */
 export const Authenticated: React.FC = ({ children, ...rest }) => {
-  const router = useRouter()
+  const location = useLocation()
 
-  const { isInitializing, isAuthenticated } = useInitApp()
+  const { isInitializing, isAuthenticated, billing } = useInitApp()
 
-  const { view, title } = authPaths[router.pathname]
-    ? authPaths[router.pathname]
+  const { view, title } = authPaths[location.pathname]
+    ? authPaths[location.pathname]
     : authPaths['/login']
 
+  // Rendering the auth screens here so they are rendered in place,
+  // on the current route, without the need to redirect.
   if (!isInitializing && !isAuthenticated) {
     return (
       <AuthLayout>
@@ -49,13 +61,16 @@ export const Authenticated: React.FC = ({ children, ...rest }) => {
   }
 
   return (
-    <>
+    <BillingProvider value={billing}>
       <AppLoader isLoading={isInitializing} />
       {!isInitializing && children}
-    </>
+    </BillingProvider>
   )
 }
 
+/**
+ * Layout for authentication screens (login/signup/etc...)
+ */
 export const AuthLayout: React.FC = ({ children, ...rest }) => {
   return (
     <Flex minH="100vh" align="center" justify="center" {...rest}>
@@ -64,11 +79,14 @@ export const AuthLayout: React.FC = ({ children, ...rest }) => {
   )
 }
 
-interface LayoutProps extends AppShellProps {
+interface AuthenticatedLayoutProps extends AppShellProps {
   hotkeys: HotkeysListOptions
 }
 
-export const Layout: React.FC<LayoutProps> = ({
+/**
+ * Base layout for authenticated pages.
+ */
+export const AuthenticatedLayout: React.FC<AuthenticatedLayoutProps> = ({
   children,
   hotkeys,
   sidebar,
@@ -85,66 +103,90 @@ export const Layout: React.FC<LayoutProps> = ({
   )
 }
 
-export const DefaultLayout: React.FC<LayoutProps> = ({
+/**
+ * Default authenticated layout with sidebar.
+ */
+export const DefaultLayout: React.FC<AuthenticatedLayoutProps> = ({
   children,
   sidebar = <AppSidebar />,
   ...rest
 }) => {
   return (
-    <Layout sidebar={sidebar} {...rest}>
+    <AuthenticatedLayout sidebar={sidebar} {...rest}>
       {children}
-    </Layout>
+    </AuthenticatedLayout>
   )
 }
 
-export const SettingsLayout: React.FC<LayoutProps> = ({
+/**
+ * Layout for settings pages.
+ */
+export const SettingsLayout: React.FC<AuthenticatedLayoutProps> = ({
   children,
   hotkeys = settingsHotkeys,
   ...rest
 }) => {
   return (
-    <Layout hotkeys={hotkeys} {...rest} sidebar={<SettingsSidebar />}>
+    <AuthenticatedLayout
+      hotkeys={hotkeys}
+      {...rest}
+      sidebar={<SettingsSidebar />}
+    >
       {children}
-    </Layout>
+    </AuthenticatedLayout>
   )
 }
 
-export const FullscreenLayout: React.FC<LayoutProps> = ({
+/**
+ * Fullscreen layout, for functionality that requires extra focus, like onboarding/checkout/etc.
+ */
+export const FullscreenLayout: React.FC<AuthenticatedLayoutProps> = ({
   children,
   hotkeys = fullscreenHotkeys,
   ...rest
 }) => {
   return (
-    <Layout hotkeys={hotkeys} {...rest}>
+    <AuthenticatedLayout hotkeys={hotkeys} {...rest}>
       {children}
-    </Layout>
+    </AuthenticatedLayout>
   )
-}
-
-export const PublicLayout: React.FC<AppShellProps> = ({
-  children,
-  ...rest
-}) => {
-  return <AppShell {...rest}>{children}</AppShell>
 }
 
 interface AppLayoutProps {
   children: React.ReactNode
+  /**
+   * Array of paths that should render the public layout.
+   */
   publicRoutes?: Array<string>
+  /**
+   * Render the public layout.
+   */
   isPublic?: boolean
+  /**
+   * The layout to render.
+   * Can be a component or build-in layout key `settings` | `fullscreen`
+   */
   layout?: React.ReactNode
+  /**
+   * The sidebar component.
+   */
   sidebar?: React.ReactNode
 }
 
-const AppLayout: React.FC<AppLayoutProps> = ({
+/**
+ * Application layout
+ * Handles rendering
+ */
+export const AppLayout: React.FC<AppLayoutProps> = ({
   children,
   publicRoutes = [],
   isPublic,
   layout,
   ...rest
 }) => {
-  const router = useRouter()
-  const isPublicRoute = publicRoutes.indexOf(router.pathname) !== -1 || isPublic
+  const location = useLocation()
+  const isPublicRoute =
+    publicRoutes.indexOf(location.pathname) !== -1 || isPublic
 
   let LayoutComponent
   if (isPublicRoute) {
@@ -178,5 +220,3 @@ const AppLayout: React.FC<AppLayoutProps> = ({
     </Flex>
   )
 }
-
-export default AppLayout

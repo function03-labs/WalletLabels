@@ -6,10 +6,17 @@ interface NavigateOptions {
   replace?: boolean
 }
 
+interface RouterLocation {
+  pathname: string
+  hash?: string
+  search?: string
+}
+
 export interface RouterContextValue {
   navigate: (path: string, options?: NavigateOptions) => void
   back: () => void
   params?: ParsedUrlQuery
+  location?: RouterLocation
 }
 
 export const RouterContext = React.createContext<RouterContextValue | null>(
@@ -32,4 +39,9 @@ export const useNavigate = () => {
 export const useParams = () => {
   const context = useRouterContext()
   return context?.params
+}
+
+export const useLocation = () => {
+  const context = useRouterContext()
+  return context?.location || window.location
 }

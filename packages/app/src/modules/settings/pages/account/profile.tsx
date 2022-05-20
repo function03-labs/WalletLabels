@@ -55,7 +55,7 @@ function ProfileDetails({ user }: any) {
               userId: user.id,
               name: data.name,
             }).then(() =>
-              snackbar({
+              snackbar.success({
                 description: 'Profile updated',
               }),
             )
@@ -80,10 +80,6 @@ function ProfileDetails({ user }: any) {
 function ProfileAvatar({ user }: any) {
   const snackbar = useSnackbar()
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const onClose = () => setIsOpen(false)
-
   const [previewUrl, setPreviewUrl] = useState<string | undefined>()
   const ref = useRef<HTMLInputElement>()
 
@@ -99,19 +95,15 @@ function ProfileAvatar({ user }: any) {
     }
   }
 
-  const showModal = () => {
-    setIsOpen(true)
-  }
-
   return (
     <FormControl>
       <FormLabel>Profile picture</FormLabel>
       <Tooltip label="Upload a picture">
         <Avatar
           name={user.name}
-          src={previewUrl}
+          src={previewUrl || user.avatar}
           size="lg"
-          onClick={showModal}
+          onClick={selectFile}
           cursor="pointer"
         />
       </Tooltip>

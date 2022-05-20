@@ -1,11 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/react'
-import { Button, PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
+import { PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
-
-import { SettingsPage } from '@modules/core/components/settings-page'
-
-import { SettingsCard } from '@modules/settings/components/settings-card'
-import { SupportCard } from '@modules/settings/components/support-card'
+import { useBilling } from '@saas-ui/billing'
 
 import {
   FiHelpCircle,
@@ -15,10 +11,22 @@ import {
   FiBriefcase,
 } from 'react-icons/fi'
 
+import { SettingsPage } from '@modules/core/components/settings-page'
+import { SettingsCard } from '@modules/settings/components/settings-card'
+import { SupportCard } from '@modules/settings/components/support-card'
+
+import { Button } from '@modules/core/components/button'
+import { usePath } from '@modules/core/hooks/use-path'
+
+import { FormattedDate } from '@app/i18n'
+
 import { useGetOrganizationQuery } from '@app/graphql'
 
 export function SettingsOverviewPage() {
   const { data, isLoading } = useGetOrganizationQuery()
+
+  const { currentPlan, isTrialing, isCanceled, trialEndsAt, status } =
+    useBilling()
 
   return (
     <SettingsPage
@@ -30,24 +38,39 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={2} spacing={4}>
           <SettingsCard
             title="Billing"
-            subtitle="Your trial ends in 30 days."
+            subtitle="Manage your subscription."
             icon={FiBriefcase}
             footer={
-              <Button variant="subtle" colorScheme="green">
-                Upgrade
+              <Button
+                href={usePath('/settings/plans')}
+                variant="subtle"
+                colorScheme="green"
+              >
+                {isCanceled ? 'Activate your account' : 'Upgrade'}
               </Button>
             }
           >
             <PropertyList borderTopWidth="1px" px="4">
-              <Property label="Billing plan" value="Professional" />
-              <Property label="Trial ends" value="28-09-2022" />
+              <Property label="Billing plan" value={currentPlan?.name} />
+              {isTrialing ? (
+                <Property
+                  label="Trial ends"
+                  value={<FormattedDate value={trialEndsAt} />}
+                />
+              ) : (
+                <Property label="Status" value={status} />
+              )}
             </PropertyList>
           </SettingsCard>
           <SettingsCard
             title="Organization"
             subtitle="Manage your organization details."
             avatar={<PersonaAvatar name={data?.organization?.name} size="sm" />}
-            footer={<Button>Update</Button>}
+            footer={
+              <Button href={usePath('/settings/organization')} variant="subtle">
+                Update
+              </Button>
+            }
           >
             <PropertyList borderTopWidth="1px" px="4">
               <Property label="Name" value={data?.organization?.name} />
@@ -67,6 +90,7 @@ export function SettingsOverviewPage() {
             footer={
               <Button
                 label="Enable two-factor authentication"
+                variant="subtle"
                 colorScheme="primary"
               />
             }

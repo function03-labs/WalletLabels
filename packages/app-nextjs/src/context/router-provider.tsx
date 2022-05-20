@@ -26,6 +26,9 @@ export function NextRouterProvider({ children }: NextRouterProviderProps) {
     navigate,
     back: router.back,
     params: router.query,
+    location: {
+      pathname: router.pathname,
+    },
   }
 
   return <RouterProvider value={context}>{children}</RouterProvider>

@@ -1,6 +1,6 @@
 {
   "name": "nextjs-app",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "private": true,
   "scripts": {
     "predev": "yarn run generate",
@@ -21,10 +21,13 @@
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
     "@saas-ui/date-picker": "workspace:*",
+    "@saas-ui/features": "workspace:*",
     "@saas-ui/next-workspaces": "^0.1.1",
     "@saas-ui/onboarding": "workspace:*",
+    "@saas-ui/paddle": "workspace:*",
     "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": "^0.13.3",
+    "@saas-ui/router": "workspace:*",
     "@ui/core": "workspace:*",
     "@ui/theme": "workspace:*",
     "app": "workspace:*",

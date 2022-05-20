@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router'
-import { Section } from '@saas-ui/pro'
-import { UpgradeButton } from '@saas-ui/billing'
+import * as React from 'react'
+
+import { Section, useTenant } from '@saas-ui/pro'
 import { useGetOrganizationQuery } from '@app/graphql'
 
-import { Text } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
 
 import {
-  Button,
   Card,
   CardBody,
   Field,
@@ -15,8 +14,16 @@ import {
   SubmitButton,
 } from '@saas-ui/react'
 import { SettingsPage } from '@modules/core/components/settings-page'
+import { Button } from '@modules/core/components/button'
+import { usePath } from '@modules/core/hooks/use-path'
 
-function BillingPlan({ organization }: any) {
+import { useBilling } from '@saas-ui/billing'
+
+import { FormattedDate } from '@app/i18n'
+
+function BillingPlan() {
+  const { isTrialing, isTrialExpired, trialEndsAt, currentPlan } = useBilling()
+
   return (
     <Section
       title="Billing plan"
@@ -25,18 +32,38 @@ function BillingPlan({ organization }: any) {
     >
       <Card>
         <CardBody>
-          {!organization?.plan ? (
-            <UpgradeButton />
-          ) : (
-            <Button label="Manage billing" onClick={() => null} />
-          )}
+          <Stack alignItems="flex-start">
+            {!isTrialExpired && (
+              <Text>
+                You are currently on the <strong>{currentPlan?.name}</strong>{' '}
+                plan.
+              </Text>
+            )}
+
+            {isTrialing && (
+              <Text>
+                Your trial ends <FormattedDate value={trialEndsAt} />.
+              </Text>
+            )}
+
+            {isTrialExpired && (
+              <Text>
+                Your trial ended on <FormattedDate value={trialEndsAt} />.
+              </Text>
+            )}
+
+            <Button
+              label="View plans and upgrade"
+              href={usePath('/settings/plans')}
+            />
+          </Stack>
         </CardBody>
       </Card>
     </Section>
   )
 }
 
-function BillingEmail({ organization }: any) {
+function BillingEmail() {
   return (
     <Section
       title="Billing email"
@@ -57,7 +84,7 @@ function BillingEmail({ organization }: any) {
   )
 }
 
-function BillingInvoices({ organization }: any) {
+function BillingInvoices() {
   return (
     <Section
       title="Invoices"
@@ -74,11 +101,10 @@ function BillingInvoices({ organization }: any) {
 }
 
 export function BillingPage() {
-  const router = useRouter()
-  const { slug } = router.query
+  const tenant = useTenant()
 
   const { data, isLoading, error } = useGetOrganizationQuery({
-    slug: String(slug),
+    slug: tenant,
   })
 
   const organization = data?.organization
@@ -89,9 +115,9 @@ export function BillingPage() {
       title="Billing"
       description="Manage your billing information and invoices"
     >
-      <BillingPlan organization={organization} />
-      <BillingEmail organization={organization} />
-      <BillingInvoices organization={organization} />
+      <BillingPlan />
+      <BillingEmail />
+      <BillingInvoices />
     </SettingsPage>
   )
 }

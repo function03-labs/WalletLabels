@@ -1,33 +1,31 @@
-import { useRouter } from 'next/router'
-import { Loader, useAuth } from '@saas-ui/react'
-import { useEffect } from 'react'
-import { useTenant } from '@saas-ui/pro'
-import { useGetCurrentUserQuery } from '@app/graphql'
+import { Center, Heading, Stack } from '@chakra-ui/react'
+import { Button } from '@modules/core/components/button'
+import { SaasUILogo } from '@modules/core/components/logo/saas-ui'
+import { useAuth } from '@saas-ui/auth'
+import { ButtonGroup } from '@saas-ui/react'
 
-export function HomePage() {
-  const router = useRouter()
-  const { isLoggingIn } = useAuth()
-  const tenant = useTenant()
+export default function HomePage() {
+  const { isAuthenticated, logOut } = useAuth()
 
-  const { data } = useGetCurrentUserQuery()
+  return (
+    <Center height="100vh">
+      <Stack spacing="8">
+        <SaasUILogo />
 
-  useEffect(() => {
-    if (isLoggingIn || !data) {
-      return
-    }
-
-    const user = data.currentUser
-
-    if (user && (!user.organizations || !user.organizations.length)) {
-      router.push('/app/getting-started')
-    } else if (tenant) {
-      router.push(`/app/${tenant}`)
-    } else if (user?.organizations[0]) {
-      router.push(`/app/${user.organizations[0].slug}`)
-    }
-  }, [isLoggingIn, data])
-
-  return <Loader />
+        {isAuthenticated ? (
+          <ButtonGroup>
+            <Button href="/app" colorScheme="primary">
+              Dashboard
+            </Button>
+            <Button onClick={() => logOut()}>Logout</Button>
+          </ButtonGroup>
+        ) : (
+          <ButtonGroup>
+            <Button href="/login">Login</Button>
+            <Button href="/signup">Sign up</Button>
+          </ButtonGroup>
+        )}
+      </Stack>
+    </Center>
+  )
 }
-
-export default HomePage

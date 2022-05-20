@@ -1,5 +1,7 @@
 import { graphql } from 'msw'
 
+import slug from 'slug'
+
 import {
   CreateContactMutation,
   CreateContactMutationVariables,
@@ -12,10 +14,13 @@ import {
   GetCurrentUserQueryVariables,
   GetOrganizationQuery,
   GetOrganizationQueryVariables,
+  GetSubscriptionQuery,
+  GetSubscriptionQueryVariables,
   InviteToOrganizationMutation,
   InviteToOrganizationMutationVariables,
   RemoveUserFromOrganizationMutation,
   RemoveUserFromOrganizationMutationVariables,
+  Subscription,
   UpdateMemberRolesMutation,
   UpdateMemberRolesMutationVariables,
   UpdateUserMutation,
@@ -29,6 +34,9 @@ import {
   getOrganizations,
   getOrganization,
   getOrganizationMember,
+  organizationStore,
+  getSubscription,
+  getCurrentUser,
 } from './mock-data'
 
 export const handlers = [
@@ -37,10 +45,7 @@ export const handlers = [
     (req, res, ctx) => {
       return res(
         ctx.data({
-          currentUser: {
-            ...getUser(),
-            organizations: getOrganizations(),
-          },
+          currentUser: getCurrentUser(),
         }),
       )
     },
@@ -52,8 +57,30 @@ export const handlers = [
         ctx.data({
           organization: {
             ...getOrganization(),
-            members: [getOrganizationMember()],
+            members: [
+              {
+                user: getCurrentUser(),
+                roles: ['owner', 'admin'],
+              },
+              getOrganizationMember(),
+            ],
           },
+        }),
+      )
+    },
+  ),
+  graphql.query<GetSubscriptionQuery, GetSubscriptionQueryVariables>(
+    'GetSubscription',
+    (req, res, ctx) => {
+      const subscription = getSubscription(req.body?.variables.slug)
+
+      if (!subscription) {
+        return res(ctx.status(404, 'Subscription not found'))
+      }
+
+      return res(
+        ctx.data({
+          subscription: subscription as Subscription,
         }),
       )
     },
@@ -122,12 +149,27 @@ export const handlers = [
     CreateOrganizationMutation,
     CreateOrganizationMutationVariables
   >('CreateOrganization', (req, res, ctx) => {
+    const organization = getOrganization()
+    const data = {
+      ...organization,
+      name: req.body?.variables.name,
+      slug: slug(req.body?.variables.name),
+      members: [
+        {
+          id: '1',
+          user: {
+            id: '1',
+          },
+          roles: ['owner', 'admin'],
+        },
+      ],
+    }
+
+    organizationStore.getState().add(data)
+
     return res(
       ctx.data({
-        createOrganization: {
-          ...getOrganization(),
-          name: req.body?.variables.name,
-        },
+        createOrganization: data,
       }),
     )
   }),

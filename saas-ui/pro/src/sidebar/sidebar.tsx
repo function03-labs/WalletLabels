@@ -578,7 +578,7 @@ if (__DEV__) {
 }
 
 export type SidebarMenuProps = {
-  label?: string
+  label?: React.ReactNode
   icon?: React.ReactNode
   children: React.ReactNode
   buttonProps?: MenuButtonProps

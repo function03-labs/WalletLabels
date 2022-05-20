@@ -3,6 +3,7 @@ query GetCurrentUser {
     id
     name
     email
+    avatar
     organizations {
       id
       name

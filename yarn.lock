@@ -78,9 +78,12 @@ __metadata:
     "@graphql-tools/schema": ^8.3.1
     "@ngneat/falso": ^2.24.0
     "@types/slug": ^5.0.3
+    date-fns: ^2.28.0
     graphql: ^16.3.0
     msw: ^0.39.2
+    react: ^17.0.2
     slug: ^5.2.0
+    zustand: ^3.7.2
   languageName: unknown
   linkType: soft
 
@@ -6809,6 +6812,8 @@ __metadata:
 "@saas-ui/billing@workspace:*, @saas-ui/billing@workspace:saas-ui/billing":
   version: 0.0.0-use.local
   resolution: "@saas-ui/billing@workspace:saas-ui/billing"
+  dependencies:
+    date-fns: ^2.28.0
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@saas-ui/react": ">=0.12.0"
@@ -6898,7 +6903,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui/features@workspace:saas-ui/features":
+"@saas-ui/features@workspace:*, @saas-ui/features@workspace:saas-ui/features":
   version: 0.0.0-use.local
   resolution: "@saas-ui/features@workspace:saas-ui/features"
   dependencies:
@@ -7080,6 +7085,17 @@ __metadata:
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
+  languageName: unknown
+  linkType: soft
+
+"@saas-ui/paddle@workspace:*, @saas-ui/paddle@workspace:saas-ui/paddle":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/paddle@workspace:saas-ui/paddle"
+  peerDependencies:
+    "@chakra-ui/react": ">=1.8.0"
+    "@saas-ui/react": ">=0.12.0"
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
   languageName: unknown
   linkType: soft
 
@@ -11289,9 +11305,11 @@ __metadata:
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/charts": "workspace:*"
     "@saas-ui/date-picker": "workspace:*"
+    "@saas-ui/features": "workspace:*"
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ">=0.12.0"
+    "@saas-ui/router": "workspace:*"
     next: ">=12"
     react: ">=16.8.6"
   languageName: unknown
@@ -22369,10 +22387,13 @@ __metadata:
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/charts": "workspace:*"
     "@saas-ui/date-picker": "workspace:*"
+    "@saas-ui/features": "workspace:*"
     "@saas-ui/next-workspaces": ^0.1.1
     "@saas-ui/onboarding": "workspace:*"
+    "@saas-ui/paddle": "workspace:*"
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ^0.13.3
+    "@saas-ui/router": "workspace:*"
     "@svgr/webpack": 5.5.0
     "@ui/core": "workspace:*"
     "@ui/theme": "workspace:*"

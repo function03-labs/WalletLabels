@@ -15,6 +15,9 @@
     "url": "git://github.com/saas-js/saas-ui-pro.git",
     "directory": "saas-ui/pro"
   },
+  "dependencies": {
+    "date-fns": "^2.28.0"
+  },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
     "@saas-ui/react": ">=0.12.0",

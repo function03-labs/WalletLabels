@@ -50,14 +50,14 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
       buttonProps={{ className: 'tenant-menu' }}
     >
       <MenuGroup title={title}>
-        {tenants.map(({ id, label, ...props }) => {
+        {tenants.map(({ id, slug, label, ...props }) => {
           return (
             <MenuItem
               key={id}
               value={id}
               icon={<TenantLogo label={label} />}
               isTruncated
-              onClick={() => setTenant(id)}
+              onClick={() => setTenant(slug)}
               {...props}
             >
               <HStack>

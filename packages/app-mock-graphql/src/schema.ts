@@ -17,11 +17,7 @@ const typeDefs = gql`
       organizationId: String!
       userId: String!
     ): Boolean
-    updateOrganization(
-      name: String!
-      organizationId: String!
-      slug: String
-    ): Organization
+    updateOrganization(id: String!, name: String!, email: String): Organization
     updateUser(name: String, userId: String!): User
     updateMemberRoles(
       userId: String!
@@ -34,8 +30,9 @@ const typeDefs = gql`
   type Organization {
     id: String!
     name: String!
-    plan: String!
     slug: String!
+    plan: String
+    email: String
     members(
       after: UserWhereUniqueInput
       before: UserWhereUniqueInput
@@ -44,10 +41,29 @@ const typeDefs = gql`
     ): [OrganizationMember!]!
   }
 
+  enum SubscriptionStatus {
+    active
+    trialing
+    past_due
+    paused
+    canceled
+  }
+
+  type Subscription {
+    id: String!
+    organization: Organization!
+    plan: String!
+    status: SubscriptionStatus!
+    startedAt: DateTime
+    trialEndsAt: DateTime
+    createdAt: DateTime
+    updatedAt: DateTime
+  }
+
   type OrganizationMember {
     id: String!
     user: User!
-    organization: Organization!
+    organization: Organization
     roles: [String]!
   }
 
@@ -60,6 +76,7 @@ const typeDefs = gql`
     currentUser: User
     organization(id: String, slug: String): Organization
     organizations: [Organization]
+    subscription(slug: String): Subscription
     contacts: [Contact]
     contact(id: String): Contact
   }
@@ -69,6 +86,7 @@ const typeDefs = gql`
     id: String!
     name: String
     status: String
+    avatar: String
     organizations(
       after: OrganizationWhereUniqueInput
       before: OrganizationWhereUniqueInput

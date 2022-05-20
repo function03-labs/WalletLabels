@@ -48,7 +48,7 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
         }}
         onSubmit={(data) => {
           return updateOrganization({
-            organizationId: organization.id,
+            id: organization.id,
             name: data.name,
           }).then(() =>
             snackbar({

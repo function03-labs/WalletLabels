@@ -12,22 +12,17 @@ import {
   SidebarOverflow,
   SidebarLinkProps,
   BackButton,
-  useTenant,
 } from '@saas-ui/pro'
 
-const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
-  const tenant = useTenant()
+import { usePath } from '@modules/core/hooks/use-path'
+import { Flag } from '@saas-ui/features'
 
+const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
   const { path, ...rest } = props
-  const href = `/app/${tenant}/settings/${path}`
-    .replace(/\/\//, '/')
-    .replace(/\/$/, '')
-  return <SidebarLink inset={5} href={href} {...rest} />
+  return <SidebarLink inset={5} href={usePath(`/settings${path}`)} {...rest} />
 }
 
 export const SettingsSidebar = () => {
-  const tenant = useTenant()
-
   const backRef = React.useRef<HTMLButtonElement>(null)
 
   useHotkeysShortcut('settings.close', () => {
@@ -40,27 +35,30 @@ export const SettingsSidebar = () => {
       <SidebarContainer>
         <SidebarOverflow>
           <SidebarNav direction="row" alignItems="center" mb="8">
-            <BackButton href={`/app/${tenant}`} ref={backRef} />
+            <BackButton href={usePath()} ref={backRef} />
             <Heading as="h1" fontSize="xl">
               Settings
             </Heading>
           </SidebarNav>
           <SidebarNav flex="1" spacing={6}>
-            <SidebarNavGroup title="Organization" icon={<FiFolder />}>
-              <SettingsLink path="/" label="Overview" />
-              <SettingsLink path="organization" label="Organization" />
-              <SettingsLink path="members" label="Members" />
-              <SettingsLink path="billing" label="Billing" />
-            </SidebarNavGroup>
+            <Flag flag="settings">
+              <SidebarNavGroup title="Organization" icon={<FiFolder />}>
+                <SettingsLink path="/" label="Overview" />
+                <SettingsLink path="/organization" label="Organization" />
+                <SettingsLink path="/members" label="Members" />
+                <SettingsLink path="/plans" label="Plans" />
+                <SettingsLink path="/billing" label="Billing" />
+              </SidebarNavGroup>
+            </Flag>
 
             <SidebarNavGroup title="Account" icon={<FiUser />}>
-              <SettingsLink path="account" label="Profile" />
-              <SettingsLink path="account/security" label="Security" />
+              <SettingsLink path="/account" label="Profile" />
+              <SettingsLink path="/account/security" label="Security" />
               <SettingsLink
-                path="account/notifications"
+                path="/account/notifications"
                 label="Notifications"
               />
-              <SettingsLink path="account/api" label="Api" />
+              <SettingsLink path="/account/api" label="Api" />
             </SidebarNavGroup>
           </SidebarNav>
         </SidebarOverflow>
