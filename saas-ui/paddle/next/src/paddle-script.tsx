@@ -13,6 +13,11 @@ declare global {
 export const PaddleScript: React.FC<PaddleScriptProps> = (props) => {
   const { environment, vendor, ...rest } = props
 
+  const onEvent = React.useCallback((detail) => {
+    const event = new CustomEvent('paddle-event', { detail })
+    document.dispatchEvent(event)
+  }, [])
+
   return (
     <>
       <Script
@@ -25,6 +30,7 @@ export const PaddleScript: React.FC<PaddleScriptProps> = (props) => {
 
           Paddle.Setup({
             vendor: Number(vendor),
+            eventCallback: onEvent,
           })
         }}
         {...rest}
