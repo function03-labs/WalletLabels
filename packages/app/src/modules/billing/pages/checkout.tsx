@@ -8,6 +8,8 @@ import {
   Link,
   Card,
   CardBody,
+  CardTitle,
+  CardHeader,
 } from '@saas-ui/react'
 import { useNavigate } from '@saas-ui/router'
 import { useGetOrganizationQuery } from '@app/graphql'
@@ -73,7 +75,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
     setReady(true)
   }
 
-  const period = selectedPlan?.period === 'monthly' ? 'Per month' : 'Per year'
+  const period = selectedPlan?.period === 'monthly' ? 'per month' : 'per year'
 
   let body
   if (!selectedPlan) {
@@ -94,11 +96,13 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
     body = (
       <>
         <Loader variant="fill" isLoading={isLoading || !isReady} />
-        <HStack
+        <Stack
+          direction={['column-reverse', null, 'row']}
           width="full"
-          alignItems="flex-start"
+          alignItems={['stretch', null, 'flex-start']}
           py={[8, null, 20]}
-          spacing="20"
+          px="2"
+          spacing={20}
         >
           <Stack flex="1" spacing="0" py={[8, null, 20]}>
             <Table>
@@ -165,6 +169,17 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
           </Stack>
           <Card flex="1">
             <CardBody>
+              <HStack px="2">
+                <Text flex="1">Price</Text>
+                <Text>
+                  <FormattedNumber
+                    value={prices.total}
+                    style="currency"
+                    currency={prices.currency}
+                  />{' '}
+                  {period}
+                </Text>
+              </HStack>
               <InlineCheckout
                 display={isReady ? 'block' : 'none'}
                 product={selectedPlan.productId}
@@ -178,7 +193,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
               />
             </CardBody>
           </Card>
-        </HStack>
+        </Stack>
       </>
     )
   }
