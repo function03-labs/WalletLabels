@@ -1,3 +1,3 @@
 export * from './provider'
 
-export { FormattedDate, FormattedMessage } from 'react-intl'
+export { FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl'
