@@ -8,8 +8,6 @@ import {
   Link,
   Card,
   CardBody,
-  CardTitle,
-  CardHeader,
 } from '@saas-ui/react'
 import { useNavigate } from '@saas-ui/router'
 import { useGetOrganizationQuery } from '@app/graphql'
@@ -17,8 +15,6 @@ import { usePath } from '@modules/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
 import { Button } from '@modules/core/components/button'
 import {
-  Container,
-  Heading,
   HStack,
   Stack,
   Table,
