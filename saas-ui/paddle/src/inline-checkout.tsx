@@ -48,7 +48,7 @@ export const InlineCheckout: React.FC<InlineCheckoutProps> = (props) => {
     postcode,
     allowQuantity,
     quantity,
-    disableLogout,
+    disableLogout = true,
     locale,
     passthrough,
     referring_domain,
