@@ -38,7 +38,6 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       overflow: 'auto',
       '& > div': {
         margin: '0 auto',
-        maxWidth: props.fullWidth ? '100%' : 'container.xl',
         minHeight: '100%',
         height: '1px', // hack to make sure the Loader 100% height is working
       },
