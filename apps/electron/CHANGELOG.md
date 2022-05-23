@@ -1,5 +1,16 @@
 # electron-app
 
+## 1.1.0
+
+### Minor Changes
+
+- f486513: Updated to Electron 18.
+
+### Patch Changes
+
+- Updated dependencies [f486513]
+  - @app/mock-graphql@0.3.0
+
 ## 1.0.1
 
 ### Patch Changes

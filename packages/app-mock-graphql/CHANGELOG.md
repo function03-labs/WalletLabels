@@ -1,5 +1,11 @@
 # @app/mock-graphql
 
+## 0.3.0
+
+### Minor Changes
+
+- f486513: Updated to Electron 18.
+
 ## 0.2.0
 
 ### Minor Changes

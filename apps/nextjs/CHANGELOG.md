@@ -1,5 +1,13 @@
 # nextjs-app
 
+## 1.2.1
+
+### Patch Changes
+
+- d8d9517: Updated to Next 12.1.6
+- Updated dependencies [f486513]
+  - @app/mock-graphql@0.3.0
+
 ## 1.2.0
 
 ### Minor Changes
