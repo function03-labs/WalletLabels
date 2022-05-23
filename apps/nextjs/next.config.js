@@ -7,18 +7,17 @@ module.exports = withWorkspaces({
   basePath: '../../',
 })(
   withSvgr({
-    swcMinify: false,
     experimental: {
       optimizeFonts: true,
       modern: true,
     },
-    // async rewrites() {
-    //   return [
-    //     {
-    //       source: '/:any*',
-    //       destination: '/',
-    //     },
-    //   ]
-    // },
+    webpack: (config, options) => {
+      const { isServer } = options
+      if (!isServer && process.env.npm_package_name === 'electron-app') {
+        config.target = 'electron-renderer'
+      }
+
+      return config
+    },
   }),
 )

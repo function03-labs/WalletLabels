@@ -10,4 +10,4 @@ files:
       - package.json
       - app
 publish: null
-electronVersion: 15.0.0
+electronVersion: 18.2.4

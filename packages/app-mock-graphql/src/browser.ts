@@ -2,4 +2,15 @@ import { setupWorker } from 'msw'
 
 import { handlers } from './handlers'
 
-export const worker = typeof window !== 'undefined' && setupWorker(...handlers)
+const init = () => {
+  try {
+    if (typeof window !== 'undefined') {
+      return setupWorker(...handlers)
+    }
+  } catch (e) {
+    console.error(e)
+    return null
+  }
+}
+
+export const worker = init()

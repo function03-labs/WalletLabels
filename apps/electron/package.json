@@ -1,9 +1,9 @@
 {
   "private": true,
   "name": "electron-app",
-  "description": "My application description",
+  "description": "Saas UI Electron Example",
   "version": "1.0.1",
-  "author": "Eelco Wiersma <eelco@appulse.nl>",
+  "author": "Eelco Wiersma <eelco@appule.nl>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
@@ -11,31 +11,42 @@
     "install-app-deps": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "electron-serve": "^1.1.0",
-    "electron-store": "^8.0.1"
-  },
-  "devDependencies": {
-    "@chakra-ui/react": "^1.8.6",
+    "@app/mock-graphql": "workspace:*",
+    "@chakra-ui/react": "^1.8.8",
     "@chakra-ui/system": "^1.12.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@saas-ui/auth": ">=0.7.0",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
+    "@saas-ui/date-picker": "workspace:*",
+    "@saas-ui/features": "workspace:*",
     "@saas-ui/next-workspaces": "^0.1.1",
     "@saas-ui/onboarding": "workspace:*",
+    "@saas-ui/paddle": "workspace:*",
     "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": "^0.13.3",
-    "@types/node": "^14.14.31",
-    "@types/react": "^17.0.38",
+    "@saas-ui/router": "workspace:*",
     "@ui/core": "workspace:*",
     "@ui/theme": "workspace:*",
-    "electron": "^17.1.2",
-    "electron-builder": "^22.14.13",
+    "app": "workspace:*",
+    "electron-serve": "^1.1.0",
+    "electron-store": "^8.0.1",
     "framer-motion": "^6",
-    "next": "^12.1.0",
-    "nextron": "^7.1.0",
+    "next-transpile-modules": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/react": "^17.0.9",
+    "electron": "^18.2.0",
+    "electron-builder": "^23.0.3",
+    "next": "^12.1.6",
+    "nextron": "^8.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.5.4"
+    "typescript": "^4.6.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
