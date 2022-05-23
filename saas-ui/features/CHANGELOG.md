@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.3.0
+
+### Minor Changes
+
+- 18fe98b: breaking: Improved feature flag API, Flag is now Has.
+
 ## 0.2.1
 
 ### Patch Changes

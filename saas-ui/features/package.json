@@ -1,7 +1,7 @@
 {
   "name": "@saas-ui/features",
   "description": "Feature flags for Saas UI",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "exports": {
     "default": "./src/index.ts"
   },

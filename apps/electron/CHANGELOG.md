@@ -1,5 +1,13 @@
 # electron-app
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [18fe98b]
+  - @saas-ui/features@0.3.0
+  - app@4.0.0
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # app
 
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies [18fe98b]
+  - @saas-ui/features@0.3.0
+
 ## 3.1.0
 
 ### Minor Changes
