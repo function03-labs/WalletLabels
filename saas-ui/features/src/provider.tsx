@@ -14,12 +14,13 @@ interface AttrMap {
 interface Segment {
   id: string
   attr: AttrMap[]
-  features: string[]
+  features: (string | Feature)[]
 }
 
 interface Feature {
   id: string
   description?: string
+  value?: any
 }
 
 export interface FeaturesOptions {
@@ -34,6 +35,7 @@ interface FeaturesStore {
   segments: Segment[]
   flags: Flags
   identify: (attr: UserAttributes) => void
+  hasFlags: (ids: string[], value: any) => Record<string, any>
 }
 
 const store = createVanilla<FeaturesStore>((set, get) => ({
@@ -61,6 +63,16 @@ const store = createVanilla<FeaturesStore>((set, get) => ({
     const flags = flagsFromSegments(segments)
     set({ attr, flags })
   },
+  hasFlags: (ids, value) => {
+    const flags = get().flags
+    return ids.reduce<Record<string, any>>((memo, id) => {
+      if ((typeof value === 'undefined' && flags[id]) || flags[id] === value) {
+        memo[id] = flags[id]
+      }
+
+      return memo
+    }, {})
+  },
 }))
 
 const { Provider, useStore } = createContext<FeaturesStore>()
@@ -86,6 +98,13 @@ export const useFeatures = () => {
   const store = useStore()
 
   return store
+}
+
+export const useHasFlags = (ids: string[], value = true) => {
+  const { hasFlags, flags } = useFeatures()
+  return React.useMemo(() => {
+    return hasFlags(ids, value)
+  }, [flags])
 }
 
 export const useFlags = () => {
@@ -122,7 +141,13 @@ const matchSegments = (segments: Segment[], attr: UserAttributes) => {
 
 const flagsFromSegments = (segments: Segment[]) => {
   return segments.reduce<Flags>((memo, { features }) => {
-    features.forEach((feature) => (memo[feature] = true))
+    features.forEach((feature) => {
+      if (typeof feature === 'string') {
+        memo[feature] = true
+      } else {
+        memo[feature.id] = feature.value
+      }
+    })
     return memo
   }, {})
 }

@@ -1,7 +1,7 @@
 import { Stack, Text, Progress } from '@chakra-ui/react'
 import { usePath } from '@modules/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
-import { Flag } from '@saas-ui/features'
+import { Has } from '@saas-ui/features'
 
 import differenceInDays from 'date-fns/differenceInDays'
 import formatDistanceStrict from 'date-fns/formatDistanceStrict'
@@ -31,11 +31,11 @@ export const BillingStatus = () => {
           Trial ends in{' '}
           <strong>{formatDistanceStrict(new Date(), trialEndsAt)}</strong>
         </Text>
-        <Flag flag="billing">
+        <Has flag="billing">
           <Button href={upgradePath} variant="subtle" colorScheme="green">
             Upgrade
           </Button>
-        </Flag>
+        </Has>
       </Stack>
       {progress !== undefined && (
         <Progress

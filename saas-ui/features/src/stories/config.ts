@@ -10,7 +10,7 @@ const options: FeaturesOptions = {
           value: 'admin',
         },
       ],
-      features: ['settings'],
+      features: ['settings', { id: 'value-feature', value: 'enabled' }],
     },
     {
       id: 'proPlan',

@@ -14,7 +14,7 @@ import {
 import { HotkeysWindow } from '@modules/core/components/hotkeys'
 import { useGetCurrentUserQuery } from '@app/graphql'
 import { usePath } from '@modules/core/hooks/use-path'
-import { Flag } from '@saas-ui/features'
+import { Has } from '@saas-ui/features'
 
 export const UserMenu = () => {
   const { logOut } = useAuth()
@@ -47,9 +47,9 @@ export const UserMenu = () => {
       >
         <MenuGroup title={currentUser?.name || ''}>
           <MenuItem href={usePath(`/settings/account`)} label="Profile" />
-          <Flag flag="settings">
+          <Has flag="settings">
             <MenuItem href={`/app/${tenant}/settings`} label="Settings" />
-          </Flag>
+          </Has>
         </MenuGroup>
         <MenuDivider />
         <MenuItem label="Changelog" />
