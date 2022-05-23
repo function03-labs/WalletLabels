@@ -25,6 +25,7 @@ const TenantLogo = ({ label, src }: TenantLogoProps) => {
 
 export interface TenantMenuProps {
   title: string
+  children?: React.ReactNode
 }
 
 export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
@@ -56,7 +57,7 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
               key={id}
               value={id}
               icon={<TenantLogo label={label} />}
-              isTruncated
+              noOfLines={1}
               onClick={() => setTenant(slug)}
               {...props}
             >

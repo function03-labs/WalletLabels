@@ -5,9 +5,9 @@
   "author": "Eelco Wiersma <eelco@appulse.nl>",
   "homepage": "https://saas-ui.dev/",
   "dependencies": {
-    "@fontsource/inter": "^4.2.2"
+    "@fontsource/inter": "^4.5.10"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/react": ">=2.0.0"
   }
 }

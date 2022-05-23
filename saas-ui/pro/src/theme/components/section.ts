@@ -2,8 +2,7 @@ import { anatomy, PartsStyleFunction } from '@chakra-ui/theme-tools'
 
 const parts = anatomy('section').parts(
   'container',
-  'headerWrapper',
-  'header',
+  'heading',
   'title',
   'description',
   'body',

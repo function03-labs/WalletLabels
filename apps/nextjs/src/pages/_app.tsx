@@ -30,7 +30,6 @@ function App({ Component, pageProps }: AppProps) {
     <NextRouterProvider>
       <AppProvider
         authService={authService}
-        cookies={pageProps.cookies}
         linkComponent={Link}
         onError={(error, info) => console.error(error, info)}
         tenant={tenant}

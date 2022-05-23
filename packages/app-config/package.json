@@ -3,8 +3,8 @@
   "main": "src/index.ts",
   "version": "0.0.10",
   "dependencies": {
-    "@supabase/supabase-js": "^1.18.0",
+    "@supabase/supabase-js": "^1.35.3",
     "@ui/core": "workspace:*",
-    "magic-sdk": "^8.0.1"
+    "magic-sdk": "^8.1.1"
   }
 }

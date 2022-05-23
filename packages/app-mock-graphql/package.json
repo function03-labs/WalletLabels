@@ -6,16 +6,16 @@
   "main": "src/index.ts",
   "dependencies": {
     "@app/graphql": "workspace:*",
-    "@graphql-tools/schema": "^8.3.1",
-    "@ngneat/falso": "^2.24.0",
+    "@graphql-tools/schema": "^8.3.13",
+    "@ngneat/falso": "^2.27.0",
     "date-fns": "^2.28.0",
     "graphql": "^16.3.0",
-    "msw": "^0.40.1",
-    "slug": "^5.2.0",
+    "msw": "^0.40.0",
+    "slug": "^5.3.0",
     "zustand": "^3.7.2"
   },
   "devDependencies": {
     "@types/slug": "^5.0.3",
-    "react": "^17.0.2"
+    "react": "^18.1.0"
   }
 }

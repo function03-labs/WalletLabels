@@ -11,14 +11,14 @@
     "bundle": "yarn pack --out ../dist/%s-%v.tgz"
   },
   "dependencies": {
-    "recharts": "^2.1.9"
+    "recharts": "^2.1.10"
   },
   "devDependencies": {
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=1.8.0",
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "@chakra-ui/react": "*",
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }

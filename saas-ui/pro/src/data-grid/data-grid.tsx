@@ -260,9 +260,11 @@ export const DataGrid = React.forwardRef(
                     <Td
                       {...cell.getCellProps()}
                       isNumeric={cell.column.isNumeric}
-                      isTruncated
+                      overflow="hidden"
+                      textOverflow="ellipsis"
+                      whiteSpace="nowrap"
                     >
-                      {cell.render('Cell')}
+                      {cell.render('Cell') as React.ReactNode}
                     </Td>
                   )
                 })}
@@ -353,7 +355,7 @@ export const DataGridHeader = <Data extends object>(
       isNumeric={column.isNumeric}
       {...rest}
     >
-      {column.render('Header')}
+      {column.render('Header') as React.ReactNode}
       {isSortable && <DataGridSort column={column} />}
     </Th>
   )

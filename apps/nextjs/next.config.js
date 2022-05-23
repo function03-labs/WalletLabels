@@ -1,3 +1,4 @@
+const path = require('path')
 const withSvgr = require('next-svgr')
 
 const withWorkspaces = require('@saas-ui/next-workspaces')
@@ -19,6 +20,15 @@ module.exports = withWorkspaces({
       if (!isServer && isElectron) {
         config.target = 'electron-renderer'
       }
+
+      config.module.rules.push({
+        test: /\.(js|jsx|ts|tsx)$/,
+        include: ['packages', 'saas-ui'].map((workspace) =>
+          path.resolve(__dirname, '../../', workspace),
+        ),
+        exclude: /node_modules/,
+        use: options.defaultLoaders.babel,
+      })
 
       return config
     },

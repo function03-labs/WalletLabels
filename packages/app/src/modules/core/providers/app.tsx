@@ -34,8 +34,8 @@ export interface AppProviderProps {
   authService?: AuthProviderProps
   tenant?: Tenant | null
   onTenantChange?: (key: string) => void
-  cookies?: any
   onError?: (error: Error, info: any) => void
+  children: React.ReactNode
 }
 
 export const AppProvider: React.FC<AppProviderProps> = (props) => {
@@ -43,7 +43,6 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
     linkComponent,
     tenant,
     onTenantChange,
-    cookies,
     onError,
     authService,
     children,
@@ -51,7 +50,6 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <SaasProvider
-        cookies={cookies}
         linkComponent={linkComponent}
         onError={onError}
         theme={theme}

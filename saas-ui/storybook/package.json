@@ -7,32 +7,32 @@
     "build": "build-storybook && sb extract"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=1.8.0",
-    "@chakra-ui/system": ">=1.0.0",
+    "@chakra-ui/react": "*",
+    "@chakra-ui/system": ">=2.0.0",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": ">=0.12.0",
+    "@saas-ui/react": "*",
     "framer-motion": ">=5.5.0",
     "jest": ">=27.0.0",
-    "react": ">=16.8.6"
+    "react": ">=18"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@fontsource/inter": "^4.2.2",
-    "@storybook/addon-a11y": "^6.4.22",
-    "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addon-storysource": "^6.4.22",
-    "@storybook/builder-webpack5": "^6.4.22",
-    "@storybook/cli": "^6.4.22",
-    "@storybook/manager-webpack5": "^6.4.22",
-    "@storybook/react": "^6.4.22",
-    "babel-loader": "^8.2.3",
-    "chromatic": "^6.5.3",
-    "framer-motion": "^5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-is": "^17.0.2",
+    "@babel/core": "^7.18.0",
+    "@fontsource/inter": "^4.5.10",
+    "@storybook/addon-a11y": "^6.5.4",
+    "@storybook/addon-essentials": "^6.5.4",
+    "@storybook/addon-storysource": "^6.5.4",
+    "@storybook/builder-webpack5": "^6.5.4",
+    "@storybook/cli": "^6.5.4",
+    "@storybook/manager-webpack5": "^6.5.4",
+    "@storybook/react": "^6.5.4",
+    "babel-loader": "^8.2.5",
+    "chromatic": "^6.5.4",
+    "framer-motion": "^6.3.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-is": "^18.1.0",
     "storybook-addon-performance": "^0.16.1",
-    "storybook-addon-swc": "^1.1.2",
-    "webpack": "^5.68.0"
+    "storybook-addon-swc": "^1.1.7",
+    "webpack": "^5.72.1"
   }
 }

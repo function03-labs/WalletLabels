@@ -34,6 +34,7 @@ export interface FiltersProviderProps {
     filter: Filter,
     filterItem?: FilterItem,
   ): Promise<Filter>
+  children: React.ReactNode
 }
 
 export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
