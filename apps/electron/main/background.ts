@@ -29,7 +29,7 @@ if (isProd) {
     await mainWindow.loadURL('app://./home.html')
   } else {
     const port = process.argv[2]
-    await mainWindow.loadURL(`http://localhost:${port}/home`)
+    await mainWindow.loadURL(`http://localhost:${port}/login`)
     mainWindow.webContents.openDevTools()
   }
 })()
