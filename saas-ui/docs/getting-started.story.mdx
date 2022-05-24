@@ -32,7 +32,7 @@ npmRegistries:
 To set it up on your dev machine add this to `~/.profile`.
 
 ```bash
-SAAS_UI_TOKEN="GithubUsername:licenseKey"
+export SAAS_UI_TOKEN="GithubUsername:licenseKey"
 ```
 
 The same configuration can be used for CI and deployments.
@@ -47,13 +47,29 @@ pnpm login --registry=https://npm.saas-ui.dev/
 
 #### Manual & CI configuration.
 
-Edit `.npmrc` in the root of your project and add the following lines.
+Add your auth token to `~/.profile`
+
+```bash
+export SAAS_UI_TOKEN="GithubUsername:licenseKey"
+```
+
+Then edit `.npmrc` in the root of your project and add the following lines.
+
+##### NPM
 
 ```
 @saas-ui:registry=https://npm.saas-ui.dev
-//npm.saas-ui.dev/:_auth={{base64 of SAAS_UI_TOKEN}}
+//npm.saas-ui.dev/:_auth=$SAAS_UI_TOKEN
 //npm.saas-ui.dev/:always-auth=true
 ```
+
+##### PNPM
+
+PNPM expects auth to be base64 encoded.
+
+@saas-ui:registry=https://npm.saas-ui.dev
+//npm.saas-ui.dev/:\_auth={{base64 of SAAS_UI_TOKEN}}
+//npm.saas-ui.dev/:always-auth=true
 
 ### Configure your bundler
 
