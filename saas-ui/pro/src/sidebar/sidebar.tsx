@@ -22,7 +22,7 @@ import {
   IconButtonProps,
 } from '@chakra-ui/react'
 
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx, __DEV__, runIfFn } from '@chakra-ui/utils'
 
 import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
@@ -96,7 +96,10 @@ if (__DEV__) {
 }
 
 export const SidebarContainer: React.FC<SidebarProps> = (props) => {
-  const styles = useMultiStyleConfig('Sidebar', props)
+  const styles = useMultiStyleConfig('Sidebar', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   const { variant, size } = props
 
@@ -351,9 +354,7 @@ export const SidebarNavGroupTitle: React.FC<SidebarNavGroupTitleProps> = (
           {leftIcon}
         </chakra.span>
       )}
-      <chakra.span flex="1">
-        {typeof children === 'function' ? children({ isOpen }) : children}{' '}
-      </chakra.span>
+      <chakra.span flex="1">{runIfFn(children, { isOpen })}</chakra.span>
       {collapseIcon}
     </chakra.div>
   )
@@ -507,7 +508,7 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
     isActive,
     isCondensed,
     ...props,
-  })
+  }) as Record<string, SystemStyleObject>
 
   let link = (
     <chakra.a

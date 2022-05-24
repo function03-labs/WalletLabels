@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-import { chakra, HTMLChakraProps, useMultiStyleConfig } from '@chakra-ui/system'
+import {
+  chakra,
+  HTMLChakraProps,
+  useMultiStyleConfig,
+  SystemStyleObject,
+} from '@chakra-ui/system'
 import { IconButton } from '@saas-ui/react'
 import { useDataGridContext } from './data-grid'
 
@@ -22,7 +27,10 @@ export const DataGridPagination: React.FC<DataGridPaginationProps> = (
     state: { pageIndex, pageSize },
   } = useDataGridContext()
 
-  const styles = useMultiStyleConfig('DataGridPagination', props)
+  const styles = useMultiStyleConfig('DataGridPagination', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   const {
     canPreviousPage,

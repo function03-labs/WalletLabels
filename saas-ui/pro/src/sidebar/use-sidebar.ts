@@ -1,11 +1,12 @@
 import { UseCollapseReturn } from '@saas-ui/collapse'
 
 import { createContext } from '@chakra-ui/react-utils'
+import { ResponsiveValue } from '@chakra-ui/react'
 
 export interface UseSidebarReturn extends UseCollapseReturn {
   isMobile?: boolean
-  variant?: string
-  size?: string
+  variant?: ResponsiveValue<string>
+  size?: ResponsiveValue<string>
 }
 
 export const [SidebarProvider, useSidebarContext] =

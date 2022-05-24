@@ -9,6 +9,7 @@ import {
   useStyles,
   useMultiStyleConfig,
   SystemProps,
+  SystemStyleObject,
 } from '@chakra-ui/system'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 import { ErrorBoundary } from '@saas-ui/pro'
@@ -89,7 +90,10 @@ export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
 ) => {
   const { children, ...containerProps } = omitThemingProps(props)
 
-  const styles = useMultiStyleConfig('PageSidebar', props)
+  const styles = useMultiStyleConfig('PageSidebar', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   return (
     <StylesProvider value={styles}>
@@ -128,13 +132,15 @@ export const PageSidebar: React.FC<PageSidebarProps> = (props) => {
   if (!headerComponent) {
     content = (
       <PageSidebarHeader>
-        {typeof title === 'string' ? (
-          <PageSidebarTitle>{title}</PageSidebarTitle>
-        ) : (
-          title
-        )}
+        <>
+          {typeof title === 'string' ? (
+            <PageSidebarTitle>{title}</PageSidebarTitle>
+          ) : (
+            title
+          )}
 
-        {toolbar}
+          {toolbar}
+        </>
       </PageSidebarHeader>
     )
   }

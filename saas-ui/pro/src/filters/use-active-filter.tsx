@@ -42,7 +42,7 @@ export interface ActiveFilterValueOptions {
   onChange?(value: FilterValue): void
   defaultValue?: FilterValue
   placeholder?: string
-  format?(value: FilterValue): FilterValue
+  format?(value: FilterValue): string
 }
 
 export interface UseActiveFilterProps {
@@ -121,7 +121,7 @@ export const useFilterOperator = (props: UseFilterOperatorProps) => {
   )
 
   const getItemProps = React.useCallback(
-    (item) => {
+    (item: FilterItem) => {
       return {
         onClick: () => setValue(item.id),
       }
@@ -168,7 +168,7 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
   })
 
   const onSelect = React.useCallback(
-    (item) => {
+    (item: FilterItem) => {
       setValue(item.value || item.id)
     },
     [value, setValue],
@@ -183,7 +183,7 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
       const item = props.items?.find(({ id }) => id === value)
       return {
         items: props.items || [],
-        label: item?.label || label || value,
+        label: item?.label || label,
         placeholder: filter.label || props.placeholder,
         icon: item?.icon,
         onSelect,

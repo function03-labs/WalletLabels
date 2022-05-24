@@ -5,16 +5,20 @@ import {
   HTMLChakraProps,
   ThemingProps,
   useMultiStyleConfig,
+  SystemStyleObject,
 } from '@chakra-ui/react'
 
 interface NavbarProps extends HTMLChakraProps<'div'>, ThemingProps<'Navbar'> {}
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
-  const styles = useMultiStyleConfig('Navbar', props)
+  const styles = useMultiStyleConfig('Navbar', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   const { children, ...containerProps } = omitThemingProps(props)
 
-  const containerStyles = {
+  const containerStyles: SystemStyleObject = {
     ...styles.container,
   }
 

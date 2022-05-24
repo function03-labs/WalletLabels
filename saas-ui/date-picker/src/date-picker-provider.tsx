@@ -51,7 +51,9 @@ export interface DatePickerContextProps
     UseDatePickerReturnType {}
 
 export interface DatePickerProviderProps
-  extends Partial<DatePickerContextProps> {}
+  extends Partial<DatePickerContextProps> {
+  children: React.ReactNode
+}
 
 export type DatePickerAction = 'calendar' | 'years'
 

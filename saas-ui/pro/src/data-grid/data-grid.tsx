@@ -29,6 +29,7 @@ import {
   useStyles,
   useTheme,
   useMultiStyleConfig,
+  SystemStyleObject,
 } from '@chakra-ui/react'
 
 import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
@@ -154,7 +155,10 @@ export const DataGrid = React.forwardRef(
     const theme = useTheme()
     const styleConfig = theme.components?.DataGrid
 
-    const styles = useMultiStyleConfig('DataGrid', props)
+    const styles = useMultiStyleConfig('DataGrid', props) as Record<
+      string,
+      SystemStyleObject
+    >
 
     const instance = useTable<Data>(
       {

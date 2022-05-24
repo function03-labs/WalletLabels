@@ -9,6 +9,7 @@ import {
   useStyles,
   useMultiStyleConfig,
   SystemProps,
+  SystemStyleObject,
 } from '@chakra-ui/system'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 import { ErrorBoundary } from '@saas-ui/pro'
@@ -110,7 +111,10 @@ interface PageContainerProps
 export const PageContainer: React.FC<PageContainerProps> = (props) => {
   const { children, fullWidth, ...containerProps } = omitThemingProps(props)
 
-  const styles = useMultiStyleConfig('Page', props)
+  const styles = useMultiStyleConfig('Page', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   return (
     <StylesProvider value={styles}>

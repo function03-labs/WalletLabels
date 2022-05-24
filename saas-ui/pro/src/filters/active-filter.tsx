@@ -9,6 +9,7 @@ import {
   StylesProvider,
   SystemProps,
   ThemingProps,
+  SystemStyleObject,
 } from '@chakra-ui/system'
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
@@ -124,9 +125,12 @@ export const ActiveFilterContainer: React.FC<ActiveFilterContainerProps> = (
 ) => {
   const { children, ...rest } = props
 
-  const styles = useMultiStyleConfig('ActiveFilter', props)
+  const styles = useMultiStyleConfig('ActiveFilter', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
-  const containerStyles = {
+  const containerStyles: SystemStyleObject = {
     borderWidth: '1px',
     borderRadius: 'md',
     display: 'flex',
@@ -162,7 +166,7 @@ export const ActiveFilterLabel: React.FC<ActiveFilterLabelProps> = (props) => {
 
   const styles = useStyles()
 
-  const labelStyles = {
+  const labelStyles: SystemStyleObject = {
     display: 'flex',
     alignItems: 'center',
     px: 2,
@@ -219,7 +223,7 @@ export const ActiveFilterOperator: React.FC<ActiveFilterOperatorProps> = (
 
   const styles = useStyles()
 
-  const operatorStyles = {
+  const operatorStyles: SystemStyleObject = {
     color: 'muted',
     px: 2,
     minWidth: 0,
@@ -269,7 +273,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
 
   const styles = useStyles()
 
-  const valueStyles = {
+  const valueStyles: SystemStyleObject = {
     display: 'flex',
     alignItems: 'center',
     px: 2,

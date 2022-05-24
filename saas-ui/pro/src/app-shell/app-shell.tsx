@@ -6,6 +6,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
   omitThemingProps,
+  SystemStyleObject,
 } from '@chakra-ui/system'
 
 import { Flex } from '@chakra-ui/layout'
@@ -22,23 +23,26 @@ export interface AppShellProps
 }
 
 export const AppShell: React.FC<AppShellProps> = (props: AppShellProps) => {
-  const styles = useMultiStyleConfig('AppShell', props)
+  const styles = useMultiStyleConfig('AppShell', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   const { navbar, sidebar, hideSidebar, footer, children, ...containerProps } =
     omitThemingProps(props)
 
-  const containerStyles = {
+  const containerStyles: SystemStyleObject = {
     flexDirection: 'column',
     ...styles.container,
   }
 
-  const innerStyles = {
+  const innerStyles: SystemStyleObject = {
     flex: 1,
     minHeight: 0, // make sure child flex divs get correct height.
     ...styles.inner,
   }
 
-  const mainStyles = {
+  const mainStyles: SystemStyleObject = {
     flex: 1,
     flexDirection: 'column',
     ...styles.main,

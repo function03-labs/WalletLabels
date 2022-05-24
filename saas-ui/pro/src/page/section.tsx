@@ -6,6 +6,7 @@ import {
   omitThemingProps,
   useMultiStyleConfig,
   useStyles,
+  SystemStyleObject,
 } from '@chakra-ui/react'
 
 import { Loader } from '@saas-ui/react'
@@ -52,7 +53,7 @@ export const SectionBody: React.FC<SectionBodyProps> = (props) => {
 
   const styles = useStyles()
 
-  const bodyStyles = {
+  const bodyStyles: SystemStyleObject = {
     flex: 1,
     minWidth: 0,
     ...styles.body,
@@ -67,11 +68,14 @@ export const SectionBody: React.FC<SectionBodyProps> = (props) => {
 
 export const SectionContainer: React.FC<SectionProps> = (props) => {
   const { children, title, description, isAnnotated, variant, ...rest } = props
-  const styles = useMultiStyleConfig('Section', props)
+  const styles = useMultiStyleConfig('Section', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   const containerProps = omitThemingProps(rest)
 
-  const containerStyles = {
+  const containerStyles: SystemStyleObject = {
     display: 'flex',
     flexDirection: variant === 'annotated' ? 'row' : 'column',
     maxWidth: '100%',
@@ -98,7 +102,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = (props) => {
 
   const styles = useStyles()
 
-  const headingStyles = {
+  const headingStyles: SystemStyleObject = {
     flexShrink: 0,
     ...styles.heading,
   }

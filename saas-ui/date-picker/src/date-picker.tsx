@@ -16,6 +16,7 @@ import {
   StylesProvider,
   useMultiStyleConfig,
   PopoverAnchor,
+  SystemStyleObject,
 } from '@chakra-ui/react'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 import {
@@ -235,7 +236,10 @@ export const DatePickerStatic = forwardRef<DatePickerStaticProps, 'div'>(
 
     const styleConfig = theme.components.DatePicker || defaultStyleConfig
 
-    const styles = useMultiStyleConfig('DatePicker', { styleConfig, ...props })
+    const styles = useMultiStyleConfig('DatePicker', {
+      styleConfig,
+      ...props,
+    }) as Record<string, SystemStyleObject>
 
     return (
       <DatePickerContainer {...containerProps}>
