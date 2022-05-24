@@ -64,7 +64,7 @@ export function useMenuFilterItem(
   })
 
   const onMouseEnter = React.useCallback(
-    (event) => {
+    (event: React.MouseEvent) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
       setFocusedIndex(index)
@@ -73,7 +73,7 @@ export function useMenuFilterItem(
   )
 
   const onMouseMove = React.useCallback(
-    (event) => {
+    (event: React.MouseEvent) => {
       onMouseMoveProp?.(event)
       if (ref.current && !isActiveElement(ref.current)) {
         onMouseEnter(event)
@@ -83,7 +83,7 @@ export function useMenuFilterItem(
   )
 
   const onMouseLeave = React.useCallback(
-    (event) => {
+    (event: React.MouseEvent) => {
       onMouseLeaveProp?.(event)
       if (isDisabled) return
       setFocusedIndex(-1)

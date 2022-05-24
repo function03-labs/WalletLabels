@@ -43,11 +43,11 @@ function NotificationTopics() {
           <ListHeader>Contacts</ListHeader>
           <ListItem
             primary="A new lead is added."
-            action={<Switch defaultIsChecked />}
+            action={<Switch defaultChecked />}
           />
           <ListItem
             primary="An account has upgraded."
-            action={<Switch defaultIsChecked />}
+            action={<Switch defaultChecked />}
           />
         </List>
         <Divider />
@@ -55,11 +55,11 @@ function NotificationTopics() {
           <ListHeader>Inbox</ListHeader>
           <ListItem
             primary="A message is assigned to me."
-            action={<Switch defaultIsChecked />}
+            action={<Switch defaultChecked />}
           />
           <ListItem
             primary="Somebody mentions me."
-            action={<Switch defaultIsChecked />}
+            action={<Switch defaultChecked />}
           />
         </List>
       </Card>
@@ -79,12 +79,12 @@ function AccountUpdates() {
           <ListItem
             primary="Product updates"
             secondary="Receive a weekly email with all new features and updates."
-            action={<Switch defaultIsChecked />}
+            action={<Switch defaultChecked />}
           />
           <ListItem
             primary="Important updates"
             secondary="Receive emails about important updates like security fixes, maintenance, etc."
-            action={<Switch defaultIsChecked />}
+            action={<Switch defaultChecked />}
           />
         </List>
       </Card>

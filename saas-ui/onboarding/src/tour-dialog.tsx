@@ -41,6 +41,7 @@ export interface TourDialogProps extends TourDialogContainerProps {
   hideArrow?: boolean
   hideCloseButton?: boolean
   closeProps?: CloseButtonProps
+  children: React.ReactNode
 }
 
 export const TourDialog = forwardRef<

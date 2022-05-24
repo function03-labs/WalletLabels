@@ -15,7 +15,7 @@ interface ErrorBoundaryState {
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
   state: ErrorBoundaryState
 
-  static contextType = SaasContext
+  declare context: React.ContextType<typeof SaasContext>
 
   constructor(props: ErrorBoundaryProps) {
     super(props)

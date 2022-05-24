@@ -96,7 +96,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   const modals = useModals()
 
   const onBeforeEnableFilter = React.useCallback(
-    (activeFilter, filter): Promise<Filter> => {
+    (activeFilter: Filter, filter: FilterItem): Promise<Filter> => {
       return new Promise((resolve, reject) => {
         const { key, id, value } = activeFilter
         const { type, label } = filter

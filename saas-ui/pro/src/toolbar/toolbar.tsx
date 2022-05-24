@@ -9,6 +9,7 @@ import {
   StylesProvider,
   HTMLChakraProps,
   ThemingProps,
+  SystemStyleObject,
 } from '@chakra-ui/system'
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
@@ -34,7 +35,10 @@ export interface ToolbarProps
 
 export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
   const { children, className, variant, size, ...rest } = props
-  const styles = useMultiStyleConfig('Toolbar', props)
+  const styles = useMultiStyleConfig('Toolbar', props) as Record<
+    string,
+    SystemStyleObject
+  >
 
   const toolbarProps = omitThemingProps(rest)
 

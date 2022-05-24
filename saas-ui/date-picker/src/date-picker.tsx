@@ -10,12 +10,12 @@ import {
   PopoverContentProps,
   PopoverArrow,
   PopoverTrigger,
+  PopoverAnchor,
   useStyles,
   ThemingProps,
   SystemProps,
   StylesProvider,
   useMultiStyleConfig,
-  PopoverAnchor,
   SystemStyleObject,
 } from '@chakra-ui/react'
 import { cx, __DEV__ } from '@chakra-ui/utils'
@@ -286,10 +286,14 @@ export const DatePickerCalendar = forwardRef((props, ref) => {
   )
 })
 
-export const DatePickerTrigger: React.FC = (props) => {
+export const DatePickerTrigger: React.FC<React.PropsWithChildren<unknown>> = (
+  props,
+) => {
   return <PopoverTrigger {...props} />
 }
 
-export const DatePickerAnchor: React.FC = (props) => {
+export const DatePickerAnchor: React.FC<React.PropsWithChildren<unknown>> = (
+  props,
+) => {
   return <PopoverAnchor {...props} />
 }

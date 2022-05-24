@@ -77,7 +77,8 @@ export const BenefitsModal: React.FC<BenefitsModalProps> = (props) => {
   )
 }
 
-export interface BenefitsModalContainerProps extends TourDialogOptions {}
+export interface BenefitsModalContainerProps
+  extends React.PropsWithChildren<TourDialogOptions> {}
 
 export const BenefitsModalContainer: React.FC<BenefitsModalContainerProps> = (
   props,

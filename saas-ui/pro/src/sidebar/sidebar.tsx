@@ -147,7 +147,9 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
           left: { base: '-100%', lg: '0' },
           bottom: 0,
         }
-      : {}),
+      : {
+          position: 'relative',
+        }),
   }
 
   const innerStyles: SystemStyleObject = {
@@ -188,7 +190,7 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
             isCondensed && 'saas-sidebar__condensed',
             className,
           )}
-          {...resize.getContainerProps(props)}
+          {...resize.getContainerProps()}
         >
           <chakra.div __css={innerStyles}>{children}</chakra.div>
           {!isMobile && isResizable && (

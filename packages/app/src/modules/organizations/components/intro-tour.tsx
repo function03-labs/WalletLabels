@@ -39,7 +39,7 @@ export const IntroTour = () => {
   }
 
   return (
-    <ErrorBoundary errorComponent={() => null}>
+    <ErrorBoundary>
       <Tour continuous steps={steps} run={!tour} onComplete={onTourComplete} />
     </ErrorBoundary>
   )

@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 import { useEventListener } from '@chakra-ui/hooks'
+import { PropGetterV2 } from '@chakra-ui/react-utils'
+import { HTMLChakraProps } from '@chakra-ui/system'
 
 export type Dimensions = {
   width: number
@@ -94,14 +96,10 @@ export const useResize = (props: UseResizeOptions) => {
   useEventListener('mouseup', stopResizing)
 
   const getContainerProps = React.useCallback(
-    (props) => ({
+    () => ({
       ref: containerRef,
       ...(isResizable
         ? {
-            sx: {
-              ...props.sx,
-              position: 'relative',
-            },
             style: { width },
           }
         : {}),

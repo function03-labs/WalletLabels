@@ -15,9 +15,8 @@ export const ConfirmPasswordField: React.FC<ConfirmPasswordProps> = (props) => {
   const { name = 'confirmPassword', confirmField = 'password', ...rest } = props
 
   const validatePassword = React.useCallback(
-    (confirmPassword) => {
+    (confirmPassword: string) => {
       const password = form.getValues(confirmField)
-      console.log(password)
       return confirmPassword === password
     },
     [confirmField],

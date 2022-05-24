@@ -66,6 +66,7 @@ export const DateInput = forwardRef(
       weekdayLabelFormat,
       allowEditableInputs,
       closeOnSelect = true,
+      children,
       ...inputProps
     } = props
 

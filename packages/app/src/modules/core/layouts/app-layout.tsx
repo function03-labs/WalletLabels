@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import { Flex, Container } from '@chakra-ui/react'
+import { Flex, FlexProps, Container } from '@chakra-ui/react'
 
 import { AppShell, AppShellProps } from '@saas-ui/pro'
 import { HotkeysListOptions } from '@saas-ui/react'
-import { Auth } from '@saas-ui/auth'
+import { Auth, AuthProps } from '@saas-ui/auth'
 import { useLocation } from '@saas-ui/router'
 
 import { Hotkeys } from '@modules/core/components/hotkeys'
@@ -30,7 +30,7 @@ import { BillingProvider } from '@saas-ui/billing'
  * Loads the minimal required user data for the app and
  * renders authentication screens when the user isn't authenticated.
  */
-export const Authenticated: React.FC = ({ children, ...rest }) => {
+export const Authenticated: React.FC<AuthProps> = ({ children, ...rest }) => {
   const location = useLocation()
 
   const { isInitializing, isAuthenticated, billing } = useInitApp()
@@ -71,7 +71,7 @@ export const Authenticated: React.FC = ({ children, ...rest }) => {
 /**
  * Layout for authentication screens (login/signup/etc...)
  */
-export const AuthLayout: React.FC = ({ children, ...rest }) => {
+export const AuthLayout: React.FC<FlexProps> = ({ children, ...rest }) => {
   return (
     <Flex minH="100vh" align="center" justify="center" {...rest}>
       {children}
@@ -80,7 +80,7 @@ export const AuthLayout: React.FC = ({ children, ...rest }) => {
 }
 
 interface AuthenticatedLayoutProps extends AppShellProps {
-  hotkeys: HotkeysListOptions
+  hotkeys?: HotkeysListOptions
 }
 
 /**

@@ -10,6 +10,7 @@ import Joyride, {
   Step,
   STATUS,
   LIFECYCLE,
+  CallBackProps,
 } from 'react-joyride'
 
 export type { Step }
@@ -140,7 +141,7 @@ export function Tour({
   onComplete,
   ...props
 }: TourProps) {
-  const _handleCallback = React.useCallback((data) => {
+  const _handleCallback = React.useCallback((data: any) => {
     if (callback) {
       callback(data)
     }
