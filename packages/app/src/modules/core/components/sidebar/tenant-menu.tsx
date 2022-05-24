@@ -57,7 +57,6 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
               key={id}
               value={id}
               icon={<TenantLogo label={label} />}
-              noOfLines={1}
               onClick={() => setTenant(slug)}
               {...props}
             >

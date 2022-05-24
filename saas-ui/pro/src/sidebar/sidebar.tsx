@@ -595,7 +595,6 @@ export const SidebarMenu = forwardRef<SidebarMenuProps, typeof MenuButton>(
       <Menu {...rest}>
         <MenuButton
           as={SidebarMenuButton}
-          noOfLines={1}
           icon={icon}
           label={label}
           {...buttonProps}
