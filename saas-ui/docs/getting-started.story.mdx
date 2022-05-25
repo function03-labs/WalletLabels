@@ -55,26 +55,27 @@ export SAAS_UI_TOKEN="GithubUsername:licenseKey"
 
 Then edit `.npmrc` in the root of your project and add the following lines.
 
-##### NPM
-
 ```
 @saas-ui:registry=https://npm.saas-ui.dev
-//npm.saas-ui.dev/:_auth=$SAAS_UI_TOKEN
+//npm.saas-ui.dev/:_auth="${SAAS_UI_TOKEN}"
 //npm.saas-ui.dev/:always-auth=true
 ```
 
 ##### PNPM
 
-PNPM expects auth to be base64 encoded.
-
-@saas-ui:registry=https://npm.saas-ui.dev
-//npm.saas-ui.dev/:\_auth={{base64 of SAAS_UI_TOKEN}}
-//npm.saas-ui.dev/:always-auth=true
+PNPM expects auth to be base64 encoded, so make sure `SAAS_UI_TOKEN` is encoded.
+If you're having troubles generating a working base64 encoded string, try [this website](https://www.base64encode.org/).
 
 ### Configure your bundler
 
-The packages are published in Typescript, this might not work out of the box wity your app.
-You'll need to configure your bundler to transpile the `@saas-ui/pro` code to plain Javascript.
+The packages are published in Typescript, this might not work out of the box with your app.
+You'll need to configure your bundler to transpile the Pro packages to plain Javascript.
+
+- `@saas-ui/pro`
+- `@saas-ui/charts`
+- `@saas-ui/billing`
+- `@saas-ui/features`
+- `@saas-ui/onboarding`
 
 #### Next.js
 
