@@ -1,9 +1,19 @@
 import * as React from 'react'
 import { createIcon } from '../utils/create-icon'
 
+export const ChevronUpIcon = createIcon({
+  displayName: 'ChevronUpIcon',
+  path: <polyline points="18 15 12 9 6 15"></polyline>,
+})
+
 export const ChevronDownIcon = createIcon({
   displayName: 'ChevronDownIcon',
   path: <polyline points="6 9 12 15 18 9"></polyline>,
+})
+
+export const ChevronLeftIcon = createIcon({
+  displayName: 'ChevronLeftIcon',
+  path: <polyline points="15 18 9 12 15 6"></polyline>,
 })
 
 export const ChevronRightIcon = createIcon({
@@ -18,6 +28,16 @@ export const HamburgerIcon = createIcon({
       <line x1="3" y1="12" x2="21" y2="12"></line>
       <line x1="3" y1="6" x2="21" y2="6"></line>
       <line x1="3" y1="18" x2="21" y2="18"></line>
+    </g>
+  ),
+})
+
+export const XIcon = createIcon({
+  displayName: 'XIcon',
+  path: (
+    <g>
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
     </g>
   ),
 })

@@ -39,7 +39,7 @@ export {
   MenuDivider as SidebarMenuDivider,
 } from '@chakra-ui/menu'
 
-import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from './icons'
+import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from '../icons'
 
 import { SidebarProvider, useSidebarContext } from './use-sidebar'
 import { ResizeHandle, ResizeHandler, useResize } from '../resize'

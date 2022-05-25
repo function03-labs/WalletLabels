@@ -33,7 +33,7 @@ import {
 
 import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
 
-import { ChevronUpIcon, ChevronDownIcon } from './icons'
+import { ChevronUpIcon, ChevronDownIcon } from '../icons'
 
 import { Link } from '@saas-ui/react'
 
