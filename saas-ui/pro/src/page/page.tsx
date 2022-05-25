@@ -11,10 +11,11 @@ import {
   SystemProps,
 } from '@chakra-ui/system'
 import { cx, __DEV__ } from '@chakra-ui/utils'
-import { ErrorBoundary } from '@saas-ui/pro'
+
 import { Loader } from '@saas-ui/react'
 import { getChildOfType } from '@saas-ui/react-utils'
 
+import { ErrorBoundary } from '../app/error-boundary'
 import { ErrorPage } from './error-page'
 
 export interface PageOptions {
