@@ -52,7 +52,7 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   }
 
   const getActiveFilters = (): Filter[] =>
-    [...activeFilterMap].map(([key, filter]) => ({
+    Array.from(activeFilterMap.entries()).map(([key, filter]) => ({
       key,
       ...filter,
     }))
