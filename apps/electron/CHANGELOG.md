@@ -1,5 +1,15 @@
 # electron-app
 
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies [821fb61]
+  - @saas-ui/pro@0.3.13
+  - app@4.0.2
+  - @ui/core@0.0.21
+  - @app/mock-graphql@0.3.2
+
 ## 1.1.2
 
 ### Patch Changes
