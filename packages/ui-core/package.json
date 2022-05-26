@@ -24,7 +24,6 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@saas-ui/react": "^1.0.0-rc.1",
-    "@storybook/addon-actions": "^6.5.5",
     "@storybook/addon-essentials": "^6.5.5",
     "@storybook/addon-links": "^6.5.5",
     "@storybook/react": "^6.5.5",
@@ -39,6 +38,5 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@saas-ui/react": ">=1"
-  },
-  "packageManager": "yarn@3.1.1"
+  }
 }

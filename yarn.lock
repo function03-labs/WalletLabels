@@ -7891,7 +7891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-actions@npm:6.5.5, @storybook/addon-actions@npm:^6.5.5":
+"@storybook/addon-actions@npm:6.5.5":
   version: 6.5.5
   resolution: "@storybook/addon-actions@npm:6.5.5"
   dependencies:
@@ -10721,7 +10721,6 @@ __metadata:
     "@emotion/styled": ^11.8.1
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ^1.0.0-rc.1
-    "@storybook/addon-actions": ^6.5.5
     "@storybook/addon-essentials": ^6.5.5
     "@storybook/addon-links": ^6.5.5
     "@storybook/react": ^6.5.5
@@ -25133,7 +25132,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.1.0":
+"react@npm:^18, react@npm:^18.1.0":
   version: 18.1.0
   resolution: "react@npm:18.1.0"
   dependencies:
@@ -25739,7 +25738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"require-from-string@npm:^2.0.2":
+"require-from-string@npm:*, require-from-string@npm:^2.0.2":
   version: 2.0.2
   resolution: "require-from-string@npm:2.0.2"
   checksum: a03ef6895445f33a4015300c426699bc66b2b044ba7b670aa238610381b56d3f07c686251740d575e22f4c87531ba662d06937508f0f3c0f1ddc04db3130560b
