@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
-    "@saas-ui/react": ">=0.14.0",
+    "@saas-ui/react": ">=1",
     "framer-motion": ">=6",
     "react": ">=18"
   }

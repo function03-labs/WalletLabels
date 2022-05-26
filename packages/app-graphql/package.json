@@ -19,7 +19,7 @@
     "@graphql-codegen/typescript-react-query": "^3.5.12"
   },
   "peerDependencies": {
-    "@saas-ui/react": ">=0.14.0",
+    "@saas-ui/react": ">=1",
     "react": ">=18"
   }
 }
