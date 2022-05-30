@@ -5,6 +5,7 @@ import {
   HTMLChakraProps,
   ThemingProps,
   useMultiStyleConfig,
+  SystemStyleObject,
 } from '@chakra-ui/react'
 
 interface NavbarProps extends HTMLChakraProps<'div'>, ThemingProps<'Navbar'> {}
@@ -14,11 +15,11 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 
   const { children, ...containerProps } = omitThemingProps(props)
 
-  const containerStyles = {
+  const containerStyles: SystemStyleObject = {
     ...styles.container,
   }
 
-  const navbarStyles = {
+  const navbarStyles: SystemStyleObject = {
     display: 'flex',
     minH: '60px',
     maxW: 'full',
@@ -29,7 +30,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
   }
 
   return (
-    <chakra.div __css={containerStyles} {...containerProps}>
+    <chakra.div {...containerProps} __css={containerStyles}>
       <chakra.div __css={navbarStyles}>{children}</chakra.div>
     </chakra.div>
   )
