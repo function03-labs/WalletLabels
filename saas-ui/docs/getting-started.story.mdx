@@ -68,14 +68,16 @@ If you're having troubles generating a working base64 encoded string, try [this 
 
 ### Configure your bundler
 
-The packages are published in Typescript, this might not work out of the box with your app.
+The Pro packages are published in Typescript, this might not work out of the box with your app.
 You'll need to configure your bundler to transpile the Pro packages to plain Javascript.
 
 - `@saas-ui/pro`
-- `@saas-ui/charts`
 - `@saas-ui/billing`
+- `@saas-ui/charts`
+- `@saas-ui/date-picker`
 - `@saas-ui/features`
 - `@saas-ui/onboarding`
+- `@saas-ui/router`
 
 #### Next.js
 
@@ -86,7 +88,7 @@ This will work for both Babel and SWC transpilers.
 module.exports = {
   webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({
-      test: /node_modules\/@saas-ui\/(pro|charts|billing|features|onboarding)\/.*\.tsx?/,
+      test: /node_modules\/@saas-ui\/(pro|billing|charts|date-picker|features|onboarding|router)\/.*\.tsx?/,
       use: [defaultLoaders.babel],
     })
     return config
