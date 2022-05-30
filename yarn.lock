@@ -7659,6 +7659,7 @@ __metadata:
   resolution: "@saas-ui/pro@workspace:saas-ui/pro"
   dependencies:
     "@react-hookz/web": ^13.1.0
+    "@saas-ui/router": "workspace:*"
     date-fns: ^2.28.0
     react-icons: ^4.3.1
   peerDependencies:

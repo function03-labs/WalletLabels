@@ -44,7 +44,7 @@ import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from '../icons'
 import { SidebarProvider, useSidebarContext } from './use-sidebar'
 import { ResizeHandle, ResizeHandler, useResize } from '../resize'
 
-import { useActivePath } from '..'
+import { useActivePath } from '@saas-ui/router'
 
 export interface SidebarProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
