@@ -3891,7 +3891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/button@npm:1.5.10":
+"@chakra-ui/button@npm:1.5.10, @chakra-ui/button@npm:^1.5.10":
   version: 1.5.10
   resolution: "@chakra-ui/button@npm:1.5.10"
   dependencies:
@@ -4127,7 +4127,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/hooks@npm:1.9.1":
+"@chakra-ui/hooks@npm:1.9.1, @chakra-ui/hooks@npm:^1.9.1":
   version: 1.9.1
   resolution: "@chakra-ui/hooks@npm:1.9.1"
   dependencies:
@@ -4138,20 +4138,6 @@ __metadata:
   peerDependencies:
     react: ">=16.8.6"
   checksum: 78bb7cd37cd3987b7a745d6d156a64970e6ddbaa443a51d95c6f9b252774ca53b59a716bc1851adb6f6b5ad8584dcee979e39ff1bc1c9a67af7b1a68da7fb33d
-  languageName: node
-  linkType: hard
-
-"@chakra-ui/hooks@npm:^1.8.4":
-  version: 1.8.4
-  resolution: "@chakra-ui/hooks@npm:1.8.4"
-  dependencies:
-    "@chakra-ui/react-utils": 1.2.3
-    "@chakra-ui/utils": 1.10.4
-    compute-scroll-into-view: 1.0.14
-    copy-to-clipboard: 3.3.1
-  peerDependencies:
-    react: ">=16.8.6"
-  checksum: aeff3250b4aacba6dd27e0875e2b2c30d5a7914ad0f908bdd4a3bf28310252b63d4bbae8199f384e70dcf2a51fb6090d3e8c35edabd76e2d0dddf11034acb55c
   languageName: node
   linkType: hard
 
@@ -4688,7 +4674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/system@npm:1.12.1, @chakra-ui/system@npm:>=1.0.0, @chakra-ui/system@npm:^1.12.1":
+"@chakra-ui/system@npm:1.12.1, @chakra-ui/system@npm:^1.12.1":
   version: 1.12.1
   resolution: "@chakra-ui/system@npm:1.12.1"
   dependencies:
@@ -4847,7 +4833,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/transition@npm:1.4.8":
+"@chakra-ui/transition@npm:1.4.8, @chakra-ui/transition@npm:^1.4.8":
   version: 1.4.8
   resolution: "@chakra-ui/transition@npm:1.4.8"
   dependencies:
@@ -4856,18 +4842,6 @@ __metadata:
     framer-motion: 3.x || 4.x || 5.x || 6.x
     react: ">=16.8.6"
   checksum: 8478781ed94ad92b177bdc04ce9537b8eb87e6215c09eaabca6aeae958c6be3824c37d1b4e3e218527621d3ecf340b4734bca986a7568e2fe6850cc97cad1c41
-  languageName: node
-  linkType: hard
-
-"@chakra-ui/transition@npm:^1.4.7":
-  version: 1.4.7
-  resolution: "@chakra-ui/transition@npm:1.4.7"
-  dependencies:
-    "@chakra-ui/utils": 1.10.4
-  peerDependencies:
-    framer-motion: 3.x || 4.x || 5.x || 6.x
-    react: ">=16.8.6"
-  checksum: 3c692870e6e6362d3c248402a0f085b451251691fc22c64b6cc23d91746d3365595806fff43562f600d37b9728169d96ecb7e0790bb5fb95b758af71dea77948
   languageName: node
   linkType: hard
 
@@ -7148,7 +7122,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/auth@npm:0.7.12, @saas-ui/auth@npm:>=0.7.0":
+"@saas-ui/auth@npm:0.7.15":
+  version: 0.7.15
+  resolution: "@saas-ui/auth@npm:0.7.15"
+  dependencies:
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/button": 0.4.2
+    "@saas-ui/forms": 0.7.10
+    "@saas-ui/hooks": 0.4.1
+    "@saas-ui/layout": 0.3.6
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    framer-motion: ">=5.5.0"
+    react: ">=16.8.6"
+  checksum: 01c50b4fe82e563597cba2eb2708f4f0415cd6671791376b4f6a72d8436da4ee27c27aae6c9541dc4efd54b4c3825c04ca0be69ecebf45e4b2d254e740b1079d
+  languageName: node
+  linkType: hard
+
+"@saas-ui/auth@npm:>=0.7.0":
   version: 0.7.12
   resolution: "@saas-ui/auth@npm:0.7.12"
   dependencies:
@@ -7166,21 +7158,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/banner@npm:0.0.2":
-  version: 0.0.2
-  resolution: "@saas-ui/banner@npm:0.0.2"
+"@saas-ui/banner@npm:0.0.4":
+  version: 0.0.4
+  resolution: "@saas-ui/banner@npm:0.0.4"
   dependencies:
     "@chakra-ui/close-button": ^1.2.7
-    "@chakra-ui/hooks": ^1.8.4
+    "@chakra-ui/hooks": ^1.9.1
     "@chakra-ui/icons": ^1.1.1
-    "@chakra-ui/transition": ^1.4.7
+    "@chakra-ui/transition": ^1.4.8
     "@chakra-ui/utils": ^1.10.4
-    "@saas-ui/button": 0.4.0
+    "@saas-ui/button": 0.4.2
   peerDependencies:
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/system": ^1.12.1
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
-  checksum: 6806191f056d46fe6cee4fdcd1c96d6dc3c289e73a33b2df1d75b40a8244cb22041979d7d2a73df2b44f417b7c6cfcdd809b869ae47236942e1a4cc2ffca166a
+  checksum: f24d721f846fc7e2470f7c59f64f37fe1826854e652ccb0f499b06170e93f1c789519ba36dd1aa1322e89fd501f4fbd1012f8c3150e805c379bef5e439330641
   languageName: node
   linkType: hard
 
@@ -7209,15 +7201,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/card@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@saas-ui/card@npm:0.4.0"
+"@saas-ui/button@npm:0.4.2":
+  version: 0.4.2
+  resolution: "@saas-ui/button@npm:0.4.2"
   dependencies:
-    "@saas-ui/button": 0.4.0
+    "@chakra-ui/button": ^1.5.10
+    "@chakra-ui/utils": ^1.10.4
   peerDependencies:
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/system": ^1.12.1
     react: ">=16.8.6"
-  checksum: 9c7ced59e6eea813c5f8e081bc1146273c96134b35727a11d3a0ba6cc68bbcfcd0aa36c9dff164c852d24e4180614437d6b0b8bb825671ab2eba0ad6450dd497
+  checksum: 5a8d1f62e4578173d956b7632bbb5f069ff4b0e9548516589590147add39471bd3200d0e947276d06f3d7461be07d74ea105b57a172f8d94833286e28708183a
+  languageName: node
+  linkType: hard
+
+"@saas-ui/card@npm:0.4.2":
+  version: 0.4.2
+  resolution: "@saas-ui/card@npm:0.4.2"
+  dependencies:
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/button": 0.4.2
+  peerDependencies:
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: 8ec6e1344d700bfdd236a1c51099d9eb116a5eaeff176e32dc80abefa9f0003542563efc9b1d553495a7fc7a9b88a64ddca87c653918c00e328da0f410a652c2
   languageName: node
   linkType: hard
 
@@ -7247,20 +7253,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/data-table@npm:0.3.4":
-  version: 0.3.4
-  resolution: "@saas-ui/data-table@npm:0.3.4"
+"@saas-ui/collapse@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@saas-ui/collapse@npm:0.3.1"
+  dependencies:
+    "@chakra-ui/react-utils": ^1.2.1
+    "@chakra-ui/utils": ^1.10.2
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    react: ">=16.8.6"
+  checksum: 0954618f07bed8b3addf33f62f59f9b9683915d6d92a107c799e9397d9fb1c9cca484325a0d59379282d0f25cf047e8ba4ac772f7fc2f45ef565b731360fdd06
+  languageName: node
+  linkType: hard
+
+"@saas-ui/data-table@npm:0.3.6":
+  version: 0.3.6
+  resolution: "@saas-ui/data-table@npm:0.3.6"
   dependencies:
     "@chakra-ui/icons": ^1.1.1
     "@chakra-ui/utils": ^1.10.4
-    "@saas-ui/layout": 0.3.4
+    "@saas-ui/layout": 0.3.6
     react-table: ^7.7.0
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
-  checksum: e7b2e487c5c1f811c713cbc3c32934978b1256340df35eec70a3c65b584070eb5a79a4359c3d21a5ad368f9b58a99cde0583c230bdc2cf8a501fbb20aec9acc9
+  checksum: 9a121f3a8ca1d758ae57335ade6ba4ab79f139f8a2e09b60261883ba80145138dac019ea20eb564479733e2cf65c98e6d992b1dc16ca702f2a35903e7c49c862
   languageName: node
   linkType: hard
 
@@ -7290,6 +7309,32 @@ __metadata:
     react: ">=16.8.6"
   languageName: unknown
   linkType: soft
+
+"@saas-ui/forms@npm:0.7.10":
+  version: 0.7.10
+  resolution: "@saas-ui/forms@npm:0.7.10"
+  dependencies:
+    "@chakra-ui/icons": ^1.1.1
+    "@chakra-ui/react-utils": ^1.2.1
+    "@chakra-ui/utils": ^1.10.4
+    "@hookform/resolvers": ^2.8.3
+    "@saas-ui/button": 0.4.2
+    "@saas-ui/input-right-button": 0.3.3
+    "@saas-ui/number-input": 0.3.1
+    "@saas-ui/password-input": 0.3.4
+    "@saas-ui/pin-input": 0.3.1
+    "@saas-ui/radio": 0.3.1
+    "@saas-ui/react-utils": 0.1.0
+    "@saas-ui/select": 0.4.1
+    "@saas-ui/stepper": 0.2.3
+    react-hook-form: ^7.22.0
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: d4005e5091b1a3ff4dc1671b559aad729915c39eb48789c4b31d7978d73b333e1641f11e3fde739f87bda6e9e505947f52dc6e3a6d4380aaba181d0bcec7e11c
+  languageName: node
+  linkType: hard
 
 "@saas-ui/forms@npm:0.7.8":
   version: 0.7.8
@@ -7327,19 +7372,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/hotkeys@npm:0.6.1":
-  version: 0.6.1
-  resolution: "@saas-ui/hotkeys@npm:0.6.1"
+"@saas-ui/hooks@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@saas-ui/hooks@npm:0.4.1"
+  peerDependencies:
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: 2cdaa4cec41c067ec187fa372822ddc3296c0899ceb36a86ab2ce6bc7575566fbefe75a03abc75f8aedf70587b3730ae63301c551bd0f5bb82fadcb67cb969a8
+  languageName: node
+  linkType: hard
+
+"@saas-ui/hotkeys@npm:0.6.3":
+  version: 0.6.3
+  resolution: "@saas-ui/hotkeys@npm:0.6.3"
   dependencies:
     "@chakra-ui/layout": ^1.7.0
     "@chakra-ui/react-utils": ^1.2.3
     "@chakra-ui/utils": ^1.10.4
-    "@saas-ui/search-input": 0.5.0
+    "@saas-ui/search-input": 0.5.2
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
     react: ">=16.8.6"
-  checksum: 52ca725c8c7f4b5e7995356cab3386e10e52929c495b150196cea50f908e1b3e8fd5946b881a7ccad906081a6103ef571aa48fd875b89c50d4d60c2bd13798e8
+  checksum: 1dc2751eb24812f8ca239ac363c00263b892fce6192ac94ae2e6fff3a3b2a465e715eeb778fcbdb380e42e41d3e43c4c00c9390f6ef038e0fb78cce190b42d64
   languageName: node
   linkType: hard
 
@@ -7353,6 +7408,20 @@ __metadata:
     "@chakra-ui/system": ">=1.0.0"
     react: ">=16.8.6"
   checksum: 483ea1708c02c6c73b92efc3c10e4ff35678c13c17a462aca039b1e86d86b9ae026b6bd8ce149b9e03cf1a3218722b4afcc4e14d6afc18b9d6083805d9c0479e
+  languageName: node
+  linkType: hard
+
+"@saas-ui/input-right-button@npm:0.3.3":
+  version: 0.3.3
+  resolution: "@saas-ui/input-right-button@npm:0.3.3"
+  dependencies:
+    "@chakra-ui/input": ^1.3.3
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/button": 0.4.2
+  peerDependencies:
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: dc3d00ef122e01962a0d131f0d9a9fc720c1f6b7a094891d05db2de108c3129ebe1c47cc4caa462b9e72ff3c77ee6053d8a9b88e1bc42aa997ad17b38b8c2f91
   languageName: node
   linkType: hard
 
@@ -7371,51 +7440,73 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/list@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@saas-ui/list@npm:0.5.0"
+"@saas-ui/layout@npm:0.3.6":
+  version: 0.3.6
+  resolution: "@saas-ui/layout@npm:0.3.6"
   dependencies:
-    "@chakra-ui/icon": ^2.0.0
-    "@saas-ui/button": 0.4.0
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/provider": 0.3.11
   peerDependencies:
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    framer-motion: ">=5.5.0"
     react: ">=16.8.6"
-  checksum: 58844a2957be423f0519b1e153939b26ac1b44ad72e3173346ce2b5c13a11edf40eaf6f8499c9e879dbafdaeba4301bcbe416c73250f5c9caaf474a9f1057095
+  checksum: fd626936325f05d194675aeaf9a236d9eb7b94005da215997864201bd421f91ea2dde18231f78c368705be5917413ef934b5e7a4106a68fbc15b1d592e57da7a
   languageName: node
   linkType: hard
 
-"@saas-ui/menu@npm:0.5.4":
-  version: 0.5.4
-  resolution: "@saas-ui/menu@npm:0.5.4"
+"@saas-ui/list@npm:0.5.2":
+  version: 0.5.2
+  resolution: "@saas-ui/list@npm:0.5.2"
+  dependencies:
+    "@chakra-ui/icon": ^2.0.0
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/button": 0.4.2
+  peerDependencies:
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: 3b43c004bf8bdea8c6834408cba15cee47552e37c914323d7667d5dea15a17cb9af843ce54ebb1166c875118c98ba79e691a6b24766d2ac611fc7357663d18e0
+  languageName: node
+  linkType: hard
+
+"@saas-ui/menu@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@saas-ui/menu@npm:0.5.7"
   dependencies:
     "@chakra-ui/icons": ^1.1.1
     "@chakra-ui/utils": ^1.10.4
-    "@saas-ui/button": 0.4.0
-    "@saas-ui/provider": 0.3.9
+    "@saas-ui/button": 0.4.2
+    "@saas-ui/provider": 0.3.11
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
-  checksum: 13f8905b0d69f24558058e3bbf2ed493bac82dc4590c9d92824bcb7bd1b580d92b671554b4d44b453db9f476e1094adc3e376e66d272fbf0f37c3ed916c31bdb
+  checksum: 56be3f887a3b989e9c9382e5b676b4c8d489ba7ffc60f6adfbe48cd078d12d6f245b4dc5d62e8a7f5bd561c2985595575c1cc1301beadd9f1e7784cb4a5e73b2
   languageName: node
   linkType: hard
 
-"@saas-ui/modals@npm:0.5.11":
-  version: 0.5.11
-  resolution: "@saas-ui/modals@npm:0.5.11"
+"@saas-ui/modals@npm:0.5.15":
+  version: 0.5.15
+  resolution: "@saas-ui/modals@npm:0.5.15"
   dependencies:
-    "@saas-ui/button": 0.4.0
-    "@saas-ui/forms": 0.7.8
-    "@saas-ui/menu": 0.5.4
+    "@saas-ui/button": 0.4.2
+    "@saas-ui/forms": 0.7.10
+    "@saas-ui/menu": 0.5.7
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
-  checksum: a7ddb640686290ec8475121bc1f44d2f665b233cea70110e2ae5322e237c016dd866193d34cdc18bcbcff034b55bf9bdb770193f99467bda6ae7061e3a05c08b
+  checksum: 082eeaf31f67eecad2366aba6b494a891b343386f125d6f66eb205efb4b1c3c7e12812dfb1fab8fa00063ebc5fa10b4bdff8f1962e51622957d5c802832beddc
   languageName: node
   linkType: hard
+
+"@saas-ui/next-saas-ui@workspace:saas-ui/next-saas-ui":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/next-saas-ui@workspace:saas-ui/next-saas-ui"
+  languageName: unknown
+  linkType: soft
 
 "@saas-ui/next-workspaces@npm:^0.1.1":
   version: 0.1.1
@@ -7424,16 +7515,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/nprogress@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@saas-ui/nprogress@npm:0.4.0"
+"@saas-ui/nprogress@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@saas-ui/nprogress@npm:0.4.1"
   dependencies:
+    "@chakra-ui/utils": ^1.10.4
     "@tanem/react-nprogress": ^4.0.1
   peerDependencies:
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/system": ^1.12.1
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
-  checksum: bd84a3d0ba1cc94a06dd0f2e0f82d4bd3bb4df41bdeb6409fcfc15840c33c85dbf9ec008efef90ba90e99e0da467bf3279923dc1ca0ccbdffd3b0acf146b5ad9
+  checksum: 9240c958a0877350ec60af738c1b4bb7974df9b459ee8d00b3b3d4cdddf43d0875dba1b3cdae7a25230bf309627b526737e7e1af20bdff0a53ad545776587ff3
   languageName: node
   linkType: hard
 
@@ -7444,6 +7536,18 @@ __metadata:
     "@chakra-ui/react": ">=1.8.0"
     react: ">=16.8.6"
   checksum: 27d055f6556ce82c82df1585118c1ed8d7954898200ff7ff9865561cc0c51e61f1926499ed3382a0a3b5b228f7bb0383c85881d963d2cde846e8a1e1aa1729e7
+  languageName: node
+  linkType: hard
+
+"@saas-ui/number-input@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@saas-ui/number-input@npm:0.3.1"
+  dependencies:
+    "@chakra-ui/utils": ^1.10.4
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    react: ">=16.8.6"
+  checksum: ebc16611651b5490602540beca4900d1f2293fe9b4e6496772e9deaf4078886faa4c7217312a5f08b6dce255259435911fad2fd6a9f73910b3a5738c3696b95e
   languageName: node
   linkType: hard
 
@@ -7474,14 +7578,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui/palette@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@saas-ui/palette@npm:0.5.0"
+"@saas-ui/palette@npm:0.5.1":
+  version: 0.5.1
+  resolution: "@saas-ui/palette@npm:0.5.1"
   dependencies:
     chroma-js: ^2.1.2
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-  checksum: 666d8f59112ef086d756a3244893f2b52232d9c14e0ca60bdf5dd946171a8083ff7ff0a38f6a4e758a825504e5bc412216e2f98db0a3e92de4c512e16f5144d9
+    "@chakra-ui/react": ^1.8.8
+  checksum: faec44881d74599179cdba77e79a00bcb4db4fc78fc856c5aa4f6ac4713879e10236f287d75fae1931909fcec201b6dfbee9990c64e10c19e5c9ed4038dd9836
   languageName: node
   linkType: hard
 
@@ -7500,16 +7604,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/persona@npm:0.5.1":
-  version: 0.5.1
-  resolution: "@saas-ui/persona@npm:0.5.1"
+"@saas-ui/password-input@npm:0.3.4":
+  version: 0.3.4
+  resolution: "@saas-ui/password-input@npm:0.3.4"
+  dependencies:
+    "@chakra-ui/icons": ^1.1.1
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/input-right-button": 0.3.3
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: d8e3ca37d4bcf8d2d660dd020ed09d5a3cb71acc5069fefa3b98e5456d573199ac1083f52890c824054fe32f65c1294edcffc0673291796f78c6dfbf973ded8a
+  languageName: node
+  linkType: hard
+
+"@saas-ui/persona@npm:0.5.2":
+  version: 0.5.2
+  resolution: "@saas-ui/persona@npm:0.5.2"
   dependencies:
     "@chakra-ui/avatar": ^1.3.2
-    "@chakra-ui/utils": ^1.9.1
+    "@chakra-ui/utils": ^1.10.4
   peerDependencies:
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/system": ^1.12.1
     react: ">=16.8.6"
-  checksum: e4be1c60b071c9f9f5e3491733c39dd76e4e5ba1cf63f80b900bcd89c87b25e140f1914e6982a2a29a22a7b64a05953330c9869ffbba5ec8663ba09631476768
+  checksum: 9b4123e37f0ddd43b24d39d7961093591f183d292644c33ea5d4d66774af4e4480cca495dec43e3378373f74ce55ee0331ad2f183a3cfcc7812f2bb550246a90
   languageName: node
   linkType: hard
 
@@ -7523,12 +7642,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/pin-input@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@saas-ui/pin-input@npm:0.3.1"
+  dependencies:
+    "@chakra-ui/utils": ^1.10.4
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    react: ">=16.8.6"
+  checksum: a97b9d043249392596bdf969afd72e472c57795c22e3902a6b481e8280f01abf5f7878a0f6e535c8bd327341fab66aeaaa907a5d292b1d435e4b74a1f9fc2075
+  languageName: node
+  linkType: hard
+
 "@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:saas-ui/pro":
   version: 0.0.0-use.local
   resolution: "@saas-ui/pro@workspace:saas-ui/pro"
   dependencies:
     "@react-hookz/web": ^13.1.0
     date-fns: ^2.28.0
+    react-icons: ^4.3.1
   peerDependencies:
     "@chakra-ui/react": ">=1.8.0"
     "@saas-ui/react": ">=0.12.0"
@@ -7538,15 +7670,29 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui/property@npm:0.3.1":
-  version: 0.3.1
-  resolution: "@saas-ui/property@npm:0.3.1"
+"@saas-ui/property@npm:0.3.3":
+  version: 0.3.3
+  resolution: "@saas-ui/property@npm:0.3.3"
   dependencies:
-    "@saas-ui/list": 0.5.0
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/list": 0.5.2
   peerDependencies:
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/system": ^1.12.1
     react: ">=16.8.6"
-  checksum: 92ccbe195d4206c87f5fcbbb07205fa7abe9b28d653dbd0c32d16e2d069d0613404f75939724f0a7e2094c09f453b8fb90e3775ab65bced4634fe8527cb02cd4
+  checksum: 11c683d2d0edc037032ff5f76d382dbd691f6b97aa8f8c46718ef74f392620c9fb2a4f723c754e9912467d5c9829c42fcdd139db27912648769b2986bbfe2f5a
+  languageName: node
+  linkType: hard
+
+"@saas-ui/provider@npm:0.3.11":
+  version: 0.3.11
+  resolution: "@saas-ui/provider@npm:0.3.11"
+  dependencies:
+    "@saas-ui/theme": 0.8.2
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: cf35d8bb1c304118a3789b26a8280c954f84bf0edc548af7994fd34bfe0db5ca252be299c1202a6bea93066ada96ff3b29d656fe655fe11f1fa744d394a0721b
   languageName: node
   linkType: hard
 
@@ -7573,6 +7719,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/radio@npm:0.3.1":
+  version: 0.3.1
+  resolution: "@saas-ui/radio@npm:0.3.1"
+  dependencies:
+    "@chakra-ui/utils": ^1.10.4
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    react: ">=16.8.6"
+  checksum: 108f7b1fde69b7863809290ee7d8dfb6c561102bb944764079a680dad88c8c31e7bf854d63b053382697ac8bdf71f6e77dc2e7de043e70609edf9e02b7b8f898
+  languageName: node
+  linkType: hard
+
 "@saas-ui/react-utils@npm:0.1.0":
   version: 0.1.0
   resolution: "@saas-ui/react-utils@npm:0.1.0"
@@ -7582,47 +7740,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/react@npm:^0.13.3":
-  version: 0.13.3
-  resolution: "@saas-ui/react@npm:0.13.3"
+"@saas-ui/react@npm:^0.13.9":
+  version: 0.13.9
+  resolution: "@saas-ui/react@npm:0.13.9"
   dependencies:
-    "@chakra-ui/system": ">=1.0.0"
-    "@saas-ui/auth": 0.7.12
-    "@saas-ui/banner": 0.0.2
-    "@saas-ui/button": 0.4.0
-    "@saas-ui/card": 0.4.0
-    "@saas-ui/collapse": 0.3.0
-    "@saas-ui/data-table": 0.3.4
-    "@saas-ui/forms": 0.7.8
-    "@saas-ui/hooks": 0.4.0
-    "@saas-ui/hotkeys": 0.6.1
-    "@saas-ui/input-right-button": 0.3.1
-    "@saas-ui/layout": 0.3.4
-    "@saas-ui/list": 0.5.0
-    "@saas-ui/menu": 0.5.4
-    "@saas-ui/modals": 0.5.11
-    "@saas-ui/nprogress": 0.4.0
-    "@saas-ui/number-input": 0.3.0
-    "@saas-ui/palette": 0.5.0
-    "@saas-ui/password-input": 0.3.2
-    "@saas-ui/persona": 0.5.1
-    "@saas-ui/pin-input": 0.3.0
-    "@saas-ui/property": 0.3.1
-    "@saas-ui/provider": 0.3.9
-    "@saas-ui/radio": 0.3.0
-    "@saas-ui/search-input": 0.5.0
-    "@saas-ui/select": 0.4.0
-    "@saas-ui/snackbar": 0.4.0
-    "@saas-ui/stepper": 0.2.2
-    "@saas-ui/theme": 0.8.0
+    "@chakra-ui/system": ^1.12.1
+    "@saas-ui/auth": 0.7.15
+    "@saas-ui/banner": 0.0.4
+    "@saas-ui/button": 0.4.2
+    "@saas-ui/card": 0.4.2
+    "@saas-ui/collapse": 0.3.1
+    "@saas-ui/data-table": 0.3.6
+    "@saas-ui/forms": 0.7.10
+    "@saas-ui/hooks": 0.4.1
+    "@saas-ui/hotkeys": 0.6.3
+    "@saas-ui/input-right-button": 0.3.3
+    "@saas-ui/layout": 0.3.6
+    "@saas-ui/list": 0.5.2
+    "@saas-ui/menu": 0.5.7
+    "@saas-ui/modals": 0.5.15
+    "@saas-ui/nprogress": 0.4.1
+    "@saas-ui/number-input": 0.3.1
+    "@saas-ui/palette": 0.5.1
+    "@saas-ui/password-input": 0.3.4
+    "@saas-ui/persona": 0.5.2
+    "@saas-ui/pin-input": 0.3.1
+    "@saas-ui/property": 0.3.3
+    "@saas-ui/provider": 0.3.11
+    "@saas-ui/radio": 0.3.1
+    "@saas-ui/search-input": 0.5.2
+    "@saas-ui/select": 0.4.1
+    "@saas-ui/snackbar": 0.4.3
+    "@saas-ui/stepper": 0.2.3
+    "@saas-ui/theme": 0.8.2
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
+    "@chakra-ui/react": ^1.8.8
     "@emotion/react": ^11
     "@emotion/styled": ^11
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
-  checksum: 2141260fea8c9140b616d23ed1215d2e706c5b6df9016f423a0bcb0e50cfe875bd34a1258ecb627a3fa72f5876a160238345c5e92992c1ea14bdc4378ef04336
+  checksum: 887a50431d38ae428bf27aa632795f79d29ecbab3622f12c43c98695bc7dc09c405bd8316bdaa7150171b36518aaf45bb9b471212113638fae9d3535d2b22630
   languageName: node
   linkType: hard
 
@@ -7637,16 +7795,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui/search-input@npm:0.5.0":
-  version: 0.5.0
-  resolution: "@saas-ui/search-input@npm:0.5.0"
+"@saas-ui/search-input@npm:0.5.2":
+  version: 0.5.2
+  resolution: "@saas-ui/search-input@npm:0.5.2"
   dependencies:
     "@chakra-ui/icons": ^1.1.1
+    "@chakra-ui/utils": ^1.10.4
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
     react: ">=16.8.6"
-  checksum: d5e12de9a72cf1d4196bd4e800299b91647742243bdca8291eb360dff58bfaa0ad871e30a94c6f6fa3a99e62b11c0fc46fd099274d7a1656f1c108ba7f50efe2
+  checksum: 4670c10a0fa0b484d6ddb3e973a8d6c9ff8749d356d82d66facf2c3a34cc7352becd3c6f5a950d8c7e33c7474cd07b77e5533ab7ca84bfdcf63616f994bc7af2
   languageName: node
   linkType: hard
 
@@ -7663,16 +7822,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/snackbar@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@saas-ui/snackbar@npm:0.4.0"
+"@saas-ui/select@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@saas-ui/select@npm:0.4.1"
+  dependencies:
+    "@chakra-ui/icons": ^1.1.1
+    "@chakra-ui/utils": ^1.10.4
   peerDependencies:
-    "@chakra-ui/react": ">=1.8.0"
-    "@chakra-ui/system": ">=1.0.0"
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: 0979b7e050cd82428bef18df1c5f442fdcd11f630f93e982960fb79e81ba7d31cd2bed12d96652c0a80f987fe3d22bba1eb056852018d30d8f9fc9f372701adc
+  languageName: node
+  linkType: hard
+
+"@saas-ui/snackbar@npm:0.4.3":
+  version: 0.4.3
+  resolution: "@saas-ui/snackbar@npm:0.4.3"
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
     framer-motion: ">=5.5.0"
     react: ">=16.8.6"
     react-dom: ">=16.8.6"
-  checksum: 8bae2b7148480ca639000364c363fa5fbc05b563f9965354128e377545444873da5c9e553151a116ee6d2ca9d4f583da252a5c395c87b770d747678adb30990d
+  checksum: 357b111076f5da75facc938745bb6abae5eaf86a7e83e2c0bb63c59f867bd2ff33f916d65f31a70cfa7a1b17bf2d4315e8c889c02a9c1465e44472d2afa68117
   languageName: node
   linkType: hard
 
@@ -7693,6 +7866,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/stepper@npm:0.2.3":
+  version: 0.2.3
+  resolution: "@saas-ui/stepper@npm:0.2.3"
+  dependencies:
+    "@chakra-ui/icons": ^1.1.1
+    "@chakra-ui/react-utils": ^1.2.3
+    "@chakra-ui/utils": ^1.10.4
+    "@saas-ui/collapse": 0.3.1
+    "@saas-ui/react-utils": 0.1.0
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: 0f183c1d19efa101e1e1a270bed1847cd7d7db38c0792c98037c21f971cb1eabdc753ca2edda6cfc8ee981aa8d0a201ba86c9b8b3021aa34fe2c6071c21e58a2
+  languageName: node
+  linkType: hard
+
 "@saas-ui/theme@npm:0.8.0":
   version: 0.8.0
   resolution: "@saas-ui/theme@npm:0.8.0"
@@ -7704,6 +7894,20 @@ __metadata:
     "@chakra-ui/system": ">=1.0.0"
     react: ">=16.8.6"
   checksum: 7d25f0905c6d591792d6c17bd4ed0dfbb072e4131896ca1691eea81b0185dca287f7de536e672d109ca34fdaa032607f09ee6ab362a9eaf4cfc1967a074372ea
+  languageName: node
+  linkType: hard
+
+"@saas-ui/theme@npm:0.8.2":
+  version: 0.8.2
+  resolution: "@saas-ui/theme@npm:0.8.2"
+  dependencies:
+    "@chakra-ui/anatomy": ^1.2.1
+    "@chakra-ui/theme-tools": ^1.3.1
+  peerDependencies:
+    "@chakra-ui/react": ^1.8.8
+    "@chakra-ui/system": ^1.12.1
+    react: ">=16.8.6"
+  checksum: a435aa094232e12b86aabb798556e5b3f96129066a657054596b33d6ccaf6a1a3a49d35df169a24cedcfee251c2b870eba24a0858460c97751303f463f4fe511
   languageName: node
   linkType: hard
 
@@ -10799,7 +11003,7 @@ __metadata:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.13.3
+    "@saas-ui/react": ^0.13.9
     "@storybook/addon-actions": ^6.4.22
     "@storybook/addon-essentials": ^6.4.22
     "@storybook/addon-links": ^6.4.22
@@ -15773,7 +15977,7 @@ __metadata:
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/paddle": "workspace:*"
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.13.3
+    "@saas-ui/react": ^0.13.9
     "@saas-ui/router": "workspace:*"
     "@types/node": ^16.11.7
     "@types/react": ^17.0.9
@@ -22685,7 +22889,7 @@ __metadata:
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/paddle": "workspace:*"
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^0.13.3
+    "@saas-ui/react": ^0.13.9
     "@saas-ui/router": "workspace:*"
     "@svgr/webpack": 5.5.0
     "@ui/core": "workspace:*"
