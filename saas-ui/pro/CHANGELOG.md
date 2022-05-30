@@ -1,5 +1,18 @@
 # @saas-ui/pro
 
+## 0.3.13
+
+### Patch Changes
+
+- 821fb61: Removed dependency on react-icons and added react-icons to devDependencies.
+
+## 0.3.12
+
+### Patch Changes
+
+- 3dd0eed: Fixed internal ErrorBoundary import.
+- 6657bdd: No longer require `downlevelIteration` to be true in tsconfig.
+
 ## 0.3.11
 
 ### Patch Changes

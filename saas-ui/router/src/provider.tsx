@@ -43,5 +43,15 @@ export const useParams = () => {
 
 export const useLocation = () => {
   const context = useRouterContext()
-  return context?.location || window.location
+  if (context) {
+    return context.location
+  } else if (typeof window !== 'undefined') {
+    return window.location
+  }
+  return null
+}
+
+export function useActivePath(path: string) {
+  const location = useLocation()
+  return location?.pathname === path
 }

@@ -1,6 +1,6 @@
 {
   "name": "nextjs-app",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "private": true,
   "scripts": {
     "predev": "yarn run generate",
@@ -27,7 +27,7 @@
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/paddle": "workspace:*",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": "^1.0.0-rc.1",
+    "@saas-ui/react": "^1.0.0-rc.3",
     "@saas-ui/router": "workspace:*",
     "@ui/core": "workspace:*",
     "@ui/theme": "workspace:*",

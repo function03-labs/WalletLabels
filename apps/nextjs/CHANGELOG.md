@@ -1,5 +1,26 @@
 # nextjs-app
 
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies [821fb61]
+  - @saas-ui/pro@0.3.13
+  - app@4.0.2
+  - @ui/core@0.0.21
+  - @app/mock-graphql@0.3.2
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies [3dd0eed]
+- Updated dependencies [6657bdd]
+  - @saas-ui/pro@0.3.12
+  - app@4.0.1
+  - @ui/core@0.0.20
+  - @app/mock-graphql@0.3.1
+
 ## 1.2.2
 
 ### Patch Changes
