@@ -7287,6 +7287,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/date-picker@workspace:saas-ui/date-picker"
   dependencies:
+    "@chakra-ui/react-utils": ^1.2.3
+    "@chakra-ui/utils": ^1.10.4
     "@datepicker-react/hooks": ^2.8.4
     date-fns: ^2.28.0
   peerDependencies:
