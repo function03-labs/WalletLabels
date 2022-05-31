@@ -22,7 +22,7 @@ import {
   IconButtonProps,
 } from '@chakra-ui/react'
 
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
 
 import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
@@ -498,10 +498,13 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
     inset,
     className,
     tooltip,
+    isActive: isActiveProp,
     ...rest
   } = omitThemingProps(props)
   const RouterLink = useLink()
-  const isActive = useActivePath(href)
+  const isActivePath = useActivePath(href)
+  const isActive =
+    typeof isActiveProp !== 'undefined' ? isActiveProp : isActivePath
   const { onClose, variant } = useSidebarContext()
 
   const isCondensed = variant === 'condensed'
@@ -518,6 +521,7 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
       ref={ref}
       href={href}
       className={cx('sui-sidebar-link', className)}
+      data-active={dataAttr(isActive)}
       __css={styles.link}
     >
       <chakra.span
