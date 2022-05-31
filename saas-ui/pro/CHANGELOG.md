@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.3.15
+
+### Patch Changes
+
+- a852a8c: SidebarLink now renders data-active attribute when isActive is true.
+- 632db56: Importing dependencies directly from @saas-ui/react to make sure there aren't any version mismatches.
+
 ## 0.3.14
 
 ### Patch Changes
