@@ -26,18 +26,21 @@ import { cx, __DEV__ } from '@chakra-ui/utils'
 
 import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
-import { Menu, MenuButton, MenuButtonProps, MenuList } from '@saas-ui/menu'
-import { useLink } from '@saas-ui/provider'
 import {
+  Menu,
+  MenuButton,
+  MenuButtonProps,
+  MenuList,
+  useLink,
   CollapseProvider,
   useCollapseContext,
   useCollapse,
-} from '@saas-ui/collapse'
+} from '@saas-ui/react'
 
 export {
   MenuGroup as SidebarMenuGroup,
   MenuDivider as SidebarMenuDivider,
-} from '@chakra-ui/menu'
+} from '@chakra-ui/react'
 
 import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from '../icons'
 
@@ -352,7 +355,7 @@ export const SidebarNavGroupTitle: React.FC<SidebarNavGroupTitleProps> = (
         </chakra.span>
       )}
       <chakra.span flex="1">
-        {typeof children === 'function' ? children({ isOpen }) : children}{' '}
+        {typeof children === 'function' ? children({ isOpen }) : children}
       </chakra.span>
       {collapseIcon}
     </chakra.div>
