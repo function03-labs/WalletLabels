@@ -7122,7 +7122,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/auth@npm:0.7.15":
+"@saas-ui/auth@npm:0.7.15, @saas-ui/auth@npm:>=0.7.0 <=1.0.0":
   version: 0.7.15
   resolution: "@saas-ui/auth@npm:0.7.15"
   dependencies:
@@ -22883,7 +22883,7 @@ __metadata:
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@next/eslint-plugin-next": ^12.0.10
-    "@saas-ui/auth": ">=0.7.0"
+    "@saas-ui/auth": ">=0.7.0 <=1.0.0"
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/charts": "workspace:*"
     "@saas-ui/date-picker": "workspace:*"

@@ -18,7 +18,7 @@
     "@chakra-ui/system": "^1.12.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@saas-ui/auth": ">=0.7.0",
+    "@saas-ui/auth": ">=0.7.0 <=1.0.0",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
     "@saas-ui/date-picker": "workspace:*",
