@@ -1,5 +1,11 @@
 # @app/mock-graphql
 
+## 0.3.3
+
+### Patch Changes
+
+- @app/graphql@0.1.4
+
 ## 0.3.2
 
 ### Patch Changes

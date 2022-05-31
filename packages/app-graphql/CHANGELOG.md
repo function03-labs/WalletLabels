@@ -1,5 +1,11 @@
 # @app/graphql
 
+## 0.1.4
+
+### Patch Changes
+
+- @app/config@0.0.13
+
 ## 0.1.3
 
 ### Patch Changes

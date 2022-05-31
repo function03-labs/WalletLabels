@@ -1,6 +1,6 @@
 {
   "name": "@app/graphql",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "scripts": {
     "generate": "graphql-codegen"
   },

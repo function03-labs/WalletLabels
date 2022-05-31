@@ -1,5 +1,13 @@
 # @saas-ui/pro
 
+## 0.3.14
+
+### Patch Changes
+
+- 335b13b: Moved useActivePath to @saas-ui/router.
+- Updated dependencies [335b13b]
+  - @saas-ui/router@0.1.1
+
 ## 0.3.13
 
 ### Patch Changes

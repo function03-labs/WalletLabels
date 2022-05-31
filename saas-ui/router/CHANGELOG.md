@@ -1,5 +1,11 @@
 # @saas-ui/router
 
+## 0.1.1
+
+### Patch Changes
+
+- 335b13b: Moved useActivePath to @saas-ui/router.
+
 ## 0.1.0
 
 ### Minor Changes

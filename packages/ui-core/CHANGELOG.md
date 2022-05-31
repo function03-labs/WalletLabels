@@ -1,5 +1,12 @@
 # @ui/core
 
+## 0.0.22
+
+### Patch Changes
+
+- Updated dependencies [335b13b]
+  - @saas-ui/pro@0.3.14
+
 ## 0.0.21
 
 ### Patch Changes

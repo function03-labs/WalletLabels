@@ -1,5 +1,18 @@
 # nextjs-app
 
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies [aa785af]
+- Updated dependencies [335b13b]
+  - @saas-ui/date-picker@0.1.3
+  - @saas-ui/pro@0.3.14
+  - @saas-ui/router@0.1.1
+  - app@4.0.3
+  - @ui/core@0.0.22
+  - @app/mock-graphql@0.3.3
+
 ## 1.2.4
 
 ### Patch Changes
