@@ -38,6 +38,7 @@
     "react-dom": ">=16.8.6"
   },
   "devDependencies": {
+    "@types/react-table": "^7.7.9",
     "react-icons": "^4.3.1"
   }
 }
