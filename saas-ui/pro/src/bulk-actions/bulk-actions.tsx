@@ -50,6 +50,7 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
       right="0"
       top="0"
       minH="14"
+      zIndex="banner"
       {...rest}
     >
       <BannerContent>
