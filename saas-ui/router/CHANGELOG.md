@@ -1,5 +1,11 @@
 # @saas-ui/router
 
+## 0.1.2
+
+### Patch Changes
+
+- Only publish source files.
+
 ## 0.1.1
 
 ### Patch Changes

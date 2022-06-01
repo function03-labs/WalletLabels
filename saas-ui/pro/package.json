@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.3.15",
+  "version": "0.3.16",
   "exports": {
     ".": {
       "default": "./src/index.ts"
@@ -15,6 +15,11 @@
   "scripts": {
     "bundle": "yarn pack --out ../dist/%s-%v.tgz"
   },
+  "files": [
+    "src",
+    "index.ts",
+    "theme.ts"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",

@@ -1,12 +1,17 @@
 {
   "name": "@saas-ui/date-picker",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "exports": {
     "default": "./src/index.ts"
   },
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
+  "files": [
+    "src",
+    "index.ts",
+    "types.d.ts"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",

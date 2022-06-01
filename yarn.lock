@@ -7878,7 +7878,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17.0.11":
+"@types/react@npm:^17.0.19":
   version: 17.0.45
   resolution: "@types/react@npm:17.0.45"
   dependencies:
@@ -13108,7 +13108,7 @@ __metadata:
     "@saas-ui/react": ^0.13.9
     "@saas-ui/router": "workspace:*"
     "@types/node": ^16.11.7
-    "@types/react": ^17.0.9
+    "@types/react": ^17.0.19
     "@ui/core": "workspace:*"
     "@ui/theme": "workspace:*"
     app: "workspace:*"

@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.2.2
+
+### Patch Changes
+
+- Only publish source files.
+
 ## 0.2.1
 
 ### Patch Changes

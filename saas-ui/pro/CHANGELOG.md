@@ -1,5 +1,13 @@
 # @saas-ui/pro
 
+## 0.3.16
+
+### Patch Changes
+
+- Only publish source files.
+- Updated dependencies
+  - @saas-ui/router@0.1.2
+
 ## 0.3.15
 
 ### Patch Changes

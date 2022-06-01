@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.3.1
+
+### Patch Changes
+
+- Only publish source files.
+
 ## 0.3.0
 
 ### Minor Changes

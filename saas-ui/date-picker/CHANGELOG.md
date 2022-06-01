@@ -1,5 +1,11 @@
 # @saas-ui/date-picker
 
+## 0.1.4
+
+### Patch Changes
+
+- Only publish source files.
+
 ## 0.1.3
 
 ### Patch Changes

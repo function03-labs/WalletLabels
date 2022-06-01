@@ -1,13 +1,17 @@
 {
   "name": "@saas-ui/features",
   "description": "Feature flags for Saas UI",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "exports": {
     "default": "./src/index.ts"
   },
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
+  "files": [
+    "src",
+    "index.ts"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",

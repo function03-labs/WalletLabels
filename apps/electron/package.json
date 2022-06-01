@@ -2,7 +2,7 @@
   "private": true,
   "name": "electron-app",
   "description": "Saas UI Electron Example",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "author": "Eelco Wiersma <eelco@appule.nl>",
   "main": "app/background.js",
   "scripts": {
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
-    "@types/react": "^17.0.9",
+    "@types/react": "^17.0.19",
     "electron": "^18.2.0",
     "electron-builder": "^23.0.3",
     "next": "^12.1.6",

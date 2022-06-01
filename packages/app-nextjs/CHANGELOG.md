@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- Updated dependencies
+  - @saas-ui/router@0.1.2
+
+## null
+
+### Patch Changes
+
 - eff6aae: Return asPath instead of pathname to make sure active paths match correctly.
 
 ## null
