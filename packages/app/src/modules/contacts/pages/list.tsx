@@ -9,15 +9,14 @@ import {
 import * as Yup from 'yup'
 
 import { Box, Tag, Spacer, MenuItem } from '@chakra-ui/react'
-import { FiUser, FiUploadCloud } from 'react-icons/fi'
+import { FiUser } from 'react-icons/fi'
+import { Cell } from 'react-table'
 import {
-  Button,
   EmptyState,
   OverflowMenu,
   Column,
   useModals,
   useHotkeysShortcut,
-  SearchInput,
 } from '@saas-ui/react'
 import {
   Command,
@@ -26,55 +25,62 @@ import {
   useTenant,
   useDataGridFilter,
 } from '@saas-ui/pro'
+import { useParams } from '@saas-ui/router'
+
 import { ListPage } from '@modules/core/components/list-page'
 
-import { filters, AddFilterButton } from '../components/contact-filters'
 import { format } from 'date-fns'
 import { InlineSearch } from '@modules/core/components/inline-search'
+import { Button } from '@modules/core/components/button'
 
-const StatusCell = (cell: any) => {
-  switch (cell.status) {
-    case 'active':
-      return (
-        <Tag colorScheme="green" size="sm">
-          Active
-        </Tag>
-      )
-    case 'inactive':
-      return (
-        <Tag colorScheme="orange" size="sm">
-          Inactive
-        </Tag>
-      )
-    case 'new':
-    default:
-      return (
-        <Tag colorScheme="blue" size="sm">
-          New
-        </Tag>
-      )
-  }
+import { ContactTypes } from '../components/contact-types'
+import { filters, AddFilterButton } from '../components/contact-filters'
+
+const contactTypes = {
+  lead: {
+    label: 'Lead',
+    color: 'cyan',
+  },
+  customer: {
+    label: 'Customer',
+    color: 'purple',
+  },
 }
 
-const TypeCell = (cell: any) => {
-  switch (cell.status) {
-    case 'contact':
-      return (
-        <Tag colorScheme="yellow" size="sm" variant="outline">
-          Contact
-        </Tag>
-      )
-    case 'lead':
-    default:
-      return (
-        <Tag colorScheme="purple" size="sm" variant="outline">
-          Lead
-        </Tag>
-      )
-  }
+const contactStatus = {
+  active: {
+    label: 'Active',
+    color: 'green',
+  },
+  inactive: {
+    label: 'Inactive',
+    color: 'orange',
+  },
+  new: {
+    label: 'New',
+    color: 'blue',
+  },
 }
 
-const DateCell = (cell: any) => {
+const StatusCell = (cell: Cell) => {
+  const status = contactStatus[cell.value] || contactStatus.new
+  return (
+    <Tag colorScheme={status.color} size="sm">
+      {status.label}
+    </Tag>
+  )
+}
+
+const TypeCell = (cell: Cell) => {
+  const type = contactTypes[cell.value] || contactTypes.lead
+  return (
+    <Tag colorScheme={type.color} size="sm" variant="outline">
+      {type.label}
+    </Tag>
+  )
+}
+
+const DateCell = (cell: Cell) => {
   return format(new Date(cell.value), 'PP')
 }
 
@@ -99,10 +105,13 @@ const schema = Yup.object().shape({
 export function ContactsListPage() {
   const tenant = useTenant()
   const modals = useModals()
+  const params = useParams()
 
   const [searchQuery, setSearchQuery] = React.useState('')
 
-  const { data, isLoading } = useGetContactsQuery()
+  const { data, isLoading } = useGetContactsQuery({
+    type: params?.type as string,
+  })
 
   const mutation = useCreateContactMutation()
 
@@ -122,6 +131,7 @@ export function ContactsListPage() {
 
   const toolbar = (
     <Toolbar>
+      <ContactTypes />
       <AddFilterButton />
       <Spacer />
       <InlineSearch
@@ -160,10 +170,12 @@ export function ContactsListPage() {
       accessor: 'fullName',
       Header: 'Name',
       href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
+      width: '300px',
     },
     {
       id: 'email',
       Header: 'Email',
+      width: '300px',
     },
     {
       id: 'createdAt',
@@ -176,25 +188,26 @@ export function ContactsListPage() {
       id: 'type',
       Header: 'Type',
       Cell: TypeCell,
-      width: '50px',
       filter: useDataGridFilter('string'),
       disableGlobalFilter: true,
+      isNumeric: true,
     },
     {
       id: 'status',
       Header: 'Status',
       Cell: StatusCell,
-      width: 50,
       filter: useDataGridFilter('string'),
       disableGlobalFilter: true,
+      isNumeric: true,
     },
     {
       id: 'action',
       disableSortBy: true,
       Header: '',
       Cell: ActionCell,
-      width: '1%',
+      width: '100px',
       disableGlobalFilter: true,
+      isNumeric: true,
     },
   ]
 

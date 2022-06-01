@@ -17,14 +17,14 @@ import {
   SidebarProps,
   SidebarNav,
   SidebarLink,
-  SidebarDivider,
   SidebarNavGroup,
   SidebarOverflow,
   Command,
   ResizeHandler,
-  useTenancy,
   SidebarLinkProps,
 } from '@saas-ui/pro'
+
+import { useActivePath } from '@saas-ui/router'
 
 import {
   IconButton,
@@ -113,6 +113,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               />
               <AppSidebarLink
                 href={usePath('contacts')}
+                isActive={useActivePath('contacts', { end: false })}
                 label="Contacts"
                 icon={<FiUsers />}
                 hotkey="navigation.contacts"

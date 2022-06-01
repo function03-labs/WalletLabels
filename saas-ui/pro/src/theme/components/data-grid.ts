@@ -39,6 +39,7 @@ const baseStyle: PartsStyleObject<typeof parts> = {
   table: {
     fontVariantNumeric: 'lining-nums tabular-nums',
     borderCollapse: 'collapse',
+    tableLayout: 'fixed',
     width: 'full',
   },
   th: {

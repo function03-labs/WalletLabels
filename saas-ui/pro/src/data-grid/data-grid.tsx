@@ -402,7 +402,7 @@ const useCheckboxColumn = <Data extends object>(enabled?: boolean) => {
       hooks.visibleColumns.push((columns) => [
         {
           id: 'selection',
-          width: '1%',
+          width: '50px',
           Header: ({ getToggleAllRowsSelectedProps }) => (
             <DataGridCheckbox {...getToggleAllRowsSelectedProps()} />
           ),
