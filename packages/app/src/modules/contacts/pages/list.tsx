@@ -17,6 +17,7 @@ import {
   Column,
   useModals,
   useHotkeysShortcut,
+  SearchInput,
 } from '@saas-ui/react'
 import {
   Command,
@@ -29,6 +30,7 @@ import { ListPage } from '@modules/core/components/list-page'
 
 import { filters, AddFilterButton } from '../components/contact-filters'
 import { format } from 'date-fns'
+import { InlineSearch } from '@modules/core/components/inline-search'
 
 const StatusCell = (cell: any) => {
   switch (cell.status) {
@@ -98,12 +100,13 @@ export function ContactsListPage() {
   const tenant = useTenant()
   const modals = useModals()
 
+  const [searchQuery, setSearchQuery] = React.useState('')
+
   const { data, isLoading } = useGetContactsQuery()
 
   const mutation = useCreateContactMutation()
 
   const addPerson = () => {
-    /** @todo the FormModal doesn't have a generic type yet, so the onSubmit result isn't typed. */
     modals.form?.({
       title: 'Add person',
       schema,
@@ -121,7 +124,13 @@ export function ContactsListPage() {
     <Toolbar>
       <AddFilterButton />
       <Spacer />
-      <ToolbarButton icon={<FiUploadCloud />} label="Import data" />
+      <InlineSearch
+        placeholder="Search by name or email..."
+        value={searchQuery}
+        width="240px"
+        onChange={(e) => setSearchQuery(e.target.value)}
+        onReset={() => setSearchQuery('')}
+      />
       <ToolbarButton
         label="Add person"
         variant="solid"
@@ -161,6 +170,7 @@ export function ContactsListPage() {
       Header: 'Created at',
       Cell: DateCell,
       filter: useDataGridFilter('date'),
+      disableGlobalFilter: true,
     },
     {
       id: 'type',
@@ -168,6 +178,7 @@ export function ContactsListPage() {
       Cell: TypeCell,
       width: '50px',
       filter: useDataGridFilter('string'),
+      disableGlobalFilter: true,
     },
     {
       id: 'status',
@@ -175,6 +186,7 @@ export function ContactsListPage() {
       Cell: StatusCell,
       width: 50,
       filter: useDataGridFilter('string'),
+      disableGlobalFilter: true,
     },
     {
       id: 'action',
@@ -182,6 +194,7 @@ export function ContactsListPage() {
       Header: '',
       Cell: ActionCell,
       width: '1%',
+      disableGlobalFilter: true,
     },
   ]
 
@@ -208,6 +221,7 @@ export function ContactsListPage() {
       toolbar={toolbar}
       bulkActions={bulkActions}
       filters={filters}
+      searchQuery={searchQuery}
       emptyState={emptyState}
       columns={columns}
       data={data?.contacts as Contact[]}

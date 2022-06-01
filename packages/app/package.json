@@ -11,6 +11,7 @@
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
+    "@react-hookz/web": "^13.1.0",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
     "@saas-ui/date-picker": "workspace:*",

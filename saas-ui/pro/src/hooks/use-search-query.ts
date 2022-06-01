@@ -18,9 +18,9 @@ export interface UseSearchQueryOptions<T> {
 }
 
 export const useSearchQuery = <T extends Result = Result>(
-  props: UseSearchQueryOptions<T>,
+  props: UseSearchQueryOptions<T> = {},
 ) => {
-  const { items, fields = ['id'], defaultValue } = props
+  const { items, fields = ['id'], defaultValue = '' } = props
 
   const [query, setQuery] = React.useState(defaultValue)
 

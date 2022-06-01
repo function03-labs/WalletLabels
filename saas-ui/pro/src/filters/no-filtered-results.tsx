@@ -9,28 +9,13 @@ export interface NoFilteredResultsProps extends NoResultsProps {
 }
 
 export const NoFilteredResults: React.FC<NoFilteredResultsProps> = (props) => {
-  const { reset, activeFilters } = useFiltersContext()
-
-  const count = activeFilters?.length || 'your'
-
-  const {
-    title = `No results matching ${count} filters`,
-    clearLabel = 'Clear filters',
-    onReset: onResetProp,
-    ...rest
-  } = props
+  const { reset } = useFiltersContext()
+  const { onReset: onResetProp, ...rest } = props
 
   const onReset = () => {
     reset()
     onResetProp?.()
   }
 
-  return (
-    <NoResults
-      title={title}
-      clearLabel={clearLabel}
-      onReset={onReset}
-      {...rest}
-    />
-  )
+  return <NoResults onReset={onReset} {...rest} />
 }
