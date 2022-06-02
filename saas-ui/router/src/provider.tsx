@@ -23,6 +23,10 @@ export const RouterContext = React.createContext<RouterContextValue | null>(
   null,
 )
 
+export interface RouterProviderProps {
+  value: RouterContextValue
+  children: React.ReactNode
+}
 /**
  * A simple to wrapper to abstract basic router functionality
  */
@@ -38,17 +42,19 @@ export const useNavigate = () => {
 
 export const useParams = () => {
   const context = useRouterContext()
-  return context?.params
+  return context?.params || {}
 }
 
-export const useLocation = () => {
+export const useLocation = (): RouterLocation => {
   const context = useRouterContext()
-  if (context) {
+  if (context?.location) {
     return context.location
   } else if (typeof window !== 'undefined') {
     return window.location
   }
-  return null
+  return {
+    pathname: '',
+  }
 }
 
 export interface UseActivePathOptions {
@@ -60,7 +66,7 @@ export interface UseActivePathOptions {
 }
 
 /**
- *  * Matches the given path to the current active path.
+ * Matches the given path to the current active path.
  * @param path string
  * @param options UseActivePathOptions
  * @returns boolean
