@@ -11,7 +11,7 @@ import {
 import addDays from 'date-fns/addDays'
 import subDays from 'date-fns/subDays'
 
-import { Organization } from '@app/graphql'
+import { Organization, Contact } from '@app/graphql'
 
 import { createMockStore } from './mock-store'
 import { DeepPartial } from './types'
@@ -23,7 +23,7 @@ interface OrganizationsStore extends DeepPartial<Organization> {
 export const organizationStore =
   createMockStore<OrganizationsStore>('organizations')
 
-const contactsStore = {}
+const contactsStore: Record<string, Contact[]> = {}
 
 const mapContact = (user: User, type?: string) => {
   const { id, firstName, lastName, email } = user
