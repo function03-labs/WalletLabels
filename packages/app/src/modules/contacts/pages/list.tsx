@@ -36,7 +36,7 @@ import { Button } from '@modules/core/components/button'
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'
 
-const contactTypes = {
+const contactTypes: Record<string, { label: string; color: string }> = {
   lead: {
     label: 'Lead',
     color: 'cyan',
@@ -47,7 +47,7 @@ const contactTypes = {
   },
 }
 
-const contactStatus = {
+const contactStatus: Record<string, { label: string; color: string }> = {
   active: {
     label: 'Active',
     color: 'green',
