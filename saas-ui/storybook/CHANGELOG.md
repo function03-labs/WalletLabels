@@ -1,5 +1,17 @@
 # saas-ui-storybook
 
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [d50c603]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [7ca6e30]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [165f41c]
+- Updated dependencies [e24c5a6]
+  - @saas-ui/pro@0.3.17
+
 ## 1.0.17
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # app
 
+## 4.0.6
+
+### Patch Changes
+
+- ab9d51e: Added inline search (globalFilter) functionality to ListPage.
+- 165f41c: Added segmented controls to contacts overview.
+- Updated dependencies [d50c603]
+- Updated dependencies [165f41c]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [7ca6e30]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [165f41c]
+- Updated dependencies [e24c5a6]
+  - @saas-ui/pro@0.3.17
+  - @saas-ui/router@0.1.3
+  - @ui/core@0.0.25
+  - @app/config@0.0.16
+
 ## 4.0.5
 
 ### Patch Changes

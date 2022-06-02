@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- Updated dependencies [165f41c]
+  - @saas-ui/router@0.1.3
+
+## null
+
+### Patch Changes
+
 - Updated dependencies
   - @saas-ui/router@0.1.2
 

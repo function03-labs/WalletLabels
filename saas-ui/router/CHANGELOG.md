@@ -1,5 +1,11 @@
 # @saas-ui/router
 
+## 0.1.3
+
+### Patch Changes
+
+- 165f41c: Now supporting matching partial urls.
+
 ## 0.1.2
 
 ### Patch Changes

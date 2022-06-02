@@ -1,5 +1,13 @@
 # @app/mock-graphql
 
+## 0.3.6
+
+### Patch Changes
+
+- 165f41c: Add type parameter to getContacts query and new tags field.
+- 165f41c: Cache getContacts results in order to prevent flickering/reloading.
+  - @app/graphql@0.1.7
+
 ## 0.3.5
 
 ### Patch Changes

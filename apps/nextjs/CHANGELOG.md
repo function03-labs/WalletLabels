@@ -1,5 +1,26 @@
 # nextjs-app
 
+## 1.2.8
+
+### Patch Changes
+
+- 165f41c: Added segmented controls to contacts overview.
+- Updated dependencies [d50c603]
+- Updated dependencies [165f41c]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [7ca6e30]
+- Updated dependencies [165f41c]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [165f41c]
+- Updated dependencies [e24c5a6]
+- Updated dependencies [165f41c]
+- Updated dependencies [165f41c]
+  - @saas-ui/pro@0.3.17
+  - @saas-ui/router@0.1.3
+  - @app/mock-graphql@0.3.6
+  - app@4.0.6
+  - @ui/core@0.0.25
+
 ## 1.2.7
 
 ### Patch Changes

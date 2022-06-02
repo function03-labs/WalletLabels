@@ -1,5 +1,18 @@
 # @saas-ui/pro
 
+## 0.3.17
+
+### Patch Changes
+
+- d50c603: Added proper zIndex value to BulkActions.
+- ab9d51e: Now exporting the NoResults component from DataGrid.
+- 7ca6e30: useSearchQuery now accepts a default value and items are optional.
+- ab9d51e: Added inline search (globalFilter) functionality to ListPage.
+- 165f41c: DataGrid columns no longer shift width on filtering.
+- e24c5a6: Added @types/react-table as dev dependency.
+- Updated dependencies [165f41c]
+  - @saas-ui/router@0.1.3
+
 ## 0.3.16
 
 ### Patch Changes
