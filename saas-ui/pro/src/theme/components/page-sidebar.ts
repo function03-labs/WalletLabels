@@ -14,6 +14,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       display: 'flex',
       flexDirection: 'column',
       minH: 0,
+      position: 'relative',
     },
     header: {
       display: 'flex',

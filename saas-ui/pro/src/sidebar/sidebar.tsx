@@ -45,13 +45,14 @@ export {
 import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from '../icons'
 
 import { SidebarProvider, useSidebarContext } from './use-sidebar'
-import { ResizeHandle, ResizeHandler, useResize } from '../resize'
+import { ResizeHandle, useResize, ResizeOptions } from '../resize'
 
 import { useActivePath } from '@saas-ui/router'
 
 export interface SidebarProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
     Omit<ChakraProps, 'css'>,
+    ResizeOptions,
     ThemingProps<'Sidebar'> {
   /**
    * Spacing between child elements.
@@ -63,18 +64,6 @@ export interface SidebarProps
    * @default object { sm: true, lg: false }
    */
   breakpoints?: Record<string, boolean>
-  /**
-   * Allow the sidebar to be resized.
-   */
-  isResizable?: boolean
-  /**
-   * Callback called when resize is completed.
-   */
-  onResize?: ResizeHandler
-  /**
-   * The default sidebar width in pixels.
-   */
-  defaultWidth?: number
 }
 
 const MotionBox = chakra(motion.div)

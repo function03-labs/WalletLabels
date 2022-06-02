@@ -9,7 +9,6 @@ export const ResizeHandle: React.FC<HTMLChakraProps<'div'>> = (props) => {
     width: '10px',
     height: '100%',
     top: '0px',
-    right: '-5px',
     cursor: 'col-resize',
   }
   return (

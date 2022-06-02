@@ -2,16 +2,21 @@ import * as React from 'react'
 
 import { PropertyList, Property, Persona } from '@saas-ui/react'
 
-import { PageSidebar, PageSidebarHeader, PageSidebarBody } from '@saas-ui/pro'
+import {
+  PageSidebar,
+  PageSidebarHeader,
+  PageSidebarBody,
+  PageSidebarProps,
+} from '@saas-ui/pro'
 
 import { Contact } from '@app/graphql'
 
-export interface ContactSidebarProps {
+export interface ContactSidebarProps extends PageSidebarProps {
   contact?: Contact | null
 }
 
 export const ContactSidebar: React.FC<ContactSidebarProps> = (props) => {
-  const { contact } = props
+  const { contact, ...rest } = props
 
   const content = (
     <PropertyList>
@@ -23,7 +28,14 @@ export const ContactSidebar: React.FC<ContactSidebarProps> = (props) => {
   )
 
   return (
-    <PageSidebar minWidth="320px">
+    <PageSidebar
+      defaultWidth={400}
+      minWidth="200px"
+      maxWidth="500px"
+      borderLeftWidth="1px"
+      isResizable
+      {...rest}
+    >
       <PageSidebarHeader>
         <Persona name={contact?.fullName || ''} size="xs" />
       </PageSidebarHeader>

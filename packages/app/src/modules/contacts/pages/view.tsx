@@ -2,17 +2,22 @@ import { useGetContactQuery } from '@app/graphql'
 
 import {
   Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
+  HStack,
   Skeleton,
+  Spacer,
+  Text,
+  useDisclosure,
 } from '@chakra-ui/react'
+
+import { FiSidebar } from 'react-icons/fi'
 
 import * as Yup from 'yup'
 
-import { SplitPage } from '@saas-ui/pro'
+import { Page, PageBody, Toolbar, ToolbarButton } from '@saas-ui/pro'
 
 import { ContactSidebar } from '../components/contact-sidebar'
+import { usePath } from '@modules/core/hooks/use-path'
+import { Breadcrumbs } from '@modules/core/components/breadcrumbs'
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -31,27 +36,36 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
     id: String(id),
   })
 
+  const sidebar = useDisclosure({
+    defaultIsOpen: true,
+  })
+
   const breadcrumbs = (
-    <Breadcrumb>
-      <BreadcrumbItem>
-        <BreadcrumbLink>Contacts</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink>{data?.contact?.fullName}</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>
+    <Breadcrumbs
+      items={[
+        { href: usePath('/contacts'), title: 'Contacts' },
+        { title: data?.contact?.fullName },
+      ]}
+    />
   )
 
-  const sidebar = <ContactSidebar contact={data?.contact} />
+  const toolbar = (
+    <Toolbar>
+      <Spacer />
+      <ToolbarButton
+        icon={<FiSidebar />}
+        label={sidebar.isOpen ? 'Hide sidebar' : 'Show sidebar'}
+        onClick={sidebar.onToggle}
+      />
+    </Toolbar>
+  )
 
   return (
-    <SplitPage
-      title={breadcrumbs}
-      isLoading={isLoading}
-      fullWidth
-      width="auto"
-      maxW="100%"
-      content={sidebar}
-    ></SplitPage>
+    <Page title={breadcrumbs} toolbar={toolbar} isLoading={isLoading} fullWidth>
+      <HStack alignItems="stretch" height="100%">
+        <Box overflowY="auto" flex="1" py="8" px="20"></Box>
+        <ContactSidebar contact={data?.contact} isOpen={sidebar.isOpen} />
+      </HStack>
+    </Page>
   )
 }

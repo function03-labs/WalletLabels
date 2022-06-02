@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {
   chakra,
+  ChakraProps,
   HTMLChakraProps,
   ThemingProps,
   StylesProvider,
@@ -9,12 +10,18 @@ import {
   useStyles,
   useMultiStyleConfig,
   SystemProps,
+  SystemStyleObject,
 } from '@chakra-ui/system'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 import { Loader } from '@saas-ui/react'
 import { getChildOfType } from '@saas-ui/react-utils'
 
 import { ErrorBoundary } from '../app/error-boundary'
+
+import { MotionBox } from '../transitions'
+
+import { ResizeHandle, ResizeOptions, useResize } from '../resize'
+import { HTMLMotionProps } from 'framer-motion'
 
 export interface PageSidebarOptions {
   /**
@@ -82,25 +89,54 @@ if (__DEV__) {
 }
 
 interface PageSidebarContainerProps
-  extends HTMLChakraProps<'main'>,
-    ThemingProps<'PageSidebar'> {}
+  extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
+    Omit<ChakraProps, 'css'>,
+    ResizeOptions,
+    ThemingProps<'PageSidebar'> {
+  isOpen?: boolean
+}
 
 export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
   props,
 ) => {
-  const { children, ...containerProps } = omitThemingProps(props)
+  const { children, isOpen, isResizable, defaultWidth, ...containerProps } =
+    omitThemingProps(props)
 
   const styles = useMultiStyleConfig('PageSidebar', props)
 
+  const resize = useResize({
+    defaultWidth,
+    isResizable,
+    position: 'left',
+  })
+
+  const innerStyles: SystemStyleObject = {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+  }
+
   return (
     <StylesProvider value={styles}>
-      <chakra.div
+      <MotionBox
+        animate={isOpen ? 'enter' : 'exit'}
+        variants={{
+          enter: {
+            right: 0,
+            transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
+          },
+          exit: { right: '-100%' },
+        }}
+        __css={{
+          ...styles.container,
+        }}
         {...containerProps}
-        __css={styles.container}
         className={cx('saas-page-sidebar', props.className)}
+        {...resize.getContainerProps(props)}
       >
-        {children}
-      </chakra.div>
+        <chakra.div __css={innerStyles}>{children}</chakra.div>
+        {isResizable && <ResizeHandle {...resize.getHandleProps()} />}
+      </MotionBox>
     </StylesProvider>
   )
 }
@@ -134,8 +170,6 @@ export const PageSidebar: React.FC<PageSidebarProps> = (props) => {
         ) : (
           title
         )}
-
-        {toolbar}
       </PageSidebarHeader>
     )
   }
