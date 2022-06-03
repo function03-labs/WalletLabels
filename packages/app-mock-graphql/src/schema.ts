@@ -33,6 +33,7 @@ const typeDefs = gql`
     slug: String!
     plan: String
     email: String
+    logo: String
     members(
       after: UserWhereUniqueInput
       before: UserWhereUniqueInput

@@ -96,6 +96,7 @@ export const getOrganizations = () => {
       name: 'Saas UI',
       slug: 'saas-ui',
       email: 'hello@saas-ui.dev',
+      logo: '/img/saasui-round.png',
       subscription: {
         id: '1',
         plan: 'pro',
