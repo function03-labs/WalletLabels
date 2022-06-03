@@ -1,4 +1,9 @@
-import { chakra, HTMLChakraProps, keyframes } from '@chakra-ui/react'
+import {
+  chakra,
+  HTMLChakraProps,
+  keyframes,
+  useColorModeValue,
+} from '@chakra-ui/react'
 
 const dash = keyframes`
   from {
@@ -35,7 +40,10 @@ export const SaasUIGlyph: React.FC<LogoGlyph> = (props) => {
           <stop offset="1" stopColor="#52a1d8" />
         </linearGradient>
       </defs>
-      <path d="M22.61 62.24q-4.76-4.78-4.75-13.69V25.41h7.62v22.85q0 12.07 10.43 12.07t10.37-12.07V25.41h7.5v23.14q0 8.91-4.71 13.69t-13.22 4.77q-8.49 0-13.24-4.77ZM64.45 25.41h7.61v41h-7.61Z" />
+      <path
+        fill={useColorModeValue('black', 'white')}
+        d="M22.61 62.24q-4.76-4.78-4.75-13.69V25.41h7.62v22.85q0 12.07 10.43 12.07t10.37-12.07V25.41h7.5v23.14q0 8.91-4.71 13.69t-13.22 4.77q-8.49 0-13.24-4.77ZM64.45 25.41h7.61v41h-7.61Z"
+      />
       <chakra.rect
         x="2"
         y="2"
