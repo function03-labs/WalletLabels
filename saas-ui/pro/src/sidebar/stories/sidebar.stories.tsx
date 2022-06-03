@@ -3,6 +3,7 @@ import { Story, Meta } from '@storybook/react'
 import {
   Box,
   BoxProps,
+  Button,
   Heading,
   HStack,
   Icon,
@@ -11,6 +12,8 @@ import {
 } from '@chakra-ui/react'
 
 import { FiHome, FiUsers, FiSettings, FiHash } from 'react-icons/fi'
+
+import { FaHome, FaUsers, FaCog, FaHashtag } from 'react-icons/fa'
 
 import { AppShell } from '../../app-shell'
 
@@ -60,13 +63,24 @@ WithLinks.args = {
   ),
 }
 
-export const WithLinkIcons = Template.bind({})
-WithLinkIcons.args = {
+export const WithFeatherIcons = Template.bind({})
+WithFeatherIcons.args = {
   children: (
     <SidebarNav>
       <SidebarLink label="Home" icon={<FiHome />} />
       <SidebarLink label="Users" icon={<FiUsers />} />
       <SidebarLink label="Settings" icon={<FiSettings />} />
+    </SidebarNav>
+  ),
+}
+
+export const WithFaIcons = Template.bind({})
+WithFaIcons.args = {
+  children: (
+    <SidebarNav>
+      <SidebarLink label="Home" icon={<FaHome />} />
+      <SidebarLink label="Users" icon={<FaUsers />} />
+      <SidebarLink label="Settings" icon={<FaCog />} />
     </SidebarNav>
   ),
 }
@@ -139,9 +153,13 @@ VariantCondensed.args = {
         <SaasUIGlyph width="24px" />
       </SidebarNav>
       <SidebarNav>
-        <SidebarLink label="Home" icon={<FiHome />} />
-        <SidebarLink label="Users" icon={<FiUsers />} />
-        <SidebarLink label="Settings" icon={<FiSettings />} />
+        <SidebarLink label="Home" icon={<FiHome size="1.3em" />} size="md" />
+        <SidebarLink label="Users" icon={<FiUsers size="1.3em" />} size="md" />
+        <SidebarLink
+          label="Settings"
+          icon={<FiSettings size="1.3em" />}
+          size="md"
+        />
       </SidebarNav>
     </>
   ),
@@ -157,9 +175,24 @@ VariantCondensedColor.args = {
         <SaasUIGlyph width="24px" variant="solid" color="white" />
       </SidebarNav>
       <SidebarNav>
-        <SidebarLink label="Home" icon={<FiHome />} color="white" />
-        <SidebarLink label="Users" icon={<FiUsers />} color="white" />
-        <SidebarLink label="Settings" icon={<FiSettings />} color="white" />
+        <SidebarLink
+          label="Home"
+          icon={<FiHome size="1.3em" />}
+          color="white"
+          size="md"
+        />
+        <SidebarLink
+          label="Users"
+          icon={<FiUsers size="1.3em" />}
+          color="white"
+          size="md"
+        />
+        <SidebarLink
+          label="Settings"
+          icon={<FiSettings size="1.3em" />}
+          color="white"
+          size="md"
+        />
       </SidebarNav>
     </>
   ),

@@ -1,24 +1,29 @@
-import { HStack, Text, Avatar, Spacer } from '@chakra-ui/react'
+import {
+  HStack,
+  Text,
+  Avatar,
+  Spacer,
+  Menu,
+  MenuButton,
+  MenuList,
+  AvatarProps,
+} from '@chakra-ui/react'
 import { FiCheck } from 'react-icons/fi'
-import { SidebarMenu, useTenancy } from '@saas-ui/pro'
-import { MenuDivider, MenuGroup, MenuItem } from '@saas-ui/menu'
+import { useTenancy } from '@saas-ui/pro'
+import { MenuGroup, MenuItem } from '@saas-ui/menu'
 
 import { useGetTenants } from '../../hooks/use-get-tenants'
+import { Button } from '@saas-ui/react'
 
-interface TenantLogoProps {
-  label: string
-  src?: string
-}
-
-const TenantLogo = ({ label, src }: TenantLogoProps) => {
+const TenantLogo: React.FC<AvatarProps> = (props) => {
+  const { src, ...rest } = props
   return (
     <Avatar
       display="inline-block"
-      name={label}
       src={src}
       size="xs"
-      me="1em"
-      borderRadius={src ? 'sm' : 'full'}
+      borderRadius="full"
+      {...rest}
     />
   )
 }
@@ -44,32 +49,41 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
   })()
 
   return (
-    <SidebarMenu
-      label={activeTenant?.label}
-      icon={<TenantLogo label={activeTenant?.label} />}
-      buttonProps={{ className: 'tenant-menu' }}
-    >
-      <MenuGroup title={title}>
-        {tenants.map(({ id, slug, label, ...props }) => {
-          return (
-            <MenuItem
-              key={id}
-              value={id}
-              icon={<TenantLogo label={label} />}
-              isTruncated
-              onClick={() => setTenant(slug)}
-              {...props}
-            >
-              <HStack>
-                <Text>{label}</Text>
-                <Spacer />
-                {id === activeTenant?.id ? <FiCheck /> : null}
-              </HStack>
-            </MenuItem>
-          )
-        })}
-      </MenuGroup>
-      {children}
-    </SidebarMenu>
+    <Menu>
+      <MenuButton
+        as={Button}
+        leftIcon={
+          <TenantLogo name={activeTenant?.label} src={activeTenant?.logo} />
+        }
+        className="tenant-menu"
+        variant="ghost"
+        isTruncated
+      >
+        {activeTenant?.label}
+      </MenuButton>
+      <MenuList zIndex="dropdown">
+        <MenuGroup title={title}>
+          {tenants.map(({ id, slug, label, logo, ...props }) => {
+            return (
+              <MenuItem
+                key={id}
+                value={id}
+                icon={<TenantLogo name={label} src={logo} />}
+                isTruncated
+                onClick={() => setTenant(slug)}
+                {...props}
+              >
+                <HStack>
+                  <Text>{label}</Text>
+                  <Spacer />
+                  {id === activeTenant?.id ? <FiCheck /> : null}
+                </HStack>
+              </MenuItem>
+            )
+          })}
+        </MenuGroup>
+        {children}
+      </MenuList>
+    </Menu>
   )
 }

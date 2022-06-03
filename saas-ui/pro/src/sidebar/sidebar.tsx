@@ -488,6 +488,7 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
     className,
     tooltip,
     isActive: isActiveProp,
+    children,
     ...rest
   } = omitThemingProps(props)
   const RouterLink = useLink()
@@ -521,6 +522,7 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
       >
         {icon && <SidebarLinkIcon>{icon}</SidebarLinkIcon>}
         <SidebarLinkLabel>{label}</SidebarLinkLabel>
+        {children}
       </chakra.span>
     </chakra.a>
   )
@@ -581,6 +583,10 @@ export type SidebarMenuProps = {
   menuListProps?: MenuListProps
 }
 
+/**
+ * DEPRECATED
+ * Will be removed in 0.5.x
+ */
 export const SidebarMenu = forwardRef<SidebarMenuProps, typeof MenuButton>(
   (props, ref) => {
     const { label, icon, children, buttonProps, menuListProps, ...rest } = props

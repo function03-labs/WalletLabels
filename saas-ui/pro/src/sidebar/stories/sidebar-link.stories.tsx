@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Center, Stack } from '@chakra-ui/react'
+import { Badge, Center, Stack } from '@chakra-ui/react'
 
 import { FiHome } from 'react-icons/fi'
 
@@ -44,6 +44,11 @@ export const WithBadge = Template.bind({})
 WithBadge.args = {
   label: 'Link',
   icon: <FiHome />,
+  children: (
+    <>
+      <Badge bg="none">10</Badge>
+    </>
+  ),
 }
 
 export const VariantSubtle = Template.bind({})

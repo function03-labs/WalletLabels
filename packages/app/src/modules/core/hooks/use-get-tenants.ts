@@ -8,6 +8,7 @@ export const useGetTenants = () => {
       id: organization.id,
       slug: organization.slug,
       label: organization.name || organization.id,
+      logo: organization.logo,
       href: `/app/${organization.slug}`,
     })) || []
   )
