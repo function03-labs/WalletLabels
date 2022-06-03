@@ -100,8 +100,9 @@ export const getOrganizations = () => {
       subscription: {
         id: '1',
         plan: 'pro',
-        status: 'active',
+        status: 'trialing',
         startedAt: new Date('2022-01-01'),
+        trialEndsAt: addDays(new Date(), 14),
       },
     },
 
