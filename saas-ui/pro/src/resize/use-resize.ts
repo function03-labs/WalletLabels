@@ -16,7 +16,7 @@ type Limits = {
 
 export type ResizeHandler = (size: Dimensions) => void
 
-export interface UseResizeOptions {
+export interface ResizeOptions {
   /**
    * The default width
    */
@@ -31,13 +31,22 @@ export interface UseResizeOptions {
   isResizable?: boolean
 }
 
+export interface UseResizeProps extends ResizeOptions {
+  position?: 'right' | 'left'
+}
+
 /**
  * Hook used to create horizonally resizable elements.
  *
  * Automatically detects min/max width from css properties.
  */
-export const useResize = (props: UseResizeOptions) => {
-  const { defaultWidth = 280, onResize, isResizable } = props
+export const useResize = (props: UseResizeProps) => {
+  const {
+    defaultWidth = 280,
+    onResize,
+    isResizable,
+    position = 'right',
+  } = props
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [isResizing, setIsResizing] = React.useState(false)
   const [width, setWidth] = React.useState(defaultWidth)
@@ -59,7 +68,13 @@ export const useResize = (props: UseResizeOptions) => {
       const r = containerRef.current.getBoundingClientRect()
       const { minWidth, maxWidth } = limitsRef.current
 
-      let w = event.clientX - (r?.left || 0)
+      let w
+      if (position === 'right') {
+        w = event.clientX - (r?.left || 0)
+      } else {
+        w = r.right - event.clientX
+      }
+
       if (w < r.width && minWidth) {
         w = Math.max(w, minWidth)
       } else if (w > r.width && maxWidth) {
@@ -110,6 +125,7 @@ export const useResize = (props: UseResizeOptions) => {
   const getHandleProps = React.useCallback(
     () => ({
       onMouseDown: () => setIsResizing(true),
+      [position]: '-5px',
     }),
     [],
   )

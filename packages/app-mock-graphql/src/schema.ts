@@ -33,6 +33,7 @@ const typeDefs = gql`
     slug: String!
     plan: String
     email: String
+    logo: String
     members(
       after: UserWhereUniqueInput
       before: UserWhereUniqueInput
@@ -77,7 +78,7 @@ const typeDefs = gql`
     organization(id: String, slug: String): Organization
     organizations: [Organization]
     subscription(slug: String): Subscription
-    contacts: [Contact]
+    contacts(type: String): [Contact]
     contact(id: String): Contact
   }
 
@@ -108,6 +109,7 @@ const typeDefs = gql`
     fullName: String
     status: String
     type: String
+    tags: [String]
     createdAt: DateTime
     updatedAt: DateTime
   }

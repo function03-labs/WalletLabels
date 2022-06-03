@@ -26,7 +26,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       borderBottomWidth: '1px',
     },
     title: {
-      fontWeight: 'bold',
+      fontWeight: 'semibold',
       fontSize: 'md',
     },
     description: {

@@ -35,9 +35,8 @@ export const Authenticated: React.FC<AuthProps> = ({ children, ...rest }) => {
 
   const { isInitializing, isAuthenticated, billing } = useInitApp()
 
-  const { view, title } = authPaths[location.pathname]
-    ? authPaths[location.pathname]
-    : authPaths['/login']
+  const { view, title } =
+    authPaths[location?.pathname || '/login'] || authPaths['/login']
 
   // Rendering the auth screens here so they are rendered in place,
   // on the current route, without the need to redirect.

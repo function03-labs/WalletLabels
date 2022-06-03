@@ -9,7 +9,8 @@ import {
 import { IconButton } from '@saas-ui/react'
 import { useDataGridContext } from './data-grid'
 
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { ChevronLeftIcon, ChevronRightIcon } from '../icons'
+
 import { cx } from '@chakra-ui/utils'
 import { ButtonGroup, FormControl, FormLabel, Input } from '@chakra-ui/react'
 
@@ -82,13 +83,13 @@ export const DataGridPagination: React.FC<DataGridPaginationProps> = (
         <IconButton
           onClick={previousPage}
           isDisabled={!canPreviousPage}
-          icon={<FiChevronLeft />}
+          icon={<ChevronLeftIcon />}
           aria-label="Previous page"
         />
         <IconButton
           onClick={nextPage}
           isDisabled={!canNextPage}
-          icon={<FiChevronRight />}
+          icon={<ChevronRightIcon />}
           aria-label="Next page"
         />
       </ButtonGroup>

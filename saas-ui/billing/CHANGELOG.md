@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.2.1
+
+### Patch Changes
+
+- Only publish source files.
+
 ## 0.2.0
 
 ### Minor Changes

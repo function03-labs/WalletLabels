@@ -90,7 +90,7 @@ const variantNeutral: PartsStyleFunction<typeof parts> = (props) => {
     },
     icon: {
       opacity: isActive ? 1 : 0.6,
-      '.sui-sidebar-link:hover &': {
+      '.saas-sidebar-link:hover &': {
         opacity: '1',
       },
     },
@@ -193,28 +193,28 @@ export default {
       link: baseTheme.components.Button.sizes.xs,
       icon: {
         me: 2,
-        fontSize: '1em',
+        fontSize: 'xs',
       },
     },
     sm: {
       link: baseTheme.components.Button.sizes.sm,
       icon: {
         me: 2,
-        fontSize: '1.1em',
+        fontSize: 'sm',
       },
     },
     md: {
       link: baseTheme.components.Button.sizes.md,
       icon: {
         me: 2,
-        fontSize: '1.2em',
+        fontSize: 'md',
       },
     },
     lg: {
       link: baseTheme.components.Button.sizes.lg,
       icon: {
-        me: 3,
-        fontSize: '1.4em',
+        me: 2,
+        fontSize: 'lg',
       },
     },
   },

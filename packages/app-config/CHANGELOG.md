@@ -1,5 +1,48 @@
 # @app/config
 
+## 0.0.17
+
+### Patch Changes
+
+- c8ac3a3: Added hotkey "/" that focuses the main search.
+  - @ui/core@0.0.26
+
+## 0.0.16
+
+### Patch Changes
+
+- @ui/core@0.0.25
+
+## 0.0.15
+
+### Patch Changes
+
+- @ui/core@0.0.24
+
+## 0.0.14
+
+### Patch Changes
+
+- @ui/core@0.0.23
+
+## 0.0.13
+
+### Patch Changes
+
+- @ui/core@0.0.22
+
+## 0.0.12
+
+### Patch Changes
+
+- @ui/core@0.0.21
+
+## 0.0.11
+
+### Patch Changes
+
+- @ui/core@0.0.20
+
 ## 0.0.10
 
 ### Patch Changes

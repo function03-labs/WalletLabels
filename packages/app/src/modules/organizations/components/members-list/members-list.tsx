@@ -14,7 +14,6 @@ import {
   Field,
   FormLayout,
   Option,
-  SearchInput,
   useModals,
 } from '@saas-ui/react'
 import { useSearchQuery } from '@saas-ui/pro'
@@ -31,6 +30,8 @@ import {
   OverflowMenu,
   PersonaAvatar,
 } from '@saas-ui/react'
+
+import { SearchInput } from '@modules/core/components/search-input'
 
 export interface Member {
   id: string

@@ -22,33 +22,37 @@ import {
   IconButtonProps,
 } from '@chakra-ui/react'
 
-import { cx, __DEV__, runIfFn } from '@chakra-ui/utils'
+import { cx, __DEV__, runIfFn, dataAttr } from '@chakra-ui/utils'
 
 import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
-import { Menu, MenuButton, MenuButtonProps, MenuList } from '@saas-ui/menu'
-import { useLink } from '@saas-ui/provider'
 import {
+  Menu,
+  MenuButton,
+  MenuButtonProps,
+  MenuList,
+  useLink,
   CollapseProvider,
   useCollapseContext,
   useCollapse,
-} from '@saas-ui/collapse'
+} from '@saas-ui/react'
 
 export {
   MenuGroup as SidebarMenuGroup,
   MenuDivider as SidebarMenuDivider,
-} from '@chakra-ui/menu'
+} from '@chakra-ui/react'
 
-import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from './icons'
+import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from '../icons'
 
 import { SidebarProvider, useSidebarContext } from './use-sidebar'
-import { ResizeHandle, ResizeHandler, useResize } from '../resize'
+import { ResizeHandle, useResize, ResizeOptions } from '../resize'
 
-import { useActivePath } from '..'
+import { useActivePath } from '@saas-ui/router'
 
 export interface SidebarProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
     Omit<ChakraProps, 'css'>,
+    ResizeOptions,
     ThemingProps<'Sidebar'> {
   /**
    * Spacing between child elements.
@@ -60,18 +64,6 @@ export interface SidebarProps
    * @default object { sm: true, lg: false }
    */
   breakpoints?: Record<string, boolean>
-  /**
-   * Allow the sidebar to be resized.
-   */
-  isResizable?: boolean
-  /**
-   * Callback called when resize is completed.
-   */
-  onResize?: ResizeHandler
-  /**
-   * The default sidebar width in pixels.
-   */
-  defaultWidth?: number
 }
 
 const MotionBox = chakra(motion.div)
@@ -498,10 +490,14 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
     inset,
     className,
     tooltip,
+    isActive: isActiveProp,
+    children,
     ...rest
   } = omitThemingProps(props)
   const RouterLink = useLink()
-  const isActive = useActivePath(href)
+  const isActivePath = useActivePath(href)
+  const isActive =
+    typeof isActiveProp !== 'undefined' ? isActiveProp : isActivePath
   const { onClose, variant } = useSidebarContext()
 
   const isCondensed = variant === 'condensed'
@@ -517,7 +513,8 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
       {...rest}
       ref={ref}
       href={href}
-      className={cx('sui-sidebar-link', className)}
+      className={cx('saas-sidebar-link', className)}
+      data-active={dataAttr(isActive)}
       __css={styles.link}
     >
       <chakra.span
@@ -528,6 +525,7 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
       >
         {icon && <SidebarLinkIcon>{icon}</SidebarLinkIcon>}
         <SidebarLinkLabel>{label}</SidebarLinkLabel>
+        {children}
       </chakra.span>
     </chakra.a>
   )
@@ -588,6 +586,10 @@ export type SidebarMenuProps = {
   menuListProps?: MenuListProps
 }
 
+/**
+ * DEPRECATED
+ * Will be removed in 0.5.x
+ */
 export const SidebarMenu = forwardRef<SidebarMenuProps, typeof MenuButton>(
   (props, ref) => {
     const { label, icon, children, buttonProps, menuListProps, ...rest } = props

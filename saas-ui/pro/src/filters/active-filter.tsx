@@ -31,7 +31,7 @@ import {
 
 import { FilterMenu, FilterItem } from './filter-menu'
 
-import { FiX } from 'react-icons/fi'
+import { XIcon } from '../icons'
 import { ResponsiveMenu, ResponsiveMenuList } from '../menu'
 
 import {
@@ -320,7 +320,7 @@ export const ActiveFilterRemove: React.FC<ActiveFilterRemove> = (props) => {
   }
   return (
     <IconButton
-      icon={<FiX />}
+      icon={<XIcon />}
       as="div"
       aria-label="Remove filter"
       role="button"

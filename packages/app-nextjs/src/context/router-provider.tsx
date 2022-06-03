@@ -25,7 +25,7 @@ export function NextRouterProvider({ children }: NextRouterProviderProps) {
     back: router.back,
     params: router.query,
     location: {
-      pathname: router.pathname,
+      pathname: router.asPath,
     },
   }
 

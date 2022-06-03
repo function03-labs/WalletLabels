@@ -23,6 +23,9 @@ import {
 } from '@saas-ui/pro'
 
 import { Filters, IdType } from 'react-table'
+
+import { useDebouncedCallback } from '@react-hookz/web'
+
 import { DatePickerModal } from '@saas-ui/date-picker'
 
 interface ListPageProps<D extends object>
@@ -39,6 +42,7 @@ interface ListPageProps<D extends object>
   bulkActions?: React.ReactNode
   filters?: FilterItem[]
   operators?: FilterOperators
+  searchQuery?: string
 }
 
 /**
@@ -59,6 +63,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     bulkActions,
     filters,
     operators,
+    searchQuery,
     initialState = {
       pageSize: 20,
     },
@@ -93,6 +98,18 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     )
   }, [])
 
+  const onSearch = useDebouncedCallback(
+    (query?: string) => {
+      gridRef.current?.setGlobalFilter?.(query)
+    },
+    [],
+    100,
+  )
+
+  React.useEffect(() => {
+    onSearch(searchQuery)
+  }, [searchQuery])
+
   const modals = useModals()
 
   const onBeforeEnableFilter = React.useCallback(
@@ -124,7 +141,9 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   let content
   if (!data || !data.length) {
     content = (
-      <Box p="20">{emptyState || <EmptyState title="No results" />}</Box>
+      <Box p="20">
+        {emptyState || <EmptyState title="No results" variant="no-results" />}
+      </Box>
     )
   } else {
     content = (
@@ -142,6 +161,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         noResults={NoFilteredResults}
         manualSortBy={!!onSortChange}
         autoResetFilters={false}
+        autoResetGlobalFilter={false}
       >
         <DataGridPagination />
       </DataGrid>

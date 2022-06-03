@@ -23,6 +23,10 @@ export const RouterContext = React.createContext<RouterContextValue | null>(
   null,
 )
 
+export interface RouterProviderProps {
+  value: RouterContextValue
+  children: React.ReactNode
+}
 /**
  * A simple to wrapper to abstract basic router functionality
  */
@@ -38,10 +42,43 @@ export const useNavigate = () => {
 
 export const useParams = () => {
   const context = useRouterContext()
-  return context?.params
+  return context?.params || {}
 }
 
-export const useLocation = () => {
+export const useLocation = (): RouterLocation => {
   const context = useRouterContext()
-  return context?.location || window.location
+  if (context?.location) {
+    return context.location
+  } else if (typeof window !== 'undefined') {
+    return window.location
+  }
+  return {
+    pathname: '',
+  }
+}
+
+export interface UseActivePathOptions {
+  /**
+   * Set to false to match the first parth of the path.
+   * eg: /contacts will match /contacts/people
+   */
+  end?: boolean
+}
+
+/**
+ * Matches the given path to the current active path.
+ * @param path string
+ * @param options UseActivePathOptions
+ * @returns boolean
+ */
+export function useActivePath(
+  path: string,
+  options: UseActivePathOptions = {},
+) {
+  const { end = true } = options
+  const location = useLocation()
+  return !!React.useMemo(
+    () => location?.pathname.match(new RegExp(`${path}${end ? '$' : ''}`)),
+    [location?.pathname, path, options],
+  )
 }

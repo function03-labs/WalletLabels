@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
     ...styles.container,
   }
 
-  const navbarStyles = {
+  const navbarStyles: SystemStyleObject = {
     display: 'flex',
     minH: '60px',
     maxW: 'full',
@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
   }
 
   return (
-    <chakra.div __css={containerStyles} {...containerProps}>
+    <chakra.div {...containerProps} __css={containerStyles}>
       <chakra.div __css={navbarStyles}>{children}</chakra.div>
     </chakra.div>
   )

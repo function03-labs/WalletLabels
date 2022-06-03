@@ -17,18 +17,17 @@ import {
   SidebarProps,
   SidebarNav,
   SidebarLink,
-  SidebarDivider,
   SidebarNavGroup,
   SidebarOverflow,
   Command,
   ResizeHandler,
-  useTenancy,
   SidebarLinkProps,
 } from '@saas-ui/pro'
 
+import { useActivePath, useNavigate } from '@saas-ui/router'
+
 import {
   IconButton,
-  SearchInput,
   MenuItem,
   MenuDivider,
   useModals,
@@ -42,14 +41,20 @@ import { UserMenu } from './user-menu'
 import { ElectronNav } from './electron-nav'
 
 import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
-import { useRouter } from 'next/router'
 import { usePath } from '@modules/core/hooks/use-path'
+
+import { SearchInput } from '@modules/core/components/search-input'
 
 export interface AppSidebarProps extends SidebarProps {}
 
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const modals = useModals()
   const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
+  const searchRef = React.useRef<HTMLInputElement>(null)
+
+  const searchCommand = useHotkeysShortcut('general.search', () => {
+    searchRef.current?.focus()
+  })
 
   const { variant, colorScheme } = props
 
@@ -93,7 +98,11 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           {isCondensed ? (
             <IconButton icon={<FiSearch />} aria-label="Search" />
           ) : (
-            <SearchInput size="sm" />
+            <SearchInput
+              ref={searchRef}
+              size="sm"
+              rightElement={<Command>{searchCommand}</Command>}
+            />
           )}
         </Box>
         <SidebarOverflow>
@@ -113,6 +122,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               />
               <AppSidebarLink
                 href={usePath('contacts')}
+                isActive={useActivePath('contacts', { end: false })}
                 label="Contacts"
                 icon={<FiUsers />}
                 hotkey="navigation.contacts"
@@ -189,14 +199,14 @@ interface AppSidebarlink extends SidebarLinkProps {
 
 const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
   const { href, label, hotkey, ...rest } = props
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const command = useHotkeysShortcut(
     hotkey,
     () => {
-      router.push(href)
+      navigate(href)
     },
-    [router, href],
+    [href],
   )
 
   return (

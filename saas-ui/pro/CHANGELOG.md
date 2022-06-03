@@ -1,5 +1,69 @@
 # @saas-ui/pro
 
+## 0.4.0
+
+### Minor Changes
+
+- d16d663: Updated SidebarLink icon sizes to be consistant with Chakra UI buttons.
+
+### Patch Changes
+
+- d16d663: DEPRECATED: SidebarMenu will be removed from 0.5.x onwards, as it's redundant and missing important features, use Menu instead.
+- 1d7b35f: PageSidebar now accepts isResizable and isOpen properties, making is resizable/collapsible.
+- 5c3e69c: Changed SidebarLink classname prefix to 'saas'
+- 1d7b35f: useResize now supports resizing right aligned elements.
+- Updated dependencies [c502085]
+  - @saas-ui/router@0.1.4
+
+## 0.3.17
+
+### Patch Changes
+
+- d50c603: Added proper zIndex value to BulkActions.
+- ab9d51e: Now exporting the NoResults component from DataGrid.
+- 7ca6e30: useSearchQuery now accepts a default value and items are optional.
+- ab9d51e: Added inline search (globalFilter) functionality to ListPage.
+- 165f41c: DataGrid columns no longer shift width on filtering.
+- e24c5a6: Added @types/react-table as dev dependency.
+- Updated dependencies [165f41c]
+  - @saas-ui/router@0.1.3
+
+## 0.3.16
+
+### Patch Changes
+
+- Only publish source files.
+- Updated dependencies
+  - @saas-ui/router@0.1.2
+
+## 0.3.15
+
+### Patch Changes
+
+- a852a8c: SidebarLink now renders data-active attribute when isActive is true.
+- 632db56: Importing dependencies directly from @saas-ui/react to make sure there aren't any version mismatches.
+
+## 0.3.14
+
+### Patch Changes
+
+- 335b13b: Moved useActivePath to @saas-ui/router.
+- Updated dependencies [335b13b]
+  - @saas-ui/router@0.1.1
+
+## 0.3.13
+
+### Patch Changes
+
+- 821fb61: Removed dependency on react-icons and added react-icons to devDependencies.
+
+## 0.3.12
+
+### Patch Changes
+
+- 3dd0eed: Fixed internal ErrorBoundary import.
+- 6657bdd: No longer require `downlevelIteration` to be true in tsconfig.
+
 ## 0.3.11
 
 ### Patch Changes

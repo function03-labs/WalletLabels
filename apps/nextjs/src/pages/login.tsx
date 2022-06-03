@@ -19,7 +19,7 @@ export default createPage({
 
     React.useEffect(() => {
       if (isAuthenticated) {
-        router.push('/')
+        router.push('/app')
       }
     }, [isAuthenticated])
 

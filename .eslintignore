@@ -6,3 +6,5 @@
 **/*.graphqls.d.ts
 
 apps/electron/app
+
+examples/**/*

@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 
+import { IconContext } from 'react-icons'
+
 import {
   SaasProvider,
   AuthProvider,
@@ -49,21 +51,23 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
   } = props
   return (
     <QueryClientProvider client={queryClient}>
-      <SaasProvider
-        linkComponent={linkComponent}
-        onError={onError}
-        theme={theme}
-      >
-        <AuthProvider {...authService}>
-          <FeaturesProvider value={features}>
-            <I18nProvider>
-              <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-                <ModalsProvider>{children}</ModalsProvider>
-              </TenancyProvider>
-            </I18nProvider>
-          </FeaturesProvider>
-        </AuthProvider>
-      </SaasProvider>
+      <IconContext.Provider value={{ className: 'react-icon', size: '1.1em' }}>
+        <SaasProvider
+          linkComponent={linkComponent}
+          onError={onError}
+          theme={theme}
+        >
+          <AuthProvider {...authService}>
+            <FeaturesProvider value={features}>
+              <I18nProvider>
+                <TenancyProvider tenant={tenant} onChange={onTenantChange}>
+                  <ModalsProvider>{children}</ModalsProvider>
+                </TenancyProvider>
+              </I18nProvider>
+            </FeaturesProvider>
+          </AuthProvider>
+        </SaasProvider>
+      </IconContext.Provider>
     </QueryClientProvider>
   )
 }

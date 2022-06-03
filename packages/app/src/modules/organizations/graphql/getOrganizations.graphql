@@ -4,5 +4,6 @@ query GetOrganizations {
     name
     slug
     plan
+    logo
   }
 }

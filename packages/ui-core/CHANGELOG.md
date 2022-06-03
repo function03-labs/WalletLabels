@@ -1,5 +1,65 @@
 # @ui/core
 
+## 0.0.26
+
+### Patch Changes
+
+- Updated dependencies [d16d663]
+- Updated dependencies [1d7b35f]
+- Updated dependencies [5c3e69c]
+- Updated dependencies [d16d663]
+- Updated dependencies [1d7b35f]
+  - @saas-ui/pro@0.4.0
+
+## 0.0.25
+
+### Patch Changes
+
+- Updated dependencies [d50c603]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [7ca6e30]
+- Updated dependencies [ab9d51e]
+- Updated dependencies [165f41c]
+- Updated dependencies [e24c5a6]
+  - @saas-ui/pro@0.3.17
+
+## 0.0.24
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro@0.3.16
+
+## 0.0.23
+
+### Patch Changes
+
+- Updated dependencies [a852a8c]
+- Updated dependencies [632db56]
+  - @saas-ui/pro@0.3.15
+
+## 0.0.22
+
+### Patch Changes
+
+- Updated dependencies [335b13b]
+  - @saas-ui/pro@0.3.14
+
+## 0.0.21
+
+### Patch Changes
+
+- Updated dependencies [821fb61]
+  - @saas-ui/pro@0.3.13
+
+## 0.0.20
+
+### Patch Changes
+
+- Updated dependencies [3dd0eed]
+- Updated dependencies [6657bdd]
+  - @saas-ui/pro@0.3.12
+
 ## 0.0.19
 
 ### Patch Changes

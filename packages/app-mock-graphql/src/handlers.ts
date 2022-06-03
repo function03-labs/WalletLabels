@@ -88,11 +88,20 @@ export const handlers = [
   graphql.query<GetContactsQuery, GetContactsQueryVariables>(
     'GetContacts',
     (req, res, ctx) => {
-      console.log()
+      const type = (() => {
+        switch (req.body?.variables.type) {
+          case 'customers':
+            return 'customer'
+          case 'leads':
+            return 'lead'
+        }
+      })()
+
+      const contacts = getContacts(type)
 
       return res(
         ctx.data({
-          contacts: getContacts(),
+          contacts,
         }),
       )
     },

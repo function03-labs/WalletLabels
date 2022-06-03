@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SaasContext } from '@saas-ui/provider'
+import { SaasContext } from '@saas-ui/react'
 
 export interface ErrorBoundaryProps {
   errorComponent?: React.ReactNode

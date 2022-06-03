@@ -1,16 +1,18 @@
 {
   "name": "app",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "main": "src/index.ts",
   "dependencies": {
     "@app/config": "workspace:*",
     "@app/i18n": "workspace:*",
     "@types/react-table": "^7.7.12",
     "@ui/core": "workspace:*",
+    "react-icons": "^4.3.1",
     "yup": "^0.32.11"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
+    "@react-hookz/web": "^13.1.0",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
     "@saas-ui/date-picker": "workspace:*",

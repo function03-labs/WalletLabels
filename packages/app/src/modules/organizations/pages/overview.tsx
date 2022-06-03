@@ -54,6 +54,7 @@ export function OverviewPage() {
         href="https://appulse.gumroad.com/l/saas-ui-pro-pre-order"
         label="Pre-order"
         colorScheme="primary"
+        variant="solid"
         className="pre-order"
       />
     </Toolbar>

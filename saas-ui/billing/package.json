@@ -1,12 +1,16 @@
 {
   "name": "@saas-ui/billing",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "exports": {
     "default": "./src/index.ts"
   },
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
+  "files": [
+    "src",
+    "index.ts"
+  ],
   "scripts": {
     "bundle": "yarn pack --out ../dist/%s-%v.tgz"
   },

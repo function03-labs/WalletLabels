@@ -24,6 +24,7 @@ coverage
 
 # next.js
 .next/
+.nextron/
 out/
 
 # production

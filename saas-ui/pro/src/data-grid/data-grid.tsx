@@ -5,6 +5,7 @@ import {
   useRowSelect,
   usePagination,
   useFilters,
+  useGlobalFilter,
   TableInstance,
   TableOptions,
   TableState,
@@ -34,7 +35,7 @@ import {
 
 import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
 
-import { ChevronUpIcon, ChevronDownIcon } from './icons'
+import { ChevronUpIcon, ChevronDownIcon } from '../icons'
 
 import { Link } from '@saas-ui/react'
 
@@ -126,14 +127,12 @@ export const DataGrid = React.forwardRef(
       columns,
       data,
       initialState,
-      autoResetHiddenColumns,
       stateReducer,
       useControlledState,
       getSubRows,
       defaultColumn,
       getRowId,
       manualRowSelectKey,
-      autoResetSelectedRow,
       isSortable,
       isSelectable,
       isHoverable,
@@ -175,20 +174,20 @@ export const DataGrid = React.forwardRef(
         }, []),
         data,
         initialState: React.useMemo(() => initialState, []),
-        autoResetHiddenColumns,
         stateReducer,
         useControlledState,
         defaultColumn,
         getSubRows,
         getRowId,
         manualRowSelectKey,
-        autoResetSelectedRow,
+
         manualPagination: pageCount !== undefined,
         pageCount,
         ...rest,
       },
       ...plugins,
       useFilters,
+      useGlobalFilter,
       useSortBy,
       usePagination,
       useRowSelect,
@@ -216,9 +215,8 @@ export const DataGrid = React.forwardRef(
       onSortChange?.(state.sortBy)
     }, [onSortChange, state.sortBy])
 
-    const noResults = state.filters.length && !rows.length && (
-      <NoResultsComponent onReset={onResetFilters} />
-    )
+    const noResults = (state.filters.length || state.globalFilter) &&
+      !rows.length && <NoResultsComponent onReset={onResetFilters} />
 
     const innerStyles = {
       ...styles.inner,
@@ -410,7 +408,7 @@ const useCheckboxColumn = <Data extends object>(enabled?: boolean) => {
       hooks.visibleColumns.push((columns) => [
         {
           id: 'selection',
-          width: '1%',
+          width: '50px',
           Header: ({ getToggleAllRowsSelectedProps }) => (
             <DataGridCheckbox {...getToggleAllRowsSelectedProps()} />
           ),

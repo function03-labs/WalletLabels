@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/router",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "exports": {
     ".": {
       "default": "./src/index.ts"
@@ -9,6 +9,10 @@
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
+  "files": [
+    "src",
+    "index.ts"
+  ],
   "scripts": {
     "bundle": "yarn pack --out ../dist/%s-%v.tgz"
   },

@@ -12,16 +12,17 @@ interface Result {
 }
 
 export interface UseSearchQueryOptions<T> {
-  items: Array<T>
+  items?: Array<T>
   fields?: string[]
+  defaultValue?: string
 }
 
 export const useSearchQuery = <T extends Result = Result>(
-  props: UseSearchQueryOptions<T>,
+  props: UseSearchQueryOptions<T> = {},
 ) => {
-  const { items, fields = ['id'] } = props
+  const { items, fields = ['id'], defaultValue = '' } = props
 
-  const [query, setQuery] = React.useState('')
+  const [query, setQuery] = React.useState(defaultValue)
 
   const results = React.useMemo(() => {
     if (!query || !query.length) {
@@ -30,7 +31,9 @@ export const useSearchQuery = <T extends Result = Result>(
 
     const re = query && new RegExp(escapeRegExp(query), 'i')
 
-    return items.filter((item) => fields.find((field) => item[field].match(re)))
+    return items?.filter((item) =>
+      fields.find((field) => item[field].match(re)),
+    )
   }, [query, items])
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = ({ target }) => {

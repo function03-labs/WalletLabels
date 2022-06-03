@@ -1,12 +1,13 @@
-query GetContacts {
-  contacts {
+query GetContacts($type: String) {
+  contacts(type: $type) {
     id
     firstName
     lastName
     fullName
     email
-    status
     type
+    tags
+    status
     createdAt
     updatedAt
   }

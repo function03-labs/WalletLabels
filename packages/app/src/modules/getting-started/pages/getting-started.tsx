@@ -1,6 +1,5 @@
 import * as React from 'react'
 import * as Yup from 'yup'
-import { useRouter } from 'next/router'
 
 import { Container, Text, ModalFooter, useDisclosure } from '@chakra-ui/react'
 
@@ -8,6 +7,7 @@ import { Field, FormLayout, SubmitButton, FormDialog } from '@saas-ui/react'
 import { Page } from '@saas-ui/pro'
 
 import { useCreateOrganizationMutation } from '@app/graphql'
+import { useNavigate } from '@saas-ui/router'
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -18,8 +18,7 @@ const schema = Yup.object().shape({
 })
 
 export function GettingStartedPage(props: any) {
-  const router = useRouter()
-
+  const navigate = useNavigate()
   const { mutateAsync: createOrganization } = useCreateOrganizationMutation()
 
   const disclosure = useDisclosure()
@@ -62,7 +61,7 @@ export function GettingStartedPage(props: any) {
                   throw new Error('Could not create a new organization.')
                 }
               })
-              .then((slug) => router.push(`/app/${slug}`))
+              .then((slug) => navigate(`/app/${slug}`))
           }}
           {...disclosure}
         >

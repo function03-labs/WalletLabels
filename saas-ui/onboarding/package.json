@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/onboarding",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "exports": {
     "default": "./src/index.ts"
   },
@@ -12,6 +12,10 @@
     "url": "git://github.com/saas-js/saas-ui-pro.git",
     "directory": "saas-ui/onboarding"
   },
+  "files": [
+    "src",
+    "index.ts"
+  ],
   "dependencies": {
     "@chakra-ui/utils": "^2.0.0",
     "react-joyride": "^2.4.0"

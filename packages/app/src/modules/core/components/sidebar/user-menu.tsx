@@ -1,4 +1,11 @@
-import { useColorMode, useDisclosure } from '@chakra-ui/react'
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  useColorMode,
+  useDisclosure,
+} from '@chakra-ui/react'
 
 import { SidebarMenu, useTenant } from '@saas-ui/pro'
 
@@ -35,16 +42,15 @@ export const UserMenu = () => {
   })
 
   return (
-    <>
-      <SidebarMenu
-        icon={
-          <PersonaAvatar
-            size="xs"
-            name={currentUser?.name || ''}
-            src={currentUser?.avatar || undefined}
-          />
-        }
-      >
+    <Menu>
+      <MenuButton as={Button} variant="ghost" aria-label="User menu">
+        <PersonaAvatar
+          size="xs"
+          name={currentUser?.name || ''}
+          src={currentUser?.avatar || undefined}
+        />
+      </MenuButton>
+      <MenuList zIndex="dropdown">
         <MenuGroup title={currentUser?.name || ''}>
           <MenuItem href={usePath(`/settings/account`)} label="Profile" />
           <Has flag="settings">
@@ -73,8 +79,8 @@ export const UserMenu = () => {
           onClick={() => logOut()}
           label="Log out"
         />
-      </SidebarMenu>
+      </MenuList>
       <HotkeysWindow {...hotkeysWindow} />
-    </>
+    </Menu>
   )
 }

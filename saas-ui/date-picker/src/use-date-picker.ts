@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ButtonProps } from '@chakra-ui/react'
-
+import { PropGetterV2 } from '@chakra-ui/react-utils'
 import { dataAttr } from '@chakra-ui/utils'
 
 import setYear from 'date-fns/setYear'
@@ -115,7 +115,9 @@ export const useYears = () => {
     years.push(i)
   }
 
-  const getLabelProps = (props?: ButtonProps) => {
+  const getLabelProps: PropGetterV2<'button', ButtonProps> = (
+    props?: ButtonProps,
+  ) => {
     return {
       variant: 'ghost',
       ...props,

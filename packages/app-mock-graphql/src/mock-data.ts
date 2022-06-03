@@ -1,4 +1,5 @@
 import {
+  rand,
   randEmail,
   randFullName,
   randUser,
@@ -10,7 +11,7 @@ import {
 import addDays from 'date-fns/addDays'
 import subDays from 'date-fns/subDays'
 
-import { Organization } from '@app/graphql'
+import { Organization, Contact } from '@app/graphql'
 
 import { createMockStore } from './mock-store'
 import { DeepPartial } from './types'
@@ -22,7 +23,9 @@ interface OrganizationsStore extends DeepPartial<Organization> {
 export const organizationStore =
   createMockStore<OrganizationsStore>('organizations')
 
-const mapContact = (user: User) => {
+const contactsStore: Record<string, Contact[]> = {}
+
+const mapContact = (user: User, type?: string) => {
   const { id, firstName, lastName, email } = user
   return {
     id,
@@ -30,8 +33,8 @@ const mapContact = (user: User) => {
     lastName,
     fullName: [firstName, lastName].join(' '),
     email,
-    status: 'new',
-    type: 'lead',
+    status: rand(['new', 'active', 'inactive']),
+    type: type || rand(['lead', 'customer']),
     createdAt: randBetweenDate({
       from: new Date('01/01/2020'),
       to: new Date(),
@@ -64,8 +67,16 @@ export const getCurrentUser = () => {
 
 export const getContact = () => mapContact(randUser())
 
-export const getContacts = () => {
-  return randUser({ length: 100 }).map(mapContact)
+export const getContacts = (type?: string, { refresh = false } = {}) => {
+  const key = type || 'all'
+  if (!refresh && contactsStore[key]) {
+    return contactsStore[key]
+  }
+  const contacts = randUser({ length: 100 }).map((user) =>
+    mapContact(user, type),
+  )
+  contactsStore[key] = contacts
+  return contacts
 }
 
 export const getOrganization = () => {
@@ -85,11 +96,13 @@ export const getOrganizations = () => {
       name: 'Saas UI',
       slug: 'saas-ui',
       email: 'hello@saas-ui.dev',
+      logo: '/img/saasui-round.png',
       subscription: {
         id: '1',
         plan: 'pro',
-        status: 'active',
+        status: 'trialing',
         startedAt: new Date('2022-01-01'),
+        trialEndsAt: addDays(new Date(), 14),
       },
     },
 

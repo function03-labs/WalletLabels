@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/paddle",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "exports": {
     ".": {
       "default": "./src/index.ts"
@@ -15,6 +15,10 @@
   "scripts": {
     "bundle": "yarn pack --out ../dist/%s-%v.tgz"
   },
+  "files": [
+    "src",
+    "index.ts"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",
