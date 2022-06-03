@@ -1,5 +1,34 @@
 # app
 
+## 5.0.0
+
+### Minor Changes
+
+- d16d663: Added React icons Context and changed the default icon size to scale better with the Chakra UI theme.
+
+### Patch Changes
+
+- 1d7b35f: Added new Breadcrumbs component.
+- d16d663: TenantMenu and UserMenu no longer using SidebarMenu
+- d16d663: DEPRECATED: SidebarMenu will be removed from 0.5.x onwards, as it's redundant and missing important features, use Menu instead.
+- d28ed12: Fixed implicited any index errors.
+- c8ac3a3: Added hotkey "/" that focuses the main search.
+- 1d7b35f: Sidebar on the contacts view page is now collapsible.
+- c8ac3a3: New SearchInput wrapper with Feather icons to make all search inputs consistent thoughout the app.
+- d36458b: Removed dependencies on next/router.
+- f14e689: Render Saas UI logo correctly in dark mode.
+- Updated dependencies [d16d663]
+- Updated dependencies [c502085]
+- Updated dependencies [c8ac3a3]
+- Updated dependencies [1d7b35f]
+- Updated dependencies [5c3e69c]
+- Updated dependencies [d16d663]
+- Updated dependencies [1d7b35f]
+  - @saas-ui/pro@0.4.0
+  - @saas-ui/router@0.1.4
+  - @app/config@0.0.17
+  - @ui/core@0.0.26
+
 ## 4.0.6
 
 ### Patch Changes

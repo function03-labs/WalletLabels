@@ -1,5 +1,13 @@
 # @app/nextjs
 
+## 0.0.2
+
+### Patch Changes
+
+- d2f3cab: Added Saas UI logo to mock data.
+- Updated dependencies [c502085]
+  - @saas-ui/router@0.1.4
+
 ## null
 
 ### Patch Changes

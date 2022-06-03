@@ -1,5 +1,20 @@
 # @saas-ui/pro
 
+## 0.4.0
+
+### Minor Changes
+
+- d16d663: Updated SidebarLink icon sizes to be consistant with Chakra UI buttons.
+
+### Patch Changes
+
+- d16d663: DEPRECATED: SidebarMenu will be removed from 0.5.x onwards, as it's redundant and missing important features, use Menu instead.
+- 1d7b35f: PageSidebar now accepts isResizable and isOpen properties, making is resizable/collapsible.
+- 5c3e69c: Changed SidebarLink classname prefix to 'saas'
+- 1d7b35f: useResize now supports resizing right aligned elements.
+- Updated dependencies [c502085]
+  - @saas-ui/router@0.1.4
+
 ## 0.3.17
 
 ### Patch Changes

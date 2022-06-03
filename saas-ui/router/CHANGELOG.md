@@ -1,5 +1,11 @@
 # @saas-ui/router
 
+## 0.1.4
+
+### Patch Changes
+
+- c502085: Improved useLocation and useParams return values.
+
 ## 0.1.3
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @app/mock-graphql
 
+## 0.3.7
+
+### Patch Changes
+
+- d2f3cab: Added Saas UI logo to mock data.
+  - @app/graphql@0.1.8
+
 ## 0.3.6
 
 ### Patch Changes

@@ -1,5 +1,31 @@
 # nextjs-app
 
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies [1d7b35f]
+- Updated dependencies [d16d663]
+- Updated dependencies [d16d663]
+- Updated dependencies [d28ed12]
+- Updated dependencies [c502085]
+- Updated dependencies [c8ac3a3]
+- Updated dependencies [1d7b35f]
+- Updated dependencies [c8ac3a3]
+- Updated dependencies [d36458b]
+- Updated dependencies [1d7b35f]
+- Updated dependencies [5c3e69c]
+- Updated dependencies [d16d663]
+- Updated dependencies [d16d663]
+- Updated dependencies [d2f3cab]
+- Updated dependencies [f14e689]
+- Updated dependencies [1d7b35f]
+  - app@5.0.0
+  - @saas-ui/pro@0.4.0
+  - @saas-ui/router@0.1.4
+  - @app/mock-graphql@0.3.7
+  - @ui/core@0.0.26
+
 ## 1.2.8
 
 ### Patch Changes
