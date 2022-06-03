@@ -1,5 +1,6 @@
 {
   "name": "@app/test-utils",
+  "version": "0.0.1",
   "dependencies": {
     "@app/mock-graphql": "workspace:*",
     "common-tags": "^1.8.1"

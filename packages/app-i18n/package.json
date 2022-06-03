@@ -1,6 +1,7 @@
 {
   "name": "@app/i18n",
   "main": "src/index",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "extract": "formatjs extract",
