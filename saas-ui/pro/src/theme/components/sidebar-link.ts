@@ -90,7 +90,7 @@ const variantNeutral: PartsStyleFunction<typeof parts> = (props) => {
     },
     icon: {
       opacity: isActive ? 1 : 0.6,
-      '.sui-sidebar-link:hover &': {
+      '.saas-sidebar-link:hover &': {
         opacity: '1',
       },
     },

@@ -510,7 +510,7 @@ export const SidebarLink = forwardRef<SidebarLinkProps, 'a'>((props, ref) => {
       {...rest}
       ref={ref}
       href={href}
-      className={cx('sui-sidebar-link', className)}
+      className={cx('saas-sidebar-link', className)}
       data-active={dataAttr(isActive)}
       __css={styles.link}
     >
