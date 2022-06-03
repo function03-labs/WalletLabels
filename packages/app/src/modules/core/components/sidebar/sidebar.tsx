@@ -28,7 +28,6 @@ import { useActivePath } from '@saas-ui/router'
 
 import {
   IconButton,
-  SearchInput,
   MenuItem,
   MenuDivider,
   useModals,
@@ -45,11 +44,18 @@ import { MembersInviteDialog } from '@modules/organizations/components/members-i
 import { useRouter } from 'next/router'
 import { usePath } from '@modules/core/hooks/use-path'
 
+import { SearchInput } from '@modules/core/components/search-input'
+
 export interface AppSidebarProps extends SidebarProps {}
 
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const modals = useModals()
   const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
+  const searchRef = React.useRef<HTMLInputElement>(null)
+
+  const searchCommand = useHotkeysShortcut('general.search', () => {
+    searchRef.current?.focus()
+  })
 
   const { variant, colorScheme } = props
 
@@ -93,7 +99,11 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           {isCondensed ? (
             <IconButton icon={<FiSearch />} aria-label="Search" />
           ) : (
-            <SearchInput size="sm" />
+            <SearchInput
+              ref={searchRef}
+              size="sm"
+              rightElement={<Command>{searchCommand}</Command>}
+            />
           )}
         </Box>
         <SidebarOverflow>

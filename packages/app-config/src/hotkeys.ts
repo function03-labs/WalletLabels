@@ -10,6 +10,10 @@ export const appHotkeys: HotkeysListOptions = {
         label: 'Show this window',
         command: '?',
       },
+      search: {
+        label: 'Search',
+        command: '/',
+      },
       filter: {
         label: 'Add filter',
         command: 'F',

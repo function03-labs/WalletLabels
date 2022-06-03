@@ -1,12 +1,17 @@
 import * as React from 'react'
-import { Box } from '@chakra-ui/react'
+import { Box, forwardRef } from '@chakra-ui/react'
 
-import { SearchInput, SearchInputProps } from '@saas-ui/react'
+import { SearchInput, SearchInputProps } from '../search-input'
 
-export const InlineSearch: React.FC<SearchInputProps> = (props) => {
-  return (
-    <Box>
-      <SearchInput size="sm" {...props} />
-    </Box>
-  )
-}
+/**
+ * InlineSearch input to be used in toolbars.
+ */
+export const InlineSearch = forwardRef<SearchInputProps, 'input'>(
+  (props, ref) => {
+    return (
+      <Box>
+        <SearchInput ref={ref} size="sm" {...props} />
+      </Box>
+    )
+  },
+)
