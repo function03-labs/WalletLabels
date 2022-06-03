@@ -24,7 +24,7 @@ import {
   SidebarLinkProps,
 } from '@saas-ui/pro'
 
-import { useActivePath } from '@saas-ui/router'
+import { useActivePath, useNavigate } from '@saas-ui/router'
 
 import {
   IconButton,
@@ -41,7 +41,6 @@ import { UserMenu } from './user-menu'
 import { ElectronNav } from './electron-nav'
 
 import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
-import { useRouter } from 'next/router'
 import { usePath } from '@modules/core/hooks/use-path'
 
 import { SearchInput } from '@modules/core/components/search-input'
@@ -200,14 +199,14 @@ interface AppSidebarlink extends SidebarLinkProps {
 
 const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
   const { href, label, hotkey, ...rest } = props
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const command = useHotkeysShortcut(
     hotkey,
     () => {
-      router.push(href)
+      navigate(href)
     },
-    [router, href],
+    [href],
   )
 
   return (
