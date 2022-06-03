@@ -9,6 +9,7 @@ query GetCurrentUser {
       name
       slug
       plan
+      logo
     }
   }
 }
