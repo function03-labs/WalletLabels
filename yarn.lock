@@ -5019,6 +5019,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chakra-ui/utils@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@chakra-ui/utils@npm:2.0.1"
+  dependencies:
+    "@types/lodash.mergewith": 4.6.6
+    css-box-model: 1.2.1
+    framesync: 5.3.0
+    lodash.mergewith: 4.6.2
+  checksum: 2950dd8794aa4ca22026286b19d197081def74fe08d6178d0df51d97eee29c756aad9d96b1ddf937beec4f5a5c7195f7c74a69768fbfe530842e944475739b9f
+  languageName: node
+  linkType: hard
+
 "@chakra-ui/visually-hidden@npm:2.0.0":
   version: 2.0.0
   resolution: "@chakra-ui/visually-hidden@npm:2.0.0"
@@ -7362,6 +7374,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/date-picker@workspace:saas-ui/date-picker"
   dependencies:
+    "@chakra-ui/react-utils": ^2.0.0
+    "@chakra-ui/utils": ^2.0.1
     "@datepicker-react/hooks": ^2.8.4
     date-fns: ^2.28.0
   peerDependencies:
@@ -7633,6 +7647,7 @@ __metadata:
   dependencies:
     "@react-hookz/web": ^13.3.0
     "@saas-ui/router": "workspace:*"
+    "@types/react-table": ^7.7.9
     date-fns: ^2.28.0
     react-icons: ^4.3.1
   peerDependencies:
@@ -10371,7 +10386,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-table@npm:^7.7.12":
+"@types/react-table@npm:^7.7.12, @types/react-table@npm:^7.7.9":
   version: 7.7.12
   resolution: "@types/react-table@npm:7.7.12"
   dependencies:
@@ -10380,25 +10395,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 17.0.38
-  resolution: "@types/react@npm:17.0.38"
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:^18.0.1, @types/react@npm:^18.0.9":
+  version: 18.0.10
+  resolution: "@types/react@npm:18.0.10"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 4079f4f959cd4a4bfaeda8b89fe8a1b1f8bdc9d87acfdc5f74a0b39cec9ec6a470724357c62778c0f063180b360c250e920c5a142f1dbcda67d9cc25a6d43a85
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:16 || 17 || 18, @types/react@npm:^18.0.1, @types/react@npm:^18.0.9":
-  version: 18.0.9
-  resolution: "@types/react@npm:18.0.9"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: 162364dad716d9017ee34aabf2ea37499709ebbdef70392ae1b39225985971e1a46f121efb9c5c7da92144ee1d96d4525df806a7c1c03a5db7fd31dd034ddc7a
+  checksum: 333c99bd46cc2190ec6f6e4f3fa6cdee07e1d4d028fb2bd895d3927d9de6e86ede57befdc79d9acbfb7b1c058091bf3b38b8de3703f83e0f8cd8d15d7457b3d8
   languageName: node
   linkType: hard
 
@@ -11554,9 +11558,11 @@ __metadata:
     "@app/i18n": "workspace:*"
     "@types/react-table": ^7.7.12
     "@ui/core": "workspace:*"
+    react-icons: ^4.3.1
     yup: ^0.32.11
   peerDependencies:
     "@chakra-ui/react": ">=2.0.0"
+    "@react-hookz/web": ^13.1.0
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/charts": "workspace:*"
     "@saas-ui/date-picker": "workspace:*"
