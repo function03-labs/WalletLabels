@@ -35,7 +35,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
     },
     body: {
       flex: 1,
-      overflow: 'auto',
+      overflowY: 'auto',
       '& > div': {
         margin: '0 auto',
         minHeight: '100%',

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Box, BoxProps, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Text, useBreakpointValue } from '@chakra-ui/react'
 
 import { FiAlertCircle } from 'react-icons/fi'
 
@@ -9,7 +9,9 @@ import { AppShell } from '../../app-shell'
 import { Toolbar, ToolbarButton } from '../../toolbar'
 
 import { SplitPage, Page } from '..'
-import { EmptyState } from '@saas-ui/react'
+import { EmptyState, List, ListItem } from '@saas-ui/react'
+import { BackButton } from '../back-button'
+import { useSplitPage } from '../split-page'
 
 export default {
   title: 'Components/Layout/SplitPage',
@@ -122,4 +124,33 @@ WithError.args = {
       description="We've been notified about the problem"
     />
   ),
+}
+
+const ResponsiveContent = () => {
+  const { onClose } = useSplitPage()
+
+  const isMobile = useBreakpointValue({ base: true, lg: false })
+
+  const nav = isMobile && <BackButton onClick={onClose} />
+  return (
+    <Page nav={nav}>
+      <PageContent />
+    </Page>
+  )
+}
+
+const ResponsiveList = () => {
+  const { onOpen } = useSplitPage()
+  return (
+    <List>
+      <ListItem onClick={onOpen}>Responsive item</ListItem>
+    </List>
+  )
+}
+
+export const Responsive = Template.bind({})
+Responsive.args = {
+  title: 'Responsive SplitPage',
+  children: <ResponsiveList />,
+  content: <ResponsiveContent />,
 }
