@@ -101,25 +101,25 @@ export default {
   sizes: {
     xs: {
       container: {
-        pt: { sm: 10, lg: 2 },
+        pt: { base: 10, lg: 2 },
         pb: 2,
       },
     },
     sm: {
       container: {
-        pt: { sm: 10, lg: 2 },
+        pt: { base: 10, lg: 2 },
         pb: 2,
       },
     },
     md: {
       container: {
-        pt: { sm: 10, lg: 3 },
+        pt: { base: 10, lg: 3 },
         pb: 3,
       },
     },
     lg: {
       container: {
-        pt: { sm: 10, lg: 4 },
+        pt: { base: 10, lg: 4 },
         pb: 4,
       },
     },
