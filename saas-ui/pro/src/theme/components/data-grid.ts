@@ -31,9 +31,11 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     flexDirection: 'column',
     flex: 1,
     height: '100%',
+    maxWidth: '100%',
   },
   inner: {
     flex: 1,
+    maxWidth: '100%',
     overflow: 'auto',
   },
   table: {
