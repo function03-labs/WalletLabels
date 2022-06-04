@@ -2,9 +2,11 @@ import { anatomy, mode, PartsStyleFunction } from '@chakra-ui/theme-tools'
 
 const parts = anatomy('page').parts(
   'container',
-  'headerWrapper',
+  'headerContainer',
   'header',
+  'headerFooter',
   'title',
+  'description',
   'body',
 )
 
@@ -23,6 +25,11 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       py: 2,
       px: 4,
       minH: 14,
+      borderBottomWidth: '1px',
+    },
+    headerFooter: {
+      py: 2,
+      px: 4,
       borderBottomWidth: '1px',
     },
     title: {
