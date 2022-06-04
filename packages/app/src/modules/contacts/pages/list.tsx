@@ -8,7 +8,13 @@ import {
 
 import * as Yup from 'yup'
 
-import { Box, Tag, Spacer, MenuItem } from '@chakra-ui/react'
+import {
+  Box,
+  Tag,
+  Spacer,
+  MenuItem,
+  useBreakpointValue,
+} from '@chakra-ui/react'
 import { FiUser } from 'react-icons/fi'
 import { Cell } from 'react-table'
 import {
@@ -109,6 +115,8 @@ export function ContactsListPage() {
 
   const [searchQuery, setSearchQuery] = React.useState('')
 
+  const isMobile = useBreakpointValue({ base: true, lg: false })
+
   const { data, isLoading } = useGetContactsQuery({
     type: params?.type as string,
   })
@@ -129,33 +137,43 @@ export function ContactsListPage() {
 
   const addCommand = useHotkeysShortcut('contacts.add', addPerson)
 
-  const toolbar = (
-    <Toolbar>
+  const primaryAction = (
+    <ToolbarButton
+      label="Add person"
+      variant="solid"
+      colorScheme="primary"
+      onClick={addPerson}
+      tooltipProps={{
+        label: (
+          <>
+            Add a person <Command>{addCommand}</Command>
+          </>
+        ),
+      }}
+    />
+  )
+
+  const toolbarItems = (
+    <>
       <ContactTypes />
       <AddFilterButton />
       <Spacer />
       <InlineSearch
         placeholder="Search by name or email..."
         value={searchQuery}
-        width="240px"
         onChange={(e) => setSearchQuery(e.target.value)}
         onReset={() => setSearchQuery('')}
       />
-      <ToolbarButton
-        label="Add person"
-        variant="solid"
-        colorScheme="primary"
-        onClick={addPerson}
-        tooltipProps={{
-          label: (
-            <>
-              Add a person <Command>{addCommand}</Command>
-            </>
-          ),
-        }}
-      />
+    </>
+  )
+
+  const toolbar = (
+    <Toolbar>
+      {!isMobile && toolbarItems} {primaryAction}
     </Toolbar>
   )
+
+  const tabbar = isMobile && <Toolbar>{toolbarItems}</Toolbar>
 
   const bulkActions = (
     <>
@@ -232,6 +250,7 @@ export function ContactsListPage() {
     <ListPage<Contact>
       title="Contacts"
       toolbar={toolbar}
+      tabbar={tabbar}
       bulkActions={bulkActions}
       filters={filters}
       searchQuery={searchQuery}

@@ -54,6 +54,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   const {
     title,
     toolbar,
+    tabbar,
     emptyState,
     columns,
     data = [],
@@ -187,6 +188,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
       <Page
         title={title}
         toolbar={toolbar}
+        tabbar={tabbar}
         isLoading={isLoading}
         fullWidth
         position="relative"
@@ -222,7 +224,11 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         }}
         {...rest}
       >
-        <BulkActions selections={selections} actions={bulkActions} />
+        <BulkActions
+          selections={selections}
+          actions={bulkActions}
+          variant="floating"
+        />
         <ActiveFiltersList />
         <PageBody fullWidth>{content}</PageBody>
       </Page>
