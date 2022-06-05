@@ -35,16 +35,17 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
 const variantAnnotated: PartsStyleFunction<typeof parts> = (props) => {
   return {
     container: {
-      flexDirection: 'row',
+      flexDirection: ['column', null, 'row'],
       mt: 4,
     },
     heading: {
-      width: '30%',
+      width: ['full', null, '30%'],
       mt: 0,
+      mb: [4, null, 0],
       pe: 4,
     },
     title: {
-      mb: 4,
+      mb: 2,
     },
     description: {
       color: 'muted',

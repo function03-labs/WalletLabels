@@ -4,6 +4,7 @@ const parts = anatomy('page').parts(
   'container',
   'headerContainer',
   'header',
+  'heading',
   'headerFooter',
   'title',
   'description',
@@ -74,7 +75,7 @@ const variantHero: PartsStyleFunction<typeof parts> = (props) => {
       flexDirection: 'column',
       alignItems: 'flex-start',
       borderBottomWidth: 0,
-      width: 'container.xl',
+      maxW: 'container.xl',
       margin: '0 auto',
       py: 14,
     },
@@ -92,17 +93,30 @@ const variantHero: PartsStyleFunction<typeof parts> = (props) => {
 
 const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
   return {
+    container: {
+      overflowY: 'auto',
+      px: 4,
+    },
     header: {
-      width: 'container.lg',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      maxW: 'container.lg',
       margin: '0 auto',
-      p: 0,
-      my: 8,
+      mt: [0, null, 8],
+      mb: 8,
       minH: 24,
+      p: 0,
+    },
+    heading: {
+      py: 8,
+      // px: 4,
     },
     title: {
       fontSize: '2xl',
     },
     body: {
+      // px: 4,
+      overflow: 'visible',
       '& > div': {
         margin: '0 auto',
         maxWidth: props.fullWidth ? '100%' : 'container.lg',

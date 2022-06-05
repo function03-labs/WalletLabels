@@ -70,7 +70,7 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
   let heading
   if (title || description) {
     heading = (
-      <chakra.div>
+      <chakra.div __css={styles.heading}>
         {typeof title === 'string' ? <PageTitle>{title}</PageTitle> : title}
         {typeof description === 'string' ? (
           <PageDescription>{description}</PageDescription>
