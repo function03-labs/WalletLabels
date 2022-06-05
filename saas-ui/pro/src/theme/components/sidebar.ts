@@ -69,8 +69,8 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
 const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
   return {
     container: {
-      width: ['220px', '280px'],
-      maxWidth: '320px',
+      width: '280px',
+      maxWidth: ['100vw', '320px'],
       minWidth: '220px',
     },
   }
