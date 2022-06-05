@@ -1,5 +1,25 @@
 # app
 
+## 5.0.1
+
+### Patch Changes
+
+- 22cb4f6: ListPage is now fully responsive.
+- 814da03: Settings pages are now fully responsive.
+- 516976f: SplitPage is now responsive.
+- Updated dependencies [814da03]
+- Updated dependencies [051967b]
+- Updated dependencies [5993ce1]
+- Updated dependencies [814da03]
+- Updated dependencies [1a812c9]
+- Updated dependencies [4486d93]
+- Updated dependencies [cbc9532]
+- Updated dependencies [342ceb1]
+- Updated dependencies [516976f]
+  - @saas-ui/pro@0.4.1
+  - @ui/core@0.0.27
+  - @app/config@0.0.18
+
 ## 5.0.0
 
 ### Minor Changes

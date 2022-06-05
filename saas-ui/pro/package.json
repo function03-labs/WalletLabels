@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "exports": {
     ".": {
       "default": "./src/index.ts"
