@@ -25,8 +25,6 @@ export default class Document extends NextDocument {
             href="/favicons/favicon-16x16.png"
           />
           <link rel="manifest" href="/favicons/manifest.json" />
-          <meta name="msapplication-TileColor" content="#000000" />
-          <meta name="theme-color" content="#000000" />
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
