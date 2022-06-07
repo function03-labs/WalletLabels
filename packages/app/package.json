@@ -5,13 +5,12 @@
   "dependencies": {
     "@app/config": "workspace:*",
     "@app/i18n": "workspace:*",
-    "@types/react-table": "^7.7.9",
+    "@react-hookz/web": "^13.1.0",
     "react-icons": "^4.3.1",
     "yup": "^0.32.11"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",
-    "@react-hookz/web": "^13.1.0",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",
     "@saas-ui/date-picker": "workspace:*",
@@ -21,6 +20,10 @@
     "@saas-ui/react": ">=0.12.0",
     "@saas-ui/router": "workspace:*",
     "next": ">=12",
-    "react": ">=16.8.6"
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
+  },
+  "devDependencies": {
+    "@types/react-table": "^7.7.9"
   }
 }
