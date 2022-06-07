@@ -26,7 +26,7 @@ export const SettingsPage = (props: SettingsPageProps) => {
       left="0"
       height="14"
       width="full"
-      bg="app.background"
+      bg="app-background"
       justifyContent="flex-start"
       px="4"
       py="3"

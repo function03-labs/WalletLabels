@@ -14,7 +14,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
     description: {
       a: {
         fontWeight: 'medium',
-        color: 'app.text',
+        color: 'app-text',
       },
     },
   }

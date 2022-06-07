@@ -65,7 +65,7 @@ export const InlineSearch = forwardRef<SearchInputProps, 'input'>(
             px: 4,
             py: 2,
             mt: -2,
-            bg: 'app.background',
+            bg: 'app-background',
           }
       : {}
 

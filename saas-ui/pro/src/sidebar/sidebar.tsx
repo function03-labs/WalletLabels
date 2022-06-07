@@ -273,17 +273,15 @@ if (__DEV__) {
 }
 
 export const SidebarOverflow: React.FC<HTMLChakraProps<'div'>> = (props) => {
-  return (
-    <chakra.div
-      __css={{
-        overflow: 'auto',
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-      {...props}
-    />
-  )
+  const styles = useStyles()
+  const overflowStyles = {
+    overflow: 'auto',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    ...styles.overflow,
+  }
+  return <chakra.div __css={overflowStyles} {...props} />
 }
 
 if (__DEV__) {

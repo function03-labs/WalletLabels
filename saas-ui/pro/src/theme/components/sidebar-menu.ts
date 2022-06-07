@@ -1,7 +1,5 @@
 import { anatomy, mode, PartsStyleFunction } from '@chakra-ui/theme-tools'
-
-import { theme as baseTheme } from '@chakra-ui/theme'
-
+import { theme as baseTheme } from '@chakra-ui/react'
 import { getStateColors } from '@saas-ui/theme'
 
 const parts = anatomy('sidebar-link').parts(

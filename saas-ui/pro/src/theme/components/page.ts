@@ -38,7 +38,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       fontSize: 'md',
     },
     description: {
-      color: mode('gray.400', 'gray.500')(props),
+      color: 'muted',
       fontSize: 'md',
     },
     body: {
@@ -109,13 +109,11 @@ const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
     },
     heading: {
       py: 8,
-      // px: 4,
     },
     title: {
       fontSize: '2xl',
     },
     body: {
-      // px: 4,
       overflow: 'visible',
       '& > div': {
         margin: '0 auto',

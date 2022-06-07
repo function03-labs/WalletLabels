@@ -26,9 +26,12 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
+    "@chakra-ui/theme-tools": "^1.3.6",
+    "@chakra-ui/utils": "^1.10.4",
     "@react-hookz/web": "^13.1.0",
     "@saas-ui/router": "workspace:*",
-    "date-fns": "^2.28.0"
+    "date-fns": "^2.28.0",
+    "polished": "^4.2.2"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=1.8.0",

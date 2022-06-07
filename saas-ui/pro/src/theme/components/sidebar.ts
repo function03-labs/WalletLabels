@@ -8,19 +8,24 @@ const parts = anatomy('sidebar').parts(
   'menuButton',
   'overlay',
   'toggle',
+  'overflow',
 )
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
-  const { colorScheme: c } = props
+  const { colorScheme: c, theme } = props
 
-  const bg = c ? `${c}.500` : 'sidebar.background'
+  const bg = c ? `${c}.500` : 'sidebar-background'
 
   return {
     container: {
       bg,
+      color: 'sidebar-text',
       display: 'flex',
       flexDirection: 'column',
       borderRightWidth: '1px',
+      '&, & *, & *::before, & &::after': {
+        borderColor: 'sidebar-border-color',
+      },
     },
     divider: {
       my: '0.5rem',
@@ -43,7 +48,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       my: 1,
       height: 6,
       fontWeight: 'medium',
-      color: 'muted',
+      color: 'sidebar-muted',
       transitionProperty: 'common',
       transitionDuration: 'normal',
       '&.sui-collapse-toggle .chakra-icon': {
@@ -62,6 +67,14 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
     },
     overlay: {
       bg: 'blackAlpha.200',
+    },
+    overflow: {
+      '&::-webkit-scrollbar-track': {
+        background: 'sidebar-background',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderColor: 'sidebar-background',
+      },
     },
   }
 }

@@ -9,7 +9,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       overflow: 'hidden',
     },
     content: {
-      bg: 'app.background',
+      bg: 'app-background',
       display: 'flex',
       flex: 1,
       height: '100%',
