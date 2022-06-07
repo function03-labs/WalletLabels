@@ -1,16 +1,19 @@
 import { Meta } from '@storybook/addon-docs/blocks'
+import LinkTo from '@storybook/addon-links/react'
 
-<Meta title="Docs/Getting started" />
+<Meta title="Getting Started/Installation" />
 
-# Getting started
+# Installation
 
 In the next steps we'll show you how to install `@saas-ui/pro`.
 
 You'll need a valid license to install `@saas-ui/pro`, you can order one at [saas-ui.dev](https://saas-ui.dev/#pricing).
 
+Before continuing [follow these steps](https://www.saas-ui.dev/docs/getting-started) to set up `@saas-ui/react` and `@chakra-ui/react` in your project, if you haven't done so already.
+
 ## Configuration
 
-All pro packages are installed from our private NPM registry at https://npm.saas-ui.dev.
+All pro packages can be installed from our private NPM registry at https://npm.saas-ui.dev.
 After [redeeming](https://saas-ui.dev/redeem) your license, an account will be automatically created.
 
 Your NPM account is a combination of the Github username you used to redeem your license and the license code (`username:licenseKey`).
@@ -64,6 +67,11 @@ Then edit `.npmrc` in the root of your project and add the following lines.
 ##### PNPM
 
 PNPM expects auth to be base64 encoded, so make sure `SAAS_UI_TOKEN` is encoded.
+
+```bash
+echo -n 'GithubUsername:licenseKey' | base64
+```
+
 If you're having troubles generating a working base64 encoded string, try [this website](https://www.base64encode.org/).
 
 ### Configure your bundler
@@ -96,11 +104,27 @@ module.exports = {
 }
 ```
 
+#### React Create App (CRA)
+
+To use a custom Webpack config with CRA you either need to eject the app or install `react-app-rewired` and follow [their instructions](https://github.com/timarney/react-app-rewired#how-to-rewire-your-create-react-app-project).
+
+```bash
+yarn add -D react-app-rewired ts-loader
+```
+
+Add this to `config-overrides.js`
+
+```js
+module.exports = function override(config) {
+  config.module.rules.push({
+    test: /node_modules\/@saas-ui\/(pro|billing|charts|date-picker|features|onboarding|router)\/.*\.tsx?/,
+    loader: 'ts-loader',
+  })
+  return config
+}
+```
+
 ## Install
-
-Before continuing [follow these steps](https://www.saas-ui.dev/docs/getting-started) to set up `@saas-ui/react` in your project, if you haven't done so already.
-
-After configuring your app with the previous steps, you can simply run this to install.
 
 ```
 yarn add @saas-ui/pro
@@ -114,26 +138,24 @@ pnpm install @saas-ui/pro
 npm install @saas-ui/pro
 ```
 
-## Theme
+## Setup types
 
-After installing you'll need to configure the Saas UI Pro theme, in order the have all proper styles setup for the components.
+Install `@types/react-table` as a dev dependency to your project.
 
-```ts
-import { extendTheme } from '@chakra-ui/react'
+Create a `react-table.d.ts` file somewhere in your project, eg in `/types`
 
-// 1. Import the pro theme
-import { theme as proTheme } from '@saas-ui/pro'
-
-// 2. Extend your theme
-const theme = extendTheme(
-  {
-    // your custom theme
-  },
-  proTheme,
-)
-
-// 3. Pass the custom theme to SaasProvider
-function App() {
-  return <SaasProvider theme={theme}>{children}</SaasProvider>
-}
+```ts react-table.d.ts
+export * from '@saas-ui/pro/src/data-grid/react-table-config'
 ```
+
+## Troubleshooting
+
+### Authentication error
+
+- If you get an authentication error from npm, restart your terminal to make sure `SAAS_UI_TOKEN` is loaded, and try again.
+
+- If you use PNPM make sure the token is properly base64 encoded.
+
+## Next
+
+Awesome! Now it's time to [configure your theme](/story/getting-started-theme--page).

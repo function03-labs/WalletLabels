@@ -18,6 +18,7 @@
     "build:tokens": "chakra-cli tokens packages/ui-theme/src",
     "clean:packages": "turbo run clean",
     "publish:saas-ui": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish && yarn changeset tag",
+    "publish:next:saas-ui": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish --tag next && yarn changeset tag",
     "eslint": "eslint --cache --cache-location=node_modules/.cache/.eslintcache --fix",
     "lint": "yarn run eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:staged": "lint-staged --allow-empty --config lint-staged.config.js",
