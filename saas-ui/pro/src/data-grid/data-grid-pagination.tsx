@@ -5,7 +5,7 @@ import {
   HTMLChakraProps,
   useMultiStyleConfig,
   SystemStyleObject,
-} from '@chakra-ui/system'
+} from '@chakra-ui/react'
 import { IconButton } from '@saas-ui/react'
 import { useDataGridContext } from './data-grid'
 

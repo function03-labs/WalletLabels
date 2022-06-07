@@ -7,7 +7,7 @@ import {
   useMultiStyleConfig,
   omitThemingProps,
   SystemStyleObject,
-} from '@chakra-ui/system'
+} from '@chakra-ui/react'
 
 import { Flex } from '@chakra-ui/layout'
 
