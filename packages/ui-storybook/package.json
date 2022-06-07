@@ -1,5 +1,5 @@
 {
-  "name": "@ui/core",
+  "name": "@ui/storybook",
   "version": "0.0.27",
   "scripts": {
     "dev": "start-storybook -p 6006",
