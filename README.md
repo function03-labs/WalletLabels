@@ -42,16 +42,14 @@ All client side app configuration files can be found in `packages/app-config`.
 
 ## Running the apps
 
-Saas UI Pro comes with 3 example apps, Next.js, Electron and Vite.
+Saas UI Pro comes with 2 example apps, Next.js, Electron.
 
-You can start the apps from their subfolder, or from the project root using one of these commands:
+You can start the apps from their subfolder in `apps/`, or from the project root using one of these commands:
 
 ```
 yarn dev:nextjs
 
 yarn dev:electron
-
-yarn dev:vite
 ```
 
 ### Authentication
@@ -97,11 +95,11 @@ Saas UI Pro makes use of workspaces and uses the following folder structure.
 | `packages/mock-graphql`         | A Mock Graphql server.                                                               |
 | `packages/ui-storybook`         | Your storybook.                                                                      |
 | `packages/ui-theme`             | Your custom Chakra UI theme. This extends the Saas UI Pro theme by default.          |
-| `packages/test-utils`           | Helper functions for testing.                                                        |
+| `tooling/test-utils`            | Helper functions for testing.                                                        |
 
 ### Package naming
 
-Packages that are prefixed with `app` or `ui` should only be used client side.
+Packages that are prefixed with `app` or `ui` are used client side.
 
 Serverside code should be prefixed with `api`.
 
