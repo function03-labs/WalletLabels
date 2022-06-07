@@ -9,7 +9,7 @@ import {
   useStyles,
   useMultiStyleConfig,
   SystemProps,
-} from '@chakra-ui/system'
+} from '@chakra-ui/react'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 
 import { Loader } from '@saas-ui/react'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { IconButton, IconButtonProps, Link } from '@saas-ui/react'
-import { forwardRef } from '@chakra-ui/system'
+import { forwardRef } from '@chakra-ui/react'
 import { ArrowLeftIcon } from './icons'
 
 export interface BackButtonProps extends Omit<IconButtonProps, 'aria-label'> {

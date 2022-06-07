@@ -6,26 +6,19 @@ import {
   useStyles,
   HTMLChakraProps,
   SystemStyleObject,
-} from '@chakra-ui/system'
-
-import { cx, normalizeEventKey, __DEV__ } from '@chakra-ui/utils'
-
-import { mergeRefs, EventKeyMap } from '@chakra-ui/react-utils'
-
-import {
-  InputProps,
-  Input,
-  InputGroup,
-  InputRightElement,
-} from '@chakra-ui/input'
-
-import {
   MenuIcon,
   MenuCommand,
   useMenuContext,
   useMenuDescendantsContext,
   MenuItemProps,
-} from '@chakra-ui/menu'
+  InputProps,
+  Input,
+  InputGroup,
+  InputRightElement,
+} from '@chakra-ui/react'
+
+import { cx, normalizeEventKey, __DEV__ } from '@chakra-ui/utils'
+import { mergeRefs, EventKeyMap } from '@chakra-ui/react-utils'
 
 import { useMenuFilterItem } from './use-menu-filter-item'
 

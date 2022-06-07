@@ -9,7 +9,7 @@ import {
   StylesProvider,
   SystemProps,
   ThemingProps,
-} from '@chakra-ui/system'
+} from '@chakra-ui/react'
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
 

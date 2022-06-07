@@ -5243,6 +5243,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui/pro@workspace:saas-ui/pro"
   dependencies:
+    "@chakra-ui/react-utils": ^1.2.3
     "@chakra-ui/system": ^1.12.1
     "@chakra-ui/theme-tools": ^1.3.6
     "@chakra-ui/utils": ^1.10.4
