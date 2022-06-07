@@ -1,5 +1,21 @@
 # nextjs-app
 
+## 1.2.11
+
+### Patch Changes
+
+- 6cc0ea7: Removed black theme and tile color meta tags.
+- Updated dependencies [3550e80]
+- Updated dependencies [27bd254]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+  - @saas-ui/pro@0.4.2
+  - app@5.0.2
+  - @ui/theme@0.0.1
+
 ## 1.2.10
 
 ### Patch Changes

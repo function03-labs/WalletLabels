@@ -1,5 +1,14 @@
 # @saas-ui/pro
 
+## 0.4.2
+
+### Patch Changes
+
+- 3550e80: Scrollbars now match the app theme.
+- 27bd254: Added @chakra-ui/react-utils to dependencies.
+- 3550e80: Improved theme tokens that allows you to easily create new color schemes.
+- 3550e80: Improved gray outline button border color.
+
 ## 0.4.1
 
 ### Patch Changes
