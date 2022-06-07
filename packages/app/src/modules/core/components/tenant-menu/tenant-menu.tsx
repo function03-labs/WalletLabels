@@ -59,7 +59,6 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
         }
         className="tenant-menu"
         variant="ghost"
-        isTruncated
       >
         {activeTenant?.label}
       </MenuButton>
@@ -73,7 +72,6 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
                   key={id}
                   value={id}
                   icon={<TenantLogo name={label} src={logo} />}
-                  isTruncated
                   onClick={() => setTenant(slug)}
                   {...props}
                 >
