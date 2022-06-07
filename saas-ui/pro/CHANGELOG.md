@@ -1,5 +1,19 @@
 # @saas-ui/pro
 
+## 0.4.1
+
+### Patch Changes
+
+- 814da03: Improved annotated section styles on small screens.
+- 051967b: DataGrid now overflows correctly on small screens.
+- 5993ce1: Increased Sidebar default width on small screens.
+- 814da03: Improved Page settings variant styles on small screens.
+- 1a812c9: PageHeader tabbar now renders in a separate div.
+- 4486d93: Fixed SidebarToggleButton not rendering correctly on small screens.
+- cbc9532: Toolbar is now rendered as a ButtonGroup instead of having the ButtonGroup as a child.
+- 342ceb1: Added minimal width to AppShell flex boxes to make sure children get sized correctly on smaller screens.
+- 516976f: SplitPage is now responsive.
+
 ## 0.4.0
 
 ### Minor Changes

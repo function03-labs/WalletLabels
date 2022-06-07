@@ -32,7 +32,7 @@ export const BillingStatus = () => {
           <strong>{formatDistanceStrict(new Date(), trialEndsAt)}</strong>
         </Text>
         <Has flag="billing">
-          <Button href={upgradePath} variant="subtle" colorScheme="green">
+          <Button href={upgradePath} variant="solid" colorScheme="green">
             Upgrade
           </Button>
         </Has>
@@ -40,6 +40,7 @@ export const BillingStatus = () => {
       {progress !== undefined && (
         <Progress
           colorScheme="green"
+          bg="sidebar-on-muted"
           size="xs"
           borderRadius="0"
           value={progress}

@@ -2,9 +2,12 @@ import { anatomy, mode, PartsStyleFunction } from '@chakra-ui/theme-tools'
 
 const parts = anatomy('page').parts(
   'container',
-  'headerWrapper',
+  'headerContainer',
   'header',
+  'heading',
+  'headerFooter',
   'title',
+  'description',
   'body',
 )
 
@@ -25,17 +28,22 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       minH: 14,
       borderBottomWidth: '1px',
     },
+    headerFooter: {
+      py: 2,
+      px: 4,
+      borderBottomWidth: '1px',
+    },
     title: {
       fontWeight: 'semibold',
       fontSize: 'md',
     },
     description: {
-      color: mode('gray.400', 'gray.500')(props),
+      color: 'muted',
       fontSize: 'md',
     },
     body: {
       flex: 1,
-      overflow: 'auto',
+      overflowY: 'auto',
       '& > div': {
         margin: '0 auto',
         minHeight: '100%',
@@ -67,7 +75,7 @@ const variantHero: PartsStyleFunction<typeof parts> = (props) => {
       flexDirection: 'column',
       alignItems: 'flex-start',
       borderBottomWidth: 0,
-      width: 'container.xl',
+      maxW: 'container.xl',
       margin: '0 auto',
       py: 14,
     },
@@ -85,17 +93,28 @@ const variantHero: PartsStyleFunction<typeof parts> = (props) => {
 
 const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
   return {
+    container: {
+      overflowY: 'auto',
+      px: 4,
+    },
     header: {
-      width: 'container.lg',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      maxW: 'container.lg',
       margin: '0 auto',
-      p: 0,
-      my: 8,
+      mt: [0, null, 8],
+      mb: 8,
       minH: 24,
+      p: 0,
+    },
+    heading: {
+      py: 8,
     },
     title: {
       fontSize: '2xl',
     },
     body: {
+      overflow: 'visible',
       '& > div': {
         margin: '0 auto',
         maxWidth: props.fullWidth ? '100%' : 'container.lg',

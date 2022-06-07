@@ -52,20 +52,16 @@ export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
   return (
     <StylesProvider value={styles}>
       <chakra.div
+        as={ButtonGroup}
         role="toolbar"
         {...toolbarProps}
+        variant={variant}
+        size={size}
         ref={ref}
         __css={containerStyles}
         className={cx('saas-toolbar', className)}
       >
-        <ButtonGroup
-          width="100%"
-          justifyContent="flex-end"
-          variant={variant}
-          size={size}
-        >
-          {children}
-        </ButtonGroup>
+        {children}
       </chakra.div>
     </StylesProvider>
   )

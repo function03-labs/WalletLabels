@@ -35,26 +35,21 @@ import {
   useHotkeysShortcut,
 } from '@saas-ui/react'
 
-import { BillingStatus } from './billing-status'
-import { TenantMenu } from './tenant-menu'
-import { UserMenu } from './user-menu'
-import { ElectronNav } from './electron-nav'
+import { BillingStatus } from '../billing-status'
+import { TenantMenu } from '../tenant-menu'
+import { UserMenu } from '../user-menu'
+import { ElectronNav } from '../electron-nav'
 
 import { MembersInviteDialog } from '@modules/organizations/components/members-invite-dialog'
 import { usePath } from '@modules/core/hooks/use-path'
 
-import { SearchInput } from '@modules/core/components/search-input'
+import { GlobalSearchInput } from '../global-search'
 
 export interface AppSidebarProps extends SidebarProps {}
 
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const modals = useModals()
   const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
-  const searchRef = React.useRef<HTMLInputElement>(null)
-
-  const searchCommand = useHotkeysShortcut('general.search', () => {
-    searchRef.current?.focus()
-  })
 
   const { variant, colorScheme } = props
 
@@ -98,11 +93,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           {isCondensed ? (
             <IconButton icon={<FiSearch />} aria-label="Search" />
           ) : (
-            <SearchInput
-              ref={searchRef}
-              size="sm"
-              rightElement={<Command>{searchCommand}</Command>}
-            />
+            <GlobalSearchInput />
           )}
         </Box>
         <SidebarOverflow>
@@ -167,13 +158,13 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
                   })
                 }
                 label="Invite people"
-                color="muted"
+                color="sidebar-muted"
                 icon={<FiPlus />}
               />
               <SidebarLink
                 href="https://saas-ui.dev/docs"
                 label="Documentation"
-                color="muted"
+                color="sidebar-muted"
                 icon={<FiHelpCircle />}
               />
             </SidebarNavGroup>

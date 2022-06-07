@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useSnackbar, useModals, useCurrentUser } from '@saas-ui/react'
-import { Page, Section, useTenant } from '@saas-ui/pro'
+import { useSnackbar, useModals } from '@saas-ui/react'
+import { Section, useTenant } from '@saas-ui/pro'
 
 import {
   useGetOrganizationQuery,
@@ -13,6 +13,7 @@ import {
   Member,
 } from '@modules/organizations/components/members-list'
 import { MembersInviteData } from '@modules/organizations/components/members-invite-dialog'
+import { SettingsPage } from '@modules/core/components/settings-page'
 
 export function MembersSettingsPage() {
   const tenant = useTenant()
@@ -114,9 +115,8 @@ export function MembersSettingsPage() {
   }
 
   return (
-    <Page
+    <SettingsPage
       isLoading={isLoading}
-      variant="settings"
       title="Members"
       description="Manage who can access your organization"
     >
@@ -129,6 +129,6 @@ export function MembersSettingsPage() {
           onUpdateRoles={onUpdateRoles}
         />
       </Section>
-    </Page>
+    </SettingsPage>
   )
 }

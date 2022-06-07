@@ -54,10 +54,39 @@ if (__DEV__) {
   PageDescription.displayName = 'PageDescription'
 }
 
-export const PageHeader: React.FC<HTMLChakraProps<'header'>> = (props) => {
-  const { children, ...rest } = props
+export interface PageHeaderProps
+  extends Omit<HTMLChakraProps<'header'>, 'title'> {
+  nav?: React.ReactNode
+  title?: React.ReactNode
+  description?: React.ReactNode
+  toolbar?: React.ReactNode
+  tabbar?: React.ReactNode
+}
+
+export const PageHeader: React.FC<PageHeaderProps> = (props) => {
+  const { children, nav, title, description, toolbar, tabbar, ...rest } = props
 
   const styles = useStyles()
+
+  let heading
+  if (title || description) {
+    heading = (
+      <chakra.div __css={styles.heading}>
+        {typeof title === 'string' ? <PageTitle>{title}</PageTitle> : title}
+        {typeof description === 'string' ? (
+          <PageDescription>{description}</PageDescription>
+        ) : (
+          description
+        )}
+      </chakra.div>
+    )
+  }
+
+  let footer
+
+  if (tabbar) {
+    footer = <chakra.div __css={styles.headerFooter}>{tabbar}</chakra.div>
+  }
 
   return (
     <chakra.header
@@ -65,7 +94,12 @@ export const PageHeader: React.FC<HTMLChakraProps<'header'>> = (props) => {
       {...rest}
       className={cx('saas-page__header', props.className)}
     >
-      <chakra.div __css={styles.header}>{children}</chakra.div>
+      <chakra.div __css={styles.header}>
+        {nav}
+        {heading}
+        {toolbar}
+      </chakra.div>
+      {footer}
     </chakra.header>
   )
 }
@@ -183,19 +217,13 @@ export const Page: React.FC<PageProps> = (props) => {
       }
     >
       <PageContainer fullWidth={fullWidth} {...rest}>
-        <PageHeader>
-          {nav}
-          <chakra.div>
-            {typeof title === 'string' ? <PageTitle>{title}</PageTitle> : title}
-            {typeof description === 'string' ? (
-              <PageDescription>{description}</PageDescription>
-            ) : (
-              description
-            )}
-          </chakra.div>
-          {toolbar}
-          {tabbar}
-        </PageHeader>
+        <PageHeader
+          nav={nav}
+          title={title}
+          description={description}
+          toolbar={toolbar}
+          tabbar={tabbar}
+        />
 
         {content}
       </PageContainer>

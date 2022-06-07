@@ -35,7 +35,7 @@ export function SettingsOverviewPage() {
       isLoading={isLoading}
     >
       <Section title="Organization settings">
-        <SimpleGrid columns={2} spacing={4}>
+        <SimpleGrid columns={[1, null, 2]} spacing={4}>
           <SettingsCard
             title="Billing"
             subtitle="Manage your subscription."
@@ -81,7 +81,7 @@ export function SettingsOverviewPage() {
       </Section>
 
       <Section title="Your account">
-        <SimpleGrid columns={2} spacing={4}>
+        <SimpleGrid columns={[1, null, 2]} spacing={4}>
           <SettingsCard
             title="Security recommendations"
             subtitle="Improve your account security by enabling two-factor
@@ -99,7 +99,7 @@ export function SettingsOverviewPage() {
       </Section>
 
       <Section title="More">
-        <SimpleGrid columns={3} spacing={4}>
+        <SimpleGrid columns={[1, null, 3]} spacing={4}>
           <SupportCard
             title="Start guide"
             subtitle="Read how to get started with Saas UI."

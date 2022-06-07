@@ -7,6 +7,7 @@ import {
   MenuButton,
   MenuList,
   AvatarProps,
+  Portal,
 } from '@chakra-ui/react'
 import { FiCheck } from 'react-icons/fi'
 import { useTenancy } from '@saas-ui/pro'
@@ -62,29 +63,32 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
       >
         {activeTenant?.label}
       </MenuButton>
-      <MenuList zIndex="dropdown">
-        <MenuGroup title={title}>
-          {tenants.map(({ id, slug, label, logo, ...props }) => {
-            return (
-              <MenuItem
-                key={id}
-                value={id}
-                icon={<TenantLogo name={label} src={logo} />}
-                isTruncated
-                onClick={() => setTenant(slug)}
-                {...props}
-              >
-                <HStack>
-                  <Text>{label}</Text>
-                  <Spacer />
-                  {id === activeTenant?.id ? <FiCheck /> : null}
-                </HStack>
-              </MenuItem>
-            )
-          })}
-        </MenuGroup>
-        {children}
-      </MenuList>
+      <Portal>
+        {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}
+        <MenuList zIndex="dropdown">
+          <MenuGroup title={title}>
+            {tenants.map(({ id, slug, label, logo, ...props }) => {
+              return (
+                <MenuItem
+                  key={id}
+                  value={id}
+                  icon={<TenantLogo name={label} src={logo} />}
+                  isTruncated
+                  onClick={() => setTenant(slug)}
+                  {...props}
+                >
+                  <HStack>
+                    <Text>{label}</Text>
+                    <Spacer />
+                    {id === activeTenant?.id ? <FiCheck /> : null}
+                  </HStack>
+                </MenuItem>
+              )
+            })}
+          </MenuGroup>
+          {children}
+        </MenuList>
+      </Portal>
     </Menu>
   )
 }

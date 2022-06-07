@@ -1,7 +1,7 @@
 {
   "name": "saas-ui-storybook",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.0.1",
   "scripts": {
     "dev": "start-storybook -p 6007",
     "build": "build-storybook && sb extract"
@@ -31,6 +31,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-is": "^18.1.0",
+    "require-from-string": "^2.0.2",
     "storybook-addon-swc": "^1.1.7",
     "webpack": "^5.72.1"
   }

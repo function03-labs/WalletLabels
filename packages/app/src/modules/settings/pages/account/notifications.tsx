@@ -19,7 +19,11 @@ function NotificationChannels() {
     >
       <Card>
         <List variant="settings">
-          <ListItem primary="Email" secondary="Receive a dialy email digest." />
+          <ListItem
+            primary="Email"
+            secondary="Receive a dialy email digest."
+            action={<Switch />}
+          />
           <ListItem
             primary="Desktop"
             secondary="Receive desktop notifications."

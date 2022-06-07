@@ -39,12 +39,14 @@ export const AppShell: React.FC<AppShellProps> = (props: AppShellProps) => {
   const innerStyles: SystemStyleObject = {
     flex: 1,
     minHeight: 0, // make sure child flex divs get correct height.
+    minWidth: 0, // make sure child flex divs get correct width.
     ...styles.inner,
   }
 
   const mainStyles: SystemStyleObject = {
     flex: 1,
     flexDirection: 'column',
+    minWidth: 0, // make sure child flex divs get correct width.
     ...styles.main,
   }
 

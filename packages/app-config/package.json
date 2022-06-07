@@ -1,10 +1,9 @@
 {
   "name": "@app/config",
   "main": "src/index.ts",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "dependencies": {
     "@supabase/supabase-js": "^1.35.3",
-    "@ui/core": "workspace:*",
     "magic-sdk": "^8.1.1"
   }
 }

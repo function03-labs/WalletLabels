@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "exports": {
     ".": {
       "default": "./src/index.ts"
@@ -26,12 +26,18 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
+    "@chakra-ui/system": "^2.1.2",
+    "@chakra-ui/theme-tools": "^2.0.2",
+    "@chakra-ui/utils": "^2.0.2",
     "@react-hookz/web": "^13.3.0",
     "@saas-ui/router": "workspace:*",
-    "date-fns": "^2.28.0"
+    "date-fns": "^2.28.0",
+    "polished": "^4.2.2"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2",
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
     "@saas-ui/react": ">=1",
     "framer-motion": ">=5.5.0",
     "react": ">=18",

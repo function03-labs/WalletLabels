@@ -4,10 +4,7 @@ import {
   transparentize,
   PartsStyleFunction,
 } from '@chakra-ui/theme-tools'
-
-import { theme as baseTheme } from '@chakra-ui/theme'
-
-import { getStateColors } from '@saas-ui/theme'
+import { theme as baseTheme } from '@chakra-ui/react'
 
 const parts = anatomy('sidebar-link').parts(
   'container',
@@ -19,6 +16,7 @@ const parts = anatomy('sidebar-link').parts(
 )
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
+  const { isActive } = props
   return {
     container: {
       padding: '2px',
@@ -63,6 +61,12 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
     },
     icon: {
       display: 'flex',
+      color: 'sidebar-muted',
+      transitionProperty: 'common',
+      transitionDuration: 'normal',
+      '.saas-sidebar-link:not([data-active]):hover &': {
+        color: 'sidebar-text',
+      },
       '.saas-sidebar__condensed &': {
         me: 0,
         alignItems: 'center',
@@ -75,8 +79,8 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
 const variantNeutral: PartsStyleFunction<typeof parts> = (props) => {
   const { isActive } = props
 
-  const hoverBg = mode('blackAlpha.100', 'whiteAlpha.100')(props)
-  const activeBg = mode('blackAlpha.200', 'whiteAlpha.200')(props)
+  const hoverBg = 'sidebar-on-muted'
+  const activeBg = 'sidebar-on-subtle'
 
   return {
     link: {
@@ -89,10 +93,7 @@ const variantNeutral: PartsStyleFunction<typeof parts> = (props) => {
       },
     },
     icon: {
-      opacity: isActive ? 1 : 0.6,
-      '.saas-sidebar-link:hover &': {
-        opacity: '1',
-      },
+      color: isActive ? 'sidebar-text' : 'sidebar-muted',
     },
   }
 }
@@ -100,11 +101,9 @@ const variantNeutral: PartsStyleFunction<typeof parts> = (props) => {
 const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
   const { isActive, colorScheme: c, theme } = props
 
-  const hoverBg = mode('blackAlpha.100', 'whiteAlpha.100')(props)
-
-  const color = mode(`${c}.700`, `${c}.400`)(props)
+  const color = mode(`${c}.700`, `${c}.200`)(props)
   const activeBg = mode(
-    `${c}.50`,
+    transparentize(`${c}.500`, 0.3)(theme),
     transparentize(`${c}.500`, 0.3)(theme),
   )(props)
 
@@ -130,14 +129,8 @@ const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
     : {
         link: {
           _hover: {
-            bg: hoverBg,
+            bg: 'sidebar-on-muted',
           },
-          _focus: {
-            bg: hoverBg,
-          },
-        },
-        icon: {
-          color: mode('black', 'white')(props),
         },
       }
 }
@@ -145,18 +138,17 @@ const variantSubtle: PartsStyleFunction<typeof parts> = (props) => {
 const variantSolid: PartsStyleFunction<typeof parts> = (props) => {
   const { isActive, colorScheme: c } = props
 
-  const { active } = getStateColors(props)
-  const { hover } = getStateColors({ ...props, colorScheme: 'gray' })
+  const activeBg = `${c}.500`
 
   return isActive
     ? {
         link: {
-          bg: active,
+          bg: activeBg,
           _hover: {
-            bg: active,
+            bg: activeBg,
           },
           _active: {
-            bg: active,
+            bg: activeBg,
           },
           color: 'white',
         },
@@ -168,14 +160,11 @@ const variantSolid: PartsStyleFunction<typeof parts> = (props) => {
     : {
         link: {
           _hover: {
-            bg: hover,
+            bg: 'sidebar-on-muted',
           },
           _focus: {
-            bg: hover,
+            bg: 'sidebar-on-muted',
           },
-        },
-        icon: {
-          color: active,
         },
       }
 }

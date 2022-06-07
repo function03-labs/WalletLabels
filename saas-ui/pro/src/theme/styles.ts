@@ -1,14 +1,28 @@
-import { mode, Styles } from '@chakra-ui/theme-tools'
+import { useColorModeValue } from '@chakra-ui/react'
 
-const styles: Styles = {
-  global: (props) => ({
+const styles = {
+  global: () => ({
     body: {
-      color: 'app.text',
-      bg: 'app.background',
+      color: 'app-text',
+      bg: 'app-background',
       fontSize: 'sm',
+      scrollbarColor: 'dark',
+      scrollbarWidth: 'thin',
+    },
+    '::-webkit-scrollbar': {
+      width: '12px',
+    },
+    '::-webkit-scrollbar-track': {
+      background: 'app-background',
+    },
+    '::-webkit-scrollbar-thumb': {
+      background: useColorModeValue('blackAlpha.500', 'whiteAlpha.700'),
+      borderRadius: '8px',
+      border: '2px solid',
+      borderColor: 'app-background',
     },
     '*::placeholder': {
-      color: mode('blackAlpha.400', 'whiteAlpha.400')(props),
+      color: 'muted',
     },
     '*, *::before, &::after': {
       borderColor: 'default-border-color',

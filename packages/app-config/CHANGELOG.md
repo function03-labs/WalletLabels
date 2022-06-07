@@ -1,5 +1,11 @@
 # @app/config
 
+## 0.0.18
+
+### Patch Changes
+
+- @ui/core@0.0.27
+
 ## 0.0.17
 
 ### Patch Changes
