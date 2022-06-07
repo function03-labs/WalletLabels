@@ -1,15 +1,16 @@
 import {
   chakra,
-  StylesProvider,
   HTMLChakraProps,
   ThemingProps,
   omitThemingProps,
   useMultiStyleConfig,
-  useStyles,
   SystemStyleObject,
+  createStylesContext,
 } from '@chakra-ui/react'
 
 import { Loader } from '@saas-ui/react'
+
+const [StylesProvider, useStyles] = createStylesContext('Section')
 
 export interface SectionProps
   extends Omit<HTMLChakraProps<'div'>, 'title'>,

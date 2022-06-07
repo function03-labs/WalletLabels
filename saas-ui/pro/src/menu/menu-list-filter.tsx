@@ -3,7 +3,6 @@ import * as React from 'react'
 import {
   chakra,
   forwardRef,
-  useStyles,
   HTMLChakraProps,
   SystemStyleObject,
   MenuIcon,
@@ -15,6 +14,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useMultiStyleConfig,
 } from '@chakra-ui/react'
 
 import { cx, normalizeEventKey, __DEV__ } from '@chakra-ui/utils'
@@ -91,7 +91,9 @@ export interface StyledMenuItemProps extends HTMLChakraProps<'button'> {}
 const StyledMenuItem = forwardRef<StyledMenuItemProps, 'button'>(
   (props, ref) => {
     const { type, ...rest } = props
-    const styles = useStyles()
+
+    // @todo find a better way to do this, since useStyles is not supported anymore.
+    const styles = useMultiStyleConfig('Menu')
 
     /**
      * Given another component, use its type if present

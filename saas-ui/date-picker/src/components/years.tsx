@@ -7,11 +7,10 @@ import {
   Flex,
   Button,
   SimpleGrid,
-  useStyles,
   Box,
   StackProps,
 } from '@chakra-ui/react'
-
+import { useStyles } from '../styles.provider'
 import { useYears, useYear } from '../use-date-picker'
 
 export const Years = forwardRef<StackProps, 'div'>((props, ref) => {

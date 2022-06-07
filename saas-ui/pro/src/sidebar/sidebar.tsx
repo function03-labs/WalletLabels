@@ -5,8 +5,6 @@ import {
   forwardRef,
   StackProps,
   Collapse,
-  useStyles,
-  StylesProvider,
   omitThemingProps,
   HTMLChakraProps,
   ChakraProps,
@@ -20,6 +18,7 @@ import {
   SystemStyleObject,
   IconButton,
   IconButtonProps,
+  createStylesContext,
 } from '@chakra-ui/react'
 
 import { cx, __DEV__, runIfFn, dataAttr } from '@chakra-ui/utils'
@@ -48,6 +47,8 @@ import { SidebarProvider, useSidebarContext } from './use-sidebar'
 import { ResizeHandle, useResize, ResizeOptions } from '../resize'
 
 import { useActivePath } from '@saas-ui/router'
+
+const [StylesProvider, useStyles] = createStylesContext('Sidebar')
 
 export interface SidebarProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,

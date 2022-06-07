@@ -5,8 +5,6 @@ import {
   forwardRef,
   omitThemingProps,
   useMultiStyleConfig,
-  useStyles,
-  StylesProvider,
   HTMLChakraProps,
   ThemingProps,
   Tooltip,
@@ -15,6 +13,7 @@ import {
   useMenuOptionGroup,
   useButtonGroup,
   SystemStyleObject,
+  createStylesContext,
 } from '@chakra-ui/react'
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
@@ -28,6 +27,8 @@ import {
   ButtonGroupProps,
   IconButton,
 } from '@saas-ui/react'
+
+const [StylesProvider, useStyles] = createStylesContext('Toolbar')
 
 export interface ToolbarProps
   extends HTMLChakraProps<'div'>,

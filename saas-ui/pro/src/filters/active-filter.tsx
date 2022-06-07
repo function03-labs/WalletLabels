@@ -5,11 +5,10 @@ import {
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
-  useStyles,
-  StylesProvider,
   SystemProps,
   ThemingProps,
   SystemStyleObject,
+  createStylesContext,
 } from '@chakra-ui/react'
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
@@ -48,6 +47,8 @@ import {
 
 import { useFiltersContext } from './provider'
 import { FilterOperatorId } from './operators'
+
+const [StylesProvider, useStyles] = createStylesContext('ActiveFilter')
 
 export interface ActiveFilterProps
   extends Omit<ActiveFilterContainerProps, 'onChange' | 'defaultValue'> {

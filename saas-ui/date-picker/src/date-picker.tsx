@@ -11,12 +11,11 @@ import {
   PopoverArrow,
   PopoverTrigger,
   PopoverAnchor,
-  useStyles,
   ThemingProps,
   SystemProps,
-  StylesProvider,
   useMultiStyleConfig,
   SystemStyleObject,
+  createStylesContext,
 } from '@chakra-ui/react'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 import {
@@ -44,6 +43,8 @@ import {
 import { useDatePicker, DatePickerOptions } from './use-date-picker'
 
 import defaultStyleConfig from './styles'
+
+import { StylesProvider, useStyles } from './styles.provider'
 
 export interface DatePickerElement {
   onDateSelect?(date: Date): void

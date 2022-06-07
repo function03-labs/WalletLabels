@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { chakra, useStyles } from '@chakra-ui/react'
+import { chakra } from '@chakra-ui/react'
 import { dataAttr } from '@chakra-ui/utils'
 import { isEndDate, isStartDate, useDay } from '@datepicker-react/hooks'
 import getDay from 'date-fns/getDay'
@@ -7,6 +7,8 @@ import isFirstDayOfMonth from 'date-fns/isFirstDayOfMonth'
 import isLastDayOfMonth from 'date-fns/isLastDayOfMonth'
 
 import { useDatePickerContext } from '../date-picker-provider'
+
+import { useStyles } from '../styles.provider'
 
 interface DayProps {
   day: string

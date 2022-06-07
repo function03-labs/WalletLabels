@@ -1,14 +1,8 @@
 import * as React from 'react'
-import {
-  Box,
-  Flex,
-  SimpleGrid,
-  Text,
-  Button,
-  useStyles,
-} from '@chakra-ui/react'
+import { Box, Flex, SimpleGrid, Text, Button } from '@chakra-ui/react'
 import { CalendarDay, useMonth } from '@datepicker-react/hooks'
 import { useDatePickerContext } from '../date-picker-provider'
+import { useStyles } from '../styles.provider'
 
 import { Day } from './day'
 

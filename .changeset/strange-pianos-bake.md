@@ -6,7 +6,7 @@
 '@app/graphql': minor
 '@app/i18n': minor
 '@app/mock-graphql': minor
-'@ui/core': minor
+'@ui/storyboo': minor
 '@ui/theme': minor
 '@saas-ui/billing': minor
 '@saas-ui/charts': minor

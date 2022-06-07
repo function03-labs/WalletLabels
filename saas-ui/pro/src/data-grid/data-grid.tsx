@@ -27,7 +27,6 @@ import {
   Th,
   Td,
   Checkbox,
-  useStyles,
   useTheme,
   useMultiStyleConfig,
   SystemStyleObject,
@@ -305,11 +304,8 @@ export const DataGridSort = <Data extends object>(
 ) => {
   const { column, ...rest } = props
 
-  const styles = useStyles()
-
   const sorterStyles = {
     ms: 2,
-    ...styles.sorter,
   }
 
   if (column.id === 'selection') {

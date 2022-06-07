@@ -6,6 +6,7 @@
 '@app/graphql': minor
 '@app/i18n': minor
 '@app/mock-graphql': minor
+'@app/nextjs': minor
 '@ui/storybook': minor
 '@ui/theme': minor
 '@saas-ui/billing': minor
@@ -19,4 +20,4 @@
 'saas-ui-storybook': minor
 ---
 
-BREAKING: Updated to Chakra UI 2.1
+Updated to Chakra UI 2.2.1

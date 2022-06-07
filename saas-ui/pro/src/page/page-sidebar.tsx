@@ -5,12 +5,11 @@ import {
   ChakraProps,
   HTMLChakraProps,
   ThemingProps,
-  StylesProvider,
   omitThemingProps,
-  useStyles,
   useMultiStyleConfig,
   SystemProps,
   SystemStyleObject,
+  createStylesContext,
 } from '@chakra-ui/react'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 import { Loader } from '@saas-ui/react'
@@ -22,6 +21,8 @@ import { MotionBox } from '../transitions'
 
 import { ResizeHandle, ResizeOptions, useResize } from '../resize'
 import { HTMLMotionProps } from 'framer-motion'
+
+const [StylesProvider, useStyles] = createStylesContext('PageSidebar')
 
 export interface PageSidebarOptions {
   /**

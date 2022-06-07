@@ -4,12 +4,11 @@ import {
   chakra,
   HTMLChakraProps,
   ThemingProps,
-  StylesProvider,
   omitThemingProps,
-  useStyles,
   useMultiStyleConfig,
   SystemProps,
   SystemStyleObject,
+  createStylesContext,
 } from '@chakra-ui/react'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 
@@ -18,6 +17,8 @@ import { getChildOfType } from '@saas-ui/react-utils'
 
 import { ErrorBoundary } from '../app/error-boundary'
 import { ErrorPage } from './error-page'
+
+const [StylesProvider, useStyles] = createStylesContext('Page')
 
 export interface PageOptions {
   /**
