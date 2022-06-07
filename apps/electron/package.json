@@ -27,7 +27,6 @@
     "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": "^0.13.9",
     "@saas-ui/router": "workspace:*",
-    "@ui/core": "workspace:*",
     "@ui/theme": "workspace:*",
     "app": "workspace:*",
     "electron-serve": "^1.1.0",

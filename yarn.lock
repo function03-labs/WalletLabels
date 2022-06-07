@@ -27,7 +27,6 @@ __metadata:
   resolution: "@app/config@workspace:packages/app-config"
   dependencies:
     "@supabase/supabase-js": ^1.18.0
-    "@ui/core": "workspace:*"
     magic-sdk: ^8.0.1
   languageName: unknown
   linkType: soft
@@ -8200,9 +8199,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ui/core@workspace:*, @ui/core@workspace:packages/ui-core":
+"@ui/core@workspace:packages/ui-storybook":
   version: 0.0.0-use.local
-  resolution: "@ui/core@workspace:packages/ui-core"
+  resolution: "@ui/core@workspace:packages/ui-storybook"
   dependencies:
     "@babel/core": ^7.16.5
     "@babel/plugin-proposal-class-properties": ^7.16.5
@@ -9055,7 +9054,6 @@ __metadata:
     "@app/config": "workspace:*"
     "@app/i18n": "workspace:*"
     "@types/react-table": ^7.7.9
-    "@ui/core": "workspace:*"
     react-icons: ^4.3.1
     yup: ^0.32.11
   peerDependencies:
@@ -13115,7 +13113,6 @@ __metadata:
     "@saas-ui/router": "workspace:*"
     "@types/node": ^16.11.7
     "@types/react": ^17.0.19
-    "@ui/core": "workspace:*"
     "@ui/theme": "workspace:*"
     app: "workspace:*"
     electron: ^18.2.0
@@ -19877,7 +19874,6 @@ __metadata:
     "@saas-ui/react": ^0.13.9
     "@saas-ui/router": "workspace:*"
     "@svgr/webpack": 5.5.0
-    "@ui/core": "workspace:*"
     "@ui/theme": "workspace:*"
     app: "workspace:*"
     framer-motion: ^6

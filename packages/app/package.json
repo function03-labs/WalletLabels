@@ -6,7 +6,6 @@
     "@app/config": "workspace:*",
     "@app/i18n": "workspace:*",
     "@types/react-table": "^7.7.9",
-    "@ui/core": "workspace:*",
     "react-icons": "^4.3.1",
     "yup": "^0.32.11"
   },
