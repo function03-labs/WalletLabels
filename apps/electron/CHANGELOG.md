@@ -1,5 +1,20 @@
 # electron-app
 
+## 1.1.10
+
+### Patch Changes
+
+- Updated dependencies [3550e80]
+- Updated dependencies [27bd254]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+  - @saas-ui/pro@0.4.2
+  - app@5.0.2
+  - @ui/theme@0.0.1
+
 ## 1.1.9
 
 ### Patch Changes

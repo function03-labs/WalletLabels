@@ -1,5 +1,17 @@
 # app
 
+## 5.0.2
+
+### Patch Changes
+
+- 3550e80: Moved sidebar search input to new GlobalSearch component.
+- 3550e80: Moved sidebar sub components into separate folders.
+- Updated dependencies [3550e80]
+- Updated dependencies [27bd254]
+- Updated dependencies [3550e80]
+- Updated dependencies [3550e80]
+  - @saas-ui/pro@0.4.2
+
 ## 5.0.1
 
 ### Patch Changes
