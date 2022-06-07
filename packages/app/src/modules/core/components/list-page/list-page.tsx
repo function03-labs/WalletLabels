@@ -224,11 +224,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         }}
         {...rest}
       >
-        <BulkActions
-          selections={selections}
-          actions={bulkActions}
-          variant="floating"
-        />
+        <BulkActions selections={selections} actions={bulkActions} />
         <ActiveFiltersList />
         <PageBody fullWidth>{content}</PageBody>
       </Page>
