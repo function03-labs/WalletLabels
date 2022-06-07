@@ -1,24 +1,24 @@
-import {
-  ChakraProvider,
-  extendTheme,
-  Flex,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuOptionGroup,
-  MenuItemOption,
-  useColorMode,
-  useColorModeValue,
-  localStorageManager,
-} from '@chakra-ui/react'
+import { chakra, extendTheme, useColorMode } from '@chakra-ui/react'
 import { StoryContext } from '@storybook/react'
 import * as React from 'react'
-// import { FaMoon, FaSun } from 'react-icons/fa'
-import { FiMoon, FiSun } from 'react-icons/fi'
-import { withPerformance } from 'storybook-addon-performance'
 
-import { baseTheme, theme } from '@saas-ui/theme'
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
+
+import { SaasProvider } from '@saas-ui/react'
+import { theme as proTheme } from '@saas-ui/pro'
+
+import '@fontsource/inter/variable.css'
+
+export const parameters = {
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+  },
+  options: {
+    storySort: {
+      order: ['Docs'],
+    },
+  },
+}
 
 /**
  * Add global context for RTL-LTR switching
@@ -33,73 +33,71 @@ export const globalTypes = {
       items: ['LTR', 'RTL'],
     },
   },
+  theme: {
+    name: 'Theme',
+    description: 'Global theme for components',
+    defaultValue: 'pro',
+    toolbar: {
+      icon: 'paintbrush',
+      items: ['pro'],
+      showName: true,
+    },
+  },
+  colorMode: {
+    name: 'ColorMode',
+    description: 'Color mode',
+    defaultValue: 'light',
+    toolbar: {
+      icon: 'circlehollow',
+      items: ['light', 'dark'],
+    },
+  },
 }
 
-const ThemeSelect = ({ value, onChange }) => {
-  const themes = ['Chakra UI', 'Saas UI']
-  return (
-    <Menu>
-      <MenuButton>Theme: {themes[value]}</MenuButton>
-      <MenuList>
-        <MenuOptionGroup defaultValue={value} type="radio" onChange={onChange}>
-          <MenuItemOption value="0">Chakra UI</MenuItemOption>
-          <MenuItemOption value="1">Saas UI</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>
-  )
-}
+const ColorModeToggle = ({ colorMode }) => {
+  const { setColorMode } = useColorMode()
 
-const ColorModeToggle = () => {
-  const { toggleColorMode } = useColorMode()
-  const SwitchIcon = useColorModeValue(FiMoon, FiSun)
-  const nextMode = useColorModeValue('dark', 'light')
+  React.useEffect(() => {
+    setColorMode(colorMode)
+  }, [colorMode])
 
-  return (
-    <IconButton
-      size="md"
-      fontSize="lg"
-      aria-label={`Switch to ${nextMode} mode`}
-      variant="ghost"
-      color="current"
-      marginLeft="2"
-      onClick={toggleColorMode}
-      icon={<SwitchIcon />}
-    />
-  )
+  return null
 }
 
 const withChakra = (StoryFn: Function, context: StoryContext) => {
-  const [themeId, setTheme] = React.useState(
-    localStorage.getItem('storybook.theme') || '0',
-  )
+  const { theme: themeId, colorMode } = context.globals
+
   const { direction } = context.globals
   const dir = direction.toLowerCase()
 
   const getTheme = React.useCallback(() => {
-    if (themeId === '1') {
-      return theme
+    if (themeId === 'pro') {
+      return proTheme
     }
-    return baseTheme
+    return proTheme
   }, [themeId])
 
+  const theme = getTheme()
   return (
-    <ChakraProvider theme={extendTheme({ ...getTheme(), direction: dir })}>
-      <div dir={dir} id="story-wrapper" style={{ minHeight: '100vh' }}>
-        <Flex justify="flex-end" mb={4}>
-          <ThemeSelect
-            value={themeId}
-            onChange={(id) => {
-              setTheme(id)
-              localStorage.setItem('storybook.theme', id)
-            }}
-          />
-          <ColorModeToggle />
-        </Flex>
+    <SaasProvider
+      theme={extendTheme(
+        {
+          ...theme,
+          direction: dir,
+        },
+        {
+          styles: {
+            global: { 'html, body, #root': { height: '100%' } },
+          },
+        },
+      )}
+    >
+      <chakra.div dir={dir} id="story-wrapper" height="100%">
+        <ColorModeToggle colorMode={colorMode} />
         <StoryFn />
-      </div>
-    </ChakraProvider>
+      </chakra.div>
+    </SaasProvider>
   )
 }
 
-export const decorators = [withChakra, withPerformance]
+export const decorators = [withChakra]

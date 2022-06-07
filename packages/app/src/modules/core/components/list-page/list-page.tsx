@@ -28,7 +28,7 @@ import { useDebouncedCallback } from '@react-hookz/web'
 
 import { DatePickerModal } from '@saas-ui/date-picker'
 
-interface ListPageProps<D extends object>
+export interface ListPageProps<D extends object>
   extends PageProps,
     Pick<
       DataGridProps<D>,

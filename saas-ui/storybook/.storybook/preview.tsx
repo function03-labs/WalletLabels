@@ -2,8 +2,6 @@ import { chakra, extendTheme, useColorMode } from '@chakra-ui/react'
 import { StoryContext } from '@storybook/react'
 import * as React from 'react'
 
-import { withPerformance } from 'storybook-addon-performance'
-
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 import { SaasProvider } from '@saas-ui/react'
@@ -102,4 +100,4 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   )
 }
 
-export const decorators = [withChakra, withPerformance]
+export const decorators = [withChakra]
