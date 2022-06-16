@@ -4,7 +4,7 @@ import brandImage from './storybook-logo.svg'
 
 export default create({
   base: 'light',
-  brandTitle: 'Saas UI',
+  brandTitle: 'Your Design System',
   brandUrl: 'https://saas-ui.dev',
   brandImage,
 })

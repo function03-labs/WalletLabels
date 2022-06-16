@@ -9,7 +9,7 @@ const toPath = (_path) => path.join(process.cwd(), _path)
 module.exports = {
   stories: [
     path.resolve('../**/stories/*.stories.@(tsx|mdx)'),
-    path.resolve('../docs/**/*.mdx'),
+    path.resolve('../docs/**/*.stories.@(tsx|mdx)'),
   ],
   addons: [
     'storybook-addon-swc',

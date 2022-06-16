@@ -51,6 +51,7 @@ export const MRR = () => {
         <LineChart
           data={data}
           name="Revenue"
+          strokeWidth="2"
           tickFormatter={(value: number) =>
             intl.formatNumber(value, {
               currency: 'EUR',

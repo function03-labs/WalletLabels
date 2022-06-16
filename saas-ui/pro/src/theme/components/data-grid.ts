@@ -109,6 +109,9 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
           )(props),
         },
       },
+      'tr:last-of-type td': {
+        border: 0,
+      },
     },
     tfoot: {
       tr: {

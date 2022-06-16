@@ -3,10 +3,15 @@ const toPath = (_path) => path.join(process.cwd(), _path)
 
 module.exports = {
   stories: [
-    path.resolve('../../packages/**/*.stories.tsx'),
-    path.resolve('../../apps/**/*.stories.tsx'),
-    path.resolve('../../saas-ui/**/*.stories.tsx'),
+    {
+      directory: '../../',
+      files: '*/!(node_modules)/**/*.stories.@(tsx|mdx)',
+    },
   ],
+  features: {
+    storyStoreV7: true,
+  },
+  framework: '@storybook/react',
   addons: [
     'storybook-addon-swc',
     '@storybook/addon-a11y',
@@ -33,9 +38,13 @@ module.exports = {
     }
 
     return {
+      '@saas-ui/pro': {
+        title: 'Saas UI Pro',
+        url: 'https://storybook.saas-ui.pro/',
+      },
       '@saas-ui/react': {
-        title: 'Saas UI', // @todo Update to main branch
-        url: 'https://61fdb7be874ac7003a932b27-yidqjjhtuo.chromatic.com/',
+        title: 'Saas UI',
+        url: 'https://storybook.saas-ui.dev/',
       },
       ...refs,
     }
@@ -63,5 +72,8 @@ module.exports = {
         ]),
       },
     }
+  },
+  core: {
+    builder: 'webpack5',
   },
 }

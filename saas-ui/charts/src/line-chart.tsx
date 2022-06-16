@@ -1,7 +1,13 @@
 import * as React from 'react'
 
-import { Box, SystemProps, useColorModeValue, useTheme } from '@chakra-ui/react'
-
+import {
+  Box,
+  SystemProps,
+  useColorModeValue,
+  useStyleConfig,
+  useTheme,
+} from '@chakra-ui/react'
+import { css } from '@chakra-ui/styled-system'
 import {
   AreaChart,
   Area,
@@ -27,6 +33,7 @@ export interface LineChartProps {
   strokeWidth?: string
   name?: string
   tickFormatter?: (value: number) => string
+  variant?: 'line' | 'solid' | 'gradient'
 }
 
 export const LineChart = (props: LineChartProps) => {
@@ -38,11 +45,36 @@ export const LineChart = (props: LineChartProps) => {
     strokeWidth,
     name,
     tickFormatter,
+    variant,
   } = props
 
   const theme = useTheme()
 
-  const stroke = theme.colors[color]?.[500]
+  const styles = useStyleConfig('Tooltip')
+
+  const strokeColor = theme.colors[color]?.[500]
+
+  const fill = (() => {
+    switch (variant) {
+      case 'solid':
+        return strokeColor
+      case 'gradient':
+        return 'url(#chart-gradient)'
+      default:
+        return 'transparent'
+    }
+  })()
+
+  const tooltipStyles = React.useMemo(
+    () =>
+      css({
+        ...styles,
+        borderRadius: 'md',
+        borderColor: 'inherit',
+        flexDirection: 'column',
+      })(theme),
+    [theme, styles],
+  )
 
   return (
     <Box height={height}>
@@ -58,6 +90,12 @@ export const LineChart = (props: LineChartProps) => {
             bottom: 0,
           }}
         >
+          <defs>
+            <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor={strokeColor} stopOpacity={0.8} />
+              <stop offset="95%" stopColor={strokeColor} stopOpacity={0} />
+            </linearGradient>
+          </defs>
           {showGrid && (
             <CartesianGrid
               strokeDasharray=" 1 1 1"
@@ -71,17 +109,14 @@ export const LineChart = (props: LineChartProps) => {
             formatter={(value: string, name: string, props: any) => {
               return props.payload.yv
             }}
-            contentStyle={{
-              color: 'black',
-              borderRadius: 'var(--chakra-radii-md)',
-            }}
+            contentStyle={tooltipStyles}
           />
           <Area
             type="monotone"
             dataKey="y"
-            stroke={stroke}
+            stroke={strokeColor}
             strokeWidth={strokeWidth}
-            fill="transparent"
+            fill={fill}
             name={name}
           />
         </AreaChart>

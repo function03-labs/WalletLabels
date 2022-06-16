@@ -21,7 +21,7 @@ export interface MetricProps {
 export const Metric = (props: MetricProps) => {
   const { label, value, change, data, color, ...rest } = props
   return (
-    <HStack {...rest}>
+    <HStack {...rest} position="relative">
       <Stat>
         <StatLabel>{label}</StatLabel>
         <StatNumber>{value}</StatNumber>
@@ -33,8 +33,8 @@ export const Metric = (props: MetricProps) => {
         )}
       </Stat>
       {data && (
-        <Box flex="1">
-          <Sparklines data={data} height="32px" strokeWidth={1} color={color} />
+        <Box position="absolute" right="0" bottom="0">
+          <Sparklines data={data} height="32px" strokeWidth={2} color={color} />
         </Box>
       )}
     </HStack>
