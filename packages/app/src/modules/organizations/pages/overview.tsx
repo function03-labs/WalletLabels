@@ -10,6 +10,7 @@ import {
   Toolbar,
   ToolbarButton,
   useTenant,
+  PageBody,
 } from '@saas-ui/pro'
 
 import { IntroTour } from '../components/intro-tour'
@@ -62,23 +63,26 @@ export function OverviewPage() {
 
   return (
     <Page title={organization?.name} toolbar={toolbar} isLoading={isLoading}>
-      <IntroTour />
-      <Grid
-        templateColumns={['repeat(1, 1fr)', null, 'repeat(3, 1fr)']}
-        width="100%"
-        gap="4"
-        p="4"
-      >
-        <GridItem colSpan={2}>
-          <MRR />
-        </GridItem>
-        <GridItem rowSpan={[0, null, 2]}>
-          <Today />
-        </GridItem>
-        <GridItem colSpan={2}>
-          <SalesByCountry />
-        </GridItem>
-      </Grid>
+      <PageBody pt="8">
+        <IntroTour />
+        <Grid
+          templateColumns={['repeat(1, 1fr)', null, 'repeat(1, 1fr)']}
+          width="100%"
+          gap="4"
+          p="4"
+        >
+          <GridItem>
+            <Today />
+          </GridItem>
+          <GridItem>
+            <MRR />
+          </GridItem>
+
+          <GridItem>
+            <SalesByCountry />
+          </GridItem>
+        </Grid>
+      </PageBody>
     </Page>
   )
 }

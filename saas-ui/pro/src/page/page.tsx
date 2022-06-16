@@ -110,10 +110,17 @@ if (__DEV__) {
 interface PageBodyProps extends HTMLChakraProps<'div'> {
   fullWidth?: boolean
   contentWidth?: SystemProps['maxW']
+  contentProps?: HTMLChakraProps<'div'>
 }
 
 export const PageBody: React.FC<PageBodyProps> = (props) => {
-  const { fullWidth, contentWidth = 'container.xl', children } = props
+  const {
+    fullWidth,
+    contentWidth = 'container.xl',
+    children,
+    contentProps,
+    ...rest
+  } = props
 
   let innerWidth = contentWidth
   if (fullWidth) {
@@ -124,10 +131,13 @@ export const PageBody: React.FC<PageBodyProps> = (props) => {
 
   return (
     <chakra.div
+      {...rest}
       __css={styles.body}
       className={cx('saas-page__body', props.className)}
     >
-      <chakra.div maxW={innerWidth}>{children}</chakra.div>
+      <chakra.div {...contentProps} maxW={innerWidth}>
+        {children}
+      </chakra.div>
     </chakra.div>
   )
 }

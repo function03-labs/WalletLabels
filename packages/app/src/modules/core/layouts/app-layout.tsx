@@ -48,6 +48,7 @@ export const Authenticated: React.FC = ({ children, ...rest }) => {
           <Auth
             title={title}
             providers={authProviders}
+            onError={(err) => console.error(err)}
             view={view}
             type={authType}
             signupLink={<Link href="/signup">Sign up</Link>}

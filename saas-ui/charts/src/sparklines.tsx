@@ -12,6 +12,7 @@ export interface SparklineProps extends BoxProps, Pick<CurveProps, 'type'> {
   color?: string
   fillColor?: string
   strokeWidth?: number
+  variant?: 'line' | 'solid' | 'gradient'
 }
 
 export const Sparklines = (props: SparklineProps) => {
@@ -19,21 +20,31 @@ export const Sparklines = (props: SparklineProps) => {
     data = [],
     type = 'monotone',
     color = 'blue',
-    fillColor = 'transparent',
+    fillColor,
     strokeWidth,
+    variant,
     ...rest
   } = props
   const theme = useTheme()
 
-  const stroke = theme.colors[color]?.[500]
+  const strokeColor = theme.colors[color]?.[500]
+
+  const fill = (() => {
+    switch (variant) {
+      case 'solid':
+        return fillColor || strokeColor
+      case 'gradient':
+        return 'url(#chart-gradient)'
+      default:
+        return 'transparent'
+    }
+  })()
 
   const mappedData = data?.map((datum, i) => {
     return {
       v: datum,
     }
   })
-
-  const fill = fillColor || transparentize(stroke, 0.3)(theme)
 
   return (
     <Box {...rest}>
@@ -46,7 +57,7 @@ export const Sparklines = (props: SparklineProps) => {
         >
           <Area
             dataKey="v"
-            stroke={stroke}
+            stroke={strokeColor}
             strokeWidth={strokeWidth}
             fill={fill}
             type={type}
