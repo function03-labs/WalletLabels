@@ -1,4 +1,5 @@
 import AppShell from './app-shell'
+import Beacon from './beacon'
 import Button from './button'
 import Card from './card'
 import Command from './command'
@@ -20,6 +21,7 @@ import Tooltip from './tooltip'
 
 export default {
   AppShell,
+  Beacon,
   Button,
   Card,
   Command,

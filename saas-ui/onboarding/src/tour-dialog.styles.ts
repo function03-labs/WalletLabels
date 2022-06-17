@@ -1,4 +1,3 @@
-import { popoverAnatomy as parts } from '@chakra-ui/anatomy'
 import type {
   PartsStyleFunction,
   SystemStyleFunction,
@@ -6,13 +5,23 @@ import type {
 } from '@chakra-ui/theme-tools'
 import { cssVar, mode } from '@chakra-ui/theme-tools'
 
+const parts = [
+  'popper',
+  'content',
+  'header',
+  'body',
+  'footer',
+  'arrow',
+  'closeButton',
+]
+
 const $popperBg = cssVar('tour-dialog-bg')
 
 const $arrowBg = cssVar('popper-arrow-bg')
 const $arrowShadowColor = cssVar('popper-arrow-shadow-color')
 
 const baseStylePopper: SystemStyleObject = {
-  zIndex: 10,
+  zIndex: 'modal',
 }
 
 const baseStyleContent: SystemStyleFunction = (props) => {

@@ -34,7 +34,7 @@ export const Today = () => {
   return (
     <SimpleGrid columns={[1, 2, 4]} gap="4">
       {data.map((metric) => (
-        <Card>
+        <Card key={metric.label}>
           <CardBody>
             <Metric {...metric} color="primary" />
           </CardBody>

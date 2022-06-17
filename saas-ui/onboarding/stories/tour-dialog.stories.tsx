@@ -6,8 +6,12 @@ import {
   TourDialog,
   TourDialogActions,
   TourDialogBody,
+  TourDialogCloseButton,
   TourDialogFooter,
+  TourDialogHeader,
+  TourDialogPrimaryAction,
   TourDialogProps,
+  TourDialogSecondaryAction,
   TourDialogTrigger,
 } from '../src'
 
@@ -37,47 +41,24 @@ const Template: Story<TourDialogProps> = (args) => {
       <TourDialogTrigger>
         <Button label="Toggle tour dialog" onClick={onToggle} />
       </TourDialogTrigger>
+      <TourDialogCloseButton />
+      <TourDialogHeader>Check out this new feature</TourDialogHeader>
       <TourDialogBody>Start the tour to see how it works.</TourDialogBody>
+      <TourDialogFooter>
+        <Text>Step 1 of 2</Text>
+        <TourDialogActions>
+          <TourDialogSecondaryAction />
+          <TourDialogPrimaryAction />
+        </TourDialogActions>
+      </TourDialogFooter>
     </TourDialog>
   )
 }
 
 export const Basic = Template.bind({})
-Basic.args = {
-  title: 'Check out this new feature',
-}
-
-export const CustomActions = Template.bind({})
-CustomActions.args = {
-  title: 'Check out this new feature',
-  primaryAction: {
-    label: 'Next',
-    colorScheme: 'white',
-    variant: 'solid',
-  },
-  secondaryAction: {
-    label: 'Skip',
-  },
-}
+Basic.args = {}
 
 export const ColorScheme = Template.bind({})
 ColorScheme.args = {
-  title: 'Check out this new feature',
   colorScheme: 'secondary',
-}
-
-export const Composed = () => {
-  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
-  return (
-    <TourDialog title="Composed Tour Dialog" isOpen={isOpen} onClose={onClose}>
-      <TourDialogTrigger>
-        <Button label="Toggle tour dialog" onClick={onToggle} />
-      </TourDialogTrigger>
-      <TourDialogBody>Start the tour to see how it works.</TourDialogBody>
-      <TourDialogFooter>
-        <Text>Step 1 of 2</Text>
-        <TourDialogActions />
-      </TourDialogFooter>
-    </TourDialog>
-  )
 }

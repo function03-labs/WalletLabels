@@ -36,22 +36,21 @@ const Template: Story<BenefitsModalProps> = (args) => {
   return (
     <>
       <Button onClick={onOpen}>Show BenefitsModal</Button>
-      <BenefitsModal
-        {...args}
-        isOpen={isOpen}
-        onClose={onClose}
-        title="Check out this new feature"
-      >
+      <BenefitsModal {...args} isOpen={isOpen} onClose={onClose}>
         <BenefitsModalMedia
           src="onboarding/undraw_building_blocks_re_5ahy.svg"
-          px="16"
-          py="8"
+          mx="16"
+          my="8"
         />
+        <BenefitsModalHeader>Check out this new feature</BenefitsModalHeader>
         <BenefitsModalBody>
           Benefits modals can be used to highlight new features and their
           benefits in your app. Embed illustrations or videos to make ideas more
           accessible.
         </BenefitsModalBody>
+        <BenefitsModalFooter>
+          <Button colorScheme="primary">Get started</Button>
+        </BenefitsModalFooter>
       </BenefitsModal>
     </>
   )
@@ -66,31 +65,22 @@ export const Centered = () => {
   return (
     <>
       <Button onClick={onOpen}>Show BenefitsModal</Button>
-      <BenefitsModal
-        isOpen={isOpen}
-        onClose={onClose}
-        title={
-          <BenefitsModalHeader textAlign="center">
-            Check out this new feature
-          </BenefitsModalHeader>
-        }
-      >
+      <BenefitsModal isOpen={isOpen} onClose={onClose}>
         <BenefitsModalMedia
           src="onboarding/undraw_building_blocks_re_5ahy.svg"
-          px="16"
-          py="8"
+          mx="16"
+          my="8"
         />
+        <BenefitsModalHeader textAlign="center">
+          Check out this new feature
+        </BenefitsModalHeader>
         <BenefitsModalBody textAlign="center">
           Benefits modals can be used to highlight new features and their
           benefits in your app. Embed illustrations or videos to make ideas more
           accessible.
         </BenefitsModalBody>
-        <BenefitsModalFooter>
-          <BenefitsModalActions
-            justifyContent="center"
-            primaryActionProps={{ label: 'Get started' }}
-            secondaryActionProps={{ display: 'none' }}
-          />
+        <BenefitsModalFooter justifyContent="center">
+          <Button colorScheme="primary">Get started</Button>
         </BenefitsModalFooter>
       </BenefitsModal>
     </>
