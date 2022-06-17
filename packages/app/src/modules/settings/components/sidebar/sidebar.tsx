@@ -16,6 +16,7 @@ import {
 
 import { usePath } from '@modules/core/hooks/use-path'
 import { Has } from '@saas-ui/features'
+import { ElectronNav } from '@modules/core/components/electron-nav'
 
 const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
   const { path, ...rest } = props
@@ -33,6 +34,7 @@ export const SettingsSidebar = () => {
   return (
     <>
       <SidebarContainer>
+        <ElectronNav />
         <SidebarOverflow>
           <SidebarNav direction="row" alignItems="center" mb="8">
             <BackButton href={usePath()} ref={backRef} />
