@@ -18,7 +18,7 @@ module.exports = withWorkspaces({
     webpack: (config, options) => {
       const { isServer } = options
       if (!isServer && isElectron) {
-        config.target = 'electron-renderer'
+        // config.target = 'electron-renderer' // Disable this otherwise MSW doesn't work.
       }
 
       config.module.rules.push({
