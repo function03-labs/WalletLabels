@@ -3,9 +3,9 @@ import type {
   SystemStyleFunction,
   SystemStyleObject,
 } from '@chakra-ui/theme-tools'
-import { cssVar, mode } from '@chakra-ui/theme-tools'
+import { cssVar, mode, anatomy } from '@chakra-ui/theme-tools'
 
-const parts = [
+const parts = anatomy('tour-dialog').parts(
   'popper',
   'content',
   'header',
@@ -13,7 +13,7 @@ const parts = [
   'footer',
   'arrow',
   'closeButton',
-]
+)
 
 const $popperBg = cssVar('tour-dialog-bg')
 

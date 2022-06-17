@@ -54,7 +54,7 @@ export const IntroTour = () => {
   return (
     <ErrorBoundary>
       <Tour
-        defaultIsActive={true}
+        defaultIsActive={!tour}
         onDismiss={onDismiss}
         onComplete={onTourComplete}
       >
