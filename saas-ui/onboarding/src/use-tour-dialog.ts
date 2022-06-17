@@ -45,9 +45,9 @@ export const useTourDialog = (props: TourDialogOptions) => {
         ref: mergeRefs(primaryActionRef, ref),
         onClick: callAllHandlers(
           async () => {
-            await onSubmit?.()
-
-            onClose()
+            if (await onSubmit?.()) {
+              onClose()
+            }
           },
           props?.onClick,
           primaryAction?.onClick,

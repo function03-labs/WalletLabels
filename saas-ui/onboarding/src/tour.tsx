@@ -1,170 +1,79 @@
 import * as React from 'react'
+import { Portal } from '@chakra-ui/react'
+import { __DEV__ } from '@chakra-ui/utils'
+import { Button, ButtonProps } from '@saas-ui/react'
+import { useTour, TourProvider, useTourContext, TourOptions } from './use-tour'
 
-import { Text } from '@chakra-ui/react'
-
-import Joyride, {
-  BeaconRenderProps,
-  TooltipRenderProps,
-  Props,
-  Locale,
-  Step,
-  STATUS,
-  LIFECYCLE,
-} from 'react-joyride'
-
-export type { Step }
-
-import { Beacon } from './beacon'
-import {
-  TourDialog,
-  TourDialogActions,
-  TourDialogBody,
-  TourDialogFooter,
-  TourDialogTrigger,
-} from './tour-dialog'
-
-function renderProgress(
-  progress: React.ReactNode,
-  step: number,
-  total: number,
-) {
-  if (typeof progress === 'string') {
-    return progress
-      .replace(':current', String(step))
-      .replace(':total', String(total))
-  }
-
-  return progress
+export interface TourProps extends TourOptions {
+  children?: React.ReactNode
 }
 
-const TourTooltip = React.forwardRef(
-  (
-    {
-      tooltipProps,
-      step,
-      index,
-      size,
-      isLastStep,
-      continuous,
-      skipProps,
-      backProps,
-      primaryProps,
-      closeProps,
-      ...rest
-    }: TooltipRenderProps,
-    ref,
-  ) => {
-    const {
-      content,
-      hideBackButton,
-      hideCloseButton,
-      hideFooter,
-      showProgress,
-      showSkipButton,
-      title,
-    } = step
+export const Tour: React.FC<TourProps> = (props) => {
+  const { children } = props
 
-    const { progress, back, last, next, skip } = step.locale as TourLocale
+  const _steps = React.Children.toArray(children).filter((child) => {
+    return React.isValidElement(child) && child.props['data-target']
+  }) as React.ReactElement[]
 
-    let secondaryAction = null
-    if (index > 0 && !hideBackButton) {
-      secondaryAction = {
-        label: back,
-        ...backProps,
-      }
-    } else if (showSkipButton) {
-      secondaryAction = {
-        label: skip,
-        ...skipProps,
-      }
+  const _children = React.Children.toArray(children).filter((child) => {
+    return React.isValidElement(child) && !child.props['data-target']
+  }) as React.ReactElement[]
+
+  const steps = React.Children.map(_steps, (child) => {
+    return {
+      id: child.props['data-target'],
+      element: child,
     }
+  })
 
-    const dialogProps = {
-      title,
-      placement: step.placement === 'center' ? 'bottom' : step.placement,
-      hideCloseButton,
-      isOpen: true,
-      primaryAction: continuous
-        ? {
-            label: isLastStep ? last : next,
-            ...primaryProps,
-          }
-        : null,
-      secondaryAction,
-      ...rest,
-    }
+  const ctx = useTour({ steps, ...props })
 
-    return (
-      <TourDialog {...dialogProps}>
-        <TourDialogTrigger>
-          <span {...tooltipProps} />
-        </TourDialogTrigger>
-        <TourDialogBody>{content}</TourDialogBody>
-        {!hideFooter && (
-          <TourDialogFooter>
-            {showProgress && (
-              <Text>{renderProgress(progress, index + 1, size)}</Text>
-            )}
+  const { step, getStepProps } = ctx
 
-            <TourDialogActions />
-          </TourDialogFooter>
-        )}
-      </TourDialog>
-    )
-  },
-)
-
-export interface TourLocale extends Locale {
-  progress?: React.ReactNode
-}
-
-export interface TourProps extends Props {
-  locale?: TourLocale
-  onComplete?: () => void
-}
-
-const defaultLocale = {
-  progress: 'Step :current of :total',
-  back: 'Back',
-  close: 'Close',
-  last: 'Done',
-  next: 'Next',
-  open: 'Open the dialog',
-  skip: 'Skip',
-}
-
-export function Tour({
-  steps,
-  locale,
-  callback,
-  onComplete,
-  ...props
-}: TourProps) {
-  const _handleCallback = React.useCallback((data) => {
-    if (callback) {
-      callback(data)
-    }
-    if (
-      onComplete &&
-      [STATUS.FINISHED, STATUS.SKIPPED].includes(data.status) &&
-      data.lifecycle === LIFECYCLE.COMPLETE
-    ) {
-      onComplete()
-    }
-  }, [])
+  const currentStep =
+    step?.element && React.cloneElement(step?.element, getStepProps())
 
   return (
-    <Joyride
-      steps={steps}
-      locale={Object.assign({}, defaultLocale, locale || {})}
-      beaconComponent={
-        Beacon as unknown as React.ElementType<BeaconRenderProps>
-      }
-      tooltipComponent={TourTooltip}
-      showProgress
-      floaterProps={{ hideArrow: true }}
-      callback={_handleCallback}
-      {...props}
+    <TourProvider value={ctx}>
+      <Portal>{currentStep}</Portal>
+      {_children}
+    </TourProvider>
+  )
+}
+
+export const TourNextButton: React.FC<ButtonProps> = (props) => {
+  const { getNextProps } = useTourContext()
+
+  return (
+    <Button
+      variant="solid"
+      colorScheme="primary"
+      label="Next"
+      {...getNextProps(props)}
     />
   )
+}
+
+if (__DEV__) {
+  TourNextButton.displayName = 'TourNextButton'
+}
+
+export const TourPrevButton: React.FC<ButtonProps> = (props) => {
+  const { getPrevProps } = useTourContext()
+
+  return <Button label="Back" {...getPrevProps(props)} />
+}
+
+if (__DEV__) {
+  TourPrevButton.displayName = 'TourPrevButton'
+}
+
+export const TourDismissButton: React.FC<ButtonProps> = (props) => {
+  const { getDismissProps } = useTourContext()
+
+  return <Button label="Dismiss" {...getDismissProps(props)} />
+}
+
+if (__DEV__) {
+  TourDismissButton.displayName = 'TourDismissButton'
 }

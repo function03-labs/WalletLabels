@@ -4,7 +4,6 @@ import {
   forwardRef,
   Popover,
   useTheme,
-  CloseButtonProps,
   PopoverTrigger as TourDialogTrigger,
   PopoverAnchor as TourDialogAnchor,
   PopoverContent as TourDialogContent,
@@ -13,6 +12,8 @@ import {
   PopoverHeader as TourDialogHeader,
   PopoverBody as TourDialogBody,
   PopoverFooter as TourDialogFooter,
+  usePopoverContext,
+  PopoverProps,
 } from '@chakra-ui/react'
 
 import { __DEV__ } from '@chakra-ui/utils'
@@ -34,50 +35,42 @@ import {
 } from './use-tour-dialog'
 
 import defaultStyleConfig from './tour-dialog.styles'
+import { useTourContext } from './use-tour'
 
 export interface TourDialogProps extends TourDialogContainerProps {
-  title?: React.ReactNode
-  hideFooter?: boolean
+  /**
+   * Hide the arrow
+   */
   hideArrow?: boolean
-  hideCloseButton?: boolean
-  closeProps?: CloseButtonProps
+  /**
+   * The Spotlight target when used in a Tour.
+   */
+  ['data-target']?: string
 }
 
 export const TourDialog = forwardRef<
   TourDialogProps,
   typeof TourDialogContainer
 >((props, ref) => {
-  const {
-    children,
-    title,
-    hideFooter,
-    hideArrow,
-    hideCloseButton,
-    closeProps,
-  } = props
+  const { children, hideArrow } = props
 
   const triggerComponent = getChildOfType(children, TourDialogTrigger)
-  const bodyComponent = getChildOfType(children, TourDialogBody)
-  const footerComponent = getChildOfType(children, TourDialogFooter)
 
-  let footer
-  if (!hideFooter) {
-    footer = footerComponent || (
-      <TourDialogFooter>
-        <TourDialogActions />
-      </TourDialogFooter>
-    )
-  }
+  const _children = (
+    React.Children.toArray(children) as React.ReactElement[]
+  ).filter((child) => {
+    return child.type !== TourDialogTrigger
+  })
+
+  const target = props['data-target']
 
   return (
     <TourDialogContainer {...props}>
       {triggerComponent}
+      {target && <TourDialogTarget />}
       <TourDialogContent ref={ref}>
         {!hideArrow && <TourDialogArrow />}
-        {title && !hideCloseButton && <TourDialogCloseButton {...closeProps} />}
-        {title && <TourDialogHeader>{title}</TourDialogHeader>}
-        {bodyComponent}
-        {footer}
+        {_children}
       </TourDialogContent>
     </TourDialogContainer>
   )
@@ -87,7 +80,9 @@ if (__DEV__) {
   TourDialog.displayName = 'TourDialog'
 }
 
-export interface TourDialogContainerProps extends TourDialogOptions {}
+export interface TourDialogContainerProps
+  extends PopoverProps,
+    TourDialogOptions {}
 
 export const TourDialogContainer: React.FC<TourDialogContainerProps> = (
   props,
@@ -127,11 +122,6 @@ export interface TourDialogActionsProps extends ButtonGroupProps {
 }
 
 export const TourDialogActions: React.FC<TourDialogActionsProps> = (props) => {
-  const { children, primaryActionProps, secondaryActionProps } = props
-
-  const { getPrimaryActionProps, getSecondaryActionProps } =
-    useTourDialogContext()
-
   return (
     <ButtonGroup
       size="sm"
@@ -139,18 +129,53 @@ export const TourDialogActions: React.FC<TourDialogActionsProps> = (props) => {
       flex="1"
       justifyContent="flex-end"
       {...props}
-    >
-      {children}
-      <Button {...getSecondaryActionProps(secondaryActionProps)} />
-      <Button
-        {...getPrimaryActionProps({ variant: 'subtle', ...primaryActionProps })}
-      />
-    </ButtonGroup>
+    />
   )
 }
 
 if (__DEV__) {
   TourDialogActions.displayName = 'TourDialogActions'
+}
+
+export const TourDialogPrimaryAction: React.FC<ButtonProps> = (props) => {
+  const { getPrimaryActionProps } = useTourDialogContext()
+
+  return <Button {...getPrimaryActionProps({ variant: 'subtle', ...props })} />
+}
+
+if (__DEV__) {
+  TourDialogPrimaryAction.displayName = 'TourDialogPrimaryAction'
+}
+
+export const TourDialogSecondaryAction: React.FC<ButtonProps> = (props) => {
+  const { getSecondaryActionProps } = useTourDialogContext()
+
+  return <Button {...getSecondaryActionProps(props)} />
+}
+
+if (__DEV__) {
+  TourDialogSecondaryAction.displayName = 'TourDialogSecondaryAction'
+}
+
+export const TourDialogTarget = () => {
+  const { getAnchorProps } = usePopoverContext()
+  const context = useTourContext()
+
+  if (!context) {
+    return null
+  }
+
+  const { targetElement } = context
+
+  const { ref } = getAnchorProps()
+
+  React.useEffect(() => {
+    if (typeof ref === 'function') {
+      ref?.(targetElement)
+    }
+  }, [targetElement])
+
+  return null
 }
 
 export {

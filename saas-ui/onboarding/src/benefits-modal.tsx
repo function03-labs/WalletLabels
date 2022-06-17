@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import {
-  chakra,
   Image,
   Modal,
   ModalProps,
@@ -11,11 +10,10 @@ import {
   ModalHeader as BenefitsModalHeader,
   ModalFooter as BenefitsModalFooter,
   ModalOverlay,
-  HTMLChakraProps,
+  AspectRatio,
+  AspectRatioProps,
 } from '@chakra-ui/react'
 import { __DEV__ } from '@chakra-ui/utils'
-
-import { getChildOfType } from '@saas-ui/react-utils'
 
 import {
   TourDialogContextProvider,
@@ -26,52 +24,22 @@ import {
 import { TourDialogActions, TourDialogActionsProps } from './tour-dialog'
 
 export interface BenefitsModalProps
-  extends Omit<ModalProps, 'size' | 'variant'> {
+  extends Partial<Omit<ModalProps, 'size' | 'variant'>> {
   title?: React.ReactNode
   hideOverlay?: boolean
   hideCloseButton?: boolean
-  hideFooter?: boolean
 }
 
 export const BenefitsModal: React.FC<BenefitsModalProps> = (props) => {
-  const {
-    children,
-    title,
-    hideOverlay,
-    hideCloseButton,
-    hideFooter,
-    ...containerProps
-  } = props
-
-  const mediaComponent = getChildOfType(children, BenefitsModalMedia)
-  const bodyComponent = getChildOfType(children, BenefitsModalBody)
-  const footerComponent = getChildOfType(children, BenefitsModalFooter)
-
-  let footer
-  if (!hideFooter) {
-    footer = footerComponent || (
-      <BenefitsModalFooter>
-        <BenefitsModalActions />
-      </BenefitsModalFooter>
-    )
-  }
+  const { children, title, hideOverlay, hideCloseButton, ...containerProps } =
+    props
 
   return (
     <BenefitsModalContainer {...containerProps}>
       {!hideOverlay && <ModalOverlay />}
       <ModalContent>
         {!hideCloseButton && <BenefitsModalCloseButton />}
-        {mediaComponent}
-
-        {typeof title === 'string' ? (
-          <BenefitsModalHeader>{title}</BenefitsModalHeader>
-        ) : (
-          title
-        )}
-
-        {bodyComponent}
-
-        {footer}
+        {children}
       </ModalContent>
     </BenefitsModalContainer>
   )
@@ -106,7 +74,7 @@ if (__DEV__) {
   BenefitsModalContainer.displayName = 'BenefitsModalContainer'
 }
 
-export interface BenefitsModalMediaProps extends HTMLChakraProps<'div'> {
+export interface BenefitsModalMediaProps extends AspectRatioProps {
   src?: string
 }
 
@@ -114,11 +82,13 @@ export const BenefitsModalMedia: React.FC<BenefitsModalMediaProps> = (
   props,
 ) => {
   const { children, src, ...rest } = props
+
+  const content = src ? <Image src={src} /> : children
+
   return (
-    <chakra.div {...rest}>
-      {src && <Image src={src} />}
-      {children}
-    </chakra.div>
+    <AspectRatio ratio={1} {...rest}>
+      {content}
+    </AspectRatio>
   )
 }
 
@@ -129,17 +99,7 @@ if (__DEV__) {
 export const BenefitsModalActions: React.FC<TourDialogActionsProps> = (
   props,
 ) => {
-  const { primaryActionProps, ...rest } = props
-  return (
-    <TourDialogActions
-      {...rest}
-      primaryActionProps={{
-        variant: 'solid',
-        colorScheme: 'primary',
-        ...primaryActionProps,
-      }}
-    />
-  )
+  return <TourDialogActions {...props} />
 }
 
 if (__DEV__) {
