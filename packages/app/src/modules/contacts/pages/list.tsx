@@ -16,7 +16,6 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { FiUser } from 'react-icons/fi'
-import { Cell } from 'react-table'
 import {
   EmptyState,
   OverflowMenu,
@@ -30,6 +29,7 @@ import {
   ToolbarButton,
   useTenant,
   useDataGridFilter,
+  DataGridCell,
 } from '@saas-ui/pro'
 import { useParams } from '@saas-ui/router'
 
@@ -41,6 +41,7 @@ import { Button } from '@modules/core/components/button'
 
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'
+import { CellProps } from 'react-table'
 
 const contactTypes: Record<string, { label: string; color: string }> = {
   lead: {
@@ -68,7 +69,7 @@ const contactStatus: Record<string, { label: string; color: string }> = {
   },
 }
 
-const StatusCell = (cell: Cell) => {
+const StatusCell: DataGridCell<Contact> = (cell) => {
   const status = contactStatus[cell.value] || contactStatus.new
   return (
     <Tag colorScheme={status.color} size="sm">
@@ -77,7 +78,7 @@ const StatusCell = (cell: Cell) => {
   )
 }
 
-const TypeCell = (cell: Cell) => {
+const TypeCell: DataGridCell<Contact> = (cell) => {
   const type = contactTypes[cell.value] || contactTypes.lead
   return (
     <Tag colorScheme={type.color} size="sm" variant="outline">
@@ -86,11 +87,11 @@ const TypeCell = (cell: Cell) => {
   )
 }
 
-const DateCell = (cell: Cell) => {
-  return format(new Date(cell.value), 'PP')
+const DateCell: DataGridCell<Contact> = (cell) => {
+  return <>{format(new Date(cell.value), 'PP')}</>
 }
 
-const ActionCell = () => {
+const ActionCell: DataGridCell<Contact> = () => {
   return (
     <Box onClick={(e) => e.stopPropagation()}>
       <OverflowMenu size="xs">

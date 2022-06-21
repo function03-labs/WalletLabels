@@ -166,7 +166,7 @@ export const DataGrid = React.forwardRef(
               column.accessor = column.id
             }
             if (!column.Cell) {
-              column.Cell = DataGridCell
+              column.Cell = DefaultDataGridCell
             }
             return column
           })
@@ -366,11 +366,11 @@ const getResult = (fn: any, params: any) => {
   return fn
 }
 
-export const DataGridCell = <Data extends object>({
-  value,
-  column,
-  row,
-}: CellProps<Data>) => {
+export type DataGridCell<Data extends object> = (
+  cell: CellProps<Data>,
+) => JSX.Element
+
+const DefaultDataGridCell: DataGridCell<any> = ({ value, column, row }) => {
   if (column.href) {
     const href = getResult(column.href, row.original) as string
     return <Link href={href}>{value}</Link>
