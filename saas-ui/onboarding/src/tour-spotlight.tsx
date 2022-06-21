@@ -9,16 +9,9 @@ import {
 import { __DEV__, cx } from '@chakra-ui/utils'
 import { motion } from 'framer-motion'
 import * as React from 'react'
-import { useTourSpotlight } from './use-tour-spotlight'
+import { useTourSpotlight, TourSpotlightProps } from './use-tour-spotlight'
 
 export const MotionBox = chakra(motion.div)
-
-interface TourSpotlightProps extends HTMLChakraProps<'div'> {
-  motionPreset?: 'fade' | 'none'
-  closeOnClick?: boolean
-  hideOverlay?: boolean
-  spacing?: number
-}
 
 export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
   (props, ref) => {
@@ -33,7 +26,7 @@ export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
 
     const styles = useStyleConfig('Spotlight', props)
 
-    const { getSpotLightProps } = useTourSpotlight()
+    const { getSpotlightProps } = useTourSpotlight()
 
     const spotlightStyles: SystemStyleObject = {
       position: 'absolute',
@@ -53,7 +46,7 @@ export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
         <MotionBox
           {...rest}
           {...motionProps}
-          {...getSpotLightProps(props)}
+          {...getSpotlightProps(props)}
           ref={ref}
           __css={spotlightStyles}
           className={cx('saas-spotlight', props.className)}
