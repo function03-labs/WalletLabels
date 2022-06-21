@@ -1,7 +1,6 @@
 import { Card } from '@saas-ui/react'
-import { DataGrid, Column } from '@saas-ui/pro'
+import { DataGrid, Column, DataGridCell } from '@saas-ui/pro'
 import { Sparklines } from '@saas-ui/charts'
-import { CellProps } from 'react-table'
 import { Progress } from '@chakra-ui/react'
 import { useIntl } from 'react-intl'
 
@@ -46,11 +45,11 @@ const data: Data[] = [
   },
 ]
 
-const MetricsCell = ({ value }: CellProps<Data>) => {
+const MetricsCell: DataGridCell<Data> = ({ value }) => {
   return <Sparklines data={value} height="20px" width="100px" color="primary" />
 }
 
-const ProgressCell = ({ row }: CellProps<Data>) => {
+const ProgressCell: DataGridCell<Data> = ({ row }) => {
   return (
     <Progress
       value={getPercentage(row.values.revenue)}
@@ -60,14 +59,18 @@ const ProgressCell = ({ row }: CellProps<Data>) => {
   )
 }
 
-const CurrencyCell = ({ value }: CellProps<Data>) => {
+const CurrencyCell: DataGridCell<Data> = ({ value }) => {
   const intl = useIntl()
 
-  return intl.formatNumber(value, {
-    currency: 'EUR',
-    style: 'currency',
-    maximumFractionDigits: 0,
-  })
+  return (
+    <>
+      {intl.formatNumber(value, {
+        currency: 'EUR',
+        style: 'currency',
+        maximumFractionDigits: 0,
+      })}
+    </>
+  )
 }
 
 const columns: Column<Data>[] = [
