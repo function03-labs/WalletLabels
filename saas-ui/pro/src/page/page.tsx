@@ -32,6 +32,7 @@ export interface PageOptions {
   children?: React.ReactNode
   isLoading?: boolean
   skeleton?: React.ReactNode
+  hasError?: boolean
   fullWidth?: boolean
   contentWidth?: SystemProps['maxW']
   errorComponent?: React.ReactNode
@@ -192,9 +193,15 @@ export const Page: React.FC<PageProps> = (props) => {
     tabbar,
     isLoading,
     skeleton,
+    hasError,
     fullWidth,
     contentWidth,
-    errorComponent,
+    errorComponent = (
+      <ErrorPage
+        title="Something went wrong"
+        description="We've been notified about the problem."
+      />
+    ),
     children,
     ...rest
   } = props
@@ -217,27 +224,22 @@ export const Page: React.FC<PageProps> = (props) => {
   }
 
   return (
-    <ErrorBoundary
-      errorComponent={
-        errorComponent || (
-          <ErrorPage
-            title="Something went wrong"
-            description="We've been notified about the problem."
+    <ErrorBoundary errorComponent={errorComponent}>
+      {hasError ? (
+        errorComponent
+      ) : (
+        <PageContainer fullWidth={fullWidth} {...rest}>
+          <PageHeader
+            nav={nav}
+            title={title}
+            description={description}
+            toolbar={toolbar}
+            tabbar={tabbar}
           />
-        )
-      }
-    >
-      <PageContainer fullWidth={fullWidth} {...rest}>
-        <PageHeader
-          nav={nav}
-          title={title}
-          description={description}
-          toolbar={toolbar}
-          tabbar={tabbar}
-        />
 
-        {content}
-      </PageContainer>
+          {content}
+        </PageContainer>
+      )}
     </ErrorBoundary>
   )
 }

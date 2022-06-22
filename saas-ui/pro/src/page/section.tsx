@@ -8,6 +8,8 @@ import {
   createStylesContext,
 } from '@chakra-ui/react'
 
+import { cx, __DEV__ } from '@chakra-ui/utils'
+
 import { Loader } from '@saas-ui/react'
 
 const [StylesProvider, useStyles] = createStylesContext('Section')
@@ -40,11 +42,20 @@ export const Section: React.FC<SectionProps> = (props) => {
   return (
     <SectionContainer {...rest} variant={variant}>
       {showHeading && (
-        <SectionHeading title={title} description={description} />
+        <SectionHeading>
+          {title && <SectionTitle>{title}</SectionTitle>}
+          {description && (
+            <SectionDescription>{description}</SectionDescription>
+          )}
+        </SectionHeading>
       )}
       <SectionBody>{content}</SectionBody>
     </SectionContainer>
   )
+}
+
+if (__DEV__) {
+  Section.displayName = 'Section'
 }
 
 export interface SectionBodyProps extends HTMLChakraProps<'div'> {}
@@ -61,10 +72,18 @@ export const SectionBody: React.FC<SectionBodyProps> = (props) => {
   }
 
   return (
-    <chakra.div __css={bodyStyles} {...rest}>
+    <chakra.div
+      {...rest}
+      __css={bodyStyles}
+      className={cx('saas-section__body', props.className)}
+    >
       {children}
     </chakra.div>
   )
+}
+
+if (__DEV__) {
+  SectionBody.displayName = 'SectionBody'
 }
 
 export const SectionContainer: React.FC<SectionProps> = (props) => {
@@ -85,22 +104,22 @@ export const SectionContainer: React.FC<SectionProps> = (props) => {
 
   return (
     <StylesProvider value={styles}>
-      <chakra.div __css={containerStyles} {...containerProps}>
+      <chakra.div
+        {...containerProps}
+        __css={containerStyles}
+        className={cx('saas-section', props.className)}
+      >
         {children}
       </chakra.div>
     </StylesProvider>
   )
 }
 
-export interface SectionHeadingProps
-  extends Omit<HTMLChakraProps<'div'>, 'title'> {
-  title: React.ReactNode
-  description: React.ReactNode
+if (__DEV__) {
+  SectionContainer.displayName = 'SectionContainer'
 }
 
-export const SectionHeading: React.FC<SectionHeadingProps> = (props) => {
-  const { title, description, ...rest } = props
-
+export const SectionHeading: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const styles = useStyles()
 
   const headingStyles: SystemStyleObject = {
@@ -109,13 +128,34 @@ export const SectionHeading: React.FC<SectionHeadingProps> = (props) => {
   }
 
   return (
-    <chakra.div __css={headingStyles} {...rest}>
-      <chakra.h3 __css={styles.title} textStyle="h3">
-        {title}
-      </chakra.h3>
-      {description && (
-        <chakra.div __css={styles.description}>{description}</chakra.div>
-      )}
-    </chakra.div>
+    <chakra.div
+      {...props}
+      __css={headingStyles}
+      className={cx('saas-section__heading', props.className)}
+    />
   )
+}
+
+if (__DEV__) {
+  SectionHeading.displayName = 'SectionHeading'
+}
+
+export const SectionTitle: React.FC<HTMLChakraProps<'h3'>> = (props) => {
+  const styles = useStyles()
+
+  return <chakra.h3 {...props} __css={styles.title} />
+}
+
+if (__DEV__) {
+  SectionTitle.displayName = 'SectionTitle'
+}
+
+export const SectionDescription: React.FC<HTMLChakraProps<'div'>> = (props) => {
+  const styles = useStyles()
+
+  return <chakra.div {...props} __css={styles.description} />
+}
+
+if (__DEV__) {
+  SectionDescription.displayName = 'SectionDescription'
 }
