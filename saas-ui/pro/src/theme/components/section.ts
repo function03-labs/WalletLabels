@@ -11,7 +11,16 @@ const parts = anatomy('section').parts(
 
 const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
   return {
+    title: {
+      fontSize: ['lg', 'xl'],
+      fontWeight: 'semibold',
+      lineHeight: '110%',
+      letterSpacing: '-1%',
+      mb: 1,
+    },
     description: {
+      color: 'muted',
+      fontSize: 'md',
       a: {
         fontWeight: 'medium',
         color: 'app-text',
@@ -26,8 +35,7 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
       flexDirection: 'column',
     },
     heading: {
-      mb: 8,
-      mt: 4,
+      mb: 4,
     },
   }
 }
@@ -43,13 +51,6 @@ const variantAnnotated: PartsStyleFunction<typeof parts> = (props) => {
       mt: 0,
       mb: [4, null, 0],
       pe: 4,
-    },
-    title: {
-      mb: 2,
-    },
-    description: {
-      color: 'muted',
-      fontSize: 'md',
     },
   }
 }
