@@ -92,7 +92,7 @@ if (__DEV__) {
 interface PageSidebarContainerProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
     Omit<ChakraProps, 'css'>,
-    ResizeOptions,
+    Omit<ResizeOptions, 'position'>,
     ThemingProps<'PageSidebar'> {
   isOpen?: boolean
 }
