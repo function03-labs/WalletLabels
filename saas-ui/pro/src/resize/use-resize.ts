@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { useEventListener } from '@chakra-ui/hooks'
-import { PropGetterV2 } from '@chakra-ui/react-utils'
+import { PropGetter, PropGetterV2 } from '@chakra-ui/react-utils'
 import { HTMLChakraProps } from '@chakra-ui/system'
 
 export type Dimensions = {
@@ -18,7 +18,8 @@ export type ResizeHandler = (size: Dimensions) => void
 
 export interface ResizeOptions {
   /**
-   * The default width
+   * The default width.
+   * @default 280
    */
   defaultWidth?: number
   /**
@@ -27,25 +28,34 @@ export interface ResizeOptions {
   onResize?: ResizeHandler
   /**
    * Indicate if resizing is enabled.
+   * @default true
    */
   isResizable?: boolean
+  /**
+   * @deprecated
+   */
+  position?: 'right' | 'left'
+  /**
+   * The handle position.
+   * @default 'right'
+   */
+  handlePosition?: 'right' | 'left'
 }
 
-export interface UseResizeProps extends ResizeOptions {
-  position?: 'right' | 'left'
-}
+export interface UseResizeProps extends ResizeOptions {}
 
 /**
  * Hook used to create horizonally resizable elements.
  *
  * Automatically detects min/max width from css properties.
  */
-export const useResize = (props: UseResizeProps) => {
+export const useResize = (props: UseResizeProps = {}) => {
   const {
     defaultWidth = 280,
     onResize,
-    isResizable,
+    isResizable = true,
     position = 'right',
+    handlePosition = position,
   } = props
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [isResizing, setIsResizing] = React.useState(false)
@@ -69,7 +79,7 @@ export const useResize = (props: UseResizeProps) => {
       const { minWidth, maxWidth } = limitsRef.current
 
       let w
-      if (position === 'right') {
+      if (handlePosition === 'right') {
         w = event.clientX - (r?.left || 0)
       } else {
         w = r.right - event.clientX
@@ -111,11 +121,14 @@ export const useResize = (props: UseResizeProps) => {
   useEventListener('mouseup', stopResizing)
 
   const getContainerProps = React.useCallback(
-    () => ({
+    (props: HTMLChakraProps<'div'> = {}) => ({
       ref: containerRef,
       ...(isResizable
         ? {
-            style: { width },
+            style: {
+              position: props.position || 'relative',
+              width,
+            } as React.CSSProperties,
           }
         : {}),
     }),
@@ -125,9 +138,9 @@ export const useResize = (props: UseResizeProps) => {
   const getHandleProps = React.useCallback(
     () => ({
       onMouseDown: () => setIsResizing(true),
-      [position]: '-5px',
+      [handlePosition]: '-5px',
     }),
-    [],
+    [handlePosition],
   )
 
   return {
