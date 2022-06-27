@@ -18,14 +18,13 @@ import {
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
 
-import { Divider } from '@saas-ui/layout'
-
 import {
   Button,
   ButtonProps,
   ButtonGroup,
   ButtonGroupProps,
   IconButton,
+  Divider,
 } from '@saas-ui/react'
 
 const [StylesProvider, useStyles] = createStylesContext('Toolbar')
