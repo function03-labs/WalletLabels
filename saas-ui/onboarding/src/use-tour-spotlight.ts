@@ -60,13 +60,26 @@ export function useTourSpotlight() {
           sx,
         } = props
         if (isActive) {
+          const scrollTop =
+            document.scrollingElement?.scrollTop ||
+            document.documentElement.scrollTop ||
+            0
+          const scrollLeft =
+            document.scrollingElement?.scrollLeft ||
+            document.documentElement.scrollLeft ||
+            0
+
           return {
             animate: 'enter',
             sx: {
               width: dimensions ? dimensions.width + spacing * 2 + 'px' : '0',
               height: dimensions ? dimensions.height + spacing * 2 + 'px' : '0',
-              top: dimensions ? dimensions.top - spacing + 'px' : '-10px',
-              left: dimensions ? dimensions.left - spacing + 'px' : '50%',
+              top: dimensions
+                ? dimensions.top + scrollTop - spacing + 'px'
+                : '-10px',
+              left: dimensions
+                ? dimensions.left + scrollLeft - spacing + 'px'
+                : '50%',
               boxShadow: !hideOverlay
                 ? '0 0 0 9999px rgba(0, 0, 0, 0.2)'
                 : 'none',
