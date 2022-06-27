@@ -35,7 +35,7 @@ export default meta
 
 export const Default = () => {
   return (
-    <Has flag="settings">
+    <Has feature="settings">
       <Button colorScheme="green">Settings Enabled</Button>
     </Has>
   )
@@ -44,7 +44,7 @@ export const Default = () => {
 export const WithFallback = () => {
   return (
     <Has
-      flag="beta-feature"
+      feature="beta-feature"
       fallback={<Button colorScheme="red">Beta Feature Disabled</Button>}
     >
       <Button colorScheme="green">Beta Feature Enabled</Button>
@@ -52,10 +52,10 @@ export const WithFallback = () => {
   )
 }
 
-export const WithMultipleFlags = () => {
+export const WithMultiplefeatures = () => {
   return (
     <Has
-      flag={['settings', 'enterprise-feature']}
+      feature={['settings', 'enterprise-feature']}
       fallback={<Button colorScheme="red">Feature Disabled</Button>}
     >
       <Button colorScheme="green">Feature Enabled</Button>
@@ -63,10 +63,10 @@ export const WithMultipleFlags = () => {
   )
 }
 
-export const WithMultipleExactFlags = () => {
+export const WithMultipleExactfeatures = () => {
   return (
     <Has
-      flag={['settings', 'beta']}
+      feature={['settings', 'beta']}
       exact={false}
       fallback={<Button colorScheme="red">Feature Disabled</Button>}
     >
@@ -77,7 +77,7 @@ export const WithMultipleExactFlags = () => {
 
 export const WithValue = () => {
   return (
-    <Has flag="value-feature" value="enabled">
+    <Has feature="value-feature" value="enabled">
       <Button colorScheme="green">Feature Enabled</Button>
     </Has>
   )
@@ -85,7 +85,7 @@ export const WithValue = () => {
 
 export const WithNot = () => {
   return (
-    <Has not flag="private-feature">
+    <Has not feature="private-feature">
       <Button colorScheme="green">Feature Enabled</Button>
     </Has>
   )
@@ -93,10 +93,12 @@ export const WithNot = () => {
 
 export const WithRenderProps = () => {
   return (
-    <Has flag={['settings']}>
-      {(props) => {
-        const flags = Object.keys(props.flags)
-        return <Button colorScheme="green">Feature Enabled: {flags[0]}</Button>
+    <Has feature={['settings']}>
+      {({ flags }) => {
+        const features = Object.keys(flags)
+        return (
+          <Button colorScheme="green">Feature Enabled: {features[0]}</Button>
+        )
       }}
     </Has>
   )
@@ -104,7 +106,7 @@ export const WithRenderProps = () => {
 
 export const WithMultipleValues = () => {
   return (
-    <Has flag={['settings', 'value-feature']} value="enabled">
+    <Has feature={['settings', 'value-feature']} value="enabled">
       <Button colorScheme="green">Feature Enabled</Button>
     </Has>
   )

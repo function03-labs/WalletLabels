@@ -3,28 +3,9 @@ import create from 'zustand'
 import createVanilla from 'zustand/vanilla'
 import createContext from 'zustand/context'
 
-type UserAttributes = Record<string, any>
-type Flags = Record<string, any>
-
-interface AttrMap {
-  key: string
-  value: any
-}
-
-interface Segment {
-  id: string
-  attr: AttrMap[]
-  features: (string | Feature)[]
-}
-
-interface Feature {
-  id: string
-  description?: string
-  value?: any
-}
+import { Segment, UserAttributes, Flags } from './types'
 
 export interface FeaturesOptions {
-  features?: Feature[]
   segments: Segment[]
   attr?: UserAttributes
 }
@@ -35,7 +16,7 @@ interface FeaturesStore {
   segments: Segment[]
   flags: Flags
   identify: (attr: UserAttributes) => void
-  hasFlags: (ids: string[], value: any) => Record<string, any>
+  hasFeatures: (ids: string[], value: any) => Record<string, any>
 }
 
 const store = createVanilla<FeaturesStore>((set, get) => ({
@@ -52,7 +33,7 @@ const store = createVanilla<FeaturesStore>((set, get) => ({
    */
   flags: [],
   /**
-   *
+   * Segments with attributes and features
    */
   segments: [],
   /**
@@ -63,9 +44,12 @@ const store = createVanilla<FeaturesStore>((set, get) => ({
     const flags = flagsFromSegments(segments)
     set({ attr, flags })
   },
-  hasFlags: (ids, value) => {
+  /**
+   * Check if one or more features are enabled.
+   */
+  hasFeatures: (ids, value) => {
     const flags = get().flags
-    return ids.reduce<Record<string, any>>((memo, id) => {
+    return ids?.reduce<Record<string, any>>((memo, id) => {
       if ((typeof value === 'undefined' && flags[id]) || flags[id] === value) {
         memo[id] = flags[id]
       }
@@ -100,18 +84,37 @@ export const useFeatures = () => {
   return store
 }
 
-export const useHasFlags = (ids: string[], value = true) => {
-  const { hasFlags, flags } = useFeatures()
+/**
+ * Check if the current identified user has one or more features.
+ */
+export const useHasFeature = (
+  feature: string | string[] = [],
+  value = true,
+) => {
+  const ids = typeof feature === 'string' ? [feature] : feature
+
+  const { hasFeatures, flags } = useFeatures()
+
   return React.useMemo(() => {
-    return hasFlags(ids, value)
-  }, [flags])
+    return hasFeatures(ids, value)
+  }, [flags, ids])
 }
+
+/**
+ * @deprecated Use useHasFeature instead
+ */
+export const useHasFlags = useHasFeature
 
 export const useFlags = () => {
   const { flags } = useFeatures()
   return flags
 }
 
+/**
+ *
+ * @param id The feature id
+ * @returns The feature value
+ */
 export const useFlag = (id: string) => {
   const { flags } = useFeatures()
   return flags[id]

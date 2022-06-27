@@ -2,13 +2,20 @@ import * as React from 'react'
 
 import { runIfFn, __DEV__ } from '@chakra-ui/utils'
 
-import { useHasFlags, useFeatures } from './provider'
+import { useHasFlags, useFeatures, useHasFeature } from './provider'
+
+import { Flags } from './types'
 
 export interface HasProps {
   /**
    * One or more flags to match.
+   * @deprecated Use `feature` instead.
    */
-  flag: string | string[]
+  flag?: string | string[]
+  /**
+   * One or more flags to match.
+   */
+  feature: string | string[]
   /**
    * Match the supplied flags to this value.
    * Matches all truthy values by default.
@@ -32,25 +39,29 @@ export interface HasProps {
    */
   children:
     | React.ReactNode
-    | (({ flags }: { flags: any }) => React.ReactElement)
+    | (({ flags }: { flags: Flags }) => React.ReactElement)
 }
 
 /**
  * Conditionally render children based on one or more feature flag values.
  */
 export const Has: React.FC<HasProps> = (props) => {
-  const { children, flag, value, not, exact, fallback } = props
+  const { children, flag, feature = flag, value, not, exact, fallback } = props
 
-  const ids = typeof flag === 'string' ? [flag] : flag
+  const ids = typeof feature === 'string' ? [feature] : feature
 
-  const matchedFlags = useHasFlags(ids, value)
+  if (!ids?.length) {
+    return null
+  }
 
-  const matches = Object.keys(matchedFlags).length
+  const flags = useHasFeature(ids, value)
+
+  const matches = Object.keys(flags).length
 
   const enabled = exact === false ? !!matches : ids.length === matches
 
   if (enabled || (not && !enabled)) {
-    return <>{runIfFn(children, { flags: matchedFlags })}</>
+    return <>{runIfFn(children, { flags })}</>
   } else if (fallback) {
     return <>{fallback}</>
   }
