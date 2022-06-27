@@ -8,7 +8,7 @@ const Key: React.FC<HTMLChakraProps<'span'>> = ({ children }) => {
     return <>{children}</>
   }
 
-  if (children === 'then') {
+  if (['then', 'or', '+'].includes(children)) {
     return <chakra.span>{children}</chakra.span>
   }
 

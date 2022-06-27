@@ -19,9 +19,9 @@ export default {
 export const Basic = () => {
   return (
     <VStack>
-      <Command>Shift+X</Command>
+      <Command>shift+X</Command>
       <Command>A then B</Command>
-      <Command>⌘ L</Command>
+      <Command>alt or option</Command>
     </VStack>
   )
 }
