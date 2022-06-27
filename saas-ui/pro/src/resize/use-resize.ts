@@ -32,10 +32,6 @@ export interface ResizeOptions {
    */
   isResizable?: boolean
   /**
-   * @deprecated
-   */
-  position?: 'right' | 'left'
-  /**
    * The handle position.
    * @default 'right'
    */
@@ -54,8 +50,7 @@ export const useResize = (props: UseResizeProps = {}) => {
     defaultWidth = 280,
     onResize,
     isResizable = true,
-    position = 'right',
-    handlePosition = position,
+    handlePosition = 'right',
   } = props
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [isResizing, setIsResizing] = React.useState(false)

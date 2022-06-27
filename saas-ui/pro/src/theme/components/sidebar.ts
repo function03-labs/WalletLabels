@@ -117,11 +117,17 @@ export default {
         pt: { base: 10, lg: 2 },
         pb: 2,
       },
+      groupTitle: {
+        fontSize: 'xs',
+      },
     },
     sm: {
       container: {
         pt: { base: 10, lg: 2 },
         pb: 2,
+      },
+      groupTitle: {
+        fontSize: 'sm',
       },
     },
     md: {
@@ -129,11 +135,17 @@ export default {
         pt: { base: 10, lg: 3 },
         pb: 3,
       },
+      groupTitle: {
+        fontSize: 'md',
+      },
     },
     lg: {
       container: {
         pt: { base: 10, lg: 4 },
         pb: 4,
+      },
+      groupTitle: {
+        fontSize: 'lg',
       },
     },
   },

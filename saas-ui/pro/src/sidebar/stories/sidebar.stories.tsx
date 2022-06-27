@@ -7,6 +7,9 @@ import {
   Heading,
   HStack,
   Icon,
+  Menu,
+  MenuButton,
+  MenuList,
   Spacer,
   Text,
 } from '@chakra-ui/react'
@@ -92,9 +95,14 @@ WithHorizontalNav.args = {
       <SidebarNav direction="row">
         <SaasUIGlyph width="24px" />
         <Spacer />
-        <SidebarMenu icon={<PersonaAvatar presence="online" size="xs" />}>
-          <MenuItem>Sign out</MenuItem>
-        </SidebarMenu>
+        <Menu>
+          <MenuButton as={Button} variant="ghost">
+            <PersonaAvatar presence="online" size="xs" />
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Sign out</MenuItem>
+          </MenuList>
+        </Menu>
       </SidebarNav>
       <SidebarNav>
         <SidebarLink label="Home" icon={<FiHome />} />
@@ -120,9 +128,14 @@ WithCollapsibleGroup.args = {
       <SidebarNav direction="row">
         <SaasUIGlyph width="24px" />
         <Spacer />
-        <SidebarMenu icon={<PersonaAvatar presence="online" size="xs" />}>
-          <MenuItem>Sign out</MenuItem>
-        </SidebarMenu>
+        <Menu>
+          <MenuButton as={Button} variant="ghost">
+            <PersonaAvatar presence="online" size="xs" />
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Sign out</MenuItem>
+          </MenuList>
+        </Menu>
       </SidebarNav>
       <SidebarOverflow>
         <SidebarNav>
@@ -153,11 +166,16 @@ VariantCondensed.args = {
         <SaasUIGlyph width="24px" />
       </SidebarNav>
       <SidebarNav>
-        <SidebarLink label="Home" icon={<FiHome size="1.3em" />} size="md" />
-        <SidebarLink label="Users" icon={<FiUsers size="1.3em" />} size="md" />
+        <SidebarLink
+          label="Home"
+          icon={<FiHome size="1.2em" />}
+          size="md"
+          isActive
+        />
+        <SidebarLink label="Users" icon={<FiUsers size="1.2em" />} size="md" />
         <SidebarLink
           label="Settings"
-          icon={<FiSettings size="1.3em" />}
+          icon={<FiSettings size="1.2em" />}
           size="md"
         />
       </SidebarNav>
@@ -177,20 +195,18 @@ VariantCondensedColor.args = {
       <SidebarNav>
         <SidebarLink
           label="Home"
-          icon={<FiHome size="1.3em" />}
-          color="white"
+          icon={<FiHome size="1.2em" color="white" />}
           size="md"
+          isActive
         />
         <SidebarLink
           label="Users"
-          icon={<FiUsers size="1.3em" />}
-          color="white"
+          icon={<FiUsers size="1.2em" color="white" />}
           size="md"
         />
         <SidebarLink
           label="Settings"
-          icon={<FiSettings size="1.3em" />}
-          color="white"
+          icon={<FiSettings size="1.2em" color="white" />}
           size="md"
         />
       </SidebarNav>
@@ -209,18 +225,27 @@ export const DoubleSidebar = () => {
           <SidebarNav>
             <SidebarLink
               label="Users"
-              icon={<FiUsers />}
-              color="white"
+              icon={<FiUsers size="1.2em" color="white" />}
+              size="md"
               isActive
             />
-            <SidebarLink label="Settings" icon={<FiSettings />} color="white" />
+            <SidebarLink
+              label="Settings"
+              icon={<FiSettings size="1.2em" color="white" />}
+              size="md"
+            />
           </SidebarNav>
         </SidebarOverflow>
         <Spacer />
         <SidebarNav>
-          <SidebarMenu icon={<PersonaAvatar presence="online" size="xs" />}>
-            <MenuItem>Sign out</MenuItem>
-          </SidebarMenu>
+          <Menu>
+            <MenuButton as={Button} variant="ghost">
+              <PersonaAvatar presence="online" size="xs" />
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Sign out</MenuItem>
+            </MenuList>
+          </Menu>
         </SidebarNav>
       </Sidebar>
       <Sidebar>

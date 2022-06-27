@@ -103,7 +103,7 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
     children,
     breakpoints = { base: true, lg: false },
     className,
-    isResizable,
+    isResizable = false,
     onResize,
     defaultWidth,
     ...containerProps
@@ -586,7 +586,7 @@ export type SidebarMenuProps = {
 }
 
 /**
- * DEPRECATED
+ * @deprecated
  * Will be removed in 0.5.x
  */
 export const SidebarMenu = forwardRef<SidebarMenuProps, typeof MenuButton>(
