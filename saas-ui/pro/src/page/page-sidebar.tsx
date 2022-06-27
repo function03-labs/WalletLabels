@@ -111,7 +111,7 @@ export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
   const resize = useResize({
     defaultWidth,
     isResizable,
-    position: 'left',
+    handlePosition: 'left',
   })
 
   const innerStyles: SystemStyleObject = {
