@@ -13,8 +13,6 @@ import {
 } from '../menu'
 import { useSearchQuery } from '..'
 import { FilterOperatorId } from './operators'
-import { useFiltersContext } from './provider'
-import { FilterIcon } from '../icons'
 
 export interface FilterItem {
   id: string

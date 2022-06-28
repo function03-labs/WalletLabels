@@ -5,6 +5,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
+  useStyleConfig,
   SystemProps,
   ThemingProps,
   SystemStyleObject,
@@ -64,7 +65,9 @@ export interface ActiveFilterProps
   onRemove?(): void
   onChange?(filter: Filter): void
   onOperatorChange?(id: FilterOperatorId): void
-  onValueChange?(id: FilterValue): void
+  onValueChange?(value: FilterValue): void
+  formatLabel?(label?: string): string
+  formatValue?(value: FilterValue): string
 }
 
 export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
@@ -81,6 +84,8 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
     onChange,
     onOperatorChange: onOperatorChangeProp,
     onValueChange: onValueChangeProp,
+    formatLabel,
+    formatValue,
     ...containerProps
   } = props
 
@@ -94,7 +99,9 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
   return (
     <ActiveFilterProvider value={context}>
       <ActiveFilterContainer {...containerProps}>
-        <ActiveFilterLabel icon={icon}>{label}</ActiveFilterLabel>
+        <ActiveFilterLabel icon={icon}>
+          {formatLabel ? formatLabel(label) : label}
+        </ActiveFilterLabel>
         <ActiveFilterOperator
           items={operators}
           value={operator}
@@ -106,6 +113,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
           value={value}
           defaultValue={defaultValue}
           onChange={onValueChange}
+          format={formatValue}
         />
         <ActiveFilterRemove onClick={onRemove} />
       </ActiveFilterContainer>
@@ -355,11 +363,12 @@ if (__DEV__) {
   ActiveFilterButton.displayName = 'ActiveFilterButton'
 }
 
-export interface ActiveFiltersList extends WrapProps {
-  filters: FilterItem[]
+export interface ActiveFiltersListProps extends WrapProps {
+  formatValue?(value: FilterValue): string
 }
 
-export const ActiveFiltersList = () => {
+export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
+  const { formatValue, ...rest } = props
   const {
     activeFilters,
     getOperators,
@@ -368,8 +377,10 @@ export const ActiveFiltersList = () => {
     disableFilter,
   } = useFiltersContext()
 
+  const styles = useStyleConfig('ActiveFiltersList', props)
+
   return activeFilters?.length ? (
-    <Wrap px="4" py="2" borderBottomWidth="1px" zIndex="2">
+    <Wrap {...rest} __css={styles}>
       {activeFilters?.map((activeFilter) => {
         const { key, id, value, operator } = activeFilter
 
@@ -401,6 +412,7 @@ export const ActiveFiltersList = () => {
                 enableFilter({ key, ...activeFilter, operator })
               }}
               onRemove={() => key && disableFilter(key)}
+              formatValue={formatValue}
             />
           </WrapItem>
         )

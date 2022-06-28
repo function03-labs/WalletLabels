@@ -34,6 +34,7 @@ const filters: FilterItem[] = [
     label: 'Is lead',
     type: 'boolean',
     icon: <FiUser />,
+    value: 'lead',
   },
 ]
 

@@ -1,4 +1,5 @@
 import AppShell from './app-shell'
+import ActiveFilterList from './active-filter-list'
 import Beacon from './beacon'
 import Button from './button'
 import Card from './card'
@@ -21,6 +22,7 @@ import Tooltip from './tooltip'
 
 export default {
   AppShell,
+  ActiveFilterList,
   Beacon,
   Button,
   Card,

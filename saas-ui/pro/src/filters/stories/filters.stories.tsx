@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Badge, BadgeProps, Stack, Box } from '@chakra-ui/react'
+import { Badge, BadgeProps, Stack, Box, Text } from '@chakra-ui/react'
 
 import { FiCircle, FiUser } from 'react-icons/fi'
 
-import { ActiveFilterProps } from '..'
-import { FiltersProvider } from '../provider'
+import { FiltersProvider, FiltersProviderProps } from '../provider'
 import { FiltersAddButton } from '../filters'
 import { ActiveFiltersList } from '../active-filter'
 
@@ -14,15 +13,15 @@ export default {
   decorators: [(Story: any) => <Story />],
 } as Meta
 
-const Template: Story<ActiveFilterProps> = (args) => {
+const Template: Story<FiltersProviderProps> = (args) => {
   return (
-    <FiltersProvider filters={filters}>
+    <FiltersProvider {...args}>
       <Stack alignItems="flex-start" width="400px">
         <Box px="3">
           <FiltersAddButton />
         </Box>
 
-        <ActiveFiltersList />
+        <ActiveFiltersList px="3" py="2" borderBottomWidth="1px" zIndex="2" />
       </Stack>
     </FiltersProvider>
   )
@@ -52,12 +51,22 @@ const filters = [
   },
   {
     id: 'lead',
-    label: 'Is lead',
+    label: 'Contact is lead',
     type: 'boolean',
     icon: <FiUser />,
     value: true,
+    format: () => 'lead',
   },
 ]
 
 export const Basic = Template.bind({})
-Basic.args = {}
+Basic.args = {
+  filters,
+  onChange: (filters) => console.log(filters),
+}
+
+export const DefaultFilters = Template.bind({})
+DefaultFilters.args = {
+  filters,
+  defaultFilters: [{ id: 'status', operator: 'is', value: 'new' }],
+}
