@@ -13,6 +13,8 @@ import {
 } from '../menu'
 import { useSearchQuery } from '..'
 import { FilterOperatorId } from './operators'
+import { useFiltersContext } from './provider'
+import { FilterIcon } from '../icons'
 
 export interface FilterItem {
   id: string
@@ -87,14 +89,13 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
           onReset()
           filterRef.current?.focus()
         } else {
-          onSelect?.(
-            activeItem
-              ? {
-                  ...activeItem,
-                  value: item.value || item.id,
-                }
-              : item,
-          )
+          const filter = activeItem
+            ? {
+                ...activeItem,
+                value: item.value || item.id,
+              }
+            : item
+          onSelect?.(filter)
           onClose()
         }
       },
