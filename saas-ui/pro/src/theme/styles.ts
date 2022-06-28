@@ -11,8 +11,9 @@ const styles = {
     },
     '::-webkit-scrollbar': {
       width: '12px',
+      height: '12px',
     },
-    '::-webkit-scrollbar-track': {
+    '::-webkit-scrollbar-track, ::-webkit-scrollbar-corner': {
       background: 'app-background',
     },
     '::-webkit-scrollbar-thumb': {
