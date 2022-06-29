@@ -391,7 +391,7 @@ export const SidebarNavGroup: React.FC<SidebarNavGroupProps> = (props) => {
   let content = <chakra.div>{children}</chakra.div>
 
   if (isCollapsible) {
-    content = <Collapse {...getCollapseProps()}>{content}</Collapse>
+    content = <Collapse {...(getCollapseProps() as any)}>{content}</Collapse>
   }
 
   return (

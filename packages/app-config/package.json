@@ -5,5 +5,8 @@
   "dependencies": {
     "@supabase/supabase-js": "^1.35.3",
     "magic-sdk": "^8.1.1"
+  },
+  "peerDependencies": {
+    "@saas-ui/react": ">=1"
   }
 }

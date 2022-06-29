@@ -22,7 +22,7 @@
     "@chakra-ui/system": "^2.1.3",
     "@chakra-ui/utils": "^2.0.2",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react-utils": "^1.0.0-rc.3"
+    "@saas-ui/react-utils": "^1.0.0-rc.4"
   },
   "devDependencies": {
     "prop-types": "^15.8.1"

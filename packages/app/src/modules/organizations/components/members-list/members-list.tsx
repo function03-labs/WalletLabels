@@ -186,11 +186,7 @@ export function MembersList<M extends Member = Member>({
         submitLabel: 'Update',
         body: (
           <FormLayout>
-            <Field
-              name="roles"
-              type={isMultiRoles ? 'checkbox' : 'radio'}
-              options={defaultMemberRoles}
-            />
+            <Field name="roles" type="radio" options={defaultMemberRoles} />
           </FormLayout>
         ),
       })

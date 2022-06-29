@@ -1,11 +1,10 @@
 import { Center, Heading, Stack } from '@chakra-ui/react'
 import { Button } from '@modules/core/components/button'
 import { SaasUILogo } from '@modules/core/components/logo/saas-ui'
-import { useAuth } from '@saas-ui/auth'
-import { ButtonGroup } from '@saas-ui/react'
+import { ButtonGroup, useAuth } from '@saas-ui/react'
 
 export default function HomePage() {
-  const { isAuthenticated, logOut } = useAuth()
+  const { isAuthenticated, logOut } = useAuth() || {}
 
   return (
     <Center height="100vh">

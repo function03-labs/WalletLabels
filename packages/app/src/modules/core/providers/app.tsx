@@ -49,6 +49,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
     authService,
     children,
   } = props
+
   return (
     <QueryClientProvider client={queryClient}>
       <IconContext.Provider value={{ className: 'react-icon', size: '1.1em' }}>

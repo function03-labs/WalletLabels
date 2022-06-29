@@ -31,7 +31,7 @@ export const BillingStatus = () => {
           Trial ends in{' '}
           <strong>{formatDistanceStrict(new Date(), trialEndsAt)}</strong>
         </Text>
-        <Has flag="billing">
+        <Has feature="billing">
           <Button href={upgradePath} variant="solid" colorScheme="green">
             Upgrade
           </Button>

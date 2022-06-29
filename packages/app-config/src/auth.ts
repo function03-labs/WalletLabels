@@ -1,4 +1,4 @@
-import { AvailableProviders } from '@saas-ui/auth'
+import { AvailableProviders } from '@saas-ui/react'
 
 import { FaGoogle, FaGithub } from 'react-icons/fa'
 

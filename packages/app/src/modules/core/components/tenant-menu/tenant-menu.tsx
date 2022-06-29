@@ -1,4 +1,5 @@
 import {
+  Button,
   HStack,
   Text,
   Avatar,
@@ -11,10 +12,9 @@ import {
 } from '@chakra-ui/react'
 import { FiCheck } from 'react-icons/fi'
 import { useTenancy } from '@saas-ui/pro'
-import { MenuGroup, MenuItem } from '@saas-ui/menu'
+import { MenuGroup, MenuItem } from '@saas-ui/react'
 
 import { useGetTenants } from '../../hooks/use-get-tenants'
-import { Button } from '@saas-ui/react'
 
 const TenantLogo: React.FC<AvatarProps> = (props) => {
   const { src, ...rest } = props

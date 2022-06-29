@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Heading } from '@chakra-ui/react'
 import { FiFolder, FiUser } from 'react-icons/fi'
 
-import { useHotkeysShortcut } from '@saas-ui/hotkeys'
+import { useHotkeysShortcut } from '@saas-ui/react'
 
 import {
   Sidebar as SidebarContainer,
@@ -43,7 +43,7 @@ export const SettingsSidebar = () => {
             </Heading>
           </SidebarNav>
           <SidebarNav flex="1" spacing={6}>
-            <Has flag="settings">
+            <Has feature="settings">
               <SidebarNavGroup title="Organization" icon={<FiFolder />}>
                 <SettingsLink path="/" label="Overview" />
                 <SettingsLink path="/organization" label="Organization" />

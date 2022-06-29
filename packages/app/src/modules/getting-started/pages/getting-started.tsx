@@ -44,7 +44,6 @@ export function GettingStartedPage(props: any) {
             <ModalFooter>
               <SubmitButton
                 label="Create organization"
-                isPrimary
                 size="md"
                 width="full"
               />

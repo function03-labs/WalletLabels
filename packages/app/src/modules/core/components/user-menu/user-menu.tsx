@@ -56,7 +56,7 @@ export const UserMenu = () => {
         <MenuList zIndex="dropdown">
           <MenuGroup title={currentUser?.name || ''}>
             <MenuItem href={usePath(`/settings/account`)} label="Profile" />
-            <Has flag="settings">
+            <Has feature="settings">
               <MenuItem href={`/app/${tenant}/settings`} label="Settings" />
             </Has>
           </MenuGroup>

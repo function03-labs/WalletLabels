@@ -10,7 +10,7 @@ export interface ButtonProps extends SButtonProps {
 }
 
 export const Button = React.forwardRef(
-  (props: ButtonProps, ref: React.ForwardedRef<HTMLAnchorElement>) => {
+  (props: ButtonProps, ref: React.ForwardedRef<any>) => {
     const { href } = props
 
     const LinkWrapper = useLink()

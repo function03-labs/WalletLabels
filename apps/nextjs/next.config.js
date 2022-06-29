@@ -10,6 +10,7 @@ module.exports = withWorkspaces({
   basePath: '../../',
 })(
   withSvgr({
+    reactStrictMode: false,
     experimental: {
       optimizeFonts: true,
       modern: true,

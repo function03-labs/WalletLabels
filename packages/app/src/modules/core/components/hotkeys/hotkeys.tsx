@@ -1,4 +1,4 @@
-import { HotkeysProvider, HotkeysListOptions } from '@saas-ui/hotkeys'
+import { HotkeysProvider, HotkeysListOptions } from '@saas-ui/react'
 
 import { appHotkeys } from '@app/config/hotkeys'
 
