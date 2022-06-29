@@ -4,10 +4,10 @@ import {
   useMenuContext,
   useMenuDescendant,
   UseMenuItemProps,
-} from '@chakra-ui/menu'
+  useId,
+} from '@chakra-ui/react'
 
 import { useClickable } from '@chakra-ui/clickable'
-import { useId } from '@chakra-ui/hooks'
 
 import {
   isHTMLElement,
