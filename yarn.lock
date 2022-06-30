@@ -4494,18 +4494,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/color-mode@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@chakra-ui/color-mode@npm:2.1.0"
-  dependencies:
-    "@chakra-ui/hooks": 2.0.2
-    "@chakra-ui/utils": 2.0.2
-  peerDependencies:
-    react: ">=18"
-  checksum: bddb6a72d2ee88d696cd10b790285f8bf6bb94df911128a383cc8bfa5986d82ba09927d4d488c8285b45aaa2a16ff45ca339e6a4ef37feb86dfed87b3d617bad
-  languageName: node
-  linkType: hard
-
 "@chakra-ui/control-box@npm:2.0.2":
   version: 2.0.2
   resolution: "@chakra-ui/control-box@npm:2.0.2"
@@ -5038,16 +5026,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/styled-system@npm:2.2.1":
-  version: 2.2.1
-  resolution: "@chakra-ui/styled-system@npm:2.2.1"
-  dependencies:
-    "@chakra-ui/utils": 2.0.2
-    csstype: ^3.0.11
-  checksum: 4972665fb1c64a1fa66d9700fef3d0284232007b8c44fffebf14e796298160878c23fa4b068e65b5765076f79828807eed5842ed824aa04bc65ee7007c20e427
-  languageName: node
-  linkType: hard
-
 "@chakra-ui/switch@npm:2.0.3":
   version: 2.0.3
   resolution: "@chakra-ui/switch@npm:2.0.3"
@@ -5062,7 +5040,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/system@npm:2.1.3, @chakra-ui/system@npm:^2.1.3":
+"@chakra-ui/system@npm:^2.1.3":
   version: 2.1.3
   resolution: "@chakra-ui/system@npm:2.1.3"
   dependencies:
@@ -5076,23 +5054,6 @@ __metadata:
     "@emotion/styled": ^11.0.0
     react: ">=18"
   checksum: 82106cae44d2d53bce0a03f08f8268c9ad82e830bce3466c1243cc9afb830d601b7002cd9c3c43449c598ff36a0090b1cc539a70ea5aaa784349ab07b1ec29ab
-  languageName: node
-  linkType: hard
-
-"@chakra-ui/system@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@chakra-ui/system@npm:2.2.0"
-  dependencies:
-    "@chakra-ui/color-mode": 2.1.0
-    "@chakra-ui/react-utils": 2.0.1
-    "@chakra-ui/styled-system": 2.2.1
-    "@chakra-ui/utils": 2.0.2
-    react-fast-compare: 3.2.0
-  peerDependencies:
-    "@emotion/react": ^11.0.0
-    "@emotion/styled": ^11.0.0
-    react: ">=18"
-  checksum: 008992a96009f5ebf84c0f686cc5c7d69c0597cd5f49459a31d909a2a416b6bece06ba699ccb20733bed0211f000529967888db8cbcd2d38e505de1028cae880
   languageName: node
   linkType: hard
 
