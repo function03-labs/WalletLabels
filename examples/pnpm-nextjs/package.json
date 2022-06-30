@@ -9,21 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.8.8",
+    "@chakra-ui/react": "^2.2.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@saas-ui/pro": "^0.3.12",
-    "@saas-ui/react": "^0.13.9",
+    "@saas-ui/react": "^1.0.0",
     "framer-motion": "^6.3.4",
     "next": "^12.1.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@types/node": "^17.0.35",
-    "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.11",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
     "@types/react-table": "^7.7.12",
     "eslint": "^8.16.0",
     "eslint-config-next": "^12.1.6",
