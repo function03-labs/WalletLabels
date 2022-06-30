@@ -1,5 +1,67 @@
 # electron-app
 
+## 1.2.0
+
+### Minor Changes
+
+- 28faa7a: Updated to Chakra UI 2.2.1
+- c1d4765: BREAKING: Updated to Chakra UI 2.1
+- c1d4765: BREAKING: React 18 support.
+
+### Patch Changes
+
+- f172105: Updated dependencies
+- 0b1ae8e: Updated to @saas-ui/react@1.0.0-rc.14
+- afb15c7: Updated to @saas-ui/react@1.0.0-rc.11
+- befb97a: Updated @saas-ui/react to 1.0.0-rc.8
+- b497946: Fixed MSW support in Electron
+- 7e9db6a: Settings Sidebar now positioned correctly in Electron
+- Updated dependencies [15dd8a7]
+- Updated dependencies [f172105]
+- Updated dependencies [28faa7a]
+- Updated dependencies [9e2ca35]
+- Updated dependencies [c19d21e]
+- Updated dependencies [f1c8fbc]
+- Updated dependencies [9881094]
+- Updated dependencies [fd61365]
+- Updated dependencies [0b1ae8e]
+- Updated dependencies [4d2ce96]
+- Updated dependencies [15dd8a7]
+- Updated dependencies [fd61365]
+- Updated dependencies [9881094]
+- Updated dependencies [c19d21e]
+- Updated dependencies [15dd8a7]
+- Updated dependencies [57942f7]
+- Updated dependencies [77179dd]
+- Updated dependencies [c1d4765]
+- Updated dependencies [c19d21e]
+- Updated dependencies [5fb9268]
+- Updated dependencies [15dd8a7]
+- Updated dependencies [0e6c871]
+- Updated dependencies [59bf0ae]
+- Updated dependencies [49a15d7]
+- Updated dependencies [4e38347]
+- Updated dependencies [15dd8a7]
+- Updated dependencies [4d2ce96]
+- Updated dependencies [15dd8a7]
+- Updated dependencies [c1d4765]
+- Updated dependencies [5971538]
+- Updated dependencies [0e6c871]
+- Updated dependencies [7e9db6a]
+- Updated dependencies [7bff4f4]
+- Updated dependencies [9881094]
+  - @saas-ui/pro@0.5.0
+  - app@6.0.0
+  - @app/mock-graphql@0.4.0
+  - @ui/theme@0.1.0
+  - @saas-ui/billing@0.3.0
+  - @saas-ui/charts@0.1.0
+  - @saas-ui/date-picker@0.2.0
+  - @saas-ui/features@0.4.0
+  - @saas-ui/onboarding@0.3.0
+  - @saas-ui/paddle@0.2.0
+  - @saas-ui/router@0.2.0
+
 ## 1.1.10
 
 ### Patch Changes

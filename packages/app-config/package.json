@@ -1,7 +1,7 @@
 {
   "name": "@app/config",
   "main": "src/index.ts",
-  "version": "0.0.18",
+  "version": "0.1.0",
   "dependencies": {
     "@supabase/supabase-js": "^1.35.3",
     "magic-sdk": "^8.1.1"

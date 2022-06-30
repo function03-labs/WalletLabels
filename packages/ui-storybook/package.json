@@ -1,6 +1,6 @@
 {
   "name": "@ui/storybook",
-  "version": "0.0.28",
+  "version": "0.1.0",
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build:storybook": "build-storybook"

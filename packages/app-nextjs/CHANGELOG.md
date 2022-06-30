@@ -1,5 +1,20 @@
 # @app/nextjs
 
+## 0.1.0
+
+### Minor Changes
+
+- 28faa7a: Updated to Chakra UI 2.2.1
+
+### Patch Changes
+
+- f172105: Updated dependencies
+- Updated dependencies [f172105]
+- Updated dependencies [28faa7a]
+- Updated dependencies [c1d4765]
+- Updated dependencies [c1d4765]
+  - @saas-ui/router@0.2.0
+
 ## 0.0.2
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @ui/core
 
+## 0.1.0
+
+### Minor Changes
+
+- 28faa7a: Updated to Chakra UI 2.2.1
+- c1d4765: BREAKING: Updated to Chakra UI 2.1
+- c1d4765: BREAKING: React 18 support.
+
+### Patch Changes
+
+- f172105: Updated dependencies
+- afb15c7: Updated to @saas-ui/react@1.0.0-rc.11
+
 ## 0.0.28
 
 ### Patch Changes

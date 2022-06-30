@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/date-picker",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "exports": {
     "default": "./src/index.ts"
   },

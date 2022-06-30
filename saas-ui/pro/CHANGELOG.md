@@ -1,5 +1,48 @@
 # @saas-ui/pro
 
+## 0.5.0
+
+### Minor Changes
+
+- 28faa7a: Updated to Chakra UI 2.2.1
+- c1d4765: BREAKING: Updated to Chakra UI 2.1
+- c1d4765: BREAKING: React 18 support.
+
+### Patch Changes
+
+- 15dd8a7: PageBody now accepts style props.
+- f172105: Updated dependencies
+- c19d21e: BREAKING: SectionHeading no longer accepts title and description props, use SectionTitle and SectionDescription composition instead.
+- f1c8fbc: Updated PageSidebar to use new resizer api.
+- 9881094: Beacon now supports colorScheme.
+- fd61365: Fix MenuListFilter focus color.
+- 4d2ce96: useResize position renamed to handlePosition.
+- fd61365: New FiltersAddButton to be used in combination with FiltersProvider.
+- 9881094: Beacon now supports sm, md and lg sizes
+- c19d21e: Move Section title and description to separate components.
+- 15dd8a7: Disabled border on last Td in the DataGrid tbody.
+- 77179dd: Pro package now re-exports all onboarding components.
+- c19d21e: Added classnames to Section components.
+- 5fb9268: "or" in a Command will now be rendered as regular text.
+- 59bf0ae: New DataGridCell type for custom grid cells.
+- 49a15d7: FiltersProvider now accepts defaultFilters
+- 4e38347: Added new ResizeBox component that implements useResize and ResizeHandle.
+- 15dd8a7: PageBody now accepts contentProps property this is passed down to the content wrapper.
+- 4d2ce96: Sidebar isResizable is now false by default.
+- 5971538: Fixed dependency issue.
+- 7bff4f4: Fixed vertical scrollbar height and corner color.
+- Updated dependencies [f172105]
+- Updated dependencies [28faa7a]
+- Updated dependencies [9e2ca35]
+- Updated dependencies [9881094]
+- Updated dependencies [9881094]
+- Updated dependencies [57942f7]
+- Updated dependencies [c1d4765]
+- Updated dependencies [c1d4765]
+- Updated dependencies [9881094]
+  - @saas-ui/onboarding@0.3.0
+  - @saas-ui/router@0.2.0
+
 ## 0.4.2
 
 ### Patch Changes

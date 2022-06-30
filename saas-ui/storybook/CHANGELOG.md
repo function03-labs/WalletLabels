@@ -1,5 +1,43 @@
 # saas-ui-storybook
 
+## 3.0.0
+
+### Minor Changes
+
+- 28faa7a: Updated to Chakra UI 2.2.1
+- c1d4765: BREAKING: Updated to Chakra UI 2.1
+- c1d4765: BREAKING: React 18 support.
+
+### Patch Changes
+
+- f172105: Updated dependencies
+- 0b1ae8e: Updated to @saas-ui/react@1.0.0-rc.14
+- Updated dependencies [15dd8a7]
+- Updated dependencies [f172105]
+- Updated dependencies [28faa7a]
+- Updated dependencies [c19d21e]
+- Updated dependencies [f1c8fbc]
+- Updated dependencies [9881094]
+- Updated dependencies [fd61365]
+- Updated dependencies [4d2ce96]
+- Updated dependencies [fd61365]
+- Updated dependencies [9881094]
+- Updated dependencies [c19d21e]
+- Updated dependencies [15dd8a7]
+- Updated dependencies [77179dd]
+- Updated dependencies [c1d4765]
+- Updated dependencies [c19d21e]
+- Updated dependencies [5fb9268]
+- Updated dependencies [59bf0ae]
+- Updated dependencies [49a15d7]
+- Updated dependencies [4e38347]
+- Updated dependencies [15dd8a7]
+- Updated dependencies [4d2ce96]
+- Updated dependencies [c1d4765]
+- Updated dependencies [5971538]
+- Updated dependencies [7bff4f4]
+  - @saas-ui/pro@0.5.0
+
 ## 2.0.2
 
 ### Patch Changes
