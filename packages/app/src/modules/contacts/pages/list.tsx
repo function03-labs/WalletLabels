@@ -41,7 +41,6 @@ import { Button } from '@modules/core/components/button'
 
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'
-import { CellProps } from 'react-table'
 
 const contactTypes: Record<string, { label: string; color: string }> = {
   lead: {

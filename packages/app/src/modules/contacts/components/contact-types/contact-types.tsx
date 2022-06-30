@@ -1,4 +1,4 @@
-import { ButtonGroup } from '@chakra-ui/react'
+import { ButtonGroup } from '@saas-ui/react'
 import { Button } from '@modules/core/components/button'
 import { usePath } from '@modules/core/hooks/use-path'
 import { useParams } from '@saas-ui/router'
