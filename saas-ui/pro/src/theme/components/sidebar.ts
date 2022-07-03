@@ -47,14 +47,15 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       px: 3,
       my: 1,
       height: 6,
+      fontSize: 'sm',
       fontWeight: 'medium',
       color: 'sidebar-muted',
       transitionProperty: 'common',
       transitionDuration: 'normal',
-      '&.sui-collapse-toggle .chakra-icon': {
+      '&.saas-collapse-toggle .chakra-icon': {
         opacity: 0,
       },
-      '&.sui-collapse-toggle': {
+      '&.saas-collapse-toggle': {
         cursor: 'pointer',
         borderRadius: 'md',
         _hover: {
@@ -104,7 +105,7 @@ export default {
   parts: parts.keys,
   defaultProps: {
     variant: 'default',
-    size: 'md',
+    size: 'sm',
   },
   baseStyle,
   variants: {
