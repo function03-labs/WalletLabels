@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.1.1
+
+### Patch Changes
+
+- 005eea5: Updated dependencies
+
 ## 0.1.0
 
 ### Minor Changes

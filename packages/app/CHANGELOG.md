@@ -1,5 +1,22 @@
 # app
 
+## 6.0.1
+
+### Patch Changes
+
+- b8a65b1: Fixed GlobalSearch hover border color.
+- 005eea5: Fixed TenantMenu and UserMenu zIndex on small screens.
+- 005eea5: Updated dependencies
+- 005eea5: Added new SaasUI logo.
+- Updated dependencies [12c3643]
+- Updated dependencies [005eea5]
+- Updated dependencies [b8a65b1]
+  - @saas-ui/pro@0.5.1
+  - @app/config@0.1.1
+  - @app/i18n@0.1.1
+  - @saas-ui/charts@0.1.1
+  - @saas-ui/onboarding@0.3.1
+
 ## 6.0.0
 
 ### Minor Changes

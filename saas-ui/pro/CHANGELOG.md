@@ -1,5 +1,14 @@
 # @saas-ui/pro
 
+## 0.5.1
+
+### Patch Changes
+
+- 12c3643: Fixed SidebarGroupTitle styles.
+- 005eea5: Updated dependencies
+- b8a65b1: Improved theme tokens, added 'sidebar-on' token.
+  - @saas-ui/onboarding@0.3.1
+
 ## 0.5.0
 
 ### Minor Changes
