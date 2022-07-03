@@ -15,7 +15,10 @@ const tokens = {
     'sidebar-border-color': {
       default: 'default-border-color',
     },
-    'sidebar-on': {},
+    'sidebar-on': {
+      default: 'blackAlpha.300',
+      _dark: 'whiteAlpha.300',
+    },
     'sidebar-on-muted': {
       default: 'blackAlpha.100',
       _dark: 'whiteAlpha.100',
@@ -32,7 +35,7 @@ const tokens = {
     },
     'default-border-color': {
       default: 'blackAlpha.200',
-      _dark: 'whiteAlpha.300',
+      _dark: 'whiteAlpha.200',
     },
     muted: {
       default: 'blackAlpha.600',

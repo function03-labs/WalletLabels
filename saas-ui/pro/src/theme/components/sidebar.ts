@@ -105,7 +105,7 @@ export default {
   parts: parts.keys,
   defaultProps: {
     variant: 'default',
-    size: 'sm',
+    size: 'md',
   },
   baseStyle,
   variants: {
@@ -137,7 +137,7 @@ export default {
         pb: 3,
       },
       groupTitle: {
-        fontSize: 'md',
+        fontSize: 'sm',
       },
     },
     lg: {
@@ -146,7 +146,7 @@ export default {
         pb: 4,
       },
       groupTitle: {
-        fontSize: 'lg',
+        fontSize: 'md',
       },
     },
   },

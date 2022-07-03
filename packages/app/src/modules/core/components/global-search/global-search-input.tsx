@@ -17,11 +17,10 @@ export const GlobalSearchInput = forwardRef((props, ref) => {
     <SearchInput
       ref={useMergeRefs(ref, searchRef)}
       size="sm"
-      _hover={{ borderColor: 'sidebar-muted' }}
       sx={{
         borderColor: 'sidebar-border-color',
         _hover: {
-          borderColor: 'sidebar-on-subtle',
+          borderColor: 'sidebar-on',
         },
         '::placeholder': {
           color: 'sidebar-muted',

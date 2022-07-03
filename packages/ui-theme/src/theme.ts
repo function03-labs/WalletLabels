@@ -6,6 +6,7 @@ import { withThemeColors } from '@saas-ui/pro'
 import components from './components'
 
 import colorScheme from './color-schemes/galaxy'
+// import colorScheme from './color-schemes/earth'
 
 export const theme = extendTheme(
   {

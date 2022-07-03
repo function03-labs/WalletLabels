@@ -99,6 +99,11 @@ const createColorScheme = (
                 0.8,
                 theme,
               ),
+              'sidebar-on': transparentizeToken(
+                tokens['sidebar-text'],
+                0.7,
+                theme,
+              ),
             }
           : {},
         tokens,
