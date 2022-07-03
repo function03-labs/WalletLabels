@@ -6,11 +6,11 @@
   },
   "dependencies": {
     "@app/config": "workspace:*",
-    "graphql": "15.8.0",
+    "graphql": "16.5.0",
     "react-query": "^3.39.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/cli": "^2.6.4",
     "@graphql-codegen/near-operation-file-preset": "^2.2.14",
     "@graphql-codegen/plugin-helpers": "^2.4.2",
     "@graphql-codegen/typed-document-node": "^2.2.13",

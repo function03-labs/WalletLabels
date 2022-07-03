@@ -53,7 +53,7 @@ export const UserMenu = () => {
       </MenuButton>
       <Portal>
         {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}
-        <MenuList zIndex="dropdown">
+        <MenuList zIndex={['modal', null, 'dropdown']}>
           <MenuGroup title={currentUser?.name || ''}>
             <MenuItem href={usePath(`/settings/account`)} label="Profile" />
             <Has feature="settings">

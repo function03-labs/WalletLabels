@@ -64,7 +64,7 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
       </MenuButton>
       <Portal>
         {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}
-        <MenuList zIndex="dropdown">
+        <MenuList zIndex={['modal', null, 'dropdown']}>
           <MenuGroup title={title}>
             {tenants.map(({ id, slug, label, logo, ...props }) => {
               return (
