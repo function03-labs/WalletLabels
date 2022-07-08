@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "main": "src/index.ts",
   "dependencies": {
     "@app/config": "workspace:*",

@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.5.2
+
+### Patch Changes
+
+- 62964e3: Removed scrollbar styles because they are unreliable.
+  - @saas-ui/onboarding@0.3.2
+
 ## 0.5.1
 
 ### Patch Changes

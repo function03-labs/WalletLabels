@@ -1,5 +1,13 @@
 # app
 
+## 6.0.2
+
+### Patch Changes
+
+- Updated dependencies [62964e3]
+  - @saas-ui/pro@0.5.2
+  - @saas-ui/onboarding@0.3.2
+
 ## 6.0.1
 
 ### Patch Changes
