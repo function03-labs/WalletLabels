@@ -62,7 +62,7 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
 
   return (
     <Page title={breadcrumbs} toolbar={toolbar} isLoading={isLoading} fullWidth>
-      <HStack alignItems="stretch" height="100%">
+      <HStack alignItems="stretch" height="100%" overflowX="hidden">
         <Box overflowY="auto" flex="1" py="8" px="20"></Box>
         <ContactSidebar contact={data?.contact} isOpen={sidebar.isOpen} />
       </HStack>
