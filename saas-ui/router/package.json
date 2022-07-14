@@ -3,6 +3,10 @@
   "version": "0.2.0",
   "exports": {
     ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.mjs"
+    },
+    "./src": {
       "default": "./src/index.ts"
     }
   },
@@ -14,18 +18,21 @@
     "index.ts"
   ],
   "scripts": {
-    "bundle": "yarn pack --out ../dist/%s-%v.tgz"
+    "bundle": "yarn pack --out ./dist/%s-%v.tgz",
+    "build": "tsup src/index.ts --config tsup.config.ts",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",
     "directory": "saas-ui/router"
   },
-  "dependencies": {
-    "querystring": "^0.2.1"
-  },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "tsup": "^6.1.3"
   }
 }

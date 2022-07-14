@@ -1,9 +1,15 @@
 import * as React from 'react'
 
-import { forwardRef, Portal, useDisclosure } from '@chakra-ui/react'
+import {
+  forwardRef,
+  Portal,
+  useDisclosure,
+  Button,
+  ButtonProps,
+} from '@chakra-ui/react'
 import { __DEV__ } from '@chakra-ui/utils'
 
-import { Button, ButtonProps, MenuProps, MenuButton } from '@saas-ui/react'
+import { MenuProps, MenuButton } from '@saas-ui/react'
 
 import {
   ResponsiveMenu,

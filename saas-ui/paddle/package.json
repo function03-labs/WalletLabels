@@ -3,31 +3,55 @@
   "version": "0.2.0",
   "exports": {
     ".": {
-      "default": "./src/index.ts"
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
     },
     "./next": {
+      "require": "./dist/next/index.js",
+      "types": "./dist/next/index.d.ts",
+      "default": "./dist/next/index.mjs"
+    },
+    "./src": {
+      "default": "./src/index.ts"
+    },
+    "./src/next": {
       "default": "./next/src/paddle-script.tsx"
     }
   },
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
-  "scripts": {
-    "bundle": "yarn pack --out ../dist/%s-%v.tgz"
-  },
   "files": [
+    "dist",
     "src",
     "index.ts"
   ],
+  "scripts": {
+    "bundle": "yarn pack --out ./dist/%s-%v.tgz",
+    "build": "tsup src/index.ts next/index.ts --config tsup.config.ts",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf dist"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/saas-js/saas-ui-pro.git",
     "directory": "saas-ui/paddle"
   },
+  "dependencies": {
+    "@chakra-ui/utils": "^2.0.4",
+    "@saas-ui/pro": "workspace:*"
+  },
   "peerDependencies": {
     "@chakra-ui/react": ">=2",
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
     "@saas-ui/react": ">=1",
     "framer-motion": ">=5.5.0",
-    "react": ">=18"
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "tsup": "^6.1.3"
   }
 }

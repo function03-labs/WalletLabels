@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "formatjs": "^0.1.1",
-    "react-intl": "^6.0.4"
+    "react-intl": "^6.0.5"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

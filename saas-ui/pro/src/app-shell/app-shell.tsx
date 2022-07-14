@@ -1,7 +1,8 @@
 import * as React from 'react'
 
 import {
-  StylesProvider,
+  Flex,
+  createStylesContext,
   HTMLChakraProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -9,9 +10,9 @@ import {
   SystemStyleObject,
 } from '@chakra-ui/react'
 
-import { Flex } from '@chakra-ui/layout'
-
 import { cx, __DEV__ } from '@chakra-ui/utils'
+
+const [StylesProvider, useStyles] = createStylesContext('AppShell')
 
 export interface AppShellProps
   extends HTMLChakraProps<'div'>,

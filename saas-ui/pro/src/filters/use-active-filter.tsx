@@ -3,7 +3,7 @@ import * as React from 'react'
 import {
   useControllableState,
   UseControllableStateProps,
-} from '@chakra-ui/hooks'
+} from '@chakra-ui/react'
 import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext } from '@chakra-ui/react-utils'
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict'

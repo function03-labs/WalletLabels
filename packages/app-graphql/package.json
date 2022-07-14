@@ -10,13 +10,13 @@
     "react-query": "^3.39.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.6.4",
-    "@graphql-codegen/near-operation-file-preset": "^2.2.14",
-    "@graphql-codegen/plugin-helpers": "^2.4.2",
-    "@graphql-codegen/typed-document-node": "^2.2.13",
-    "@graphql-codegen/typescript": "^2.5.1",
-    "@graphql-codegen/typescript-operations": "^2.4.2",
-    "@graphql-codegen/typescript-react-query": "^3.5.14"
+    "@graphql-codegen/cli": "^2.8.1",
+    "@graphql-codegen/near-operation-file-preset": "^2.3.1",
+    "@graphql-codegen/plugin-helpers": "^2.5.0",
+    "@graphql-codegen/typed-document-node": "^2.3.1",
+    "@graphql-codegen/typescript": "^2.7.1",
+    "@graphql-codegen/typescript-operations": "^2.5.1",
+    "@graphql-codegen/typescript-react-query": "^3.6.1"
   },
   "peerDependencies": {
     "@saas-ui/react": ">=1",

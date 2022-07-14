@@ -2,17 +2,28 @@
   "name": "@saas-ui/billing",
   "version": "0.3.0",
   "exports": {
-    "default": "./src/index.ts"
+    ".": {
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    },
+    "./src": {
+      "default": "./src/index.ts"
+    }
   },
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
   "files": [
+    "dist",
     "src",
     "index.ts"
   ],
   "scripts": {
-    "bundle": "yarn pack --out ../dist/%s-%v.tgz"
+    "bundle": "yarn pack --out ./dist/%s-%v.tgz",
+    "build": "tsup src/index.ts --config tsup.config.ts",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
@@ -27,5 +38,8 @@
     "@saas-ui/react": ">=1",
     "framer-motion": ">=6",
     "react": ">=18"
+  },
+  "devDependencies": {
+    "tsup": "^6.1.3"
   }
 }

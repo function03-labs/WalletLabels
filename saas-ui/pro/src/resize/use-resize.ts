@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { useEventListener } from '@chakra-ui/hooks'
-import { PropGetter, PropGetterV2 } from '@chakra-ui/react-utils'
+import { useEventListener } from '@chakra-ui/react'
 import { HTMLChakraProps } from '@chakra-ui/system'
 
 export type Dimensions = {

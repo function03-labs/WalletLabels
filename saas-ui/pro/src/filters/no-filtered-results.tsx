@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { useFiltersContext } from '..'
 
 import { NoResults, NoResultsProps } from '../data-grid/no-results'

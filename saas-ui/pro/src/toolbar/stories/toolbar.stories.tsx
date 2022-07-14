@@ -1,4 +1,4 @@
-import { Container, Spacer } from '@chakra-ui/layout'
+import { Container, Spacer } from '@chakra-ui/react'
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
 

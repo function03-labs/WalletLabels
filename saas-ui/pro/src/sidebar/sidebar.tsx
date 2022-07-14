@@ -46,7 +46,7 @@ import { ChevronDownIcon, ChevronRightIcon, HamburgerIcon } from '../icons'
 import { SidebarProvider, useSidebarContext } from './use-sidebar'
 import { ResizeHandle, useResize, ResizeOptions } from '../resize'
 
-import { useActivePath } from '@saas-ui/router'
+import { useActivePath } from '@saas-ui/react'
 
 const [StylesProvider, useStyles] = createStylesContext('Sidebar')
 

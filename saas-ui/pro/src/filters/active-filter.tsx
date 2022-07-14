@@ -3,6 +3,9 @@ import * as React from 'react'
 import {
   chakra,
   forwardRef,
+  Wrap,
+  WrapProps,
+  WrapItem,
   HTMLChakraProps,
   useMultiStyleConfig,
   useStyleConfig,
@@ -13,8 +16,6 @@ import {
 } from '@chakra-ui/react'
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
-
-import { Wrap, WrapProps, WrapItem } from '@chakra-ui/layout'
 
 import {
   ButtonGroup,
