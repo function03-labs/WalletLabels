@@ -12,9 +12,7 @@ import {
 } from '@saas-ui/pro'
 import { useHotkeysShortcut } from '@saas-ui/react'
 
-import startOfDay from 'date-fns/startOfDay'
-import subDays from 'date-fns/subDays'
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict'
+import { startOfDay, subDays, formatDistanceToNowStrict } from 'date-fns'
 
 const days = [1, 2, 3, 7, 14, 21, 31, 60]
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import parseISO from 'date-fns/parseISO'
+import { parseISO } from 'date-fns'
 
 import { useAuth } from '@saas-ui/react'
 import { useTenant } from '@saas-ui/pro'

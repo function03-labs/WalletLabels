@@ -8,8 +8,7 @@ import {
   User,
 } from '@ngneat/falso'
 
-import addDays from 'date-fns/addDays'
-import subDays from 'date-fns/subDays'
+import { addDays, subDays } from 'date-fns'
 
 import { Organization, Contact } from '@app/graphql'
 

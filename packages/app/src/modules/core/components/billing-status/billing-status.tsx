@@ -3,8 +3,7 @@ import { usePath } from '@modules/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
 import { Has } from '@saas-ui/features'
 
-import differenceInDays from 'date-fns/differenceInDays'
-import formatDistanceStrict from 'date-fns/formatDistanceStrict'
+import { differenceInDays, formatDistanceStrict } from 'date-fns'
 
 import { Button } from '../button'
 

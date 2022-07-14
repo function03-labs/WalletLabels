@@ -4,10 +4,7 @@ import { ButtonProps } from '@chakra-ui/react'
 import { PropGetterV2 } from '@chakra-ui/react-utils'
 import { dataAttr } from '@chakra-ui/utils'
 
-import setYear from 'date-fns/setYear'
-import getYear from 'date-fns/getYear'
-import getMonth from 'date-fns/getMonth'
-import isSameYear from 'date-fns/isSameYear'
+import { setYear, getYear, getMonth, isSameYear } from 'date-fns'
 
 import {
   useDatePickerContext,

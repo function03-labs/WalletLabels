@@ -1,5 +1,4 @@
-import isAfter from 'date-fns/isAfter'
-import isBefore from 'date-fns/isBefore'
+import { isAfter, isBefore } from 'date-fns'
 
 export type FilterOperatorId =
   | 'is'

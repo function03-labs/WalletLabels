@@ -6,8 +6,7 @@ import {
 } from '@chakra-ui/react'
 import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext } from '@chakra-ui/react-utils'
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict'
-import isAfter from 'date-fns/isAfter'
+import { formatDistanceToNowStrict, isAfter } from 'date-fns'
 
 import { FilterItem } from './filter-menu'
 

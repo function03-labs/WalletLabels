@@ -1,6 +1,6 @@
 import React from 'react'
 
-import isAfter from 'date-fns/isAfter'
+import { isAfter } from 'date-fns'
 
 export type BillingStatus = 'active' | 'canceled' | 'past_due' | 'trialing'
 
