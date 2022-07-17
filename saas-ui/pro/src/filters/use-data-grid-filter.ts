@@ -1,4 +1,4 @@
-import { Row } from 'react-table'
+import { Row, FilterFn } from '@tanstack/react-table'
 import { FilterValue } from './use-active-filter'
 import {
   defaultOperators,
@@ -26,19 +26,19 @@ export const useDataGridFilter = <D extends object>(
     {},
   )
 
-  const dataGridFilter = (
-    rows: Row<D>[],
-    columnIds: string[],
+  const dataGridFilter: FilterFn<D> = (
+    row: Row<D>,
+    columnId: string,
     filterValue: { value: FilterValue; operator: FilterOperatorId },
   ) => {
     const { value, operator } = filterValue
 
-    return rows.filter((row) => {
-      return columnIds.some((id) => {
-        const rowValue = row.values[id]
-        return typeOperators[operator]?.comparator(rowValue, value)
-      })
-    })
+    // return rows.filter((row) => {
+    // return columnIds.some((id) => {
+    const rowValue = row.getValue(columnId)
+    return !!typeOperators[operator]?.comparator(rowValue, value)
+    // })
+    // })
   }
   dataGridFilter.autoRemove = (val: any) => testFalsey(val)
   return dataGridFilter

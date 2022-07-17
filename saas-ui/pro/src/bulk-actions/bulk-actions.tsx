@@ -5,14 +5,16 @@ import {
   BannerTitle,
   BannerActions,
 } from '@saas-ui/react'
+import { MaybeRenderProp } from '@chakra-ui/react-utils'
+import { runIfFn, __DEV__ } from '@chakra-ui/utils'
 
-import { __DEV__ } from '@chakra-ui/utils'
+export type BulkActionsSelections = string[] | number[]
 
 export interface BulkActionsProps extends BannerProps {
   /**
    * Array with selected ids.
    */
-  selections: string[] | number[]
+  selections: BulkActionsSelections
   /**
    * The title
    *
@@ -24,7 +26,7 @@ export interface BulkActionsProps extends BannerProps {
   /**
    * The action buttons.
    */
-  actions: React.ReactNode
+  actions: MaybeRenderProp<{ selections: BulkActionsSelections }>
 }
 
 /**
@@ -58,7 +60,9 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
           {title.replace(':selections', selections.length.toString())}
         </BannerTitle>
       </BannerContent>
-      <BannerActions flexShrink={0}>{actions}</BannerActions>
+      <BannerActions flexShrink={0}>
+        {runIfFn(actions, { selections })}
+      </BannerActions>
     </Banner>
   )
 }

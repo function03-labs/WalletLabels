@@ -10,9 +10,11 @@ import {
   DataGrid,
   DataGridProps,
   TableInstance,
-  Column,
+  ColumnDef,
   Row,
   DataGridSortProps,
+  SortingState,
+  ColumnFiltersState,
 } from '../data-grid'
 import { ActiveFilter } from '../../filters'
 import { ButtonGroup } from '@saas-ui/react'
@@ -53,35 +55,35 @@ interface ExampleData {
   status: string
 }
 
-const columns: Column<ExampleData>[] = [
+const columns: ColumnDef<ExampleData>[] = [
   {
-    accessor: 'name',
-    Header: 'Name',
+    accessorKey: 'name',
+    header: 'Name',
   },
   {
-    accessor: 'phone',
-    Header: 'Phone',
+    accessorKey: 'phone',
+    header: 'Phone',
   },
   {
-    accessor: 'email',
-    Header: 'Email',
+    accessorKey: 'email',
+    header: 'Email',
   },
   {
-    accessor: 'company',
-    Header: 'Company',
+    accessorKey: 'company',
+    header: 'Company',
   },
   {
-    accessor: 'country',
-    Header: 'Country',
+    accessorKey: 'country',
+    header: 'Country',
   },
   {
-    accessor: 'employees',
-    Header: 'Employees',
-    isNumeric: true,
+    accessorKey: 'employees',
+    header: 'Employees',
+    meta: { isNumeric: true },
   },
   {
-    accessor: 'status',
-    Header: 'Status',
+    accessorKey: 'status',
+    header: 'Status',
   },
 ]
 
@@ -139,7 +141,7 @@ const data = [
 ]
 
 const initialState = {
-  hiddenColumns: ['phone', 'employees'],
+  columnVisibility: { phone: false, employees: false },
 }
 
 export const Default = Template.bind({})
@@ -171,7 +173,7 @@ InitialSelected.args = {
   data,
   initialState: {
     ...initialState,
-    selectedRowIds: { 1: true },
+    rowSelection: { 1: true },
   },
   isSelectable: true,
 }
@@ -199,25 +201,29 @@ Numeric.args = {
   columns,
   data,
   initialState: {
-    hiddenColumns: ['phone'],
+    columnVisibility: { phone: false },
   },
 }
 
+const withLinks = (columns.concat() as any).map((column: any) => {
+  if (column.accessorKey === 'username') {
+    return Object.assign({}, column, {
+      meta: {
+        href: (row: any) => {
+          return `/customers/${row.id}`
+        },
+        ...column.meta,
+      },
+    })
+  }
+  return column
+})
+
 export const WithLink = Template.bind({})
 WithLink.args = {
-  columns: Object.assign(columns).map((column: Column) => {
-    if (column.accessor === 'name') {
-      return Object.assign({}, column, {
-        href: (row: Row) => `#${row.id}`,
-      })
-    }
-    return column
-  }),
+  columns: withLinks,
   data,
-  isHoverable: true,
-  initialState: {
-    hiddenColumns: ['phone'],
-  },
+  initialState,
 }
 
 export const TableInstanceRef = () => {
@@ -243,7 +249,11 @@ export const TableInstanceRef = () => {
 
 export const WithPagination = () => {
   return (
-    <Template data={data} columns={columns}>
+    <Template
+      data={data}
+      columns={columns}
+      initialState={{ pagination: { pageSize: 1 } }}
+    >
       <DataGridPagination />
     </Template>
   )
@@ -262,7 +272,9 @@ export const WithRemotePagination = () => {
       columns={columns}
       pageCount={data.length}
       initialState={{
-        pageSize: 1,
+        pagination: {
+          pageSize: 1,
+        },
       }}
     >
       <DataGridPagination onChange={({ pageIndex }) => setPage(pageIndex)} />
@@ -271,7 +283,7 @@ export const WithRemotePagination = () => {
 }
 
 export const WithRemoteSort = () => {
-  const [sort, setSort] = React.useState<SortingRule<ExampleData>[]>([])
+  const [sort, setSort] = React.useState<SortingState>([])
 
   const sortedData = React.useMemo(() => {
     const key = sort[0]?.id
@@ -295,11 +307,11 @@ export const WithRemoteSort = () => {
       data={sortedData}
       columns={columns}
       isSortable
-      manualSortBy
-      disableMultiSort
-      onSortChange={(sort) => {
-        setSort(sort)
+      state={{
+        sorting: sort,
       }}
+      enableMultiSort={false}
+      onSortingChange={setSort}
     ></Template>
   )
 }
@@ -307,7 +319,7 @@ export const WithRemoteSort = () => {
 export const WithFilteredData = () => {
   const ref = React.useRef<TableInstance<ExampleData>>(null)
 
-  const filters = React.useMemo(() => {
+  const filters = React.useMemo<ColumnFiltersState>(() => {
     return [
       {
         id: 'status',
@@ -319,7 +331,12 @@ export const WithFilteredData = () => {
   const [status, setStatus] = React.useState('new')
 
   React.useEffect(() => {
-    ref.current?.setFilter('status', status)
+    ref.current?.setColumnFilters((old) => {
+      return {
+        ...old,
+        status,
+      }
+    })
   }, [status])
 
   return (
@@ -348,8 +365,10 @@ export const WithFilteredData = () => {
         isSelectable
         isSortable
         initialState={{
-          pageSize: 20,
-          filters,
+          pagination: {
+            pageSize: 20,
+          },
+          columnFilters: filters,
         }}
       />
     </>
@@ -393,7 +412,9 @@ export const WithRemoteFilters = () => {
         isSelectable
         isSortable
         initialState={{
-          pageSize: 20,
+          pagination: {
+            pageSize: 20,
+          },
         }}
       />
     </>

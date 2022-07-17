@@ -20,6 +20,7 @@ import {
   FilterOperators,
   FiltersProvider,
   NoFilteredResults,
+  BulkActionsProps,
 } from '@saas-ui/pro'
 
 import { Filters, IdType } from 'react-table'
@@ -39,7 +40,7 @@ export interface ListPageProps<D extends object>
       | 'initialState'
     > {
   emptyState: React.ReactNode
-  bulkActions?: React.ReactNode
+  bulkActions?: BulkActionsProps['actions']
   filters?: FilterItem[]
   operators?: FilterOperators
   searchQuery?: string
@@ -66,14 +67,16 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     operators,
     searchQuery,
     initialState = {
-      pageSize: 20,
+      pagination: {
+        pageSize: 20,
+      },
     },
     ...rest
   } = props
 
-  const [selections, setSelections] = React.useState<IdType<D>[]>([])
+  const [selections, setSelections] = React.useState<string[]>([])
 
-  const _onSelectedRowsChange = React.useCallback((rows: IdType<D>[]) => {
+  const _onSelectedRowsChange = React.useCallback((rows: string[]) => {
     onSelectedRowsChange?.(rows)
     setSelections(rows)
   }, [])
@@ -85,7 +88,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   }
 
   const onFilter = React.useCallback((filters: Filter[]) => {
-    gridRef.current?.setAllFilters(
+    gridRef.current?.setColumnFilters(
       filters.map((filter) => {
         return {
           id: filter.id,
@@ -160,9 +163,10 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         initialState={initialState}
         onSortChange={onSortChange}
         noResults={NoFilteredResults}
-        manualSortBy={!!onSortChange}
-        autoResetFilters={false}
-        autoResetGlobalFilter={false}
+        manualSorting={!!onSortChange}
+        getRowId={(row: any, index, parent) =>
+          row.id || `${parent ? [parent.id, index].join('.') : index}`
+        }
       >
         <DataGridPagination />
       </DataGrid>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { FiCircle, FiUser, FiFilter, FiCalendar } from 'react-icons/fi'
+import { FiCircle, FiFilter, FiCalendar } from 'react-icons/fi'
 
 import { Badge, useDisclosure } from '@chakra-ui/react'
 
@@ -36,13 +36,6 @@ export const filters: FilterItem[] = [
         icon: <Badge boxSize="8px" borderRadius="full" bg="green.400" />,
       },
     ],
-  },
-  {
-    id: 'type',
-    label: 'Is lead',
-    icon: <FiUser />,
-    type: 'enum',
-    value: 'lead',
   },
   {
     id: 'createdAt',

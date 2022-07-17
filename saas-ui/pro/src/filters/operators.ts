@@ -65,7 +65,7 @@ export const defaultOperators: FilterOperators = [
       return (
         value !== undefined &&
         !!filterValue &&
-        !value.toLowerCase().includes(filterValue.toLowerCase())
+        !value?.toLowerCase().includes(filterValue.toLowerCase())
       )
     },
   },

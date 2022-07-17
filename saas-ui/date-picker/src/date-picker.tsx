@@ -102,7 +102,6 @@ export const DatePickerContainer = React.forwardRef(
 
     useImperativeHandle(ref, () => ({
       onDateSelect: (date: Date) => {
-        console.log('OnDateSelect', date)
         dp.onDateSelect(date)
       },
     }))
