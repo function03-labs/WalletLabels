@@ -331,11 +331,13 @@ export const WithFilteredData = () => {
   const [status, setStatus] = React.useState('new')
 
   React.useEffect(() => {
-    ref.current?.setColumnFilters((old) => {
-      return {
-        ...old,
-        status,
-      }
+    ref.current?.setColumnFilters(() => {
+      return [
+        {
+          id: 'status',
+          value: status,
+        },
+      ]
     })
   }, [status])
 
