@@ -14,7 +14,7 @@ interface RouterLocation {
 export interface RouterContextValue {
   navigate: (path: string, options?: NavigateOptions) => void
   back: () => void
-  params?: URLSearchParams
+  params?: ParsedUrlQuery
   location?: RouterLocation
 }
 
