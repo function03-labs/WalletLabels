@@ -1,6 +1,6 @@
 const path = require('path')
 const withSvgr = require('next-svgr')
-
+const webpack = require('webpack')
 const withWorkspaces = require('@saas-ui/next-workspaces')
 
 const isElectron = process.env.npm_package_name === 'electron-app'
@@ -22,14 +22,15 @@ module.exports = withWorkspaces({
         // config.target = 'electron-renderer' // Disable this otherwise MSW doesn't work.
       }
 
-      config.module.rules.push({
-        test: /\.(js|jsx|ts|tsx)$/,
-        include: ['packages', 'saas-ui'].map((workspace) =>
-          path.resolve(__dirname, '../../', workspace),
+      // Load pro packages from src instead of dist
+      config.plugins = config.plugins.concat([
+        new webpack.NormalModuleReplacementPlugin(
+          /\@saas-ui\/(pro|router|onboarding|features|paddle|pro\/theme)$/,
+          (resource) => {
+            resource.request = resource.request + '/src'
+          },
         ),
-        exclude: /node_modules/,
-        use: options.defaultLoaders.babel,
-      })
+      ])
 
       return config
     },
