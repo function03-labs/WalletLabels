@@ -15,7 +15,7 @@
     "./src": {
       "default": "./src/index.ts"
     },
-    "./src/next": {
+    "./next/src": {
       "default": "./next/src/paddle-script.tsx"
     }
   },
