@@ -6,10 +6,6 @@ export interface PaddleScriptProps extends ScriptProps {
   vendor: string
 }
 
-declare global {
-  const Paddle: any
-}
-
 export const PaddleScript: React.FC<PaddleScriptProps> = (props) => {
   const { environment, vendor, ...rest } = props
 
@@ -25,10 +21,10 @@ export const PaddleScript: React.FC<PaddleScriptProps> = (props) => {
         src="https://cdn.paddle.com/paddle/paddle.js"
         onLoad={() => {
           if (environment) {
-            Paddle.Environment.set(environment)
+            ;(window as any).Paddle.Environment.set(environment)
           }
 
-          Paddle.Setup({
+          ;(window as any).Paddle.Setup({
             vendor: Number(vendor),
             eventCallback: onEvent,
           })

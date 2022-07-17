@@ -2,12 +2,6 @@ import * as React from 'react'
 
 import { useScript } from '@saas-ui/pro'
 
-declare global {
-  interface Window {
-    Paddle: any
-  }
-}
-
 export interface UsePaddleProps {
   onLoad?(): void
   onEvent?(e: any): void
@@ -21,8 +15,9 @@ export const usePaddle = (props: UsePaddleProps = {}) => {
   const [paddle, setPaddle] = React.useState<any>(null)
 
   React.useEffect(() => {
-    if (typeof window.Paddle !== 'undefined') {
-      setPaddle(window.Paddle)
+    const Paddle = (window as any).Paddle
+    if (typeof Paddle !== 'undefined') {
+      setPaddle(Paddle)
     }
   }, [status])
 
