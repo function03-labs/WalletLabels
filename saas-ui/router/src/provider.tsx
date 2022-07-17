@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { ParsedUrlQuery } from 'querystring'
 
 interface NavigateOptions {
   replace?: boolean
