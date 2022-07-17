@@ -19,10 +19,10 @@ import { FiUser } from 'react-icons/fi'
 import {
   EmptyState,
   OverflowMenu,
-  Column,
   useModals,
   useHotkeysShortcut,
 } from '@saas-ui/react'
+import { useParams } from '@saas-ui/router'
 import {
   Command,
   Toolbar,
@@ -30,8 +30,9 @@ import {
   useTenant,
   useDataGridFilter,
   DataGridCell,
+  ColumnDef,
+  BulkActionsSelections,
 } from '@saas-ui/pro'
-import { useParams } from '@saas-ui/router'
 
 import { ListPage } from '@modules/core/components/list-page'
 
@@ -69,7 +70,7 @@ const contactStatus: Record<string, { label: string; color: string }> = {
 }
 
 const StatusCell: DataGridCell<Contact> = (cell) => {
-  const status = contactStatus[cell.value] || contactStatus.new
+  const status = contactStatus[cell.getValue<string>()] || contactStatus.new
   return (
     <Tag colorScheme={status.color} size="sm">
       {status.label}
@@ -77,8 +78,8 @@ const StatusCell: DataGridCell<Contact> = (cell) => {
   )
 }
 
-const TypeCell: DataGridCell<Contact> = (cell) => {
-  const type = contactTypes[cell.value] || contactTypes.lead
+const TypeCell: DataGridCell<Contact> = ({ cell }) => {
+  const type = contactTypes[cell.getValue<string>()] || contactTypes.lead
   return (
     <Tag colorScheme={type.color} size="sm" variant="outline">
       {type.label}
@@ -86,8 +87,8 @@ const TypeCell: DataGridCell<Contact> = (cell) => {
   )
 }
 
-const DateCell: DataGridCell<Contact> = (cell) => {
-  return <>{format(new Date(cell.value), 'PP')}</>
+const DateCell: DataGridCell<Contact> = ({ cell }) => {
+  return <>{format(new Date(cell.getValue()), 'PP')}</>
 }
 
 const ActionCell: DataGridCell<Contact> = () => {
@@ -175,57 +176,65 @@ export function ContactsListPage() {
 
   const tabbar = isMobile && <Toolbar>{toolbarItems}</Toolbar>
 
-  const bulkActions = (
+  const bulkActions = ({
+    selections,
+  }: {
+    selections: BulkActionsSelections
+  }) => (
     <>
       <Button>Add to segment</Button>
       <Button>Add tags</Button>
     </>
   )
 
-  const columns: Column<Contact>[] = [
+  const columns: ColumnDef<Contact>[] = [
     {
       id: 'name',
-      accessor: 'fullName',
-      Header: 'Name',
-      href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
-      width: '300px',
+      accessorKey: 'fullName',
+      header: 'Name',
+      size: 300,
+      meta: {
+        href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
+      },
     },
     {
       id: 'email',
-      Header: 'Email',
-      width: '300px',
+      header: 'Email',
+      size: 300,
     },
     {
       id: 'createdAt',
-      Header: 'Created at',
-      Cell: DateCell,
-      filter: useDataGridFilter('date'),
-      disableGlobalFilter: true,
+      header: 'Created at',
+      cell: DateCell,
+      filterFn: useDataGridFilter('date'),
+      enableGlobalFilter: false,
     },
     {
       id: 'type',
-      Header: 'Type',
-      Cell: TypeCell,
-      filter: useDataGridFilter('string'),
-      disableGlobalFilter: true,
-      isNumeric: true,
+      header: 'Type',
+      cell: TypeCell,
+      filterFn: useDataGridFilter('string'),
+      enableGlobalFilter: false,
+      meta: {
+        isNumeric: true,
+      },
     },
     {
       id: 'status',
-      Header: 'Status',
-      Cell: StatusCell,
-      filter: useDataGridFilter('string'),
-      disableGlobalFilter: true,
-      isNumeric: true,
+      header: 'Status',
+      cell: StatusCell,
+      filterFn: useDataGridFilter('string'),
+      enableGlobalFilter: false,
+      meta: {
+        isNumeric: true,
+      },
     },
     {
       id: 'action',
-      disableSortBy: true,
-      Header: '',
-      Cell: ActionCell,
-      width: '100px',
-      disableGlobalFilter: true,
-      isNumeric: true,
+      header: '',
+      cell: ActionCell,
+      size: 100,
+      enableGlobalFilter: false,
     },
   ]
 

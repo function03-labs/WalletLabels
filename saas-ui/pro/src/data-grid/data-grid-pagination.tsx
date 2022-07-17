@@ -23,26 +23,22 @@ export const DataGridPagination: React.FC<DataGridPaginationProps> = (
   props,
 ) => {
   const { className, onChange, ...rest } = props
+  const { instance } = useDataGridContext()
+
+  const state = instance.getState()
+
   const {
-    instance,
-    state: { pageIndex, pageSize },
-  } = useDataGridContext()
+    pagination: { pageIndex, pageSize },
+  } = state
 
   const styles = useMultiStyleConfig('DataGridPagination', props) as Record<
     string,
     SystemStyleObject
   >
 
-  const {
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-  } = instance
+  const { nextPage, previousPage } = instance
+
+  const pageCount = instance.getPageCount()
 
   const containerStyles = {
     px: 4,
@@ -69,7 +65,7 @@ export const DataGridPagination: React.FC<DataGridPaginationProps> = (
           value={pageIndex + 1}
           onChange={(e) => {
             const page = e.target.value ? Number(e.target.value) - 1 : 0
-            gotoPage(page)
+            instance.setPageIndex(page)
           }}
           onFocus={(e) => e.target.select()}
           w="20"
@@ -82,13 +78,13 @@ export const DataGridPagination: React.FC<DataGridPaginationProps> = (
       <ButtonGroup ms="2">
         <IconButton
           onClick={previousPage}
-          isDisabled={!canPreviousPage}
+          isDisabled={!instance.getCanPreviousPage()}
           icon={<ChevronLeftIcon />}
           aria-label="Previous page"
         />
         <IconButton
           onClick={nextPage}
-          isDisabled={!canNextPage}
+          isDisabled={!instance.getCanNextPage()}
           icon={<ChevronRightIcon />}
           aria-label="Next page"
         />

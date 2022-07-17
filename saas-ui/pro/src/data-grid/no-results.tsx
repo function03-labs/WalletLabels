@@ -19,7 +19,7 @@ export interface NoResultsProps
 export const NoResults: React.FC<NoResultsProps> = (props) => {
   const { state } = useDataGridContext()
 
-  const count = state.filters.length || 'your'
+  const count = state.columnFilters.length || 'your'
 
   const {
     resource = 'results',
@@ -34,7 +34,7 @@ export const NoResults: React.FC<NoResultsProps> = (props) => {
   return (
     <EmptyStateContainer variant="no-results" {...rest}>
       <EmptyStateDescription>{title}</EmptyStateDescription>
-      {!!state.filters.length && (
+      {!!state.columnFilters.length && (
         <EmptyStateActions>
           <Button
             onClick={onReset}

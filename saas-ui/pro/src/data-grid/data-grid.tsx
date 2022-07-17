@@ -1,22 +1,29 @@
 import * as React from 'react'
+
 import {
-  useTable,
-  useSortBy,
-  useRowSelect,
-  usePagination,
-  useFilters,
-  useGlobalFilter,
-  TableInstance,
-  TableOptions,
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getPaginationRowModel,
+  getFilteredRowModel,
+  Table as TableInstance,
   TableState,
-  CellProps,
-  HeaderGroup,
-  Hooks,
-  IdType,
+  SortingState,
+  PaginationState,
+  ColumnFiltersState,
+  RowSelectionState,
+  flexRender,
+  ColumnDef,
+  ColumnSort,
+  TableOptions,
+  Header,
+  Cell,
   Row,
-  PluginHook,
-  SortingRule,
-} from 'react-table'
+  FilterFn,
+  SortingFn,
+  OnChangeFn,
+} from '@tanstack/react-table'
+
 import {
   chakra,
   forwardRef,
@@ -29,6 +36,7 @@ import {
   Checkbox,
   useTheme,
   useMultiStyleConfig,
+  ThemingProps,
   SystemStyleObject,
 } from '@chakra-ui/react'
 
@@ -40,11 +48,22 @@ import { Link } from '@saas-ui/react'
 
 import { NoResults } from './no-results'
 
-export type { Column, Row, TableInstance } from 'react-table'
+export type {
+  ColumnDef,
+  Row,
+  TableInstance,
+  SortingState,
+  RowSelectionState,
+  PaginationState,
+  ColumnFiltersState,
+  FilterFn,
+  SortingFn,
+  OnChangeFn,
+}
 
 interface DataGridContextValue<Data extends object> {
   instance: TableInstance<Data>
-  state: TableState<Data>
+  state: TableState
 }
 
 const DataGridContext = React.createContext<DataGridContextValue<any> | null>(
@@ -62,7 +81,7 @@ export const DataGridProvider = <Data extends object>(
   const { instance, children } = props
 
   const context: DataGridContextValue<Data> = {
-    state: instance.state,
+    state: instance.getState(),
     instance,
   }
 
@@ -77,7 +96,16 @@ export const useDataGridContext = <Data extends object>() => {
   return React.useContext(DataGridContext) as DataGridContextValue<Data>
 }
 
-export interface DataGridProps<Data extends object> extends TableOptions<Data> {
+type UseColumns = <Data extends object>(
+  factory: () => Array<ColumnDef<Data>>,
+  deps: React.DependencyList,
+) => Array<ColumnDef<Data>>
+export const useColumns: UseColumns = (factory, deps) =>
+  React.useMemo(() => factory(), [...deps])
+
+export interface DataGridProps<Data extends object>
+  extends Omit<TableOptions<Data>, 'getCoreRowModel'>,
+    ThemingProps<'Table'> {
   /**
    * Enable sorting on all columns
    */
@@ -92,13 +120,14 @@ export interface DataGridProps<Data extends object> extends TableOptions<Data> {
   isHoverable?: boolean
   /**
    * Triggers whenever the row selection changes.
+   * @params rows The selected row id'
    */
-  onSelectedRowsChange?: (rows: IdType<Data>[]) => void
+  onSelectedRowsChange?: (rows: Array<string>) => void
   /**
    * Triggers when sort changed.
    * Use incombination with `manualSortBy` to enable remote sorting.
    */
-  onSortChange?: (columns: SortingRule<Data>[]) => void
+  onSortChange?: (columns: ColumnSort[]) => void
   /**
    * Callback fired when a row is clicked.
    */
@@ -112,9 +141,17 @@ export interface DataGridProps<Data extends object> extends TableOptions<Data> {
    */
   pageCount?: number
   /**
-   * Add React Table plugins.
+   * No results component
    */
-  plugins?: PluginHook<Data>[]
+  noResults?: React.FC<any>
+  /**
+   * The table class name attribute
+   */
+  className?: string
+  /**
+   * DataGrid children
+   */
+  children?: React.ReactNode
 }
 
 export const DataGrid = React.forwardRef(
@@ -126,22 +163,19 @@ export const DataGrid = React.forwardRef(
       columns,
       data,
       initialState,
-      stateReducer,
-      useControlledState,
       getSubRows,
       defaultColumn,
       getRowId,
-      manualRowSelectKey,
       isSortable,
       isSelectable,
       isHoverable,
       onSelectedRowsChange,
       onSortChange,
+      onSortingChange,
       onRowClick,
       onResetFilters,
       noResults: NoResultsComponent = NoResults,
       pageCount,
-      plugins = [],
       colorScheme,
       size,
       variant,
@@ -158,63 +192,50 @@ export const DataGrid = React.forwardRef(
       SystemStyleObject
     >
 
-    const instance = useTable<Data>(
-      {
-        columns: React.useMemo(() => {
-          return columns?.map((column: any) => {
-            if (!column.accessor) {
-              column.accessor = column.id
+    const instance = useReactTable<Data>({
+      columns: React.useMemo(() => {
+        return getSelectionColumn<Data>(isSelectable).concat(
+          columns?.map((column: any) => {
+            if (!column.accessorKey) {
+              column.accessorKey = column.id
             }
-            if (!column.Cell) {
-              column.Cell = DefaultDataGridCell
+            if (!column.cell) {
+              column.cell = DefaultDataGridCell
             }
             return column
-          })
-        }, []),
-        data,
-        initialState: React.useMemo(() => initialState, []),
-        stateReducer,
-        useControlledState,
-        defaultColumn,
-        getSubRows,
-        getRowId,
-        manualRowSelectKey,
-
-        manualPagination: pageCount !== undefined,
-        pageCount,
-        ...rest,
-      },
-      ...plugins,
-      useFilters,
-      useGlobalFilter,
-      useSortBy,
-      usePagination,
-      useRowSelect,
-      useCheckboxColumn(isSelectable),
-    )
+          }),
+        )
+      }, []),
+      data,
+      initialState: React.useMemo(() => initialState, []),
+      defaultColumn,
+      getSubRows,
+      getRowId,
+      manualPagination: pageCount !== undefined,
+      pageCount,
+      onSortingChange,
+      getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      getFilteredRowModel: getFilteredRowModel(),
+      ...rest,
+    })
 
     // This exposes the useTable api through the forwareded ref
     React.useImperativeHandle(ref, () => instance, [ref])
 
-    const {
-      getTableProps,
-      getTableBodyProps,
-      headerGroups,
-      rows,
-      page,
-      prepareRow,
-      state,
-    } = instance
+    const state = instance.getState()
+    const rows = instance.getRowModel().rows
 
     React.useEffect(() => {
-      onSelectedRowsChange?.(Object.keys(state.selectedRowIds))
-    }, [onSelectedRowsChange, state.selectedRowIds])
+      onSelectedRowsChange?.(Object.keys(state.rowSelection))
+    }, [onSelectedRowsChange, state.rowSelection, instance])
 
     React.useEffect(() => {
-      onSortChange?.(state.sortBy)
-    }, [onSortChange, state.sortBy])
+      onSortChange?.(state.sorting)
+    }, [onSortChange, state.sorting])
 
-    const noResults = (state.filters.length || state.globalFilter) &&
+    const noResults = (state.columnFilters.length || state.globalFilter) &&
       !rows.length && <NoResultsComponent onReset={onResetFilters} />
 
     const innerStyles = {
@@ -224,48 +245,50 @@ export const DataGrid = React.forwardRef(
 
     const table = (
       <Table
-        {...getTableProps()}
+        className={cx('saas-data-grid', className)}
         styleConfig={styleConfig}
         colorScheme={colorScheme}
         size={size}
         variant={variant}
       >
         <Thead>
-          {headerGroups.map((headerGroup) => (
-            <Tr {...headerGroup.getHeaderGroupProps()} userSelect="none">
-              {headerGroup.headers.map((column) => (
+          {instance.getHeaderGroups().map((headerGroup) => (
+            <Tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
                 <DataGridHeader
-                  key={column.id}
-                  column={column}
+                  key={header.id}
+                  header={header}
                   isSortable={isSortable}
                 />
               ))}
             </Tr>
           ))}
         </Thead>
-        <Tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            prepareRow(row)
-
+        <Tbody>
+          {rows.map((row) => {
             const onClick = (e: React.MouseEvent) => onRowClick?.(row, e)
 
             return (
               <Tr
-                {...row.getRowProps()}
+                key={row.id}
                 onClick={onClick}
-                data-selected={dataAttr(row.isSelected)}
+                data-selected={dataAttr(row.getIsSelected())}
                 data-hover={dataAttr(isHoverable)}
               >
-                {row.cells.map((cell) => {
+                {row.getVisibleCells().map((cell) => {
+                  const meta = (cell.column.columnDef.meta || {}) as any
                   return (
                     <Td
-                      {...cell.getCellProps()}
-                      isNumeric={cell.column.isNumeric}
+                      key={cell.id}
+                      isNumeric={meta.isNumeric}
                       overflow="hidden"
                       textOverflow="ellipsis"
                       whiteSpace="nowrap"
                     >
-                      {cell.render('Cell') as React.ReactNode}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </Td>
                   )
                 })}
@@ -290,32 +313,38 @@ export const DataGrid = React.forwardRef(
       </DataGridProvider>
     )
   },
-) as <Data extends object>(
+) as (<Data extends object>(
   props: DataGridProps<Data> & {
     ref?: React.ForwardedRef<TableInstance<Data>>
   },
-) => React.ReactElement
+) => React.ReactElement) & { displayName?: string }
 
-export interface DataGridSortProps<Data extends object> {
-  column: HeaderGroup<Data>
+if (__DEV__) {
+  DataGrid.displayName = 'DataGrid'
 }
-export const DataGridSort = <Data extends object>(
-  props: DataGridSortProps<Data>,
+
+export interface DataGridSortProps<Data extends object, TValue> {
+  header: Header<Data, TValue>
+}
+export const DataGridSort = <Data extends object, TValue>(
+  props: DataGridSortProps<Data, TValue>,
 ) => {
-  const { column, ...rest } = props
+  const { header, ...rest } = props
 
   const sorterStyles = {
     ms: 2,
   }
 
-  if (column.id === 'selection') {
+  if (header.id === 'selection') {
     return null
   }
 
+  const sorted = header.column.getIsSorted()
+
   return (
     <chakra.span __css={sorterStyles} {...rest}>
-      {column.isSorted ? (
-        column.isSortedDesc ? (
+      {sorted ? (
+        sorted === 'desc' ? (
           <ChevronDownIcon aria-label="sorted descending" />
         ) : (
           <ChevronUpIcon aria-label="sorted ascending" />
@@ -327,60 +356,82 @@ export const DataGridSort = <Data extends object>(
   )
 }
 
-export interface DataGridHeaderProps<Data extends object> {
-  column: HeaderGroup<Data>
+if (__DEV__) {
+  DataGridSort.displayName = 'DataGridSort'
+}
+
+export interface DataGridHeaderProps<Data extends object, TValue> {
+  header: Header<Data, TValue>
   isSortable?: boolean
 }
-export const DataGridHeader = <Data extends object>(
-  props: DataGridHeaderProps<Data>,
+export const DataGridHeader = <Data extends object, TValue>(
+  props: DataGridHeaderProps<Data, TValue>,
 ) => {
-  const { column, isSortable, ...rest } = props
+  const { header, isSortable, ...rest } = props
 
   let headerProps = {}
 
-  if (isSortable) {
+  if (isSortable && header.column.getCanSort()) {
     headerProps = {
-      ...column.getSortByToggleProps(),
-      className: 'chakra-table-sortable',
+      className: 'saas-data-grid__sortable',
+      userSelect: 'none',
+      cursor: 'pointer',
+      onClick: header.column.getToggleSortingHandler(),
     }
   }
 
+  const meta = (header.column.columnDef.meta || {}) as any
+  const size = header.column.columnDef.size
   return (
     <Th
-      {...column.getHeaderProps(headerProps)}
+      colSpan={header.colSpan}
       textTransform="none"
-      width={column.width}
-      isNumeric={column.isNumeric}
+      width={size && `${size}px`}
+      isNumeric={meta.isNumeric}
+      {...headerProps}
       {...rest}
     >
-      {column.render('Header') as React.ReactNode}
-      {isSortable && <DataGridSort column={column} />}
+      {flexRender(header.column.columnDef.header, header.getContext())}
+      {isSortable && <DataGridSort header={header} />}
     </Th>
   )
 }
 
-const getResult = (fn: any, params: any) => {
+if (__DEV__) {
+  DataGridHeader.displayName = 'DataGridHeader'
+}
+
+const getResult = <Data extends object>(
+  fn: (row: Data) => string,
+  params: Data,
+): string => {
   if (typeof fn === 'function') {
     return fn(params)
   }
   return fn
 }
 
-export type DataGridCell<Data extends object> = (
-  cell: CellProps<Data>,
-) => JSX.Element
+export type DataGridCell<Data extends object> = ColumnDef<Data>['cell']
 
-const DefaultDataGridCell: DataGridCell<any> = ({ value, column, row }) => {
-  if (column.href) {
-    const href = getResult(column.href, row.original) as string
-    return <Link href={href}>{value}</Link>
+export const DefaultDataGridCell = <Data extends object, TValue>(
+  props: Cell<Data, TValue>,
+) => {
+  const { column, row, getValue } = props
+
+  const meta = (column.columnDef.meta || {}) as any
+
+  if (meta.href) {
+    const href = getResult(meta.href, row.original)
+    return <Link href={href}>{getValue()}</Link>
   }
-  return value || null
+  return getValue() || null
+}
+
+if (__DEV__) {
+  DefaultDataGridCell.displayName = 'DefaultDataTableCell'
 }
 
 const DataGridCheckbox = forwardRef((props, ref) => {
-  const { checked, indeterminate, ...rest } = props
-
   const onClick = React.useCallback(
     (e: React.MouseEvent) => e.stopPropagation(),
     [],
@@ -388,31 +439,38 @@ const DataGridCheckbox = forwardRef((props, ref) => {
 
   return (
     <chakra.div onClick={onClick}>
-      <Checkbox
-        ref={ref}
-        isChecked={checked}
-        isIndeterminate={indeterminate}
-        {...rest}
-      />
+      <Checkbox ref={ref} {...props} />
     </chakra.div>
   )
 })
 
-const useCheckboxColumn = <Data extends object>(enabled?: boolean) => {
-  return (hooks: Hooks<Data>) => {
-    enabled &&
-      hooks.visibleColumns.push((columns) => [
+const getSelectionColumn = <Data extends object>(enabled?: boolean) => {
+  return enabled
+    ? [
         {
           id: 'selection',
-          width: '50px',
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <DataGridCheckbox {...getToggleAllRowsSelectedProps()} />
+          size: 1,
+          header: ({ table }) => (
+            <DataGridCheckbox
+              isChecked={table.getIsAllRowsSelected()}
+              isIndeterminate={table.getIsSomeRowsSelected()}
+              onChange={table.getToggleAllRowsSelectedHandler()}
+              aria-label={
+                table.getIsAllRowsSelected()
+                  ? 'Deselect all rows'
+                  : 'Select all rows'
+              }
+            />
           ),
-          Cell: ({ row }: CellProps<Data>) => (
-            <DataGridCheckbox {...row.getToggleRowSelectedProps()} />
+          cell: ({ row }) => (
+            <DataGridCheckbox
+              isChecked={row.getIsSelected()}
+              isIndeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
+              aria-label={row.getIsSelected() ? 'Deselect row' : 'Select row'}
+            />
           ),
-        },
-        ...columns,
-      ])
-  }
+        } as ColumnDef<Data>,
+      ]
+    : []
 }

@@ -8544,7 +8544,9 @@ __metadata:
     "@react-hookz/web": ^15.0.0
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/react-utils": ^1.0.0
+    "@saas-ui/router": "workspace:*"
     "@saas-ui/theme": ^1.1.0
+    "@tanstack/react-table": ^8.2.6
     "@types/react-table": ^7.7.12
     date-fns: ^2.28.0
     polished: ^4.2.2
@@ -10747,6 +10749,25 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 20653e4d3dea1515d215f72d79599562cf54baf4d65c40210ae43a95d4f741d9135f243b14e66feaba91ef78f3f1144eb95c2d3891f1d43e5929cb889aab13eb
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-table@npm:^8.2.6":
+  version: 8.2.6
+  resolution: "@tanstack/react-table@npm:8.2.6"
+  dependencies:
+    "@tanstack/table-core": 8.2.6
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: f8e7e8713f3851c9553beacf3ee1e5493b3a6fb6b3f300ef694967ab7c4e118749ea6024393fe85c3bef3949901df8a600a2a6829c36b139a577f3674f86f99d
+  languageName: node
+  linkType: hard
+
+"@tanstack/table-core@npm:8.2.6":
+  version: 8.2.6
+  resolution: "@tanstack/table-core@npm:8.2.6"
+  checksum: dd0f48ba9bb91eaabb17e5d14d8961d4e17fa75809d9a152b74c1dceb21b0ed5263bcb3df518877246fe5e18a4bbb88ecfebf06d99394a2eeedc3a0592d67d29
   languageName: node
   linkType: hard
 
