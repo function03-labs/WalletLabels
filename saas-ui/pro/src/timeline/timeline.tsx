@@ -89,7 +89,6 @@ export const TimelineContent: React.FC<TimelineContentProps> = (props) => {
 
   const contentStyles = {
     flex: 1,
-    ps: 2,
     ...styles.content,
   }
 

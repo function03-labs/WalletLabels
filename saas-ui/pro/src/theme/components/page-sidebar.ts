@@ -22,7 +22,7 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       justifyContent: 'stretch',
       py: 2,
       px: 4,
-      minH: 14,
+      minH: 12,
       borderBottomWidth: '1px',
       '& > .saas-toolbar': {
         ms: 4,

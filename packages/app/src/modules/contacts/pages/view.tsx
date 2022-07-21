@@ -2,9 +2,15 @@ import { useGetContactQuery } from '@app/graphql'
 
 import {
   Box,
+  Heading,
   HStack,
   Skeleton,
   Spacer,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
@@ -18,6 +24,7 @@ import { Page, PageBody, Toolbar, ToolbarButton } from '@saas-ui/pro'
 import { ContactSidebar } from '../components/contact-sidebar'
 import { usePath } from '@modules/core/hooks/use-path'
 import { Breadcrumbs } from '@modules/core/components/breadcrumbs'
+import { ActivityTimeline } from '../components/activity-timeline'
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -62,8 +69,22 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
 
   return (
     <Page title={breadcrumbs} toolbar={toolbar} isLoading={isLoading} fullWidth>
-      <HStack alignItems="stretch" height="100%" overflowX="hidden">
-        <Box overflowY="auto" flex="1" py="8" px="20"></Box>
+      <HStack alignItems="stretch" height="100%" overflowX="hidden" spacing="0">
+        <Box flex="1">
+          <Tabs colorScheme="primary">
+            <TabList borderBottomWidth="1px" height="12">
+              <Tab>Activity</Tab>
+            </TabList>
+            <TabPanels py="8" px="20" overflowY="auto">
+              <TabPanel>
+                <Heading size="md" mb="8">
+                  Activity
+                </Heading>
+                <ActivityTimeline />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Box>
         <ContactSidebar contact={data?.contact} isOpen={sidebar.isOpen} />
       </HStack>
     </Page>

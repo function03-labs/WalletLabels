@@ -9,6 +9,7 @@ const baseStyle: PartsStyleFunction = (props) => {
     separator: {
       width: '24px',
       flexShrink: 0,
+      me: 4,
     },
     icon: {
       bg: 'app-background',

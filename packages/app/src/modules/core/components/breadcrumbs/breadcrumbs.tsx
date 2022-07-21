@@ -6,6 +6,7 @@ import {
   BreadcrumbItemProps,
   BreadcrumbLink,
   BreadcrumbProps,
+  Button,
   SkeletonText,
   Text,
 } from '@chakra-ui/react'
@@ -38,7 +39,14 @@ export const Breadcrumbs: React.FC<BreadCrumbsProps> = (props) => {
           <BreadcrumbItem key={i} {...itemProps} fontSize="md">
             {href ? (
               <Link href={href}>
-                <BreadcrumbLink fontWeight="semibold">{title}</BreadcrumbLink>
+                <BreadcrumbLink
+                  fontWeight="semibold"
+                  _hover={{
+                    textDecoration: 'none',
+                  }}
+                >
+                  {title}
+                </BreadcrumbLink>
               </Link>
             ) : title ? (
               <Text color="muted">{title}</Text>

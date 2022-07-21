@@ -129,7 +129,7 @@ export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
             right: 0,
             transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
           },
-          exit: { right: '-100%' },
+          exit: { position: 'absolute', right: '-100%' },
         }}
         __css={{
           ...styles.container,
