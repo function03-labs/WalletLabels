@@ -39,6 +39,7 @@ const DateCell: DataGridCell<Contact> = ({ cell }) => {
 
 Updated table props
 
+- ref is now a ref to the container element, use `instanceRef` to get access to the React Table instance.
 - plugins no longer supported, you can use the new getXModel() API now.
 - initialState has an updated type signature.
 - new state property, that allows you to partially control the table state.

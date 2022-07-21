@@ -10,7 +10,6 @@ export default defineConfig({
   sourcemap: true,
   external: [
     'react',
-    'react-table',
     '@chakra-ui/anatomy',
     '@chakra-ui/react',
     '@chakra-ui/system',

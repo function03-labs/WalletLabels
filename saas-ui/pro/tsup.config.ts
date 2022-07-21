@@ -10,7 +10,7 @@ export default defineConfig({
   sourcemap: true,
   external: [
     'react',
-    'react-table',
+    '@tanstack/react-table',
     '@chakra-ui/react',
     '@chakra-ui/icon',
     '@chakra-ui/system',

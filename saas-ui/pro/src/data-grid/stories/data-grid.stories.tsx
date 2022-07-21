@@ -3,20 +3,16 @@ import { Story, Meta } from '@storybook/react'
 
 import { Container, Stack, Button } from '@chakra-ui/react'
 
-import { SortingRule } from 'react-table'
-
 import { DataGridPagination } from '../data-grid-pagination'
 import {
   DataGrid,
   DataGridProps,
   TableInstance,
   ColumnDef,
-  Row,
-  DataGridSortProps,
   SortingState,
   ColumnFiltersState,
 } from '../data-grid'
-import { ActiveFilter } from '../../filters'
+
 import { ButtonGroup } from '@saas-ui/react'
 
 export default {
@@ -237,7 +233,7 @@ export const TableInstanceRef = () => {
         </Button>
       </Stack>
       <DataGrid<ExampleData>
-        ref={ref}
+        instanceRef={ref}
         columns={columns}
         data={data}
         isSelectable
@@ -361,7 +357,7 @@ export const WithFilteredData = () => {
         </Button>
       </ButtonGroup>
       <DataGrid<ExampleData>
-        ref={ref}
+        instanceRef={ref}
         columns={columns}
         data={data}
         isSelectable
@@ -408,7 +404,7 @@ export const WithRemoteFilters = () => {
         </Button>
       </ButtonGroup>
       <DataGrid<ExampleData>
-        ref={ref}
+        instanceRef={ref}
         columns={columns}
         data={filteredData}
         isSelectable

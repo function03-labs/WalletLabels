@@ -38,6 +38,7 @@ import {
   useMultiStyleConfig,
   ThemingProps,
   SystemStyleObject,
+  CSSObject,
 } from '@chakra-ui/react'
 
 import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
@@ -107,6 +108,10 @@ export interface DataGridProps<Data extends object>
   extends Omit<TableOptions<Data>, 'getCoreRowModel'>,
     ThemingProps<'Table'> {
   /**
+   * The React Table instance reference
+   */
+  instanceRef?: React.Ref<TableInstance<Data>>
+  /**
    * Enable sorting on all columns
    */
   isSortable?: boolean
@@ -149,6 +154,10 @@ export interface DataGridProps<Data extends object>
    */
   className?: string
   /**
+   * Grid styles
+   */
+  sx?: CSSObject
+  /**
    * DataGrid children
    */
   children?: React.ReactNode
@@ -157,9 +166,10 @@ export interface DataGridProps<Data extends object>
 export const DataGrid = React.forwardRef(
   <Data extends object>(
     props: DataGridProps<Data>,
-    ref: React.ForwardedRef<TableInstance<Data>>,
+    ref: React.ForwardedRef<HTMLTableElement>,
   ) => {
     const {
+      instanceRef,
       columns,
       data,
       initialState,
@@ -180,6 +190,7 @@ export const DataGrid = React.forwardRef(
       size,
       variant,
       className,
+      sx,
       children,
       ...rest
     } = props
@@ -221,8 +232,8 @@ export const DataGrid = React.forwardRef(
       ...rest,
     })
 
-    // This exposes the useTable api through the forwareded ref
-    React.useImperativeHandle(ref, () => instance, [ref])
+    // This exposes the useTable api through the tableRef
+    React.useImperativeHandle(instanceRef, () => instance, [instanceRef])
 
     const state = instance.getState()
     const rows = instance.getRowModel().rows
@@ -245,11 +256,13 @@ export const DataGrid = React.forwardRef(
 
     const table = (
       <Table
+        ref={ref}
         className={cx('saas-data-grid', className)}
         styleConfig={styleConfig}
         colorScheme={colorScheme}
         size={size}
         variant={variant}
+        sx={sx}
       >
         <Thead>
           {instance.getHeaderGroups().map((headerGroup) => (
@@ -315,7 +328,7 @@ export const DataGrid = React.forwardRef(
   },
 ) as (<Data extends object>(
   props: DataGridProps<Data> & {
-    ref?: React.ForwardedRef<TableInstance<Data>>
+    ref?: React.ForwardedRef<HTMLTableElement>
   },
 ) => React.ReactElement) & { displayName?: string }
 

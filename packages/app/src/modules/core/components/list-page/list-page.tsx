@@ -21,9 +21,8 @@ import {
   FiltersProvider,
   NoFilteredResults,
   BulkActionsProps,
+  ColumnFiltersState,
 } from '@saas-ui/pro'
-
-import { Filters, IdType } from 'react-table'
 
 import { useDebouncedCallback } from '@react-hookz/web'
 
@@ -98,7 +97,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
             operator: filter.operator,
           },
         }
-      }) as Filters<D>,
+      }) as ColumnFiltersState,
     )
   }, [])
 
@@ -152,7 +151,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   } else {
     content = (
       <DataGrid<D>
-        ref={gridRef}
+        instanceRef={gridRef}
         columns={columns}
         data={data}
         isSelectable
