@@ -16,6 +16,7 @@ import {
   useMultiStyleConfig,
   SystemStyleObject,
   createStylesContext,
+  HTMLChakraProps,
 } from '@chakra-ui/react'
 import { cx, __DEV__ } from '@chakra-ui/utils'
 import {
@@ -237,20 +238,29 @@ export const DatePickerDialog = forwardRef<DatePickerDialog, 'div'>(
 
 export interface DatePickerStaticProps extends DatePickerContainerProps {}
 
+const DatePickerStaticContent = forwardRef<HTMLChakraProps<'div'>, 'div'>(
+  (props, ref) => {
+    const styles = useStyles()
+    return (
+      <chakra.div
+        ref={ref}
+        {...props}
+        __css={styles.container}
+        className={cx('saas-date-picker', props.className)}
+      >
+        <DatePickerContent />
+      </chakra.div>
+    )
+  },
+)
+
 export const DatePickerStatic = forwardRef<DatePickerStaticProps, 'div'>(
   (props, ref) => {
     const { containerProps, contentProps } = useDatePicker(props)
-    const styles = useStyles()
+
     return (
       <DatePickerContainer {...containerProps}>
-        <chakra.div
-          ref={ref}
-          {...contentProps}
-          __css={styles.container}
-          className={cx('saas-date-picker', props.className)}
-        >
-          <DatePickerContent />
-        </chakra.div>
+        <DatePickerStaticContent ref={ref} {...contentProps} />
       </DatePickerContainer>
     )
   },

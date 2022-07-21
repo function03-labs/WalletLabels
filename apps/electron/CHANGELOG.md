@@ -1,5 +1,13 @@
 # electron-app
 
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies [df69c2e]
+  - @saas-ui/date-picker@0.2.1
+  - app@6.0.3
+
 ## 1.2.2
 
 ### Patch Changes
