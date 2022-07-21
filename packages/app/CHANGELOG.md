@@ -1,5 +1,12 @@
 # app
 
+## 6.0.3
+
+### Patch Changes
+
+- Updated dependencies [df69c2e]
+  - @saas-ui/date-picker@0.2.1
+
 ## 6.0.2
 
 ### Patch Changes

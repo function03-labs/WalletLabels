@@ -1,5 +1,11 @@
 # @saas-ui/date-picker
 
+## 0.2.1
+
+### Patch Changes
+
+- df69c2e: Fix DataPicker styles
+
 ## 0.2.0
 
 ### Minor Changes
