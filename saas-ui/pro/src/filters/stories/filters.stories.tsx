@@ -7,9 +7,15 @@ import { FiCircle, FiUser } from 'react-icons/fi'
 import { FiltersProvider, FiltersProviderProps } from '../provider'
 import { FiltersAddButton } from '../filters'
 import { ActiveFiltersList } from '../active-filter'
-import { Column, DataGrid, DataGridCell } from '../../data-grid'
+import {
+  ColumnDef,
+  DataGrid,
+  DataGridCell,
+  TableInstance,
+  ColumnFiltersState,
+  useColumns,
+} from '../../data-grid'
 import { useDataGridFilter } from '../use-data-grid-filter'
-import { Cell, Filters, TableInstance } from 'react-table'
 import { Button } from '@saas-ui/react'
 import { NoFilteredResults } from '../no-filtered-results'
 import { Filter } from '../use-active-filter'
@@ -146,8 +152,8 @@ const initialState = {
 
 const StatusCell: DataGridCell<ExampleData> = (cell) => {
   return (
-    <Tag colorScheme={cell.value === 'new' ? 'orange' : 'green'} size="sm">
-      {cell.value}
+    <Tag colorScheme={cell.getValue() === 'new' ? 'orange' : 'green'} size="sm">
+      {cell.getValue()}
     </Tag>
   )
 }
@@ -185,40 +191,42 @@ export const WithDataGrid = () => {
     [],
   )
 
-  const columns = React.useMemo<Column<ExampleData>[]>(() => {
+  const columns = useColumns<ExampleData>(() => {
     return [
       {
-        accessor: 'name',
-        Header: 'Name',
-        width: '200px',
-        filter: useDataGridFilter('string'),
+        accessorKey: 'name',
+        header: 'Name',
+        size: 200,
+        filterFn: useDataGridFilter('string'),
       },
       {
-        accessor: 'email',
-        Header: 'Email',
-        filter: useDataGridFilter('string'),
+        accessorKey: 'email',
+        header: 'Email',
+        filterFn: useDataGridFilter('string'),
       },
       {
-        accessor: 'company',
-        Header: 'Company',
-        filter: useDataGridFilter('string'),
+        accessorKey: 'company',
+        header: 'Company',
+        filterFn: useDataGridFilter('string'),
       },
       {
-        accessor: 'status',
-        Header: 'Status',
-        Cell: StatusCell,
-        filter: useDataGridFilter('string'),
+        accessorKey: 'status',
+        header: 'Status',
+        cell: StatusCell,
+        filterFn: useDataGridFilter('string'),
       },
       {
-        accessor: 'employees',
-        Header: 'Employees',
-        isNumeric: true,
+        accessorKey: 'employees',
+        header: 'Employees',
+        meta: {
+          isNumeric: true,
+        },
       },
     ]
   }, [])
 
   const onFilter = React.useCallback((filters: Filter[]) => {
-    gridRef.current?.setAllFilters(
+    gridRef.current?.setColumnFilters(
       filters.map((filter) => {
         return {
           id: filter.id,
@@ -227,7 +235,7 @@ export const WithDataGrid = () => {
             operator: filter.operator,
           },
         }
-      }) as Filters<ExampleData>,
+      }) as ColumnFiltersState,
     )
   }, [])
 
@@ -243,13 +251,13 @@ export const WithDataGrid = () => {
         <FiltersAddButton />
         <ActiveFiltersList />
         <DataGrid<ExampleData>
-          ref={gridRef}
+          instanceRef={gridRef}
           columns={columns}
           data={data}
           noResults={NoFilteredResults}
           initialState={{
-            hiddenColumns: ['isLead'],
-            filters: defaultFilters.map(({ id, value, operator }) => ({
+            columnVisibility: { isLead: false },
+            columnFilters: defaultFilters.map(({ id, value, operator }) => ({
               id,
               value: {
                 value,
