@@ -83,6 +83,15 @@ export const DatePickerContainer = React.forwardRef(
       children,
     } = props
 
+    const theme = useTheme()
+
+    const styleConfig = theme.components.DatePicker || defaultStyleConfig
+
+    const styles = useMultiStyleConfig('DatePicker', {
+      styleConfig,
+      ...props,
+    }) as Record<string, SystemStyleObject>
+
     const dp = useDatepicker({
       changeActiveMonthOnSelect,
       endDate,
@@ -124,7 +133,7 @@ export const DatePickerContainer = React.forwardRef(
         setAction={setAction}
         action={action}
       >
-        {children}
+        <StylesProvider value={styles}>{children}</StylesProvider>
       </DatePickerProvider>
     )
   },
@@ -231,28 +240,17 @@ export interface DatePickerStaticProps extends DatePickerContainerProps {}
 export const DatePickerStatic = forwardRef<DatePickerStaticProps, 'div'>(
   (props, ref) => {
     const { containerProps, contentProps } = useDatePicker(props)
-
-    const theme = useTheme()
-
-    const styleConfig = theme.components.DatePicker || defaultStyleConfig
-
-    const styles = useMultiStyleConfig('DatePicker', {
-      styleConfig,
-      ...props,
-    }) as Record<string, SystemStyleObject>
-
+    const styles = useStyles()
     return (
       <DatePickerContainer {...containerProps}>
-        <StylesProvider value={styles}>
-          <chakra.div
-            ref={ref}
-            {...contentProps}
-            __css={styles.container}
-            className={cx('saas-date-picker', props.className)}
-          >
-            <DatePickerContent />
-          </chakra.div>
-        </StylesProvider>
+        <chakra.div
+          ref={ref}
+          {...contentProps}
+          __css={styles.container}
+          className={cx('saas-date-picker', props.className)}
+        >
+          <DatePickerContent />
+        </chakra.div>
       </DatePickerContainer>
     )
   },
