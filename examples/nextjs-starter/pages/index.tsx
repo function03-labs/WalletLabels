@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <AppShell>
       <Heading>Saas UI Pro</Heading>
-      <Text>PNPM - Next.js - Starter</Text>
+      <Text>Next.js - Starter</Text>
     </AppShell>
   )
 }
