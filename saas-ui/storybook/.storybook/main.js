@@ -7,10 +7,7 @@ const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin')
 const toPath = (_path) => path.join(process.cwd(), _path)
 
 module.exports = {
-  stories: [
-    path.resolve('../**/stories/*.stories.@(tsx|mdx)'),
-    path.resolve('../docs/**/*.stories.@(tsx|mdx)'),
-  ],
+  stories: [path.resolve('../**/*.stories.@(tsx|mdx)')],
   addons: [
     'storybook-addon-swc',
     '@storybook/addon-a11y',
