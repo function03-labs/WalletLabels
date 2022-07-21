@@ -9,6 +9,7 @@ The v8 API has changed quite a bit, so we have to introduce some breaking change
 
 The column definitions.
 
+- new `useColumns` hook, thanks to @Bret12345.
 - isNumeric and href now need to be set in the new column meta object.
 - accessor renamed to accessorKey.
 - filter is now filterFn
