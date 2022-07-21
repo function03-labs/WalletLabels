@@ -9070,6 +9070,7 @@ __metadata:
     "@app/config": "workspace:*"
     "@app/i18n": "workspace:*"
     "@react-hookz/web": ^15.0.0
+    "@types/react-table": ^7.7.12
     react-hook-form: ^7.33.1
     react-icons: ^4.4.0
     yup: ^0.32.11

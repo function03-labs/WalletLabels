@@ -63,7 +63,6 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "@types/react-table": "^7.7.12",
     "react-icons": "^4.4.0",
     "tsup": "^6.1.3"
   }

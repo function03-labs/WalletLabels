@@ -24,8 +24,5 @@
     "next": ">=12",
     "react": ">=18",
     "react-dom": ">=18"
-  },
-  "devDependencies": {
-    "@types/react-table": "^7.7.12"
   }
 }
