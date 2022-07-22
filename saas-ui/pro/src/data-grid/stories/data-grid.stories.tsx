@@ -267,7 +267,6 @@ export const WithRemotePagination = () => {
       data={paginatedData}
       columns={columns}
       pageCount={data.length}
-      autoResetPage={false}
       initialState={{
         pagination: {
           pageSize: 1,
