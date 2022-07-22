@@ -243,7 +243,7 @@ export const TableInstanceRef = () => {
 
 export const WithPagination = () => {
   return (
-    <Template data={data} columns={columns}>
+    <Template data={data} columns={columns} initialState={{ pageSize: 1 }}>
       <DataGridPagination />
     </Template>
   )
@@ -261,6 +261,7 @@ export const WithRemotePagination = () => {
       data={paginatedData}
       columns={columns}
       pageCount={data.length}
+      autoResetPage={false}
       initialState={{
         pageSize: 1,
       }}

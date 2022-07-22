@@ -140,7 +140,7 @@ export const DataGrid = React.forwardRef(
       onRowClick,
       onResetFilters,
       noResults: NoResultsComponent = NoResults,
-      pageCount,
+      pageCount = -1,
       plugins = [],
       colorScheme,
       size,
@@ -179,8 +179,7 @@ export const DataGrid = React.forwardRef(
         getSubRows,
         getRowId,
         manualRowSelectKey,
-
-        manualPagination: pageCount !== undefined,
+        manualPagination: pageCount !== -1,
         pageCount,
         ...rest,
       },
