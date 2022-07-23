@@ -7,16 +7,16 @@
   "dependencies": {
     "@app/config": "workspace:*",
     "graphql": "16.5.0",
-    "react-query": "^3.39.1"
+    "react-query": "^3.39.2"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.6.4",
-    "@graphql-codegen/near-operation-file-preset": "^2.2.14",
-    "@graphql-codegen/plugin-helpers": "^2.4.2",
-    "@graphql-codegen/typed-document-node": "^2.2.13",
-    "@graphql-codegen/typescript": "^2.5.1",
-    "@graphql-codegen/typescript-operations": "^2.4.2",
-    "@graphql-codegen/typescript-react-query": "^3.5.14"
+    "@graphql-codegen/cli": "^2.9.1",
+    "@graphql-codegen/near-operation-file-preset": "^2.4.0",
+    "@graphql-codegen/plugin-helpers": "^2.6.0",
+    "@graphql-codegen/typed-document-node": "^2.3.2",
+    "@graphql-codegen/typescript": "^2.7.2",
+    "@graphql-codegen/typescript-operations": "^2.5.2",
+    "@graphql-codegen/typescript-react-query": "^3.6.2"
   },
   "peerDependencies": {
     "@saas-ui/react": ">=1",

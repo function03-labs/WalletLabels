@@ -20,7 +20,7 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "date-fns": "^2.28.0"
+    "date-fns": "^2.29.1"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",

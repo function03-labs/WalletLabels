@@ -16,7 +16,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.6",
+    "@babel/core": "^7.18.9",
     "@fontsource/inter": "^4.5.11",
     "@storybook/addon-a11y": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
@@ -26,8 +26,8 @@
     "@storybook/manager-webpack5": "^6.5.9",
     "@storybook/react": "^6.5.9",
     "babel-loader": "^8.2.5",
-    "chromatic": "^6.7.0",
-    "framer-motion": "^6.3.16",
+    "chromatic": "^6.7.1",
+    "framer-motion": "^6.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
