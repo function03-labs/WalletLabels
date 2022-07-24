@@ -36,13 +36,14 @@
     "@chakra-ui/system": "^2.2.2",
     "@chakra-ui/theme-tools": "^2.0.5",
     "@chakra-ui/utils": "^2.0.4",
+    "@saas-ui/pro": "workspace:*",
     "@saas-ui/react-utils": "^1.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.1",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "@saas-ui/react": ">=1.1.1",
+    "@saas-ui/react": ">=1.2.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18",
     "react-dom": ">=18"

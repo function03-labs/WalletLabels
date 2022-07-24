@@ -10,11 +10,8 @@ module.exports = withWorkspaces({
   basePath: '../../',
 })(
   withSvgr({
+    optimizeFonts: true,
     reactStrictMode: false,
-    experimental: {
-      optimizeFonts: true,
-      modern: true,
-    },
     distDir: isElectron ? '.nextron' : '.next',
     webpack: (config, options) => {
       const { isServer } = options

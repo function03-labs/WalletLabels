@@ -1,5 +1,11 @@
 # @saas-ui/paddle
 
+## 0.2.1
+
+### Patch Changes
+
+- Add next src file to npm package
+
 ## 0.2.0
 
 ### Minor Changes

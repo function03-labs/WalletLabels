@@ -68,6 +68,9 @@ export const useTour = (props: UseTourProps) => {
   const targetRef = React.useRef<HTMLElement | null>(null)
 
   React.useEffect(() => {
+    if (!step?.id) {
+      return
+    }
     const el = document.querySelector<HTMLElement>(step.id)
     targetRef.current = el
     setTarget(el)

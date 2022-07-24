@@ -1,5 +1,12 @@
 # nextjs-app
 
+## 1.3.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/paddle@0.2.1
+
 ## 1.3.4
 
 ### Patch Changes
