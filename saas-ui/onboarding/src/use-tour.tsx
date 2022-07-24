@@ -1,7 +1,7 @@
 import { useControllableState } from '@chakra-ui/react'
 import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext, PropGetterV2 } from '@chakra-ui/react-utils'
-import { useSteps } from '@saas-ui/pro'
+import { useSteps } from '@saas-ui/react'
 import * as React from 'react'
 
 export interface TourStep {
@@ -68,6 +68,9 @@ export const useTour = (props: UseTourProps) => {
   const targetRef = React.useRef<HTMLElement | null>(null)
 
   React.useEffect(() => {
+    if (!step?.id) {
+      return
+    }
     const el = document.querySelector<HTMLElement>(step.id)
     targetRef.current = el
     setTarget(el)
