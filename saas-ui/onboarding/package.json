@@ -36,7 +36,6 @@
     "@chakra-ui/system": "^2.2.2",
     "@chakra-ui/theme-tools": "^2.0.5",
     "@chakra-ui/utils": "^2.0.4",
-    "@saas-ui/pro": "workspace:*",
     "@saas-ui/react-utils": "^1.0.0"
   },
   "peerDependencies": {
