@@ -3,11 +3,20 @@ import { graphql } from 'msw'
 import slug from 'slug'
 
 import {
+  Activity,
+  AddCommentMutation,
+  AddCommentMutationVariables,
+  Contact,
   CreateContactMutation,
   CreateContactMutationVariables,
   CreateOrganizationMutation,
   CreateOrganizationMutationVariables,
+  DeleteCommentMutation,
+  DeleteCommentMutationVariables,
+  GetContactActivitiesQuery,
+  GetContactActivitiesQueryVariables,
   GetContactQuery,
+  GetContactQueryVariables,
   GetContactsQuery,
   GetContactsQueryVariables,
   GetCurrentUserQuery,
@@ -37,6 +46,10 @@ import {
   organizationStore,
   getSubscription,
   getCurrentUser,
+  getActivities,
+  getComment,
+  addActivity,
+  deleteActivity,
 } from './mock-data'
 
 export const handlers = [
@@ -45,7 +58,10 @@ export const handlers = [
     (req, res, ctx) => {
       return res(
         ctx.data({
-          currentUser: getCurrentUser(),
+          currentUser: {
+            ...getCurrentUser(),
+            organizations: getOrganizations(),
+          },
         }),
       )
     },
@@ -89,7 +105,7 @@ export const handlers = [
     'GetContacts',
     (req, res, ctx) => {
       const type = (() => {
-        switch (req.body?.variables.type) {
+        switch (req.variables.type) {
           case 'customers':
             return 'customer'
           case 'leads':
@@ -106,12 +122,32 @@ export const handlers = [
       )
     },
   ),
-  graphql.query<GetContactQuery, GetContactQuery>(
+  graphql.query<GetContactQuery, GetContactQueryVariables>(
     'GetContact',
+    (req, res, ctx) => {
+      if (!req.variables.id) {
+        return res(ctx.status(500, 'Invalid contact id'))
+      }
+
+      const contact = getContact(req.variables.id)
+
+      if (!contact) {
+        return res(ctx.status(404, 'Contact not found'))
+      }
+
+      return res(
+        ctx.data({
+          contact: getContact(req.variables.id),
+        }),
+      )
+    },
+  ),
+  graphql.query<GetContactActivitiesQuery, GetContactActivitiesQueryVariables>(
+    'GetContactActivities',
     (req, res, ctx) => {
       return res(
         ctx.data({
-          contact: getContact(),
+          activities: getActivities() as Activity[],
         }),
       )
     },
@@ -141,12 +177,15 @@ export const handlers = [
   graphql.mutation<UpdateUserMutation, UpdateUserMutationVariables>(
     'UpdateUser',
     (req, res, ctx) => {
+      const user = getUser()
+
       return res(
         ctx.data({
           updateUser: {
-            id: req.body?.variables.id,
-            name: req.body?.variables.name,
-            email: req.body?.variables.email,
+            ...user,
+            id: req.variables.id,
+            name: req.variables.name,
+            email: req.variables.email || user.email,
             organizations: getOrganizations(),
           },
         }),
@@ -159,10 +198,11 @@ export const handlers = [
     CreateOrganizationMutationVariables
   >('CreateOrganization', (req, res, ctx) => {
     const organization = getOrganization()
+
     const data = {
       ...organization,
-      name: req.body?.variables.name,
-      slug: slug(req.body?.variables.name),
+      name: req.variables.name,
+      slug: slug(req.variables.name),
       members: [
         {
           id: '1',
@@ -186,19 +226,41 @@ export const handlers = [
   graphql.mutation<CreateContactMutation, CreateContactMutationVariables>(
     'CreateContact',
     (req, res, ctx) => {
-      const parts = req.body?.variables.name.split(' ')
-
-      const [firstName, ...lastName] = parts
+      const name = req.variables.name
+      const [firstName, ...lastName] = name.split(' ')
 
       return res(
         ctx.data({
           createContact: {
-            ...getContact(),
+            ...(getContact() as Contact),
+            fullName: name,
             firstName,
             lastName: lastName.join(' '),
           },
         }),
       )
+    },
+  ),
+
+  graphql.mutation<AddCommentMutation, AddCommentMutationVariables>(
+    'AddComment',
+    (req, res, ctx) => {
+      const comment = getComment(req.variables.comment)
+      addActivity(comment)
+
+      return res(
+        ctx.data({
+          addActivityComment: comment,
+        }),
+      )
+    },
+  ),
+
+  graphql.mutation<DeleteCommentMutation, DeleteCommentMutationVariables>(
+    'DeleteComment',
+    (req, res, ctx) => {
+      deleteActivity(req.variables.id)
+      return res(ctx.data({}))
     },
   ),
 ]

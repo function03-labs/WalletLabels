@@ -18,13 +18,15 @@ const typeDefs = gql`
       userId: String!
     ): Boolean
     updateOrganization(id: String!, name: String!, email: String): Organization
-    updateUser(name: String, userId: String!): User
+    updateUser(id: String!, name: String, email: String): User
     updateMemberRoles(
       userId: String!
       organizationId: String!
       roles: [String]!
     ): OrganizationMember
     createContact(name: String!): Contact
+    addActivityComment(id: String!, comment: String!): Activity
+    deleteActivityComment(id: String!): Boolean
   }
 
   type Organization {
@@ -80,6 +82,7 @@ const typeDefs = gql`
     subscription(slug: String): Subscription
     contacts(type: String): [Contact]
     contact(id: String): Contact
+    activities(contactId: String): [Activity!]
   }
 
   type User {
@@ -110,6 +113,22 @@ const typeDefs = gql`
     status: String
     type: String
     tags: [String]
+    createdAt: DateTime
+    updatedAt: DateTime
+  }
+
+  enum ActivityType {
+    action
+    update
+    comment
+  }
+
+  type Activity {
+    id: String!
+    user: User!
+    type: ActivityType!
+    data: Json
+    date: DateTime
     createdAt: DateTime
     updatedAt: DateTime
   }

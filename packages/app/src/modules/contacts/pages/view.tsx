@@ -1,38 +1,36 @@
-import { useGetContactQuery } from '@app/graphql'
+import * as React from 'react'
+
+import {
+  useAddCommentMutation,
+  useDeleteCommentMutation,
+  useGetContactActivitiesQuery,
+  useGetContactQuery,
+} from '@app/graphql'
 
 import {
   Box,
   Heading,
   HStack,
-  Skeleton,
   Spacer,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
   useDisclosure,
 } from '@chakra-ui/react'
-
+import { ErrorBoundary, Loader } from '@saas-ui/react'
 import { FiSidebar } from 'react-icons/fi'
 
-import * as Yup from 'yup'
+import { Page, Toolbar, ToolbarButton } from '@saas-ui/pro'
 
-import { Page, PageBody, Toolbar, ToolbarButton } from '@saas-ui/pro'
-
-import { ContactSidebar } from '../components/contact-sidebar'
+import { useCurrentUser } from '@modules/core/hooks/use-current-user'
 import { usePath } from '@modules/core/hooks/use-path'
 import { Breadcrumbs } from '@modules/core/components/breadcrumbs'
-import { ActivityTimeline } from '../components/activity-timeline'
 
-const schema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too short')
-    .max(25, 'Too long')
-    .required()
-    .label('Name'),
-})
+import { ContactSidebar } from '../components/contact-sidebar'
+import { Activities, ActivityTimeline } from '../components/activity-timeline'
+import { useQueryClient } from 'react-query'
 
 interface ContactsViewPageProps {
   id: string
@@ -70,23 +68,86 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
   return (
     <Page title={breadcrumbs} toolbar={toolbar} isLoading={isLoading} fullWidth>
       <HStack alignItems="stretch" height="100%" overflowX="hidden" spacing="0">
-        <Box flex="1">
-          <Tabs colorScheme="primary">
-            <TabList borderBottomWidth="1px" height="12">
-              <Tab>Activity</Tab>
-            </TabList>
-            <TabPanels py="8" px="20" overflowY="auto">
-              <TabPanel>
-                <Heading size="md" mb="8">
-                  Activity
-                </Heading>
-                <ActivityTimeline />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </Box>
+        <Tabs
+          colorScheme="primary"
+          isLazy
+          flex="1"
+          minH="0"
+          display="flex"
+          flexDirection="column"
+        >
+          <TabList borderBottomWidth="1px" height="12">
+            <Tab>Activity</Tab>
+          </TabList>
+          <TabPanels
+            py="8"
+            px="20"
+            overflowY="auto"
+            maxW="container.xl"
+            margin="0 auto"
+            flex="1"
+          >
+            <TabPanel>
+              <ErrorBoundary>
+                <ActivitiesPanel contactId={id} />
+              </ErrorBoundary>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+
         <ContactSidebar contact={data?.contact} isOpen={sidebar.isOpen} />
       </HStack>
     </Page>
+  )
+}
+
+const ActivitiesPanel: React.FC<{ contactId: string }> = ({ contactId }) => {
+  const currentUser = useCurrentUser()
+
+  const { data, isLoading } = useGetContactActivitiesQuery({
+    id: contactId,
+  })
+
+  const queryClient = useQueryClient()
+
+  const addMutation = useAddCommentMutation({
+    onSettled: () => {
+      queryClient.invalidateQueries(['GetContactActivities', { id: contactId }])
+    },
+  })
+
+  const deleteMutation = useDeleteCommentMutation({
+    onSettled: () => {
+      queryClient.invalidateQueries(['GetContactActivities', { id: contactId }])
+    },
+  })
+
+  return (
+    <>
+      {!currentUser || isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Heading size="md" mb="8">
+            Activity
+          </Heading>
+          <ActivityTimeline
+            activities={(data?.activities || []) as Activities}
+            currentUser={currentUser}
+            onAddComment={async (data) => {
+              return addMutation.mutate({
+                contactId,
+                comment: data.comment,
+              })
+            }}
+            onDeleteComment={async (id) => {
+              return deleteMutation.mutate({
+                id: id as string,
+              })
+            }}
+          />
+        </>
+      )}
+    </>
   )
 }

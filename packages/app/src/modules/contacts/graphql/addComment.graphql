@@ -1,0 +1,16 @@
+mutation AddComment($contactId: String!, $comment: String!) {
+  addActivityComment(id: $contactId, comment: $comment) {
+    id
+    user {
+      id
+      name
+      avatar
+      status
+    }
+    type
+    data
+    date
+    createdAt
+    updatedAt
+  }
+}

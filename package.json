@@ -6,6 +6,9 @@
   "author": "Eelco Wiersma <eelco@appulse.nl>",
   "license": "https://saas-ui.dev/license",
   "private": true,
+  "bin": {
+    "formatjs": "./node_modules/@formatjs/cli"
+  },
   "scripts": {
     "prepare": "husky install",
     "generate": "yarn workspace @app/graphql generate",
@@ -33,6 +36,7 @@
   "devDependencies": {
     "@chakra-ui/cli": "^2.1.2",
     "@changesets/cli": "^2.24.0",
+    "@formatjs/cli": "^5.0.6",
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",

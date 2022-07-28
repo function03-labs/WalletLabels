@@ -15,6 +15,14 @@ const Key: React.FC<HTMLChakraProps<'span'>> = ({ children }) => {
   return <Kbd>{children}</Kbd>
 }
 
+/**
+ * Command
+ * A command is used to show which key or combination of keys performs a given action.
+ *
+ * All single letters A-Z are uppercase.
+ * For non-letter keys such as enter, esc and shift, stick to lowercase.
+ * Use symbols (⌥ ⇧ ⌃ ⌘) as opposed to spelling things out.
+ */
 export const Command: React.FC<HTMLChakraProps<'span'>> = (props) => {
   const { children, className, ...rest } = props
   if (typeof children !== 'string') {
