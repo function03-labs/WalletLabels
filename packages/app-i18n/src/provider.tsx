@@ -16,5 +16,18 @@ export const I18nProvider: React.FC<I18nProviderProps> = (props) => {
     locale = navigator.language
   }
 
-  return <IntlProvider locale={locale}>{children}</IntlProvider>
+  return (
+    <IntlProvider
+      locale={locale}
+      onError={(err) => {
+        if (err.code === 'MISSING_TRANSLATION') {
+          console.warn('Missing translation', err.message)
+          return
+        }
+        throw err
+      }}
+    >
+      {children}
+    </IntlProvider>
+  )
 }
