@@ -5091,7 +5091,7 @@ __metadata:
     "@chakra-ui/react": ">=2"
     "@chakra-ui/system": ">=2"
     "@emotion/react": ">=11"
-    "@emotion/styles": ">=11"
+    "@emotion/styled": ">=11"
     "@saas-ui/react": ">=1"
     framer-motion: ">=5.5.0"
     react: ">=18"
@@ -5288,7 +5288,6 @@ __metadata:
     "@chakra-ui/system": ^2.2.2
     "@chakra-ui/theme-tools": ^2.0.5
     "@chakra-ui/utils": ^2.0.4
-    "@saas-ui/pro": "workspace:*"
     "@saas-ui/react-utils": ^1.0.0
     tsup: ^6.1.3
   peerDependencies:

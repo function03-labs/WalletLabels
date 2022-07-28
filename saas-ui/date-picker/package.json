@@ -36,7 +36,7 @@
     "@chakra-ui/react": ">=2",
     "@chakra-ui/system": ">=2",
     "@emotion/react": ">=11",
-    "@emotion/styles": ">=11",
+    "@emotion/styled": ">=11",
     "@saas-ui/react": ">=1",
     "framer-motion": ">=5.5.0",
     "react": ">=18",
