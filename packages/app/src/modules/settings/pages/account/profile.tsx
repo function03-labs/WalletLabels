@@ -52,7 +52,7 @@ function ProfileDetails({ user }: any) {
           }}
           onSubmit={(data) => {
             updateUser({
-              userId: user.id,
+              id: user.id,
               name: data.name,
             }).then(() =>
               snackbar.success({
