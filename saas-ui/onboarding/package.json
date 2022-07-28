@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/onboarding",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -42,7 +42,7 @@
     "@chakra-ui/react": ">=2.1",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "@saas-ui/react": ">=1.1.1",
+    "@saas-ui/react": ">=1.2.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18",
     "react-dom": ">=18"

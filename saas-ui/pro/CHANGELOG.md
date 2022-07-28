@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.5.3
+
+### Patch Changes
+
+- bff7d3f: Fixed issue where DataGrid pagination wasn't working.
+  - @saas-ui/onboarding@0.3.3
+
 ## 0.5.2
 
 ### Patch Changes
