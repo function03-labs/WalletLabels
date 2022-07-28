@@ -4,7 +4,7 @@
 
 First of all, thanks a lot for signing up!
 
-Come say hello at [Discord](https://discord.gg/yFr9KaW7), I'm always around to help and your feedback will really help move the project forward.
+Come say hello at [Discord](https://discord.gg/4PmJGFcAjX), I'm always around to help and your feedback will really help move the project forward.
 
 ## Roadmap
 
