@@ -108,9 +108,11 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
     defaultWidth,
     ...containerProps
   } = omitThemingProps(props)
+  const isMobile = useBreakpointValue(breakpoints, {
+    fallback: undefined,
+  })
 
-  const isMobile = useBreakpointValue(breakpoints)
-
+  const isInitial = typeof isMobile === 'undefined'
   const shouldCollapse = isMobile && variant !== 'condensed'
 
   const collapse = useCollapse({
@@ -123,13 +125,15 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
     isResizable: !isMobile && isResizable,
   })
 
-  const { isOpen, onClose } = collapse
+  const { isOpen, onClose, onOpen } = collapse
 
   React.useEffect(() => {
-    if (isMobile) {
-      onClose()
+    if (isInitial) {
+      // make sure we do not show an initial animation
+      return
     }
-  }, [isMobile])
+    isMobile ? onClose() : onOpen()
+  }, [isMobile, isInitial])
 
   const containerStyles: SystemStyleObject = {
     ...(shouldCollapse
@@ -165,13 +169,16 @@ export const SidebarContainer: React.FC<SidebarProps> = (props) => {
     <SidebarProvider value={context}>
       <StylesProvider value={styles}>
         <MotionBox
-          animate={!isMobile || isOpen ? 'enter' : 'exit'}
+          initial={false}
+          animate={!isInitial && (!isMobile || isOpen ? 'enter' : 'exit')}
           variants={{
             enter: {
               left: 0,
               transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
             },
-            exit: { left: '-100%' },
+            exit: {
+              left: '-100%',
+            },
           }}
           __css={{
             ...containerStyles,
