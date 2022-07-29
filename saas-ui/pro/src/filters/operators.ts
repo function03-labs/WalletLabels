@@ -1,4 +1,4 @@
-import { isAfter, isBefore } from 'date-fns'
+import { isAfter, isBefore, parseISO } from 'date-fns'
 
 export type FilterOperatorId =
   | 'is'
@@ -88,16 +88,28 @@ export const defaultOperators: FilterOperators = [
     id: 'before',
     label: 'before',
     types: ['date', 'datetime'],
-    comparator(value: Date | undefined, filterValue: Date) {
-      return value && isBefore(value, filterValue)
+    comparator(
+      value: Date | string | number | undefined,
+      filterValue: Date | number,
+    ) {
+      if (typeof value === 'string') {
+        value = parseISO(value)
+      }
+      return !!value && isBefore(value, filterValue)
     },
   },
   {
     id: 'after',
     label: 'after',
     types: ['date', 'datetime'],
-    comparator(value: Date | undefined, filterValue: Date) {
-      return value && isAfter(value, filterValue)
+    comparator(
+      value: Date | string | number | undefined,
+      filterValue: Date | number,
+    ) {
+      if (typeof value === 'string') {
+        value = parseISO(value)
+      }
+      return !!value && isAfter(value, filterValue)
     },
   },
 ]
