@@ -20,14 +20,6 @@ const baseStyle: SystemStyleFunction = (props) => {
     maxW: '320px',
     zIndex: 'tooltip',
     borderWidth: '1px',
-    '& .saas-command': {
-      ms: 1,
-      '&:before': {
-        content: '"•"',
-        me: 1,
-        fontSize: 'xs',
-      },
-    },
   }
 }
 
