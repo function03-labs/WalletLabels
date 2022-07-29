@@ -171,18 +171,14 @@ export const getContacts = (
 
   let types: string[]
   switch (type) {
-    case 'leads':
+    case 'lead':
       types = ['lead']
       break
-    case 'customers':
+    case 'customer':
       types = ['customer']
       break
     default:
       types = ['lead', 'customer']
-  }
-
-  if (type === 'all') {
-    types = ['lead', 'customer']
   }
 
   return Object.values(state.data).filter((contact) =>
