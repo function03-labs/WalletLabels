@@ -27,7 +27,7 @@
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/paddle": "workspace:*",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": "^1.2.0",
+    "@saas-ui/react": "^1.2.1",
     "@saas-ui/router": "workspace:*",
     "@ui/theme": "workspace:*",
     "app": "workspace:*",
