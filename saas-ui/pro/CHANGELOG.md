@@ -1,5 +1,73 @@
 # @saas-ui/pro
 
+## 0.6.0
+
+### Minor Changes
+
+- 3729178: DataGrid ref has been renamed to instanceRef, ref now references the container element.
+- f7df7fc: Added new Timeline component.
+- 736f5ab: BREAKING: Updated to React Table v8
+
+  The v8 API has changed quite a bit, so we have to introduce some breaking changes.
+
+  The column definitions.
+
+  - new `useColumns` hook, thanks to @Bret12345.
+  - isNumeric and href now need to be set in the new column meta object.
+  - accessor renamed to accessorKey.
+  - filter is now filterFn
+  - Header and Cell are now lowercase, header and cell.
+  - width is now size and only accept a number.
+
+  ```
+  const columns: ColumnDef<Contact>[] = [
+    {
+      id: 'name',
+      accessorKey: 'fullName',
+      header: 'Name',
+      size: 300,
+      meta: {
+        href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
+      },
+    }
+  ]
+  ```
+
+  - cell.value is now cell.getValue()
+
+  ```
+  const DateCell: DataGridCell<Contact> = ({ cell }) => {
+    return <>{format(new Date(cell.getValue<string>()), 'PP')}</>
+  }
+  ```
+
+  Updated table props
+
+  - ref is now a ref to the container element, use `instanceRef` to get access to the React Table instance.
+  - plugins no longer supported, you can use the new getXModel() API now.
+  - initialState has an updated type signature.
+  - new state property, that allows you to partially control the table state.
+
+  More info: https://tanstack.com/table/v8/docs
+
+- 04f84cb: TypeScript is now transpiled to cjs and mjs.
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- 736f5ab: BulkActions actions now accepts a render prop that gives you access to the selections.
+- 807f2a5: Moved Tooltip specific Command styles into Command theme.
+- d6e068c: Date filters now support ISO strings and timestamps.
+- 05437dd: Make sure sidebar doesn't animate on initial render
+- 408143d: Using date-fns ESM module
+- Updated dependencies [ebda65c]
+- Updated dependencies [c5b38ef]
+- Updated dependencies [04f84cb]
+- Updated dependencies [c5b38ef]
+- Updated dependencies [408143d]
+  - @saas-ui/onboarding@0.4.0
+  - @saas-ui/router@0.3.0
+
 ## 0.5.3
 
 ### Patch Changes

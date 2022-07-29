@@ -1,5 +1,15 @@
 # @saas-ui/features
 
+## 0.5.0
+
+### Minor Changes
+
+- 04f84cb: TypeScript is now transpiled to cjs and mjs.
+
+### Patch Changes
+
+- 408143d: Using date-fns ESM module
+
 ## 0.4.0
 
 ### Minor Changes

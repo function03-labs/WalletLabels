@@ -1,5 +1,13 @@
 # @app/nextjs
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [04f84cb]
+- Updated dependencies [408143d]
+  - @saas-ui/router@0.3.0
+
 ## 0.1.0
 
 ### Minor Changes

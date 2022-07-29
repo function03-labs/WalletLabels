@@ -1,5 +1,18 @@
 # @saas-ui/onboarding
 
+## 0.4.0
+
+### Minor Changes
+
+- c5b38ef: useSteps moved to @saas-ui/react
+- 04f84cb: TypeScript is now transpiled to cjs and mjs.
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- c5b38ef: Check if there is an active step in useTour.
+- 408143d: Using date-fns ESM module
+
 ## 0.3.3
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @ui/core
 
+## 0.1.2
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- 408143d: Using date-fns ESM module
+
 ## 0.1.1
 
 ### Patch Changes

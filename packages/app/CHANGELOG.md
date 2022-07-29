@@ -1,5 +1,80 @@
 # app
 
+## 7.0.0
+
+### Minor Changes
+
+- 736f5ab: BREAKING: Updated to React Table v8
+
+  The v8 API has changed quite a bit, so we have to introduce some breaking changes.
+
+  The column definitions.
+
+  - new `useColumns` hook, thanks to @Bret12345.
+  - isNumeric and href now need to be set in the new column meta object.
+  - accessor renamed to accessorKey.
+  - filter is now filterFn
+  - Header and Cell are now lowercase, header and cell.
+  - width is now size and only accept a number.
+
+  ```
+  const columns: ColumnDef<Contact>[] = [
+    {
+      id: 'name',
+      accessorKey: 'fullName',
+      header: 'Name',
+      size: 300,
+      meta: {
+        href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
+      },
+    }
+  ]
+  ```
+
+  - cell.value is now cell.getValue()
+
+  ```
+  const DateCell: DataGridCell<Contact> = ({ cell }) => {
+    return <>{format(new Date(cell.getValue<string>()), 'PP')}</>
+  }
+  ```
+
+  Updated table props
+
+  - ref is now a ref to the container element, use `instanceRef` to get access to the React Table instance.
+  - plugins no longer supported, you can use the new getXModel() API now.
+  - initialState has an updated type signature.
+  - new state property, that allows you to partially control the table state.
+
+  More info: https://tanstack.com/table/v8/docs
+
+- 736f5ab: ListPage selections now include row ids instead of index.
+
+### Patch Changes
+
+- 408143d: Using date-fns ESM module
+- Updated dependencies [ebda65c]
+- Updated dependencies [3729178]
+- Updated dependencies [f7df7fc]
+- Updated dependencies [c5b38ef]
+- Updated dependencies [736f5ab]
+- Updated dependencies [736f5ab]
+- Updated dependencies [3e47630]
+- Updated dependencies [04f84cb]
+- Updated dependencies [c5b38ef]
+- Updated dependencies [807f2a5]
+- Updated dependencies [d6e068c]
+- Updated dependencies [05437dd]
+- Updated dependencies [408143d]
+  - @app/i18n@0.1.2
+  - @saas-ui/billing@0.4.0
+  - @saas-ui/date-picker@0.3.0
+  - @saas-ui/onboarding@0.4.0
+  - @saas-ui/pro@0.6.0
+  - @saas-ui/charts@0.2.0
+  - @saas-ui/features@0.5.0
+  - @saas-ui/router@0.3.0
+
 ## 6.0.4
 
 ### Patch Changes

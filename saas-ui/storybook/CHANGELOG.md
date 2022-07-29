@@ -1,5 +1,23 @@
 # saas-ui-storybook
 
+## 4.0.0
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- 408143d: Using date-fns ESM module
+- Updated dependencies [ebda65c]
+- Updated dependencies [3729178]
+- Updated dependencies [f7df7fc]
+- Updated dependencies [736f5ab]
+- Updated dependencies [736f5ab]
+- Updated dependencies [04f84cb]
+- Updated dependencies [807f2a5]
+- Updated dependencies [d6e068c]
+- Updated dependencies [05437dd]
+- Updated dependencies [408143d]
+  - @saas-ui/pro@0.6.0
+
 ## 3.0.3
 
 ### Patch Changes

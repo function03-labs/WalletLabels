@@ -1,5 +1,41 @@
 # nextjs-app
 
+## 1.3.6
+
+### Patch Changes
+
+- 9f16be8: Bump @saas-ui/react to 1.2.1
+- ebda65c: updated dependencies
+- 408143d: Using date-fns ESM module
+- Updated dependencies [ebda65c]
+- Updated dependencies [3729178]
+- Updated dependencies [f7df7fc]
+- Updated dependencies [c5b38ef]
+- Updated dependencies [736f5ab]
+- Updated dependencies [736f5ab]
+- Updated dependencies [3e47630]
+- Updated dependencies [04f84cb]
+- Updated dependencies [c5b38ef]
+- Updated dependencies [807f2a5]
+- Updated dependencies [d6e068c]
+- Updated dependencies [d6ece6c]
+- Updated dependencies [05437dd]
+- Updated dependencies [408143d]
+- Updated dependencies [736f5ab]
+- Updated dependencies [fc09bd9]
+- Updated dependencies [ee3e1d6]
+  - @app/mock-graphql@0.4.2
+  - @saas-ui/billing@0.4.0
+  - @saas-ui/date-picker@0.3.0
+  - @saas-ui/onboarding@0.4.0
+  - @saas-ui/pro@0.6.0
+  - app@7.0.0
+  - @saas-ui/charts@0.2.0
+  - @saas-ui/features@0.5.0
+  - @saas-ui/paddle@0.3.0
+  - @saas-ui/router@0.3.0
+  - @ui/theme@0.1.2
+
 ## 1.3.5
 
 ### Patch Changes

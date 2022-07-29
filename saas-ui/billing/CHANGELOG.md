@@ -1,5 +1,16 @@
 # @saas-ui/billing
 
+## 0.4.0
+
+### Minor Changes
+
+- 04f84cb: TypeScript is now transpiled to cjs and mjs.
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- 408143d: Using date-fns ESM module
+
 ## 0.3.0
 
 ### Minor Changes

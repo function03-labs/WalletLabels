@@ -1,5 +1,17 @@
 # @saas-ui/date-picker
 
+## 0.3.0
+
+### Minor Changes
+
+- 04f84cb: TypeScript is now transpiled to cjs and mjs.
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- 3e47630: Fixed styles context
+- 408143d: Using date-fns ESM module
+
 ## 0.2.1
 
 ### Patch Changes

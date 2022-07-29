@@ -1,5 +1,11 @@
 # @ui/theme
 
+## 0.1.2
+
+### Patch Changes
+
+- 408143d: Using date-fns ESM module
+
 ## 0.1.1
 
 ### Patch Changes

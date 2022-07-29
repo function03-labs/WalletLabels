@@ -1,5 +1,12 @@
 # @app/graphql
 
+## 0.2.2
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- 408143d: Using date-fns ESM module
+
 ## 0.2.1
 
 ### Patch Changes

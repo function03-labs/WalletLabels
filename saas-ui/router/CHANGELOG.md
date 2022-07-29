@@ -1,5 +1,15 @@
 # @saas-ui/router
 
+## 0.3.0
+
+### Minor Changes
+
+- 04f84cb: TypeScript is now transpiled to cjs and mjs.
+
+### Patch Changes
+
+- 408143d: Using date-fns ESM module
+
 ## 0.2.0
 
 ### Minor Changes

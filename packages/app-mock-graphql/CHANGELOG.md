@@ -1,5 +1,16 @@
 # @app/mock-graphql
 
+## 0.4.2
+
+### Patch Changes
+
+- ebda65c: updated dependencies
+- 408143d: Using date-fns ESM module
+- fc09bd9: Return ISO date strings for all date fields.
+- Updated dependencies [ebda65c]
+- Updated dependencies [408143d]
+  - @app/graphql@0.2.2
+
 ## 0.4.1
 
 ### Patch Changes
