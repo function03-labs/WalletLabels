@@ -46,11 +46,11 @@ const mapContact = (user: User, type?: string): Contact => {
     createdAt: randBetweenDate({
       from: new Date('01/01/2020'),
       to: new Date(),
-    }).toString(),
+    }).toISOString(),
     updatedAt: randBetweenDate({
       from: new Date('01/01/2020'),
       to: new Date(),
-    }).toString(),
+    }).toISOString(),
   }
 }
 
@@ -81,7 +81,7 @@ export const getComment = (comment: string) => {
     data: {
       comment,
     },
-    date: new Date().toString(),
+    date: new Date().toISOString(),
   } as Activity
 }
 
@@ -98,7 +98,7 @@ export const getActivities = () => {
         user,
         type: 'action',
         data: { action: 'created-contact' },
-        date: subDays(new Date(), 1).toString(),
+        date: subDays(new Date(), 1).toISOString(),
       },
       {
         id: '2',
@@ -108,7 +108,7 @@ export const getActivities = () => {
           comment:
             'Just talked with the customer and they will upgrade to Pro.',
         },
-        date: subDays(new Date(), 1).toString(),
+        date: subDays(new Date(), 1).toISOString(),
       },
       {
         id: '3',
@@ -121,7 +121,7 @@ export const getActivities = () => {
           field: 'status',
           value: 'active',
         },
-        date: subDays(new Date(), 1).toString(),
+        date: subDays(new Date(), 1).toISOString(),
       },
     ].forEach((activity) => {
       state.add(activity as Activity)
@@ -212,8 +212,8 @@ export const getOrganizations = () => {
         id: '1',
         plan: 'pro',
         status: 'trialing',
-        startedAt: new Date('2022-01-01'),
-        trialEndsAt: addDays(new Date(), 14),
+        startedAt: new Date('2022-01-01').toISOString(),
+        trialEndsAt: addDays(new Date(), 14).toISOString(),
       },
     },
 
@@ -226,8 +226,8 @@ export const getOrganizations = () => {
         id: '2',
         plan: 'pro',
         status: 'trialing',
-        startedAt: new Date(),
-        trialEndsAt: addDays(new Date(), 14),
+        startedAt: new Date().toISOString(),
+        trialEndsAt: addDays(new Date(), 14).toISOString(),
       },
     },
 
@@ -239,8 +239,8 @@ export const getOrganizations = () => {
         id: '3',
         plan: 'enterprise',
         status: 'canceled',
-        startedAt: subDays(new Date(), 28),
-        trialEndsAt: subDays(new Date(), 14),
+        startedAt: subDays(new Date(), 28).toISOString(),
+        trialEndsAt: subDays(new Date(), 14).toISOString(),
       },
     },
   ]
