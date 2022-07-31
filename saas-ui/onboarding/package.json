@@ -11,6 +11,9 @@
       "default": "./src/index.ts"
     }
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
@@ -21,8 +24,7 @@
   },
   "files": [
     "dist",
-    "src",
-    "index.ts"
+    "src"
   ],
   "scripts": {
     "bundle": "yarn pack --out ./dist/%s-%v.tgz",

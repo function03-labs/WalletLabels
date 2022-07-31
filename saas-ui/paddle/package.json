@@ -25,8 +25,7 @@
   "files": [
     "dist",
     "src",
-    "next",
-    "index.ts"
+    "next"
   ],
   "scripts": {
     "bundle": "yarn pack --out ./dist/%s-%v.tgz",

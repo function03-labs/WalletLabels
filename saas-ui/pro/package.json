@@ -4,10 +4,12 @@
   "exports": {
     ".": {
       "require": "./dist/index.js",
+      "types": "./dist/index.d.ts",
       "default": "./dist/index.mjs"
     },
     "./theme": {
       "require": "./dist/theme/index.ts",
+      "types": "./dist/theme/index.d.ts",
       "default": "./dist/theme/index.mjs"
     },
     "./src": {
@@ -17,6 +19,9 @@
       "default": "./src/theme/index.ts"
     }
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
   },
@@ -28,9 +33,7 @@
   },
   "files": [
     "dist",
-    "src",
-    "index.ts",
-    "theme.ts"
+    "src"
   ],
   "repository": {
     "type": "git",
