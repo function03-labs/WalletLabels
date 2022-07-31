@@ -1,5 +1,11 @@
 # @saas-ui/charts
 
+## 0.2.1
+
+### Patch Changes
+
+- a017905: Improved package definition.
+
 ## 0.2.0
 
 ### Minor Changes

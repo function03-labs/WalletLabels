@@ -1,5 +1,13 @@
 # @saas-ui/paddle
 
+## 0.3.1
+
+### Patch Changes
+
+- a017905: Improved package definition.
+- Updated dependencies [a017905]
+  - @saas-ui/pro@0.6.1
+
 ## 0.3.0
 
 ### Minor Changes

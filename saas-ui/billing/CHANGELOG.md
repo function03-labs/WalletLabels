@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.4.1
+
+### Patch Changes
+
+- a017905: Improved package definition.
+
 ## 0.4.0
 
 ### Minor Changes

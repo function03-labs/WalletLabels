@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -8,7 +8,7 @@
       "default": "./dist/index.mjs"
     },
     "./theme": {
-      "require": "./dist/theme/index.ts",
+      "require": "./dist/theme/index.js",
       "types": "./dist/theme/index.d.ts",
       "default": "./dist/theme/index.mjs"
     },

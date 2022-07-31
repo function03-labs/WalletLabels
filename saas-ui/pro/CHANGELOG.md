@@ -1,5 +1,14 @@
 # @saas-ui/pro
 
+## 0.6.1
+
+### Patch Changes
+
+- a017905: Improved package definition.
+- Updated dependencies [a017905]
+  - @saas-ui/onboarding@0.4.1
+  - @saas-ui/router@0.3.1
+
 ## 0.6.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # app
 
+## 7.0.1
+
+### Patch Changes
+
+- Updated dependencies [a017905]
+  - @saas-ui/billing@0.4.1
+  - @saas-ui/charts@0.2.1
+  - @saas-ui/date-picker@0.3.1
+  - @saas-ui/features@0.5.1
+  - @saas-ui/onboarding@0.4.1
+  - @saas-ui/pro@0.6.1
+  - @saas-ui/router@0.3.1
+
 ## 7.0.0
 
 ### Minor Changes
