@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.6.2
+
+### Patch Changes
+
+- 1c6a1ec: Added supported node versions in package.json
+- 5cb8bab: Toolbar variant and size can now be configured in the theme
+
 ## 0.6.1
 
 ### Patch Changes

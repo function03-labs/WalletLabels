@@ -1,5 +1,13 @@
 # app
 
+## 7.0.2
+
+### Patch Changes
+
+- Updated dependencies [1c6a1ec]
+- Updated dependencies [5cb8bab]
+  - @saas-ui/pro@0.6.2
+
 ## 7.0.1
 
 ### Patch Changes
