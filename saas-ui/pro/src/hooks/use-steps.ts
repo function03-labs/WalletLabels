@@ -11,6 +11,9 @@ type UseStepsProps<S> = {
   initialStep?: number
 }
 
+/**
+ * @deprecated import from @saas-ui/react
+ */
 export const useSteps = <S extends { id: string } = Step>({
   steps,
   initialStep = FIRST_STEP,
