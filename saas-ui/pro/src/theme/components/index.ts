@@ -18,6 +18,7 @@ import SidebarMenuButton from './sidebar-menu-button'
 import SidebarMenu from './sidebar-menu'
 import Sidebar from './sidebar'
 import DataGrid from './data-grid'
+import Toolbar from './toolbar'
 import Tooltip from './tooltip'
 
 export default {
@@ -41,5 +42,6 @@ export default {
   SidebarMenu,
   Sidebar,
   DataGrid,
+  Toolbar,
   Tooltip,
 }

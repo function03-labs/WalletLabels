@@ -26,6 +26,7 @@ import {
   IconButton,
   Divider,
 } from '@saas-ui/react'
+import { useDefaultProps } from '../theme-tools/use-default-props'
 
 const [StylesProvider, useStyles] = createStylesContext('Toolbar')
 
@@ -35,14 +36,11 @@ export interface ToolbarProps
 
 export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
   const { children, className, variant, size, ...rest } = props
-  const styles = useMultiStyleConfig('Toolbar', props) as Record<
-    string,
-    SystemStyleObject
-  >
-
+  const styles = useMultiStyleConfig('Toolbar', props)
+  const defaultProps = useDefaultProps('Toolbar')
   const toolbarProps = omitThemingProps(rest)
 
-  const containerStyles = {
+  const containerStyles: SystemStyleObject = {
     display: 'flex',
     flex: 1,
     justifyContent: 'flex-end',
@@ -55,8 +53,8 @@ export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
         as={ButtonGroup}
         role="toolbar"
         {...toolbarProps}
-        variant={variant}
-        size={size}
+        variant={variant || defaultProps.variant}
+        size={size || defaultProps.size}
         ref={ref}
         __css={containerStyles}
         className={cx('saas-toolbar', className)}
@@ -66,10 +64,6 @@ export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
     </StylesProvider>
   )
 })
-
-Toolbar.defaultProps = {
-  variant: 'ghost',
-}
 
 if (__DEV__) {
   Toolbar.displayName = 'Toolbar'
@@ -118,7 +112,7 @@ export const ToolbarButton = forwardRef<ToolbarButtonProps, 'button'>(
 export const ToolbarDivider: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const styles = useStyles()
 
-  const dividerStyles = {
+  const dividerStyles: SystemStyleObject = {
     flexShrink: 0,
     height: '100%',
     ...styles.divider,
