@@ -1,16 +1,16 @@
 {
   "name": "@saas-ui/paddle",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "exports": {
     ".": {
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
+      "import": "./dist/index.mjs"
     },
     "./next": {
       "require": "./dist/next/index.js",
       "types": "./dist/next/index.d.ts",
-      "default": "./dist/next/index.mjs"
+      "import": "./dist/next/index.mjs"
     },
     "./src": {
       "default": "./src/index.ts"

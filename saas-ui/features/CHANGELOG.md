@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.6.0
+
+### Minor Changes
+
+- Updated exports definition to fix issues with Nextjs
+
 ## 0.5.1
 
 ### Patch Changes

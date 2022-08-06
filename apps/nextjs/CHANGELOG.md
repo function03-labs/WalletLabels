@@ -1,5 +1,20 @@
 # nextjs-app
 
+## 1.3.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.5.0
+  - @saas-ui/charts@0.3.0
+  - @saas-ui/date-picker@0.4.0
+  - @saas-ui/features@0.6.0
+  - @saas-ui/onboarding@0.5.0
+  - @saas-ui/paddle@0.4.0
+  - @saas-ui/pro@0.7.0
+  - @saas-ui/router@0.4.0
+  - app@8.0.0
+
 ## 1.3.8
 
 ### Patch Changes

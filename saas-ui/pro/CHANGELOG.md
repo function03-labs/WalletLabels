@@ -1,5 +1,17 @@
 # @saas-ui/pro
 
+## 0.7.0
+
+### Minor Changes
+
+- Updated exports definition to fix issues with Nextjs
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/onboarding@0.5.0
+  - @saas-ui/router@0.4.0
+
 ## 0.6.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @saas-ui/date-picker
 
+## 0.4.0
+
+### Minor Changes
+
+- Updated exports definition to fix issues with Nextjs
+
 ## 0.3.1
 
 ### Patch Changes

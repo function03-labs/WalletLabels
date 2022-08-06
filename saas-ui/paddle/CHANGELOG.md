@@ -1,5 +1,16 @@
 # @saas-ui/paddle
 
+## 0.4.0
+
+### Minor Changes
+
+- Updated exports definition to fix issues with Nextjs
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro@0.7.0
+
 ## 0.3.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @saas-ui/charts
 
+## 0.3.0
+
+### Minor Changes
+
+- Updated exports definition to fix issues with Nextjs
+
 ## 0.2.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.5.0
+
+### Minor Changes
+
+- Updated exports definition to fix issues with Nextjs
+
 ## 0.4.1
 
 ### Patch Changes

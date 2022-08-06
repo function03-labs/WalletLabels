@@ -1,11 +1,11 @@
 {
   "name": "@saas-ui/charts",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "exports": {
     ".": {
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
+      "import": "./dist/index.mjs"
     },
     "./src": {
       "default": "./src/index.ts"
