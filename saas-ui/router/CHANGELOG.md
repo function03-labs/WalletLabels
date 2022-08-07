@@ -1,5 +1,11 @@
 # @saas-ui/router
 
+## 0.4.1
+
+### Patch Changes
+
+- 2d4a637: Renamed ESM modules to .js to fix issues with Next.js
+
 ## 0.4.0
 
 ### Minor Changes

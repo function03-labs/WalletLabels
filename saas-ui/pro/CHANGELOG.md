@@ -1,5 +1,14 @@
 # @saas-ui/pro
 
+## 0.7.1
+
+### Patch Changes
+
+- 2d4a637: Renamed ESM modules to .js to fix issues with Next.js
+- Updated dependencies [2d4a637]
+  - @saas-ui/onboarding@0.5.1
+  - @saas-ui/router@0.4.1
+
 ## 0.7.0
 
 ### Minor Changes

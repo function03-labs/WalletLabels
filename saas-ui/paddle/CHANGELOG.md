@@ -1,5 +1,13 @@
 # @saas-ui/paddle
 
+## 0.4.1
+
+### Patch Changes
+
+- 2d4a637: Renamed ESM modules to .js to fix issues with Next.js
+- Updated dependencies [2d4a637]
+  - @saas-ui/pro@0.7.1
+
 ## 0.4.0
 
 ### Minor Changes

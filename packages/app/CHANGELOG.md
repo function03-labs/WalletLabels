@@ -1,5 +1,18 @@
 # app
 
+## 8.0.1
+
+### Patch Changes
+
+- Updated dependencies [2d4a637]
+  - @saas-ui/billing@0.5.1
+  - @saas-ui/charts@0.3.1
+  - @saas-ui/date-picker@0.4.1
+  - @saas-ui/features@0.6.1
+  - @saas-ui/onboarding@0.5.1
+  - @saas-ui/pro@0.7.1
+  - @saas-ui/router@0.4.1
+
 ## 8.0.0
 
 ### Patch Changes
