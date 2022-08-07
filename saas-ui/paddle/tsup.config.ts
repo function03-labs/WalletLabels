@@ -16,5 +16,8 @@ export default defineConfig({
     '@chakra-ui/utils',
   ],
   format: ['esm', 'cjs'],
+  outExtension(ctx) {
+    return { js: `.${ctx.format}.js` }
+  },
   treeshake: 'smallest',
 })

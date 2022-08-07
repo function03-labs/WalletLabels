@@ -19,5 +19,8 @@ export default defineConfig({
     '@saas-ui/react-utils',
   ],
   format: ['esm', 'cjs'],
+  outExtension(ctx) {
+    return { js: `.${ctx.format}.js` }
+  },
   treeshake: 'smallest',
 })
