@@ -17,10 +17,26 @@ const [StylesProvider, useStyles] = createStylesContext('AppShell')
 export interface AppShellProps
   extends HTMLChakraProps<'div'>,
     ThemingProps<'AppShell'> {
+  /**
+   * The top header navigation
+   */
   navbar?: React.ReactNode
+  /**
+   * Main sidebar, positioned on the left
+   */
   sidebar?: React.ReactNode
-  hideSidebar?: boolean
+  /**
+   * Secondary sidebar, positioned on the right
+   */
+  aside?: React.ReactNode
+  /**
+   * The footer
+   */
   footer?: React.ReactNode
+  /**
+   * The main content
+   */
+  children: React.ReactNode
 }
 
 export const AppShell: React.FC<AppShellProps> = (props: AppShellProps) => {
@@ -29,7 +45,7 @@ export const AppShell: React.FC<AppShellProps> = (props: AppShellProps) => {
     SystemStyleObject
   >
 
-  const { navbar, sidebar, hideSidebar, footer, children, ...containerProps } =
+  const { navbar, sidebar, aside, footer, children, ...containerProps } =
     omitThemingProps(props)
 
   const containerStyles: SystemStyleObject = {
@@ -60,10 +76,11 @@ export const AppShell: React.FC<AppShellProps> = (props: AppShellProps) => {
       >
         {navbar}
         <Flex sx={innerStyles} className="saas-app-shell__inner">
-          {sidebar && !hideSidebar && sidebar}
+          {sidebar}
           <Flex sx={mainStyles} className="saas-app-shell__main">
             {children}
           </Flex>
+          {aside}
         </Flex>
         {footer}
       </Flex>
