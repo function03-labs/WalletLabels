@@ -6,9 +6,6 @@
   "author": "Eelco Wiersma <eelco@appulse.nl>",
   "license": "https://saas-ui.dev/license",
   "private": true,
-  "bin": {
-    "formatjs": "./node_modules/@formatjs/cli"
-  },
   "scripts": {
     "prepare": "husky install",
     "generate": "yarn workspace @app/graphql generate",
