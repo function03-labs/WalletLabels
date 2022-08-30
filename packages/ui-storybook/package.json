@@ -17,9 +17,9 @@
     "@emotion/styled": "^11.9.3",
     "@saas-ui/pro": "workspace:*",
     "@saas-ui/react": "^1.2.0",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/react": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/react": "^6.5.10",
     "babel-loader": "^8.2.5",
     "date-fns": "^2.29.1",
     "framer-motion": "^6.5.1",
@@ -27,7 +27,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-is": "^18.2.0",
-    "storybook-addon-swc": "^1.1.7",
+    "storybook-addon-swc": "^1.1.8",
     "webpack": "^5.73.0"
   }
 }
