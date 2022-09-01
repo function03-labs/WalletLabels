@@ -89,7 +89,7 @@ if (__DEV__) {
   PageSidebarBody.displayName = 'PageSidebarBody'
 }
 
-interface PageSidebarContainerProps
+export interface PageSidebarContainerProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
     Omit<ChakraProps, 'css'>,
     Omit<ResizeOptions, 'position'>,
