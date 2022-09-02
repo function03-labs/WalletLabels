@@ -1,5 +1,17 @@
 # @app/features
 
+## 1.0.0
+
+### Minor Changes
+
+- 3fb85dc: Renamed app package to @app/features
+
+### Patch Changes
+
+- Updated dependencies [2823bfd]
+- Updated dependencies [df67499]
+  - @saas-ui/pro@0.8.0
+
 ## 0.8.1
 
 ### Patch Changes

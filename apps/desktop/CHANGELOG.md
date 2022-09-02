@@ -1,5 +1,21 @@
 # electron-app
 
+## 0.3.0
+
+### Minor Changes
+
+- b8a7a69: Renamed electron to desktop
+- 3fb85dc: Renamed app package to @app/features
+
+### Patch Changes
+
+- Updated dependencies [2823bfd]
+- Updated dependencies [df67499]
+- Updated dependencies [3fb85dc]
+  - @saas-ui/pro@0.8.0
+  - @app/features@1.0.0
+  - @saas-ui/paddle@0.4.2
+
 ## 0.2.10
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @saas-ui/pro
 
+## 0.8.0
+
+### Minor Changes
+
+- df67499: AppShell: removed hideSidebar property and add new aside prop. Default variant is now fullscreen.
+
+### Patch Changes
+
+- 2823bfd: Export PageSidebarContainerProps
+
 ## 0.7.1
 
 ### Patch Changes
