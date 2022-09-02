@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { AccountSecurityPage } from '@modules/settings'
+import { AccountSecurityPage } from '@app/features/settings'
 
 export default createPage({
   title: 'Security',

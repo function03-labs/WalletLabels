@@ -3,7 +3,7 @@ import router from 'next/router'
 
 import { useAuth } from '@saas-ui/react'
 import { createPage } from '@app/nextjs'
-import { SignupPage } from '@modules/auth'
+import { SignupPage } from '@app/features/auth'
 
 /**
  * Enable isPublic to use the custom signup screen

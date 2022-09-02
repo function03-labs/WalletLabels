@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.3.10",
+  "version": "0.3.10",
   "private": true,
   "scripts": {
     "predev": "yarn run generate",
@@ -13,6 +13,7 @@
     "typecheck": "next lint"
   },
   "dependencies": {
+    "@app/features": "workspace:*",
     "@app/mock-graphql": "workspace:*",
     "@chakra-ui/react": "^2.2.4",
     "@chakra-ui/system": "^2.2.2",
@@ -30,7 +31,6 @@
     "@saas-ui/react": "^1.2.1",
     "@saas-ui/router": "workspace:*",
     "@ui/theme": "workspace:*",
-    "app": "workspace:*",
     "framer-motion": "^6.5.1",
     "next": "^12.2.3",
     "next-svgr": "^0.0.2",

@@ -1,6 +1,6 @@
 import { Center, Heading, Stack } from '@chakra-ui/react'
-import { Button } from '@modules/core/components/button'
-import { SaasUILogo } from '@modules/core/components/logo/saas-ui'
+import { Button } from '@app/features/core/components/button'
+import { SaasUILogo } from '@app/features/core/components/logo/saas-ui'
 import { ButtonGroup, useAuth } from '@saas-ui/react'
 
 export default function HomePage() {

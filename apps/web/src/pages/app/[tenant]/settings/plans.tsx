@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { PlansPage } from '@modules/settings'
+import { PlansPage } from '@app/features/settings'
 
 export default createPage({
   title: 'Plans',

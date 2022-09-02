@@ -3,7 +3,7 @@ import router from 'next/router'
 
 import { useAuth, Loader } from '@saas-ui/react'
 import { createPage } from '@app/nextjs'
-import { LoginPage } from '@modules/auth'
+import { LoginPage } from '@app/features/auth'
 
 /**
  * Enable isPublic to use the custom login screen

@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { AccountProfilePage } from '@modules/settings'
+import { AccountProfilePage } from '@app/features/settings'
 
 export default createPage({
   title: 'Profile',

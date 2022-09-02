@@ -1,6 +1,6 @@
 # electron-app
 
-## 1.2.10
+## 0.2.10
 
 ### Patch Changes
 
@@ -15,7 +15,7 @@
   - @saas-ui/router@0.4.1
   - app@8.0.1
 
-## 1.2.9
+## 0.2.9
 
 ### Patch Changes
 
@@ -30,7 +30,7 @@
   - @saas-ui/router@0.4.0
   - app@8.0.0
 
-## 1.2.8
+## 0.2.8
 
 ### Patch Changes
 
@@ -40,7 +40,7 @@
   - app@7.0.2
   - @saas-ui/paddle@0.3.2
 
-## 1.2.7
+## 0.2.7
 
 ### Patch Changes
 
@@ -55,11 +55,11 @@
   - @saas-ui/router@0.3.1
   - app@7.0.1
 
-## 1.2.6
+## 0.2.6
 
 ### Patch Changes
 
-- 9f16be8: Bump @saas-ui/react to 1.2.1
+- 9f16be8: Bump @saas-ui/react to 0.2.1
 - ebda65c: updated dependencies
 - 408143d: Using date-fns ESM module
 - Updated dependencies [ebda65c]
@@ -91,14 +91,14 @@
   - @saas-ui/router@0.3.0
   - @ui/theme@0.1.2
 
-## 1.2.5
+## 0.2.5
 
 ### Patch Changes
 
 - Updated dependencies
   - @saas-ui/paddle@0.2.1
 
-## 1.2.4
+## 0.2.4
 
 ### Patch Changes
 
@@ -107,7 +107,7 @@
   - app@6.0.4
   - @saas-ui/onboarding@0.3.3
 
-## 1.2.3
+## 0.2.3
 
 ### Patch Changes
 
@@ -115,7 +115,7 @@
   - @saas-ui/date-picker@0.2.1
   - app@6.0.3
 
-## 1.2.2
+## 0.2.2
 
 ### Patch Changes
 
@@ -124,7 +124,7 @@
   - app@6.0.2
   - @saas-ui/onboarding@0.3.2
 
-## 1.2.1
+## 0.2.1
 
 ### Patch Changes
 
@@ -142,20 +142,20 @@
   - @saas-ui/charts@0.1.1
   - @saas-ui/onboarding@0.3.1
 
-## 1.2.0
+## 0.2.0
 
 ### Minor Changes
 
 - 28faa7a: Updated to Chakra UI 2.2.1
 - c1d4765: BREAKING: Updated to Chakra UI 2.1
-- c1d4765: BREAKING: React 18 support.
+- c1d4765: BREAKING: React 08 support.
 
 ### Patch Changes
 
 - f172105: Updated dependencies
 - 0b1ae8e: Updated to @saas-ui/react@1.0.0-rc.14
 - afb15c7: Updated to @saas-ui/react@1.0.0-rc.11
-- befb97a: Updated @saas-ui/react to 1.0.0-rc.8
+- befb97a: Updated @saas-ui/react to 0.0.0-rc.8
 - b497946: Fixed MSW support in Electron
 - 7e9db6a: Settings Sidebar now positioned correctly in Electron
 - Updated dependencies [15dd8a7]
@@ -204,7 +204,7 @@
   - @saas-ui/paddle@0.2.0
   - @saas-ui/router@0.2.0
 
-## 1.1.10
+## 0.1.10
 
 ### Patch Changes
 
@@ -219,7 +219,7 @@
   - app@5.0.2
   - @ui/theme@0.0.1
 
-## 1.1.9
+## 0.1.9
 
 ### Patch Changes
 
@@ -239,7 +239,7 @@
   - @ui/core@0.0.27
   - @app/mock-graphql@0.3.8
 
-## 1.1.8
+## 0.1.8
 
 ### Patch Changes
 
@@ -265,7 +265,7 @@
   - @app/mock-graphql@0.3.7
   - @ui/core@0.0.26
 
-## 1.1.7
+## 0.1.7
 
 ### Patch Changes
 
@@ -285,7 +285,7 @@
   - app@4.0.6
   - @ui/core@0.0.25
 
-## 1.1.6
+## 0.1.6
 
 ### Patch Changes
 
@@ -302,7 +302,7 @@
   - @ui/core@0.0.24
   - @app/mock-graphql@0.3.5
 
-## 1.1.5
+## 0.1.5
 
 ### Patch Changes
 
@@ -313,7 +313,7 @@
   - @ui/core@0.0.23
   - @app/mock-graphql@0.3.4
 
-## 1.1.4
+## 0.1.4
 
 ### Patch Changes
 
@@ -326,7 +326,7 @@
   - @ui/core@0.0.22
   - @app/mock-graphql@0.3.3
 
-## 1.1.3
+## 0.1.3
 
 ### Patch Changes
 
@@ -336,7 +336,7 @@
   - @ui/core@0.0.21
   - @app/mock-graphql@0.3.2
 
-## 1.1.2
+## 0.1.2
 
 ### Patch Changes
 
@@ -347,7 +347,7 @@
   - @ui/core@0.0.20
   - @app/mock-graphql@0.3.1
 
-## 1.1.1
+## 0.1.1
 
 ### Patch Changes
 
@@ -355,19 +355,19 @@
   - @saas-ui/features@0.3.0
   - app@4.0.0
 
-## 1.1.0
+## 0.1.0
 
 ### Minor Changes
 
-- f486513: Updated to Electron 18.
+- f486513: Updated to Electron 08.
 
 ### Patch Changes
 
 - Updated dependencies [f486513]
   - @app/mock-graphql@0.3.0
 
-## 1.0.1
+## 0.0.1
 
 ### Patch Changes
 
-- 09d4444: Updated to Chakra 1.8.8
+- 09d4444: Updated to Chakra 0.8.8

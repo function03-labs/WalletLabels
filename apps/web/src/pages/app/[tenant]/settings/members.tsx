@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { MembersSettingsPage } from '@modules/settings'
+import { MembersSettingsPage } from '@app/features/settings'
 
 export default createPage({
   title: 'Members',

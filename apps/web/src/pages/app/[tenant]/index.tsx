@@ -1,6 +1,6 @@
 import { createPage } from '@app/nextjs'
 
-import { OverviewPage } from '@modules/organizations'
+import { OverviewPage } from '@app/features/organizations'
 
 export default createPage({
   title: 'Dashboard',

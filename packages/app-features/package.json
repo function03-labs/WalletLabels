@@ -1,0 +1,35 @@
+{
+  "name": "@app/features",
+  "version": "0.8.1",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@app/config": "workspace:*",
+    "@app/i18n": "workspace:*",
+    "@react-hookz/web": "^15.0.0",
+    "@tiptap/core": "^2.0.0-beta.182",
+    "@tiptap/extension-mention": "^2.0.0-beta.102",
+    "@tiptap/extension-placeholder": "^2.0.0-beta.53",
+    "@tiptap/react": "^2.0.0-beta.114",
+    "@tiptap/starter-kit": "^2.0.0-beta.191",
+    "react-hook-form": "^7.33.1",
+    "react-icons": "^4.4.0",
+    "react-query": "^3.39.2",
+    "yup": "^0.32.11"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=2.0.0",
+    "@react-hookz/web": "^15.0.0",
+    "@saas-ui/billing": "workspace:*",
+    "@saas-ui/charts": "workspace:*",
+    "@saas-ui/date-picker": "workspace:*",
+    "@saas-ui/features": "workspace:*",
+    "@saas-ui/onboarding": "workspace:*",
+    "@saas-ui/pro": "workspace:*",
+    "@saas-ui/react": ">=1",
+    "@saas-ui/router": "workspace:*",
+    "framer-motion": ">=6",
+    "next": ">=12",
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}

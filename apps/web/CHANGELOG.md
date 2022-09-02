@@ -1,6 +1,6 @@
 # nextjs-app
 
-## 1.3.10
+## 0.3.10
 
 ### Patch Changes
 
@@ -15,7 +15,7 @@
   - @saas-ui/router@0.4.1
   - app@8.0.1
 
-## 1.3.9
+## 0.3.9
 
 ### Patch Changes
 
@@ -30,7 +30,7 @@
   - @saas-ui/router@0.4.0
   - app@8.0.0
 
-## 1.3.8
+## 0.3.8
 
 ### Patch Changes
 
@@ -40,7 +40,7 @@
   - app@7.0.2
   - @saas-ui/paddle@0.3.2
 
-## 1.3.7
+## 0.3.7
 
 ### Patch Changes
 
@@ -55,11 +55,11 @@
   - @saas-ui/router@0.3.1
   - app@7.0.1
 
-## 1.3.6
+## 0.3.6
 
 ### Patch Changes
 
-- 9f16be8: Bump @saas-ui/react to 1.2.1
+- 9f16be8: Bump @saas-ui/react to 0.2.1
 - ebda65c: updated dependencies
 - 408143d: Using date-fns ESM module
 - Updated dependencies [ebda65c]
@@ -91,14 +91,14 @@
   - @saas-ui/router@0.3.0
   - @ui/theme@0.1.2
 
-## 1.3.5
+## 0.3.5
 
 ### Patch Changes
 
 - Updated dependencies
   - @saas-ui/paddle@0.2.1
 
-## 1.3.4
+## 0.3.4
 
 ### Patch Changes
 
@@ -107,7 +107,7 @@
   - app@6.0.4
   - @saas-ui/onboarding@0.3.3
 
-## 1.3.3
+## 0.3.3
 
 ### Patch Changes
 
@@ -115,7 +115,7 @@
   - @saas-ui/date-picker@0.2.1
   - app@6.0.3
 
-## 1.3.2
+## 0.3.2
 
 ### Patch Changes
 
@@ -124,7 +124,7 @@
   - app@6.0.2
   - @saas-ui/onboarding@0.3.2
 
-## 1.3.1
+## 0.3.1
 
 ### Patch Changes
 
@@ -143,20 +143,20 @@
   - @saas-ui/charts@0.1.1
   - @saas-ui/onboarding@0.3.1
 
-## 1.3.0
+## 0.3.0
 
 ### Minor Changes
 
 - 28faa7a: Updated to Chakra UI 2.2.1
 - c1d4765: BREAKING: Updated to Chakra UI 2.1
-- c1d4765: BREAKING: React 18 support.
+- c1d4765: BREAKING: React 08 support.
 
 ### Patch Changes
 
 - f172105: Updated dependencies
 - 0b1ae8e: Updated to @saas-ui/react@1.0.0-rc.14
 - afb15c7: Updated to @saas-ui/react@1.0.0-rc.11
-- befb97a: Updated @saas-ui/react to 1.0.0-rc.8
+- befb97a: Updated @saas-ui/react to 0.0.0-rc.8
 - Updated dependencies [15dd8a7]
 - Updated dependencies [f172105]
 - Updated dependencies [28faa7a]
@@ -203,7 +203,7 @@
   - @saas-ui/paddle@0.2.0
   - @saas-ui/router@0.2.0
 
-## 1.2.11
+## 0.2.11
 
 ### Patch Changes
 
@@ -219,7 +219,7 @@
   - app@5.0.2
   - @ui/theme@0.0.1
 
-## 1.2.10
+## 0.2.10
 
 ### Patch Changes
 
@@ -239,7 +239,7 @@
   - @ui/core@0.0.27
   - @app/mock-graphql@0.3.8
 
-## 1.2.9
+## 0.2.9
 
 ### Patch Changes
 
@@ -265,11 +265,11 @@
   - @app/mock-graphql@0.3.7
   - @ui/core@0.0.26
 
-## 1.2.8
+## 0.2.8
 
 ### Patch Changes
 
-- 165f41c: Added segmented controls to contacts overview.
+- 065f41c: Added segmented controls to contacts overview.
 - Updated dependencies [d50c603]
 - Updated dependencies [165f41c]
 - Updated dependencies [ab9d51e]
@@ -286,7 +286,7 @@
   - app@4.0.6
   - @ui/core@0.0.25
 
-## 1.2.7
+## 0.2.7
 
 ### Patch Changes
 
@@ -303,7 +303,7 @@
   - @ui/core@0.0.24
   - @app/mock-graphql@0.3.5
 
-## 1.2.6
+## 0.2.6
 
 ### Patch Changes
 
@@ -314,7 +314,7 @@
   - @ui/core@0.0.23
   - @app/mock-graphql@0.3.4
 
-## 1.2.5
+## 0.2.5
 
 ### Patch Changes
 
@@ -327,7 +327,7 @@
   - @ui/core@0.0.22
   - @app/mock-graphql@0.3.3
 
-## 1.2.4
+## 0.2.4
 
 ### Patch Changes
 
@@ -337,7 +337,7 @@
   - @ui/core@0.0.21
   - @app/mock-graphql@0.3.2
 
-## 1.2.3
+## 0.2.3
 
 ### Patch Changes
 
@@ -348,7 +348,7 @@
   - @ui/core@0.0.20
   - @app/mock-graphql@0.3.1
 
-## 1.2.2
+## 0.2.2
 
 ### Patch Changes
 
@@ -356,15 +356,15 @@
   - @saas-ui/features@0.3.0
   - app@4.0.0
 
-## 1.2.1
+## 0.2.1
 
 ### Patch Changes
 
-- d8d9517: Updated to Next 12.1.6
+- d8d9517: Updated to Next 02.1.6
 - Updated dependencies [f486513]
   - @app/mock-graphql@0.3.0
 
-## 1.2.0
+## 0.2.0
 
 ### Minor Changes
 
@@ -376,7 +376,7 @@
   - app@3.1.0
   - @saas-ui/paddle@0.1.0
 
-## 1.1.0
+## 0.1.0
 
 ### Minor Changes
 
@@ -403,14 +403,14 @@
   - @saas-ui/router@0.1.0
   - @ui/core@0.0.19
 
-## 1.0.24
+## 0.0.24
 
 ### Patch Changes
 
 - Updated dependencies [5fbf9ae]
   - app@2.1.0
 
-## 1.0.23
+## 0.0.23
 
 ### Patch Changes
 
@@ -424,7 +424,7 @@
   - app@2.0.4
   - @ui/core@0.0.18
 
-## 1.0.22
+## 0.0.22
 
 ### Patch Changes
 
@@ -437,14 +437,14 @@
   - app@2.0.3
   - @ui/core@0.0.17
 
-## 1.0.21
+## 0.0.21
 
 ### Patch Changes
 
 - Updated dependencies [0e27926]
   - app@2.0.2
 
-## 1.0.20
+## 0.0.20
 
 ### Patch Changes
 
@@ -452,11 +452,11 @@
   - @saas-ui/onboarding@0.2.1
   - app@2.0.1
 
-## 1.0.19
+## 0.0.19
 
 ### Patch Changes
 
-- 09d4444: Updated to Chakra 1.8.8
+- 09d4444: Updated to Chakra 0.8.8
 - a44ee13: Fixed peer dep issues, and silenced non critical warnings.
 - Updated dependencies [7a6413b]
 - Updated dependencies [fc48900]
@@ -468,7 +468,7 @@
   - @saas-ui/pro@0.3.8
   - app@2.0.0
 
-## 1.0.18
+## 0.0.18
 
 ### Patch Changes
 
@@ -477,7 +477,7 @@
   - app@1.0.9
   - @ui/core@0.0.15
 
-## 1.0.17
+## 0.0.17
 
 ### Patch Changes
 
@@ -486,7 +486,7 @@
   - app@1.0.8
   - @ui/core@0.0.14
 
-## 1.0.16
+## 0.0.16
 
 ### Patch Changes
 
@@ -496,13 +496,13 @@
   - app@1.0.7
   - @ui/core@0.0.13
 
-## 1.0.15
+## 0.0.15
 
 ### Patch Changes
 
 - app@1.0.6
 
-## 1.0.14
+## 0.0.14
 
 ### Patch Changes
 
@@ -512,7 +512,7 @@
   - app@1.0.5
   - @ui/core@0.0.12
 
-## 1.0.13
+## 0.0.13
 
 ### Patch Changes
 
@@ -520,7 +520,7 @@
   - @ui/core@0.0.11
   - app@1.0.4
 
-## 1.0.12
+## 0.0.12
 
 ### Patch Changes
 
@@ -529,7 +529,7 @@
   - app@1.0.3
   - @ui/core@0.0.10
 
-## 1.0.11
+## 0.0.11
 
 ### Patch Changes
 
@@ -542,7 +542,7 @@
   - app@1.0.2
   - @ui/core@0.0.9
 
-## 1.0.10
+## 0.0.10
 
 ### Patch Changes
 
@@ -552,7 +552,7 @@
   - app@1.0.1
   - @ui/core@0.0.8
 
-## 1.0.9
+## 0.0.9
 
 ### Patch Changes
 
@@ -567,7 +567,7 @@
   - app@1.0.0
   - @ui/core@0.0.7
 
-## 1.0.8
+## 0.0.8
 
 ### Patch Changes
 
@@ -576,7 +576,7 @@
   - app@0.0.6
   - @ui/core@0.0.6
 
-## 1.0.7
+## 0.0.7
 
 ### Patch Changes
 
@@ -585,7 +585,7 @@
   - app@0.0.5
   - @ui/core@0.0.5
 
-## 1.0.6
+## 0.0.6
 
 ### Patch Changes
 
@@ -595,7 +595,7 @@
   - app@0.0.4
   - @ui/core@0.0.4
 
-## 1.0.5
+## 0.0.5
 
 ### Patch Changes
 
@@ -604,7 +604,7 @@
   - app@0.0.3
   - @ui/core@0.0.3
 
-## 1.0.4
+## 0.0.4
 
 ### Patch Changes
 
@@ -617,7 +617,7 @@
   - app@0.0.2
   - @ui/core@0.0.2
 
-## 1.0.3
+## 0.0.3
 
 ### Patch Changes
 
@@ -628,7 +628,7 @@
   - app@0.0.1
   - @ui/core@0.0.1
 
-## 1.0.2
+## 0.0.2
 
 ### Patch Changes
 
@@ -637,7 +637,7 @@
   - app@null
   - @ui/core@null
 
-## 1.0.1
+## 0.0.1
 
 ### Patch Changes
 

@@ -1,6 +1,6 @@
 import { createPage } from '@app/nextjs'
 
-import { GettingStartedPage } from '@modules/getting-started'
+import { GettingStartedPage } from '@app/features/getting-started'
 
 export default createPage({
   title: 'Getting started',

@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { OrganizationSettingsPage } from '@modules/settings'
+import { OrganizationSettingsPage } from '@app/features/settings'
 
 export default createPage({
   title: 'Organization Settings',

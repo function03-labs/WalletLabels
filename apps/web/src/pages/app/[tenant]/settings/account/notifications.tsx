@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { AccountNotificationsPage } from '@modules/settings'
+import { AccountNotificationsPage } from '@app/features/settings'
 
 export default createPage({
   title: 'Notifications',

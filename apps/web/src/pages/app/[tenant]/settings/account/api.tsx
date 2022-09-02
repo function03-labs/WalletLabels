@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { AccountApiPage } from '@modules/settings'
+import { AccountApiPage } from '@app/features/settings'
 
 export default createPage({
   title: 'Api',

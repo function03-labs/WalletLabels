@@ -1,6 +1,6 @@
 import { createPage } from '@app/nextjs'
 
-import { CheckoutPage } from '@modules/billing'
+import { CheckoutPage } from '@app/features/billing'
 
 export default createPage({
   title: 'Checkout',

@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { BillingPage } from '@modules/settings'
+import { BillingPage } from '@app/features/settings'
 
 export default createPage({
   title: 'Billing',

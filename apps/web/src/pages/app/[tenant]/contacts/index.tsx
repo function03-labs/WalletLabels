@@ -1,6 +1,6 @@
 import { createPage } from '@app/nextjs'
 
-import { ContactsListPage } from '@modules/contacts'
+import { ContactsListPage } from '@app/features/contacts'
 
 export default createPage({
   title: 'Contacts',
