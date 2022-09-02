@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "generate": "yarn workspace @app/graphql generate",
     "predev": "yarn generate",
-    "dev:nextjs": "yarn workspace nextjs-app dev",
+    "dev:web": "yarn workspace web dev",
     "dev:electron": "yarn workspace electron-app dev",
     "storybook": "yarn workspace @ui/storybook dev",
     "build:storybook": "yarn workspace @ui/storybook build-storybook",
