@@ -2,7 +2,7 @@ require:
   - ts-node/register
 schema: ../app-mock-graphql/src/schema.ts
 documents:
-  - '../app/src/**/*.graphql'
+  - '../app-features/**/*.graphql'
 generates:
   src/types.generated.ts:
     plugins:
