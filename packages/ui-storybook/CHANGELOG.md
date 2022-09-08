@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.2.0
+
+### Minor Changes
+
+- a6f9696: Updated to @saas-ui/react 1.4.0
+
 ## 0.1.2
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # nextjs-app
 
+## 0.5.0
+
+### Minor Changes
+
+- a6f9696: Updated to @saas-ui/react 1.4.0
+- 086a4bd: New onboarding flow
+
+### Patch Changes
+
+- Updated dependencies [a6f9696]
+- Updated dependencies [086a4bd]
+- Updated dependencies [24bf362]
+- Updated dependencies [086a4bd]
+  - @app/features@1.0.0
+  - @saas-ui/pro@0.9.0
+  - @saas-ui/paddle@0.4.3
+
 ## 0.4.0
 
 ### Minor Changes

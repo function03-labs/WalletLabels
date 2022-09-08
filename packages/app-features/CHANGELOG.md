@@ -1,5 +1,19 @@
 # @app/features
 
+## 1.0.0
+
+### Minor Changes
+
+- a6f9696: Updated to @saas-ui/react 1.4.0
+- 086a4bd: New onboarding flow
+
+### Patch Changes
+
+- Updated dependencies [a6f9696]
+- Updated dependencies [24bf362]
+- Updated dependencies [086a4bd]
+  - @saas-ui/pro@0.9.0
+
 ## 0.9.0
 
 ### Minor Changes

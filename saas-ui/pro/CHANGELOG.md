@@ -1,5 +1,16 @@
 # @saas-ui/pro
 
+## 0.9.0
+
+### Minor Changes
+
+- a6f9696: Updated to @saas-ui/react 1.4.0
+
+### Patch Changes
+
+- 24bf362: Improved DataGrid row border styles in dark mode.
+- 086a4bd: Added new stepper dot variant
+
 ## 0.8.0
 
 ### Minor Changes
