@@ -74,12 +74,12 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
     th: {
       color: mode('gray.600', 'gray.400')(props),
       borderBottom: '1px',
-      borderColor: mode('blackAlpha.200', 'whiteAlpha.300')(props),
+      borderColor: mode('blackAlpha.200', 'whiteAlpha.100')(props),
       ...numericStyles,
     },
     td: {
       borderBottom: '1px',
-      borderColor: mode('blackAlpha.200', 'whiteAlpha.300')(props),
+      borderColor: mode('blackAlpha.200', 'whiteAlpha.100')(props),
       ...numericStyles,
     },
     caption: {
