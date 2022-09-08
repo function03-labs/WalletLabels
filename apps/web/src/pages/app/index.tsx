@@ -1,19 +1,9 @@
-import { useRouter } from 'next/router'
-import { Loader } from '@saas-ui/react'
-import { useTenant } from '@saas-ui/pro'
-import { useEffect } from 'react'
+import { createPage } from '@app/nextjs'
 
-export default () => {
-  const router = useRouter()
-  const tenant = useTenant()
+import { HomePage } from '@app/features/organizations'
 
-  useEffect(() => {
-    if (tenant) {
-      router.replace(`/app/${tenant}`)
-    } else {
-      router.replace('/app/getting_started')
-    }
-  }, [])
-
-  return <Loader />
-}
+export default createPage({
+  renderComponent: () => {
+    return <HomePage />
+  },
+})

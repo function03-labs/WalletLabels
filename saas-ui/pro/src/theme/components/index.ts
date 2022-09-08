@@ -10,6 +10,7 @@ import Kbd from './kbd'
 import List from './list'
 import Page from './page'
 import SplitPage from './split-page'
+import Stepper from './stepper'
 import PageSidebar from './page-sidebar'
 import Property from './property'
 import Section from './section'
@@ -34,6 +35,7 @@ export default {
   List,
   Page,
   SplitPage,
+  Stepper,
   PageSidebar,
   Property,
   Section,
