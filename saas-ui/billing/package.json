@@ -36,8 +36,6 @@
     "date-fns": "^2.29.1"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2.0.0",
-    "@saas-ui/react": ">=1",
     "framer-motion": ">=6",
     "react": ">=18"
   },
