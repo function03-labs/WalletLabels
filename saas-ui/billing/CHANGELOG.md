@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.6.0
+
+### Minor Changes
+
+- c30c993: Removed Chakra dependency
+
 ## 0.5.1
 
 ### Patch Changes
