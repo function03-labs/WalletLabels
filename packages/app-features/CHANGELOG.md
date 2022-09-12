@@ -1,5 +1,12 @@
 # @app/features
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.6.1
+
 ## 2.0.0
 
 ### Patch Changes

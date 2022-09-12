@@ -49,11 +49,12 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
 
   const [checkoutData, setCheckoutData] = React.useState<any>(null)
 
-  usePaddle({
+  const result = usePaddle({
     onEvent: ({ detail }) => {
       setCheckoutData(detail.eventData.checkout)
     },
   })
+  console.log(result)
 
   const onSuccess = (data: any) => {
     snackbar.success({
@@ -89,6 +90,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
     )
   } else {
     const prices = checkoutData?.prices.customer || {}
+    const currency = prices.currency || 'EUR'
     body = (
       <>
         <Loader variant="fill" isLoading={isLoading || !isReady} />
@@ -115,7 +117,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
                     <FormattedNumber
                       value={prices.total_tax}
                       style="currency"
-                      currency={prices.currency}
+                      currency={currency}
                     />
                   </Td>
                 </Tr>
@@ -127,7 +129,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
                     <FormattedNumber
                       value={prices.total}
                       style="currency"
-                      currency={prices.currency}
+                      currency={currency}
                     />
                   </Th>
                 </Tr>
@@ -152,7 +154,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
                         parseFloat(prices.total) - parseFloat(prices.total_tax)
                       }
                       style="currency"
-                      currency={prices.currency}
+                      currency={currency}
                     />
                   </Td>
                 </Tr>
@@ -171,7 +173,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
                   <FormattedNumber
                     value={prices.total}
                     style="currency"
-                    currency={prices.currency}
+                    currency={currency}
                   />{' '}
                   {period}
                 </Text>

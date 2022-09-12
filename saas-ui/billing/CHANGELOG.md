@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.6.1
+
+### Patch Changes
+
+- Removed framer-motion dep
+
 ## 0.6.0
 
 ### Minor Changes

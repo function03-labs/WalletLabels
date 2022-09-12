@@ -1,5 +1,13 @@
 # nextjs-app
 
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.6.1
+  - @app/features@2.0.1
+
 ## 0.5.1
 
 ### Patch Changes

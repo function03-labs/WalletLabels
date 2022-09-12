@@ -1,5 +1,13 @@
 # electron-app
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.6.1
+  - @app/features@2.0.1
+
 ## 0.4.1
 
 ### Patch Changes
