@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box, Spacer } from '@chakra-ui/react'
+import { Box, Spacer, useBreakpointValue } from '@chakra-ui/react'
 
 import {
   FiHome,
@@ -12,17 +12,18 @@ import {
   FiSearch,
 } from 'react-icons/fi'
 
+import { Command, Resizer, ResizeHandle, ResizeHandler } from '@saas-ui/pro'
+
 import {
   Sidebar,
   SidebarProps,
-  SidebarNav,
-  SidebarLink,
-  SidebarNavGroup,
-  SidebarOverflow,
-  Command,
-  ResizeHandler,
-  SidebarLinkProps,
-} from '@saas-ui/pro'
+  SidebarOverlay,
+  SidebarSection,
+  SidebarToggleButton,
+  NavItem,
+  NavItemProps,
+  NavGroup,
+} from '@saas-ui/sidebar'
 
 import { useActivePath, useNavigate } from '@saas-ui/router'
 
@@ -52,7 +53,6 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
 
   const { variant, colorScheme } = props
-
   const isCondensed = variant === 'condensed'
 
   const onResize: ResizeHandler = ({ width }) => {
@@ -60,17 +60,15 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   }
 
   return (
-    <>
-      <Sidebar
-        variant={variant}
-        colorScheme={colorScheme}
-        isResizable
-        onResize={onResize}
-        defaultWidth={width}
-        {...props}
-      >
+    <Resizer
+      defaultWidth={width}
+      onResize={onResize}
+      isResizable={useBreakpointValue({ base: false, lg: true })}
+    >
+      <Sidebar variant={variant} colorScheme={colorScheme} {...props}>
+        <SidebarToggleButton />
         <ElectronNav />
-        <SidebarNav direction="row">
+        <SidebarSection direction="row">
           <TenantMenu title="Organizations">
             <MenuDivider />
             <MenuItem
@@ -88,7 +86,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               <UserMenu />
             </>
           )}
-        </SidebarNav>
+        </SidebarSection>
         <Box px={4}>
           {isCondensed ? (
             <IconButton icon={<FiSearch />} aria-label="Search" />
@@ -96,94 +94,95 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             <GlobalSearchInput />
           )}
         </Box>
-        <SidebarOverflow>
-          <SidebarNav flex="1" spacing={6}>
-            <SidebarNavGroup>
-              <AppSidebarLink
-                href={usePath()}
-                label="Dashboard"
-                icon={<FiHome />}
-                hotkey="navigation.dashboard"
-              />
-              <AppSidebarLink
-                href={usePath('inbox')}
-                label="Inbox"
-                icon={<FiInbox />}
-                hotkey="navigation.inbox"
-              />
-              <AppSidebarLink
-                href={usePath('contacts')}
-                isActive={useActivePath('contacts', { end: false })}
-                label="Contacts"
-                icon={<FiUsers />}
-                hotkey="navigation.contacts"
-              />
-            </SidebarNavGroup>
+        <SidebarSection overflowY="auto" flex="1">
+          <NavGroup>
+            <AppSidebarLink
+              href={usePath()}
+              label="Dashboard"
+              icon={<FiHome />}
+              hotkey="navigation.dashboard"
+            />
+            <AppSidebarLink
+              href={usePath('inbox')}
+              label="Inbox"
+              icon={<FiInbox />}
+              hotkey="navigation.inbox"
+            />
+            <AppSidebarLink
+              href={usePath('contacts')}
+              isActive={useActivePath('contacts', { end: false })}
+              label="Contacts"
+              icon={<FiUsers />}
+              hotkey="navigation.contacts"
+            />
+          </NavGroup>
 
-            {!isCondensed && (
-              <SidebarNavGroup title="Tags" isCollapsible>
-                <SidebarLink
-                  href={usePath('contacts/tag/design-system')}
-                  label="Design system"
-                  icon={<FiHash />}
-                />
-                <SidebarLink
-                  href={usePath('contacts/framework')}
-                  label="Framework"
-                  icon={<FiHash />}
-                />
-                <SidebarLink
-                  href={usePath('contacts/tag/chakra-ui')}
-                  label="Chakra UI"
-                  inset={5}
-                  icon={<FiHash />}
-                />
-                <SidebarLink
-                  href={usePath('contacts/tag/react')}
-                  label="React"
-                  inset={5}
-                  icon={<FiHash />}
-                />
-              </SidebarNavGroup>
-            )}
-
-            <Spacer />
-
-            <SidebarNavGroup>
-              <SidebarLink
-                onClick={() =>
-                  modals.open({
-                    title: 'Invite people',
-                    component: MembersInviteDialog,
-                  })
-                }
-                label="Invite people"
-                color="sidebar-muted"
-                icon={<FiPlus />}
+          {!isCondensed && (
+            <NavGroup title="Tags" isCollapsible>
+              <NavItem
+                href={usePath('contacts/tag/design-system')}
+                label="Design system"
+                icon={<FiHash />}
               />
-              <SidebarLink
-                href="https://saas-ui.dev/docs"
-                label="Documentation"
-                color="sidebar-muted"
-                icon={<FiHelpCircle />}
+              <NavItem
+                href={usePath('contacts/framework')}
+                label="Framework"
+                icon={<FiHash />}
               />
-            </SidebarNavGroup>
-          </SidebarNav>
-        </SidebarOverflow>
+              <NavItem
+                href={usePath('contacts/tag/chakra-ui')}
+                label="Chakra UI"
+                inset={5}
+                icon={<FiHash />}
+              />
+              <NavItem
+                href={usePath('contacts/tag/react')}
+                label="React"
+                inset={5}
+                icon={<FiHash />}
+              />
+            </NavGroup>
+          )}
+
+          <Spacer />
+
+          <NavGroup>
+            <NavItem
+              onClick={() =>
+                modals.open({
+                  title: 'Invite people',
+                  component: MembersInviteDialog,
+                })
+              }
+              label="Invite people"
+              color="sidebar-muted"
+              icon={<FiPlus />}
+            />
+            <NavItem
+              href="https://saas-ui.dev/docs"
+              label="Documentation"
+              color="sidebar-muted"
+              icon={<FiHelpCircle />}
+            />
+          </NavGroup>
+        </SidebarSection>
 
         {isCondensed ? (
-          <SidebarNav>
+          <SidebarSection>
             <UserMenu />
-          </SidebarNav>
+          </SidebarSection>
         ) : (
           <BillingStatus />
         )}
+
+        <SidebarOverlay />
+        <ResizeHandle />
       </Sidebar>
-    </>
+    </Resizer>
   )
 }
 
-interface AppSidebarlink extends SidebarLinkProps {
+interface AppSidebarlink extends NavItemProps {
   hotkey: string
   href: string
 }
@@ -201,7 +200,7 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
   )
 
   return (
-    <SidebarLink
+    <NavItem
       href={href}
       label={label}
       {...rest}

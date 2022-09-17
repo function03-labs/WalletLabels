@@ -31,9 +31,9 @@ export const ResizeBox: React.FC<ResizeBoxProps> = (props) => {
       {...getContainerProps(rest)}
       className={cx('saas-resize-box', props.className)}
     >
-      {isResizable && <ResizeHandle {...getHandleProps()} />}
-
       {children}
+
+      {isResizable && <ResizeHandle {...getHandleProps()} />}
     </chakra.div>
   )
 }

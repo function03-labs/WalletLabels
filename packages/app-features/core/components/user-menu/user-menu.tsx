@@ -1,5 +1,5 @@
 import {
-  Button,
+  IconButton,
   Menu,
   MenuButton,
   MenuList,
@@ -8,7 +8,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 
-import { SidebarMenu, useTenant } from '@saas-ui/pro'
+import { useTenant } from '@saas-ui/pro'
 
 import {
   MenuItem,
@@ -44,13 +44,18 @@ export const UserMenu = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} variant="ghost" aria-label="User menu">
-        <PersonaAvatar
-          size="xs"
-          name={currentUser?.name || ''}
-          src={currentUser?.avatar || undefined}
-        />
-      </MenuButton>
+      <MenuButton
+        as={IconButton}
+        icon={
+          <PersonaAvatar
+            size="xs"
+            name={currentUser?.name || ''}
+            src={currentUser?.avatar || undefined}
+          />
+        }
+        variant="ghost"
+        aria-label="User menu"
+      />
       <Portal>
         {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}
         <MenuList zIndex={['modal', null, 'dropdown']}>
