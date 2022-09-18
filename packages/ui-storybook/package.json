@@ -16,7 +16,7 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": "^1.4.0",
+    "@saas-ui/react": "^1.4.1",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-links": "^6.5.10",
     "@storybook/react": "^6.5.10",

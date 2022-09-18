@@ -8,15 +8,13 @@ import EmptyState from './empty-state'
 import Form from './form'
 import Kbd from './kbd'
 import List from './list'
+import NavGroup from './nav-group'
 import Page from './page'
 import SplitPage from './split-page'
 import Stepper from './stepper'
 import PageSidebar from './page-sidebar'
 import Property from './property'
 import Section from './section'
-import SidebarLink from './sidebar-link'
-import SidebarMenuButton from './sidebar-menu-button'
-import SidebarMenu from './sidebar-menu'
 import Sidebar from './sidebar'
 import DataGrid from './data-grid'
 import Toolbar from './toolbar'
@@ -33,15 +31,13 @@ export default {
   ...Form,
   Kbd,
   List,
+  NavGroup,
   Page,
   SplitPage,
   Stepper,
   PageSidebar,
   Property,
   Section,
-  SidebarLink,
-  SidebarMenuButton,
-  SidebarMenu,
   Sidebar,
   DataGrid,
   Toolbar,

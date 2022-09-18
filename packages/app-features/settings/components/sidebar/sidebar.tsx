@@ -1,26 +1,34 @@
 import * as React from 'react'
-import { Heading } from '@chakra-ui/react'
+import { Heading, useBreakpointValue } from '@chakra-ui/react'
 import { FiFolder, FiUser } from 'react-icons/fi'
 
-import { useHotkeysShortcut } from '@saas-ui/react'
-
 import {
-  Sidebar as SidebarContainer,
-  SidebarNav,
-  SidebarLink,
-  SidebarNavGroup,
-  SidebarOverflow,
-  SidebarLinkProps,
-  BackButton,
-} from '@saas-ui/pro'
+  useActivePath,
+  useHotkeysShortcut,
+  useLocalStorage,
+} from '@saas-ui/react'
+
+import { BackButton, Resizer, ResizeHandler, ResizeHandle } from '@saas-ui/pro'
 
 import { usePath } from '@app/features/core/hooks/use-path'
 import { Has } from '@saas-ui/features'
 import { ElectronNav } from '@app/features/core/components/electron-nav'
+import {
+  NavGroup,
+  NavItem,
+  NavItemProps,
+  Sidebar,
+  SidebarOverlay,
+  SidebarSection,
+  SidebarToggleButton,
+} from '@saas-ui/sidebar'
 
-const SettingsLink = (props: SidebarLinkProps & { path: string }) => {
+const SettingsLink = (props: NavItemProps & { path: string }) => {
   const { path, ...rest } = props
-  return <SidebarLink inset={5} href={usePath(`/settings${path}`)} {...rest} />
+  const href = usePath(`/settings${path}`)
+  return (
+    <NavItem inset={5} href={href} isActive={useActivePath(href)} {...rest} />
+  )
 }
 
 export const SettingsSidebar = () => {
@@ -31,40 +39,49 @@ export const SettingsSidebar = () => {
     backRef.current?.click()
   })
 
-  return (
-    <>
-      <SidebarContainer>
-        <ElectronNav />
-        <SidebarOverflow>
-          <SidebarNav direction="row" alignItems="center" mb="8">
-            <BackButton href={usePath()} ref={backRef} />
-            <Heading as="h1" fontSize="xl">
-              Settings
-            </Heading>
-          </SidebarNav>
-          <SidebarNav flex="1" spacing={6}>
-            <Has feature="settings">
-              <SidebarNavGroup title="Organization" icon={<FiFolder />}>
-                <SettingsLink path="/" label="Overview" />
-                <SettingsLink path="/organization" label="Organization" />
-                <SettingsLink path="/members" label="Members" />
-                <SettingsLink path="/plans" label="Plans" />
-                <SettingsLink path="/billing" label="Billing" />
-              </SidebarNavGroup>
-            </Has>
+  const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
 
-            <SidebarNavGroup title="Account" icon={<FiUser />}>
-              <SettingsLink path="/account" label="Profile" />
-              <SettingsLink path="/account/security" label="Security" />
-              <SettingsLink
-                path="/account/notifications"
-                label="Notifications"
-              />
-              <SettingsLink path="/account/api" label="Api" />
-            </SidebarNavGroup>
-          </SidebarNav>
-        </SidebarOverflow>
-      </SidebarContainer>
-    </>
+  const onResize: ResizeHandler = ({ width }) => {
+    setWidth(width)
+  }
+
+  return (
+    <Resizer
+      defaultWidth={width}
+      onResize={onResize}
+      isResizable={useBreakpointValue({ base: false, lg: true })}
+    >
+      <Sidebar>
+        <SidebarToggleButton />
+        <ElectronNav />
+
+        <SidebarSection direction="row" alignItems="center">
+          <BackButton href={usePath()} ref={backRef} />
+          <Heading as="h1" fontSize="xl">
+            Settings
+          </Heading>
+        </SidebarSection>
+        <SidebarSection flex="1" overflowY="auto">
+          <Has feature="settings">
+            <NavGroup title="Organization" icon={<FiFolder />}>
+              <SettingsLink path="/" label="Overview" />
+              <SettingsLink path="/organization" label="Organization" />
+              <SettingsLink path="/members" label="Members" />
+              <SettingsLink path="/plans" label="Plans" />
+              <SettingsLink path="/billing" label="Billing" />
+            </NavGroup>
+          </Has>
+
+          <NavGroup title="Account" icon={<FiUser />}>
+            <SettingsLink path="/account" label="Profile" />
+            <SettingsLink path="/account/security" label="Security" />
+            <SettingsLink path="/account/notifications" label="Notifications" />
+            <SettingsLink path="/account/api" label="Api" />
+          </NavGroup>
+        </SidebarSection>
+        <SidebarOverlay />
+        <ResizeHandle />
+      </Sidebar>
+    </Resizer>
   )
 }

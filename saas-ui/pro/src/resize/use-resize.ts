@@ -1,7 +1,11 @@
 import * as React from 'react'
 
-import { useEventListener } from '@chakra-ui/react'
-import { HTMLChakraProps } from '@chakra-ui/system'
+import {
+  useEventListener,
+  ResponsiveValue,
+  HTMLChakraProps,
+} from '@chakra-ui/react'
+import { createContext } from '@chakra-ui/react-utils'
 
 export type Dimensions = {
   width: number
@@ -38,6 +42,18 @@ export interface ResizeOptions {
 }
 
 export interface UseResizeProps extends ResizeOptions {}
+
+export type UseResizeReturn = ReturnType<typeof useResize>
+
+export interface ResizeProviderContext extends UseResizeReturn {
+  isResizable: ResponsiveValue<boolean>
+  handlePosition: UseResizeProps['handlePosition']
+}
+
+export const [ResizeProvider, useResizeContext] =
+  createContext<ResizeProviderContext>({
+    strict: false,
+  })
 
 /**
  * Hook used to create horizonally resizable elements.
@@ -120,7 +136,6 @@ export const useResize = (props: UseResizeProps = {}) => {
       ...(isResizable
         ? {
             style: {
-              position: props.position || 'relative',
               width,
             } as React.CSSProperties,
           }
