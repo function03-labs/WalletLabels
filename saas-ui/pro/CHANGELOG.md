@@ -7,6 +7,13 @@
 - bf9803c: Added new ToggleButtonGroup and ToggleButton component.
 - 65099b0: BREAKING: Migrated to the new open source Sidebar component
 
+Follow the instructions in the documentation to migrate your code.
+https://saas-ui.dev/docs/components/layout/sidebar
+
+New examples are available here:
+https://github.com/saas-js/saas-ui-pro/blob/main/packages/app-features/core/components/sidebar/sidebar.tsx
+https://github.com/saas-js/saas-ui/blob/main/packages/saas-ui-sidebar/stories/sidebar.stories.tsx
+
 ## 0.9.0
 
 ### Minor Changes
