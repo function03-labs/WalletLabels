@@ -1,5 +1,20 @@
 # @app/features
 
+## 0.11.0
+
+### Minor Changes
+
+- de52953: Updated to @tanstack/react-query v4
+- c76ba03: New view options on the Contacts list page.
+- 65099b0: BREAKING: Migrated to the new open source Sidebar component
+
+### Patch Changes
+
+- 3912ec2: Added keyboard shortcut to focus inline search.
+- Updated dependencies [bf9803c]
+- Updated dependencies [65099b0]
+  - @saas-ui/pro@0.10.0
+
 ## 0.10.2
 
 ### Patch Changes

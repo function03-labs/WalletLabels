@@ -1,5 +1,13 @@
 # @saas-ui/paddle
 
+## 0.4.4
+
+### Patch Changes
+
+- Updated dependencies [bf9803c]
+- Updated dependencies [65099b0]
+  - @saas-ui/pro@0.10.0
+
 ## 0.4.3
 
 ### Patch Changes

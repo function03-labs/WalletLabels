@@ -1,5 +1,12 @@
 # @saas-ui/pro
 
+## 0.10.0
+
+### Minor Changes
+
+- bf9803c: Added new ToggleButtonGroup and ToggleButton component.
+- 65099b0: BREAKING: Migrated to the new open source Sidebar component
+
 ## 0.9.0
 
 ### Minor Changes

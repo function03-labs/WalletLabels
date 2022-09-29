@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "private": true,
   "scripts": {
     "predev": "yarn run generate",

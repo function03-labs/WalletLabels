@@ -1,5 +1,24 @@
 # nextjs-app
 
+## 0.6.0
+
+### Minor Changes
+
+- de52953: Updated to @tanstack/react-query v4
+- 65099b0: BREAKING: Migrated to the new open source Sidebar component
+
+### Patch Changes
+
+- Updated dependencies [3912ec2]
+- Updated dependencies [de52953]
+- Updated dependencies [bf9803c]
+- Updated dependencies [c76ba03]
+- Updated dependencies [65099b0]
+  - @app/features@1.0.0
+  - @saas-ui/pro@0.10.0
+  - @app/mock-graphql@0.4.3
+  - @saas-ui/paddle@0.4.4
+
 ## 0.5.2
 
 ### Patch Changes

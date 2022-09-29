@@ -1,5 +1,11 @@
 # @app/graphql
 
+## 0.3.0
+
+### Minor Changes
+
+- de52953: Updated to @tanstack/react-query v4
+
 ## 0.2.2
 
 ### Patch Changes
