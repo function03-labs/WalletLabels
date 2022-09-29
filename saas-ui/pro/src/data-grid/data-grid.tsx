@@ -461,6 +461,7 @@ const getSelectionColumn = <Data extends object>(enabled?: boolean) => {
         {
           id: 'selection',
           size: 1,
+          enableHiding: false,
           header: ({ table }) => (
             <DataGridCheckbox
               isChecked={table.getIsAllRowsSelected()}
@@ -484,4 +485,33 @@ const getSelectionColumn = <Data extends object>(enabled?: boolean) => {
         } as ColumnDef<Data>,
       ]
     : []
+}
+
+export interface UseColumnVisibilityProps<Data, Columns = string[]> {
+  gridRef: React.RefObject<TableInstance<Data>>
+  visibleColumns: Columns
+}
+
+export const useColumnVisibility = <Data extends object>(
+  props: UseColumnVisibilityProps<Data>,
+) => {
+  const { gridRef, visibleColumns } = props
+  const [columnVisibility, setColumnVisibility] = React.useState({})
+
+  React.useEffect(() => {
+    setColumnVisibility(() => {
+      return (
+        gridRef.current
+          ?.getAllColumns?.()
+          .reduce<Record<string, boolean>>((memo, column) => {
+            memo[column.id] = column.getCanHide()
+              ? visibleColumns.includes(column.id)
+              : true
+            return memo
+          }, {}) || {}
+      )
+    })
+  }, [visibleColumns])
+
+  return columnVisibility
 }
