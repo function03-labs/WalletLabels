@@ -7,7 +7,7 @@ import {
   useMergeRefs,
 } from '@chakra-ui/react'
 
-import { IconButton } from '@saas-ui/react'
+import { IconButton, useHotkeys } from '@saas-ui/react'
 
 import { SearchInput, SearchInputProps } from '../search-input'
 import { FiX } from 'react-icons/fi'
@@ -19,6 +19,15 @@ export const InlineSearch = forwardRef<SearchInputProps, 'input'>(
   (props, ref) => {
     const inputRef = React.useRef<HTMLInputElement>(null)
     const isMobile = useBreakpointValue({ base: true, lg: false })
+
+    useHotkeys(
+      'ctrl+f',
+      (e) => {
+        e.preventDefault()
+        inputRef.current?.focus()
+      },
+      [],
+    )
 
     const [value, setValue] = React.useState('')
 
