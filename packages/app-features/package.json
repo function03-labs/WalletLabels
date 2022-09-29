@@ -6,6 +6,8 @@
     "@app/config": "workspace:*",
     "@app/i18n": "workspace:*",
     "@react-hookz/web": "^15.0.0",
+    "@saas-ui/app-shell": "^0.1.0",
+    "@saas-ui/sidebar": "^0.1.2",
     "@tanstack/react-query": "^4.7.2",
     "@tiptap/core": "^2.0.0-beta.182",
     "@tiptap/extension-mention": "^2.0.0-beta.102",

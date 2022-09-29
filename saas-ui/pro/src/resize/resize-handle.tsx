@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx } from '@chakra-ui/utils'
 import { chakra, HTMLChakraProps } from '@chakra-ui/react'
+import { useResizeContext } from './use-resize'
 
 export const ResizeHandle: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const styles = {
@@ -11,15 +12,21 @@ export const ResizeHandle: React.FC<HTMLChakraProps<'div'>> = (props) => {
     top: '0px',
     cursor: 'col-resize',
   }
+
+  const context = useResizeContext()
+
+  if (context?.isResizable === false) {
+    return null
+  }
+
   return (
     <chakra.div
       {...props}
+      {...context?.getHandleProps()}
       __css={styles}
       className={cx('saas-resize-handle', props.className)}
     />
   )
 }
 
-if (__DEV__) {
-  ResizeHandle.displayName = 'ResizeHandle'
-}
+ResizeHandle.displayName = 'ResizeHandle'

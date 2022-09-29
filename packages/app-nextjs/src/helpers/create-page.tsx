@@ -1,18 +1,21 @@
 import React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { NextPage } from 'next/types'
 
-export interface CreatePageProps {
+export interface LayoutProps {
+  layout?: React.ReactNode
+  isPublic?: boolean
+}
+
+export interface CreatePageProps<TPageProps extends object>
+  extends LayoutProps {
   title?: string
-  layout?: React.ReactNode
-  isPublic?: boolean
-  renderComponent: React.FC<PageProps>
+  renderComponent: React.FC<PageProps & TPageProps>
 }
 
-export interface PageFC extends React.FC {
-  layout?: React.ReactNode
-  isPublic?: boolean
-}
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> &
+  LayoutProps
 
 export interface NavigateOptions {
   replace?: boolean
@@ -29,10 +32,12 @@ export interface PageProps {
  * Inspired by
  * https://blog.rstankov.com/structuring-next-js-application/
  */
-export const createPage = (props: CreatePageProps): PageFC => {
+export const createPage = <TPageProps extends object>(
+  props: CreatePageProps<TPageProps>,
+) => {
   const { title, layout, isPublic, renderComponent: PageComponent } = props
 
-  const Page: PageFC = (props) => {
+  const Page: NextPageWithLayout<TPageProps> = (props) => {
     const router = useRouter()
 
     return (
