@@ -145,7 +145,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   )
 
   const columnVisibility = useColumnVisibility({
-    gridRef,
+    columns,
     visibleColumns,
   })
 
@@ -167,13 +167,13 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         isHoverable
         onSelectedRowsChange={_onSelectedRowsChange}
         onRowClick={onRowClick}
-        initialState={initialState}
         onSortChange={onSortChange}
         noResults={NoFilteredResults}
         manualSorting={!!onSortChange}
         getRowId={(row: any, index, parent) =>
           row.id || `${parent ? [parent.id, index].join('.') : index}`
         }
+        initialState={initialState}
         state={{
           columnVisibility,
         }}

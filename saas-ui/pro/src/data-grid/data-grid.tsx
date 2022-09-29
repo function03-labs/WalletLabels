@@ -487,28 +487,33 @@ const getSelectionColumn = <Data extends object>(enabled?: boolean) => {
     : []
 }
 
-export interface UseColumnVisibilityProps<Data, Columns = string[]> {
-  gridRef: React.RefObject<TableInstance<Data>>
-  visibleColumns: Columns
+export interface UseColumnVisibilityProps<Data, VisibleColumns = string[]> {
+  columns: ColumnDef<Data>[]
+  visibleColumns: VisibleColumns
 }
 
+/**
+ * Helper hook to manage column visibility.
+ * Only supports a single level of columns.
+ */
 export const useColumnVisibility = <Data extends object>(
   props: UseColumnVisibilityProps<Data>,
 ) => {
-  const { gridRef, visibleColumns } = props
+  const { columns, visibleColumns } = props
   const [columnVisibility, setColumnVisibility] = React.useState({})
 
   React.useEffect(() => {
     setColumnVisibility(() => {
       return (
-        gridRef.current
-          ?.getAllColumns?.()
-          .reduce<Record<string, boolean>>((memo, column) => {
-            memo[column.id] = column.getCanHide()
-              ? visibleColumns.includes(column.id)
-              : true
-            return memo
-          }, {}) || {}
+        columns.reduce<Record<string, boolean>>((memo, column) => {
+          if (column.id) {
+            memo[column.id] =
+              column.enableHiding !== false
+                ? visibleColumns.includes(column.id)
+                : true
+          }
+          return memo
+        }, {}) || {}
       )
     })
   }, [visibleColumns])

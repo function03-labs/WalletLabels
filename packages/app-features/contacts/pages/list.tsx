@@ -26,6 +26,7 @@ import {
   OverflowMenu,
   useModals,
   useHotkeysShortcut,
+  useLocalStorage,
 } from '@saas-ui/react'
 import { useParams } from '@saas-ui/router'
 import {
@@ -209,13 +210,10 @@ export function ContactsListPage() {
 
   const addCommand = useHotkeysShortcut('contacts.add', addPerson)
 
-  const [visibleColumns, setVisibleColumns] = React.useState<string[]>([
-    'name',
-    'email',
-    'createdAt',
-    'type',
-    'status',
-  ])
+  const [visibleColumns, setVisibleColumns] = useLocalStorage(
+    'app.contacts.columns',
+    ['name', 'email', 'createdAt', 'type', 'status'],
+  )
 
   const displayProperties = (
     <ToggleButtonGroup
