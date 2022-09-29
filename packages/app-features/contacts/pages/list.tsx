@@ -14,9 +14,14 @@ import {
   Spacer,
   MenuItem,
   useBreakpointValue,
+  Menu,
+  MenuButton,
+  MenuList,
+  Portal,
 } from '@chakra-ui/react'
-import { FiUser } from 'react-icons/fi'
+import { FiSliders, FiUser } from 'react-icons/fi'
 import {
+  Select,
   EmptyState,
   OverflowMenu,
   useModals,
@@ -32,6 +37,10 @@ import {
   DataGridCell,
   ColumnDef,
   BulkActionsSelections,
+  MenuProperty,
+  ToggleButtonGroup,
+  ToggleButton,
+  useColumns,
 } from '@saas-ui/pro'
 
 import { ListPage } from '@app/features/core/components/list-page'
@@ -124,6 +133,68 @@ export function ContactsListPage() {
 
   const mutation = useCreateContactMutation()
 
+  const columns = useColumns<Contact>(
+    () => [
+      {
+        id: 'name',
+        accessorKey: 'fullName',
+        header: 'Name',
+        size: 300,
+        meta: {
+          href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
+        },
+      },
+      {
+        id: 'email',
+        header: 'Email',
+        size: 300,
+      },
+      {
+        id: 'createdAt',
+        header: 'Created at',
+        cell: DateCell,
+        filterFn: useDataGridFilter('date'),
+        enableGlobalFilter: false,
+      },
+      {
+        id: 'updatedAt',
+        header: 'Updated at',
+        cell: DateCell,
+        filterFn: useDataGridFilter('date'),
+        enableGlobalFilter: false,
+      },
+      {
+        id: 'type',
+        header: 'Type',
+        cell: TypeCell,
+        filterFn: useDataGridFilter('string'),
+        enableGlobalFilter: false,
+        meta: {
+          isNumeric: true,
+        },
+      },
+      {
+        id: 'status',
+        header: 'Status',
+        cell: StatusCell,
+        filterFn: useDataGridFilter('string'),
+        enableGlobalFilter: false,
+        meta: {
+          isNumeric: true,
+        },
+      },
+      {
+        id: 'action',
+        header: '',
+        cell: ActionCell,
+        size: 100,
+        enableGlobalFilter: false,
+        enableHiding: false,
+      },
+    ],
+    [],
+  )
+
   const addPerson = () => {
     modals.form?.({
       title: 'Add person',
@@ -137,6 +208,41 @@ export function ContactsListPage() {
   }
 
   const addCommand = useHotkeysShortcut('contacts.add', addPerson)
+
+  const [visibleColumns, setVisibleColumns] = React.useState<string[]>([
+    'name',
+    'email',
+    'createdAt',
+    'type',
+    'status',
+  ])
+
+  const displayProperties = (
+    <ToggleButtonGroup
+      type="checkbox"
+      isAttached={false}
+      size="xs"
+      spacing="0"
+      flexWrap="wrap"
+      value={visibleColumns}
+      onChange={setVisibleColumns}
+    >
+      {columns.map(({ id, enableHiding }) =>
+        id && enableHiding !== false ? (
+          <ToggleButton
+            key={id}
+            value={id}
+            mb="1"
+            me="1"
+            color="muted"
+            _checked={{ color: 'app-text', bg: 'whiteAlpha.200' }}
+          >
+            {id.charAt(0).toUpperCase() + id.slice(1)}
+          </ToggleButton>
+        ) : null,
+      )}
+    </ToggleButtonGroup>
+  )
 
   const primaryAction = (
     <ToolbarButton
@@ -165,6 +271,23 @@ export function ContactsListPage() {
         onChange={(e) => setSearchQuery(e.target.value)}
         onReset={() => setSearchQuery('')}
       />
+      <Menu>
+        <MenuButton
+          as={ToolbarButton}
+          variant="outline"
+          leftIcon={<FiSliders />}
+          label="View"
+        />
+        <Portal>
+          <MenuList maxW="260px">
+            <MenuProperty
+              label="Display properties"
+              value={displayProperties}
+              orientation="vertical"
+            />
+          </MenuList>
+        </Portal>
+      </Menu>
     </>
   )
 
@@ -186,57 +309,6 @@ export function ContactsListPage() {
       <Button>Add tags</Button>
     </>
   )
-
-  const columns: ColumnDef<Contact>[] = [
-    {
-      id: 'name',
-      accessorKey: 'fullName',
-      header: 'Name',
-      size: 300,
-      meta: {
-        href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
-      },
-    },
-    {
-      id: 'email',
-      header: 'Email',
-      size: 300,
-    },
-    {
-      id: 'createdAt',
-      header: 'Created at',
-      cell: DateCell,
-      filterFn: useDataGridFilter('date'),
-      enableGlobalFilter: false,
-    },
-    {
-      id: 'type',
-      header: 'Type',
-      cell: TypeCell,
-      filterFn: useDataGridFilter('string'),
-      enableGlobalFilter: false,
-      meta: {
-        isNumeric: true,
-      },
-    },
-    {
-      id: 'status',
-      header: 'Status',
-      cell: StatusCell,
-      filterFn: useDataGridFilter('string'),
-      enableGlobalFilter: false,
-      meta: {
-        isNumeric: true,
-      },
-    },
-    {
-      id: 'action',
-      header: '',
-      cell: ActionCell,
-      size: 100,
-      enableGlobalFilter: false,
-    },
-  ]
 
   const emptyState = (
     <EmptyState
@@ -265,6 +337,7 @@ export function ContactsListPage() {
       searchQuery={searchQuery}
       emptyState={emptyState}
       columns={columns}
+      visibleColumns={visibleColumns}
       data={data?.contacts as Contact[]}
       isLoading={isLoading}
     />

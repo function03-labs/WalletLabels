@@ -30,7 +30,7 @@ import { Breadcrumbs } from '@app/features/core/components/breadcrumbs'
 
 import { ContactSidebar } from '../components/contact-sidebar'
 import { Activities, ActivityTimeline } from '../components/activity-timeline'
-import { useQueryClient } from 'react-query'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface ContactsViewPageProps {
   id: string

@@ -22,6 +22,7 @@ import {
   NoFilteredResults,
   BulkActionsProps,
   ColumnFiltersState,
+  useColumnVisibility,
 } from '@saas-ui/pro'
 
 import { useDebouncedCallback } from '@react-hookz/web'
@@ -43,6 +44,7 @@ export interface ListPageProps<D extends object>
   filters?: FilterItem[]
   operators?: FilterOperators
   searchQuery?: string
+  visibleColumns: string[]
 }
 
 /**
@@ -57,6 +59,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     tabbar,
     emptyState,
     columns,
+    visibleColumns,
     data = [],
     isLoading,
     onSelectedRowsChange,
@@ -72,6 +75,8 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     },
     ...rest
   } = props
+
+  const gridRef = React.useRef<TableInstance<D>>(null)
 
   const [selections, setSelections] = React.useState<string[]>([])
 
@@ -139,7 +144,10 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     [],
   )
 
-  const gridRef = React.useRef<TableInstance<D>>(null)
+  const columnVisibility = useColumnVisibility({
+    gridRef,
+    visibleColumns,
+  })
 
   let content
   if (!data || !data.length) {
@@ -166,6 +174,9 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         getRowId={(row: any, index, parent) =>
           row.id || `${parent ? [parent.id, index].join('.') : index}`
         }
+        state={{
+          columnVisibility,
+        }}
       >
         <DataGridPagination />
       </DataGrid>
