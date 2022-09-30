@@ -1,6 +1,7 @@
 {
   "name": "@app/graphql",
   "version": "0.3.0",
+  "main": "src/index.ts",
   "scripts": {
     "generate": "graphql-codegen"
   },
@@ -10,12 +11,12 @@
     "graphql": "16.5.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.9.1",
-    "@graphql-codegen/near-operation-file-preset": "^2.4.0",
-    "@graphql-codegen/plugin-helpers": "^2.6.0",
-    "@graphql-codegen/typed-document-node": "^2.3.2",
-    "@graphql-codegen/typescript": "^2.7.2",
-    "@graphql-codegen/typescript-operations": "^2.5.2",
+    "@graphql-codegen/cli": "^2.13.1",
+    "@graphql-codegen/near-operation-file-preset": "^2.4.1",
+    "@graphql-codegen/plugin-helpers": "^2.7.1",
+    "@graphql-codegen/typed-document-node": "^2.3.3",
+    "@graphql-codegen/typescript": "^2.7.3",
+    "@graphql-codegen/typescript-operations": "^2.5.3",
     "@graphql-codegen/typescript-react-query": "^4.0.1"
   },
   "peerDependencies": {
