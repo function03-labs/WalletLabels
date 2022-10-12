@@ -1,5 +1,11 @@
 # @saas-ui/charts
 
+## 0.3.2
+
+### Patch Changes
+
+- f7b55ba: Updated dependencies
+
 ## 0.3.1
 
 ### Patch Changes

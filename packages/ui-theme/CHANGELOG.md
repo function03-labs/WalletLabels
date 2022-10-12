@@ -1,5 +1,11 @@
 # @ui/theme
 
+## 0.1.3
+
+### Patch Changes
+
+- f7b55ba: Updated dependencies
+
 ## 0.1.2
 
 ### Patch Changes

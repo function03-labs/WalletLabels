@@ -1,5 +1,13 @@
 # saas-ui-storybook
 
+## 8.0.1
+
+### Patch Changes
+
+- f7b55ba: Updated dependencies
+- Updated dependencies [f7b55ba]
+  - @saas-ui/pro@0.10.1
+
 ## 8.0.0
 
 ### Patch Changes

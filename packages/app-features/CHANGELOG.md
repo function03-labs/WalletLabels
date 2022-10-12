@@ -1,5 +1,18 @@
 # @app/features
 
+## 0.11.1
+
+### Patch Changes
+
+- f7b55ba: Updated dependencies
+- Updated dependencies [f7b55ba]
+  - @app/config@0.1.2
+  - @app/i18n@0.1.3
+  - @saas-ui/billing@0.6.2
+  - @saas-ui/charts@0.3.2
+  - @saas-ui/date-picker@0.4.2
+  - @saas-ui/pro@0.10.1
+
 ## 0.11.0
 
 ### Minor Changes

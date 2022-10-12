@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.6.2
+
+### Patch Changes
+
+- f7b55ba: Updated dependencies
+
 ## 0.6.1
 
 ### Patch Changes

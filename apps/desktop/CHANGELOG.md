@@ -1,5 +1,20 @@
 # electron-app
 
+## 0.5.1
+
+### Patch Changes
+
+- f7b55ba: Updated dependencies
+- Updated dependencies [f7b55ba]
+  - @app/features@0.11.1
+  - @app/mock-graphql@0.4.4
+  - @ui/theme@0.1.3
+  - @saas-ui/billing@0.6.2
+  - @saas-ui/charts@0.3.2
+  - @saas-ui/date-picker@0.4.2
+  - @saas-ui/pro@0.10.1
+  - @saas-ui/paddle@0.4.5
+
 ## 0.5.0
 
 ### Minor Changes
