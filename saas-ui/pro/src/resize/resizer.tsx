@@ -30,7 +30,10 @@ export const Resizer: React.FC<ResizerProps> = (props) => {
 
   let _child
   if (React.isValidElement(children)) {
-    _child = React.cloneElement(children, getContainerProps(children.props))
+    _child = React.cloneElement(children, {
+      ...(children.props || {}),
+      ...getContainerProps(),
+    })
   }
 
   return <ResizeProvider value={context}>{_child}</ResizeProvider>

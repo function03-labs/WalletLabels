@@ -184,7 +184,7 @@ export const ActiveFilterLabel: React.FC<ActiveFilterLabelProps> = (props) => {
   }
 
   const _icon = React.isValidElement(icon)
-    ? React.cloneElement(icon, {
+    ? React.cloneElement<any>(icon, {
         'aria-hidden': true,
         focusable: false,
       })
