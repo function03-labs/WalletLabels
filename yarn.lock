@@ -43,10 +43,11 @@ __metadata:
     "@saas-ui/sidebar": ^0.1.2
     "@tanstack/react-query": ^4.10.3
     "@tiptap/core": ^2.0.0-beta.199
-    "@tiptap/extension-mention": ^2.0.0-beta.199
+    "@tiptap/extension-mention": 2.0.0-beta.199
     "@tiptap/extension-placeholder": ^2.0.0-beta.199
     "@tiptap/react": ^2.0.0-beta.199
     "@tiptap/starter-kit": ^2.0.0-beta.199
+    "@tiptap/suggestion": 2.0.0-beta.199
     react-hook-form: ^7.37.0
     react-icons: ^4.4.0
     slug: ^8.2.2
@@ -5077,12 +5078,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^1.6.22":
-  version: 1.6.22
-  resolution: "@mdx-js/react@npm:1.6.22"
+"@mdx-js/react@npm:^2.1.5":
+  version: 2.1.5
+  resolution: "@mdx-js/react@npm:2.1.5"
+  dependencies:
+    "@types/mdx": ^2.0.0
+    "@types/react": ">=16"
   peerDependencies:
-    react: ^16.13.1 || ^17.0.0
-  checksum: bc84bd514bc127f898819a0c6f1a6915d9541011bd8aefa1fcc1c9bea8939f31051409e546bdec92babfa5b56092a16d05ef6d318304ac029299df5181dc94c8
+    react: ">=16"
+  checksum: e47fb7086a4dd3e4d75d9ef0bf530009f72437a5ea91048e65d2e2f53955015a8c81b5058ac56fa00f401843305518e9f298183645d56c7e34336df4cc0b62bf
   languageName: node
   linkType: hard
 
@@ -8211,7 +8215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiptap/extension-mention@npm:^2.0.0-beta.199":
+"@tiptap/extension-mention@npm:2.0.0-beta.199":
   version: 2.0.0-beta.199
   resolution: "@tiptap/extension-mention@npm:2.0.0-beta.199"
   dependencies:
@@ -8312,6 +8316,19 @@ __metadata:
     "@tiptap/extension-strike": ^2.0.0-beta.199
     "@tiptap/extension-text": ^2.0.0-beta.199
   checksum: 4a8c8d4488ea628bc75187c8bbdb8b97b70ebdab73ea759a68b9c289f728e47b86130ed21e918e1a77ad55af61b5601be145d7c8cbd869040264155179ee32c8
+  languageName: node
+  linkType: hard
+
+"@tiptap/suggestion@npm:2.0.0-beta.199":
+  version: 2.0.0-beta.199
+  resolution: "@tiptap/suggestion@npm:2.0.0-beta.199"
+  dependencies:
+    prosemirror-model: ^1.18.1
+    prosemirror-state: ^1.4.1
+    prosemirror-view: ^1.28.2
+  peerDependencies:
+    "@tiptap/core": ^2.0.0-beta.193
+  checksum: 0cc0543eff9b570efd2dc304dd50b08156224302d58ed8c9720e10eeae09b77bebc91d195924a3c1a915e19faf8ac5b38e773d17a95f10cb23ce2c7eaf7074ee
   languageName: node
   linkType: hard
 
@@ -8687,6 +8704,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/mdx@npm:^2.0.0":
+  version: 2.0.2
+  resolution: "@types/mdx@npm:2.0.2"
+  checksum: a10b78946019fe78f7dba749e90924c29a59b23171e7c6aa41f3220a491723c14729212b99eb4e9e1f847d5f4a574ddc4e03c49a2621470e9c822082874eeafc
+  languageName: node
+  linkType: hard
+
 "@types/mime-types@npm:^2.1.0":
   version: 2.1.1
   resolution: "@types/mime-types@npm:2.1.1"
@@ -8862,7 +8886,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.0.21":
+"@types/react@npm:>=16, @types/react@npm:^18.0.21":
   version: 18.0.21
   resolution: "@types/react@npm:18.0.21"
   dependencies:
@@ -17244,16 +17268,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-dom@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "is-dom@npm:1.1.0"
-  dependencies:
-    is-object: ^1.0.1
-    is-window: ^1.0.2
-  checksum: 72aff0a7366b801c9d598d49452ec06544b52c3da92a0c6c3cacace33bb0c3df5ba1b4e422ac39224773316a553699d5920a1eb136919319f57d00e6384eb41b
-  languageName: node
-  linkType: hard
-
 "is-extendable@npm:^0.1.0, is-extendable@npm:^0.1.1":
   version: 0.1.1
   resolution: "is-extendable@npm:0.1.1"
@@ -17446,13 +17460,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-object@npm:^1.0.1":
-  version: 1.0.2
-  resolution: "is-object@npm:1.0.2"
-  checksum: 971219c4b1985b9751f65e4c8296d3104f0457b0e8a70849e848a4a2208bc47317d73b3b85d4a369619cb2df8284dc22584cb2695a7d99aca5e8d0aa64fc075a
-  languageName: node
-  linkType: hard
-
 "is-path-inside@npm:^3.0.2":
   version: 3.0.3
   resolution: "is-path-inside@npm:3.0.3"
@@ -17638,13 +17645,6 @@ __metadata:
   version: 1.0.4
   resolution: "is-whitespace-character@npm:1.0.4"
   checksum: adab8ad9847ccfcb6f1b7000b8f622881b5ba2a09ce8be2794a6d2b10c3af325b469fc562c9fb889f468eed27be06e227ac609d0aa1e3a59b4dbcc88e2b0418e
-  languageName: node
-  linkType: hard
-
-"is-window@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "is-window@npm:1.0.2"
-  checksum: aeaacd2ca816d38d4e2fba4670158fba2190061f28a61c5d84df7c479abf8897b8cb634d22cb76cdf7805035e95bebd430faaab6231ac2ebc814eae02d2c8fd4
   languageName: node
   linkType: hard
 
@@ -21818,7 +21818,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.0.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -22309,17 +22309,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-element-to-jsx-string@npm:^14.3.4":
-  version: 14.3.4
-  resolution: "react-element-to-jsx-string@npm:14.3.4"
+"react-element-to-jsx-string@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "react-element-to-jsx-string@npm:15.0.0"
   dependencies:
     "@base2/pretty-print-object": 1.0.1
     is-plain-object: 5.0.0
-    react-is: 17.0.2
+    react-is: 18.1.0
   peerDependencies:
-    react: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1
-    react-dom: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1
-  checksum: 42bcd4423f12e9ee21b2d3f0c2a28805ff4953bd82b6be4c1f5b5f9a371115aafa36a6f3d82726d43b4912179b79e99550c2b9a772c7fe6a5cd8f7e93ff34ceb
+    react: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
+    react-dom: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
+  checksum: c3907cc4c1d3e9ecc8ca7727058ebcba6ec89848d9e07bfd2c77ee8f28f1ad99bf55e38359dec8a1125de83d41ac09a2874f53c41415edc86ffa9840fa1b7856
   languageName: node
   linkType: hard
 
@@ -22377,16 +22377,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-inspector@npm:^5.1.0":
-  version: 5.1.1
-  resolution: "react-inspector@npm:5.1.1"
-  dependencies:
-    "@babel/runtime": ^7.0.0
-    is-dom: ^1.0.0
-    prop-types: ^15.0.0
+"react-inspector@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "react-inspector@npm:6.0.1"
   peerDependencies:
-    react: ^16.8.4 || ^17.0.0
-  checksum: ca9e4c1fedb94e4e956dd3142838c5a25a9d61375aee5e8a74dd623bae09a263098a93f220e8d84c7fd39e569e1fa4297d363ddbc91b15bca91baeb7281d7f4f
+    react: ^16.8.4 || ^17.0.0 || ^18.0.0
+  checksum: 877cbccf36fdc6213abb9611fb9279c4bb76ef7ecb4ec554b3935419a99d55e6d30a80799a054d468d43cc59a9777f21d22d6219a4597bfbd27f3f08a4cdfdc6
   languageName: node
   linkType: hard
 
@@ -22414,10 +22410,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:17.0.2":
-  version: 17.0.2
-  resolution: "react-is@npm:17.0.2"
-  checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+"react-is@npm:18.1.0":
+  version: 18.1.0
+  resolution: "react-is@npm:18.1.0"
+  checksum: d206a0fe6790851bff168727bfb896de02c5591695afb0c441163e8630136a3e13ee1a7ddd59fdccddcc93968b4721ae112c10f790b194b03b35a3dc13a355ef
   languageName: node
   linkType: hard
 
@@ -25330,7 +25326,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.7.0, ts-node@npm:^10.8.1, ts-node@npm:^10.9.1":
+"ts-node@npm:*, ts-node@npm:^10.7.0, ts-node@npm:^10.8.1, ts-node@npm:^10.9.1":
   version: 10.9.1
   resolution: "ts-node@npm:10.9.1"
   dependencies:
