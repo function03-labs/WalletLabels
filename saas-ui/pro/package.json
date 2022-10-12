@@ -50,13 +50,13 @@
     "@chakra-ui/system": "^2.2.2",
     "@chakra-ui/theme-tools": "^2.0.5",
     "@chakra-ui/utils": "^2.0.4",
-    "@react-hookz/web": "^15.0.0",
+    "@react-hookz/web": "^15.1.0",
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/react-utils": "^1.1.0",
     "@saas-ui/router": "workspace:*",
     "@saas-ui/theme": "^1.3.0",
-    "@tanstack/react-table": "^8.2.6",
-    "date-fns": "^2.29.1",
+    "@tanstack/react-table": "^8.5.15",
+    "date-fns": "^2.29.3",
     "polished": "^4.2.2"
   },
   "peerDependencies": {
