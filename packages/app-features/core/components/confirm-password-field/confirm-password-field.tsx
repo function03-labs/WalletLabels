@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-import { useFormContext } from 'react-hook-form'
-
-import { Field, FieldProps } from '@saas-ui/react'
+import { Field, FieldProps, useFormContext } from '@saas-ui/react'
 
 export interface ConfirmPasswordProps extends Omit<FieldProps, 'name'> {
   name?: string

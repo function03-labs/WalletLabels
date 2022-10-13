@@ -48,7 +48,6 @@ __metadata:
     "@tiptap/react": ^2.0.0-beta.199
     "@tiptap/starter-kit": ^2.0.0-beta.199
     "@tiptap/suggestion": 2.0.0-beta.199
-    react-hook-form: ^7.37.0
     react-icons: ^4.4.0
     slug: ^8.2.2
     yup: ^0.32.11
@@ -22356,15 +22355,6 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
   checksum: ec8f938b5af32148956edc9a87b6a0a99cc305617925608961cf4352ad1a786daea9fdc4d15106aea2821937d27367a69ab525882f07c0bb7ea45fba5dbf8ff2
-  languageName: node
-  linkType: hard
-
-"react-hook-form@npm:^7.37.0":
-  version: 7.37.0
-  resolution: "react-hook-form@npm:7.37.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17 || ^18
-  checksum: 9dedc9a419c1f4cff35bc4e5d1cc39fa019e2c72401af04ac456dc1d5b87070156ee97070834d7d308293470bac45f652e12ab3cc86f36abd0e0a3ed32e89628
   languageName: node
   linkType: hard
 

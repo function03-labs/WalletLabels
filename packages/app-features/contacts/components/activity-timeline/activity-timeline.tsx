@@ -42,9 +42,9 @@ import {
   OverflowMenu,
   MenuItem,
   useModals,
+  UseFormReturn,
 } from '@saas-ui/react'
 import { FiPaperclip } from 'react-icons/fi'
-import { UseFormReturn } from 'react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 
 type Activity<Type, TData extends object, TUser = Partial<User>> = {

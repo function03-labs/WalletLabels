@@ -6,9 +6,8 @@ import {
   FormDialog,
   useUpdatePassword,
   FormDialogProps,
+  SubmitHandler,
 } from '@saas-ui/react'
-
-import { SubmitHandler } from 'react-hook-form'
 
 import { ConfirmPasswordField } from '@app/features/core/components/confirm-password-field'
 

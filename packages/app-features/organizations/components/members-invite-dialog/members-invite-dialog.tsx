@@ -6,9 +6,8 @@ import {
   FormLayout,
   Field,
   Option,
+  SubmitHandler,
 } from '@saas-ui/react'
-
-import { SubmitHandler } from 'react-hook-form'
 
 export interface MembersInviteData {
   emails: string[]

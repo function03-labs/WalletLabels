@@ -45,12 +45,6 @@ const data: Data[] = [
   },
 ]
 
-const MetricsCell: DataGridCell<Data> = ({ getValue }) => {
-  return (
-    <Sparklines data={getValue()} height="20px" width="100px" color="primary" />
-  )
-}
-
 const ProgressCell: DataGridCell<Data> = (cell) => {
   return (
     <Progress
@@ -66,7 +60,7 @@ const CurrencyCell: DataGridCell<Data> = ({ getValue }) => {
 
   return (
     <>
-      {intl.formatNumber(getValue(), {
+      {intl.formatNumber(getValue<number>(), {
         currency: 'EUR',
         style: 'currency',
         maximumFractionDigits: 0,

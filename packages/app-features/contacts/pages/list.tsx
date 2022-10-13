@@ -98,7 +98,7 @@ const TypeCell: DataGridCell<Contact> = ({ cell }) => {
 }
 
 const DateCell: DataGridCell<Contact> = ({ cell }) => {
-  return <>{format(new Date(cell.getValue()), 'PP')}</>
+  return <>{format(new Date(cell.getValue<string>()), 'PP')}</>
 }
 
 const ActionCell: DataGridCell<Contact> = () => {
