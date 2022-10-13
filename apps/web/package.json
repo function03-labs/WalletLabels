@@ -3,10 +3,7 @@
   "version": "0.6.2",
   "private": true,
   "scripts": {
-    "predev": "yarn run generate",
     "dev": "next dev",
-    "prebuild": "yarn run generate",
-    "generate": "yarn workspace @app/graphql generate",
     "build": "next build",
     "start": "next start",
     "test": "jest",
