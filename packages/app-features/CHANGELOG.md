@@ -1,5 +1,11 @@
 # @app/features
 
+## 0.12.0
+
+### Minor Changes
+
+- 67d872d: Removed direct dependency to react-hook-form
+
 ## 0.11.1
 
 ### Patch Changes

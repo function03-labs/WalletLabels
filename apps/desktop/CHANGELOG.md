@@ -1,5 +1,12 @@
 # electron-app
 
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies [67d872d]
+  - @app/features@0.12.0
+
 ## 0.5.1
 
 ### Patch Changes
