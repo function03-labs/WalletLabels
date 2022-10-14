@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "yarn generate && yarn workspace web run build",
+  "devCommand": "yarn workspace web run dev",
+  "outputDirectory": "./apps/web/.next"
+}
