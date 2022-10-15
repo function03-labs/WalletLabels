@@ -52,9 +52,12 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
 
   const activeFilterMap = useMap<string, Filter>([])
 
-  const getFilter = React.useCallback((id: string) => {
-    return filters?.find((filter) => filter.id === id)
-  }, [])
+  const getFilter = React.useCallback(
+    (id: string) => {
+      return filters?.find((filter) => filter.id === id)
+    },
+    [filters],
+  )
 
   const getActiveFilters = React.useCallback(
     (): Filter[] =>
@@ -62,12 +65,15 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
         key,
         ...filter,
       })),
-    [],
+    [activeFilterMap],
   )
 
-  const getOperators = React.useCallback((type: FilterType = 'string') => {
-    return operators.filter(({ types }) => types.includes(type))
-  }, [])
+  const getOperators = React.useCallback(
+    (type: FilterType = 'string') => {
+      return operators.filter(({ types }) => types.includes(type))
+    },
+    [operators],
+  )
 
   const enableFilter = React.useCallback(
     async (filter: Filter) => {
