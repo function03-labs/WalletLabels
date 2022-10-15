@@ -1,5 +1,14 @@
 # electron-app
 
+## 0.5.3
+
+### Patch Changes
+
+- Updated dependencies [1772aac]
+  - @saas-ui/pro@0.10.2
+  - @app/features@0.12.1
+  - @saas-ui/paddle@0.4.6
+
 ## 0.5.2
 
 ### Patch Changes

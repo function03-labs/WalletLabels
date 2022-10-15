@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.10.2
+
+### Patch Changes
+
+- 1772aac: Fixed issue where filters context would not update.
+
 ## 0.10.1
 
 ### Patch Changes
