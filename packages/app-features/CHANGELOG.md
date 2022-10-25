@@ -1,5 +1,12 @@
 # @app/features
 
+## 0.12.2
+
+### Patch Changes
+
+- Updated dependencies [c187d47]
+  - @saas-ui/pro@0.10.3
+
 ## 0.12.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.10.3
+
+### Patch Changes
+
+- c187d47: Make sure filters always have a fallback operator
+
 ## 0.10.2
 
 ### Patch Changes
