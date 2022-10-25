@@ -96,7 +96,6 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
       filters.map((filter) => {
         return {
           id: filter.id,
-          operator: filter.operator,
           value: {
             value: filter.value,
             operator: filter.operator,

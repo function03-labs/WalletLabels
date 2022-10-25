@@ -81,6 +81,8 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
 
       const def = getFilter(filter.id)
 
+      const operator = filter.operator || def?.defaultOperator || 'is'
+
       const _enable = (key: string, filter: Filter) => {
         activeFilterMap.set(key, filter)
 
@@ -92,8 +94,8 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
           const result = await onBeforeEnableFilter(
             {
               ...filter,
+              operator,
               key,
-              operator: filter.operator || def?.defaultOperator || 'is',
             },
             def,
           )
@@ -105,7 +107,10 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
         }
       }
 
-      _enable(key, filter)
+      _enable(key, {
+        ...filter,
+        operator,
+      })
     },
     [onBeforeEnableFilter, onChange],
   )
