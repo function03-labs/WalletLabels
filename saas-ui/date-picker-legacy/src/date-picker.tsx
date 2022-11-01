@@ -236,7 +236,8 @@ export const DatePickerDialog = forwardRef<DatePickerDialog, 'div'>(
   },
 )
 
-export interface DatePickerStaticProps extends DatePickerContainerProps {}
+export interface DatePickerStaticProps
+  extends Omit<DatePickerContainerProps, 'children'> {}
 
 const DatePickerStaticContent = forwardRef<HTMLChakraProps<'div'>, 'div'>(
   (props, ref) => {
@@ -294,14 +295,6 @@ export const DatePickerCalendar = forwardRef((props, ref) => {
   )
 })
 
-export const DatePickerTrigger: React.FC<React.PropsWithChildren<unknown>> = (
-  props,
-) => {
-  return <PopoverTrigger {...props} />
-}
+export const DatePickerTrigger = PopoverTrigger
 
-export const DatePickerAnchor: React.FC<React.PropsWithChildren<unknown>> = (
-  props,
-) => {
-  return <PopoverAnchor {...props} />
-}
+export const DatePickerAnchor = PopoverAnchor

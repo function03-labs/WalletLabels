@@ -1,5 +1,11 @@
 # @app/graphql
 
+## 0.4.0
+
+### Minor Changes
+
+- 04e2063: Updated to Chakra UI 2.3.6
+
 ## 0.3.1
 
 ### Patch Changes

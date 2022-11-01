@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.11.0
+
+### Minor Changes
+
+- 04e2063: Updated to Chakra UI 2.3.6
+
 ## 0.10.3
 
 ### Patch Changes

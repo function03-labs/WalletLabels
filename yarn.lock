@@ -5947,6 +5947,7 @@ __metadata:
   dependencies:
     "@chakra-ui/anatomy": ^2.0.7
     "@chakra-ui/react-utils": ^2.0.8
+    "@chakra-ui/styled-system": ^2.3.4
     "@chakra-ui/system": ^2.3.0
     "@chakra-ui/theme-tools": ^2.0.12
     "@chakra-ui/utils": ^2.0.11
@@ -6038,6 +6039,7 @@ __metadata:
     "@chakra-ui/anatomy": ^2.0.7
     "@chakra-ui/clickable": ^2.0.10
     "@chakra-ui/react-utils": ^2.0.8
+    "@chakra-ui/styled-system": ^2.3.4
     "@chakra-ui/system": ^2.3.0
     "@chakra-ui/theme-tools": ^2.0.12
     "@chakra-ui/utils": ^2.0.11

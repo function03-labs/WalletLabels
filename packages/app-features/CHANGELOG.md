@@ -1,5 +1,18 @@
 # @app/features
 
+## 1.0.0
+
+### Minor Changes
+
+- 04e2063: Updated to new DatePicker component
+- 04e2063: Updated to Chakra UI 2.3.6
+
+### Patch Changes
+
+- Updated dependencies [04e2063]
+  - @app/i18n@0.2.0
+  - @saas-ui/pro@0.11.0
+
 ## 0.12.2
 
 ### Patch Changes

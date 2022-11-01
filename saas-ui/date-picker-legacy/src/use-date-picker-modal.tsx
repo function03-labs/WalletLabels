@@ -1,13 +1,15 @@
 import * as React from 'react'
 
 import { useDisclosure } from '@chakra-ui/react'
-import { BaseModalProps } from '@saas-ui/react'
-
 import { DatePickerStaticProps } from './date-picker'
 
 import { OnDatesChangeProps } from '@datepicker-react/hooks'
 
-export interface DatePickerModalOptions extends BaseModalProps {
+export interface DatePickerModalOptions {
+  title?: string
+  footer?: React.ReactNode
+  isOpen?: boolean
+  onClose?(): void
   defaultIsOpen?: boolean
   onSubmit?(date: Date): void
   date?: Date
@@ -34,7 +36,7 @@ export const useDatePickerModal = (props: DatePickerModalOptions) => {
   })
 
   const getModalProps = React.useCallback(
-    (props?: Partial<BaseModalProps>) => {
+    (props?: Partial<any>) => {
       return {
         title,
         footer,

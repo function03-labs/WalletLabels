@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.3.0
+
+### Minor Changes
+
+- 04e2063: Updated to Chakra UI 2.3.6
+
 ## 0.2.1
 
 ### Patch Changes

@@ -1,14 +1,17 @@
 import * as React from 'react'
 
 import { VStack } from '@chakra-ui/react'
-import { Modal, BaseModalProps, Button, ButtonGroup } from '@saas-ui/react'
+import { Modal, Button, ButtonGroup } from '@saas-ui/react'
 
 import { DatePickerStatic, DatePickerStaticProps } from './date-picker'
 
-import { useDatePickerModal } from './use-date-picker-modal'
+import {
+  useDatePickerModal,
+  DatePickerModalOptions,
+} from './use-date-picker-modal'
 
 export interface DatePickerModalProps
-  extends Omit<BaseModalProps, 'size' | 'variant'>,
+  extends Omit<DatePickerModalOptions, 'size' | 'variant'>,
     DatePickerStaticProps {}
 
 export const DatePickerModal: React.FC<DatePickerModalProps> = (props) => {

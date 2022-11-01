@@ -1,5 +1,16 @@
 # @app/mock-graphql
 
+## 0.5.0
+
+### Minor Changes
+
+- 04e2063: Updated to Chakra UI 2.3.6
+
+### Patch Changes
+
+- Updated dependencies [04e2063]
+  - @app/graphql@0.4.0
+
 ## 0.4.4
 
 ### Patch Changes

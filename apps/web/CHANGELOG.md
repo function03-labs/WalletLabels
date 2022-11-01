@@ -1,5 +1,21 @@
 # nextjs-app
 
+## 0.7.0
+
+### Minor Changes
+
+- 04e2063: Updated to Chakra UI 2.3.6
+
+### Patch Changes
+
+- Updated dependencies [04e2063]
+- Updated dependencies [04e2063]
+  - @app/features@1.0.0
+  - @app/mock-graphql@0.5.0
+  - @ui/theme@0.2.0
+  - @saas-ui/pro@0.11.0
+  - @saas-ui/paddle@0.4.8
+
 ## 0.6.4
 
 ### Patch Changes
