@@ -28,8 +28,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/styled-system": "^2.2.3",
-    "recharts": "^2.1.15"
+    "@chakra-ui/styled-system": "^2.3.4",
+    "recharts": "^2.1.16"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2",
@@ -38,6 +38,6 @@
   },
   "devDependencies": {
     "prop-types": "^15.8.1",
-    "tsup": "^6.2.3"
+    "tsup": "^6.3.0"
   }
 }

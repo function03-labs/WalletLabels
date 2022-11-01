@@ -39,7 +39,7 @@
     "directory": "saas-ui/paddle"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^2.0.4",
+    "@chakra-ui/utils": "^2.0.11",
     "@saas-ui/pro": "workspace:*"
   },
   "peerDependencies": {
@@ -52,6 +52,6 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "tsup": "^6.2.3"
+    "tsup": "^6.3.0"
   }
 }
