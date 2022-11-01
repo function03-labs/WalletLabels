@@ -109,6 +109,7 @@ export const defaultOperators: FilterOperators = [
       if (typeof value === 'string') {
         value = parseISO(value)
       }
+      console.log(value, filterValue)
       return !!value && isAfter(value, filterValue)
     },
   },

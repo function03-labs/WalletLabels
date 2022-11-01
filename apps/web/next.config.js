@@ -22,7 +22,7 @@ module.exports = withWorkspaces({
       // Load pro packages from src instead of dist
       config.plugins = config.plugins.concat([
         new webpack.NormalModuleReplacementPlugin(
-          /\@saas-ui\/(pro|billing|date-picker|charts|router|onboarding|features|paddle.*|pro\/theme)$/,
+          /\@saas-ui\/(pro|billing|charts|router|onboarding|features|paddle.*|pro\/theme)$/,
           (resource) => {
             resource.request = resource.request + '/src'
           },

@@ -27,7 +27,11 @@ import {
 
 import { useDebouncedCallback } from '@react-hookz/web'
 
-import { DatePickerModal } from '@saas-ui/date-picker'
+import {
+  DatePickerModal,
+  DateValue,
+  getLocalTimeZone,
+} from '@saas-ui/date-picker'
 
 export interface ListPageProps<D extends object>
   extends PageProps,
@@ -129,8 +133,13 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
           return modals.open({
             title: label,
             date: new Date(),
-            onSubmit: (date: Date) => {
-              resolve({ key, id, value: date, operator: 'after' })
+            onSubmit: (date: DateValue) => {
+              resolve({
+                key,
+                id,
+                value: date.toDate(getLocalTimeZone()),
+                operator: 'after',
+              })
             },
             onClose: () => reject(),
             component: DatePickerModal,

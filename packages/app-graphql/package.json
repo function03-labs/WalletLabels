@@ -7,17 +7,17 @@
   },
   "dependencies": {
     "@app/config": "workspace:*",
-    "@tanstack/react-query": "^4.10.3",
+    "@tanstack/react-query": "^4.14.0",
     "graphql": "16.6.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.13.6",
-    "@graphql-codegen/near-operation-file-preset": "^2.4.2",
+    "@graphql-codegen/cli": "^2.13.8",
+    "@graphql-codegen/near-operation-file-preset": "^2.4.3",
     "@graphql-codegen/plugin-helpers": "^2.7.1",
-    "@graphql-codegen/typed-document-node": "^2.3.4",
-    "@graphql-codegen/typescript": "^2.7.4",
-    "@graphql-codegen/typescript-operations": "^2.5.4",
-    "@graphql-codegen/typescript-react-query": "^4.0.2"
+    "@graphql-codegen/typed-document-node": "^2.3.5",
+    "@graphql-codegen/typescript": "^2.8.0",
+    "@graphql-codegen/typescript-operations": "^2.5.5",
+    "@graphql-codegen/typescript-react-query": "^4.0.3"
   },
   "peerDependencies": {
     "@saas-ui/react": ">=1",

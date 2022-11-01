@@ -1,5 +1,5 @@
 {
-  "name": "@saas-ui/date-picker",
+  "name": "@saas-ui/date-picker-legacy",
   "version": "0.4.2",
   "exports": {
     ".": {
