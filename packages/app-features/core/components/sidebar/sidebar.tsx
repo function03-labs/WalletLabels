@@ -25,7 +25,7 @@ import {
   NavGroup,
 } from '@saas-ui/sidebar'
 
-import { useActivePath, useNavigate } from '@saas-ui/router'
+import { useActivePath, useLocation, useNavigate } from '@saas-ui/router'
 
 import {
   IconButton,
@@ -190,6 +190,7 @@ interface AppSidebarlink extends NavItemProps {
 const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
   const { href, label, hotkey, ...rest } = props
   const navigate = useNavigate()
+  const isActive = useActivePath(href)
 
   const command = useHotkeysShortcut(
     hotkey,
@@ -203,6 +204,7 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
     <NavItem
       href={href}
       label={label}
+      isActive={isActive}
       {...rest}
       tooltip={
         <>
