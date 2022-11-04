@@ -1,5 +1,11 @@
 # saas-ui-storybook
 
+## 9.0.1
+
+### Patch Changes
+
+- @saas-ui/pro@0.11.1
+
 ## 9.0.0
 
 ### Patch Changes

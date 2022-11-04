@@ -1,5 +1,11 @@
 # @saas-ui/router
 
+## 0.5.0
+
+### Minor Changes
+
+- 325d285: Parse asPath search and hash
+
 ## 0.4.1
 
 ### Patch Changes

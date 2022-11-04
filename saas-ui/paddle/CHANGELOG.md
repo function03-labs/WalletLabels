@@ -1,5 +1,11 @@
 # @saas-ui/paddle
 
+## 0.4.9
+
+### Patch Changes
+
+- @saas-ui/pro@0.11.1
+
 ## 0.4.8
 
 ### Patch Changes

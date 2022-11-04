@@ -1,5 +1,18 @@
 # electron-app
 
+## 0.6.1
+
+### Patch Changes
+
+- Updated dependencies [237d2e9]
+- Updated dependencies [fbb3e7d]
+- Updated dependencies [325d285]
+  - @saas-ui/onboarding@0.5.2
+  - @app/features@2.0.0
+  - @saas-ui/router@0.5.0
+  - @saas-ui/pro@0.11.1
+  - @saas-ui/paddle@0.4.9
+
 ## 0.6.0
 
 ### Minor Changes

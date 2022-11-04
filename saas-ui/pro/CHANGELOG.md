@@ -1,5 +1,14 @@
 # @saas-ui/pro
 
+## 0.11.1
+
+### Patch Changes
+
+- Updated dependencies [237d2e9]
+- Updated dependencies [325d285]
+  - @saas-ui/onboarding@0.5.2
+  - @saas-ui/router@0.5.0
+
 ## 0.11.0
 
 ### Minor Changes

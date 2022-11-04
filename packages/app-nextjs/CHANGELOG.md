@@ -1,5 +1,16 @@
 # @app/nextjs
 
+## 0.2.0
+
+### Minor Changes
+
+- 325d285: Parse asPath search and hash
+
+### Patch Changes
+
+- Updated dependencies [325d285]
+  - @saas-ui/router@0.5.0
+
 ## 0.1.4
 
 ### Patch Changes

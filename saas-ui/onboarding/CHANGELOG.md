@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.5.2
+
+### Patch Changes
+
+- 237d2e9: Export hooks
+
 ## 0.5.1
 
 ### Patch Changes
