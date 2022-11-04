@@ -8,8 +8,20 @@ interface NextRouterProviderProps {
   children: React.ReactNode
 }
 
+const parseAsPath = (asPath: string) => {
+  const [, pathname, search, hash] =
+    asPath.match(/([^#?\s]+)(\??[^#]*)?(#.*)?$/) || []
+
+  return { pathname, search, hash }
+}
+
 export function NextRouterProvider({ children }: NextRouterProviderProps) {
   const router = useRouter()
+
+  const location = React.useMemo(
+    () => parseAsPath(router.asPath),
+    [router.asPath],
+  )
 
   const context: RouterContextValue = {
     navigate: React.useCallback(
@@ -24,9 +36,8 @@ export function NextRouterProvider({ children }: NextRouterProviderProps) {
     ),
     back: router.back,
     params: router.query,
-    location: {
-      pathname: router.asPath,
-    },
+    location,
+    route: router.route,
   }
 
   return <RouterProvider value={context}>{children}</RouterProvider>
