@@ -1,11 +1,8 @@
-import { chakra, useSafeLayoutEffect, HTMLChakraProps } from '@chakra-ui/react'
+import { useSafeLayoutEffect, HTMLChakraProps } from '@chakra-ui/react'
 import { callAllHandlers, __DEV__ } from '@chakra-ui/utils'
-import { PropGetter, PropGetterV2 } from '@chakra-ui/react-utils'
-import { motion } from 'framer-motion'
+import { PropGetterV2 } from '@chakra-ui/react-utils'
 import * as React from 'react'
 import { useTourContext } from './use-tour'
-
-export const MotionBox = chakra(motion.div)
 
 export interface TourSpotlightOptions {
   motionPreset?: 'fade' | 'none'
