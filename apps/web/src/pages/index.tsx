@@ -28,3 +28,5 @@ export default function HomePage() {
     </Center>
   )
 }
+
+HomePage.isPublic = true
