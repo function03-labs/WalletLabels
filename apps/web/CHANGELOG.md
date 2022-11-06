@@ -1,5 +1,14 @@
 # nextjs-app
 
+## 0.7.2
+
+### Patch Changes
+
+- Updated dependencies [8d58b10]
+  - @saas-ui/pro@0.11.2
+  - @app/features@2.0.1
+  - @saas-ui/paddle@0.4.10
+
 ## 0.7.1
 
 ### Patch Changes

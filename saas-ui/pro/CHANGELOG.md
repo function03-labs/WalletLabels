@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.11.2
+
+### Patch Changes
+
+- 8d58b10: Update dependencies
+
 ## 0.11.1
 
 ### Patch Changes
