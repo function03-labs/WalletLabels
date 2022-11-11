@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { forwardRef } from '@chakra-ui/react'
 import { FilterIcon } from '../icons'
 import { FilterItem, FilterMenu, FilterMenuProps } from './filter-menu'
