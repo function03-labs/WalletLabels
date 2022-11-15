@@ -1,6 +1,6 @@
 {
   "name": "saas-ui-pro-next-starter",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.2.1",
+    "@chakra-ui/react": "^2.3.6",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@saas-ui/pro": "^0.5.2",
-    "@saas-ui/react": "^1.1.1",
+    "@saas-ui/pro": "^0.11.2",
+    "@saas-ui/react": "^1.6.1",
+    "@saas-ui/sidebar": "^0.3.2",
+    "@saas-ui/app-shell": "^0.2.0",
     "framer-motion": "^6.3.4",
-    "next": "^12.1.6",
+    "next": "^12.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -1,5 +1,5 @@
 import { Heading, Text } from '@chakra-ui/react'
-import { AppShell } from '@saas-ui/pro'
+import { AppShell } from '@saas-ui/app-shell'
 
 import type { NextPage } from 'next'
 
