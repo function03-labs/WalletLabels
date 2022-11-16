@@ -5,6 +5,10 @@ if (!process.env.NEXT_PUBLIC_MAGIC_API_KEY) {
   throw new Error('Magic.link not configured')
 }
 
-export const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_API_KEY)
+const createMagic = (key: string) => {
+  return typeof window != 'undefined' && new Magic(key)
+}
+
+const magic = createMagic(process.env.NEXT_PUBLIC_MAGIC_API_KEY)
 
 export const authService = createAuthService(magic)

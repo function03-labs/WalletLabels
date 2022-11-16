@@ -26,7 +26,7 @@ __metadata:
   resolution: "@app/config@workspace:packages/app-config"
   dependencies:
     "@supabase/supabase-js": ^2.0.5
-    magic-sdk: ^8.1.1
+    magic-sdk: ^10.0.0
   peerDependencies:
     "@saas-ui/react": ">=1"
   languageName: unknown
@@ -4799,33 +4799,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@magic-sdk/commons@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "@magic-sdk/commons@npm:4.1.1"
+"@magic-sdk/commons@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@magic-sdk/commons@npm:6.0.0"
   peerDependencies:
     "@magic-sdk/provider": ">=4.3.0"
     "@magic-sdk/types": ">=3.1.1"
-  checksum: 82d9078014341d9672cdbbc240cd880786fdb021649246e49374790ca1104d11f2f48fdef3db5af6a45b82cdd1666d628a1bc4c107647fe970b22ec72d891e40
+  checksum: 1b7d404abd4688cf938a9f81619c238356bba9f5ad6afb6d4cf4e2618620e879087d44567f80405ea3bf29629e48c63a44de6d17fb5f43f5a5736cb46a2d60b9
   languageName: node
   linkType: hard
 
-"@magic-sdk/provider@npm:^8.1.1":
-  version: 8.1.1
-  resolution: "@magic-sdk/provider@npm:8.1.1"
+"@magic-sdk/provider@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@magic-sdk/provider@npm:10.0.0"
   dependencies:
-    "@magic-sdk/types": ^7.1.1
+    "@magic-sdk/types": ^9.0.0
     eventemitter3: ^4.0.4
     web3-core: 1.5.2
   peerDependencies:
     localforage: ^1.7.4
-  checksum: 1a1094b8d06da4d0114547d1591c2f3183852724d4ebbf18b7d76026c03e6ef744031f167da629155f987e1c79ee7d078a801020f343a9f790544d14a3397283
+  checksum: 40c6e79d7ea9daa8d887b041290f35002cfd66272d8cb77bcaa95c38e2d7170c68730743e5c54b41ded1fd59679ed738587831e1616ed77f751b3a15b62ef767
   languageName: node
   linkType: hard
 
-"@magic-sdk/types@npm:^7.1.1":
-  version: 7.1.1
-  resolution: "@magic-sdk/types@npm:7.1.1"
-  checksum: ea380b32fa35a0def1ccfcc19b441900640d6e49362311a24403c77c1fe2b55683b5412e7831e88597d270e86783cd141e3ec423f1ece489c498a3669e5a8632
+"@magic-sdk/types@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@magic-sdk/types@npm:9.0.0"
+  checksum: 43cdc18aad76f2e370c510f1cd885f271a4ee38eab833449f61b80d01dc3d9f0179ed6d7ed3e96614a6672d81154b2a6e7d33d71e2510e5f7126ae6942455918
   languageName: node
   linkType: hard
 
@@ -19275,15 +19275,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-sdk@npm:^8.1.1":
-  version: 8.1.1
-  resolution: "magic-sdk@npm:8.1.1"
+"magic-sdk@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "magic-sdk@npm:10.0.0"
   dependencies:
-    "@magic-sdk/commons": ^4.1.1
-    "@magic-sdk/provider": ^8.1.1
-    "@magic-sdk/types": ^7.1.1
+    "@magic-sdk/commons": ^6.0.0
+    "@magic-sdk/provider": ^10.0.0
+    "@magic-sdk/types": ^9.0.0
     localforage: ^1.7.4
-  checksum: 45faa9cbf7aa6acd08b162cb5bfdfd32085a1649597d82268b221d7b6b4690a0ff8d2100dd350c0594d6aa33ed114440efaf2cb3de8f25ed687e7a421f9a19ee
+  checksum: ee78a9730c0699431631462d6667ed9b1830c5fd7460d36e355ebbfe303178c7b43cb6f1a4489688f48b6838197081962af3ddf375d58203a9605258a1c55167
   languageName: node
   linkType: hard
 
