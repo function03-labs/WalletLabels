@@ -90,7 +90,7 @@ if (__DEV__) {
 }
 
 export interface PageSidebarContainerProps
-  extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition'>,
+  extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition' | 'onResize'>,
     Omit<ChakraProps, 'css'>,
     Omit<ResizeOptions, 'position'>,
     ThemingProps<'PageSidebar'> {
@@ -100,8 +100,14 @@ export interface PageSidebarContainerProps
 export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
   props,
 ) => {
-  const { children, isOpen, isResizable, defaultWidth, ...containerProps } =
-    omitThemingProps(props)
+  const {
+    children,
+    isOpen,
+    isResizable,
+    onResize,
+    defaultWidth,
+    ...containerProps
+  } = omitThemingProps(props)
 
   const styles = useMultiStyleConfig('PageSidebar', props) as Record<
     string,
@@ -112,6 +118,7 @@ export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
     defaultWidth,
     isResizable,
     handlePosition: 'left',
+    onResize,
   })
 
   const innerStyles: SystemStyleObject = {

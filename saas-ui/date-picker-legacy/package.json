@@ -28,9 +28,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.11",
-    "@chakra-ui/react-utils": "^2.0.8",
-    "@chakra-ui/utils": "^2.0.11",
+    "@chakra-ui/icons": "^2.0.12",
+    "@chakra-ui/react-utils": "^2.0.9",
+    "@chakra-ui/utils": "^2.0.12",
     "@datepicker-react/hooks": "^2.8.4",
     "date-fns": "^2.29.3"
   },
@@ -45,6 +45,6 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "tsup": "^6.3.0"
+    "tsup": "^6.5.0"
   }
 }

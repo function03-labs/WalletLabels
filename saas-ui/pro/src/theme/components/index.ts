@@ -18,7 +18,6 @@ import Section from './section'
 import Sidebar from './sidebar'
 import DataGrid from './data-grid'
 import Toolbar from './toolbar'
-import Tooltip from './tooltip'
 
 export default {
   AppShell,
@@ -41,5 +40,4 @@ export default {
   Sidebar,
   DataGrid,
   Toolbar,
-  Tooltip,
 }
