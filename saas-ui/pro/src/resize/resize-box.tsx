@@ -5,7 +5,7 @@ import { useResize, UseResizeProps } from './use-resize'
 import { ResizeHandle } from './resize-handle'
 
 export interface ResizeBoxProps
-  extends HTMLChakraProps<'div'>,
+  extends Omit<HTMLChakraProps<'div'>, 'onResize'>,
     Omit<UseResizeProps, 'position'> {}
 
 export const ResizeBox: React.FC<ResizeBoxProps> = (props) => {

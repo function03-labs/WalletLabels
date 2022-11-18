@@ -1,5 +1,19 @@
 # @saas-ui/pro
 
+## 0.12.0
+
+### Minor Changes
+
+- d1f3a55: Updated to Saas UI 1.7.0
+
+### Patch Changes
+
+- ea688e0: Add missing React import
+- d1f3a55: Add onResize property to PageSidebar
+- Updated dependencies [d1f3a55]
+  - @saas-ui/onboarding@0.6.0
+  - @saas-ui/router@0.6.0
+
 ## 0.11.2
 
 ### Patch Changes

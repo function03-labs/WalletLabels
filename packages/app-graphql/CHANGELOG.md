@@ -1,5 +1,17 @@
 # @app/graphql
 
+## 0.5.0
+
+### Minor Changes
+
+- d1f3a55: Updated to Saas UI 1.7.0
+
+### Patch Changes
+
+- Updated dependencies [1265844]
+- Updated dependencies [d1f3a55]
+  - @app/config@0.2.0
+
 ## 0.4.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/billing",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "exports": {
     ".": {
       "require": "./dist/index.cjs.js",

@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.6.0
+
+### Minor Changes
+
+- d1f3a55: Updated to Saas UI 1.7.0
+
 ## 0.5.2
 
 ### Patch Changes

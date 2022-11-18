@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.4.0
+
+### Minor Changes
+
+- d1f3a55: Updated to Saas UI 1.7.0
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/paddle",
-  "version": "0.4.10",
+  "version": "0.5.0",
   "exports": {
     ".": {
       "require": "./dist/index.cjs.js",

@@ -1,5 +1,16 @@
 # @app/mock-graphql
 
+## 0.6.0
+
+### Minor Changes
+
+- d1f3a55: Updated to Saas UI 1.7.0
+
+### Patch Changes
+
+- Updated dependencies [d1f3a55]
+  - @app/graphql@0.5.0
+
 ## 0.5.0
 
 ### Minor Changes

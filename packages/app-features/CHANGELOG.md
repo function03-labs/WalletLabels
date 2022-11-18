@@ -1,5 +1,26 @@
 # @app/features
 
+## 3.0.0
+
+### Minor Changes
+
+- d1f3a55: Updated to Saas UI 1.7.0
+
+### Patch Changes
+
+- b33d2c4: Updated to @saas-ui/react@1.6.2
+- Updated dependencies [ea688e0]
+- Updated dependencies [1265844]
+- Updated dependencies [d1f3a55]
+- Updated dependencies [d1f3a55]
+  - @saas-ui/pro@0.12.0
+  - @app/config@0.2.0
+  - @saas-ui/billing@0.7.0
+  - @saas-ui/charts@0.4.0
+  - @saas-ui/features@0.7.0
+  - @saas-ui/onboarding@0.6.0
+  - @saas-ui/router@0.6.0
+
 ## 2.0.1
 
 ### Patch Changes

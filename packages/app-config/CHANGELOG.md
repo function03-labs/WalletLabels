@@ -1,5 +1,12 @@
 # @app/config
 
+## 0.2.0
+
+### Minor Changes
+
+- 1265844: Updated to Magic v10
+- d1f3a55: Updated to Saas UI 1.7.0
+
 ## 0.1.2
 
 ### Patch Changes
