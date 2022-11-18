@@ -18,7 +18,7 @@ import {
 import { Box } from '@chakra-ui/react'
 
 const meta: Meta = {
-  title: 'Components/DatePicker/DateRangePicker',
+  title: 'Deprecated/DatePicker/DateRangePicker',
   component: DatePicker,
   parameters: {
     controls: { expanded: true },

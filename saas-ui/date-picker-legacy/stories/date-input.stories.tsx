@@ -4,7 +4,7 @@ import React from 'react'
 import { DateInput, DateInputProps } from '../src'
 
 const meta: Meta = {
-  title: 'Components/DatePicker/DateInput',
+  title: 'Deprecated/DatePicker/DateInput',
   component: DateInput,
   parameters: {
     controls: { expanded: true },

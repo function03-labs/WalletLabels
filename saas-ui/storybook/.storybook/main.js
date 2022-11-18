@@ -8,6 +8,9 @@ const toPath = (_path) => path.join(process.cwd(), _path)
 
 module.exports = {
   stories: [path.resolve('../**/*.stories.@(tsx|mdx)')],
+  features: {
+    previewMdx2: true,
+  },
   addons: [
     'storybook-addon-swc',
     '@storybook/addon-a11y',

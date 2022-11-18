@@ -15,7 +15,12 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Getting Started', ['Welcome', 'Installation', 'Theme']],
+      order: [
+        'Getting Started',
+        ['Welcome', 'Installation', 'Theme'],
+        'Components',
+        'Deprecated',
+      ],
     },
   },
 }

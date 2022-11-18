@@ -15,7 +15,7 @@ import {
 } from '../src'
 
 const meta: Meta = {
-  title: 'Components/DatePicker/DatePicker',
+  title: 'Deprecated/DatePicker/DatePicker',
   component: DatePicker,
   parameters: {
     controls: { expanded: true },
