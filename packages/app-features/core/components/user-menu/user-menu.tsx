@@ -55,6 +55,12 @@ export const UserMenu = () => {
         }
         variant="ghost"
         aria-label="User menu"
+        _hover={{
+          bg: 'sidebar-on-muted',
+        }}
+        _active={{
+          bg: 'sidebar-on-subtle',
+        }}
       />
       <Portal>
         {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}

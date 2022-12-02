@@ -59,6 +59,12 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
         }
         className="tenant-menu"
         variant="ghost"
+        _hover={{
+          bg: 'sidebar-on-muted',
+        }}
+        _active={{
+          bg: 'sidebar-on-subtle',
+        }}
       >
         {activeTenant?.label}
       </MenuButton>

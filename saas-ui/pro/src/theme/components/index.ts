@@ -9,6 +9,7 @@ import Form from './form'
 import Kbd from './kbd'
 import List from './list'
 import NavGroup from './nav-group'
+import NavItem from './nav-item'
 import Page from './page'
 import SplitPage from './split-page'
 import Stepper from './stepper'
@@ -31,6 +32,7 @@ export default {
   Kbd,
   List,
   NavGroup,
+  NavItem,
   Page,
   SplitPage,
   Stepper,
