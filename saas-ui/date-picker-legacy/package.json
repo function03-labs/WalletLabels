@@ -28,7 +28,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.12",
+    "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react-utils": "^2.0.9",
     "@chakra-ui/utils": "^2.0.12",
     "@datepicker-react/hooks": "^2.8.4",

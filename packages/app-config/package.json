@@ -3,8 +3,8 @@
   "main": "src/index.ts",
   "version": "0.2.0",
   "dependencies": {
-    "@supabase/supabase-js": "^2.1.0",
-    "magic-sdk": "^10.0.0"
+    "@supabase/supabase-js": "^2.1.1",
+    "magic-sdk": "^10.1.0"
   },
   "peerDependencies": {
     "@saas-ui/react": ">=1"
