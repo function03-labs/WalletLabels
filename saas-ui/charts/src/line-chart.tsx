@@ -68,19 +68,6 @@ export const LineChart = (props: LineChartProps) => {
         return 'transparent'
     }
   })()
-  // console.log(styles)
-  // const tooltipStyles = React.useMemo(
-  //   () =>
-  //     css({
-  //       ...styles,
-  //       borderRadius: 'md',
-  //       borderColor: 'inherit',
-  //       flexDirection: 'column',
-  //     })(theme),
-  //   [theme, styles],
-  // )
-
-  // console.log(tooltipStyles)
 
   return (
     <Box height={height}>
