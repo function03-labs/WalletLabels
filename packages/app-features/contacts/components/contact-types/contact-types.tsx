@@ -74,7 +74,9 @@ export const ContactTypes = () => {
           <MenuList>
             <MenuOptionGroup onChange={(value) => setType(value.toString())}>
               {items.map(([id, { label }]) => (
-                <MenuItemOption value={id}>{label}</MenuItemOption>
+                <MenuItemOption key={id} value={id}>
+                  {label}
+                </MenuItemOption>
               ))}
             </MenuOptionGroup>
           </MenuList>
@@ -87,6 +89,7 @@ export const ContactTypes = () => {
     <ButtonGroup isAttached variant="outline">
       {items.map(([id, { value, label }]) => (
         <Button
+          key={id}
           isActive={params?.type === value}
           onClick={() => setType(id as Types)}
         >
