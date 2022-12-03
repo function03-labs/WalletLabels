@@ -263,12 +263,6 @@ export function ContactsListPage() {
       <ContactTypes />
       <AddFilterButton />
       <Spacer />
-      <InlineSearch
-        placeholder="Search by name or email..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        onReset={() => setSearchQuery('')}
-      />
       <Menu>
         <MenuButton
           as={ToolbarButton}
@@ -291,11 +285,17 @@ export function ContactsListPage() {
 
   const toolbar = (
     <Toolbar>
-      {!isMobile && toolbarItems} {primaryAction}
+      <InlineSearch
+        placeholder="Search by name or email..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        onReset={() => setSearchQuery('')}
+      />
+      {primaryAction}
     </Toolbar>
   )
 
-  const tabbar = isMobile && <Toolbar>{toolbarItems}</Toolbar>
+  const tabbar = <Toolbar>{toolbarItems}</Toolbar>
 
   const bulkActions = ({
     selections,

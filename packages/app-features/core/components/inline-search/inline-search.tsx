@@ -68,6 +68,7 @@ export const InlineSearch = forwardRef<SearchInputProps, 'input'>(
           }
         : {
             width: 'full',
+            maxW: '260px',
             overflow: 'hidden',
             position: 'absolute',
             right: 0,
@@ -75,6 +76,7 @@ export const InlineSearch = forwardRef<SearchInputProps, 'input'>(
             py: 2,
             mt: -2,
             bg: 'app-background',
+            zIndex: 1,
           }
       : {}
 

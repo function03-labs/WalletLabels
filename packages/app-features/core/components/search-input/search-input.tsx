@@ -19,7 +19,7 @@ export const SearchInput = forwardRef<SearchInputProps, 'input'>(
       <BaseSearchInput
         ref={ref}
         icon={<FiSearch />}
-        resetIcon={<FiX />}
+        resetIcon={<FiX size="1.6em" />}
         {...props}
       />
     )

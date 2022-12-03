@@ -15,7 +15,7 @@ export const theme = extendTheme(
     components,
   },
   /**
-   * Uncomment this to use any of the build in color schemes.
+   * Uncomment this to use any of the built-in color schemes.
    */
   // withThemeColors(colorScheme),
   baseTheme,
