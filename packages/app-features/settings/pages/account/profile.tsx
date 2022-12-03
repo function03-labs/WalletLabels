@@ -2,14 +2,14 @@ import { useRef, useState } from 'react'
 import { useGetCurrentUserQuery } from '@app/graphql'
 import { useUpdateUserMutation } from '@app/graphql'
 
-import * as Yup from 'yup'
-const schema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too short')
-    .max(25, 'Too long')
-    .required()
-    .label('Name'),
-  email: Yup.string().required().email().label('Email'),
+import { z } from 'zod'
+
+const schema = z.object({
+  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
+  email: z
+    .string()
+    .email({ message: 'Please enter your email address' })
+    .describe('Email'),
 })
 
 import {

@@ -5,14 +5,10 @@ import {
   GetOrganizationQuery,
 } from '@app/graphql'
 
-import * as Yup from 'yup'
+import { z } from 'zod'
 
-const schema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too short')
-    .max(25, 'Too long')
-    .required()
-    .label('Name'),
+const schema = z.object({
+  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
 })
 
 import { Section, useTenant } from '@saas-ui/pro'

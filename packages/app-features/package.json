@@ -16,7 +16,7 @@
     "@tiptap/suggestion": "2.0.0-beta.204",
     "react-icons": "^4.7.1",
     "slug": "^8.2.2",
-    "yup": "^0.32.11"
+    "zod": "^3.19.1"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",

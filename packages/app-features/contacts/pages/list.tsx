@@ -6,14 +6,13 @@ import {
   useCreateContactMutation,
 } from '@app/graphql'
 
-import * as Yup from 'yup'
+import { z } from 'zod'
 
 import {
   Box,
   Tag,
   Spacer,
   MenuItem,
-  useBreakpointValue,
   Menu,
   MenuButton,
   MenuList,
@@ -21,7 +20,6 @@ import {
 } from '@chakra-ui/react'
 import { FiSliders, FiUser } from 'react-icons/fi'
 import {
-  Select,
   EmptyState,
   OverflowMenu,
   useModals,
@@ -36,7 +34,6 @@ import {
   useTenant,
   useDataGridFilter,
   DataGridCell,
-  ColumnDef,
   BulkActionsSelections,
   MenuProperty,
   ToggleButtonGroup,
@@ -111,12 +108,8 @@ const ActionCell: DataGridCell<Contact> = () => {
   )
 }
 
-const schema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too short')
-    .max(25, 'Too long')
-    .required()
-    .label('Name'),
+const schema = z.object({
+  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
 })
 
 export function ContactsListPage() {
@@ -125,8 +118,6 @@ export function ContactsListPage() {
   const params = useParams()
 
   const [searchQuery, setSearchQuery] = React.useState('')
-
-  const isMobile = useBreakpointValue({ base: true, lg: false })
 
   const { data, isLoading } = useGetContactsQuery({
     type: params?.type as string,

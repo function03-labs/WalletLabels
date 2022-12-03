@@ -11,8 +11,8 @@ import {
   ModalsProvider,
   Form,
 } from '@saas-ui/react'
-import { yupResolver, yupFieldResolver } from '@saas-ui/forms/yup'
-import { AnyObjectSchema } from 'yup'
+import { zodResolver, zodFieldResolver } from '@saas-ui/forms/zod'
+import { ZodSchema } from 'zod'
 
 import { TenancyProvider, Tenant } from '@saas-ui/pro'
 import { FeaturesProvider } from '@saas-ui/features'
@@ -26,10 +26,10 @@ import features from '@app/config/feature-flags'
 const queryClient = new QueryClient()
 
 /**
- * Use the Yup resolver as default in all forms
+ * Use the Zod resolver as default in all forms
  */
-Form.getResolver = (schema: AnyObjectSchema) => yupResolver(schema)
-Form.getFieldResolver = (schema: AnyObjectSchema) => yupFieldResolver(schema)
+Form.getResolver = (schema: ZodSchema) => zodResolver(schema)
+Form.getFieldResolver = (schema: ZodSchema) => zodFieldResolver(schema)
 
 export interface AppProviderProps {
   linkComponent?: React.ElementType<any>

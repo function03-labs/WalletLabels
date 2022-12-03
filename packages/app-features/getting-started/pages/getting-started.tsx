@@ -1,6 +1,5 @@
 import * as React from 'react'
-import * as Yup from 'yup'
-
+import { z } from 'zod'
 import { Container, Text, ModalFooter, useDisclosure } from '@chakra-ui/react'
 
 import { Field, FormLayout, SubmitButton, FormDialog } from '@saas-ui/react'
@@ -9,12 +8,8 @@ import { Page } from '@saas-ui/pro'
 import { useCreateOrganizationMutation } from '@app/graphql'
 import { useNavigate } from '@saas-ui/router'
 
-const schema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too short')
-    .max(25, 'Too long')
-    .required()
-    .label('Name'),
+const schema = z.object({
+  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
 })
 
 export function GettingStartedPage(props: any) {
