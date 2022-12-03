@@ -1,6 +1,6 @@
 import { SystemStyleFunction, transparentize } from '@chakra-ui/theme-tools'
 
-const variantOutline: SystemStyleFunction = (props) => {
+const variantGhost: SystemStyleFunction = (props) => {
   const { colorScheme: c, theme } = props
 
   if (c === 'gray') {
@@ -25,8 +25,13 @@ const variantOutline: SystemStyleFunction = (props) => {
   }
 }
 
+const variantOutline: SystemStyleFunction = (props) => {
+  return variantGhost(props)
+}
+
 export default {
   variants: {
+    ghost: variantGhost,
     outline: variantOutline,
   },
 }
