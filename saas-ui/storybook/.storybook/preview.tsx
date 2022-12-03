@@ -19,6 +19,7 @@ export const parameters = {
         'Getting Started',
         ['Welcome', 'Installation', 'Theme'],
         'Components',
+        'Themes',
         'Deprecated',
       ],
     },
@@ -63,7 +64,7 @@ const ColorModeToggle = ({ colorMode }) => {
   const { setColorMode } = useColorMode()
 
   React.useEffect(() => {
-    setColorMode(colorMode)
+    setColorMode?.(colorMode)
   }, [colorMode])
 
   return null
@@ -82,7 +83,17 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
     return proTheme
   }, [themeId])
 
-  const theme = getTheme()
+  const story = (
+    <chakra.div dir={dir} id="story-wrapper" height="100%">
+      <StoryFn />
+    </chakra.div>
+  )
+
+  if (context.parameters.saasProvider === false) {
+    return story
+  }
+
+  const theme = context.parameters.theme || getTheme()
   return (
     <SaasProvider
       theme={extendTheme(
@@ -97,10 +108,8 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
         },
       )}
     >
-      <chakra.div dir={dir} id="story-wrapper" height="100%">
-        <ColorModeToggle colorMode={colorMode} />
-        <StoryFn />
-      </chakra.div>
+      <ColorModeToggle colorMode={colorMode} />
+      {story}
     </SaasProvider>
   )
 }
