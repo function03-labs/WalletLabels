@@ -187,7 +187,7 @@ export const ToolbarToggleButton = forwardRef<
       ref={ref}
       aria-checked={isChecked}
       colorScheme={isChecked ? 'primary' : colorScheme}
-      variant={isChecked ? 'subtle' : variant}
+      variant={variant}
       {...rest}
       className={cx('saas-toolbar__toggle-button', props.className)}
     />
