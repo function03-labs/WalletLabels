@@ -1,5 +1,13 @@
 # @saas-ui/pro
 
+## 0.12.2
+
+### Patch Changes
+
+- c0c8676: Fixed Beacon styles
+- Updated dependencies [c0c8676]
+  - @saas-ui/onboarding@0.6.2
+
 ## 0.12.1
 
 ### Patch Changes

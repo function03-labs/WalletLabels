@@ -1,5 +1,13 @@
 # @app/features
 
+## 0.15.1
+
+### Patch Changes
+
+- Updated dependencies [c0c8676]
+  - @saas-ui/onboarding@0.6.2
+  - @saas-ui/pro@0.12.2
+
 ## 0.15.0
 
 ### Minor Changes

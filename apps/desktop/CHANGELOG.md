@@ -1,5 +1,15 @@
 # electron-app
 
+## 0.8.1
+
+### Patch Changes
+
+- Updated dependencies [c0c8676]
+  - @saas-ui/onboarding@0.6.2
+  - @saas-ui/pro@0.12.2
+  - @app/features@0.15.1
+  - @saas-ui/paddle@0.5.2
+
 ## 0.8.0
 
 ### Minor Changes

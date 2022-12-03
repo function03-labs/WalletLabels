@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.6.2
+
+### Patch Changes
+
+- c0c8676: Fixed Beacon styles
+
 ## 0.6.1
 
 ### Patch Changes
