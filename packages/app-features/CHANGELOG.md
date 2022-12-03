@@ -1,5 +1,27 @@
 # @app/features
 
+## 0.15.0
+
+### Minor Changes
+
+- 1f1286e: Improved the contacts list page composition on all screens.
+- 1ce6c2c: BREAKING: now using Zod for schema validation.
+
+### Patch Changes
+
+- 6602816: Updated dependencies
+- Updated dependencies [84ee878]
+- Updated dependencies [6602816]
+- Updated dependencies [2219d6b]
+- Updated dependencies [d174402]
+- Updated dependencies [c35cd59]
+- Updated dependencies [a5c4511]
+  - @saas-ui/pro@0.12.1
+  - @app/config@0.2.1
+  - @app/i18n@0.2.1
+  - @saas-ui/charts@0.4.1
+  - @saas-ui/onboarding@0.6.1
+
 ## 0.14.0
 
 ### Minor Changes

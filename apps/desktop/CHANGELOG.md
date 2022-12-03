@@ -1,5 +1,40 @@
 # electron-app
 
+## 0.8.0
+
+### Minor Changes
+
+- 2e81576: Upgraded to Next.js 13
+
+  ## Breaking changes
+
+  After upgrading you may need to add `legacyBehavior` to the Next Link component, since Saas UI wraps links and the new version of Next.js now renders an anchor tag itself.
+
+  ```ts
+  const NextLink = (props: LinkProps) => <Link {...props} legacyBehavior/>
+
+  <SaasProvider linkComponent={NextLink}>...</SaasProvider>
+  ```
+
+### Patch Changes
+
+- 6602816: Updated dependencies
+- Updated dependencies [1f1286e]
+- Updated dependencies [84ee878]
+- Updated dependencies [6602816]
+- Updated dependencies [1ce6c2c]
+- Updated dependencies [2219d6b]
+- Updated dependencies [d174402]
+- Updated dependencies [c35cd59]
+- Updated dependencies [a5c4511]
+  - @app/features@0.15.0
+  - @saas-ui/pro@0.12.1
+  - @ui/theme@0.2.1
+  - @saas-ui/charts@0.4.1
+  - @saas-ui/onboarding@0.6.1
+  - @saas-ui/paddle@0.5.1
+  - @app/mock-graphql@0.6.1
+
 ## 0.7.0
 
 ### Minor Changes

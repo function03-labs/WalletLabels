@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.6.1
+
+### Patch Changes
+
+- 6602816: Updated dependencies
+
 ## 0.6.0
 
 ### Minor Changes

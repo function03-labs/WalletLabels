@@ -1,10 +1,14 @@
-import { PartsStyleFunction, mode } from '@chakra-ui/theme-tools'
+import { PartsStyleFunction, mode, cssVar } from '@chakra-ui/theme-tools'
+
+const $bg = cssVar('timeline-bg')
 
 const baseStyle: PartsStyleFunction = (props) => {
   const color = mode('gray.300', 'gray.600')(props)
 
   return {
-    container: {},
+    container: {
+      [$bg.variable]: 'colors.chakra-body-bg',
+    },
     item: {},
     separator: {
       width: '24px',
@@ -12,7 +16,7 @@ const baseStyle: PartsStyleFunction = (props) => {
       me: 4,
     },
     icon: {
-      bg: 'app-background',
+      bg: [$bg.reference],
       color,
       py: '4px',
     },

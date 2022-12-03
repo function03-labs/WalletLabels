@@ -1,5 +1,12 @@
 # @app/mock-graphql
 
+## 0.6.1
+
+### Patch Changes
+
+- Updated dependencies [6602816]
+  - @app/graphql@0.5.1
+
 ## 0.6.0
 
 ### Minor Changes

@@ -41,6 +41,8 @@ const tokens = {
       default: 'blackAlpha.600',
       _dark: 'whiteAlpha.600',
     },
+    'chakra-body-bg': 'app-background',
+    'chakra-body-text': 'app-text',
   },
 }
 

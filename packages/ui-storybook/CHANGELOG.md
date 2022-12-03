@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.4.1
+
+### Patch Changes
+
+- 6602816: Updated dependencies
+
 ## 0.4.0
 
 ### Minor Changes

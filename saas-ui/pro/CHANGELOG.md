@@ -1,5 +1,17 @@
 # @saas-ui/pro
 
+## 0.12.1
+
+### Patch Changes
+
+- 84ee878: ToolbarButton no longer overrides variant to subtle for active items
+- 6602816: Updated dependencies
+- 2219d6b: Fixed color theme styles
+- c35cd59: Improved MenuListFilter styles to allow for better theming.
+- a5c4511: Added ghost variant definitions for button in the pro theme
+- Updated dependencies [6602816]
+  - @saas-ui/onboarding@0.6.1
+
 ## 0.12.0
 
 ### Minor Changes

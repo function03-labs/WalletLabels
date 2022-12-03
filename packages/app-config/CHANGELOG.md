@@ -1,5 +1,11 @@
 # @app/config
 
+## 0.2.1
+
+### Patch Changes
+
+- 6602816: Updated dependencies
+
 ## 0.2.0
 
 ### Minor Changes

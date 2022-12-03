@@ -1,5 +1,13 @@
 # @app/graphql
 
+## 0.5.1
+
+### Patch Changes
+
+- 6602816: Updated dependencies
+- Updated dependencies [6602816]
+  - @app/config@0.2.1
+
 ## 0.5.0
 
 ### Minor Changes

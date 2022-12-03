@@ -1,5 +1,12 @@
 # @saas-ui/charts
 
+## 0.4.1
+
+### Patch Changes
+
+- 6602816: Updated dependencies
+- d174402: Fixed warning for tooltip styles in darkmode.
+
 ## 0.4.0
 
 ### Minor Changes
