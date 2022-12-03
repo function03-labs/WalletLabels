@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  chakra,
   Box,
   SystemProps,
   useColorModeValue,
@@ -17,6 +18,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
+
+/* @ts-ignore */
+import { DefaultTooltipContent } from 'recharts/lib/component/DefaultTooltipContent'
 
 export interface ChartData {
   x: number
@@ -64,17 +68,19 @@ export const LineChart = (props: LineChartProps) => {
         return 'transparent'
     }
   })()
+  // console.log(styles)
+  // const tooltipStyles = React.useMemo(
+  //   () =>
+  //     css({
+  //       ...styles,
+  //       borderRadius: 'md',
+  //       borderColor: 'inherit',
+  //       flexDirection: 'column',
+  //     })(theme),
+  //   [theme, styles],
+  // )
 
-  const tooltipStyles = React.useMemo(
-    () =>
-      css({
-        ...styles,
-        borderRadius: 'md',
-        borderColor: 'inherit',
-        flexDirection: 'column',
-      })(theme),
-    [theme, styles],
-  )
+  // console.log(tooltipStyles)
 
   return (
     <Box height={height}>
@@ -109,7 +115,20 @@ export const LineChart = (props: LineChartProps) => {
             formatter={(value: string, name: string, props: any) => {
               return props.payload.yv
             }}
-            contentStyle={tooltipStyles}
+            wrapperStyle={{ outline: 'none' }}
+            contentStyle={{
+              background: 'transparent',
+              border: '0',
+              padding: '0',
+              outline: 'none',
+            }}
+            content={(props) => {
+              return (
+                <chakra.div __css={styles}>
+                  <DefaultTooltipContent {...props} />
+                </chakra.div>
+              )
+            }}
           />
           <Area
             type="monotone"
