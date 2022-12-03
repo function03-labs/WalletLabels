@@ -15,6 +15,7 @@ import {
   InputGroup,
   InputRightElement,
   useMultiStyleConfig,
+  InputGroupProps,
 } from '@chakra-ui/react'
 
 import { cx, normalizeEventKey, __DEV__ } from '@chakra-ui/utils'
@@ -28,11 +29,12 @@ const navigationKeys = ['ArrowUp', 'ArrowDown', 'Escape']
 
 export interface MenuListFilterProps extends Omit<InputProps, 'type'> {
   command?: string
+  groupProps?: InputGroupProps
 }
 
 export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
   (props, forwardRef) => {
-    const { placeholder, command, ...rest } = props
+    const { placeholder, command, groupProps, ...rest } = props
 
     const { focusedIndex } = useMenuContext()
 
@@ -40,24 +42,34 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
     const descendants = useMenuDescendantsContext()
 
     return (
-      <InputGroup role={role} className={cx('saas-menu-list__filter')}>
+      <InputGroup
+        role={role}
+        className={cx('saas-menu-list__filter')}
+        borderBottomWidth="1px"
+        borderBottomColor="default-border-color"
+        {...groupProps}
+      >
         <Input
           type="text"
           position="sticky"
           placeholder={placeholder}
           borderBottomRadius="0"
           borderWidth="0"
-          borderBottomWidth="1px"
-          borderColor="default-border-color"
+          bg="transparent"
+          _dark={{
+            bg: 'transparent',
+          }}
+          _hover={{
+            outline: 'none',
+            boxShadow: 'none',
+          }}
           _focus={{
             outline: 'none',
             boxShadow: 'none',
-            borderColor: 'default-border-color',
           }}
           _focusVisible={{
             outline: 'none',
             boxShadow: 'none',
-            borderColor: 'default-border-color',
           }}
           ref={mergeRefs(forwardRef, ref)}
           {...inputProps}
