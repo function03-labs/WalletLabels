@@ -1,7 +1,5 @@
-import { Container, VStack } from '@chakra-ui/react'
-import { Button } from '@saas-ui/react'
+import { Button, Container, VStack } from '@chakra-ui/react'
 import { Meta, Story } from '@storybook/react'
-import React from 'react'
 import { Beacon, BeaconProps } from '../src'
 
 const meta: Meta = {
@@ -36,9 +34,25 @@ ColorScheme.args = {
 export const Sizes = () => {
   return (
     <VStack spacing="8">
-      <Beacon size="sm" />
-      <Beacon size="md" />
+      <Beacon size="xs" colorScheme="primary" />
+      <Beacon size="sm" colorScheme="cyan" />
+      <Beacon size="md" colorScheme="blue" />
       <Beacon size="lg" />
     </VStack>
+  )
+}
+
+export const WithButton = () => {
+  return (
+    <Button position="relative">
+      Changelog{' '}
+      <Beacon
+        size="xs"
+        colorScheme="primary"
+        position="absolute"
+        top="0"
+        right="0"
+      />
+    </Button>
   )
 }

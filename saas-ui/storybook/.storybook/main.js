@@ -66,6 +66,14 @@ module.exports = {
           },
         ]),
       },
+      plugins: config.plugins.concat([
+        new webpack.NormalModuleReplacementPlugin(
+          /\@saas-ui\/(pro|onboarding)$/,
+          (resource) => {
+            resource.request = resource.request + '/src'
+          },
+        ),
+      ]),
     }
   },
   core: {

@@ -26,7 +26,7 @@ const baseStyle: SystemStyleFunction = (props) => {
 
     _before: {
       content: '""',
-      d: 'block',
+      display: 'block',
       w: '4',
       h: '4',
       borderRadius: '50%',
@@ -43,7 +43,23 @@ export default {
   },
   baseStyle,
   sizes: {
+    xs: {
+      h: '1',
+      w: '1',
+      _before: {
+        h: '1',
+        w: '1',
+      },
+    },
     sm: {
+      h: '2',
+      w: '2',
+      _before: {
+        h: '2',
+        w: '2',
+      },
+    },
+    md: {
       h: '3',
       w: '3',
       _before: {
@@ -51,20 +67,12 @@ export default {
         w: '3',
       },
     },
-    md: {
+    lg: {
       h: '4',
       w: '4',
       _before: {
         h: '4',
         w: '4',
-      },
-    },
-    lg: {
-      h: '5',
-      w: '5',
-      _before: {
-        h: '5',
-        w: '5',
       },
     },
   },
