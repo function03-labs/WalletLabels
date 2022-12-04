@@ -8,7 +8,7 @@ Come say hello at [Discord](https://discord.gg/4PmJGFcAjX), I'm always around to
 
 ## Roadmap
 
-https://github.com/saas-js/saas-ui-pro/projects/1
+https://roadmap.saas-ui.dev
 
 ## Storybook
 
