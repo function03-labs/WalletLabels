@@ -113,7 +113,7 @@ __metadata:
     msw: ^0.44.2
     react: ^18.2.0
     slug: ^8.2.2
-    zustand: ^3.7.2
+    zustand: ^4.1.4
   peerDependencies:
     "@saas-ui/react": ">=1"
   languageName: unknown
@@ -5813,7 +5813,7 @@ __metadata:
   resolution: "@saas-ui/features@workspace:saas-ui/features"
   dependencies:
     tsup: ^6.5.0
-    zustand: ^3.7.2
+    zustand: ^4.1.4
   peerDependencies:
     "@chakra-ui/react": ">=2"
     "@saas-ui/react": ">=1"
@@ -27091,7 +27091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.2.0":
+"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.2.0":
   version: 1.2.0
   resolution: "use-sync-external-store@npm:1.2.0"
   peerDependencies:
@@ -28380,15 +28380,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:^3.7.2":
-  version: 3.7.2
-  resolution: "zustand@npm:3.7.2"
+"zustand@npm:^4.1.4":
+  version: 4.1.4
+  resolution: "zustand@npm:4.1.4"
+  dependencies:
+    use-sync-external-store: 1.2.0
   peerDependencies:
+    immer: ">=9.0"
     react: ">=16.8"
   peerDependenciesMeta:
+    immer:
+      optional: true
     react:
       optional: true
-  checksum: 18f025b1b666a311121d3855303ff58e6a21fd107920ca474307e86984c13338d6c4cfa5cdf13382a9e0f76821f2554a12d4d200a98a66b58637e729f149797b
+  checksum: a9ceb7849ebf407d31a6121be09acfb041324f6f45ca9a3f62ab85e2d840d0f48f157abd99ed7b9e08b96ebb4e15480b4a196ed8b1df8a5a9a2ba9afd7c639a7
   languageName: node
   linkType: hard
 

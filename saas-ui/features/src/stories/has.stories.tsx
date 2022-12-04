@@ -106,7 +106,11 @@ export const WithRenderProps = () => {
 
 export const WithMultipleValues = () => {
   return (
-    <Has feature={['settings', 'value-feature']} value="enabled">
+    <Has
+      feature={['settings', 'value-feature']}
+      value="enabled"
+      fallback={<Button colorScheme="red">Feature Disabled</Button>}
+    >
       <Button colorScheme="green">Feature Enabled</Button>
     </Has>
   )

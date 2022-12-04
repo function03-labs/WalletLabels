@@ -21,7 +21,7 @@ export const createMockStore = <Type extends MockStoreRecord = MockStoreRecord>(
   key: string,
   initialData: Record<string, Type> = {},
 ) => {
-  const store = create<MockStore<Type>>(
+  const store = create<MockStore<Type>, [['zustand/persist', MockStore<Type>]]>(
     persist(
       (set, get) => ({
         data: initialData,

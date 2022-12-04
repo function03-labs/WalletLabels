@@ -59,7 +59,7 @@ const store = createVanilla<FeaturesStore>((set, get) => ({
   },
 }))
 
-const { Provider, useStore } = createContext<FeaturesStore>()
+const { Provider, useStore } = createContext<typeof store>()
 
 export interface FeaturesProviderProps {
   value?: FeaturesOptions
