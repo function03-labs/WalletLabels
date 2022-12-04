@@ -65,7 +65,7 @@ export const Has: React.FC<HasProps> = (props) => {
   } else if (fallback) {
     return <>{fallback}</>
   }
-  console.log(enabled, fallback, props)
+
   return null
 }
 

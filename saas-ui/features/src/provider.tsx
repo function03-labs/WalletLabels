@@ -1,7 +1,7 @@
 import React from 'react'
-import create from 'zustand'
-import createVanilla from 'zustand/vanilla'
-import createContext from 'zustand/context'
+import { default as create } from 'zustand'
+import { default as createVanilla } from 'zustand/vanilla'
+import { default as createContext } from 'zustand/context'
 
 import { Segment, UserAttributes, Flags } from './types'
 
