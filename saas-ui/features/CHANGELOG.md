@@ -1,5 +1,17 @@
 # @saas-ui/features
 
+## 0.8.2
+
+### Patch Changes
+
+- Downgrade tsup to fix build issues.
+
+## 0.8.1
+
+### Patch Changes
+
+- 497116e: Changed default imports for Zustand to fix issue with Next.js builds.
+
 ## 0.8.0
 
 ### Minor Changes

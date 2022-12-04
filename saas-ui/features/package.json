@@ -1,13 +1,12 @@
 {
   "name": "@saas-ui/features",
   "description": "Feature flags for Saas UI",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "exports": {
     ".": {
       "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js",
-      "module": "./dist/index.esm.js"
+      "import": "./dist/index.esm.js"
     },
     "./src": {
       "default": "./src/index.ts"
@@ -44,6 +43,6 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "tsup": "^6.5.0"
+    "tsup": "6.2.1"
   }
 }

@@ -8,6 +8,10 @@ export default defineConfig({
   },
   clean: true,
   sourcemap: true,
+  shims: true,
+  // esbuildOptions() {
+
+  // },
   external: [
     'react',
     '@chakra-ui/react',
