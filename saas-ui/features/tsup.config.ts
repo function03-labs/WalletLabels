@@ -13,6 +13,7 @@ export default defineConfig({
     '@chakra-ui/react',
     '@chakra-ui/system',
     '@chakra-ui/utils',
+    'zustand',
   ],
   format: ['esm', 'cjs'],
   outExtension(ctx) {

@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.8.0
+
+### Minor Changes
+
+- 93750f8: Updated to Zustand 4
+
 ## 0.7.0
 
 ### Minor Changes

@@ -1,5 +1,14 @@
 # nextjs-app
 
+## 0.9.2
+
+### Patch Changes
+
+- Updated dependencies [93750f8]
+  - @app/mock-graphql@0.7.0
+  - @saas-ui/features@0.8.0
+  - @app/features@1.0.0
+
 ## 0.9.1
 
 ### Patch Changes

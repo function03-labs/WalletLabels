@@ -1,5 +1,12 @@
 # @app/features
 
+## 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [93750f8]
+  - @saas-ui/features@0.8.0
+
 ## 0.15.1
 
 ### Patch Changes

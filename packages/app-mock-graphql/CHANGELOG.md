@@ -1,5 +1,11 @@
 # @app/mock-graphql
 
+## 0.7.0
+
+### Minor Changes
+
+- 93750f8: Updated to Zustand 4
+
 ## 0.6.1
 
 ### Patch Changes
