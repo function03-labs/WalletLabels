@@ -39,6 +39,7 @@ export const Custom = () => {
   return (
     <Box
       {...getContainerProps()}
+      position="relative"
       bg="blackAlpha.200"
       borderRightWidth="1px"
       width="200px"
@@ -47,4 +48,11 @@ export const Custom = () => {
       <ResizeHandle {...getHandleProps()} />
     </Box>
   )
+}
+
+export const Sticky = Template.bind({})
+Sticky.args = {
+  borderRightWidth: '1px',
+  position: 'sticky',
+  top: 0,
 }

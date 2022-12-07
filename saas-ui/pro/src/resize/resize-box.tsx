@@ -30,6 +30,7 @@ export const ResizeBox: React.FC<ResizeBoxProps> = (props) => {
       {...rest}
       {...getContainerProps(rest)}
       className={cx('saas-resize-box', props.className)}
+      __css={{ position: 'relative' }}
     >
       {children}
 
