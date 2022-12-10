@@ -39,7 +39,6 @@ export const Custom = () => {
   return (
     <Box
       {...getContainerProps()}
-      position="relative"
       bg="blackAlpha.200"
       borderRightWidth="1px"
       width="200px"
