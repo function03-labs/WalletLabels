@@ -6,23 +6,20 @@ import { AppShell, AppShellProps } from '@saas-ui/pro'
 import { HotkeysListOptions } from '@saas-ui/react'
 import { Auth, AuthProps } from '@saas-ui/auth'
 import { useLocation } from '@saas-ui/router'
-
-import { Hotkeys } from '@app/features/core/components/hotkeys'
-import { Link } from '@app/features/core/components/link'
-import { Logo } from '@app/features/core/components/logo'
-
-import { AppSidebar } from '@app/features/core/components/sidebar'
-import { SettingsSidebar } from '@app/features/settings/components/sidebar'
+import { BillingProvider } from '@saas-ui/billing'
 
 import { authType, authProviders, authPaths } from '@app/config/auth'
 import { settingsHotkeys, fullscreenHotkeys } from '@app/config/hotkeys'
+import { SettingsSidebar } from '@app/features/settings/components/sidebar'
+
+import { Hotkeys } from '../components/hotkeys'
+import { AppSidebar } from '../components/sidebar'
 
 import { useInitApp } from '../hooks/use-init-app'
 
-import { AppLoader } from '../components/app-loader'
+import { Logo, AppLoader, Link } from '@ui/lib'
 
 import { PublicLayout } from './public-layout'
-import { BillingProvider } from '@saas-ui/billing'
 
 /**
  * Wrapper component for Authenticated pages.

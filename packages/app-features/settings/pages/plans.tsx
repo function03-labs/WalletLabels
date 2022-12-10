@@ -4,7 +4,7 @@ import { useTenant } from '@saas-ui/pro'
 import { useNavigate } from '@saas-ui/router'
 import { useBilling } from '@saas-ui/billing'
 
-import { SettingsPage } from '@app/features/core/components/settings-page'
+import { SettingsPage } from '@ui/lib'
 import {
   PricingPlan,
   PricingTable,

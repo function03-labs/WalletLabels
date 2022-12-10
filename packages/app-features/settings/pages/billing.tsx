@@ -13,8 +13,7 @@ import {
   FormLayout,
   SubmitButton,
 } from '@saas-ui/react'
-import { SettingsPage } from '@app/features/core/components/settings-page'
-import { Button } from '@app/features/core/components/button'
+import { LinkButton, SettingsPage } from '@ui/lib'
 import { usePath } from '@app/features/core/hooks/use-path'
 
 import { useBilling } from '@saas-ui/billing'
@@ -52,7 +51,7 @@ function BillingPlan() {
               </Text>
             )}
 
-            <Button
+            <LinkButton
               label="View plans and upgrade"
               href={usePath('/settings/plans')}
             />

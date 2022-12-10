@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@chakra-ui/react'
+import { Button, SimpleGrid } from '@chakra-ui/react'
 import { PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 import { useBilling } from '@saas-ui/billing'
@@ -10,15 +10,13 @@ import {
   FiShield,
   FiBriefcase,
 } from 'react-icons/fi'
+import { LinkButton, SettingsPage } from '@ui/lib'
 
-import { SettingsPage } from '@app/features/core/components/settings-page'
-import { SettingsCard } from '@app/features/settings/components/settings-card'
-import { SupportCard } from '@app/features/settings/components/support-card'
-
-import { Button } from '@app/features/core/components/button'
 import { usePath } from '@app/features/core/hooks/use-path'
-
 import { FormattedDate } from '@app/i18n'
+
+import { SettingsCard } from '../components/settings-card'
+import { SupportCard } from '../components/support-card'
 
 import { useGetOrganizationQuery } from '@app/graphql'
 
@@ -41,13 +39,9 @@ export function SettingsOverviewPage() {
             subtitle="Manage your subscription."
             icon={FiBriefcase}
             footer={
-              <Button
-                href={usePath('/settings/plans')}
-                variant="subtle"
-                colorScheme="green"
-              >
+              <LinkButton href={usePath('/settings/plans')} variant="primary">
                 {isCanceled ? 'Activate your account' : 'Upgrade'}
-              </Button>
+              </LinkButton>
             }
           >
             <PropertyList borderTopWidth="1px" px="4">
@@ -67,9 +61,12 @@ export function SettingsOverviewPage() {
             subtitle="Manage your organization details."
             avatar={<PersonaAvatar name={data?.organization?.name} size="sm" />}
             footer={
-              <Button href={usePath('/settings/organization')} variant="subtle">
+              <LinkButton
+                href={usePath('/settings/organization')}
+                variant="secondary"
+              >
                 Update
-              </Button>
+              </LinkButton>
             }
           >
             <PropertyList borderTopWidth="1px" px="4">
@@ -88,11 +85,9 @@ export function SettingsOverviewPage() {
               authentication."
             icon={FiShield}
             footer={
-              <Button
-                label="Enable two-factor authentication"
-                variant="subtle"
-                colorScheme="primary"
-              />
+              <Button variant="secondary">
+                Enable two-factor authentication
+              </Button>
             }
           />
         </SimpleGrid>

@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import {
+  Button,
   Box,
   Heading,
   HStack,
@@ -20,7 +21,7 @@ import {
 
 import { FiCheck } from 'react-icons/fi'
 
-import { Button, ButtonGroup } from '@saas-ui/react'
+import { SegmentedControl } from '@ui/lib'
 
 const defaultPeriods = [
   {
@@ -137,7 +138,7 @@ export const PricingTable: React.FC<PricingTableProps> = (props) => {
                       <Button isDisabled>Current plan</Button>
                     ) : (
                       <Button
-                        colorScheme="primary"
+                        variant="primary"
                         onClick={() => onUpgrade?.(plan)}
                       >
                         {isDowngrade ? 'Downgrade' : 'Upgrade'}
@@ -209,19 +210,9 @@ interface PricingTablePeriodProps extends Omit<StackProps, 'onChange'> {
 const PricingTablePeriod: React.FC<PricingTablePeriodProps> = (props) => {
   const { periods, period, onChange, ...rest } = props
   return (
-    <Stack {...rest}>
+    <Stack {...rest} alignItems="flex-start">
       <Text>Billing period</Text>
-      <ButtonGroup isAttached variant="outline">
-        {periods.map(({ id, label }) => (
-          <Button
-            key={id}
-            isActive={period === id}
-            onClick={() => onChange(id)}
-          >
-            {label}
-          </Button>
-        ))}
-      </ButtonGroup>
+      <SegmentedControl segments={periods} onChange={onChange} value={period} />
     </Stack>
   )
 }

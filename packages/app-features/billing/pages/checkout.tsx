@@ -13,7 +13,7 @@ import { useNavigate } from '@saas-ui/router'
 import { useGetOrganizationQuery } from '@app/graphql'
 import { usePath } from '@app/features/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
-import { Button } from '@app/features/core/components/button'
+import { LinkButton } from '@ui/lib'
 import {
   HStack,
   Stack,
@@ -54,7 +54,6 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
       setCheckoutData(detail.eventData.checkout)
     },
   })
-  console.log(result)
 
   const onSuccess = (data: any) => {
     snackbar.success({
@@ -83,7 +82,7 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
         height="100%"
         actions={
           <>
-            <Button href={settingsPath}>Go back</Button>
+            <LinkButton href={settingsPath}>Go back</LinkButton>
           </>
         }
       />

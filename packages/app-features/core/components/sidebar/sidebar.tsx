@@ -36,15 +36,13 @@ import {
   useHotkeysShortcut,
 } from '@saas-ui/react'
 
+import { ElectronNav, GlobalSearchInput, InviteDialog } from '@ui/lib'
+
 import { BillingStatus } from '../billing-status'
 import { TenantMenu } from '../tenant-menu'
 import { UserMenu } from '../user-menu'
-import { ElectronNav } from '../electron-nav'
 
-import { MembersInviteDialog } from '@app/features/organizations/components/members-invite-dialog'
 import { usePath } from '@app/features/core/hooks/use-path'
-
-import { GlobalSearchInput } from '../global-search'
 
 export interface AppSidebarProps extends SidebarProps {}
 
@@ -151,7 +149,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               onClick={() =>
                 modals.open({
                   title: 'Invite people',
-                  component: MembersInviteDialog,
+                  component: InviteDialog,
                 })
               }
               label="Invite people"

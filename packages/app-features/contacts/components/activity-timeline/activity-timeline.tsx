@@ -12,8 +12,8 @@ import {
   Tooltip,
   useClipboard,
 } from '@chakra-ui/react'
-import { EditorField } from '@app/features/core/components/editor/editor'
-import { StatusBadge } from '@app/features/core/components/status-badge'
+import { EditorField, StatusBadge } from '@ui/lib'
+
 import {
   Timeline,
   TimelineItem,

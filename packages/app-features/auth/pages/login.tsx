@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Container, Stack } from '@chakra-ui/react'
-import { Link } from '@app/features/core/components/link'
+import { Link } from '@ui/lib'
 
 import { Loader, LoginView, useAuth } from '@saas-ui/react'
 

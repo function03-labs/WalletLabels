@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { Button } from '@app/features/core/components/button'
 
 import {
+  Button,
   Menu,
   MenuButton,
   MenuItemOption,

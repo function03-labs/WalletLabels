@@ -1,10 +1,6 @@
 import * as React from 'react'
 
-import {
-  MembersInviteDialog,
-  MembersInviteData,
-  defaultMemberRoles,
-} from '../members-invite-dialog'
+import { InviteDialog, InviteData, defaultMemberRoles } from '@ui/lib'
 
 import { Box, Tag, useDisclosure } from '@chakra-ui/react'
 import {
@@ -31,7 +27,7 @@ import {
   PersonaAvatar,
 } from '@saas-ui/react'
 
-import { SearchInput } from '@app/features/core/components/search-input'
+import { SearchInput } from '@ui/lib'
 
 export interface Member {
   id: string
@@ -147,7 +143,7 @@ export interface MembersListProps<M> extends Omit<CardProps, 'children'> {
   roles?: Option[]
   isMultiRoles?: boolean
   onRemove(member: M): void
-  onInvite(data: MembersInviteData): Promise<any>
+  onInvite(data: InviteData): Promise<any>
   onCancelInvite(member: M): Promise<any>
   onUpdateRoles(member: M, roles: string[]): Promise<any>
 }
@@ -224,7 +220,7 @@ export function MembersList<M extends Member = Member>({
       ) : (
         <EmptyState title={noResults} size="sm" p="4" />
       )}
-      <MembersInviteDialog
+      <InviteDialog
         title={inviteLabel}
         onInvite={onInvite}
         isOpen={invite.isOpen}

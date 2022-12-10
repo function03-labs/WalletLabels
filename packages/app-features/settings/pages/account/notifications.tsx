@@ -2,7 +2,7 @@ import { Switch } from '@chakra-ui/react'
 import { Card, Divider, List, ListHeader, ListItem } from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
-import { SettingsPage } from '@app/features/core/components/settings-page'
+import { SettingsPage } from '@ui/lib'
 
 function NotificationChannels() {
   const onDesktopChange = async () => {

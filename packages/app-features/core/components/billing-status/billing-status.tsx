@@ -5,7 +5,7 @@ import { Has } from '@saas-ui/features'
 
 import { differenceInDays, formatDistanceStrict } from 'date-fns'
 
-import { Button } from '../button'
+import { LinkButton } from '@ui/lib'
 
 export const BillingStatus = () => {
   const { isTrialing, trialEndsAt, currentPlan } = useBilling()
@@ -31,9 +31,9 @@ export const BillingStatus = () => {
           <strong>{formatDistanceStrict(new Date(), trialEndsAt)}</strong>
         </Text>
         <Has feature="billing">
-          <Button href={upgradePath} variant="solid" colorScheme="green">
+          <LinkButton href={upgradePath} variant="solid" colorScheme="green">
             Upgrade
-          </Button>
+          </LinkButton>
         </Has>
       </Stack>
       {progress !== undefined && (

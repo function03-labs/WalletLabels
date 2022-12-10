@@ -1,6 +1,6 @@
-import { Center, Heading, Stack } from '@chakra-ui/react'
-import { Button } from '@app/features/core/components/button'
-import { SaasUILogo } from '@app/features/core/components/logo/saas-ui'
+import { Center, Button, Stack } from '@chakra-ui/react'
+import { LinkButton, Logo } from '@ui/lib'
+
 import { ButtonGroup, useAuth } from '@saas-ui/react'
 
 export default function HomePage() {
@@ -9,19 +9,19 @@ export default function HomePage() {
   return (
     <Center height="100vh">
       <Stack spacing="8">
-        <SaasUILogo />
+        <Logo />
 
         {isAuthenticated ? (
           <ButtonGroup>
-            <Button href="/app" colorScheme="primary">
+            <LinkButton href="/app" colorScheme="primary">
               Dashboard
-            </Button>
+            </LinkButton>
             <Button onClick={() => logOut()}>Logout</Button>
           </ButtonGroup>
         ) : (
           <ButtonGroup>
-            <Button href="/login">Login</Button>
-            <Button href="/signup">Sign up</Button>
+            <LinkButton href="/login">Login</LinkButton>
+            <LinkButton href="/signup">Sign up</LinkButton>
           </ButtonGroup>
         )}
       </Stack>

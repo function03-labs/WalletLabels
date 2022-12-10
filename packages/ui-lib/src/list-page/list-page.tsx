@@ -194,10 +194,8 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   const stickyStyles = {
     position: 'sticky',
     zIndex: 1,
-    bg: useColorModeValue('whiteAlpha.400', 'blackAlpha.300'),
-    backdropFilter: 'blur(5px)',
-    borderBottomWidth: '1px',
-    borderColor: useColorModeValue('blackAlpha.200', 'whiteAlpha.300'),
+    bg: 'chakra-body-bg',
+    borderWidth: 0,
   }
 
   return (
@@ -218,7 +216,6 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
           '& thead th': {
             ...stickyStyles,
             top: 0,
-            borderWidth: 0,
           },
           '& thead tr': {
             position: 'sticky',

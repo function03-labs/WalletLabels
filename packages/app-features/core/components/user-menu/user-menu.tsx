@@ -18,11 +18,11 @@ import {
   useAuth,
   useHotkeysShortcut,
 } from '@saas-ui/react'
-
-import { HotkeysWindow } from '@app/features/core/components/hotkeys'
-import { useGetCurrentUserQuery } from '@app/graphql'
-import { usePath } from '@app/features/core/hooks/use-path'
 import { Has } from '@saas-ui/features'
+import { useGetCurrentUserQuery } from '@app/graphql'
+
+import { HotkeysWindow } from '../hotkeys'
+import { usePath } from '../../hooks/use-path'
 
 export const UserMenu = () => {
   const { logOut } = useAuth()

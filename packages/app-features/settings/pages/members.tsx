@@ -12,8 +12,7 @@ import {
   MembersList,
   Member,
 } from '@app/features/organizations/components/members-list'
-import { MembersInviteData } from '@app/features/organizations/components/members-invite-dialog'
-import { SettingsPage } from '@app/features/core/components/settings-page'
+import { InviteData, SettingsPage } from '@ui/lib'
 
 export function MembersSettingsPage() {
   const tenant = useTenant()
@@ -47,7 +46,7 @@ export function MembersSettingsPage() {
 
   const removeUserFromOrganization = useRemoveUserFromOrganizationMutation()
 
-  const onInvite = async ({ emails, role }: MembersInviteData) => {
+  const onInvite = async ({ emails, role }: InviteData) => {
     if (!organization) return
 
     return snackbar.promise(

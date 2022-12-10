@@ -9,7 +9,7 @@ import {
   SubmitHandler,
 } from '@saas-ui/react'
 
-import { ConfirmPasswordField } from '@app/features/core/components/confirm-password-field'
+import { ConfirmPasswordField } from '@ui/lib'
 
 interface SubmitParams {
   password: string

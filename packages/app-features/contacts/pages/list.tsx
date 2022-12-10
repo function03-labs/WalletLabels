@@ -10,6 +10,7 @@ import { z } from 'zod'
 
 import {
   Box,
+  Button,
   Tag,
   Spacer,
   MenuItem,
@@ -41,11 +42,9 @@ import {
   useColumns,
 } from '@saas-ui/pro'
 
-import { ListPage } from '@app/features/core/components/list-page'
+import { ListPage, InlineSearch } from '@ui/lib'
 
 import { format } from 'date-fns'
-import { InlineSearch } from '@app/features/core/components/inline-search'
-import { Button } from '@app/features/core/components/button'
 
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'

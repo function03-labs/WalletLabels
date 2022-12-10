@@ -31,7 +31,7 @@ import {
 
 import { Section } from '@saas-ui/pro'
 
-import { SettingsPage } from '@app/features/core/components/settings-page'
+import { SettingsPage } from '@ui/lib'
 
 function ProfileDetails({ user }: any) {
   const snackbar = useSnackbar()

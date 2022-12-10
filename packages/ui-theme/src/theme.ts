@@ -8,7 +8,7 @@ import components from './components'
 
 import colorScheme from './color-schemes/galaxy'
 // import colorScheme from './color-schemes/earth'
-console.log(glassTheme.semanticTokens)
+
 export const theme = extendTheme(
   {
     semanticTokens: glassTheme.semanticTokens,

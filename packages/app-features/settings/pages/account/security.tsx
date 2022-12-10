@@ -3,7 +3,7 @@ import { Section } from '@saas-ui/pro'
 
 import { FiChevronRight } from 'react-icons/fi'
 
-import { SettingsPage } from '@app/features/core/components/settings-page'
+import { SettingsPage } from '@ui/lib'
 
 import { UpdatePasswordDialog } from '../../components/update-password-dialog'
 

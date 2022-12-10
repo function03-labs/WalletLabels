@@ -23,10 +23,10 @@ import { ErrorBoundary, Loader } from '@saas-ui/react'
 import { FiSidebar } from 'react-icons/fi'
 
 import { Page, Toolbar, ToolbarButton } from '@saas-ui/pro'
+import { Breadcrumbs } from '@ui/lib'
 
 import { useCurrentUser } from '@app/features/core/hooks/use-current-user'
 import { usePath } from '@app/features/core/hooks/use-path'
-import { Breadcrumbs } from '@app/features/core/components/breadcrumbs'
 
 import { ContactSidebar } from '../components/contact-sidebar'
 import { Activities, ActivityTimeline } from '../components/activity-timeline'

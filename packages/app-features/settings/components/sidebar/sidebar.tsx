@@ -12,7 +12,9 @@ import { BackButton, Resizer, ResizeHandler, ResizeHandle } from '@saas-ui/pro'
 
 import { usePath } from '@app/features/core/hooks/use-path'
 import { Has } from '@saas-ui/features'
-import { ElectronNav } from '@app/features/core/components/electron-nav'
+
+import { ElectronNav } from '@ui/lib'
+
 import {
   NavGroup,
   NavItem,

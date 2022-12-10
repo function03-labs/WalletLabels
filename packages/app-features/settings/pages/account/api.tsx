@@ -2,10 +2,9 @@ import { Stack, Text, useClipboard } from '@chakra-ui/react'
 import { Button, IconButton, List, ListItem } from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
-import { SettingsPage } from '@app/features/core/components/settings-page'
+import { SettingsPage, Link } from '@ui/lib'
 import { SettingsCard } from '@app/features/settings/components/settings-card'
 import { FiCopy, FiCheck, FiX } from 'react-icons/fi'
-import { Link } from '@app/features/core/components/link'
 
 function AccessToken({ token, onRemove }: any) {
   const { value, onCopy, hasCopied } = useClipboard(token)

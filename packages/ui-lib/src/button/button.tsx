@@ -5,12 +5,12 @@ import {
   useLink,
 } from '@saas-ui/react'
 
-export interface ButtonProps extends SButtonProps {
+export interface LinkButtonProps extends SButtonProps {
   href?: string | object
 }
 
-export const Button = React.forwardRef(
-  (props: ButtonProps, ref: React.ForwardedRef<any>) => {
+export const LinkButton = React.forwardRef(
+  (props: LinkButtonProps, ref: React.ForwardedRef<any>) => {
     const { href } = props
 
     const LinkWrapper = useLink()

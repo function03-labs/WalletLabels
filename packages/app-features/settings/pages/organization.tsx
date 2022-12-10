@@ -23,7 +23,7 @@ import {
   Field,
   useSnackbar,
 } from '@saas-ui/react'
-import { SettingsPage } from '@app/features/core/components/settings-page'
+import { SettingsPage } from '@ui/lib'
 
 interface OrganizationDetailsProps {
   organization?: GetOrganizationQuery['organization'] | null

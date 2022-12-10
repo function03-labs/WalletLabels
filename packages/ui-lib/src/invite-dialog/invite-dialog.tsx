@@ -9,19 +9,19 @@ import {
   SubmitHandler,
 } from '@saas-ui/react'
 
-export interface MembersInviteData {
+export interface InviteData {
   emails: string[]
   role?: 'admin' | 'member' | string
 }
 
-interface MembersInviteInputs {
+interface InviteInputs {
   emails: string
   role?: 'admin' | 'member' | string
 }
 
-export interface MembersInviteDialogProps
-  extends Omit<FormDialogProps<MembersInviteInputs>, 'onSubmit'> {
-  onInvite(data: MembersInviteData): Promise<any>
+export interface InviteDialogProps
+  extends Omit<FormDialogProps<InviteInputs>, 'onSubmit'> {
+  onInvite(data: InviteData): Promise<any>
   roles?: Option[]
   requiredLabel?: string
   placeholder?: string
@@ -38,7 +38,7 @@ export const defaultMemberRoles = [
   },
 ]
 
-export function MembersInviteDialog(props: MembersInviteDialogProps) {
+export function InviteDialog(props: InviteDialogProps) {
   const {
     onClose,
     onInvite,
@@ -52,10 +52,7 @@ export function MembersInviteDialog(props: MembersInviteDialogProps) {
 
   const fieldRef = React.useRef(null)
 
-  const onSubmit: SubmitHandler<MembersInviteInputs> = async ({
-    emails,
-    role,
-  }) => {
+  const onSubmit: SubmitHandler<InviteInputs> = async ({ emails, role }) => {
     try {
       await onInvite?.({
         emails: emails.split(',').map((email: string) => email.trim()),
@@ -71,7 +68,7 @@ export function MembersInviteDialog(props: MembersInviteDialogProps) {
   const roleOptions = roles || defaultMemberRoles
 
   return (
-    <FormDialog<MembersInviteInputs>
+    <FormDialog<InviteInputs>
       {...rest}
       onClose={onClose}
       defaultValues={{
