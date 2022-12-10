@@ -1,7 +1,5 @@
-/**
- * import YourComponent from './your-component
- */
+import Toolbar from './toolbar'
 
 export default {
-  /* YourComponent */
+  Toolbar,
 }

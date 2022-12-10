@@ -18,6 +18,7 @@ import Property from './property'
 import Section from './section'
 import Sidebar from './sidebar'
 import DataGrid from './data-grid'
+import Tabs from './tabs'
 import Toolbar from './toolbar'
 
 export default {
@@ -41,5 +42,6 @@ export default {
   Section,
   Sidebar,
   DataGrid,
+  Tabs,
   Toolbar,
 }

@@ -36,9 +36,10 @@ import {
   useHotkeysShortcut,
 } from '@saas-ui/react'
 
-import { ElectronNav, GlobalSearchInput, InviteDialog } from '@ui/lib'
+import { ElectronNav, InviteDialog } from '@ui/lib'
 
 import { BillingStatus } from '../billing-status'
+import { GlobalSearchInput } from '../global-search'
 import { TenantMenu } from '../tenant-menu'
 import { UserMenu } from '../user-menu'
 

@@ -29,8 +29,38 @@ const variantOutline: SystemStyleFunction = (props) => {
   return variantGhost(props)
 }
 
+const variantSecondary: SystemStyleFunction = (props) => {
+  return {
+    ...variantGhost({ ...props, colorScheme: 'gray' }),
+    color: 'black',
+    borderWidth: 1,
+    borderColor: 'gray.200',
+    _hover: {
+      borderColor: 'gray.300',
+      bg: 'gray.50',
+    },
+    _active: {
+      borderColor: 'gray.300',
+      bg: 'gray.100',
+    },
+    _dark: {
+      color: 'white',
+      borderColor: 'whiteAlpha.300',
+      _hover: {
+        bg: 'whiteAlpha.50',
+        borderColor: 'whiteAlpha.400',
+      },
+      _active: {
+        bg: 'whiteAlpha.100',
+        borderColor: 'whiteAlpha.500',
+      },
+    },
+  }
+}
+
 export default {
   variants: {
+    secondary: variantSecondary,
     ghost: variantGhost,
     outline: variantOutline,
   },

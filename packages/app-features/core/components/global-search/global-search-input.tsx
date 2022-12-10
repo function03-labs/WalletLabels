@@ -4,7 +4,7 @@ import { forwardRef, useMergeRefs } from '@chakra-ui/react'
 import { useHotkeysShortcut } from '@saas-ui/react'
 import { Command } from '@saas-ui/pro'
 
-import { SearchInput } from '../search-input'
+import { SearchInput } from '@ui/lib'
 
 export const GlobalSearchInput = forwardRef((props, ref) => {
   const searchRef = React.useRef<HTMLInputElement>(null)
@@ -18,12 +18,20 @@ export const GlobalSearchInput = forwardRef((props, ref) => {
       ref={useMergeRefs(ref, searchRef)}
       size="sm"
       sx={{
+        bg: 'sidebar-background',
         borderColor: 'sidebar-border-color',
         _hover: {
           borderColor: 'sidebar-on',
         },
         '::placeholder': {
           color: 'sidebar-muted',
+        },
+        _dark: {
+          bg: 'sidebar-background',
+          borderColor: 'sidebar-border-color',
+          _hover: {
+            borderColor: 'sidebar-on',
+          },
         },
       }}
       rightElement={
