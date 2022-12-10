@@ -11,14 +11,11 @@ const variantSegments = definePartsStyle((props) => {
       display: 'flex',
       bg: 'gray.100',
       rounded: 4,
-      alignItems: 'center',
       _dark: {
         bg: 'whiteAlpha.50',
       },
     },
     tab: {
-      ...theme.components.Button.baseStyle,
-      ...theme.components.Button.variants.ghost(props),
       borderWidth: '1px',
       borderColor: 'transparent',
       color: 'muted',
@@ -39,16 +36,22 @@ const variantSegments = definePartsStyle((props) => {
           display: 'none',
         },
       },
-      _hover: {
-        color: 'black',
-        _dark: {
-          color: 'white',
+      _dark: {
+        borderColor: 'transparent',
+        _hover: {
+          borderColor: 'transparent',
+          bg: 'transparent',
         },
+      },
+      _first: {
+        rounded: 4,
+      },
+      _last: { rounded: 4 },
+      _hover: {
+        borderColor: 'transparent',
       },
       _selected: {
         ...theme.components.Button.variants.secondary(props),
-        _hover: {},
-        _active: {},
       },
     },
   }
