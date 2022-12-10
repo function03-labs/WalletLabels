@@ -14,12 +14,17 @@
     "@tiptap/react": "^2.0.0-beta.204",
     "@tiptap/starter-kit": "^2.0.0-beta.204",
     "@tiptap/suggestion": "2.0.0-beta.204",
+    "@ui/lib": "workspace:*",
+    "@ui/theme": "workspace:*",
     "react-icons": "^4.7.1",
     "slug": "^8.2.2",
     "zod": "^3.19.1"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
+    "@chakra-ui/system": ">=2.1.0",
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0",
     "@react-hookz/web": "^15.0.0",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/charts": "workspace:*",

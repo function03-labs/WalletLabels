@@ -47,11 +47,16 @@ __metadata:
     "@tiptap/react": ^2.0.0-beta.204
     "@tiptap/starter-kit": ^2.0.0-beta.204
     "@tiptap/suggestion": 2.0.0-beta.204
+    "@ui/lib": "workspace:*"
+    "@ui/theme": "workspace:*"
     react-icons: ^4.7.1
     slug: ^8.2.2
     zod: ^3.19.1
   peerDependencies:
     "@chakra-ui/react": ">=2.0.0"
+    "@chakra-ui/system": ">=2.1.0"
+    "@emotion/react": ">=11.0.0"
+    "@emotion/styled": ">=11.0.0"
     "@react-hookz/web": ^15.0.0
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/charts": "workspace:*"
@@ -6087,6 +6092,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/pro-theme-glass@workspace:*, @saas-ui/pro-theme-glass@workspace:saas-ui/pro-theme-glass":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui/pro-theme-glass@workspace:saas-ui/pro-theme-glass"
+  dependencies:
+    "@chakra-ui/anatomy": ^2.1.0
+    "@chakra-ui/styled-system": ^2.3.5
+    "@chakra-ui/theme-tools": ^2.0.13
+    "@saas-ui/pro": "workspace:*"
+    "@saas-ui/theme-glass": ^0.1.1
+    react-icons: ^4.7.1
+    tsup: ^6.5.0
+  peerDependencies:
+    "@chakra-ui/react": ">=2.1.0"
+    "@chakra-ui/system": ">=2.1.0"
+    "@emotion/react": ">=11.0.0"
+    "@emotion/styled": ">=11.0.0"
+    "@saas-ui/react": ">=1.7.0"
+    framer-motion: ">=6"
+    react: ">=18"
+    react-dom: ">=18"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui/pro@workspace:*, @saas-ui/pro@workspace:saas-ui/pro":
   version: 0.0.0-use.local
   resolution: "@saas-ui/pro@workspace:saas-ui/pro"
@@ -6296,6 +6324,21 @@ __metadata:
     "@chakra-ui/system": ">=2.1.0"
     react: ">=18.0.0"
   checksum: e7ab80fcef8c6482ef1b807179ace5c34753c4a6f671521d4f0e5ed43562f2e97a11719312e2556598d901de2cf7b1818f9918057db0e2cba64ae674fb8cf682
+  languageName: node
+  linkType: hard
+
+"@saas-ui/theme-glass@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@saas-ui/theme-glass@npm:0.1.1"
+  dependencies:
+    "@chakra-ui/anatomy": ^2.1.0
+    "@chakra-ui/styled-system": ^2.3.5
+    "@chakra-ui/theme-tools": ^2.0.13
+  peerDependencies:
+    "@chakra-ui/react": ">=2.1.0"
+    "@chakra-ui/system": ">=2.1.0"
+    react: ">=18.0.0"
+  checksum: 93ee59c94a8180f9d1b895b9c97151e3a5a7282caa90fa434d246500402f45f5bd38b59e01f734c431d4530ae6bdf96563829e3245ce1abd0e35876a77e54d5f
   languageName: node
   linkType: hard
 
@@ -9387,11 +9430,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ui/lib@workspace:packages/ui":
+"@ui/lib@workspace:*, @ui/lib@workspace:packages/ui-lib":
   version: 0.0.0-use.local
-  resolution: "@ui/lib@workspace:packages/ui"
+  resolution: "@ui/lib@workspace:packages/ui-lib"
   peerDependencies:
     "@chakra-ui/react": ">=2.0.0"
+    "@emotion/react": ">=11.0.0"
+    "@emotion/styled": ">=11.0.0"
+    "@saas-ui/react": ">=1.7.0"
+    react: ">=18"
   languageName: unknown
   linkType: soft
 
@@ -9430,8 +9477,16 @@ __metadata:
   resolution: "@ui/theme@workspace:packages/ui-theme"
   dependencies:
     "@fontsource/inter": ^4.5.14
+    "@saas-ui/pro-theme-glass": "workspace:*"
   peerDependencies:
     "@chakra-ui/react": ">=2.0.0"
+    "@chakra-ui/system": ">=2.1.0"
+    "@emotion/react": ">=11.0.0"
+    "@emotion/styled": ">=11.0.0"
+    "@saas-ui/react": ">=1.7.0"
+    framer-motion: ">=6"
+    react: ">=18"
+    react-dom: ">=18"
   languageName: unknown
   linkType: soft
 

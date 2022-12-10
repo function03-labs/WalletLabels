@@ -255,12 +255,7 @@ export function ContactsListPage() {
       <AddFilterButton />
       <Spacer />
       <Menu>
-        <MenuButton
-          as={ToolbarButton}
-          variant="outline"
-          leftIcon={<FiSliders />}
-          label="View"
-        />
+        <MenuButton as={ToolbarButton} leftIcon={<FiSliders />} label="View" />
         <Portal>
           <MenuList maxW="260px">
             <MenuProperty

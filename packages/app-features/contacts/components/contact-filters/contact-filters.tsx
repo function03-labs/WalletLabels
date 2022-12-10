@@ -79,7 +79,7 @@ export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'items'>> = (
       icon={<FiFilter />}
       ref={menuRef}
       command={filterCommand}
-      buttonProps={{ variant: 'outline' }}
+      buttonProps={{ variant: 'secondary' }}
       onSelect={onSelect}
       {...disclosure}
       {...props}

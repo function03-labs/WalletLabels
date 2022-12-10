@@ -1,101 +1,56 @@
 import * as React from 'react'
-import { ButtonGroup } from '@saas-ui/react'
-import { Button } from '@app/features/core/components/button'
+
 import { usePath } from '@app/features/core/hooks/use-path'
 import { useParams, useNavigate } from '@saas-ui/router'
-import {
-  Menu,
-  MenuButton,
-  MenuItemOption,
-  MenuList,
-  MenuOptionGroup,
-  Portal,
-  useBreakpointValue,
-} from '@chakra-ui/react'
 
-const types = {
-  all: {
-    value: undefined,
+import { SegmentedControl } from '@ui/lib'
+
+const types = [
+  {
+    id: 'all',
     label: 'All',
     href: 'contacts',
   },
-  leads: {
-    value: 'leads',
+  {
+    id: 'leads',
     label: 'Leads',
     href: 'contacts/leads',
   },
-  customers: {
-    value: 'customers',
+  {
+    id: 'customers',
     label: 'Customers',
     href: 'contacts/customers',
   },
-}
+]
 
-type Types = keyof typeof types
-
-const items = Object.entries(types)
+const segments = types.map((type) => ({ id: type.id, label: type.label }))
 
 export const ContactTypes = () => {
   const params = useParams()
   const navigate = useNavigate()
   const basePath = usePath()
-  const isMobile = useBreakpointValue({ base: true, md: false })
 
-  const [value, setValue] = React.useState(params?.type?.toString())
+  const type = params?.type?.toString() || 'all'
+
+  const [value, setValue] = React.useState(type)
 
   React.useEffect(() => {
-    setValue(params?.type?.toString())
-  }, [params?.type])
+    setValue(type)
+  }, [type])
 
   const getType = (id?: string) => {
-    if (!id || !types[id as Types]) {
-      return types.all
-    }
-
-    return types[id as Types]
+    const type = types.find((type) => type.id === id)
+    return type || types[0]
   }
 
   const setType = (id: string) => {
     const type = getType(id)
 
     navigate(basePath + '/' + type.href)
-    setValue(type.value)
-  }
-
-  const type = getType(value)
-
-  if (isMobile) {
-    return (
-      <Menu>
-        <MenuButton as={Button} variant="outline">
-          {type.label}
-        </MenuButton>
-        <Portal>
-          <MenuList>
-            <MenuOptionGroup onChange={(value) => setType(value.toString())}>
-              {items.map(([id, { label }]) => (
-                <MenuItemOption key={id} value={id}>
-                  {label}
-                </MenuItemOption>
-              ))}
-            </MenuOptionGroup>
-          </MenuList>
-        </Portal>
-      </Menu>
-    )
+    setValue(type.id)
   }
 
   return (
-    <ButtonGroup isAttached variant="outline">
-      {items.map(([id, { value, label }]) => (
-        <Button
-          key={id}
-          isActive={params?.type === value}
-          onClick={() => setType(id as Types)}
-        >
-          {label}
-        </Button>
-      ))}
-    </ButtonGroup>
+    <SegmentedControl segments={segments} value={value} onChange={setType} />
   )
 }

@@ -5,7 +5,7 @@
     "paths": {
       "@app/config/*": ["../app-config/src/*"],
       "@app/features/core/*": ["./core/*"],
-      "@ui/*": ["../ui-core/src/*"]
+      "@ui/lib": ["../ui-lib/src/*"]
     }
   },
   "include": ["./"],
