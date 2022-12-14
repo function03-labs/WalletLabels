@@ -115,7 +115,7 @@ __metadata:
     "@types/slug": ^5.0.3
     date-fns: ^2.29.3
     graphql: ^16.6.0
-    msw: ^0.44.2
+    msw: ^0.49.2
     react: ^18.2.0
     slug: ^8.2.2
     zustand: ^4.1.4
@@ -5050,19 +5050,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mswjs/interceptors@npm:^0.17.2":
-  version: 0.17.3
-  resolution: "@mswjs/interceptors@npm:0.17.3"
+"@mswjs/interceptors@npm:^0.17.5":
+  version: 0.17.6
+  resolution: "@mswjs/interceptors@npm:0.17.6"
   dependencies:
     "@open-draft/until": ^1.0.3
     "@types/debug": ^4.1.7
-    "@xmldom/xmldom": ^0.7.5
+    "@xmldom/xmldom": ^0.8.3
     debug: ^4.3.3
-    headers-polyfill: ^3.0.4
+    headers-polyfill: ^3.1.0
     outvariant: ^1.2.1
     strict-event-emitter: ^0.2.4
     web-encoding: ^1.1.5
-  checksum: 1c879fe78e2e19e29f610d3572f22990b67f3f892719530ed1d8b0191a644e03461b812ed8137586ab126e66c49dbfd53ea1ff830696589d1b1ad238df40f206
+  checksum: 4a70ed035191fab270fc219b741371eafdb126d6913414f76c0b57fc711391e72b5a95314733a2bc17f5a771058a3bba9c317a55898c1000b684d8fe834d8495
   languageName: node
   linkType: hard
 
@@ -5672,6 +5672,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@saas-ui/auth@npm:1.6.3":
+  version: 1.6.3
+  resolution: "@saas-ui/auth@npm:1.6.3"
+  dependencies:
+    "@chakra-ui/utils": ^2.0.12
+    "@saas-ui/button": 1.3.0
+    "@saas-ui/forms": 1.4.1
+    "@saas-ui/hooks": 1.1.2
+    "@saas-ui/layout": 1.3.2
+  peerDependencies:
+    "@chakra-ui/react": ">=2.1.0"
+    "@chakra-ui/system": ">=2.1.0"
+    framer-motion: ">=5.5.0"
+    react: ">=18.0.0"
+  checksum: 312a3b7722a4127e96debc8616e1e1dd1d35f149fbc93075537b9d852e0e154ad4e803862121a71e8ec3c40ae34c732af09b4eb7d6b190530c2d2363451dc9b5
+  languageName: node
+  linkType: hard
+
 "@saas-ui/banner@npm:1.3.0":
   version: 1.3.0
   resolution: "@saas-ui/banner@npm:1.3.0"
@@ -6195,7 +6213,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/react@npm:^1.7.1, @saas-ui/react@npm:^1.7.2":
+"@saas-ui/react@npm:^1.7.1":
   version: 1.7.2
   resolution: "@saas-ui/react@npm:1.7.2"
   dependencies:
@@ -6237,6 +6255,51 @@ __metadata:
     react: ">=18"
     react-dom: ">=18"
   checksum: 43f1977c4ab8bdd69621087fc8ca0174f0cdc61e1e351b7b8b1556fa3d1c89cf818e48d36605a6ab19329ad4d8a4bf2a30ed3113ef618510ea6465aa8181a325
+  languageName: node
+  linkType: hard
+
+"@saas-ui/react@npm:^1.7.3":
+  version: 1.7.3
+  resolution: "@saas-ui/react@npm:1.7.3"
+  dependencies:
+    "@chakra-ui/system": ^2.3.3
+    "@saas-ui/app-shell": 1.0.0
+    "@saas-ui/auth": 1.6.3
+    "@saas-ui/banner": 1.3.0
+    "@saas-ui/button": 1.3.0
+    "@saas-ui/card": 1.4.0
+    "@saas-ui/collapse": 1.3.0
+    "@saas-ui/data-table": 1.3.2
+    "@saas-ui/forms": 1.4.1
+    "@saas-ui/hooks": 1.1.2
+    "@saas-ui/hotkeys": 1.3.0
+    "@saas-ui/input-right-button": 1.3.0
+    "@saas-ui/layout": 1.3.2
+    "@saas-ui/list": 1.3.0
+    "@saas-ui/menu": 1.3.2
+    "@saas-ui/modals": 1.4.2
+    "@saas-ui/nprogress": 1.3.0
+    "@saas-ui/number-input": 1.3.0
+    "@saas-ui/palette": 1.2.0
+    "@saas-ui/password-input": 1.3.0
+    "@saas-ui/persona": 1.3.0
+    "@saas-ui/pin-input": 1.3.0
+    "@saas-ui/property": 1.3.0
+    "@saas-ui/provider": 1.1.8
+    "@saas-ui/radio": 1.3.0
+    "@saas-ui/search-input": 1.3.0
+    "@saas-ui/select": 1.3.0
+    "@saas-ui/snackbar": 1.1.1
+    "@saas-ui/stepper": 1.3.1
+    "@saas-ui/theme": 1.6.2
+  peerDependencies:
+    "@chakra-ui/react": ">=2.1.0"
+    "@emotion/react": ^11
+    "@emotion/styled": ^11
+    framer-motion: ">=5.5.0"
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: 70a8d4a7dcb5d6dc3447dfa505de41359cbc55ca0f1b99ab8437159fd77e77fbed8a0c5055a47b520f570f7195a7d9e590f3f90d5ef3af5bd42245f2a21ea4df
   languageName: node
   linkType: hard
 
@@ -9855,10 +9918,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xmldom/xmldom@npm:^0.7.5":
-  version: 0.7.5
-  resolution: "@xmldom/xmldom@npm:0.7.5"
-  checksum: 8d7ec35c1ef6183b4f621df08e01d7e61f244fb964a4719025e65fe6ac06fac418919be64fb40fe5908e69158ef728f2d936daa082db326fe04603012b5f2a84
+"@xmldom/xmldom@npm:^0.8.3":
+  version: 0.8.6
+  resolution: "@xmldom/xmldom@npm:0.8.6"
+  checksum: f17ac6d99a971a6aeb831fcfc5cfa86f367664e45815046548814b2deb17ccc421fef4e0d5ba29e66179d112b552f6caa5680064f8e7bd8a389b788a60404c8e
   languageName: node
   linkType: hard
 
@@ -13571,7 +13634,7 @@ __metadata:
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/paddle": "workspace:*"
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^1.7.2
+    "@saas-ui/react": ^1.7.3
     "@saas-ui/router": "workspace:*"
     "@types/node": ^16.18.4
     "@types/react": ^18.0.25
@@ -16707,7 +16770,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:16.6.0, graphql@npm:^16.3.0, graphql@npm:^16.6.0":
+"graphql@npm:16.6.0, graphql@npm:^15.0.0 || ^16.0.0, graphql@npm:^16.6.0":
   version: 16.6.0
   resolution: "graphql@npm:16.6.0"
   checksum: bf1d9e3c1938ce3c1a81e909bd3ead1ae4707c577f91cff1ca2eca474bfbc7873d5d7b942e1e9777ff5a8304421dba57a4b76d7a29eb19de8711cb70e3c2415e
@@ -17006,10 +17069,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"headers-polyfill@npm:^3.0.4":
-  version: 3.0.7
-  resolution: "headers-polyfill@npm:3.0.7"
-  checksum: ee392c1acdd2be797090837a085b14c8dc79f221e2501508afc1474667fba0627d583e06f9ab5cad57cf9dd570942d3166f791c75b92522a17c69c1e6bfcfbc4
+"headers-polyfill@npm:^3.1.0":
+  version: 3.1.2
+  resolution: "headers-polyfill@npm:3.1.2"
+  checksum: 510ca9637ef652404dbd432e680418f8d418ba18094ef2f64c3d8de955ebf6e68d553c7f0aeaa5fc937d130b139c1e2d7c2066cd4cf0f740a4627924eaaee9db
   languageName: node
   linkType: hard
 
@@ -21083,38 +21146,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:^0.44.2":
-  version: 0.44.2
-  resolution: "msw@npm:0.44.2"
+"msw@npm:^0.49.2":
+  version: 0.49.2
+  resolution: "msw@npm:0.49.2"
   dependencies:
     "@mswjs/cookies": ^0.2.2
-    "@mswjs/interceptors": ^0.17.2
+    "@mswjs/interceptors": ^0.17.5
     "@open-draft/until": ^1.0.3
     "@types/cookie": ^0.4.1
     "@types/js-levenshtein": ^1.1.1
     chalk: 4.1.1
     chokidar: ^3.4.2
     cookie: ^0.4.2
-    graphql: ^16.3.0
-    headers-polyfill: ^3.0.4
+    graphql: ^15.0.0 || ^16.0.0
+    headers-polyfill: ^3.1.0
     inquirer: ^8.2.0
     is-node-process: ^1.0.1
     js-levenshtein: ^1.1.6
     node-fetch: ^2.6.7
     outvariant: ^1.3.0
     path-to-regexp: ^6.2.0
-    statuses: ^2.0.0
-    strict-event-emitter: ^0.2.0
-    type-fest: ^1.2.2
+    strict-event-emitter: ^0.2.6
+    type-fest: ^2.19.0
     yargs: ^17.3.1
   peerDependencies:
-    typescript: ">= 4.2.x <= 4.7.x"
+    typescript: ">= 4.4.x <= 4.9.x"
   peerDependenciesMeta:
     typescript:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 739d536ee09d1c0a2cbc9dbe917f167c42115a6548f99780850ce9a63a5e7c377cf9b5f1a3b497e85ce7304025ab22966e997fe73adbd8d2ab968b8685f15a24
+  checksum: 10ec35671e10e53c2a24ca22c5e7a2262d4cdfb409a403a3ffe221150af404805490e7661611a581986e61790bb8996ce8a0f057d521ef359498304c2431234a
   languageName: node
   linkType: hard
 
@@ -25450,13 +25512,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"statuses@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "statuses@npm:2.0.1"
-  checksum: 18c7623fdb8f646fb213ca4051be4df7efb3484d4ab662937ca6fbef7ced9b9e12842709872eb3020cc3504b93bde88935c9f6417489627a7786f24f8031cbcb
-  languageName: node
-  linkType: hard
-
 "store2@npm:^2.12.0":
   version: 2.13.2
   resolution: "store2@npm:2.13.2"
@@ -25540,12 +25595,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strict-event-emitter@npm:^0.2.0, strict-event-emitter@npm:^0.2.4":
+"strict-event-emitter@npm:^0.2.4":
   version: 0.2.4
   resolution: "strict-event-emitter@npm:0.2.4"
   dependencies:
     events: ^3.3.0
   checksum: fe6af7baf4002910ffd04d16f37c994e7b9f56b4c01c8846a3b394efcea6689a9eba3ebcd5283774476c3a7632aae6b47ef89061b0fbf7f2256b8e07a5cab32d
+  languageName: node
+  linkType: hard
+
+"strict-event-emitter@npm:^0.2.6":
+  version: 0.2.8
+  resolution: "strict-event-emitter@npm:0.2.8"
+  dependencies:
+    events: ^3.3.0
+  checksum: 6ac06fe72a6ee6ae64d20f1dd42838ea67342f1b5f32b03b3050d73ee6ecee44b4d5c4ed2965a7154b47991e215f373d4e789e2b2be2769cd80e356126c2ca53
   languageName: node
   linkType: hard
 
@@ -26821,14 +26885,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^1.2.2":
-  version: 1.4.0
-  resolution: "type-fest@npm:1.4.0"
-  checksum: b011c3388665b097ae6a109a437a04d6f61d81b7357f74cbcb02246f2f5bd72b888ae33631b99871388122ba0a87f4ff1c94078e7119ff22c70e52c0ff828201
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^2.17.0":
+"type-fest@npm:^2.17.0, type-fest@npm:^2.19.0":
   version: 2.19.0
   resolution: "type-fest@npm:2.19.0"
   checksum: a4ef07ece297c9fba78fc1bd6d85dff4472fe043ede98bd4710d2615d15776902b595abf62bd78339ed6278f021235fb28a96361f8be86ed754f778973a0d278
@@ -27945,7 +28002,7 @@ __metadata:
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/paddle": "workspace:*"
     "@saas-ui/pro": "workspace:*"
-    "@saas-ui/react": ^1.7.2
+    "@saas-ui/react": ^1.7.3
     "@saas-ui/router": "workspace:*"
     "@svgr/webpack": 5.5.0
     "@ui/theme": "workspace:*"
