@@ -5654,7 +5654,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/auth@npm:1.6.2, @saas-ui/auth@npm:^1.6.1, @saas-ui/auth@npm:^1.6.2":
+"@saas-ui/auth@npm:1.6.2":
   version: 1.6.2
   resolution: "@saas-ui/auth@npm:1.6.2"
   dependencies:
@@ -5672,7 +5672,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/auth@npm:1.6.3":
+"@saas-ui/auth@npm:1.6.3, @saas-ui/auth@npm:^1.6.3":
   version: 1.6.3
   resolution: "@saas-ui/auth@npm:1.6.3"
   dependencies:
@@ -13625,7 +13625,7 @@ __metadata:
     "@chakra-ui/system": ^2.3.4
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
-    "@saas-ui/auth": ^1.6.1
+    "@saas-ui/auth": ^1.6.3
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/charts": "workspace:*"
     "@saas-ui/date-picker": ^0.7.2
@@ -27993,7 +27993,7 @@ __metadata:
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
     "@next/eslint-plugin-next": ^12.3.4
-    "@saas-ui/auth": ^1.6.2
+    "@saas-ui/auth": ^1.6.3
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/charts": "workspace:*"
     "@saas-ui/date-picker": ^0.7.2
