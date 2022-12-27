@@ -1,5 +1,15 @@
 # @ui/theme
 
+## 0.3.0
+
+### Minor Changes
+
+- 6fc0efb: Added glass theme support
+
+### Patch Changes
+
+- @saas-ui/pro-theme-glass@0.1.1
+
 ## 0.2.1
 
 ### Patch Changes

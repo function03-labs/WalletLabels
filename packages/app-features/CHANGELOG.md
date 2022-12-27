@@ -1,5 +1,26 @@
 # @app/features
 
+## 1.0.0
+
+### Minor Changes
+
+- 6fc0efb: New SegmentedControl component
+- 5d42c11: Move all reusable / pre-build components to ui-lib
+- 6fc0efb: Added glass theme support
+
+### Patch Changes
+
+- Updated dependencies [c057716]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [addc03b]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [336ae84]
+  - @saas-ui/pro@0.13.0
+  - @ui/lib@0.1.0
+  - @ui/theme@0.3.0
+
 ## 0.16.2
 
 ### Patch Changes

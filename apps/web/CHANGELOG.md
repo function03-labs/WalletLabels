@@ -1,5 +1,26 @@
 # nextjs-app
 
+## 0.10.0
+
+### Minor Changes
+
+- ad54678: Upgrade to Next 13.1
+
+### Patch Changes
+
+- Updated dependencies [c057716]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [addc03b]
+- Updated dependencies [5d42c11]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [6fc0efb]
+- Updated dependencies [336ae84]
+  - @saas-ui/pro@0.13.0
+  - @app/features@1.0.0
+  - @ui/theme@0.3.0
+  - @saas-ui/paddle@0.5.3
+
 ## 0.9.4
 
 ### Patch Changes

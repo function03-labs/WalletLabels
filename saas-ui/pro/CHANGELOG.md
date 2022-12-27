@@ -1,5 +1,18 @@
 # @saas-ui/pro
 
+## 0.13.0
+
+### Minor Changes
+
+- 6fc0efb: Update secondary button variant, which is now a gray outline button.
+- 6fc0efb: New segment variant for tabs.
+- 336ae84: Add Node 18 engine support
+
+### Patch Changes
+
+- c057716: Fixed issue with ResizeBox where it would not render the handle in the correct position.
+- addc03b: Add relative position to ResizeBox
+
 ## 0.12.2
 
 ### Patch Changes
