@@ -23,6 +23,8 @@ import {
   GetCurrentUserQueryVariables,
   GetOrganizationQuery,
   GetOrganizationQueryVariables,
+  GetOrganizationsQuery,
+  GetOrganizationsQueryVariables,
   GetSubscriptionQuery,
   GetSubscriptionQueryVariables,
   InviteToOrganizationMutation,
@@ -81,6 +83,16 @@ export const handlers = [
               getOrganizationMember(),
             ],
           },
+        }),
+      )
+    },
+  ),
+  graphql.query<GetOrganizationsQuery, GetOrganizationsQueryVariables>(
+    'GetOrganizations',
+    (req, res, ctx) => {
+      return res(
+        ctx.data({
+          organizations: getOrganizations(),
         }),
       )
     },
