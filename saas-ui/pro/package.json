@@ -2,7 +2,7 @@
   "name": "@saas-ui/pro",
   "version": "0.12.2",
   "engines": {
-    "node": ">=14 <=16"
+    "node": ">=14 <=18"
   },
   "exports": {
     ".": {
