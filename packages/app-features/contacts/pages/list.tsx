@@ -181,6 +181,7 @@ export function ContactsListPage() {
         size: 100,
         enableGlobalFilter: false,
         enableHiding: false,
+        enableSorting: false,
       },
     ],
     [],

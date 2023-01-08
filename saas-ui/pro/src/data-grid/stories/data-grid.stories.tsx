@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
 
-import { Container, Stack, Button } from '@chakra-ui/react'
+import { Container, Stack, Button, Box } from '@chakra-ui/react'
 
 import { DataGridPagination } from '../data-grid-pagination'
 import {
@@ -11,9 +11,10 @@ import {
   ColumnDef,
   SortingState,
   ColumnFiltersState,
+  DataGridCell,
 } from '../data-grid'
 
-import { ButtonGroup } from '@saas-ui/react'
+import { ButtonGroup, MenuItem, OverflowMenu } from '@saas-ui/react'
 
 export default {
   title: 'Components/Data Display/DataGrid',
@@ -40,6 +41,16 @@ const Template: Story<DataGridProps<ExampleData>> = ({
     {...args}
   />
 )
+
+const ActionCell: DataGridCell<any> = () => {
+  return (
+    <Box onClick={(e) => e.stopPropagation()}>
+      <OverflowMenu size="xs">
+        <MenuItem>Delete</MenuItem>
+      </OverflowMenu>
+    </Box>
+  )
+}
 
 interface ExampleData {
   name: string
@@ -80,6 +91,12 @@ const columns: ColumnDef<ExampleData>[] = [
   {
     accessorKey: 'status',
     header: 'Status',
+  },
+  {
+    accessorKey: 'action',
+    header: '',
+    cell: ActionCell,
+    enableSorting: false,
   },
 ]
 
