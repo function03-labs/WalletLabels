@@ -2,7 +2,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, log in to the Saas UI NPM registry.
+Username is the Github username that you signed up with (without @), use your license key as the password.
+
+```bash
+npm login --registry=https://npm.saas-ui.dev/ --scope=@saas-ui
+```
+
+Now run `npm i` and all packages should install.
+
+Next, run the development server:
 
 ```bash
 npm run dev
