@@ -1,16 +1,16 @@
 {
   "name": "saas-ui-storybook",
   "private": true,
-  "version": "11.0.0",
+  "version": "12.0.0",
   "scripts": {
     "dev": "start-storybook -p 6007",
     "build": "build-storybook && sb extract"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2",
+    "@chakra-ui/react": ">=2.4.8",
     "@chakra-ui/system": ">=2.0.0",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": ">=1",
+    "@saas-ui/react": ">=1.8.0",
     "framer-motion": ">=5.5.0",
     "jest": ">=27.0.0",
     "react": ">=18"

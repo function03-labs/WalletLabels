@@ -1,5 +1,16 @@
 # @saas-ui/paddle
 
+## 0.6.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro@0.14.0
+
 ## 0.5.3
 
 ### Patch Changes

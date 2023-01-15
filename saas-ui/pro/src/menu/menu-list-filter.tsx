@@ -8,7 +8,6 @@ import {
   MenuIcon,
   MenuCommand,
   useMenuContext,
-  useMenuDescendantsContext,
   MenuItemProps,
   InputProps,
   Input,
@@ -39,7 +38,7 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
     const { focusedIndex } = useMenuContext()
 
     const { role, ref, ...inputProps } = useMenuFilterItem(rest)
-    const descendants = useMenuDescendantsContext()
+    // const descendants = useMenuDescendantsContext()
 
     return (
       <InputGroup
@@ -77,8 +76,8 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
             const eventKey = normalizeEventKey(event)
             const keyMap: EventKeyMap = {
               Enter: () => {
-                const item = descendants.item(focusedIndex)
-                item?.node?.click()
+                // const item = descendants.item(focusedIndex)
+                // item?.node?.click()
               },
             }
 

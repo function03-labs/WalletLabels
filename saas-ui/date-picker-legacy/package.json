@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/date-picker-legacy",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "exports": {
     ".": {
       "require": "./dist/index.cjs.js",
@@ -28,18 +28,18 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.13",
-    "@chakra-ui/react-utils": "^2.0.9",
-    "@chakra-ui/utils": "^2.0.12",
+    "@chakra-ui/icons": "^2.0.16",
+    "@chakra-ui/react-utils": "^2.0.11",
+    "@chakra-ui/utils": "^2.0.14",
     "@datepicker-react/hooks": "^2.8.4",
     "date-fns": "^2.29.3"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2",
+    "@chakra-ui/react": ">=2.4.8",
     "@chakra-ui/system": ">=2",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "@saas-ui/react": ">=1",
+    "@saas-ui/react": ">=1.8.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18",
     "react-dom": ">=18"

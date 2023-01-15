@@ -1,5 +1,21 @@
 # electron-app
 
+## 0.9.1
+
+### Patch Changes
+
+- 465b640: Updated to Saas UI 1.7.4
+- Updated dependencies
+  - @saas-ui/billing@0.8.0
+  - @saas-ui/charts@0.5.0
+  - @saas-ui/features@0.9.0
+  - @saas-ui/onboarding@0.7.0
+  - @saas-ui/paddle@0.6.0
+  - @saas-ui/pro@0.14.0
+  - @saas-ui/router@0.7.0
+  - @app/features@2.0.0
+  - @ui/theme@0.3.1
+
 ## 0.9.0
 
 ### Minor Changes

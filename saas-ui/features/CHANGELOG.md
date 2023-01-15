@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.9.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
 ## 0.8.2
 
 ### Patch Changes

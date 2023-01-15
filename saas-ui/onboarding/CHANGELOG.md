@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.7.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
 ## 0.6.2
 
 ### Patch Changes

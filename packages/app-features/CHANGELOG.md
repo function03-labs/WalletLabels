@@ -1,5 +1,18 @@
 # @app/features
 
+## 2.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.8.0
+  - @saas-ui/charts@0.5.0
+  - @saas-ui/features@0.9.0
+  - @saas-ui/onboarding@0.7.0
+  - @saas-ui/pro@0.14.0
+  - @saas-ui/router@0.7.0
+  - @ui/theme@0.3.1
+
 ## 1.0.0
 
 ### Minor Changes

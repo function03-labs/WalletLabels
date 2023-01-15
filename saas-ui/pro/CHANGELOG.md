@@ -1,5 +1,17 @@
 # @saas-ui/pro
 
+## 0.14.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/onboarding@0.7.0
+  - @saas-ui/router@0.7.0
+
 ## 0.13.0
 
 ### Minor Changes

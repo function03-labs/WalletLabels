@@ -1,5 +1,11 @@
 # @saas-ui/charts
 
+## 0.5.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
 ## 0.4.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @saas-ui/date-picker
 
+## 0.6.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
 ## 0.5.1
 
 ### Patch Changes

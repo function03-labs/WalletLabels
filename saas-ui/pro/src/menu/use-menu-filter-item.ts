@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import {
   useMenuContext,
-  useMenuDescendant,
+  // useMenuDescendant,
   UseMenuItemProps,
   useId,
 } from '@chakra-ui/react'
@@ -59,15 +59,23 @@ export function useMenuFilterItem(
   /**
    * Register the menuitem's node into the domContext
    */
-  const { index, register } = useMenuDescendant({
-    disabled: isDisabled && !isFocusable,
-  })
+  // const { index, register } = useMenuDescendant({
+  //   disabled: isDisabled && !isFocusable,
+  // })
+  const register = () => null
+  const index = 1
 
   const onMouseEnter = React.useCallback(
     (event: React.MouseEvent) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
-      setFocusedIndex(index)
+      // setFocusedIndex(index)
+      setFocusedIndex(
+        Array.prototype.indexOf.call(
+          event.currentTarget.parentNode?.childNodes,
+          event.currentTarget,
+        ),
+      )
     },
     [setFocusedIndex, index, isDisabled, onMouseEnterProp],
   )

@@ -1,5 +1,12 @@
 # @app/nextjs
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/router@0.7.0
+
 ## 0.2.1
 
 ### Patch Changes
