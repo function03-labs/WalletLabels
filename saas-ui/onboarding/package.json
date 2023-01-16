@@ -1,18 +1,18 @@
 {
   "name": "@saas-ui/onboarding",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs.js",
+      "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js"
+      "import": "./dist/index.mjs"
     },
     "./src": {
       "default": "./src/index.ts"
     }
   },
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.esm.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"

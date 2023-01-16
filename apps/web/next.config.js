@@ -27,7 +27,29 @@ module.exports = withWorkspaces({
             resource.request = resource.request + '/src'
           },
         ),
+        new webpack.NormalModuleReplacementPlugin(
+          /\@react-aria/,
+          (resource) => {
+            console.log(resource)
+          },
+        ),
       ])
+
+      config.module.rules.push({
+        test: /\.m?js$/,
+        type: 'javascript/auto',
+        resolve: {
+          fullySpecified: false,
+        },
+      })
+
+      config.module.rules.push({
+        test: /@react-aria/,
+        // type: 'javascript/',
+        resolve: {
+          mainFields: ['module'],
+        },
+      })
 
       return config
     },

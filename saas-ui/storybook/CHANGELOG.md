@@ -1,5 +1,23 @@
 # saas-ui-storybook
 
+## 13.0.0
+
+### Minor Changes
+
+- Fix build
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro@0.15.0
+
+## 12.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro@0.14.1
+
 ## 12.0.0
 
 ### Patch Changes
