@@ -7,18 +7,12 @@
     "@app/i18n": "workspace:*",
     "@react-hookz/web": "^15.1.0",
     "@saas-ui/sidebar": "^0.8.0",
-    "@tanstack/react-query": "^4.18.0",
-    "@tiptap/core": "^2.0.0-beta.204",
-    "@tiptap/extension-mention": "2.0.0-beta.204",
-    "@tiptap/extension-placeholder": "^2.0.0-beta.204",
-    "@tiptap/react": "^2.0.0-beta.204",
-    "@tiptap/starter-kit": "^2.0.0-beta.204",
-    "@tiptap/suggestion": "2.0.0-beta.204",
+    "@tanstack/react-query": "^4.22.0",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
     "react-icons": "^4.7.1",
     "slug": "^8.2.2",
-    "zod": "^3.19.1"
+    "zod": "^3.20.2"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",

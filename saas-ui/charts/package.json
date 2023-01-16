@@ -28,8 +28,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/styled-system": "^2.5.1",
-    "recharts": "^2.1.16"
+    "@chakra-ui/styled-system": "^2.5.2",
+    "recharts": "^2.3.2"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.4.8",

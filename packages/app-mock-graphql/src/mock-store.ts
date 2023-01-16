@@ -1,6 +1,6 @@
 import { randUuid } from '@ngneat/falso'
 
-import create from 'zustand/vanilla'
+import { createStore } from 'zustand/vanilla'
 import { persist } from 'zustand/middleware'
 
 interface MockStoreRecord {
@@ -21,7 +21,10 @@ export const createMockStore = <Type extends MockStoreRecord = MockStoreRecord>(
   key: string,
   initialData: Record<string, Type> = {},
 ) => {
-  const store = create<MockStore<Type>, [['zustand/persist', MockStore<Type>]]>(
+  const store = createStore<
+    MockStore<Type>,
+    [['zustand/persist', MockStore<Type>]]
+  >(
     persist(
       (set, get) => ({
         data: initialData,
