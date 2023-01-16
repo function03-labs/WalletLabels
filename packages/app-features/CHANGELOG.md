@@ -1,5 +1,20 @@
 # @app/features
 
+## 3.0.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @app/config@0.2.2
+  - @saas-ui/onboarding@0.8.1
+  - @app/i18n@0.2.2
+  - @saas-ui/features@0.10.1
+  - @ui/lib@0.1.1
+  - @saas-ui/charts@0.6.1
+  - @saas-ui/pro@0.15.1
+  - @ui/theme@0.3.4
+
 ## 3.0.0
 
 ### Patch Changes

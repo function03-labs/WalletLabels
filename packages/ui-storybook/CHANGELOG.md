@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.4.3
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+
 ## 0.4.2
 
 ### Patch Changes

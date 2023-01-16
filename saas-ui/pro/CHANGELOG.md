@@ -1,5 +1,13 @@
 # @saas-ui/pro
 
+## 0.15.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @saas-ui/onboarding@0.8.1
+
 ## 0.15.0
 
 ### Minor Changes

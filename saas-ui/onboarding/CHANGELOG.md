@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.8.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+
 ## 0.8.0
 
 ### Minor Changes

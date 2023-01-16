@@ -1,5 +1,20 @@
 # electron-app
 
+## 0.9.4
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @app/mock-graphql@0.7.1
+  - @app/features@3.0.1
+  - @saas-ui/onboarding@0.8.1
+  - @saas-ui/features@0.10.1
+  - @saas-ui/charts@0.6.1
+  - @saas-ui/paddle@0.7.1
+  - @saas-ui/pro@0.15.1
+  - @ui/theme@0.3.4
+
 ## 0.9.3
 
 ### Patch Changes

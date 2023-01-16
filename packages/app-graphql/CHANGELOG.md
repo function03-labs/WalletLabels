@@ -1,5 +1,13 @@
 # @app/graphql
 
+## 0.5.2
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @app/config@0.2.2
+
 ## 0.5.1
 
 ### Patch Changes

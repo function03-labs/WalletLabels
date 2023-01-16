@@ -1,5 +1,13 @@
 # saas-ui-storybook
 
+## 13.0.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @saas-ui/pro@0.15.1
+
 ## 13.0.0
 
 ### Minor Changes

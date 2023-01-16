@@ -1,7 +1,7 @@
 {
   "name": "saas-ui-storybook",
   "private": true,
-  "version": "13.0.0",
+  "version": "13.0.1",
   "scripts": {
     "dev": "start-storybook -p 6007",
     "build": "build-storybook && sb extract"
