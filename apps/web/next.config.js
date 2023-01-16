@@ -1,4 +1,3 @@
-const path = require('path')
 const withSvgr = require('next-svgr')
 const webpack = require('webpack')
 const withWorkspaces = require('@saas-ui/next-workspaces')
@@ -13,6 +12,7 @@ module.exports = withWorkspaces({
     optimizeFonts: true,
     reactStrictMode: false,
     distDir: isElectron ? '.nextron' : '.next',
+    transpilePackages: ['@saas-ui/date-picker'],
     webpack: (config, options) => {
       const { isServer } = options
       if (!isServer && isElectron) {
