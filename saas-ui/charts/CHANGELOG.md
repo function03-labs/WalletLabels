@@ -1,5 +1,17 @@
 # @saas-ui/charts
 
+## 0.6.0
+
+### Minor Changes
+
+- Fix build
+
+## 0.5.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+
 ## 0.5.0
 
 ### Minor Changes

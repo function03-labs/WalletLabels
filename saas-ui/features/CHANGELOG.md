@@ -1,5 +1,17 @@
 # @saas-ui/features
 
+## 0.10.0
+
+### Minor Changes
+
+- Fix build
+
+## 0.9.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+
 ## 0.9.0
 
 ### Minor Changes

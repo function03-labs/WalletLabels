@@ -1,5 +1,17 @@
 # @saas-ui/date-picker
 
+## 0.7.0
+
+### Minor Changes
+
+- Fix build
+
+## 0.6.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+
 ## 0.6.0
 
 ### Minor Changes
