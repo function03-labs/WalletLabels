@@ -2,11 +2,11 @@ import * as React from 'react'
 
 import {
   chakra,
+  IconButton,
   HTMLChakraProps,
   useMultiStyleConfig,
   SystemStyleObject,
 } from '@chakra-ui/react'
-import { IconButton } from '@saas-ui/react'
 import { useDataGridContext } from './data-grid'
 
 import { ChevronLeftIcon, ChevronRightIcon } from '../icons'

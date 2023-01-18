@@ -31,7 +31,7 @@ export const Resizer: React.FC<ResizerProps> = (props) => {
   let _child
   if (React.isValidElement(children)) {
     _child = React.cloneElement(children, {
-      ...(children.props || {}),
+      ...((children.props || {}) as object),
       ...getContainerProps(),
     })
   }

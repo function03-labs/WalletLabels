@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { Portal } from '@chakra-ui/react'
+import { Button, ButtonProps, Portal } from '@chakra-ui/react'
 import { __DEV__ } from '@chakra-ui/utils'
-import { Button, ButtonProps } from '@saas-ui/react'
 import { useTour, TourProvider, useTourContext, TourOptions } from './use-tour'
 
 export interface TourProps extends TourOptions {
@@ -48,7 +47,7 @@ export const TourNextButton: React.FC<ButtonProps> = (props) => {
     <Button
       variant="solid"
       colorScheme="primary"
-      label="Next"
+      children="Next"
       {...getNextProps(props)}
     />
   )
@@ -61,7 +60,7 @@ if (__DEV__) {
 export const TourPrevButton: React.FC<ButtonProps> = (props) => {
   const { getPrevProps } = useTourContext()
 
-  return <Button label="Back" {...getPrevProps(props)} />
+  return <Button children="Back" {...getPrevProps(props)} />
 }
 
 if (__DEV__) {
@@ -71,7 +70,7 @@ if (__DEV__) {
 export const TourDismissButton: React.FC<ButtonProps> = (props) => {
   const { getDismissProps } = useTourContext()
 
-  return <Button label="Dismiss" {...getDismissProps(props)} />
+  return <Button children="Dismiss" {...getDismissProps(props)} />
 }
 
 if (__DEV__) {

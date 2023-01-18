@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { Button } from '@chakra-ui/react'
 import {
-  Button,
   EmptyStateContainer,
   EmptyStateContainerProps,
   EmptyStateActions,
@@ -36,12 +36,9 @@ export const NoResults: React.FC<NoResultsProps> = (props) => {
       <EmptyStateDescription>{title}</EmptyStateDescription>
       {!!state.columnFilters.length && (
         <EmptyStateActions>
-          <Button
-            onClick={onReset}
-            label={clearLabel}
-            variant="ghost"
-            size="xs"
-          />
+          <Button onClick={onReset} variant="ghost" size="xs">
+            {clearLabel}
+          </Button>
         </EmptyStateActions>
       )}
     </EmptyStateContainer>

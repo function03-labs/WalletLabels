@@ -2,7 +2,7 @@
   "name": "@saas-ui/pro",
   "version": "0.13.0",
   "engines": {
-    "node": ">=14 <=18"
+    "node": ">=16 <=19"
   },
   "exports": {
     ".": {
@@ -69,7 +69,7 @@
     "polished": "^4.2.2"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2",
+    "@chakra-ui/react": ">=2.4.3",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
     "@saas-ui/react": ">=1",
