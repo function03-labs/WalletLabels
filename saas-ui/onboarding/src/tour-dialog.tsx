@@ -4,6 +4,10 @@ import {
   forwardRef,
   Popover,
   useTheme,
+  Button,
+  ButtonProps,
+  ButtonGroup,
+  ButtonGroupProps,
   PopoverTrigger as TourDialogTrigger,
   PopoverAnchor as TourDialogAnchor,
   PopoverContent as TourDialogContent,
@@ -19,13 +23,6 @@ import {
 import { __DEV__ } from '@chakra-ui/utils'
 
 import { getChildOfType } from '@saas-ui/react-utils'
-
-import {
-  Button,
-  ButtonProps,
-  ButtonGroup,
-  ButtonGroupProps,
-} from '@saas-ui/react'
 
 import {
   useTourDialog,
