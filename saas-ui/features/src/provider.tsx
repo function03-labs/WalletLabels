@@ -1,7 +1,6 @@
 import React from 'react'
-import { default as create } from 'zustand'
-import { default as createVanilla } from 'zustand/vanilla'
-import { default as createContext } from 'zustand/context'
+import { useStore } from 'zustand'
+import { createStore as createVanilla } from 'zustand/vanilla'
 
 import { Segment, UserAttributes, Flags } from './types'
 
@@ -59,7 +58,9 @@ const store = createVanilla<FeaturesStore>((set, get) => ({
   },
 }))
 
-const { Provider, useStore } = createContext<typeof store>()
+const FeaturesContext = React.createContext<typeof store | null>(null)
+
+const useFeaturesContext = () => React.useContext(FeaturesContext)
 
 export interface FeaturesProviderProps {
   value?: FeaturesOptions
@@ -75,13 +76,23 @@ export const FeaturesProvider: React.FC<FeaturesProviderProps> = (props) => {
     }
   }, [value])
 
-  return <Provider createStore={() => create(store)}>{children}</Provider>
+  return (
+    <FeaturesContext.Provider value={store}>
+      {children}
+    </FeaturesContext.Provider>
+  )
 }
 
 export const useFeatures = () => {
-  const store = useStore()
+  const context = useFeaturesContext()
 
-  return store
+  if (!context) {
+    throw new Error(
+      'Features context missing, did you wrap your app with FeaturesProvider?',
+    )
+  }
+
+  return useStore(context)
 }
 
 /**

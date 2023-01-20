@@ -1,5 +1,66 @@
 # nextjs-app
 
+## 0.10.4
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @app/mock-graphql@0.7.1
+  - @app/features@3.0.1
+  - @saas-ui/onboarding@0.8.1
+  - @saas-ui/features@0.10.1
+  - @saas-ui/charts@0.6.1
+  - @saas-ui/paddle@0.7.1
+  - @saas-ui/pro@0.15.1
+  - @ui/theme@0.3.4
+
+## 0.10.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.9.0
+  - @saas-ui/charts@0.6.0
+  - @saas-ui/features@0.10.0
+  - @saas-ui/onboarding@0.8.0
+  - @saas-ui/paddle@0.7.0
+  - @saas-ui/pro@0.15.0
+  - @saas-ui/router@0.8.0
+  - @app/features@3.0.0
+  - @ui/theme@0.3.3
+
+## 0.10.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @app/features@2.0.1
+  - @saas-ui/billing@0.8.1
+  - @saas-ui/charts@0.5.1
+  - @saas-ui/features@0.9.1
+  - @saas-ui/onboarding@0.7.1
+  - @saas-ui/paddle@0.6.1
+  - @saas-ui/pro@0.14.1
+  - @saas-ui/router@0.7.1
+  - @ui/theme@0.3.2
+
+## 0.10.1
+
+### Patch Changes
+
+- 465b640: Updated to Saas UI 1.7.4
+- Updated dependencies
+  - @saas-ui/billing@0.8.0
+  - @saas-ui/charts@0.5.0
+  - @saas-ui/features@0.9.0
+  - @saas-ui/onboarding@0.7.0
+  - @saas-ui/paddle@0.6.0
+  - @saas-ui/pro@0.14.0
+  - @saas-ui/router@0.7.0
+  - @app/features@2.0.0
+  - @ui/theme@0.3.1
+
 ## 0.10.0
 
 ### Minor Changes

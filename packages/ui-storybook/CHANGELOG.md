@@ -1,5 +1,17 @@
 # @ui/core
 
+## 0.4.3
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+
+## 0.4.2
+
+### Patch Changes
+
+- 465b640: Updated to Saas UI 1.7.4
+
 ## 0.4.1
 
 ### Patch Changes

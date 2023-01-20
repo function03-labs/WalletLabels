@@ -1,5 +1,11 @@
 # @app/i18n
 
+## 0.2.2
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+
 ## 0.2.1
 
 ### Patch Changes

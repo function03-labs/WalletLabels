@@ -1,19 +1,19 @@
 {
   "name": "@saas-ui/features",
   "description": "Feature flags for Saas UI",
-  "version": "0.8.2",
+  "version": "0.10.1",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs.js",
+      "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js"
+      "import": "./dist/index.mjs"
     },
     "./src": {
       "default": "./src/index.ts"
     }
   },
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.esm.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.saas-ui.dev"
@@ -34,15 +34,15 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "zustand": "^4.1.4"
+    "zustand": "^4.3.2"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2",
-    "@saas-ui/react": ">=1",
+    "@chakra-ui/react": ">=2.4.8",
+    "@saas-ui/react": ">=1.8.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18"
   },
   "devDependencies": {
-    "tsup": "6.2.1"
+    "tsup": "6.5.0"
   }
 }

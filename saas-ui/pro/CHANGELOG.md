@@ -1,5 +1,46 @@
 # @saas-ui/pro
 
+## 0.15.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @saas-ui/onboarding@0.8.1
+
+## 0.15.0
+
+### Minor Changes
+
+- Fix build
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/onboarding@0.8.0
+  - @saas-ui/router@0.8.0
+
+## 0.14.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+- Updated dependencies
+  - @saas-ui/onboarding@0.7.1
+  - @saas-ui/router@0.7.1
+
+## 0.14.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/onboarding@0.7.0
+  - @saas-ui/router@0.7.0
+
 ## 0.13.0
 
 ### Minor Changes

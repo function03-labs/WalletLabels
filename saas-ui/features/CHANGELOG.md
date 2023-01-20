@@ -1,5 +1,29 @@
 # @saas-ui/features
 
+## 0.10.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+
+## 0.10.0
+
+### Minor Changes
+
+- Fix build
+
+## 0.9.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+
+## 0.9.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
 ## 0.8.2
 
 ### Patch Changes

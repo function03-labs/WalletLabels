@@ -20,8 +20,6 @@ export default defineConfig({
     'zustand',
   ],
   format: ['esm', 'cjs'],
-  outExtension(ctx) {
-    return { js: `.${ctx.format}.js` }
-  },
+
   treeshake: 'smallest',
 })

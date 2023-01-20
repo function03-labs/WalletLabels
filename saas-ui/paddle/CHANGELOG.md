@@ -1,5 +1,43 @@
 # @saas-ui/paddle
 
+## 0.7.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @saas-ui/pro@0.15.1
+
+## 0.7.0
+
+### Minor Changes
+
+- Fix build
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro@0.15.0
+
+## 0.6.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+- Updated dependencies
+  - @saas-ui/pro@0.14.1
+
+## 0.6.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro@0.14.0
+
 ## 0.5.3
 
 ### Patch Changes

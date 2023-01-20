@@ -97,11 +97,11 @@ const DateCell: DataGridCell<Contact> = ({ cell }) => {
   return <>{format(new Date(cell.getValue<string>()), 'PP')}</>
 }
 
-const ActionCell: DataGridCell<Contact> = () => {
+const ActionCell: DataGridCell<Contact> = (cell) => {
   return (
     <Box onClick={(e) => e.stopPropagation()}>
       <OverflowMenu size="xs">
-        <MenuItem>Delete</MenuItem>
+        <MenuItem onClick={() => console.log(cell.row.id)}>Delete</MenuItem>
       </OverflowMenu>
     </Box>
   )

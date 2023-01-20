@@ -1,5 +1,60 @@
 # @app/features
 
+## 3.0.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+- Updated dependencies [c5ab025]
+  - @app/config@0.2.2
+  - @saas-ui/onboarding@0.8.1
+  - @app/i18n@0.2.2
+  - @saas-ui/features@0.10.1
+  - @ui/lib@0.1.1
+  - @saas-ui/charts@0.6.1
+  - @saas-ui/pro@0.15.1
+  - @ui/theme@0.3.4
+
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.9.0
+  - @saas-ui/charts@0.6.0
+  - @saas-ui/features@0.10.0
+  - @saas-ui/onboarding@0.8.0
+  - @saas-ui/pro@0.15.0
+  - @saas-ui/router@0.8.0
+  - @ui/theme@0.3.3
+
+## 2.0.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+- Updated dependencies
+  - @saas-ui/billing@0.8.1
+  - @saas-ui/charts@0.5.1
+  - @saas-ui/features@0.9.1
+  - @saas-ui/onboarding@0.7.1
+  - @saas-ui/pro@0.14.1
+  - @saas-ui/router@0.7.1
+  - @ui/theme@0.3.2
+
+## 2.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/billing@0.8.0
+  - @saas-ui/charts@0.5.0
+  - @saas-ui/features@0.9.0
+  - @saas-ui/onboarding@0.7.0
+  - @saas-ui/pro@0.14.0
+  - @saas-ui/router@0.7.0
+  - @ui/theme@0.3.1
+
 ## 1.0.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 {
   "name": "@app/i18n",
   "main": "src/index",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "extract": "formatjs extract",
@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "date-fns": "^2.29.3",
-    "react-intl": "^6.2.4"
+    "react-intl": "^6.2.5"
   },
   "peerDependencies": {
     "react": ">=16.8.6"
   },
   "devDependencies": {
-    "@formatjs/cli": "^5.1.6"
+    "@formatjs/cli": "^5.1.12"
   }
 }

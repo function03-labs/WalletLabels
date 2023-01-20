@@ -1,5 +1,29 @@
 # @saas-ui/charts
 
+## 0.6.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+
+## 0.6.0
+
+### Minor Changes
+
+- Fix build
+
+## 0.5.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+
+## 0.5.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
 ## 0.4.1
 
 ### Patch Changes

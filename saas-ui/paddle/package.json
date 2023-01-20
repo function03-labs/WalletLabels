@@ -1,11 +1,11 @@
 {
   "name": "@saas-ui/paddle",
-  "version": "0.5.3",
+  "version": "0.7.1",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs.js",
+      "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js"
+      "import": "./dist/index.mjs"
     },
     "./next": {
       "require": "./dist/next/index.js",
@@ -39,14 +39,14 @@
     "directory": "saas-ui/paddle"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^2.0.12",
+    "@chakra-ui/utils": "^2.0.15",
     "@saas-ui/pro": "workspace:*"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2",
+    "@chakra-ui/react": ">=2.4.8",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "@saas-ui/react": ">=1",
+    "@saas-ui/react": ">=1.8.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18",
     "react-dom": ">=18"

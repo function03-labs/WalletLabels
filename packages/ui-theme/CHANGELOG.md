@@ -1,5 +1,32 @@
 # @ui/theme
 
+## 0.3.4
+
+### Patch Changes
+
+- Updated dependencies [c5ab025]
+  - @saas-ui/pro-theme-glass@0.2.1
+
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro-theme-glass@0.2.0
+
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui/pro-theme-glass@0.1.3
+
+## 0.3.1
+
+### Patch Changes
+
+- @saas-ui/pro-theme-glass@0.1.2
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,5 +1,29 @@
 # @saas-ui/onboarding
 
+## 0.8.1
+
+### Patch Changes
+
+- c5ab025: Update dependencies
+
+## 0.8.0
+
+### Minor Changes
+
+- Fix build
+
+## 0.7.1
+
+### Patch Changes
+
+- Fix bundle extensions.
+
+## 0.7.0
+
+### Minor Changes
+
+- Upgrade to Chakra UI 2.4.8.
+
 ## 0.6.2
 
 ### Patch Changes
