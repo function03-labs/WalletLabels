@@ -1,3 +1,4 @@
+import { useControllableState } from '@chakra-ui/react'
 import * as React from 'react'
 
 const regExpSyntaxCharacter = /[.*+?^${}()|[\]\\]/g
@@ -15,14 +16,26 @@ export interface UseSearchQueryOptions<T> {
   items?: Array<T>
   fields?: string[]
   defaultValue?: string
+  value?: string
+  onChange?(value: string): void
 }
 
 export const useSearchQuery = <T extends Result = Result>(
   props: UseSearchQueryOptions<T> = {},
 ) => {
-  const { items, fields = ['id'], defaultValue = '' } = props
+  const {
+    items,
+    fields = ['id'],
+    defaultValue = '',
+    value,
+    onChange: onChangeProp,
+  } = props
 
-  const [query, setQuery] = React.useState(defaultValue)
+  const [query, setQuery] = useControllableState({
+    defaultValue,
+    value,
+    onChange: onChangeProp,
+  })
 
   const results = React.useMemo(() => {
     if (!query || !query.length) {

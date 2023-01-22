@@ -39,6 +39,9 @@ export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
   command?: string
   onSelect?(item: FilterItem): void
   buttonProps?: ButtonProps
+  inputValue?: string
+  inputDefaultValue?: string
+  onInputChange?(value: string, activeItemId?: string): void
 }
 
 export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
@@ -55,6 +58,9 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       defaultIsOpen,
       onOpen: onOpenProp,
       onClose: onCloseProp,
+      inputValue,
+      inputDefaultValue,
+      onInputChange,
       ...rest
     } = props
 
@@ -84,6 +90,9 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     const { results, onReset, ...inputProps } = useSearchQuery<FilterItem>({
       items: activeItem?.items || items,
       fields: ['id', 'label'],
+      value: inputValue,
+      defaultValue: inputDefaultValue,
+      onChange: (value) => onInputChange?.(value, activeItem?.id),
     })
 
     const onItemClick = React.useCallback(
