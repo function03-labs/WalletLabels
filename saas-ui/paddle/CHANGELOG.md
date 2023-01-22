@@ -1,5 +1,13 @@
 # @saas-ui/paddle
 
+## 0.7.2
+
+### Patch Changes
+
+- Updated dependencies [ef60b80]
+- Updated dependencies [ef60b80]
+  - @saas-ui/pro@0.15.2
+
 ## 0.7.1
 
 ### Patch Changes

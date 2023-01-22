@@ -1,5 +1,14 @@
 # @app/features
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [ef60b80]
+- Updated dependencies [ef60b80]
+  - @saas-ui/pro@0.15.2
+  - @ui/theme@0.3.5
+
 ## 3.0.1
 
 ### Patch Changes
