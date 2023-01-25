@@ -24,7 +24,7 @@ export const ResizeHandle: React.FC<HTMLChakraProps<'div'>> = (props) => {
       {...props}
       {...context?.getHandleProps()}
       __css={styles}
-      className={cx('saas-resize-handle', props.className)}
+      className={cx('sui-resize-handle', props.className)}
     />
   )
 }

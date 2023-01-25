@@ -40,7 +40,7 @@ export const Command: React.FC<HTMLChakraProps<'span'>> = (props) => {
 
   return (
     <chakra.span
-      className={cx('saas-command', className)}
+      className={cx('sui-command', className)}
       __css={commandStyles}
       {...rest}
     >

@@ -226,7 +226,7 @@ export const DatePickerDialog = forwardRef<DatePickerDialog, 'div'>(
       <PopoverContent
         ref={ref}
         {...rest}
-        className={cx('saas-date-picker', props.className)}
+        className={cx('sui-date-picker', props.className)}
       >
         {!hideArrow && <PopoverArrow marginLeft={arrowOffset} />}
 
@@ -247,7 +247,7 @@ const DatePickerStaticContent = forwardRef<HTMLChakraProps<'div'>, 'div'>(
         ref={ref}
         {...props}
         __css={styles.container}
-        className={cx('saas-date-picker', props.className)}
+        className={cx('sui-date-picker', props.className)}
       >
         <DatePickerContent />
       </chakra.div>

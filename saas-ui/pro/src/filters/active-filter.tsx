@@ -154,7 +154,7 @@ export const ActiveFilterContainer: React.FC<ActiveFilterContainerProps> = (
         isAttached
         {...rest}
         sx={containerStyles}
-        className={cx('saas-active-filter', props.className)}
+        className={cx('sui-active-filter', props.className)}
       >
         {children}
       </ButtonGroup>
@@ -194,7 +194,7 @@ export const ActiveFilterLabel: React.FC<ActiveFilterLabelProps> = (props) => {
     <chakra.div
       {...rest}
       __css={labelStyles}
-      className={cx('saas-active-filter__label', props.className)}
+      className={cx('sui-active-filter__label', props.className)}
     >
       {_icon && (
         <chakra.span marginEnd={iconSpacing} display="inline-block">
@@ -248,7 +248,7 @@ export const ActiveFilterOperator: React.FC<ActiveFilterOperatorProps> = (
         as={ActiveFilterButton}
         sx={operatorStyles}
         {...buttonProps}
-        className={cx('saas-active-filter__operator')}
+        className={cx('sui-active-filter__operator')}
       >
         {label}
       </MenuButton>
@@ -307,7 +307,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
     <chakra.div
       {...htmlProps}
       __css={valueStyles}
-      className={cx('saas-active-filter__value', props.className)}
+      className={cx('sui-active-filter__value', props.className)}
     >
       {label || children}
     </chakra.div>
@@ -337,7 +337,7 @@ export const ActiveFilterRemove: React.FC<ActiveFilterRemove> = (props) => {
       tabIndex={0}
       {...props}
       sx={removeStyles}
-      className={cx('saas-active-filter__remove', props.className)}
+      className={cx('sui-active-filter__remove', props.className)}
     />
   )
 }

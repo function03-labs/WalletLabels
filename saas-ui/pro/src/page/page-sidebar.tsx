@@ -57,7 +57,7 @@ export const PageSidebarHeader: React.FC<HTMLChakraProps<'header'>> = (
     <chakra.header
       __css={styles.headerContainer}
       {...rest}
-      className={cx('saas-page-sidebar__header', props.className)}
+      className={cx('sui-page-sidebar__header', props.className)}
     >
       <chakra.div __css={styles.header}>{children}</chakra.div>
     </chakra.header>
@@ -78,7 +78,7 @@ export const PageSidebarBody: React.FC<PageSidebarBodyProps> = (props) => {
   return (
     <chakra.div
       __css={styles.body}
-      className={cx('saas-page-sidebar__body', props.className)}
+      className={cx('sui-page-sidebar__body', props.className)}
     >
       {children}
     </chakra.div>
@@ -142,7 +142,7 @@ export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
           ...styles.container,
         }}
         {...containerProps}
-        className={cx('saas-page-sidebar', props.className)}
+        className={cx('sui-page-sidebar', props.className)}
         {...resize.getContainerProps()}
       >
         <chakra.div __css={innerStyles}>{children}</chakra.div>

@@ -36,7 +36,7 @@ export const Timeline: React.FC<TimelineProps> = (props) => {
       <chakra.ul
         {...rest}
         __css={timelineStyles}
-        className={cx('saas-timeline', props.className)}
+        className={cx('sui-timeline', props.className)}
       >
         {children}
       </chakra.ul>
@@ -68,7 +68,7 @@ export const TimelineItem = forwardRef<TimelineItemProps, 'li'>(
         {...rest}
         ref={ref}
         __css={itemStyles}
-        className={cx('saas-timeline__item', props.className)}
+        className={cx('sui-timeline__item', props.className)}
       >
         {children}
       </chakra.li>
@@ -96,7 +96,7 @@ export const TimelineContent: React.FC<TimelineContentProps> = (props) => {
     <chakra.div
       {...rest}
       __css={contentStyles}
-      className={cx('saas-timeline__content', props.className)}
+      className={cx('sui-timeline__content', props.className)}
     >
       {children}
     </chakra.div>
@@ -126,7 +126,7 @@ export const TimelineSeparator: React.FC<TimelineSeparatorProps> = (props) => {
     <chakra.div
       {...rest}
       __css={separatorStyles}
-      className={cx('saas-timeline__separator', props.className)}
+      className={cx('sui-timeline__separator', props.className)}
     >
       {children}
     </chakra.div>
@@ -152,7 +152,7 @@ export const TimelineDot: React.FC<TimelineDotProps> = (props) => {
     <chakra.div
       {...rest}
       __css={dotStyles}
-      className={cx('saas-timeline__dot', props.className)}
+      className={cx('sui-timeline__dot', props.className)}
     >
       {children}
     </chakra.div>
@@ -181,7 +181,7 @@ export const TimelineIcon: React.FC<TimelineIconProps> = (props) => {
     <chakra.div
       {...rest}
       __css={iconStyles}
-      className={cx('saas-timeline__icon', props.className)}
+      className={cx('sui-timeline__icon', props.className)}
       data-dot={dataAttr(!children)}
     >
       {children || <TimelineDot />}
@@ -214,7 +214,7 @@ export const TimelineTrack: React.FC<TimelineTrackProps> = (props) => {
     <chakra.div
       {...rest}
       __css={trackStyles}
-      className={cx('saas-timeline__track', props.className)}
+      className={cx('sui-timeline__track', props.className)}
     >
       {children}
     </chakra.div>

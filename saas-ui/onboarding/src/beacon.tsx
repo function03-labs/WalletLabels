@@ -65,7 +65,7 @@ export const Beacon = forwardRef<BeaconProps, 'div'>((props, ref) => {
       ref={ref}
       {...props}
       __css={styles}
-      className={cx('saas-beacon', props.className)}
+      className={cx('sui-beacon', props.className)}
     />
   )
 })

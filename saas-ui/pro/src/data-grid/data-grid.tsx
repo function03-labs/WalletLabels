@@ -255,7 +255,7 @@ export const DataGrid = React.forwardRef(
     const table = (
       <Table
         ref={ref}
-        className={cx('saas-data-grid', className)}
+        className={cx('sui-data-grid', className)}
         styleConfig={styleConfig}
         colorScheme={colorScheme}
         size={size}
@@ -313,7 +313,7 @@ export const DataGrid = React.forwardRef(
     return (
       <DataGridProvider<Data> instance={instance}>
         <chakra.div
-          className={cx('saas-data-grid', className)}
+          className={cx('sui-data-grid', className)}
           __css={styles.container}
         >
           <chakra.div className="saas-data-grid__inner" __css={innerStyles}>

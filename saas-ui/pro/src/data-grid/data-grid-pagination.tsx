@@ -54,7 +54,7 @@ export const DataGridPagination: React.FC<DataGridPaginationProps> = (
 
   return (
     <chakra.div
-      className={cx('saas-data-grid__pagination', className)}
+      className={cx('sui-data-grid__pagination', className)}
       __css={containerStyles}
       {...rest}
     >

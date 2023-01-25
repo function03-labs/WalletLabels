@@ -44,7 +44,7 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
     return (
       <InputGroup
         role={role}
-        className={cx('saas-menu-list__filter')}
+        className={cx('sui-menu-list__filter')}
         borderBottomWidth="1px"
         borderBottomColor="default-border-color"
         {...groupProps}

@@ -76,7 +76,7 @@ export const SectionBody: React.FC<SectionBodyProps> = (props) => {
     <chakra.div
       {...rest}
       __css={bodyStyles}
-      className={cx('saas-section__body', props.className)}
+      className={cx('sui-section__body', props.className)}
     >
       {children}
     </chakra.div>
@@ -108,7 +108,7 @@ export const SectionContainer: React.FC<SectionProps> = (props) => {
       <chakra.div
         {...containerProps}
         __css={containerStyles}
-        className={cx('saas-section', props.className)}
+        className={cx('sui-section', props.className)}
       >
         {children}
       </chakra.div>
@@ -132,7 +132,7 @@ export const SectionHeading: React.FC<HTMLChakraProps<'div'>> = (props) => {
     <chakra.div
       {...props}
       __css={headingStyles}
-      className={cx('saas-section__heading', props.className)}
+      className={cx('sui-section__heading', props.className)}
     />
   )
 }

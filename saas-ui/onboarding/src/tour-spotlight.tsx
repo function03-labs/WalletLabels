@@ -49,7 +49,7 @@ export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
           {...getSpotlightProps(props)}
           ref={ref}
           __css={spotlightStyles}
-          className={cx('saas-spotlight', props.className)}
+          className={cx('sui-spotlight', props.className)}
         />
       </Portal>
     )

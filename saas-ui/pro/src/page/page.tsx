@@ -94,7 +94,7 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
     <chakra.header
       __css={styles.headerContainer}
       {...rest}
-      className={cx('saas-page__header', props.className)}
+      className={cx('sui-page__header', props.className)}
     >
       <chakra.div __css={styles.header}>
         {nav}
@@ -136,7 +136,7 @@ export const PageBody: React.FC<PageBodyProps> = (props) => {
     <chakra.div
       {...rest}
       __css={styles.body}
-      className={cx('saas-page__body', props.className)}
+      className={cx('sui-page__body', props.className)}
     >
       <chakra.div {...contentProps} maxW={innerWidth}>
         {children}
@@ -168,7 +168,7 @@ export const PageContainer: React.FC<PageContainerProps> = (props) => {
       <chakra.main
         {...containerProps}
         __css={styles.container}
-        className={cx('saas-page', props.className)}
+        className={cx('sui-page', props.className)}
       >
         {children}
       </chakra.main>

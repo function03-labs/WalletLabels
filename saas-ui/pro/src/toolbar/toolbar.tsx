@@ -55,7 +55,7 @@ export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
         size={size || defaultProps.size}
         ref={ref}
         __css={containerStyles}
-        className={cx('saas-toolbar', className)}
+        className={cx('sui-toolbar', className)}
       >
         {children}
       </chakra.div>
@@ -120,7 +120,7 @@ export const ToolbarDivider: React.FC<HTMLChakraProps<'div'>> = (props) => {
     <chakra.div
       {...props}
       __css={dividerStyles}
-      className={cx('saas-toolbar__divider', props.className)}
+      className={cx('sui-toolbar__divider', props.className)}
     >
       <Divider orientation="vertical" />
     </chakra.div>
@@ -137,7 +137,7 @@ export const ToolbarGroup: React.FC<ButtonGroupProps> = (props) => {
     <ButtonGroup
       {...groupProps}
       {...props}
-      className={cx('saas-toolbar__group', props.className)}
+      className={cx('sui-toolbar__group', props.className)}
     />
   )
 }
@@ -159,7 +159,7 @@ export const ToolbarToggleGroup: React.FC<ToolbarToggleGroupProps> = (
     <ToolbarGroup
       {...rest}
       {...groupProps}
-      className={cx('saas-toolbar__toggle-group', props.className)}
+      className={cx('sui-toolbar__toggle-group', props.className)}
     />
   )
 }
@@ -189,7 +189,7 @@ export const ToolbarToggleButton = forwardRef<
       colorScheme={isChecked ? 'primary' : colorScheme}
       variant={variant}
       {...rest}
-      className={cx('saas-toolbar__toggle-button', props.className)}
+      className={cx('sui-toolbar__toggle-button', props.className)}
     />
   )
 })
