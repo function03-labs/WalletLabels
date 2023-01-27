@@ -1,5 +1,15 @@
 # @saas-ui/charts
 
+## 0.7.0
+
+### Minor Changes
+
+- a9b4ba9: Added new tooltipContent and tooltipFormatter props.
+
+### Patch Changes
+
+- a9b4ba9: Fixed ESM incompatibility issues.
+
 ## 0.6.1
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # electron-app
 
+## 0.9.6
+
+### Patch Changes
+
+- Updated dependencies [a9b4ba9]
+- Updated dependencies [a9b4ba9]
+  - @saas-ui/charts@0.7.0
+  - @app/features@4.0.0
+
 ## 0.9.5
 
 ### Patch Changes

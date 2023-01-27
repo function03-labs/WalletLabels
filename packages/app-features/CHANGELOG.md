@@ -1,5 +1,13 @@
 # @app/features
 
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies [a9b4ba9]
+- Updated dependencies [a9b4ba9]
+  - @saas-ui/charts@0.7.0
+
 ## 3.0.2
 
 ### Patch Changes
