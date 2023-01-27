@@ -1,5 +1,11 @@
 # @ui/theme
 
+## 0.3.6
+
+### Patch Changes
+
+- @saas-ui/pro-theme-glass@0.2.3
+
 ## 0.3.5
 
 ### Patch Changes
