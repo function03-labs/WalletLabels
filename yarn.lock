@@ -6120,6 +6120,7 @@ __metadata:
     "@chakra-ui/system": ^2.4.0
     "@chakra-ui/theme-tools": ^2.0.17
     "@chakra-ui/utils": ^2.0.15
+    "@ngneat/falso": ^2.27.0
     "@react-hookz/web": ^15.1.0
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/react-utils": ^1.2.0
