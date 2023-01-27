@@ -39,6 +39,7 @@ import {
   ThemingProps,
   SystemStyleObject,
   CSSObject,
+  CheckboxProps,
 } from '@chakra-ui/react'
 
 import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
@@ -62,7 +63,8 @@ export type {
   OnChangeFn,
 }
 
-interface DataGridContextValue<Data extends object> {
+interface DataGridContextValue<Data extends object>
+  extends Pick<DataGridProps<Data>, 'colorScheme' | 'variant' | 'size'> {
   instance: TableInstance<Data>
   state: TableState
 }
@@ -71,7 +73,8 @@ const DataGridContext = React.createContext<DataGridContextValue<any> | null>(
   null,
 )
 
-export interface DataGridProviderProps<Data extends object> {
+export interface DataGridProviderProps<Data extends object>
+  extends Pick<DataGridProps<Data>, 'colorScheme' | 'variant' | 'size'> {
   instance: TableInstance<Data>
   children: React.ReactNode
 }
@@ -79,11 +82,14 @@ export interface DataGridProviderProps<Data extends object> {
 export const DataGridProvider = <Data extends object>(
   props: DataGridProviderProps<Data>,
 ) => {
-  const { instance, children } = props
+  const { instance, children, colorScheme, variant, size } = props
 
   const context: DataGridContextValue<Data> = {
     state: instance.getState(),
     instance,
+    colorScheme,
+    variant,
+    size,
   }
 
   return (
@@ -204,16 +210,20 @@ export const DataGrid = React.forwardRef(
 
     const instance = useReactTable<Data>({
       columns: React.useMemo(() => {
-        return getSelectionColumn<Data>(isSelectable).concat(
-          columns?.map((column: any) => {
-            if (!column.accessorKey) {
-              column.accessorKey = column.id
-            }
-            if (!column.cell) {
-              column.cell = DefaultDataGridCell
-            }
-            return column
-          }),
+        const selectionColumn =
+          columns[0].id === 'selection' ? columns[0] : undefined
+        return getSelectionColumn<Data>(isSelectable, selectionColumn).concat(
+          columns
+            ?.filter(({ id }) => id !== 'selection')
+            .map((column: any) => {
+              if (!column.accessorKey) {
+                column.accessorKey = column.id
+              }
+              if (!column.cell) {
+                column.cell = DefaultDataGridCell
+              }
+              return column
+            }),
         )
       }, []),
       data,
@@ -311,7 +321,12 @@ export const DataGrid = React.forwardRef(
     )
 
     return (
-      <DataGridProvider<Data> instance={instance}>
+      <DataGridProvider<Data>
+        instance={instance}
+        colorScheme={colorScheme}
+        variant={variant}
+        size={size}
+      >
         <chakra.div
           className={cx('saas-data-grid', className)}
           __css={styles.container}
@@ -442,27 +457,34 @@ if (__DEV__) {
   DefaultDataGridCell.displayName = 'DefaultDataTableCell'
 }
 
-const DataGridCheckbox = forwardRef((props, ref) => {
-  const onClick = React.useCallback(
-    (e: React.MouseEvent) => e.stopPropagation(),
-    [],
-  )
+export const DataGridCheckbox = forwardRef<CheckboxProps, 'input'>(
+  (props, ref) => {
+    const onClick = React.useCallback(
+      (e: React.MouseEvent) => e.stopPropagation(),
+      [],
+    )
 
-  return (
-    <chakra.div onClick={onClick}>
-      <Checkbox ref={ref} {...props} />
-    </chakra.div>
-  )
-})
+    const context = useDataGridContext()
 
-const getSelectionColumn = <Data extends object>(enabled?: boolean) => {
+    return (
+      <chakra.div onClick={onClick}>
+        <Checkbox ref={ref} colorScheme={context?.colorScheme} {...props} />
+      </chakra.div>
+    )
+  },
+)
+
+const getSelectionColumn = <Data extends object>(
+  enabled?: boolean,
+  columnDef?: ColumnDef<Data>,
+) => {
   return enabled
     ? [
         {
           id: 'selection',
           size: 1,
           enableHiding: false,
-          header: ({ table }) => (
+          header: ({ table, column }) => (
             <DataGridCheckbox
               isChecked={table.getIsAllRowsSelected()}
               isIndeterminate={table.getIsSomeRowsSelected()}
@@ -478,10 +500,12 @@ const getSelectionColumn = <Data extends object>(enabled?: boolean) => {
             <DataGridCheckbox
               isChecked={row.getIsSelected()}
               isIndeterminate={row.getIsSomeSelected()}
+              isDisabled={!row.getCanSelect()}
               onChange={row.getToggleSelectedHandler()}
               aria-label={row.getIsSelected() ? 'Deselect row' : 'Select row'}
             />
           ),
+          ...columnDef,
         } as ColumnDef<Data>,
       ]
     : []

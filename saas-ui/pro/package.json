@@ -79,6 +79,7 @@
   },
   "devDependencies": {
     "react-icons": "^4.7.1",
-    "tsup": "^6.5.0"
+    "tsup": "^6.5.0",
+    "@ngneat/falso": "^2.27.0"
   }
 }

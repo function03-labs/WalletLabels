@@ -3,6 +3,16 @@ import { Story, Meta } from '@storybook/react'
 
 import { Container, Stack, Button, Box } from '@chakra-ui/react'
 
+import {
+  rand,
+  randEmail,
+  randFullName,
+  randUser,
+  randNumber,
+  randBetweenDate,
+  User,
+} from '@ngneat/falso'
+
 import { DataGridPagination } from '../data-grid-pagination'
 import {
   DataGrid,
@@ -12,16 +22,17 @@ import {
   SortingState,
   ColumnFiltersState,
   DataGridCell,
+  DataGridCheckbox,
 } from '../data-grid'
 
-import { ButtonGroup, MenuItem, OverflowMenu } from '@saas-ui/react'
+import { AppShell, ButtonGroup, MenuItem, OverflowMenu } from '@saas-ui/react'
 
 export default {
   title: 'Components/Data Display/DataGrid',
   component: DataGrid,
   decorators: [
     (Story: any) => (
-      <Container mt="40px" maxW="container.xl">
+      <Container mb="40px" maxW="container.xl">
         <Story />
       </Container>
     ),
@@ -42,29 +53,36 @@ const Template: Story<DataGridProps<ExampleData>> = ({
   />
 )
 
-const ActionCell: DataGridCell<any> = () => {
+const statuses = {
+  new: {
+    label: 'New',
+  },
+  active: {
+    label: 'Active',
+  },
+  inactive: {
+    label: 'Inactive',
+  },
+}
+
+const StatusCell: DataGridCell<ExampleData> = (cell) => {
+  const status = statuses[cell.getValue<keyof typeof statuses>()]
+  return <Box>{status.label}</Box>
+}
+
+const ActionCell: DataGridCell<ExampleData> = () => {
   return (
-    <Box onClick={(e) => e.stopPropagation()}>
+    <Stack onClick={(e) => e.stopPropagation()} alignItems="flex-end">
       <OverflowMenu size="xs">
         <MenuItem>Delete</MenuItem>
       </OverflowMenu>
-    </Box>
+    </Stack>
   )
-}
-
-interface ExampleData {
-  name: string
-  phone: string
-  email: string
-  company: string
-  country: string
-  employees: number
-  status: string
 }
 
 const columns: ColumnDef<ExampleData>[] = [
   {
-    accessorKey: 'name',
+    accessorKey: 'firstName',
     header: 'Name',
   },
   {
@@ -76,83 +94,52 @@ const columns: ColumnDef<ExampleData>[] = [
     header: 'Email',
   },
   {
-    accessorKey: 'company',
-    header: 'Company',
-  },
-  {
-    accessorKey: 'country',
+    accessorKey: 'address.country',
     header: 'Country',
-  },
-  {
-    accessorKey: 'employees',
-    header: 'Employees',
-    meta: { isNumeric: true },
   },
   {
     accessorKey: 'status',
     header: 'Status',
+    cell: StatusCell,
   },
   {
     accessorKey: 'action',
     header: '',
     cell: ActionCell,
+    size: 10,
     enableSorting: false,
   },
 ]
 
-const data = [
-  {
-    id: 1,
-    name: 'TaShya Charles',
-    phone: '(651) 467-2240',
-    email: 'urna.nec.luctus@icloud.couk',
-    company: 'Luctus Et Industries',
-    country: 'China',
-    employees: 139,
-    status: 'new',
-  },
-  {
-    id: 2,
-    name: 'Donovan Mosley',
-    phone: '(154) 698-4775',
-    email: 'lacinia.mattis.integer@icloud.couk',
-    company: 'Nunc Ullamcorper Industries',
-    country: 'Sweden',
-    employees: 234,
-    status: 'new',
-  },
-  {
-    id: 3,
-    name: 'Quynn Moore',
-    phone: '1-362-643-1030',
-    email: 'ipsum.primis@aol.couk',
-    company: 'Venenatis Lacus LLC',
-    country: 'Italy',
-    employees: 32,
-    status: 'new',
-  },
-  {
-    id: 4,
-    name: 'Hashim Huff',
-    phone: '(202) 481-9204',
-    email: 'pede.ultrices.a@icloud.couk',
-    company: 'Maecenas Ornare Incorporated',
-    country: 'China',
-    employees: 1322,
-    status: 'active',
-  },
-  {
-    id: 5,
-    name: 'Fuller Mcleod',
-    phone: '1-186-271-2202',
-    email: 'auctor.velit@hotmail.com',
-    company: 'Hendrerit Consectetuer Associates',
-    country: 'Peru',
-    employees: 4,
-    status: 'active',
-  },
-]
+const makeData = (length = 1000) => {
+  return randUser({
+    length,
+  }).map((user) => {
+    return {
+      ...user,
+      status: rand(['new', 'active', 'inactive']),
+    }
+  })
+}
 
+const data = makeData()
+
+type ExampleData = {
+  status: string
+  id: string
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  img: string
+  address: {
+    street: string
+    city: string
+    zipCode: string
+    country?: string
+  }
+  phone: string
+}
 const initialState = {
   columnVisibility: { phone: false, employees: false },
 }
@@ -178,6 +165,15 @@ Selectable.args = {
   data,
   initialState,
   isSelectable: true,
+}
+
+export const ColorScheme = Template.bind({})
+ColorScheme.args = {
+  columns,
+  data,
+  initialState,
+  isSelectable: true,
+  colorScheme: 'cyan',
 }
 
 export const InitialSelected = Template.bind({})
@@ -276,7 +272,7 @@ export const WithRemotePagination = () => {
   const [page, setPage] = React.useState(0)
 
   const paginatedData = React.useMemo(() => {
-    return data.slice(page, page + 1)
+    return data.slice(page, page + 100)
   }, [page])
 
   return (
@@ -286,7 +282,7 @@ export const WithRemotePagination = () => {
       pageCount={data.length}
       initialState={{
         pagination: {
-          pageSize: 1,
+          pageSize: 100,
         },
       }}
     >
@@ -433,5 +429,67 @@ export const WithRemoteFilters = () => {
         }}
       />
     </>
+  )
+}
+
+export const WithStickyHeaders = () => {
+  return (
+    <AppShell variant="fullscreen" position="fixed" top="0">
+      <DataGrid<ExampleData>
+        sx={{
+          '& thead tr': {
+            position: 'sticky',
+            top: 0,
+            zIndex: 1,
+            bg: 'app-background',
+            boxShadow: 'sm',
+          },
+        }}
+        columns={columns}
+        data={data}
+        isSelectable
+        isSortable
+        initialState={{
+          pagination: {
+            pageSize: 100,
+          },
+        }}
+      />
+    </AppShell>
+  )
+}
+
+const columnsWithSelection: ColumnDef<ExampleData>[] = [
+  {
+    id: 'selection',
+    cell: ({ row }) =>
+      row.getCanSelect() ? (
+        <DataGridCheckbox
+          isChecked={row.getIsSelected()}
+          isIndeterminate={row.getIsSomeSelected()}
+          onChange={row.getToggleSelectedHandler()}
+          aria-label={row.getIsSelected() ? 'Deselect row' : 'Select row'}
+        />
+      ) : null,
+  },
+  ...columns,
+]
+
+export const WithCustomCheckbox = () => {
+  return (
+    <DataGrid<ExampleData>
+      columns={columnsWithSelection}
+      data={data}
+      isSelectable
+      isSortable
+      initialState={{
+        pagination: {
+          pageSize: 100,
+        },
+      }}
+      enableRowSelection={(row) => {
+        return row.original.status !== 'inactive'
+      }}
+    />
   )
 }
