@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.2",
+    "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@saas-ui/pro": "^0.13.0",
-    "@saas-ui/react": "^1.7.4",
-    "@saas-ui/sidebar": "^0.6.1",
+    "@saas-ui/pro": "^0.16.0",
+    "@saas-ui/react": "^1.8.1",
+    "@saas-ui/sidebar": "^0.8.0",
     "framer-motion": "^6.3.4",
     "next": "^13.1.1",
     "react": "^18.2.0",
