@@ -1,13 +1,15 @@
-import Card from './card'
-import NavItem from './nav-item'
-import NavGroup from './nav-group'
-import Toolbar from './toolbar'
-import Tabs from './tabs'
+import { cardStyles } from './card'
+import { navItemStyles } from './nav-item'
+import { navGroupStyles } from './nav-group'
+import { menuStyles } from './menu'
+import { toolbarStyles } from './toolbar'
+import { tabsStyles } from './tabs'
 
-export default {
-  Card,
-  NavItem,
-  NavGroup,
-  Tabs,
-  Toolbar,
+export const components = {
+  Card: cardStyles,
+  NavItem: navItemStyles,
+  NavGroup: navGroupStyles,
+  Menu: menuStyles,
+  Toolbar: toolbarStyles,
+  Tabs: tabsStyles,
 }

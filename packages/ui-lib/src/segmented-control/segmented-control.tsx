@@ -32,7 +32,9 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = (props) => {
     onChange: onChangeProp,
     breakpoints = { base: true, md: false },
   } = props
-  const isMobile = useBreakpointValue(breakpoints)
+  const isMobile = useBreakpointValue(breakpoints, {
+    fallback: 'lg',
+  })
 
   const [value, setValue] = useControllableState({
     defaultValue: defaultValueProp,

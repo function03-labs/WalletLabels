@@ -8,9 +8,10 @@ const parts = anatomy('nav-group').parts(
   'content',
 )
 
-const { definePartsStyle } = createMultiStyleConfigHelpers(parts.keys)
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
 
-export default {
+export const navGroupStyles = defineMultiStyleConfig({
   baseStyle: definePartsStyle({
     title: {
       height: 5,
@@ -19,4 +20,4 @@ export default {
       },
     },
   }),
-}
+})

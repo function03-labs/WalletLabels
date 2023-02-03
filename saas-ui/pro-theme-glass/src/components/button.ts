@@ -140,7 +140,7 @@ const sizes = {
   }),
 }
 
-export default defineStyleConfig({
+export const buttonStyles = defineStyleConfig({
   defaultProps: {
     size: 'md',
     variant: 'secondary',
