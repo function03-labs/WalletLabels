@@ -2,7 +2,7 @@
   "private": true,
   "name": "desktop",
   "description": "Saas UI Electron Example",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "author": "Eelco Wiersma <eelco@appule.nl>",
   "main": "app/background.js",
   "scripts": {

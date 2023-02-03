@@ -1,5 +1,14 @@
 # @app/features
 
+## 5.0.1
+
+### Patch Changes
+
+- 1db14a7: Fixed tab size
+- Updated dependencies [1db14a7]
+  - @ui/lib@0.1.2
+  - @ui/theme@0.3.7
+
 ## 5.0.0
 
 ### Patch Changes

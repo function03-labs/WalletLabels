@@ -1,5 +1,13 @@
 # electron-app
 
+## 0.9.8
+
+### Patch Changes
+
+- Updated dependencies [1db14a7]
+  - @app/features@5.0.1
+  - @ui/theme@0.3.7
+
 ## 0.9.7
 
 ### Patch Changes

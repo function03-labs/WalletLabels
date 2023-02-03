@@ -1,5 +1,13 @@
 # nextjs-app
 
+## 0.10.8
+
+### Patch Changes
+
+- Updated dependencies [1db14a7]
+  - @app/features@5.0.1
+  - @ui/theme@0.3.7
+
 ## 0.10.7
 
 ### Patch Changes
