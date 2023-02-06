@@ -1,5 +1,12 @@
 # nextjs-app
 
+## 0.10.9
+
+### Patch Changes
+
+- @ui/theme@0.3.8
+- @app/features@5.0.2
+
 ## 0.10.8
 
 ### Patch Changes

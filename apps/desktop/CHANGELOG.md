@@ -1,5 +1,12 @@
 # electron-app
 
+## 0.9.9
+
+### Patch Changes
+
+- @ui/theme@0.3.8
+- @app/features@5.0.2
+
 ## 0.9.8
 
 ### Patch Changes

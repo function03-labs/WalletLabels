@@ -1,5 +1,11 @@
 # @app/features
 
+## 5.0.2
+
+### Patch Changes
+
+- @ui/theme@0.3.8
+
 ## 5.0.1
 
 ### Patch Changes

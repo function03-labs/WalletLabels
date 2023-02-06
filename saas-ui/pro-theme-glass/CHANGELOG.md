@@ -1,5 +1,11 @@
 # @saas-ui/pro-theme-glass
 
+## 0.3.1
+
+### Patch Changes
+
+- Fix build
+
 ## 0.3.0
 
 ### Minor Changes
