@@ -19,7 +19,7 @@
     "@emotion/styled": "^11.10.5",
     "@saas-ui/auth": "^1.7.3",
     "@saas-ui/billing": "workspace:*",
-    "@saas-ui/charts": "workspace:*",
+    "@saas-ui/charts": "^0.7.0",
     "@saas-ui/date-picker": "^0.8.4",
     "@saas-ui/features": "workspace:*",
     "@saas-ui/next-workspaces": "^0.3.0",

@@ -22,7 +22,7 @@
     "@emotion/styled": ">=11.0.0",
     "@react-hookz/web": "^15.0.0",
     "@saas-ui/billing": "workspace:*",
-    "@saas-ui/charts": "workspace:*",
+    "@saas-ui/charts": "^0.7.0",
     "@saas-ui/date-picker": ">=0.7.0",
     "@saas-ui/features": "workspace:*",
     "@saas-ui/onboarding": "workspace:*",
