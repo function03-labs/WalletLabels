@@ -1,5 +1,11 @@
 # @saas-ui/pro
 
+## 0.17.0
+
+### Minor Changes
+
+- 93fa5d0: Improved TimeLine composition and theme. TimeLine items now work properly on all background colors.
+
 ## 0.16.0
 
 ### Minor Changes
