@@ -23,6 +23,7 @@ import {
   ColumnFiltersState,
   DataGridCell,
   DataGridCheckbox,
+  PaginationState,
 } from '../data-grid'
 
 import { AppShell, ButtonGroup, MenuItem, OverflowMenu } from '@saas-ui/react'
@@ -287,6 +288,29 @@ export const WithRemotePagination = () => {
       }}
     >
       <DataGridPagination onChange={({ pageIndex }) => setPage(pageIndex)} />
+    </Template>
+  )
+}
+
+export const WithControlledPagination = () => {
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+
+  return (
+    <Template
+      data={data}
+      columns={columns}
+      onPaginationChange={setPagination}
+      initialState={{
+        pagination,
+      }}
+      state={{
+        pagination,
+      }}
+    >
+      <DataGridPagination />
     </Template>
   )
 }
