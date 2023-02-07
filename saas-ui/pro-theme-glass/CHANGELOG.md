@@ -1,5 +1,33 @@
 # @saas-ui/pro-theme-glass
 
+## 0.3.1
+
+### Patch Changes
+
+- Fix build
+
+## 0.3.0
+
+### Minor Changes
+
+- 1db14a7: Improved tab sizes and fixed menu styles.
+
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies [82c89a2]
+- Updated dependencies [0a22b7c]
+  - @saas-ui/pro@0.16.0
+
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies [ef60b80]
+- Updated dependencies [ef60b80]
+  - @saas-ui/pro@0.15.2
+
 ## 0.2.1
 
 ### Patch Changes

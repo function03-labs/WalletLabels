@@ -1,5 +1,22 @@
 # @saas-ui/pro
 
+## 0.16.0
+
+### Minor Changes
+
+- 82c89a2: Allow to customize the DataGrid selection checkbox.
+
+### Patch Changes
+
+- 0a22b7c: DataGridCheckbox now inherits colorScheme from DataGrid.
+
+## 0.15.2
+
+### Patch Changes
+
+- ef60b80: useSearchQuery can now be controlled.
+- ef60b80: FilterMenu input can now be controlled and supports async loading of items.
+
 ## 0.15.1
 
 ### Patch Changes
