@@ -1,5 +1,46 @@
 # @app/features
 
+## 5.0.2
+
+### Patch Changes
+
+- @ui/theme@0.3.8
+
+## 5.0.1
+
+### Patch Changes
+
+- 1db14a7: Fixed tab size
+- Updated dependencies [1db14a7]
+  - @ui/lib@0.1.2
+  - @ui/theme@0.3.7
+
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [82c89a2]
+- Updated dependencies [0a22b7c]
+  - @saas-ui/pro@0.16.0
+  - @ui/theme@0.3.6
+
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies [a9b4ba9]
+- Updated dependencies [a9b4ba9]
+  - @saas-ui/charts@0.7.0
+
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [ef60b80]
+- Updated dependencies [ef60b80]
+  - @saas-ui/pro@0.15.2
+  - @ui/theme@0.3.5
+
 ## 3.0.1
 
 ### Patch Changes

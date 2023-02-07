@@ -75,8 +75,9 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
           minH="0"
           display="flex"
           flexDirection="column"
+          size="md"
         >
-          <TabList borderBottomWidth="1px" height="12">
+          <TabList borderBottomWidth="1px">
             <Tab>Activity</Tab>
           </TabList>
           <TabPanels

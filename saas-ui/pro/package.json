@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.15.1",
+  "version": "0.16.0",
   "engines": {
     "node": ">=16 <=19"
   },
@@ -63,7 +63,7 @@
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/react-utils": "^1.2.0",
     "@saas-ui/router": "workspace:*",
-    "@saas-ui/theme": "^1.7.0",
+    "@saas-ui/theme": "^1.8.0",
     "@tanstack/react-table": "^8.7.6",
     "date-fns": "^2.29.3",
     "polished": "^4.2.2"
@@ -78,6 +78,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@ngneat/falso": "^2.27.0",
     "react-icons": "^4.7.1",
     "tsup": "^6.5.0"
   }

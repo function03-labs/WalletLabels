@@ -75,3 +75,33 @@ export const NestedFilters = Template.bind({})
 NestedFilters.args = {
   items: filtersNested,
 }
+
+export const WithAsyncFilters = () => {
+  const [items, setItems] = React.useState<FilterItem[]>(filters)
+  const [query, setQuery] = React.useState('')
+  const [isLoading, setLoading] = React.useState(false)
+
+  const onChange = (value: string) => {
+    setQuery(value)
+
+    // this simulates a fetch from the backend.
+    setLoading(true)
+    setTimeout(() => {
+      setItems(
+        filters.filter((filter) => {
+          return filter.id.match(value)
+        }),
+      )
+      setLoading(false)
+    }, 1000)
+  }
+
+  return (
+    <FilterMenu
+      items={items}
+      inputValue={query}
+      onInputChange={onChange}
+      buttonProps={{ isLoading }}
+    />
+  )
+}

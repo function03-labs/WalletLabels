@@ -120,26 +120,30 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             <NavGroup title="Tags" isCollapsible>
               <NavItem
                 href={usePath('contacts/tag/design-system')}
-                label="Design system"
                 icon={<FiHash />}
-              />
+              >
+                Design system
+              </NavItem>
               <NavItem
-                href={usePath('contacts/framework')}
-                label="Framework"
+                href={usePath('contacts/tag/framework')}
                 icon={<FiHash />}
-              />
+              >
+                Framework
+              </NavItem>
               <NavItem
                 href={usePath('contacts/tag/chakra-ui')}
-                label="Chakra UI"
                 inset={5}
                 icon={<FiHash />}
-              />
+              >
+                Chakra UI
+              </NavItem>
               <NavItem
                 href={usePath('contacts/tag/react')}
-                label="React"
                 inset={5}
                 icon={<FiHash />}
-              />
+              >
+                React
+              </NavItem>
             </NavGroup>
           )}
 
@@ -153,16 +157,18 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
                   component: InviteDialog,
                 })
               }
-              label="Invite people"
               color="sidebar-muted"
               icon={<FiPlus />}
-            />
+            >
+              Invite people
+            </NavItem>
             <NavItem
               href="https://saas-ui.dev/docs"
-              label="Documentation"
               color="sidebar-muted"
               icon={<FiHelpCircle />}
-            />
+            >
+              Documentation
+            </NavItem>
           </NavGroup>
         </SidebarSection>
 
@@ -184,6 +190,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
 interface AppSidebarlink extends NavItemProps {
   hotkey: string
   href: string
+  label: string
 }
 
 const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
@@ -202,7 +209,6 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
   return (
     <NavItem
       href={href}
-      label={label}
       isActive={isActive}
       {...rest}
       tooltip={
@@ -210,6 +216,8 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
           {label} <Command>{command}</Command>
         </>
       }
-    />
+    >
+      {label}
+    </NavItem>
   )
 }

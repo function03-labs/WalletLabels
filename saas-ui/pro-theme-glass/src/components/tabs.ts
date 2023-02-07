@@ -1,7 +1,8 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
 import { tabsAnatomy as parts } from '@chakra-ui/anatomy'
 
-const { definePartsStyle } = createMultiStyleConfigHelpers(parts.keys)
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
 
 const variantSegments = definePartsStyle((props) => {
   const { theme } = props
@@ -58,7 +59,7 @@ const variantSegments = definePartsStyle((props) => {
 })
 
 const sizes = {
-  sm: definePartsStyle({
+  xs: definePartsStyle({
     tab: {
       fontSize: 'sm',
       h: 6,
@@ -66,31 +67,39 @@ const sizes = {
       px: 2,
     },
   }),
+  sm: definePartsStyle({
+    tab: {
+      fontSize: 'sm',
+      h: 8,
+      py: 0,
+      px: 2,
+    },
+  }),
   md: definePartsStyle({
     tab: {
       fontSize: 'md',
-      h: 7,
+      h: 10,
       py: 0,
       px: 3,
     },
   }),
   lg: definePartsStyle({
     tab: {
-      fontSize: 'lg',
-      h: 8,
+      fontSize: 'md',
+      h: 12,
       py: 0,
       px: 4,
     },
   }),
 }
 
-export default {
+export const tabsStyles = defineMultiStyleConfig({
   defaultProps: {
     colorScheme: 'gray',
-    size: 'sm',
+    size: 'xs',
   },
   variants: {
     segments: variantSegments,
   },
   sizes,
-}
+})

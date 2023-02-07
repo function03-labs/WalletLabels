@@ -41,12 +41,12 @@ export const globalTypes = {
   },
   theme: {
     name: 'Theme',
+    title: 'Theme',
     description: 'Global theme for components',
     defaultValue: 'pro',
     toolbar: {
       icon: 'paintbrush',
       items: ['pro'],
-      showName: true,
     },
   },
   colorMode: {

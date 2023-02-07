@@ -1,5 +1,51 @@
 # electron-app
 
+## 0.9.9
+
+### Patch Changes
+
+- @ui/theme@0.3.8
+- @app/features@5.0.2
+
+## 0.9.8
+
+### Patch Changes
+
+- Updated dependencies [1db14a7]
+  - @app/features@5.0.1
+  - @ui/theme@0.3.7
+
+## 0.9.7
+
+### Patch Changes
+
+- Updated dependencies [82c89a2]
+- Updated dependencies [0a22b7c]
+  - @saas-ui/pro@0.16.0
+  - @app/features@5.0.0
+  - @saas-ui/paddle@0.7.3
+  - @ui/theme@0.3.6
+
+## 0.9.6
+
+### Patch Changes
+
+- Updated dependencies [a9b4ba9]
+- Updated dependencies [a9b4ba9]
+  - @saas-ui/charts@0.7.0
+  - @app/features@4.0.0
+
+## 0.9.5
+
+### Patch Changes
+
+- Updated dependencies [ef60b80]
+- Updated dependencies [ef60b80]
+  - @saas-ui/pro@0.15.2
+  - @app/features@3.0.2
+  - @saas-ui/paddle@0.7.2
+  - @ui/theme@0.3.5
+
 ## 0.9.4
 
 ### Patch Changes

@@ -11,7 +11,7 @@ import components from './components'
 
 export const theme = extendTheme(
   {
-    // semanticTokens: glassTheme.semanticTokens,
+    semanticTokens,
     components,
   },
   /**

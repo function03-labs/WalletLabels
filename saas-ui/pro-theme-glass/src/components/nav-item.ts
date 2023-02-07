@@ -9,7 +9,8 @@ const parts = anatomy('nav-item').parts(
   'label',
 )
 
-const { definePartsStyle } = createMultiStyleConfigHelpers(parts.keys)
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys)
 
 const sizes = {
   xs: definePartsStyle(({ theme }) => {
@@ -34,9 +35,9 @@ const sizes = {
   }),
 }
 
-export default {
+export const navItemStyles = defineMultiStyleConfig({
   defaultProps: {
     size: 'md',
   },
   sizes,
-}
+})
