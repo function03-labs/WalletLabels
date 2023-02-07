@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   chakra,
   forwardRef,
@@ -44,9 +45,7 @@ export const Timeline: React.FC<TimelineProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  Timeline.displayName = 'Timeline'
-}
+Timeline.displayName = 'Timeline'
 
 export interface TimelineItemProps extends HTMLChakraProps<'li'> {}
 
@@ -58,8 +57,6 @@ export const TimelineItem = forwardRef<TimelineItemProps, 'li'>(
 
     const itemStyles = {
       display: 'flex',
-      minHeight: '32px',
-      position: 'relative',
       ...styles.item,
     }
 
@@ -76,9 +73,7 @@ export const TimelineItem = forwardRef<TimelineItemProps, 'li'>(
   },
 )
 
-if (__DEV__) {
-  TimelineItem.displayName = 'TimelineItem'
-}
+TimelineItem.displayName = 'TimelineItem'
 
 export interface TimelineContentProps extends HTMLChakraProps<'div'> {}
 
@@ -103,9 +98,7 @@ export const TimelineContent: React.FC<TimelineContentProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  TimelineContent.displayName = 'TimelineContent'
-}
+TimelineContent.displayName = 'TimelineContent'
 
 export interface TimelineSeparatorProps extends HTMLChakraProps<'div'> {}
 
@@ -133,9 +126,7 @@ export const TimelineSeparator: React.FC<TimelineSeparatorProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  TimelineSeparator.displayName = 'TimelineSeparator'
-}
+TimelineSeparator.displayName = 'TimelineSeparator'
 
 export interface TimelineDotProps extends HTMLChakraProps<'div'> {}
 
@@ -159,9 +150,7 @@ export const TimelineDot: React.FC<TimelineDotProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  TimelineDot.displayName = 'TimelineDot'
-}
+TimelineDot.displayName = 'TimelineDot'
 
 export interface TimelineIconProps extends HTMLChakraProps<'div'> {}
 
@@ -189,9 +178,7 @@ export const TimelineIcon: React.FC<TimelineIconProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  TimelineIcon.displayName = 'TimelineIcon'
-}
+TimelineIcon.displayName = 'TimelineIcon'
 
 export interface TimelineTrackProps extends HTMLChakraProps<'div'> {}
 
@@ -204,9 +191,6 @@ export const TimelineTrack: React.FC<TimelineTrackProps> = (props) => {
     flex: 1,
     width: '1px',
     minH: '10px',
-    position: 'absolute',
-    top: '4px',
-    bottom: 0,
     ...styles.track,
   }
 
@@ -221,6 +205,4 @@ export const TimelineTrack: React.FC<TimelineTrackProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  TimelineTrack.displayName = 'TimelineTrack'
-}
+TimelineTrack.displayName = 'TimelineTrack'

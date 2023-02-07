@@ -1,24 +1,21 @@
-import { PartsStyleFunction, mode, cssVar } from '@chakra-ui/theme-tools'
-
-const $bg = cssVar('timeline-bg')
+import { PartsStyleFunction, mode } from '@chakra-ui/theme-tools'
 
 const baseStyle: PartsStyleFunction = (props) => {
   const color = mode('gray.300', 'gray.600')(props)
 
   return {
-    container: {
-      [$bg.variable]: 'colors.chakra-body-bg',
+    container: {},
+    item: {
+      minHeight: '32px',
+      position: 'relative',
     },
-    item: {},
     separator: {
       width: '24px',
       flexShrink: 0,
-      me: 4,
     },
     icon: {
-      bg: [$bg.reference],
       color,
-      py: '4px',
+      py: '7px',
     },
     dot: {
       width: '9px',
@@ -29,8 +26,12 @@ const baseStyle: PartsStyleFunction = (props) => {
     track: {
       bg: color,
       width: '1px',
+      flex: 1,
     },
-    content: {},
+    content: {
+      pt: '1px',
+      px: '2',
+    },
   }
 }
 

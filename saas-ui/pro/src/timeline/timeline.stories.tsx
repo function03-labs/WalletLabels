@@ -173,9 +173,9 @@ export const Custom = Template.bind({})
 Custom.args = {
   children: (
     <>
-      <TimelineItem minH="38px">
+      <TimelineItem>
         <TimelineSeparator>
-          <TimelineIcon mt="-6px">
+          <TimelineIcon>
             <PersonaAvatar
               src="/showcase-avatar.jpg"
               colorScheme="purple.300"
@@ -187,7 +187,7 @@ Custom.args = {
           </TimelineIcon>
           <TimelineTrack />
         </TimelineSeparator>
-        <TimelineContent>
+        <TimelineContent pt="2">
           <Text color="muted">
             <Link color="black" _dark={{ color: 'white' }}>
               Renata
@@ -196,7 +196,7 @@ Custom.args = {
           </Text>
         </TimelineContent>
       </TimelineItem>
-      <TimelineItem minH="38px">
+      <TimelineItem>
         <TimelineSeparator>
           <TimelineIcon>
             <Badge
@@ -213,9 +213,9 @@ Custom.args = {
           <Text color="muted">John changed status to pending.</Text>
         </TimelineContent>
       </TimelineItem>
-      <TimelineItem minH="38px">
+      <TimelineItem>
         <TimelineSeparator>
-          <TimelineIcon mt="-6px">
+          <TimelineIcon>
             <PersonaAvatar
               src="/showcase-avatar.jpg"
               name="Renata Alink"
@@ -225,7 +225,7 @@ Custom.args = {
             />
           </TimelineIcon>
         </TimelineSeparator>
-        <TimelineContent>
+        <TimelineContent pt="2">
           <Text color="muted">
             <Link color="black" _dark={{ color: 'white' }}>
               Renata

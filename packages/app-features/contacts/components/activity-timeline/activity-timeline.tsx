@@ -108,12 +108,12 @@ export const ActivityTimeline: React.FC<ActivityTimelineProps> = (props) => {
 interface ActivityTimelineItem {
   id?: string
   icon: React.ReactNode
-  iconOffset?: string
+  contentOffset?: string
   children: React.ReactNode
 }
 
 const ActivityTimelineItem: React.FC<ActivityTimelineItem> = (props) => {
-  const { id, icon, iconOffset = '-2px', children } = props
+  const { id, icon, contentOffset = '1', children } = props
   return (
     <TimelineItem
       as={MotionBox}
@@ -126,11 +126,12 @@ const ActivityTimelineItem: React.FC<ActivityTimelineItem> = (props) => {
       role="group"
     >
       <TimelineSeparator>
-        <TimelineTrack top="0" bottom="auto" />
-        <TimelineIcon mt={iconOffset}>{icon}</TimelineIcon>
+        <TimelineIcon>{icon}</TimelineIcon>
         <TimelineTrack />
       </TimelineSeparator>
-      <TimelineContent>{children}</TimelineContent>
+      <TimelineContent ps="4" pt={contentOffset}>
+        {children}
+      </TimelineContent>
     </TimelineItem>
   )
 }
@@ -182,6 +183,7 @@ const ActivityTimelineAction: React.FC<ActivityAction> = (props) => {
   return (
     <ActivityTimelineItem
       id={`action-${id}`}
+      contentOffset="2"
       icon={
         <PersonaAvatar
           src={user.avatar}
@@ -244,7 +246,7 @@ const ActivityTimelineComment: React.FC<ActivityTimelineCommentProps> = (
   return (
     <ActivityTimelineItem
       id={`comment-${id}`}
-      iconOffset="2px"
+      contentOffset="0"
       icon={
         <PersonaAvatar
           src={user.avatar}
@@ -312,10 +314,9 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
   const submitRef = React.useRef<HTMLButtonElement>(null)
 
   return (
-    <TimelineItem minH="38px">
+    <TimelineItem>
       <TimelineSeparator>
-        <TimelineTrack top="0" bottom="auto" />
-        <TimelineIcon mt="2px">
+        <TimelineIcon>
           <PersonaAvatar
             src={user.avatar}
             name={user.name}
@@ -324,7 +325,7 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
           />
         </TimelineIcon>
       </TimelineSeparator>
-      <TimelineContent>
+      <TimelineContent ps="4" pt="0">
         <Card py="3" px="4">
           <Form
             ref={formRef}
@@ -346,13 +347,13 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
                   }
                 }}
               />
-              <Toolbar>
+              <Toolbar variant="ghost">
+                <Spacer />
                 <ToolbarButton
                   icon={<FiPaperclip />}
                   color="muted"
                   label="Upload a file"
                 />
-                <Spacer />
                 <Tooltip
                   label={
                     <>
