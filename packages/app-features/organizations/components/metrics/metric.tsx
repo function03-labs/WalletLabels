@@ -6,9 +6,11 @@ import {
   StatNumber,
   StatHelpText,
   StatArrow,
+  Icon,
 } from '@chakra-ui/react'
 
 import { Sparklines } from '@saas-ui/charts'
+import { FiTrendingUp, FiTrendingDown } from 'react-icons/fi'
 
 export interface MetricProps {
   label: string
@@ -26,15 +28,33 @@ export const Metric = (props: MetricProps) => {
         <StatLabel>{label}</StatLabel>
         <StatNumber>{value}</StatNumber>
         {typeof change !== 'undefined' && (
-          <StatHelpText margin="0">
-            <StatArrow type={change > 0 ? 'increase' : 'decrease'} />
+          <StatHelpText
+            margin="0"
+            display="flex"
+            gap="1"
+            alignItems="center"
+            color="muted"
+          >
+            {change > 0 ? (
+              <Icon as={FiTrendingUp} color="green.300" />
+            ) : (
+              <Icon as={FiTrendingDown} color="red.300" />
+            )}
             {change}%
           </StatHelpText>
         )}
       </Stat>
       {data && (
         <Box position="absolute" right="0" bottom="0">
-          <Sparklines data={data} height="32px" strokeWidth={2} color={color} />
+          <Sparklines
+            data={data}
+            height="32px"
+            width="100px"
+            strokeWidth={1}
+            color={color}
+            variant="gradient"
+            gradientOpacity={0.2}
+          />
         </Box>
       )}
     </HStack>

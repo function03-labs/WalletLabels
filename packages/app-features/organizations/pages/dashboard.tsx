@@ -18,8 +18,9 @@ import { IntroTour } from '../components/intro-tour'
 import { SalesByCountry } from '../components/metrics/sales-by-country'
 import { Today } from '../components/metrics/today'
 import { MRR } from '../components/metrics/mrr'
+import { Activity } from '../components/metrics/activity'
 
-export function OverviewPage() {
+export function DashboardPage() {
   const tenant = useTenant()
   const { data, isLoading } = useGetOrganizationQuery({
     slug: tenant,
@@ -66,21 +67,20 @@ export function OverviewPage() {
       <PageBody pt="8">
         <IntroTour />
         <Grid
-          templateColumns={['repeat(1, 1fr)', null, 'repeat(1, 1fr)']}
+          templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
+          gridAutoColumns="fr1"
           width="100%"
           gap="4"
           p="4"
         >
-          <GridItem>
+          <GridItem colSpan={{ base: 1, lg: 2 }}>
             <Today />
           </GridItem>
-          <GridItem>
+          <GridItem colSpan={{ base: 1, lg: 2 }}>
             <MRR />
           </GridItem>
-
-          <GridItem>
-            <SalesByCountry />
-          </GridItem>
+          <GridItem as={SalesByCountry} colSpan="3" />
+          <GridItem as={Activity} />
         </Grid>
       </PageBody>
     </Page>
