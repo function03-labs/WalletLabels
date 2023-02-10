@@ -36,9 +36,9 @@ export const Metric = (props: MetricProps) => {
             color="muted"
           >
             {change > 0 ? (
-              <Icon as={FiTrendingUp} color="green.300" />
+              <Icon as={FiTrendingUp} />
             ) : (
-              <Icon as={FiTrendingDown} color="red.300" />
+              <Icon as={FiTrendingDown} />
             )}
             {change}%
           </StatHelpText>

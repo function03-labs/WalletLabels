@@ -19,7 +19,7 @@ const data = [
   {
     label: 'Churned customers',
     value: '5',
-    change: -10,
+    change: 2,
     data: [2, 1, 4, 8, 4, 1, 6],
   },
   {
