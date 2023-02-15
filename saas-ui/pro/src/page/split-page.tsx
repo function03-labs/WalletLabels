@@ -41,7 +41,7 @@ export const SplitPage: React.FC<SplitPageProps> = (props) => {
     ...rest
   } = props
 
-  const styles = useMultiStyleConfig('SplitPage', props)
+  const styles = useMultiStyleConfig('SuiSplitPage', props)
 
   const isMobile = useBreakpointValue({ base: true, lg: false })
 

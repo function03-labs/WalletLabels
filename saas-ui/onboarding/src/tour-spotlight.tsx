@@ -24,7 +24,7 @@ export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
       ...rest
     } = props
 
-    const styles = useStyleConfig('Spotlight', props)
+    const styles = useStyleConfig('SuiSpotlight', props)
 
     const { getSpotlightProps } = useTourSpotlight()
 

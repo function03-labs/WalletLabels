@@ -13,11 +13,11 @@ import { cx, __DEV__ } from '@chakra-ui/utils'
 
 import { Loader } from '@saas-ui/react'
 
-const [StylesProvider, useStyles] = createStylesContext('Section')
+const [StylesProvider, useStyles] = createStylesContext('SuiSection')
 
 export interface SectionProps
   extends Omit<HTMLChakraProps<'div'>, 'title'>,
-    ThemingProps<'Section'> {
+    ThemingProps<'SuiSection'> {
   title?: React.ReactNode
   description?: React.ReactNode
   isAnnotated?: boolean
@@ -89,7 +89,7 @@ if (__DEV__) {
 
 export const SectionContainer: React.FC<SectionProps> = (props) => {
   const { children, title, description, isAnnotated, variant, ...rest } = props
-  const styles = useMultiStyleConfig('Section', props) as Record<
+  const styles = useMultiStyleConfig('SuiSection', props) as Record<
     string,
     SystemStyleObject
   >

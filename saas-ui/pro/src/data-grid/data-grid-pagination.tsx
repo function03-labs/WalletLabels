@@ -31,7 +31,7 @@ export const DataGridPagination: React.FC<DataGridPaginationProps> = (
     pagination: { pageIndex, pageSize },
   } = state
 
-  const styles = useMultiStyleConfig('DataGridPagination', props) as Record<
+  const styles = useMultiStyleConfig('SuiDataGridPagination', props) as Record<
     string,
     SystemStyleObject
   >

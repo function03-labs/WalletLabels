@@ -8,10 +8,12 @@ import {
   SystemStyleObject,
 } from '@chakra-ui/react'
 
-interface NavbarProps extends HTMLChakraProps<'div'>, ThemingProps<'Navbar'> {}
+interface NavbarProps
+  extends HTMLChakraProps<'div'>,
+    ThemingProps<'SuiNavbar'> {}
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
-  const styles = useMultiStyleConfig('Navbar', props) as Record<
+  const styles = useMultiStyleConfig('SuiNavbar', props) as Record<
     string,
     SystemStyleObject
   >

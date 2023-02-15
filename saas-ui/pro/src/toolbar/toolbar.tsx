@@ -26,16 +26,16 @@ import { cx, __DEV__ } from '@chakra-ui/utils'
 import { Divider } from '@saas-ui/react'
 import { useDefaultProps } from '../theme-tools/use-default-props'
 
-const [StylesProvider, useStyles] = createStylesContext('Toolbar')
+const [StylesProvider, useStyles] = createStylesContext('SuiToolbar')
 
 export interface ToolbarProps
   extends HTMLChakraProps<'div'>,
-    ThemingProps<'Toolbar'> {}
+    ThemingProps<'SuiToolbar'> {}
 
 export const Toolbar = forwardRef<ToolbarProps, 'div'>((props, ref) => {
   const { children, className, variant, size, ...rest } = props
-  const styles = useMultiStyleConfig('Toolbar', props)
-  const defaultProps = useDefaultProps('Toolbar')
+  const styles = useMultiStyleConfig('SuiToolbar', props)
+  const defaultProps = useDefaultProps('SuiToolbar')
   const toolbarProps = omitThemingProps(rest)
 
   const containerStyles: SystemStyleObject = {

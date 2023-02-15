@@ -30,7 +30,7 @@ export const Command: React.FC<HTMLChakraProps<'span'>> = (props) => {
   }
   const keys = children.split(/\s|\+/)
 
-  const styles = useStyleConfig('Command')
+  const styles = useStyleConfig('SuiCommand')
 
   const commandStyles = {
     '& > *:not(style) ~ *:not(style)': { marginEnd: 1 },

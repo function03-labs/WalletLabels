@@ -112,7 +112,7 @@ export const useColumns: UseColumns = (factory, deps) =>
 
 export interface DataGridProps<Data extends object>
   extends Omit<TableOptions<Data>, 'getCoreRowModel'>,
-    ThemingProps<'Table'> {
+    ThemingProps<'SuiDataGrid'> {
   /**
    * The React Table instance reference
    */
@@ -203,7 +203,7 @@ export const DataGrid = React.forwardRef(
     const theme = useTheme()
     const styleConfig = theme.components?.DataGrid
 
-    const styles = useMultiStyleConfig('DataGrid', props) as Record<
+    const styles = useMultiStyleConfig('SuiDataGrid', props) as Record<
       string,
       SystemStyleObject
     >

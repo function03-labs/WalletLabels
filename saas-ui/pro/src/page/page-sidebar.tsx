@@ -22,7 +22,7 @@ import { MotionBox } from '../transitions'
 import { ResizeHandle, ResizeOptions, useResize } from '../resize'
 import { HTMLMotionProps } from 'framer-motion'
 
-const [StylesProvider, useStyles] = createStylesContext('PageSidebar')
+const [StylesProvider, useStyles] = createStylesContext('SuiPageSidebar')
 
 export interface PageSidebarOptions {
   /**
@@ -93,7 +93,7 @@ export interface PageSidebarContainerProps
   extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition' | 'onResize'>,
     Omit<ChakraProps, 'css'>,
     Omit<ResizeOptions, 'position'>,
-    ThemingProps<'PageSidebar'> {
+    ThemingProps<'SuiPageSidebar'> {
   isOpen?: boolean
 }
 
@@ -109,7 +109,7 @@ export const PageSidebarContainer: React.FC<PageSidebarContainerProps> = (
     ...containerProps
   } = omitThemingProps(props)
 
-  const styles = useMultiStyleConfig('PageSidebar', props) as Record<
+  const styles = useMultiStyleConfig('SuiPageSidebar', props) as Record<
     string,
     SystemStyleObject
   >

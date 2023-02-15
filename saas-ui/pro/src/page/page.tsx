@@ -18,7 +18,7 @@ import { getChildOfType } from '@saas-ui/react-utils'
 import { ErrorBoundary } from '../app/error-boundary'
 import { ErrorPage } from './error-page'
 
-const [StylesProvider, useStyles] = createStylesContext('Page')
+const [StylesProvider, useStyles] = createStylesContext('SuiPage')
 
 export interface PageOptions {
   /**
@@ -151,14 +151,14 @@ if (__DEV__) {
 
 interface PageContainerProps
   extends HTMLChakraProps<'main'>,
-    ThemingProps<'Page'> {
+    ThemingProps<'SuiPage'> {
   fullWidth?: boolean
 }
 
 export const PageContainer: React.FC<PageContainerProps> = (props) => {
   const { children, fullWidth, ...containerProps } = omitThemingProps(props)
 
-  const styles = useMultiStyleConfig('Page', props) as Record<
+  const styles = useMultiStyleConfig('SuiPage', props) as Record<
     string,
     SystemStyleObject
   >

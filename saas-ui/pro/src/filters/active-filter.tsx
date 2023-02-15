@@ -50,7 +50,7 @@ import {
 import { useFiltersContext } from './provider'
 import { FilterOperatorId } from './operators'
 
-const [StylesProvider, useStyles] = createStylesContext('ActiveFilter')
+const [StylesProvider, useStyles] = createStylesContext('SuiActiveFilter')
 
 export interface ActiveFilterProps
   extends Omit<ActiveFilterContainerProps, 'onChange' | 'defaultValue'> {
@@ -135,7 +135,7 @@ export const ActiveFilterContainer: React.FC<ActiveFilterContainerProps> = (
 ) => {
   const { children, ...rest } = props
 
-  const styles = useMultiStyleConfig('ActiveFilter', props) as Record<
+  const styles = useMultiStyleConfig('SuiActiveFilter', props) as Record<
     string,
     SystemStyleObject
   >
@@ -378,7 +378,7 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
     disableFilter,
   } = useFiltersContext()
 
-  const styles = useStyleConfig('ActiveFiltersList', props)
+  const styles = useStyleConfig('SuiActiveFiltersList', props)
 
   return activeFilters?.length ? (
     <Wrap {...rest} __css={styles}>

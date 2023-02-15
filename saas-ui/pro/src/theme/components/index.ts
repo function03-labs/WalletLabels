@@ -1,47 +1,51 @@
-import AppShell from './app-shell'
-import ActiveFiltersList from './active-filters-list'
-import Beacon from './beacon'
+// Chakra UI Components
 import Button from './button'
 import Card from './card'
-import Command from './command'
-import EmptyState from './empty-state'
 import Form from './form'
 import Kbd from './kbd'
-import List from './list'
-import NavGroup from './nav-group'
-import NavItem from './nav-item'
-import Page from './page'
-import SplitPage from './split-page'
-import Stepper from './stepper'
-import PageSidebar from './page-sidebar'
-import Property from './property'
-import Section from './section'
-import Sidebar from './sidebar'
-import DataGrid from './data-grid'
 import Tabs from './tabs'
-import Toolbar from './toolbar'
 
-export default {
-  AppShell,
-  ActiveFiltersList,
-  Beacon,
+// Saas UI Components
+import SuiAppShell from './app-shell'
+import SuiActiveFiltersList from './active-filters-list'
+import SuiBeacon from './beacon'
+import SuiCommand from './command'
+import SuiEmptyState from './empty-state'
+import SuiStructuredList from './list'
+import SuiNavGroup from './nav-group'
+import SuiNavItem from './nav-item'
+import SuiPage from './page'
+import SuiSplitPage from './split-page'
+import SuiStepper from './stepper'
+import SuiPageSidebar from './page-sidebar'
+import SuiProperty from './property'
+import SuiSection from './section'
+import SuiSidebar from './sidebar'
+import SuiDataGrid from './data-grid'
+import SuiToolbar from './toolbar'
+
+export const components = {
+  SuiAppShell,
+  SuiActiveFiltersList,
+  SuiBeacon,
+  SuiCommand,
+  SuiEmptyState,
+  SuiStructuredList,
+  SuiNavGroup,
+  SuiNavItem,
+  SuiPage,
+  SuiSplitPage,
+  SuiStepper,
+  SuiPageSidebar,
+  SuiProperty,
+  SuiSection,
+  SuiSidebar,
+  SuiDataGrid,
+  SuiToolbar,
   Button,
   Card,
-  Command,
-  EmptyState,
-  ...Form,
+  Form,
   Kbd,
-  List,
-  NavGroup,
-  NavItem,
-  Page,
-  SplitPage,
-  Stepper,
-  PageSidebar,
-  Property,
-  Section,
-  Sidebar,
-  DataGrid,
   Tabs,
-  Toolbar,
+  ...Form,
 }

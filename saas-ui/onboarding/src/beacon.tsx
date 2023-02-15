@@ -29,7 +29,7 @@ const pulse = keyframes`
 
 export interface BeaconProps
   extends HTMLChakraProps<'div'>,
-    ThemingProps<'Beacon'> {}
+    ThemingProps<'SuiBeacon'> {}
 
 const defaultStyleConfig: SystemStyleObject = {
   baseStyle: {
@@ -55,7 +55,7 @@ export const Beacon = forwardRef<BeaconProps, 'div'>((props, ref) => {
 
   const styleConfig = theme.components.Beacon || defaultStyleConfig
 
-  const styles = useStyleConfig('Beacon', {
+  const styles = useStyleConfig('SuiBeacon', {
     styleConfig,
     ...props,
   })
