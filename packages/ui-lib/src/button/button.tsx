@@ -1,11 +1,8 @@
 import * as React from 'react'
-import {
-  Button as SButton,
-  ButtonProps as SButtonProps,
-  useLink,
-} from '@saas-ui/react'
+import { Button, ButtonProps } from '@chakra-ui/react'
+import { useLink } from '@saas-ui/react'
 
-export interface LinkButtonProps extends SButtonProps {
+export interface LinkButtonProps extends ButtonProps {
   href?: string | object
 }
 
@@ -18,11 +15,11 @@ export const LinkButton = React.forwardRef(
     if (href) {
       return (
         <LinkWrapper href={href} passHref>
-          <SButton as="a" {...props} ref={ref} />
+          <Button as="a" {...props} ref={ref} />
         </LinkWrapper>
       )
     }
 
-    return <SButton ref={ref} {...props} />
+    return <Button ref={ref} {...props} />
   },
 )

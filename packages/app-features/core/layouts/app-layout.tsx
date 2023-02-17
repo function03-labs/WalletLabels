@@ -2,8 +2,7 @@ import * as React from 'react'
 
 import { Flex, FlexProps, Container } from '@chakra-ui/react'
 
-import { AppShell, AppShellProps } from '@saas-ui/pro'
-import { HotkeysListOptions } from '@saas-ui/react'
+import { AppShell, AppShellProps, HotkeysListOptions } from '@saas-ui/react'
 import { Auth, AuthProps } from '@saas-ui/auth'
 import { useLocation } from '@saas-ui/router'
 import { BillingProvider } from '@saas-ui/billing'

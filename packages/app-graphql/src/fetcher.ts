@@ -1,4 +1,4 @@
-import { useAuth } from '@saas-ui/react'
+import { useAuth } from '@saas-ui/auth'
 
 const getAPIUrl = (): string => {
   const apiPath = '/api/graphql'

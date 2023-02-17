@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { parseISO } from 'date-fns'
 
-import { useAuth } from '@saas-ui/react'
+import { useAuth } from '@saas-ui/auth'
 import { useTenant } from '@saas-ui/pro'
 
 import { BillingStatus } from '@saas-ui/billing'

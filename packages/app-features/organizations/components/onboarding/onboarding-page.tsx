@@ -12,7 +12,8 @@ import {
 
 import { BackButton, Page } from '@saas-ui/pro'
 
-import { Link, useAuth } from '@saas-ui/react'
+import { useAuth } from '@saas-ui/auth'
+import { Link } from '@saas-ui/react'
 
 export interface OnboardingPageProps {
   isLoading?: boolean

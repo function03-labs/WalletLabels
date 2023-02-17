@@ -1,24 +1,32 @@
 import { usePath } from '@app/features/core/hooks/use-path'
+import { Text } from '@chakra-ui/react'
 import { useSplitPage } from '@saas-ui/pro'
-import { List, ListItem, ListItemProps, ListProps } from '@saas-ui/react'
+import {
+  PersonaAvatar,
+  StructuredList,
+  StructuredListCell,
+  StructuredListItem,
+  StructuredListItemProps,
+  StructuredListProps,
+} from '@saas-ui/react'
 import { useNavigate } from '@saas-ui/router'
 
-export interface InboxListProps extends ListProps {
+export interface InboxListProps extends StructuredListProps {
   items: any
 }
 
 export const InboxList: React.FC<InboxListProps> = (props) => {
   const { items = [], ...rest } = props
   return (
-    <List {...rest}>
+    <StructuredList {...rest}>
       {items.map((item: any) => (
         <InboxListItem key={item.id} item={item} />
       ))}
-    </List>
+    </StructuredList>
   )
 }
 
-interface InboxListItemProps extends ListItemProps {
+interface InboxListItemProps extends StructuredListItemProps {
   item: any
 }
 
@@ -29,13 +37,25 @@ const InboxListItem: React.FC<InboxListItemProps> = (props) => {
   const { onOpen } = useSplitPage()
 
   return (
-    <ListItem
+    <StructuredListItem
       {...rest}
       onClick={() => {
         navigate(`${basePath}/1`)
         onOpen()
       }}
-      primary={item.title}
-    />
+    >
+      <StructuredListCell width="14">
+        <PersonaAvatar name={item.name} size="sm" />
+      </StructuredListCell>
+      <StructuredListCell flex="1">
+        <Text fontWeight="bold">{item.subject}</Text>
+        <Text fontSize="sm" color="muted" noOfLines={2}>
+          <Text as="span" color="app-text">
+            {item.name}
+          </Text>{' '}
+          — {item.message}
+        </Text>
+      </StructuredListCell>
+    </StructuredListItem>
   )
 }

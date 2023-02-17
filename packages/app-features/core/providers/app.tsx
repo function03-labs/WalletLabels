@@ -4,13 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { IconContext } from 'react-icons'
 
-import {
-  SaasProvider,
-  AuthProvider,
-  AuthProviderProps,
-  ModalsProvider,
-  Form,
-} from '@saas-ui/react'
+import { SaasProvider, ModalsProvider, Form } from '@saas-ui/react'
+import { AuthProvider, AuthProviderProps } from '@saas-ui/auth'
+
 import { zodResolver, zodFieldResolver } from '@saas-ui/forms/zod'
 import { ZodSchema } from 'zod'
 

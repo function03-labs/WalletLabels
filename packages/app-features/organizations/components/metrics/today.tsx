@@ -1,5 +1,4 @@
-import { SimpleGrid } from '@chakra-ui/react'
-import { Card, CardBody } from '@saas-ui/react'
+import { Card, CardBody, SimpleGrid } from '@chakra-ui/react'
 
 import { Metric } from './metric'
 

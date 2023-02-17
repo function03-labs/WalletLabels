@@ -9,13 +9,12 @@ import {
 } from '@chakra-ui/react'
 
 import { useTenant } from '@saas-ui/pro'
-
+import { useAuth } from '@saas-ui/auth'
 import {
   MenuItem,
   MenuGroup,
   MenuDivider,
   PersonaAvatar,
-  useAuth,
   useHotkeysShortcut,
 } from '@saas-ui/react'
 import { Has } from '@saas-ui/features'

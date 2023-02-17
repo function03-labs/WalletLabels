@@ -1,4 +1,4 @@
-import { AppShell, AppShellProps } from '@saas-ui/pro'
+import { AppShell, AppShellProps } from '@saas-ui/react'
 
 /**
  * The default public layout used for unauthenticated pages, like landingspages.
