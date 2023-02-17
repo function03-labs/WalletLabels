@@ -27,7 +27,7 @@
     "@saas-ui/features": "workspace:*",
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/pro": "workspace:*",
-    "@saas-ui/react": ">=1.8.0",
+    "@saas-ui/react": ">=2",
     "@saas-ui/router": "workspace:*",
     "framer-motion": ">=6",
     "next": ">=12",

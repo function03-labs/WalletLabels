@@ -7,6 +7,6 @@
     "magic-sdk": "^10.1.0"
   },
   "peerDependencies": {
-    "@saas-ui/react": ">=1"
+    "@saas-ui/react": ">=2"
   }
 }
