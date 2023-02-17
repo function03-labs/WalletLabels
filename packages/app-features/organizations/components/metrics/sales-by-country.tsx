@@ -1,15 +1,14 @@
-import { Card } from '@saas-ui/react'
 import { DataGrid, ColumnDef, DataGridCell } from '@saas-ui/pro'
-import { Sparklines } from '@saas-ui/charts'
-import { Progress } from '@chakra-ui/react'
+import { HStack, Progress, Text } from '@chakra-ui/react'
 import { useIntl } from 'react-intl'
+import { MetricsCard } from './metrics-card'
 
 // @todo get this from graphql
 interface Data {
   id: string
   country: string
-  customers: number
-  revenue: number
+  sales: number
+  total: number
 }
 
 const total = 43400
@@ -22,36 +21,40 @@ const data: Data[] = [
   {
     id: 'us',
     country: 'US',
-    customers: 70,
-    revenue: 21700,
+    sales: 70,
+    total: 21700,
   },
   {
     id: 'ca',
     country: 'Canada',
-    customers: 40,
-    revenue: 13020,
+    sales: 40,
+    total: 13020,
   },
   {
     id: 'nl',
     country: 'Netherlands',
-    customers: 15,
-    revenue: 4990,
+    sales: 15,
+    total: 4990,
   },
   {
     id: 'Germany',
     country: 'Germany',
-    customers: 5,
-    revenue: 1500,
+    sales: 5,
+    total: 1500,
   },
 ]
 
-const ProgressCell: DataGridCell<Data> = (cell) => {
+const SalesCell: DataGridCell<Data> = (cell) => {
   return (
-    <Progress
-      value={getPercentage(cell.row.getValue('revenue'))}
-      size="sm"
-      colorScheme="primary"
-    />
+    <HStack justifyContent="space-between">
+      <Progress
+        value={getPercentage(cell.row.getValue('total'))}
+        size="xs"
+        colorScheme="primary"
+        width="60px"
+      />
+      <Text>{cell.getValue<string>()}</Text>
+    </HStack>
   )
 }
 
@@ -75,31 +78,29 @@ const columns: ColumnDef<Data>[] = [
     header: 'Country',
   },
   {
-    id: 'bar',
-    header: '',
-    cell: ProgressCell,
-  },
-  {
-    id: 'customers',
-    header: 'Customers',
+    id: 'sales',
+    header: 'Sales',
+    cell: SalesCell,
     meta: {
       isNumeric: true,
     },
+    size: 100,
   },
   {
-    id: 'revenue',
-    header: 'Revenue',
+    id: 'total',
+    header: 'Total',
     cell: CurrencyCell,
     meta: {
       isNumeric: true,
     },
+    size: 80,
   },
 ]
 
 export const SalesByCountry = () => {
   return (
-    <Card title="By country" overflowX="auto">
+    <MetricsCard title="By country" noPadding>
       <DataGrid<Data> columns={columns} data={data} isSortable />
-    </Card>
+    </MetricsCard>
   )
 }

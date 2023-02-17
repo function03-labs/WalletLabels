@@ -97,21 +97,21 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={[1, null, 3]} spacing={4}>
           <SupportCard
             title="Start guide"
-            subtitle="Read how to get started with Saas UI."
+            subtitle="Read how to get started with Saas UI Pro."
             icon={FiHelpCircle}
-            href="https://saas-ui.dev/docs/getting-started"
+            href="https://saas-ui.dev/docs/pro/overview"
           />
           <SupportCard
             title="Components"
             subtitle="See all components and how they work."
             icon={FiBox}
-            href="https://www.saas-ui.dev/docs/auth/auth-provider"
+            href="https://www.saas-ui.dev/docs/components"
           />
           <SupportCard
-            title="Feedback"
+            title="Roadmap"
             subtitle="Post feedback, bug reports and feature requests."
             icon={FiGithub}
-            href="https://github.com/saas-js/saas-ui/issues"
+            href="https://roadmap.saas-ui.dev"
           />
         </SimpleGrid>
       </Section>

@@ -5,7 +5,7 @@ import {
   FormattedRelativeTime,
   FormattedTime,
 } from 'react-intl'
-import { differenceInSeconds, format } from 'date-fns'
+import { differenceInSeconds } from 'date-fns'
 
 export interface RelativeTimeProps {
   date: Date
@@ -20,9 +20,7 @@ export const RelativeTime: React.FC<RelativeTimeProps> = (props) => {
   )
 
   if (diff < 0 && diff > -60) {
-    return (
-      <FormattedMessage id="timeAgo" defaultMessage="Less than a minute ago" />
-    )
+    return <FormattedMessage id="timeAgo" defaultMessage="Just now" />
   }
 
   return (

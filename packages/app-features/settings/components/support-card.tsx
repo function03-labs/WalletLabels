@@ -7,6 +7,7 @@ import {
   Icon,
   As,
   useColorModeValue,
+  Text,
 } from '@chakra-ui/react'
 
 import { Card, CardProps } from '@saas-ui/react'
@@ -24,12 +25,18 @@ export const SupportCard: React.FC<SupportCardProps> = (props) => {
           {title}
         </LinkOverlay>
       }
-      subtitle={subtitle}
+      subtitle={
+        <Text fontSize="sm" color="muted">
+          {subtitle}
+        </Text>
+      }
       avatar={<Icon as={icon} boxSize="4" mt="-6" />}
       as={LinkBox}
       _hover={{
         borderColor: useColorModeValue('blackAlpha.300', 'whiteAlpha.300'),
       }}
+      bg="none"
+      _dark={{ bg: 'none' }}
     />
   )
 }
