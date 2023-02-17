@@ -3,5 +3,5 @@ import { toolbarStyles } from './toolbar'
 
 export const components = {
   Card: cardStyles,
-  Toolbar: toolbarStyles,
+  SuiToolbar: toolbarStyles,
 }

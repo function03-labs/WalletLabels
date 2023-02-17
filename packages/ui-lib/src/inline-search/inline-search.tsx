@@ -1,13 +1,14 @@
 import * as React from 'react'
 import {
   Box,
+  IconButton,
   forwardRef,
   useBreakpointValue,
   useDisclosure,
   useMergeRefs,
 } from '@chakra-ui/react'
 
-import { IconButton, useHotkeys } from '@saas-ui/react'
+import { useHotkeys } from '@saas-ui/react'
 
 import { SearchInput, SearchInputProps } from '../search-input'
 import { FiX } from 'react-icons/fi'

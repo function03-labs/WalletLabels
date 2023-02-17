@@ -7,7 +7,7 @@ import {
   TimelineItem,
   TimelineSeparator,
   TimelineTrack,
-} from '@saas-ui/pro'
+} from '@saas-ui/react'
 import { MetricsCard } from './metrics-card'
 
 import { subDays } from 'date-fns'
@@ -60,7 +60,7 @@ export const Activity = () => {
     <MetricsCard title="Activity">
       <Timeline variant="outline">
         {activites.map(({ name, action, date }, i) => (
-          <TimelineItem>
+          <TimelineItem key={name}>
             <TimelineSeparator>
               <TimelineIcon />
               {i < activites.length - 1 && <TimelineTrack />}

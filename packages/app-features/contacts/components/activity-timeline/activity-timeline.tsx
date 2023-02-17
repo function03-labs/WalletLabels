@@ -4,6 +4,8 @@ import { DateTime, RelativeTime } from '@app/i18n'
 import {
   Box,
   ButtonGroup,
+  Card,
+  CardBody,
   forwardRef,
   HStack,
   Spacer,
@@ -14,22 +16,8 @@ import {
 } from '@chakra-ui/react'
 import { EditorField, StatusBadge } from '@ui/lib'
 
+import { Toolbar, ToolbarButton, MotionBox, Command } from '@saas-ui/pro'
 import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineIcon,
-  TimelineTrack,
-  TimelineContent,
-  TimelineDot,
-  Toolbar,
-  ToolbarButton,
-  MotionBox,
-  Command,
-} from '@saas-ui/pro'
-import {
-  Card,
-  CardBody,
   Form,
   FormLayout,
   Link,
@@ -37,13 +25,20 @@ import {
   PersonaAvatar,
   SubmitButton,
   SubmitHandler,
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineIcon,
+  TimelineTrack,
+  TimelineContent,
+  TimelineDot,
   useSnackbar,
-  User,
   OverflowMenu,
   MenuItem,
   useModals,
   UseFormReturn,
 } from '@saas-ui/react'
+import { User } from '@saas-ui/auth'
 import { FiPaperclip } from 'react-icons/fi'
 import { AnimatePresence } from 'framer-motion'
 
@@ -328,7 +323,7 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
       <TimelineContent ps="4" pt="0">
         <Card py="3" px="4">
           <Form
-            ref={formRef}
+            formRef={formRef}
             onSubmit={async (data) => {
               await onSubmit(data)
 
