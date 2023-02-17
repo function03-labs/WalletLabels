@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box, Spacer, useBreakpointValue } from '@chakra-ui/react'
+import { Box, IconButton, Spacer, useBreakpointValue } from '@chakra-ui/react'
 
 import {
   FiHome,
@@ -14,7 +14,11 @@ import {
 
 import { Command, Resizer, ResizeHandle, ResizeHandler } from '@saas-ui/pro'
 
+import { useActivePath, useLocation, useNavigate } from '@saas-ui/router'
+
 import {
+  MenuItem,
+  MenuDivider,
   Sidebar,
   SidebarProps,
   SidebarOverlay,
@@ -23,14 +27,6 @@ import {
   NavItem,
   NavItemProps,
   NavGroup,
-} from '@saas-ui/sidebar'
-
-import { useActivePath, useLocation, useNavigate } from '@saas-ui/router'
-
-import {
-  IconButton,
-  MenuItem,
-  MenuDivider,
   useModals,
   useLocalStorage,
   useHotkeysShortcut,

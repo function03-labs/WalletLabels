@@ -3,6 +3,13 @@ import { Heading, useBreakpointValue } from '@chakra-ui/react'
 import { FiFolder, FiUser } from 'react-icons/fi'
 
 import {
+  NavGroup,
+  NavItem,
+  NavItemProps,
+  Sidebar,
+  SidebarOverlay,
+  SidebarSection,
+  SidebarToggleButton,
   useActivePath,
   useHotkeysShortcut,
   useLocalStorage,
@@ -14,16 +21,6 @@ import { usePath } from '@app/features/core/hooks/use-path'
 import { Has } from '@saas-ui/features'
 
 import { ElectronNav } from '@ui/lib'
-
-import {
-  NavGroup,
-  NavItem,
-  NavItemProps,
-  Sidebar,
-  SidebarOverlay,
-  SidebarSection,
-  SidebarToggleButton,
-} from '@saas-ui/sidebar'
 
 const SettingsLink = (props: NavItemProps & { path: string }) => {
   const { path, ...rest } = props
