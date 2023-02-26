@@ -1,13 +1,6 @@
 import * as React from 'react'
 
 import {
-  useAddCommentMutation,
-  useDeleteCommentMutation,
-  useGetContactActivitiesQuery,
-  useGetContactQuery,
-} from '@app/graphql'
-
-import {
   Box,
   Heading,
   HStack,
@@ -30,15 +23,22 @@ import { usePath } from '@app/features/core/hooks/use-path'
 
 import { ContactSidebar } from '../components/contact-sidebar'
 import { Activities, ActivityTimeline } from '../components/activity-timeline'
-import { useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  addComment,
+  deleteComment,
+  getContact,
+  getContactActivities,
+} from '@api/client'
 
 interface ContactsViewPageProps {
   id: string
 }
 
 export function ContactsViewPage({ id }: ContactsViewPageProps) {
-  const { data, isLoading, error } = useGetContactQuery({
-    id: String(id),
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['Contact', id],
+    queryFn: () => getContact({ id }),
   })
 
   const sidebar = useDisclosure({
@@ -49,7 +49,7 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
     <Breadcrumbs
       items={[
         { href: usePath('/contacts'), title: 'Contacts' },
-        { title: data?.contact?.fullName },
+        { title: data?.contact?.name },
       ]}
     />
   )
@@ -105,21 +105,24 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
 const ActivitiesPanel: React.FC<{ contactId: string }> = ({ contactId }) => {
   const currentUser = useCurrentUser()
 
-  const { data, isLoading } = useGetContactActivitiesQuery({
-    id: contactId,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['ContactActivities', contactId],
+    queryFn: () => getContactActivities({ id: contactId }),
   })
 
   const queryClient = useQueryClient()
 
-  const addMutation = useAddCommentMutation({
+  const addMutation = useMutation({
+    mutationFn: addComment,
     onSettled: () => {
-      queryClient.invalidateQueries(['GetContactActivities', { id: contactId }])
+      queryClient.invalidateQueries(['ContactActivities', { id: contactId }])
     },
   })
 
-  const deleteMutation = useDeleteCommentMutation({
+  const deleteMutation = useMutation({
+    mutationFn: deleteComment,
     onSettled: () => {
-      queryClient.invalidateQueries(['GetContactActivities', { id: contactId }])
+      queryClient.invalidateQueries(['ContactActivities', { id: contactId }])
     },
   })
 

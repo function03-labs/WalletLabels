@@ -1,0 +1,25 @@
+{
+  "name": "@api/mock-graphql",
+  "version": "0.7.1",
+  "description": "Graphql mock server and resolvers",
+  "private": true,
+  "main": "src/index.ts",
+  "dependencies": {
+    "@api/graphql-client": "workspace:*",
+    "@api/mocks": "workspace:*",
+    "@graphql-tools/schema": "^9.0.13",
+    "@ngneat/falso": "^2.27.0",
+    "date-fns": "^2.29.3",
+    "graphql": "^16.6.0",
+    "msw": "^0.49.2",
+    "slug": "^8.2.2",
+    "zustand": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/slug": "^5.0.3",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "@saas-ui/react": ">=1"
+  }
+}

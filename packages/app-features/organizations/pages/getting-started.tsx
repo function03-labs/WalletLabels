@@ -10,10 +10,14 @@ import {
   InviteTeamMembersStep,
   CreateOrganizationStep,
 } from '../components/onboarding'
-import { useGetCurrentUserQuery } from '@app/graphql'
+import { getCurrentUser } from '@api/client'
+import { useQuery } from '@tanstack/react-query'
 
 export const GettingStartedPage: React.FC = () => {
-  const { data, isLoading } = useGetCurrentUserQuery()
+  const { data, isLoading } = useQuery({
+    queryKey: ['CurrentUser'],
+    queryFn: () => getCurrentUser(),
+  })
 
   return (
     <OnboardingPage isLoading={isLoading}>

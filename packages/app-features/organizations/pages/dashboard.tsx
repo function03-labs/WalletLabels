@@ -1,5 +1,3 @@
-import { useGetOrganizationQuery } from '@app/graphql'
-
 import { Grid, GridItem } from '@chakra-ui/react'
 
 import { FaGithub, FaTwitter } from 'react-icons/fa'
@@ -19,11 +17,20 @@ import { SalesByCountry } from '../components/metrics/sales-by-country'
 import { Today } from '../components/metrics/today'
 import { MRR } from '../components/metrics/mrr'
 import { Activity } from '../components/metrics/activity'
+import { useQuery } from '@tanstack/react-query'
+import { getOrganization } from '@api/client'
 
 export function DashboardPage() {
   const tenant = useTenant()
-  const { data, isLoading } = useGetOrganizationQuery({
-    slug: tenant,
+  const { data, isLoading } = useQuery({
+    queryKey: [
+      'Organization',
+      {
+        slug: tenant,
+      },
+    ] as const,
+    queryFn: ({ queryKey }) => getOrganization(queryKey[1]),
+    enabled: !!tenant,
   })
 
   const organization = data?.organization

@@ -3,24 +3,25 @@ import { useSnackbar, useModals } from '@saas-ui/react'
 import { Section, useTenant } from '@saas-ui/pro'
 
 import {
-  useGetOrganizationQuery,
-  useRemoveUserFromOrganizationMutation,
-  useInviteToOrganizationMutation,
-} from '@app/graphql'
-
-import {
   MembersList,
   Member,
 } from '@app/features/organizations/components/members-list'
 import { InviteData, SettingsPage } from '@ui/lib'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import {
+  getOrganization,
+  inviteToOrganization,
+  removeUserFromOrganization,
+} from '@api/client'
 
 export function MembersSettingsPage() {
   const tenant = useTenant()
   const snackbar = useSnackbar()
   const modals = useModals()
 
-  const { data, isLoading } = useGetOrganizationQuery({
-    slug: tenant,
+  const { data, isLoading } = useQuery({
+    queryKey: ['Organization', tenant],
+    queryFn: () => getOrganization({ slug: tenant }),
   })
 
   const organization = data?.organization
@@ -42,15 +43,19 @@ export function MembersSettingsPage() {
       },
     ) || []
 
-  const inviteToOrganization = useInviteToOrganizationMutation()
+  const inviteUser = useMutation({
+    mutationFn: inviteToOrganization,
+  })
 
-  const removeUserFromOrganization = useRemoveUserFromOrganizationMutation()
+  const removeUser = useMutation({
+    mutationFn: removeUserFromOrganization,
+  })
 
   const onInvite = async ({ emails, role }: InviteData) => {
     if (!organization) return
 
     return snackbar.promise(
-      inviteToOrganization.mutateAsync({
+      inviteUser.mutateAsync({
         organizationId: organization.id,
         emails,
         role,
@@ -70,7 +75,7 @@ export function MembersSettingsPage() {
     if (!organization) return
 
     return snackbar.promise(
-      removeUserFromOrganization.mutateAsync({
+      removeUser.mutateAsync({
         userId: member.id,
         organizationId: organization.id,
       }),
@@ -96,7 +101,7 @@ export function MembersSettingsPage() {
       },
       onConfirm: () =>
         snackbar.promise(
-          removeUserFromOrganization.mutateAsync({
+          removeUser.mutateAsync({
             organizationId: organization.id,
             userId: member.id,
           }),

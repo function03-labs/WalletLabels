@@ -9,7 +9,7 @@ import {
   PageSidebarProps,
 } from '@saas-ui/pro'
 
-import { Contact } from '@app/graphql'
+import type { Contact } from '@api/client'
 
 export interface ContactSidebarProps extends PageSidebarProps {
   contact?: Contact | null
@@ -37,7 +37,7 @@ export const ContactSidebar: React.FC<ContactSidebarProps> = (props) => {
       {...rest}
     >
       <PageSidebarHeader>
-        <Persona name={contact?.fullName || ''} size="xs" />
+        <Persona name={contact?.name || ''} size="xs" />
       </PageSidebarHeader>
       <PageSidebarBody>{content}</PageSidebarBody>
     </PageSidebar>

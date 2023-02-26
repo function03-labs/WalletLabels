@@ -1,13 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": {
       "@app/config/*": ["../app-config/src/*"],
-      "@app/features/core/*": ["./core/*"],
-      "@ui/lib": ["../ui-lib/src/*"]
+      "@app/features/core/*": ["./core/*"]
     }
-  },
-  "include": ["./"],
-  "exclude": ["node_modules"]
+  }
 }

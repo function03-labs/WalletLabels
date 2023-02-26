@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { Section, useTenant } from '@saas-ui/pro'
-import { useGetOrganizationQuery } from '@app/graphql'
 
 import { Stack, Text } from '@chakra-ui/react'
 
@@ -19,6 +18,8 @@ import { usePath } from '@app/features/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
 
 import { FormattedDate } from '@app/i18n'
+import { useQuery } from '@tanstack/react-query'
+import { getOrganization } from '@api/client'
 
 function BillingPlan() {
   const { isTrialing, isTrialExpired, trialEndsAt, currentPlan } = useBilling()
@@ -102,8 +103,10 @@ function BillingInvoices() {
 export function BillingPage() {
   const tenant = useTenant()
 
-  const { data, isLoading, error } = useGetOrganizationQuery({
-    slug: tenant,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['Organization', tenant],
+    queryFn: () => getOrganization({ slug: tenant }),
+    enabled: !!tenant,
   })
 
   const organization = data?.organization
