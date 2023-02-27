@@ -1,0 +1,2 @@
+schema: ./packages/api-graphql/src/schema.graphql
+documents: ./packages/api-graphq-client/src/**/*.ts

@@ -1,20 +1,8 @@
 import { graphql } from 'msw'
 
 import {
-  AddCommentMutation,
-  AddCommentMutationVariables,
-  CreateContactMutation,
-  CreateContactMutationVariables,
   CreateOrganizationMutation,
   CreateOrganizationMutationVariables,
-  DeleteCommentMutation,
-  DeleteCommentMutationVariables,
-  GetContactActivitiesQuery,
-  GetContactActivitiesQueryVariables,
-  GetContactQuery,
-  GetContactQueryVariables,
-  GetContactsQuery,
-  GetContactsQueryVariables,
   GetCurrentUserQuery,
   GetCurrentUserQueryVariables,
   GetOrganizationQuery,
@@ -31,6 +19,18 @@ import {
   UpdateMemberRolesMutationVariables,
   UpdateUserMutation,
   UpdateUserMutationVariables,
+  AddCommentMutation,
+  AddCommentMutationVariables,
+  CreateContactMutation,
+  CreateContactMutationVariables,
+  DeleteCommentMutation,
+  DeleteCommentMutationVariables,
+  GetContactActivitiesQuery,
+  GetContactActivitiesQueryVariables,
+  GetContactQuery,
+  GetContactQueryVariables,
+  GetContactsQuery,
+  GetContactsQueryVariables,
 } from '@api/graphql-client'
 
 import {
@@ -61,7 +61,7 @@ export const handlers = [
   graphql.query<GetOrganizationQuery, GetOrganizationQueryVariables>(
     'GetOrganization',
     async (req, res, ctx) => {
-      return res(ctx.data(await getOrganization()))
+      return res(ctx.data(await getOrganization(req.variables)))
     },
   ),
   graphql.query<GetOrganizationsQuery, GetOrganizationsQueryVariables>(

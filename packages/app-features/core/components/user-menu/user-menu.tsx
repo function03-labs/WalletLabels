@@ -30,7 +30,7 @@ export const UserMenu = () => {
 
   const { data: { currentUser } = {} } = useQuery({
     queryKey: ['GetCurrentUser'],
-    queryFn: getCurrentUser,
+    queryFn: () => getCurrentUser(),
   })
 
   const tenant = useTenant()
