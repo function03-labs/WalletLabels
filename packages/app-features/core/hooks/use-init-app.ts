@@ -8,12 +8,9 @@ import { useTenant } from '@saas-ui/pro'
 import { BillingStatus } from '@saas-ui/billing'
 import { plans } from '@app/config/billing'
 
-import {
-  useGetCurrentUserQuery,
-  useGetOrganizationQuery,
-  useGetSubscriptionQuery,
-} from '@app/graphql'
 import { useFeatures } from '@saas-ui/features'
+import { useQuery } from '@tanstack/react-query'
+import { getCurrentUser, getOrganization, getSubscription } from '@api/client'
 
 /**
  * Use this hook to load all required data for the app to function.
@@ -35,41 +32,43 @@ export const useInitApp = () => {
 
   // Load current user and tenant data
   const { data: { currentUser } = {}, isFetched: currentUserIsFetched } =
-    useGetCurrentUserQuery(
-      {},
-      {
-        enabled: isAuthenticated,
-      },
-    )
+    useQuery({
+      queryKey: ['CurrentUser'],
+      queryFn: getCurrentUser,
+      enabled: isAuthenticated,
+    })
 
   const { data: { organization } = {}, isFetched: organizationIsFetched } =
-    useGetOrganizationQuery(
-      {
-        slug: tenant,
-      },
-      {
-        enabled: isAuthenticated,
-      },
-    )
+    useQuery({
+      queryKey: [
+        'Organization',
+        {
+          slug: tenant,
+        },
+      ] as const,
+      queryFn: ({ queryKey }) => getOrganization(queryKey[1]),
+      enabled: isAuthenticated && !!tenant,
+    })
 
   const { data: { subscription } = {}, isFetched: subscriptionIsFetched } =
-    useGetSubscriptionQuery(
-      {
-        slug: tenant,
-      },
-      {
-        enabled: isAuthenticated,
-      },
-    )
+    useQuery({
+      queryKey: [
+        'Subscription',
+        {
+          slug: tenant,
+        },
+      ] as const,
+      queryFn: ({ queryKey }) => getSubscription(queryKey[1]),
+      enabled: isAuthenticated && !!tenant,
+    })
 
   const billing = React.useMemo(() => {
     return {
       plans: plans,
       status: subscription?.status as BillingStatus,
       planId: subscription?.plan,
-      startedAt: subscription?.startedAt && parseISO(subscription?.startedAt),
-      trialEndsAt:
-        subscription?.trialEndsAt && parseISO(subscription?.trialEndsAt),
+      startedAt: subscription && parseISO(subscription.startedAt),
+      trialEndsAt: subscription && parseISO(subscription.trialEndsAt),
     }
   }, [subscription])
 

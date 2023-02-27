@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { ActivityType } from '@app/graphql'
 import { DateTime, RelativeTime } from '@app/i18n'
 import {
   Box,
@@ -50,10 +49,10 @@ type Activity<Type, TData extends object, TUser = Partial<User>> = {
   date: Date
 }
 
-type ActivityAction = Activity<ActivityType.Action, { action: string }>
-type ActivityComment = Activity<ActivityType.Comment, { comment: string }>
+type ActivityAction = Activity<'action', { action: string }>
+type ActivityComment = Activity<'comment', { comment: string }>
 type ActivityUpdate = Activity<
-  ActivityType.Update,
+  'update',
   { field: string; oldValue?: string; value?: string }
 >
 

@@ -1,8 +1,0 @@
-mutation UpdateOrganization($id: String!, $name: String!, $email: String) {
-  updateOrganization(id: $id, name: $name, email: $email) {
-    id
-    name
-    slug
-    email
-  }
-}

@@ -1,6 +1,4 @@
 import { useRef, useState } from 'react'
-import { useGetCurrentUserQuery } from '@app/graphql'
-import { useUpdateUserMutation } from '@app/graphql'
 
 import { z } from 'zod'
 
@@ -32,10 +30,14 @@ import {
 import { Section } from '@saas-ui/pro'
 
 import { SettingsPage } from '@ui/lib'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { getCurrentUser, updateUser, User } from '@api/client'
 
-function ProfileDetails({ user }: any) {
+function ProfileDetails({ user }: { user: User }) {
   const snackbar = useSnackbar()
-  const { isLoading, mutateAsync: updateUser } = useUpdateUserMutation()
+  const { isLoading, mutateAsync } = useMutation({
+    mutationFn: updateUser,
+  })
 
   return (
     <Section
@@ -47,13 +49,16 @@ function ProfileDetails({ user }: any) {
         <Form
           schema={schema}
           defaultValues={{
-            name: user?.name,
+            firstName: user?.firstName,
+            lastName: user?.lastName,
             email: user?.email,
           }}
           onSubmit={(data) => {
-            updateUser({
+            mutateAsync({
               id: user.id,
-              name: data.name,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              email: data.email,
             }).then(() =>
               snackbar.success({
                 description: 'Profile updated',
@@ -64,7 +69,8 @@ function ProfileDetails({ user }: any) {
           <CardBody>
             <FormLayout>
               <ProfileAvatar user={user} />
-              <Field name="name" label="Name" />
+              <Field name="firstName" label="First name" />
+              <Field name="lastName" label="Last name" />
               <Field name="email" label="Email" />
               <Button colorScheme="primary" type="submit" isLoading={isLoading}>
                 Save
@@ -112,7 +118,10 @@ function ProfileAvatar({ user }: any) {
 }
 
 export function AccountProfilePage() {
-  const { isLoading, data } = useGetCurrentUserQuery()
+  const { isLoading, data } = useQuery({
+    queryKey: ['CurrentUser'],
+    queryFn: getCurrentUser,
+  })
 
   const user = data?.currentUser
 
@@ -122,7 +131,7 @@ export function AccountProfilePage() {
       description="Manage your profile"
       isLoading={isLoading}
     >
-      <ProfileDetails user={user} />
+      {user && <ProfileDetails user={user} />}
     </SettingsPage>
   )
 }

@@ -1,10 +1,10 @@
-import { useGetCurrentUserQuery } from '@app/graphql'
+import { useCurrentUser } from './use-current-user'
 
 export const useGetTenants = () => {
-  const { data } = useGetCurrentUserQuery({})
+  const currentUser = useCurrentUser()
 
   return (
-    data?.currentUser?.organizations?.map((organization) => ({
+    currentUser?.organizations?.map((organization) => ({
       id: organization.id,
       slug: organization.slug,
       label: organization.name || organization.id,

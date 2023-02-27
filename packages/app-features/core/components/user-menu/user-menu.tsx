@@ -18,15 +18,19 @@ import {
   useHotkeysShortcut,
 } from '@saas-ui/react'
 import { Has } from '@saas-ui/features'
-import { useGetCurrentUserQuery } from '@app/graphql'
 
 import { HotkeysWindow } from '../hotkeys'
 import { usePath } from '../../hooks/use-path'
+import { getCurrentUser } from '@api/client'
+import { useQuery } from '@tanstack/react-query'
 
 export const UserMenu = () => {
   const { logOut } = useAuth()
 
-  const { data: { currentUser } = {} } = useGetCurrentUserQuery()
+  const { data: { currentUser } = {} } = useQuery({
+    queryKey: ['GetCurrentUser'],
+    queryFn: () => getCurrentUser(),
+  })
 
   const tenant = useTenant()
 

@@ -1,0 +1,155 @@
+scalar DateTime
+
+scalar Json
+
+type Mutation {
+  createOrganization(organization: CreateOrganizationInput): Organization
+  inviteToOrganization(
+    emails: [String]!
+    organizationId: String!
+    role: String
+  ): Boolean
+  removeUserFromOrganization(organizationId: String!, userId: String!): Boolean
+  updateOrganization(organization: UpdateOrganizationInput): Organization
+  updateUser(user: UpdateUserInput!): User
+  updateMemberRoles(
+    userId: String!
+    organizationId: String!
+    roles: [String]!
+  ): OrganizationMember
+  createContact(contact: CreateContactInput): Contact
+  addActivityComment(id: String!, comment: String!): Activity
+  deleteActivityComment(id: String!): Boolean
+}
+
+input CreateOrganizationInput {
+  name: String!
+  slug: String
+}
+
+input UpdateOrganizationInput {
+  id: String!
+  name: String
+  email: String
+}
+
+input UpdateUserInput {
+  id: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+input CreateContactInput {
+  firstName: String!
+  lastName: String!
+  email: String
+  phone: String
+  type: String!
+}
+
+type Organization {
+  id: String!
+  name: String!
+  slug: String!
+  plan: String
+  email: String
+  logo: String
+  members(
+    after: UserWhereUniqueInput
+    before: UserWhereUniqueInput
+    first: Int
+    last: Int
+  ): [OrganizationMember!]!
+}
+
+enum SubscriptionStatus {
+  active
+  trialing
+  past_due
+  paused
+  canceled
+}
+
+type Subscription {
+  id: String!
+  organization: Organization!
+  plan: String!
+  status: SubscriptionStatus!
+  startedAt: DateTime
+  trialEndsAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type OrganizationMember {
+  id: String!
+  user: User!
+  organization: Organization
+  roles: [String]!
+}
+
+input OrganizationWhereUniqueInput {
+  id: String
+  slug: String
+}
+
+type Query {
+  currentUser: User
+  organization(id: String, slug: String): Organization
+  organizations: [Organization]
+  subscription(slug: String!): Subscription
+  contacts(type: String): [Contact]
+  contact(id: String!): Contact
+  activities(contactId: String!): [Activity!]
+}
+
+type User {
+  email: String!
+  id: String!
+  firstName: String
+  lastName: String
+  name: String
+  status: String
+  avatar: String
+  organizations(
+    after: OrganizationWhereUniqueInput
+    before: OrganizationWhereUniqueInput
+    first: Int
+    last: Int
+  ): [Organization!]!
+}
+
+input UserWhereUniqueInput {
+  email: String
+  id: String
+}
+
+type Contact {
+  id: String!
+  email: String!
+  firstName: String
+  lastName: String
+  name: String
+  status: String
+  type: String
+  tags: [String]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+enum ActivityType {
+  action
+  update
+  comment
+}
+
+type Activity {
+  id: String!
+  user: User!
+  type: ActivityType!
+  data: Json
+  date: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+}

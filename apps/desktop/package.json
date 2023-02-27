@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@app/features": "workspace:*",
-    "@app/mock-graphql": "workspace:*",
     "@chakra-ui/react": "^2.5.1",
     "@chakra-ui/system": "^2.5.1",
     "@emotion/react": "^11.10.5",

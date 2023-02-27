@@ -1,11 +1,5 @@
 import * as React from 'react'
 
-import {
-  useGetContactsQuery,
-  Contact,
-  useCreateContactMutation,
-} from '@app/graphql'
-
 import { z } from 'zod'
 
 import {
@@ -44,10 +38,13 @@ import {
 
 import { ListPage, InlineSearch } from '@ui/lib'
 
+import { Contact, createContact, getContacts } from '@api/client'
+
 import { format } from 'date-fns'
 
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 const contactTypes: Record<string, { label: string; color: string }> = {
   lead: {
@@ -108,7 +105,17 @@ const ActionCell: DataGridCell<Contact> = (cell) => {
 }
 
 const schema = z.object({
-  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
+  firstName: z
+    .string()
+    .min(2, 'Too short')
+    .max(25, 'Too long')
+    .describe('Name'),
+  lastName: z
+    .string()
+    .min(2, 'Too short')
+    .max(25, 'Too long')
+    .describe('Last name'),
+  email: z.string().min(2, 'Too short').max(25, 'Too long').describe('Email'),
 })
 
 export function ContactsListPage() {
@@ -118,17 +125,25 @@ export function ContactsListPage() {
 
   const [searchQuery, setSearchQuery] = React.useState('')
 
-  const { data, isLoading } = useGetContactsQuery({
-    type: params?.type as string,
+  const { data, isLoading } = useQuery({
+    queryKey: [
+      'GetContacts',
+      {
+        type: params?.type as string,
+      },
+    ] as const,
+    queryFn: ({ queryKey }) => getContacts(queryKey[1]),
   })
 
-  const mutation = useCreateContactMutation()
+  const mutation = useMutation({
+    mutationFn: createContact,
+  })
 
   const columns = useColumns<Contact>(
     () => [
       {
         id: 'name',
-        accessorKey: 'fullName',
+        accessorKey: 'name',
         header: 'Name',
         size: 300,
         meta: {
@@ -194,7 +209,9 @@ export function ContactsListPage() {
       submitLabel: 'Save',
       onSubmit: (contact) =>
         mutation.mutateAsync({
-          name: contact.name,
+          // @todo fix onSubmit types
+          ...(contact as z.infer<typeof schema>),
+          type: params?.type as string,
         }),
     })
   }

@@ -1,6 +1,6 @@
 import { Button, SimpleGrid } from '@chakra-ui/react'
 import { PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
-import { Section } from '@saas-ui/pro'
+import { Section, useTenant } from '@saas-ui/pro'
 import { useBilling } from '@saas-ui/billing'
 
 import {
@@ -17,11 +17,15 @@ import { FormattedDate } from '@app/i18n'
 
 import { SettingsCard } from '../components/settings-card'
 import { SupportCard } from '../components/support-card'
-
-import { useGetOrganizationQuery } from '@app/graphql'
+import { useQuery } from '@tanstack/react-query'
+import { getOrganization } from '@api/client'
 
 export function SettingsOverviewPage() {
-  const { data, isLoading } = useGetOrganizationQuery()
+  const tenant = useTenant()
+  const { data, isLoading } = useQuery({
+    queryKey: ['Organization', tenant],
+    queryFn: () => getOrganization({ slug: tenant }),
+  })
 
   const { currentPlan, isTrialing, isCanceled, trialEndsAt, status } =
     useBilling()

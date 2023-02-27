@@ -1,0 +1,11 @@
+query GetSubscription($slug: String!) {
+  subscription(slug: $slug) {
+    id
+    plan
+    status
+    startedAt
+    trialEndsAt
+    createdAt
+    updatedAt
+  }
+}

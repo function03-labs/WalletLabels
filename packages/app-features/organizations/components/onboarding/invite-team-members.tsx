@@ -1,6 +1,7 @@
-import { useInviteToOrganizationMutation } from '@app/graphql'
+import { useMutation } from '@tanstack/react-query'
 import { useTenant } from '@saas-ui/pro'
 import { Field, FormLayout, useStepperContext } from '@saas-ui/react'
+import { inviteToOrganization } from '@api/client'
 import { OnboardingStep } from './onboarding-step'
 
 export const InviteTeamMembersStep = () => {
@@ -8,7 +9,9 @@ export const InviteTeamMembersStep = () => {
 
   const stepper = useStepperContext()
 
-  const { mutateAsync: invite } = useInviteToOrganizationMutation()
+  const { mutateAsync: invite } = useMutation({
+    mutationFn: inviteToOrganization,
+  })
 
   return (
     <OnboardingStep
@@ -17,9 +20,10 @@ export const InviteTeamMembersStep = () => {
       defaultValues={{ emails: '' }}
       onSubmit={(data) => {
         if (tenant) {
-          return invite({ organizationId: tenant, emails: data.emails }).then(
-            (result) => stepper.nextStep(),
-          )
+          return invite({
+            organizationId: tenant,
+            emails: data.emails.split(/,\s?/),
+          }).then((result) => stepper.nextStep())
         }
       }}
       submitLabel="Continue"

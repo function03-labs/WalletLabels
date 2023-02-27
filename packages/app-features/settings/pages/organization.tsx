@@ -1,12 +1,5 @@
-import { useGetOrganizationQuery } from '@app/graphql'
-
-import {
-  useUpdateOrganizationMutation,
-  GetOrganizationQuery,
-} from '@app/graphql'
-
 import { z } from 'zod'
-
+import { getOrganization, Organization, updateOrganization } from '@api/client'
 const schema = z.object({
   name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
 })
@@ -24,15 +17,17 @@ import {
   useSnackbar,
 } from '@saas-ui/react'
 import { SettingsPage } from '@ui/lib'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 interface OrganizationDetailsProps {
-  organization?: GetOrganizationQuery['organization'] | null
+  organization?: Organization | null
 }
 
 function OrganizationDetails({ organization }: OrganizationDetailsProps) {
   const snackbar = useSnackbar()
-  const { isLoading, mutateAsync: updateOrganization } =
-    useUpdateOrganizationMutation()
+  const { isLoading, mutateAsync } = useMutation({
+    mutationFn: updateOrganization,
+  })
 
   let form
   if (organization) {
@@ -43,7 +38,7 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
           name: organization.name,
         }}
         onSubmit={(data) => {
-          return updateOrganization({
+          return mutateAsync({
             id: organization.id,
             name: data.name,
           }).then(() =>
@@ -86,8 +81,9 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
 export function OrganizationSettingsPage() {
   const tenant = useTenant()
 
-  const { data, isLoading, error } = useGetOrganizationQuery({
-    slug: tenant,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['Organization', tenant],
+    queryFn: () => getOrganization({ slug: tenant }),
   })
 
   const organization = data?.organization
