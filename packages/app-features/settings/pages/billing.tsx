@@ -2,16 +2,9 @@ import * as React from 'react'
 
 import { Section, useTenant } from '@saas-ui/pro'
 
-import { Stack, Text } from '@chakra-ui/react'
+import { Card, CardBody, Stack, Text } from '@chakra-ui/react'
 
-import {
-  Card,
-  CardBody,
-  Field,
-  Form,
-  FormLayout,
-  SubmitButton,
-} from '@saas-ui/react'
+import { Field, Form, FormLayout, SubmitButton } from '@saas-ui/react'
 import { LinkButton, SettingsPage } from '@ui/lib'
 import { usePath } from '@app/features/core/hooks/use-path'
 
@@ -52,10 +45,9 @@ function BillingPlan() {
               </Text>
             )}
 
-            <LinkButton
-              label="View plans and upgrade"
-              href={usePath('/settings/plans')}
-            />
+            <LinkButton href={usePath('/settings/plans')}>
+              View plans and upgrade
+            </LinkButton>
           </Stack>
         </CardBody>
       </Card>
@@ -75,7 +67,7 @@ function BillingEmail() {
           <Form onSubmit={() => null}>
             <FormLayout>
               <Field name="billing.email" label="Email address" type="email" />
-              <SubmitButton label="Update" />
+              <SubmitButton>Update</SubmitButton>
             </FormLayout>
           </Form>
         </CardBody>

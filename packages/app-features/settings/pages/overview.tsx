@@ -40,7 +40,7 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={[1, null, 2]} spacing={4}>
           <SettingsCard
             title="Billing"
-            subtitle="Manage your subscription."
+            description="Manage your subscription."
             icon={FiBriefcase}
             footer={
               <LinkButton href={usePath('/settings/plans')} variant="primary">
@@ -62,7 +62,7 @@ export function SettingsOverviewPage() {
           </SettingsCard>
           <SettingsCard
             title="Organization"
-            subtitle="Manage your organization details."
+            description="Manage your organization details."
             avatar={<PersonaAvatar name={data?.organization?.name} size="sm" />}
             footer={
               <LinkButton
@@ -85,7 +85,7 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={[1, null, 2]} spacing={4}>
           <SettingsCard
             title="Security recommendations"
-            subtitle="Improve your account security by enabling two-factor
+            description="Improve your account security by enabling two-factor
               authentication."
             icon={FiShield}
             footer={
@@ -101,19 +101,19 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={[1, null, 3]} spacing={4}>
           <SupportCard
             title="Start guide"
-            subtitle="Read how to get started with Saas UI Pro."
+            description="Read how to get started with Saas UI Pro."
             icon={FiHelpCircle}
             href="https://saas-ui.dev/docs/pro/overview"
           />
           <SupportCard
             title="Components"
-            subtitle="See all components and how they work."
+            description="See all components and how they work."
             icon={FiBox}
             href="https://www.saas-ui.dev/docs/components"
           />
           <SupportCard
             title="Roadmap"
-            subtitle="Post feedback, bug reports and feature requests."
+            description="Post feedback, bug reports and feature requests."
             icon={FiGithub}
             href="https://roadmap.saas-ui.dev"
           />

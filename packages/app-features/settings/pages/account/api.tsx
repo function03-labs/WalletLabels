@@ -1,5 +1,9 @@
-import { Stack, Text, useClipboard } from '@chakra-ui/react'
-import { Button, IconButton, List, ListItem } from '@saas-ui/react'
+import { Button, IconButton, Stack, Text, useClipboard } from '@chakra-ui/react'
+import {
+  StructuredList,
+  StructuredListCell,
+  StructuredListItem,
+} from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
 import { SettingsPage, Link } from '@ui/lib'
@@ -14,18 +18,22 @@ function AccessToken({ token, onRemove }: any) {
   }
 
   return (
-    <ListItem
-      primary={token}
-      tertiary={hasCopied ? <FiCheck /> : <FiCopy />}
-      onClick={onCopy}
-      action={
+    <StructuredListItem onClick={onCopy}>
+      <StructuredListCell flex="1">
+        <Text size="sm">{token}</Text>
+      </StructuredListCell>
+      <StructuredListCell px="4">
+        {hasCopied ? <FiCheck /> : <FiCopy />}
+      </StructuredListCell>
+      <StructuredListCell>
         <IconButton
           icon={<FiX />}
           aria-label="Remove access token"
+          variant="ghost"
           onClick={handleRemove}
         />
-      }
-    />
+      </StructuredListCell>
+    </StructuredListItem>
   )
 }
 
@@ -44,11 +52,11 @@ function PersonalAccessTokens() {
       isAnnotated
     >
       <SettingsCard
-        footer={<Button label="Create new token" colorScheme="primary" />}
+        footer={<Button colorScheme="primary">Create new token</Button>}
       >
-        <List variant="settings" p="0">
+        <StructuredList variant="settings" p="0">
           <AccessToken token="12345" onRemove={onRemove} />
-        </List>
+        </StructuredList>
       </SettingsCard>
     </Section>
   )

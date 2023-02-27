@@ -1,6 +1,13 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Reorder, useDragControls } from 'framer-motion'
+import {
+  DndContext,
+  DndContextProps,
+  DragEndEvent,
+  DragOverlay,
+  UniqueIdentifier,
+} from '@dnd-kit/core'
+import { arrayMove, SortableContext, useSortable } from '@dnd-kit/sortable'
 import {
   Badge,
   Image,
@@ -46,8 +53,10 @@ import {
   SidebarSection,
   SidebarToggleButton,
   SidebarOverlay,
+  NavGroupProps,
 } from '@saas-ui/react'
 import { Logo } from './logo'
+import { CSS } from '@dnd-kit/utilities'
 
 export default {
   title: 'Templates/Layout/Sidebar',
@@ -56,21 +65,25 @@ export default {
 
 const tags = [
   {
+    id: 'lead',
     name: 'Lead',
     count: 83,
     color: 'purple.500',
   },
   {
+    id: 'customer',
     name: 'Customer',
     count: 210,
     color: 'green.500',
   },
   {
+    id: 'partner',
     name: 'Partner',
     count: 12,
     color: 'blue.500',
   },
   {
+    id: 'prospect',
     name: 'Prospect',
     count: 0,
   },
@@ -119,21 +132,16 @@ export const SidebarLayout = () => {
                 <NavItem icon={<HeartHandshakeIcon />}>Support</NavItem>
               </NavGroup>
 
-              <NavGroup title="Tags" isCollapsible>
-                <Reorder.Group
-                  axis="y"
-                  values={sortedTags}
-                  onReorder={(items) => {
-                    setTags(items)
-                  }}
-                >
-                  {sortedTags.map((tag, i) => (
-                    <Reorder.Item key={tag.name} value={tag}>
-                      <DraggableNavItem key={i} tag={tag} />
-                    </Reorder.Item>
-                  ))}
-                </Reorder.Group>
-              </NavGroup>
+              <SortableNavGroup
+                title="Tags"
+                isCollapsible
+                items={sortedTags.map((tag) => tag.name)}
+                onSorted={setTags}
+              >
+                {sortedTags.map((tag, i) => (
+                  <SortableNavItem key={i} tag={tag} />
+                ))}
+              </SortableNavGroup>
             </SidebarSection>
             <SidebarSection>
               <NavItem icon={<HelpCircleIcon />}>Help &amp; Support</NavItem>
@@ -147,12 +155,105 @@ export const SidebarLayout = () => {
   )
 }
 
-const DraggableNavItem = (props) => {
+interface SortableNavGroupProps
+  extends Omit<NavGroupProps, 'onDragStart' | 'onDragEnd' | 'onDragOver'>,
+    DndContextProps {
+  items: any[]
+  onSorted?: (fn: (items: any[]) => any[]) => void
+}
+const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
+  const {
+    children,
+    onDragStart,
+    onDragOver,
+    onDragEnd,
+    onSorted,
+    items,
+    ...rest
+  } = props
+
+  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null)
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+
+    if (active.id !== over?.id) {
+      onSorted?.((items) => {
+        console.log(items)
+        const oldIndex = items.findIndex((item) => item.name === active.id)
+        const newIndex =
+          over && items.findIndex((item) => item.name === over.id)
+
+        return newIndex ? arrayMove(items, oldIndex, newIndex) : items
+      })
+    }
+
+    setActiveId(null)
+  }
+
+  return (
+    <DndContext
+      onDragStart={(event) => {
+        setActiveId(event.active.id)
+        onDragStart?.(event)
+      }}
+      onDragOver={onDragOver}
+      onDragEnd={(event) => {
+        handleDragEnd(event)
+        onDragEnd?.(event)
+      }}
+    >
+      <SortableContext items={items}>
+        <NavGroup {...rest}>{children}</NavGroup>
+      </SortableContext>
+      <DragOverlay>
+        {activeId ? (
+          <NavItem
+            icon={
+              <Badge
+                bg={'transparent'}
+                boxSize="2"
+                borderRadius="full"
+                variant={'outline'}
+              />
+            }
+            _hover={{
+              bg: 'transparent',
+            }}
+          >
+            {activeId}
+          </NavItem>
+        ) : null}
+      </DragOverlay>
+    </DndContext>
+  )
+}
+
+const SortableNavItem = (props) => {
   const { tag } = props
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: tag.name })
+
+  const itemProps = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0 : undefined,
+    ...attributes,
+    ...listeners,
+  }
+
   return (
     <NavItem
-      userSelect="none"
-      draggable="false"
+      ref={setNodeRef}
+      {...itemProps}
+      data-drag={isDragging}
       icon={
         <Badge
           bg={tag.color || 'transparent'}

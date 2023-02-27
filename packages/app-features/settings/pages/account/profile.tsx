@@ -12,20 +12,15 @@ const schema = z.object({
 
 import {
   Button,
+  Card,
+  CardBody,
   FormControl,
   FormLabel,
   Avatar,
   Tooltip,
 } from '@chakra-ui/react'
 
-import {
-  Form,
-  Field,
-  FormLayout,
-  Card,
-  CardBody,
-  useSnackbar,
-} from '@saas-ui/react'
+import { Form, FormLayout, useSnackbar } from '@saas-ui/react'
 
 import { Section } from '@saas-ui/pro'
 
@@ -66,17 +61,23 @@ function ProfileDetails({ user }: { user: User }) {
             )
           }}
         >
-          <CardBody>
-            <FormLayout>
-              <ProfileAvatar user={user} />
-              <Field name="firstName" label="First name" />
-              <Field name="lastName" label="Last name" />
-              <Field name="email" label="Email" />
-              <Button colorScheme="primary" type="submit" isLoading={isLoading}>
-                Save
-              </Button>
-            </FormLayout>
-          </CardBody>
+          {({ Field }) => (
+            <CardBody>
+              <FormLayout>
+                <ProfileAvatar user={user} />
+                <Field name="firstName" label="First name" />
+                <Field name="lastName" label="Last name" />
+                <Field name="email" label="Email" />
+                <Button
+                  colorScheme="primary"
+                  type="submit"
+                  isLoading={isLoading}
+                >
+                  Save
+                </Button>
+              </FormLayout>
+            </CardBody>
+          )}
         </Form>
       </Card>
     </Section>

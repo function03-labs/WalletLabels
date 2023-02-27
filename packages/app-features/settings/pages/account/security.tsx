@@ -1,4 +1,11 @@
-import { Card, List, ListItem, useModals, useSnackbar } from '@saas-ui/react'
+import { Card } from '@chakra-ui/react'
+import {
+  StructuredList,
+  StructuredListItem,
+  StructuredListCell,
+  useModals,
+  useSnackbar,
+} from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
 import { FiChevronRight } from 'react-icons/fi'
@@ -9,12 +16,17 @@ import { UpdatePasswordDialog } from '../../components/update-password-dialog'
 
 function TwoFactorAuthItem() {
   return (
-    <ListItem
-      onClick={() => null}
-      primary="Two-factor authentication"
-      tertiary="Not enabled"
-      action={<FiChevronRight />}
-    />
+    <StructuredListItem onClick={() => null}>
+      <StructuredListCell flex="1">
+        Two-factor authentication
+      </StructuredListCell>
+      <StructuredListCell color="muted" px="4">
+        Not enabled
+      </StructuredListCell>
+      <StructuredListCell>
+        <FiChevronRight />
+      </StructuredListCell>
+    </StructuredListItem>
   )
 }
 
@@ -23,7 +35,7 @@ function PasswordListItem() {
   const snackbar = useSnackbar()
 
   return (
-    <ListItem
+    <StructuredListItem
       onClick={() => {
         const id = modals.open({
           title: 'Update your password',
@@ -34,10 +46,15 @@ function PasswordListItem() {
           },
         })
       }}
-      primary="Password"
-      tertiary="Last changed January 1st 2022"
-      action={<FiChevronRight />}
-    />
+    >
+      <StructuredListCell flex="1">Password</StructuredListCell>
+      <StructuredListCell color="muted" px="4">
+        Last changed January 1st 2022
+      </StructuredListCell>
+      <StructuredListCell>
+        <FiChevronRight />
+      </StructuredListCell>
+    </StructuredListItem>
   )
 }
 
@@ -49,10 +66,10 @@ function AccountSignIn() {
       isAnnotated
     >
       <Card>
-        <List variant="settings">
+        <StructuredList variant="settings">
           <PasswordListItem />
           <TwoFactorAuthItem />
-        </List>
+        </StructuredList>
       </Card>
     </Section>
   )

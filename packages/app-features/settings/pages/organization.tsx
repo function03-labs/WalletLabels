@@ -3,19 +3,9 @@ import { getOrganization, Organization, updateOrganization } from '@api/client'
 const schema = z.object({
   name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
 })
-
+import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
 import { Section, useTenant } from '@saas-ui/pro'
-
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Form,
-  FormLayout,
-  Field,
-  useSnackbar,
-} from '@saas-ui/react'
+import { Form, FormLayout, useSnackbar } from '@saas-ui/react'
 import { SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
@@ -36,6 +26,7 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
         schema={schema}
         defaultValues={{
           name: organization.name,
+          email: organization.email,
         }}
         onSubmit={(data) => {
           return mutateAsync({
@@ -48,22 +39,26 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
           )
         }}
       >
-        <CardBody>
-          <FormLayout>
-            <Field name="name" label="Organization name" />
-            <Field name="email" label="Email address" />
-          </FormLayout>
-        </CardBody>
-        <CardFooter>
-          <Button
-            variant="solid"
-            colorScheme="primary"
-            type="submit"
-            isLoading={isLoading}
-          >
-            Save
-          </Button>
-        </CardFooter>
+        {({ Field }) => (
+          <>
+            <CardBody>
+              <FormLayout>
+                <Field name="name" label="Organization name" />
+                <Field name="email" label="Email address" />
+              </FormLayout>
+            </CardBody>
+            <CardFooter>
+              <Button
+                variant="solid"
+                colorScheme="primary"
+                type="submit"
+                isLoading={isLoading}
+              >
+                Save
+              </Button>
+            </CardFooter>
+          </>
+        )}
       </Form>
     )
   }

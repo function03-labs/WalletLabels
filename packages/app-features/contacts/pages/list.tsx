@@ -109,13 +109,13 @@ const schema = z.object({
     .string()
     .min(2, 'Too short')
     .max(25, 'Too long')
-    .describe('Name'),
+    .describe('First name'),
   lastName: z
     .string()
     .min(2, 'Too short')
     .max(25, 'Too long')
     .describe('Last name'),
-  email: z.string().min(2, 'Too short').max(25, 'Too long').describe('Email'),
+  email: z.string().email().describe('Email'),
 })
 
 export function ContactsListPage() {
@@ -207,10 +207,10 @@ export function ContactsListPage() {
       title: 'Add person',
       schema,
       submitLabel: 'Save',
-      onSubmit: (contact) =>
+      /* @ts-ignore @todo fix submit types on FormDialog */
+      onSubmit: (contact: z.infer<typeof schema>) =>
         mutation.mutateAsync({
-          // @todo fix onSubmit types
-          ...(contact as z.infer<typeof schema>),
+          ...contact,
           type: params?.type as string,
         }),
     })

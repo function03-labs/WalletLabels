@@ -1,42 +1,57 @@
 import * as React from 'react'
 
 import {
+  Card,
+  CardProps,
   LinkBox,
   LinkOverlay,
   LinkOverlayProps,
   Icon,
   As,
-  useColorModeValue,
   Text,
+  CardHeader,
+  Stack,
+  Box,
 } from '@chakra-ui/react'
 
-import { Card, CardProps } from '@saas-ui/react'
-
-interface SupportCardProps extends CardProps, Pick<LinkOverlayProps, 'href'> {
+interface SupportCardProps
+  extends Omit<CardProps, 'title'>,
+    Pick<LinkOverlayProps, 'href'> {
   icon: As<any>
+  title: React.ReactNode
+  description: React.ReactNode
 }
 
 export const SupportCard: React.FC<SupportCardProps> = (props) => {
-  const { title, subtitle, icon, href } = props
+  const { title, description, icon, href } = props
   return (
     <Card
-      title={
-        <LinkOverlay href={href} fontWeight="medium">
-          {title}
-        </LinkOverlay>
-      }
-      subtitle={
-        <Text fontSize="sm" color="muted">
-          {subtitle}
-        </Text>
-      }
-      avatar={<Icon as={icon} boxSize="4" mt="-6" />}
       as={LinkBox}
       _hover={{
-        borderColor: useColorModeValue('blackAlpha.300', 'whiteAlpha.300'),
+        borderColor: 'blackAlpha.300',
       }}
       bg="none"
-      _dark={{ bg: 'none' }}
-    />
+      _dark={{
+        bg: 'none',
+        _hover: {
+          borderColor: 'whiteAlpha.300',
+        },
+      }}
+    >
+      <CardHeader display="flex">
+        <Box mr="4">
+          <Icon as={icon} boxSize="4" mt="0.5" />
+        </Box>
+        <Stack spacing="1">
+          <LinkOverlay href={href} fontWeight="medium">
+            {title}
+          </LinkOverlay>
+
+          <Text fontSize="sm" color="muted">
+            {description}
+          </Text>
+        </Stack>
+      </CardHeader>
+    </Card>
   )
 }

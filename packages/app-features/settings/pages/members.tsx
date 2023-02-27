@@ -97,7 +97,7 @@ export function MembersSettingsPage() {
       }?`,
       confirmProps: {
         colorScheme: 'red',
-        label: 'Remove',
+        children: 'Remove',
       },
       onConfirm: () =>
         snackbar.promise(
