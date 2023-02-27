@@ -1,13 +1,11 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Box, BoxProps, Text } from '@chakra-ui/react'
+import { Button, Box, BoxProps, Text } from '@chakra-ui/react'
 
 import { FiAlertCircle } from 'react-icons/fi'
 
-import { AppShell } from '../../app-shell'
-
 import { ErrorPage, ErrorPageProps } from '..'
-import { Button } from '@saas-ui/react'
+import { AppShell } from '@saas-ui/react'
 
 export default {
   title: 'Components/Layout/ErrorPage',

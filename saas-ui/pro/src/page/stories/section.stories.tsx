@@ -1,11 +1,8 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Box, BoxProps, Text } from '@chakra-ui/react'
-
-import { AppShell } from '../../app-shell'
+import { Card, CardBody, BoxProps, Text } from '@chakra-ui/react'
 
 import { Section, SectionProps } from '..'
-import { Card, CardBody } from '@saas-ui/react'
 
 export default {
   title: 'Components/Layout/Section',

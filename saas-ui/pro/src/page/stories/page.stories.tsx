@@ -4,12 +4,10 @@ import { Box, BoxProps, Text } from '@chakra-ui/react'
 
 import { FiAlertCircle } from 'react-icons/fi'
 
-import { AppShell } from '../../app-shell'
-
 import { Toolbar, ToolbarButton } from '../../toolbar'
 
 import { Page, BackButton } from '..'
-import { EmptyState } from '@saas-ui/react'
+import { AppShell, EmptyState } from '@saas-ui/react'
 
 export default {
   title: 'Components/Layout/Page',
