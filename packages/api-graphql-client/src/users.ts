@@ -1,6 +1,6 @@
 import { client } from './client'
 import { graphql } from './gql'
-import { UpdateUserInput, User } from './gql/graphql'
+import { UpdateUserInput } from './gql/graphql'
 
 const currentUser = graphql(`
   query GetCurrentUser {
@@ -8,6 +8,7 @@ const currentUser = graphql(`
       id
       firstName
       lastName
+      name
       email
       avatar
       organizations {

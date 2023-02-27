@@ -27,7 +27,7 @@ const documents = {
     "\n  mutation CreateOrganization($organization: CreateOrganizationInput!) {\n    createOrganization(organization: $organization) {\n      id\n      name\n      slug\n      plan\n    }\n  }\n": types.CreateOrganizationDocument,
     "\n  mutation UpdateOrganization($organization: UpdateOrganizationInput!) {\n    updateOrganization(organization: $organization) {\n      id\n      name\n      slug\n      email\n    }\n  }\n": types.UpdateOrganizationDocument,
     "\n  mutation UpdateMemberRoles(\n    $userId: String!\n    $organizationId: String!\n    $roles: [String]!\n  ) {\n    updateMemberRoles(\n      userId: $userId\n      organizationId: $organizationId\n      roles: $roles\n    ) {\n      roles\n    }\n  }\n": types.UpdateMemberRolesDocument,
-    "\n  query GetCurrentUser {\n    currentUser {\n      id\n      firstName\n      lastName\n      email\n      avatar\n      organizations {\n        id\n        name\n        slug\n        plan\n        logo\n      }\n    }\n  }\n": types.GetCurrentUserDocument,
+    "\n  query GetCurrentUser {\n    currentUser {\n      id\n      firstName\n      lastName\n      name\n      email\n      avatar\n      organizations {\n        id\n        name\n        slug\n        plan\n        logo\n      }\n    }\n  }\n": types.GetCurrentUserDocument,
     "\n  mutation UpdateUser($user: UpdateUserInput!) {\n    updateUser(user: $user) {\n      id\n      firstName\n      lastName\n      name\n      email\n      organizations {\n        id\n        name\n        slug\n        plan\n      }\n    }\n  }\n": types.UpdateUserDocument,
 };
 
@@ -104,7 +104,7 @@ export function graphql(source: "\n  mutation UpdateMemberRoles(\n    $userId: S
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GetCurrentUser {\n    currentUser {\n      id\n      firstName\n      lastName\n      email\n      avatar\n      organizations {\n        id\n        name\n        slug\n        plan\n        logo\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetCurrentUser {\n    currentUser {\n      id\n      firstName\n      lastName\n      email\n      avatar\n      organizations {\n        id\n        name\n        slug\n        plan\n        logo\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query GetCurrentUser {\n    currentUser {\n      id\n      firstName\n      lastName\n      name\n      email\n      avatar\n      organizations {\n        id\n        name\n        slug\n        plan\n        logo\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetCurrentUser {\n    currentUser {\n      id\n      firstName\n      lastName\n      name\n      email\n      avatar\n      organizations {\n        id\n        name\n        slug\n        plan\n        logo\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
