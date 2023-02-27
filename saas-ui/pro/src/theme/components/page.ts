@@ -100,7 +100,7 @@ const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
     header: {
       flexDirection: 'column',
       alignItems: 'stretch',
-      maxW: 'container.lg',
+      maxW: 'container.xl',
       margin: '0 auto',
       mt: [0, null, 8],
       mb: 8,
@@ -117,7 +117,7 @@ const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
       overflow: 'visible',
       '& > div': {
         margin: '0 auto',
-        maxWidth: props.fullWidth ? '100%' : 'container.lg',
+        maxWidth: props.fullWidth ? '100%' : 'container.xl',
       },
     },
   }

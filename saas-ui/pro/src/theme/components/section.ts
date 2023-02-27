@@ -49,7 +49,7 @@ const variantAnnotated: PartsStyleFunction<typeof parts> = (props) => {
       width: ['full', null, '30%'],
       mt: 0,
       mb: [4, null, 0],
-      pe: 4,
+      pe: [4, null, 8],
     },
   }
 }
