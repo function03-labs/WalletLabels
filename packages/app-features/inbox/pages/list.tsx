@@ -8,48 +8,16 @@ import { InboxList } from '../components/inbox-list'
 
 import { useParams } from '@saas-ui/router'
 import { useBreakpointValue } from '@chakra-ui/react'
-
-const items = [
-  {
-    id: 1,
-    name: 'Elliot Alderson',
-    avatar: 'https://bit.ly/2Z4KKcF',
-    subject: 'A bug is never just a mistake.',
-    message:
-      'It represents something bigger. An error of thinking that makes you who you are.',
-    time: '3:56 PM',
-  },
-  {
-    id: 2,
-    name: 'Darlene Alderson',
-    avatar: 'https://bit.ly/2Z4KKcF',
-    subject: 'A bug is never just a mistake.',
-    message:
-      'It represents something bigger. An error of thinking that makes you who you are.',
-    time: '3:56 PM',
-  },
-  {
-    id: 3,
-    name: 'Angela Moss',
-    avatar: 'https://bit.ly/2Z4KKcF',
-    subject: 'A bug is never just a mistake.',
-    message:
-      'It represents something bigger. An error of thinking that makes you who you are.',
-    time: '3:56 PM',
-  },
-  {
-    id: 4,
-    name: 'Tyrell Wellick',
-    avatar: 'https://bit.ly/2Z4KKcF',
-    subject: 'A bug is never just a mistake.',
-    message:
-      'It represents something bigger. An error of thinking that makes you who you are.',
-    time: '3:56 PM',
-  },
-]
+import { useQuery } from '@tanstack/react-query'
+import { getConversations } from '@api/client'
 
 export function InboxListPage() {
   const params = useParams()
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['Conversations'],
+    queryFn: () => getConversations(),
+  })
 
   const isMobile = useBreakpointValue({ base: true, lg: false })
 
@@ -78,8 +46,17 @@ export function InboxListPage() {
   }
 
   return (
-    <SplitPage title="Inbox" toolbar={toolbar} content={content}>
-      {!items.length && isMobile ? emptyState : <InboxList items={items} />}
+    <SplitPage
+      title="Inbox"
+      toolbar={toolbar}
+      content={content}
+      isLoading={isLoading}
+    >
+      {!data?.conversations?.length && isMobile ? (
+        emptyState
+      ) : (
+        <InboxList items={data?.conversations} />
+      )}
     </SplitPage>
   )
 }
