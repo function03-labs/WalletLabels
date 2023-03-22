@@ -9,7 +9,6 @@ import {
   TourDialogActions,
   BenefitsModal,
   BenefitsModalHeader,
-  BenefitsModalMedia,
   BenefitsModalBody,
   BenefitsModalFooter,
   TourNextButton,
@@ -20,6 +19,7 @@ import {
 
 import { useLocalStorage } from '@saas-ui/react'
 import { ButtonGroup, Text } from '@chakra-ui/react'
+import { SaasUIGlyph } from '@ui/lib/src/logo/saas-ui-glyph'
 
 /**
  * @todo move this to a TourManager context provider
@@ -59,20 +59,15 @@ export const IntroTour = () => {
         onComplete={onTourComplete}
       >
         <BenefitsModal data-target="modal" hideOverlay>
-          <BenefitsModalMedia
-            src="/onboarding/undraw_building_blocks_re_5ahy.svg"
-            mx="16"
-            my="8"
-          />
-          <BenefitsModalHeader textAlign="center">
-            Welcome to Saas UI
+          <BenefitsModalHeader>
+            <SaasUIGlyph boxSize="8" mb="4" /> <Text>Welcome to Saas UI</Text>
           </BenefitsModalHeader>
-          <BenefitsModalBody textAlign="center">
+          <BenefitsModalBody fontSize="md" color="muted">
             Benefits modals can be used to highlight new features and their
             benefits in your app. Embed illustrations or videos to make ideas
             more accessible.
           </BenefitsModalBody>
-          <BenefitsModalFooter justifyContent="center">
+          <BenefitsModalFooter>
             <ButtonGroup>
               <TourDismissButton />
               <TourNextButton>Start</TourNextButton>

@@ -1,5 +1,15 @@
 # @app/graphql
 
+## 0.6.0
+
+### Minor Changes
+
+- e19418d: Restructured the mocks api, no longer depending on MSW and support hooking in other implementations like Supabase or a real GraphQL api.
+
+### Patch Changes
+
+- 8dcb7eb: Updated graphql-codegen and create new graphql client
+
 ## 0.5.2
 
 ### Patch Changes

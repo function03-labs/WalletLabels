@@ -60,7 +60,7 @@ export const Activity = () => {
     <MetricsCard title="Activity">
       <Timeline variant="outline">
         {activites.map(({ name, action, date }, i) => (
-          <TimelineItem key={name}>
+          <TimelineItem key={i}>
             <TimelineSeparator>
               <TimelineIcon />
               {i < activites.length - 1 && <TimelineTrack />}
