@@ -143,7 +143,6 @@ export function ContactsListPage() {
     () => [
       {
         id: 'name',
-        accessorKey: 'name',
         header: 'Name',
         size: 300,
         meta: {

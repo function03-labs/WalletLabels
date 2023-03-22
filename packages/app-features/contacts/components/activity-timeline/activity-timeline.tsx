@@ -174,6 +174,9 @@ const ActivityUser: React.FC<TextProps & { user: Partial<User> }> = (props) => {
 
 const ActivityTimelineAction: React.FC<ActivityAction> = (props) => {
   const { id, user, data, date } = props
+
+  const status = user.status === 'active' ? 'online' : user.status
+
   return (
     <ActivityTimelineItem
       id={`action-${id}`}
@@ -183,7 +186,7 @@ const ActivityTimelineAction: React.FC<ActivityAction> = (props) => {
           src={user.avatar}
           name={user.name}
           size="2xs"
-          presence={user.status}
+          presence={status}
         />
       }
     >
