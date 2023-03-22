@@ -16,7 +16,7 @@ module.exports = withWorkspaces({
     webpack: (config, options) => {
       const { isServer } = options
       if (!isServer && isElectron) {
-        // config.target = 'electron-renderer' // Disable this otherwise MSW doesn't work.
+        config.target = 'electron-renderer' // Disable this otherwise MSW doesn't work.
       }
 
       // Load pro packages from src instead of dist
