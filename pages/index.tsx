@@ -17,9 +17,7 @@ const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 
 //feetch initial data from api
 export async function getStaticProps() {
-  const res: any = await fetch(
-    "http://localhost:3000/api/query?query=&limit=100"
-  )
+  const res: any = await fetch("./api/query?query=&limit=100")
 
   // get addresses from response
   const response = await res.json()
