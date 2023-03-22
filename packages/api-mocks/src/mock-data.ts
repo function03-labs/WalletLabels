@@ -63,7 +63,7 @@ export const getUser = () => {
     firstName,
     lastName,
     email: randEmail(),
-    status: 'active',
+    status: 'online',
   }
 }
 
@@ -75,7 +75,7 @@ export const getCurrentUser = () => {
     firstName: 'Renata',
     lastName: 'Alink',
     avatar: 'https://www.saas-ui.dev/showcase-avatar.jpg',
-    status: 'active',
+    status: 'online',
   }
 }
 

@@ -39,6 +39,7 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
   const { data, isLoading, error } = useQuery({
     queryKey: ['Contact', id],
     queryFn: () => getContact({ id }),
+    enabled: !!id,
   })
 
   const sidebar = useDisclosure({
@@ -78,7 +79,7 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
           size="md"
         >
           <TabList borderBottomWidth="1px">
-            <Tab>Activity</Tab>
+            <Tab h="49px">Activity</Tab>
           </TabList>
           <TabPanels
             py="8"
