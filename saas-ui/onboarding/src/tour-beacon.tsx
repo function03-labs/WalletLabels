@@ -10,7 +10,7 @@ import {
   Portal,
   PortalProps,
 } from '@chakra-ui/react'
-import { omit, pick, __DEV__ } from '@chakra-ui/utils'
+import { omit, pick } from '@chakra-ui/utils'
 import { AnimatePresence, motion, Variants } from 'framer-motion'
 
 import { Beacon } from './beacon'
@@ -104,6 +104,4 @@ export const TourBeacon = forwardRef<TourBeaconProps, 'div'>((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  TourBeacon.displayName = 'TourBeacon'
-}
+TourBeacon.displayName = 'TourBeacon'

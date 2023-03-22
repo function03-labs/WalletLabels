@@ -1,5 +1,11 @@
 # @saas-ui/charts
 
+## 0.8.0
+
+### Minor Changes
+
+- 8307620: Sparklines now support gradient. New gradientOpacity prop.
+
 ## 0.7.0
 
 ### Minor Changes

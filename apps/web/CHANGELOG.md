@@ -1,5 +1,30 @@
 # nextjs-app
 
+## 0.11.0
+
+### Minor Changes
+
+- e19418d: Restructured the mocks api, no longer depending on MSW and support hooking in other implementations like Supabase or a real GraphQL api.
+- 8307620: Improved Dashboard styles and added new Activity card.
+- 8307620: Organization OverviewPage renamed to DashboardPage.
+
+### Patch Changes
+
+- Updated dependencies [e19418d]
+- Updated dependencies [8307620]
+- Updated dependencies [446d598]
+- Updated dependencies [8307620]
+- Updated dependencies [a0ec847]
+- Updated dependencies [e4c5269]
+- Updated dependencies [8307620]
+  - @app/features@7.0.0
+  - @api/client@0.2.0
+  - @saas-ui/onboarding@0.9.0
+  - @saas-ui/charts@0.8.0
+  - @saas-ui/pro@0.17.1
+  - @saas-ui/paddle@0.7.5
+  - @ui/theme@0.3.10
+
 ## 0.10.10
 
 ### Patch Changes
