@@ -12,7 +12,7 @@ export const AppLoader: React.FC<LoaderProps> = (props) => {
     <Loader
       {...props}
       variant="fullscreen"
-      spinner={<SaasUIGlyph width="48px" height="48px" isAnimating />}
+      spinner={<SaasUIGlyph boxSize="8" />}
     />
   )
 }
