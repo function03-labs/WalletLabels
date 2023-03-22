@@ -106,6 +106,7 @@ export const TourDialogContainer: React.FC<TourDialogContainerProps> = (
         styleConfig={styleConfig}
         isOpen={isOpen}
         onClose={onClose}
+        closeOnBlur={false}
         {...rest}
       >
         {children}

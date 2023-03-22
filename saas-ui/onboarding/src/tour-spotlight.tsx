@@ -1,12 +1,11 @@
 import {
   chakra,
   fadeConfig,
-  HTMLChakraProps,
   Portal,
   SystemStyleObject,
   useStyleConfig,
 } from '@chakra-ui/react'
-import { __DEV__, cx } from '@chakra-ui/utils'
+import { cx } from '@chakra-ui/utils'
 import { motion } from 'framer-motion'
 import * as React from 'react'
 import { useTourSpotlight, TourSpotlightProps } from './use-tour-spotlight'
@@ -56,9 +55,7 @@ export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
   },
 )
 
-if (__DEV__) {
-  TourSpotlight.displayName = 'TourSpotlight'
-}
+TourSpotlight.displayName = 'TourSpotlight'
 
 TourSpotlight.defaultProps = {
   spacing: 4,

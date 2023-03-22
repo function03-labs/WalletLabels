@@ -43,15 +43,15 @@ export const useTourDialog = (props: TourDialogOptions) => {
         ...primaryAction,
         ...props,
         ref: mergeRefs(primaryActionRef, ref),
-        onClick: callAllHandlers(
-          async () => {
-            if (await onSubmit?.()) {
-              onClose()
-            }
-          },
-          props?.onClick,
-          primaryAction?.onClick,
-        ),
+        // onClick: callAllHandlers(
+        //   async () => {
+        //     if (await onSubmit?.()) {
+        //       onClose()
+        //     }
+        //   },
+        //   props?.onClick,
+        //   primaryAction?.onClick,
+        // ),
       }
     },
     [onSubmit, onClose, primaryActionRef],
@@ -63,11 +63,11 @@ export const useTourDialog = (props: TourDialogOptions) => {
         label: 'Dismiss',
         ...secondaryAction,
         ...props,
-        onClick: callAllHandlers(
-          () => onClose?.(),
-          props?.onClick,
-          secondaryAction?.onClick,
-        ),
+        // onClick: callAllHandlers(
+        //   () => onClose?.(),
+        //   props?.onClick,
+        //   secondaryAction?.onClick,
+        // ),
       }
     },
     [onClose],

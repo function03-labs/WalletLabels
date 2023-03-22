@@ -13,26 +13,29 @@ import {
   AspectRatio,
   AspectRatioProps,
 } from '@chakra-ui/react'
-import { __DEV__ } from '@chakra-ui/utils'
 
-import {
-  TourDialogContextProvider,
-  TourDialogOptions,
-  useTourDialog,
-} from './use-tour-dialog'
+import { TourDialogContextProvider, useTourDialog } from './use-tour-dialog'
 
 import { TourDialogActions, TourDialogActionsProps } from './tour-dialog'
 
-export interface BenefitsModalProps
-  extends Partial<Omit<ModalProps, 'size' | 'variant'>> {
-  title?: React.ReactNode
+export interface BenefitsModalProps extends BenefitsModalContainerProps {
+  /**
+   * Hide the overlay
+   */
   hideOverlay?: boolean
+  /**
+   * Hide the close button
+   */
   hideCloseButton?: boolean
+  /**
+   * Render the modal in the center of the screen
+   * @default true
+   */
+  isCentered?: boolean
 }
 
 export const BenefitsModal: React.FC<BenefitsModalProps> = (props) => {
-  const { children, title, hideOverlay, hideCloseButton, ...containerProps } =
-    props
+  const { children, hideOverlay, hideCloseButton, ...containerProps } = props
 
   return (
     <BenefitsModalContainer {...containerProps}>
@@ -46,12 +49,12 @@ export const BenefitsModal: React.FC<BenefitsModalProps> = (props) => {
 }
 
 export interface BenefitsModalContainerProps
-  extends React.PropsWithChildren<TourDialogOptions> {}
+  extends Partial<Omit<ModalProps, 'size' | 'variant'>> {}
 
 export const BenefitsModalContainer: React.FC<BenefitsModalContainerProps> = (
   props,
 ) => {
-  const { children, ...rest } = props
+  const { children, isCentered = true, ...rest } = props
 
   const context = useTourDialog(props)
 
@@ -61,9 +64,10 @@ export const BenefitsModalContainer: React.FC<BenefitsModalContainerProps> = (
     <TourDialogContextProvider value={context}>
       <Modal
         initialFocusRef={initialFocusRef}
+        {...rest}
+        isCentered={isCentered}
         isOpen={isOpen}
         onClose={onClose}
-        {...rest}
       >
         {children}
       </Modal>
@@ -71,9 +75,7 @@ export const BenefitsModalContainer: React.FC<BenefitsModalContainerProps> = (
   )
 }
 
-if (__DEV__) {
-  BenefitsModalContainer.displayName = 'BenefitsModalContainer'
-}
+BenefitsModalContainer.displayName = 'BenefitsModalContainer'
 
 export interface BenefitsModalMediaProps extends AspectRatioProps {
   src?: string
@@ -93,9 +95,7 @@ export const BenefitsModalMedia: React.FC<BenefitsModalMediaProps> = (
   )
 }
 
-if (__DEV__) {
-  BenefitsModalMedia.displayName = 'BenefitsModalMedia'
-}
+BenefitsModalMedia.displayName = 'BenefitsModalMedia'
 
 export const BenefitsModalActions: React.FC<TourDialogActionsProps> = (
   props,
@@ -103,9 +103,7 @@ export const BenefitsModalActions: React.FC<TourDialogActionsProps> = (
   return <TourDialogActions {...props} />
 }
 
-if (__DEV__) {
-  BenefitsModalActions.displayName = 'BenefitsModalActions'
-}
+BenefitsModalActions.displayName = 'BenefitsModalActions'
 
 export {
   BenefitsModalCloseButton,

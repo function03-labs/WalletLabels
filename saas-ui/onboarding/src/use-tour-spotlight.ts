@@ -51,7 +51,7 @@ export function useTourSpotlight() {
       (props = {}) => {
         const {
           spacing = 4,
-          closeOnClick = true,
+          closeOnClick = false,
           hideOverlay,
           onClick,
           sx,
@@ -84,7 +84,7 @@ export function useTourSpotlight() {
               ...sx,
             },
             onClick: callAllHandlers(onClick, () => {
-              closeOnClick && stop()
+              // closeOnClick && stop()
             }),
           }
         }
