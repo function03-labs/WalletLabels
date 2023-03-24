@@ -133,7 +133,7 @@ export default function IndexPage(props) {
           </Link>
         </div>
       </section>
-      <div className="mx-8 mb-24 flex flex-col items-center gap-2">
+      <div className="mx-2 mb-24 flex flex-col items-center gap-2 md:mx-8">
         {/* align normal  tailwind */}{" "}
         <div className="flex w-full  items-end  justify-between">
           <div className="w-full sm:w-auto">
@@ -186,7 +186,15 @@ function Footer() {
   })
 
   useEffect(() => {
-    setDefaultTheme(theme)
+    if (theme == "system") {
+      setDefaultTheme(
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+      )
+    } else {
+      setDefaultTheme(theme)
+    }
   }, [theme])
 
   return (
