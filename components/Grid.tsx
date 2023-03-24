@@ -418,6 +418,7 @@ export default function Grid(props) {
         data: d,
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [props.data, resolvedTheme]
   )
 
