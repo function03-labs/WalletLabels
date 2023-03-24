@@ -56,7 +56,7 @@ export default async function handler(req, res) {
       const atlasSearchQuery = [
         {
           $search: {
-            index: "customsearch",
+            index: "search",
             text: {
               query: query,
               path: [

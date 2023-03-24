@@ -7,21 +7,38 @@ import Link from "next/link"
 import { useLabels } from "@/hooks/searchQuery"
 import axios from "axios"
 import { Search } from "lucide-react"
+// import mongp from "mongodb"
+import { MongoClient } from "mongodb"
+import CountUp from "react-countup"
 
 import { siteConfig } from "@/config/site"
 import getHistory from "@/lib/getHistory"
 import { Layout } from "@/components/layout"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { connectToDatabase } from "../lib/mongodb"
 
 const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 
 //feetch initial data from api
 export async function getStaticProps() {
-  const res: any = await fetch("./api/query?query=&limit=100")
+  // const res: any = await fetch(
+  //   "http://localhost:3000/api/query?query=&limit=10"
+  // )
 
+  //replace api with mongodb
+  let db = await connectToDatabase()
+  const labels = await db.db.collection("labels").find().limit(10).toArray()
+  // console.log("labels", labels, "versus res", await res.json())
   // get addresses from response
-  const response = await res.json()
-  const addresses = response.data.map((item) => item.address)
+  let response = labels
+    // drop _id property
+    .map((item) => {
+      delete item._id
+      return item
+    })
+
+  // drop
+  const addresses = response.map((item) => item.address)
 
   // get history
   const history = await getHistory(addresses)
@@ -29,7 +46,7 @@ export async function getStaticProps() {
   //get data from fetch
   //return data
   // add a balanceHistory property to each item in the data array
-  const data = response.data.map((item, index) => {
+  const data = response.map((item, index) => {
     // console.log(history[item["address"]], "history")
     item.balanceHistory = JSON.stringify(history[item["address"]])
     return item
@@ -64,7 +81,7 @@ export default function IndexPage(props) {
         <title>WalletLabels</title>
         <meta
           name="description"
-          content="Next.js template for building apps with Radix UI and Tailwind CSS"
+          content="Wallet Labels - Easily identify your favorite wallets and exchanges with more than 7.5M labeled addressesS"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -76,7 +93,17 @@ export default function IndexPage(props) {
             for Popular Addresses
           </h1>
           <p className="max-w-[700px] text-center text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
-            More than 1M+ addresses labeled for you to easily identify your
+            More than
+            <CountUp
+              start={0}
+              end={7.5}
+              duration={3}
+              decimals={1}
+              prefix=" "
+              suffix="M "
+              className="text-xl font-semibold text-slate-700 dark:text-slate-400"
+            />
+            addresses labeled for you to easily identify your
             <br className="hidden sm:inline" />
             favorite wallets and exchanges.
           </p>

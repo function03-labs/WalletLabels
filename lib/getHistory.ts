@@ -19,7 +19,7 @@ export default async function getHistory(addresses: string[]) {
       return history
     } catch (error) {
       if (retryCount < 3) {
-        const delay = 1000 * Math.pow(2, retryCount)
+        const delay = 3000 * Math.pow(2, retryCount)
         await new Promise((resolve) => setTimeout(resolve, delay))
         return fetchHistory(address, retryCount + 1)
       } else {

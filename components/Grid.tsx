@@ -1,9 +1,11 @@
 import { time } from "console"
 import { create } from "domain"
+import path from "path"
 import React from "react"
 import DataEditor, {
   DataEditorProps,
   DataEditorRef,
+  DrilldownCell,
   GridCell,
   GridCellKind,
   GridColumn,
@@ -27,12 +29,14 @@ import {
   useExtraCells,
 } from "@glideapps/glide-data-grid-cells"
 import { GetRowThemeCallback } from "@glideapps/glide-data-grid/dist/ts/data-grid/data-grid-render"
-import { format, formatDistance, formatRelative, subDays } from "date-fns"
+import { formatDistance } from "date-fns"
 import { hashCode } from "hashcode"
 // import theme from "@/components/theme"
 import { useTheme } from "next-themes"
 
 import findLastTx from "@/lib/findLastTx"
+import CryptoIcon from "@/lib/getCryptoIcon"
+import pick from "../lib/colorPicker"
 
 const darkTheme = {
   accentColor: "#8c96ff",
@@ -71,23 +75,6 @@ const darkTheme = {
     "Inter, Roboto, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, noto, arial, sans-serif",
 }
 
-const getTagsFromLabels = (arg0: string) => {
-  // cut the string into all possible tags by splitting on spaces, commas, and newlines, dashes, and slashes
-  // then return the tags
-  const tags = arg0.split(/[\s,/-_]+/)
-  // console.log(
-  //   "tags color tags: ",
-  //   tags,
-  //   tags.map((tag) => RandomColor(tag))
-  // )
-  return tags.map((tag) => {
-    return {
-      tag: tag,
-      color: RandomColor(tag),
-    }
-  })
-}
-
 const RandomColor = (text: string) => {
   const hash = hashCode().value(text)
   const r = (hash & 0xff0000) >> 16
@@ -103,6 +90,15 @@ const RandomColor = (text: string) => {
   return `#${color.padEnd(6, "0")}`
 }
 
+function splitTags(str) {
+  const delimiters = /[\s,\/\-\_\(\):]+/ // also words between parentheses, remove the parentheses
+
+  let tags = str.split(delimiters)
+  // Remove empty strings and trim tags
+  tags = tags.filter((tag) => tag.trim() !== "").map((tag) => tag.trim())
+  return tags
+}
+
 export default function Grid(props) {
   const ref = React.useRef<DataEditorRef | null>(null)
   const [theme, setTheme] = React.useState<Partial<Theme>>({})
@@ -110,6 +106,19 @@ export default function Grid(props) {
   const customRenderers = useExtraCells()
   const lastSeenData = React.useRef<any>({})
   // create a function that will take addresses in every, call the api, and update the cell in the data
+
+  const getTagsFromLabels = (arg0: string) => {
+    // cut the string into all possible tags by splitting on" ", ",", "/", "-", "_
+    // then return the tags
+    const tags = splitTags(arg0)
+
+    return tags.map((tag) => {
+      return {
+        tag: tag,
+        color: pick(tag, Boolean(resolvedTheme === "dark")),
+      }
+    })
+  }
 
   const updateLastSeen = React.useCallback(() => {
     console.log("update last seen")
@@ -145,35 +154,35 @@ export default function Grid(props) {
         // width: 100,
         title: "Address",
         id: "address",
-        group: "Core",
+        // group: "Core",
         icon: GridColumnIcon.HeaderString,
       },
       {
         // width: 100,
-        title: "Address Label",
+        title: "Name",
         id: "address_name",
-        group: "Info",
+        group: "Core",
         icon: GridColumnIcon.HeaderTextTemplate,
       },
       {
         // width: 100,
-        title: "Address Type",
+        title: "Type",
         id: "label_type",
-        group: "Info",
+        group: "Core",
         icon: GridColumnIcon.HeaderLookup,
       },
       {
         // width: 100,
-        title: "Address Subtype",
+        title: "Subtype",
         id: "subtype",
-        group: "Info",
+        group: "Core",
         icon: GridColumnIcon.HeaderJoinStrings,
       },
       {
         // width: 100,
-        title: "Org",
+        title: "Entity",
         id: "label",
-        group: "Info",
+        group: "Core",
         icon: GridColumnIcon.HeaderSingleValue,
       },
       {
@@ -181,15 +190,19 @@ export default function Grid(props) {
         id: "tags",
         icon: GridColumnIcon.HeaderArray,
         grow: 1,
+        group: "Extra",
       },
       {
         title: "Last Seen",
         id: "lastSeen",
+        icon: GridColumnIcon.HeaderDate,
+        group: "Extra",
       },
       {
-        title: "Etherscan",
+        title: "Etherscan Lookup",
         id: "etherscan",
         icon: GridColumnIcon.HeaderLookup,
+        group: "Extra",
       },
     ],
     []
@@ -200,6 +213,9 @@ export default function Grid(props) {
       {
         title: "Balance History",
         id: "balanceHistory",
+        icon: GridColumnIcon.HeaderGeoDistance,
+        grow: 1,
+        group: "Additional Information",
       },
     ]
   }, [])
@@ -230,11 +246,37 @@ export default function Grid(props) {
         "tag",
         "lastSeen",
         "Etherscan",
-        "balanceHistory",
       ]
-
       if (dataRow.balanceHistory) {
-        indexes.push("balanceHistory")
+        indexes = [
+          "address",
+          "address_name",
+          "label_type",
+          "label_subtype",
+          "label",
+          "tag",
+          "lastSeen",
+          "balanceHistory",
+          "Etherscan",
+        ]
+      }
+
+      if (indexes[col] === "label") {
+        const path_to_img = `./assets/32/color/${CryptoIcon(
+          dataRow[indexes[col]]
+        )}.png`
+        const d: DrilldownCell = {
+          kind: GridCellKind.Drilldown,
+          cursor: "pointer",
+          allowOverlay: false,
+          data: [
+            {
+              text: dataRow[indexes[col]],
+              img: path_to_img,
+            },
+          ],
+        }
+        return d
       }
 
       if (indexes[col] === "address") {
@@ -304,7 +346,10 @@ export default function Grid(props) {
             values: values,
             displayValues: values.map((x) => Math.round(x).toString()),
             color: Math.max(...values) > 1 ? "#77c4c4" : "#D98466",
-            yAxis: [0, 100],
+            yAxis: [
+              Math.round(Math.min(...values)),
+              Math.round(Math.max(...values)) + 1,
+            ],
           },
         } as SparklineCellType
       }
@@ -373,7 +418,7 @@ export default function Grid(props) {
         data: d,
       }
     },
-    [props.data]
+    [props.data, resolvedTheme]
   )
 
   const [hoverRow, setHoverRow] = React.useState<number | undefined>(undefined)
@@ -419,8 +464,14 @@ export default function Grid(props) {
         // if balanceHistory exists on data, then add the balance chart column to cols
         columns={
           props.data[0] && props.data[0].balanceHistory
-            ? [...cols, ...cols_balanceChart]
-            : cols
+            ? // show cols balanecChart before last
+              [
+                ...cols.slice(0, cols.length - 1),
+                ...cols_balanceChart,
+                ...cols.slice(cols.length - 1),
+              ]
+            : // ? [...cols, ...cols_balanceChart]
+              cols
         }
         rows={props.data.length}
         keybindings={{ search: true }}
