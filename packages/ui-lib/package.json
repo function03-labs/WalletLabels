@@ -4,6 +4,7 @@
   "private": true,
   "sideEffects": false,
   "dependencies": {
+    "@app/i18n": "workspace:*",
     "@tiptap/core": "^2.0.0-beta.204",
     "@tiptap/extension-mention": "2.0.0-beta.204",
     "@tiptap/extension-placeholder": "^2.0.0-beta.204",
@@ -19,8 +20,7 @@
     "prosemirror-schema-list": "^1.2.2",
     "prosemirror-state": "^1.4.2",
     "prosemirror-transform": "^1.7.0",
-    "prosemirror-view": "^1.29.1",
-    "@app/i18n": "workspace:*"
+    "prosemirror-view": "^1.29.1"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.5.0",
@@ -28,6 +28,7 @@
     "@emotion/styled": ">=11.0.0",
     "@saas-ui/react": ">=2.0.0",
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "react-icons": "^4.8.0"
   }
 }

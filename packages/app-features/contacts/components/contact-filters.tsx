@@ -13,6 +13,7 @@ import {
 import { useHotkeysShortcut } from '@saas-ui/react'
 
 import { startOfDay, subDays, formatDistanceToNowStrict } from 'date-fns'
+import { StatusBadge } from '@ui/lib'
 
 const days = [1, 2, 3, 7, 14, 21, 31, 60]
 
@@ -20,18 +21,23 @@ export const filters: FilterItem[] = [
   {
     id: 'status',
     label: 'Status',
-    icon: <FiCircle />,
+    icon: <StatusBadge colorScheme="gray" />,
     type: 'enum',
     items: [
       {
         id: 'new',
         label: 'New',
-        icon: <Badge boxSize="8px" borderRadius="full" bg="blue.400" />,
+        icon: <StatusBadge colorScheme="blue" />,
       },
       {
         id: 'active',
         label: 'Active',
-        icon: <Badge boxSize="8px" borderRadius="full" bg="green.400" />,
+        icon: <StatusBadge colorScheme="green" />,
+      },
+      {
+        id: 'inactive',
+        label: 'Inactive',
+        icon: <StatusBadge colorScheme="yellow" />,
       },
     ],
   },

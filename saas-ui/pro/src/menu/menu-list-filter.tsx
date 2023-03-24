@@ -27,12 +27,12 @@ type HTMLAttributes = React.HTMLAttributes<HTMLElement>
 
 const navigationKeys = ['ArrowUp', 'ArrowDown', 'Escape']
 
-export interface MenuListFilterProps extends Omit<InputProps, 'type'> {
+export interface MenuInputProps extends Omit<InputProps, 'type'> {
   command?: string
   groupProps?: InputGroupProps
 }
 
-export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
+export const MenuInput = forwardRef<MenuInputProps, 'div'>(
   (props, forwardRef) => {
     const { placeholder, command, groupProps, ...rest } = props
 
@@ -44,9 +44,9 @@ export const MenuListFilter = forwardRef<MenuListFilterProps, 'div'>(
     return (
       <InputGroup
         role={role}
-        className={cx('sui-menu-list__filter')}
+        className={cx('sui-menu-list__input')}
         borderBottomWidth="1px"
-        borderBottomColor="default-border-color"
+        borderBottomColor="chakra-border-color"
         {...groupProps}
       >
         <Input

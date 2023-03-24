@@ -60,7 +60,7 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
       <Spacer />
       <ToolbarButton
         icon={<FiSidebar />}
-        label={sidebar.isOpen ? 'Hide sidebar' : 'Show sidebar'}
+        label={sidebar.isOpen ? 'Hide contact details' : 'Show contact details'}
         onClick={sidebar.onToggle}
       />
     </Toolbar>
@@ -68,7 +68,14 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
 
   return (
     <Page title={breadcrumbs} toolbar={toolbar} isLoading={isLoading} fullWidth>
-      <HStack alignItems="stretch" height="100%" overflowX="hidden" spacing="0">
+      <HStack
+        alignItems="stretch"
+        width="100%"
+        height="100%"
+        overflowX="hidden"
+        position="relative"
+        spacing="0"
+      >
         <Tabs
           colorScheme="primary"
           isLazy

@@ -14,7 +14,7 @@ import { MenuProps, MenuButton } from '@saas-ui/react'
 import {
   ResponsiveMenu,
   ResponsiveMenuList,
-  MenuListFilter,
+  MenuInput,
   MenuFilterItem,
 } from '../menu'
 import { useSearchQuery } from '..'
@@ -116,7 +116,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     )
 
     const input = (
-      <MenuListFilter
+      <MenuInput
         placeholder={activeItem?.label || placeholder}
         ref={filterRef}
         command={command}

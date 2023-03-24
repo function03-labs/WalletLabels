@@ -4,6 +4,7 @@ import Card from './card'
 import Form from './form'
 import Kbd from './kbd'
 import Tabs from './tabs'
+import Tag from './tag'
 
 // Saas UI Components
 import SuiAppShell from './app-shell'
@@ -17,7 +18,7 @@ import SuiNavItem from './nav-item'
 import SuiPage from './page'
 import SuiSplitPage from './split-page'
 import SuiStepper from './stepper'
-import SuiPageSidebar from './page-sidebar'
+import SuiAside from './aside'
 import SuiProperty from './property'
 import SuiSection from './section'
 import SuiSidebar from './sidebar'
@@ -36,7 +37,7 @@ export const components = {
   SuiPage,
   SuiSplitPage,
   SuiStepper,
-  SuiPageSidebar,
+  SuiAside,
   SuiProperty,
   SuiSection,
   SuiSidebar,
@@ -47,5 +48,6 @@ export const components = {
   Form,
   Kbd,
   Tabs,
+  Tag,
   ...Form,
 }

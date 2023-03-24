@@ -20,6 +20,11 @@
       "types": "./dist/glass-theme/index.d.ts",
       "import": "./dist/glass-theme/index.mjs"
     },
+    "./icons": {
+      "require": "./dist/icons/index.js",
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.mjs"
+    },
     "./src": {
       "default": "./src/index.ts"
     },
@@ -28,6 +33,9 @@
     },
     "./src/glass-theme": {
       "default": "./src/glass-theme/index.ts"
+    },
+    "./icons/src": {
+      "default": "./src/icons/index.ts"
     }
   },
   "main": "./dist/index.js",

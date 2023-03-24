@@ -1,6 +1,6 @@
 import { anatomy, PartsStyleFunction } from '@chakra-ui/theme-tools'
 
-const parts = anatomy('page-sidebar').parts(
+const parts = anatomy('aside').parts(
   'container',
   'headerWrapper',
   'header',
@@ -20,8 +20,6 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'stretch',
-      py: 2,
-      px: 4,
       minH: 12,
       borderBottomWidth: '1px',
       '& > .saas-toolbar': {
@@ -29,19 +27,43 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       },
     },
     title: {
-      fontWeight: 'bold',
-      fontSize: 'md',
+      fontWeight: 'medium',
     },
     body: {
       flex: 1,
       overflow: 'auto',
-      py: 2,
-      px: 4,
     },
   }
 }
 
 export default {
   parts: parts.keys,
+  defaultProps: {
+    size: 'md',
+  },
   baseStyle,
+  sizes: {
+    md: {
+      header: {
+        p: 4,
+      },
+      title: {
+        fontSize: 'md',
+      },
+      body: {
+        p: 4,
+      },
+    },
+    lg: {
+      header: {
+        p: 6,
+      },
+      title: {
+        fontSize: 'lg',
+      },
+      body: {
+        p: 6,
+      },
+    },
+  },
 }

@@ -90,3 +90,18 @@ export const addComment = async (variables: {
 export const deleteComment = async (variables: { id: string }) => {
   return {}
 }
+
+export const getTags = async () => {
+  return {
+    tags: [
+      {
+        label: 'VIP',
+        color: 'yellow',
+      },
+      {
+        label: 'Warm',
+        color: 'orange',
+      },
+    ],
+  }
+}

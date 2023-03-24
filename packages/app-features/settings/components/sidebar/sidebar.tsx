@@ -48,7 +48,10 @@ export const SettingsSidebar = () => {
     <Resizer
       defaultWidth={width}
       onResize={onResize}
-      isResizable={useBreakpointValue({ base: false, lg: true })}
+      isResizable={useBreakpointValue(
+        { base: false, lg: true },
+        { fallback: 'lg' },
+      )}
     >
       <Sidebar>
         <SidebarToggleButton />

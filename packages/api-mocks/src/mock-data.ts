@@ -43,6 +43,7 @@ const mapContact = (user: User, type?: string): Contact => {
     email,
     status: rand(['new', 'active', 'inactive']),
     type: type || rand(['lead', 'customer']),
+    tags: [],
     createdAt: randBetweenDate({
       from: new Date('01/01/2020'),
       to: new Date(),

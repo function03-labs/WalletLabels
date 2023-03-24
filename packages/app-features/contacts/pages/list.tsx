@@ -45,49 +45,15 @@ import { format } from 'date-fns'
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'
 import { useMutation, useQuery } from '@tanstack/react-query'
-
-const contactTypes: Record<string, { label: string; color: string }> = {
-  lead: {
-    label: 'Lead',
-    color: 'cyan',
-  },
-  customer: {
-    label: 'Customer',
-    color: 'purple',
-  },
-}
-
-const contactStatus: Record<string, { label: string; color: string }> = {
-  active: {
-    label: 'Active',
-    color: 'green',
-  },
-  inactive: {
-    label: 'Inactive',
-    color: 'orange',
-  },
-  new: {
-    label: 'New',
-    color: 'blue',
-  },
-}
+import { ContactStatus } from '../components/contact-status'
+import { ContactType } from '../components/contact-type'
 
 const StatusCell: DataGridCell<Contact> = (cell) => {
-  const status = contactStatus[cell.getValue<string>()] || contactStatus.new
-  return (
-    <Tag colorScheme={status.color} size="sm">
-      {status.label}
-    </Tag>
-  )
+  return <ContactStatus status={cell.getValue<string>()} />
 }
 
 const TypeCell: DataGridCell<Contact> = ({ cell }) => {
-  const type = contactTypes[cell.getValue<string>()] || contactTypes.lead
-  return (
-    <Tag colorScheme={type.color} size="sm" variant="outline">
-      {type.label}
-    </Tag>
-  )
+  return <ContactType type={cell.getValue<string>()} />
 }
 
 const DateCell: DataGridCell<Contact> = ({ cell }) => {

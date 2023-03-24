@@ -7,12 +7,13 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  MenuItem,
 } from '@chakra-ui/react'
 
-import { MenuListFilter, MenuListFilterProps, MenuFilterItem } from '..'
+import { MenuInput, MenuInputProps, MenuFilterItem } from '..'
 
 export default {
-  title: 'Components/Menu/MenuListFilter',
+  title: 'Components/Menu/MenuInput',
   decorators: [
     (Story: any) => (
       <Center height="100%">
@@ -24,16 +25,27 @@ export default {
   ],
 } as Meta
 
-const Template: Story<MenuListFilterProps> = (args) => (
-  <Menu isOpen>
-    <MenuButton>Menu list filter</MenuButton>
-    <MenuList pt="0">
-      <MenuListFilter {...args} />
-      <MenuFilterItem>Edit</MenuFilterItem>
-      <MenuFilterItem>Delete</MenuFilterItem>
-    </MenuList>
-  </Menu>
-)
+const Template: Story<MenuInputProps> = (args) => {
+  const items = [
+    {
+      label: 'Edit',
+    },
+    {
+      label: 'Delete',
+    },
+  ]
+  return (
+    <Menu isOpen>
+      <MenuButton>Menu list filter</MenuButton>
+      <MenuList pt="0">
+        <MenuInput {...args} />
+        {items.map(({ label, ...rest }) => (
+          <MenuItem {...rest}>{label}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  )
+}
 
 export const Basic = Template.bind({})
 Basic.args = {}
@@ -44,13 +56,22 @@ Placeholder.args = {
 }
 
 export const Playground = () => {
+  const items = [
+    {
+      label: 'Edit',
+    },
+    {
+      label: 'Delete',
+    },
+  ]
   return (
     <Menu>
       <MenuButton as={Button}>Menu</MenuButton>
       <MenuList position="static" pt="0">
-        <MenuListFilter placeholder="Filter..." />
-        <MenuFilterItem>Edit</MenuFilterItem>
-        <MenuFilterItem>Delete</MenuFilterItem>
+        <MenuInput placeholder="Filter..." />
+        {items.map(({ label, ...rest }) => (
+          <MenuItem {...rest}>{label}</MenuItem>
+        ))}
       </MenuList>
     </Menu>
   )

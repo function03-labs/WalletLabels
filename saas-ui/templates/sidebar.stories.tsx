@@ -1,6 +1,8 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import {
+  closestCenter,
+  defaultDropAnimationSideEffects,
   DndContext,
   DndContextProps,
   DragEndEvent,
@@ -8,26 +10,7 @@ import {
   UniqueIdentifier,
 } from '@dnd-kit/core'
 import { arrayMove, SortableContext, useSortable } from '@dnd-kit/sortable'
-import {
-  Badge,
-  Image,
-  BadgeProps,
-  Box,
-  Button,
-  DarkMode,
-  Flex,
-  Heading,
-  HStack,
-  IconButton,
-  LightMode,
-  Menu,
-  MenuButton,
-  MenuList,
-  Spacer,
-  Square,
-  Text,
-  useDisclosure,
-} from '@chakra-ui/react'
+import { Badge, Box, Heading, HStack, Text } from '@chakra-ui/react'
 
 import {
   HomeIcon,
@@ -43,17 +26,13 @@ import {
 
 import {
   AppShell,
-  MenuItem,
   PersonaAvatar,
   Sidebar,
-  SidebarProps,
-  Nav,
   NavGroup,
   NavItem,
   SidebarSection,
-  SidebarToggleButton,
-  SidebarOverlay,
   NavGroupProps,
+  NavItemProps,
 } from '@saas-ui/react'
 import { Logo } from './logo'
 import { CSS } from '@dnd-kit/utilities'
@@ -97,9 +76,20 @@ export const SidebarLayout = () => {
       height="680px"
       sidebar={
         <HStack spacing="0" alignItems="stretch">
-          <Sidebar variant="condensed" bg="gray.50" borderWidth="0" spacing="3">
+          <Sidebar
+            variant="compact"
+            bg="gray.50"
+            _dark={{ bg: 'gray.800' }}
+            borderWidth="0"
+            spacing="3"
+          >
             <SidebarSection alignItems="center">
-              <Logo width="24px" color="black" mb="1" />
+              <Logo
+                width="24px"
+                color="black"
+                _dark={{ color: 'white' }}
+                mb="1"
+              />
             </SidebarSection>
             <SidebarSection flex="1">
               <NavItem icon={<HomeIcon size="1.2em" />}>Home</NavItem>
@@ -135,11 +125,34 @@ export const SidebarLayout = () => {
               <SortableNavGroup
                 title="Tags"
                 isCollapsible
-                items={sortedTags.map((tag) => tag.name)}
+                items={sortedTags}
                 onSorted={setTags}
               >
-                {sortedTags.map((tag, i) => (
-                  <SortableNavItem key={i} tag={tag} />
+                {sortedTags.map((tag) => (
+                  <SortableNavItem
+                    key={tag.id}
+                    id={tag.id}
+                    my="0"
+                    icon={
+                      <Badge
+                        bg={tag.color || 'transparent'}
+                        boxSize="2"
+                        borderRadius="full"
+                        variant={tag.color ? 'solid' : 'outline'}
+                      />
+                    }
+                  >
+                    <Text>{tag.name}</Text>
+                    <Badge
+                      opacity="0.6"
+                      borderRadius="full"
+                      bg="none"
+                      ms="auto"
+                      fontWeight="medium"
+                    >
+                      {tag.count}
+                    </Badge>
+                  </SortableNavItem>
                 ))}
               </SortableNavGroup>
             </SidebarSection>
@@ -173,19 +186,23 @@ const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
   } = props
 
   const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null)
+  const getIndex = (id: UniqueIdentifier) =>
+    items.findIndex((item) => item.id === id)
+  const activeIndex = activeId ? getIndex(activeId) : -1
+  const activeItem = (
+    React.Children.toArray(children) as React.ReactElement[]
+  ).find(
+    (child) => child.type === SortableNavItem && child.props.id === activeId,
+  )
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event
+    const { over } = event
 
-    if (active.id !== over?.id) {
-      onSorted?.((items) => {
-        console.log(items)
-        const oldIndex = items.findIndex((item) => item.name === active.id)
-        const newIndex =
-          over && items.findIndex((item) => item.name === over.id)
-
-        return newIndex ? arrayMove(items, oldIndex, newIndex) : items
-      })
+    if (over) {
+      const overIndex = getIndex(over.id)
+      if (activeIndex !== overIndex) {
+        onSorted?.((items) => arrayMove(items, activeIndex, overIndex))
+      }
     }
 
     setActiveId(null)
@@ -193,7 +210,11 @@ const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
 
   return (
     <DndContext
+      collisionDetection={closestCenter}
       onDragStart={(event) => {
+        if (!event.active) {
+          return
+        }
         setActiveId(event.active.id)
         onDragStart?.(event)
       }}
@@ -202,35 +223,43 @@ const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
         handleDragEnd(event)
         onDragEnd?.(event)
       }}
+      onDragCancel={() => setActiveId(null)}
     >
       <SortableContext items={items}>
         <NavGroup {...rest}>{children}</NavGroup>
       </SortableContext>
-      <DragOverlay>
-        {activeId ? (
+      <DragOverlay
+        dropAnimation={{
+          duration: 50,
+          sideEffects: defaultDropAnimationSideEffects({
+            styles: {
+              active: {
+                opacity: '0.2',
+              },
+            },
+          }),
+        }}
+      >
+        {activeItem ? (
           <NavItem
-            icon={
-              <Badge
-                bg={'transparent'}
-                boxSize="2"
-                borderRadius="full"
-                variant={'outline'}
-              />
-            }
-            _hover={{
-              bg: 'transparent',
-            }}
-          >
-            {activeId}
-          </NavItem>
+            {...activeItem.props}
+            my="0"
+            _hover={{ bg: 'transparent' }}
+            opacity="0.8"
+          />
         ) : null}
       </DragOverlay>
     </DndContext>
   )
 }
 
-const SortableNavItem = (props) => {
-  const { tag } = props
+interface SortableNavItemProps extends NavItemProps {
+  id: string
+  handle?: React.ReactNode
+}
+
+const SortableNavItem: React.FC<SortableNavItemProps> = (props) => {
+  const { id, children, handle, ...rest } = props
 
   const {
     attributes,
@@ -239,7 +268,10 @@ const SortableNavItem = (props) => {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: tag.name })
+  } = useSortable({
+    id,
+    transition: { duration: 150, easing: 'cubic-bezier(0.25, 1, 0.5, 1)' },
+  })
 
   const itemProps = {
     transform: CSS.Transform.toString(transform),
@@ -252,46 +284,36 @@ const SortableNavItem = (props) => {
   return (
     <NavItem
       ref={setNodeRef}
+      {...rest}
       {...itemProps}
-      data-drag={isDragging}
-      icon={
-        <Badge
-          bg={tag.color || 'transparent'}
-          boxSize="2"
-          borderRadius="full"
-          variant={tag.color ? 'solid' : 'outline'}
-        />
-      }
+      data-dragging={isDragging || !!transform}
+      data-sortable
       sx={{
+        position: 'relative',
         a: {
           userSelect: 'none',
           WebkitUserDrag: 'none',
         },
       }}
     >
-      <Box
-        display="none"
-        pos="absolute"
-        left="1px"
-        color="muted"
-        cursor="grab"
-        sx={{
-          '[data-drag]:hover': { display: 'block' },
-          '[data-drag=true]': { display: 'none' },
-        }}
-      >
-        <GripVerticalIcon size="12" />
-      </Box>
-      <Text>{tag.name}</Text>
-      <Badge
-        opacity="0.6"
-        borderRadius="full"
-        bg="none"
-        ms="auto"
-        fontWeight="medium"
-      >
-        {tag.count}
-      </Badge>
+      {handle ?? (
+        <Box
+          display="none"
+          pos="absolute"
+          left="-10px"
+          color="muted"
+          opacity="0.6"
+          cursor="grab"
+          data-drag-handle
+          sx={{
+            '[data-sortable]:hover &': { display: 'block' },
+            '[data-dragging] &': { display: 'none' },
+          }}
+        >
+          <GripVerticalIcon size="12" />
+        </Box>
+      )}
+      {children}
     </NavItem>
   )
 }

@@ -58,7 +58,10 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
     <Resizer
       defaultWidth={width}
       onResize={onResize}
-      isResizable={useBreakpointValue({ base: false, lg: true })}
+      isResizable={useBreakpointValue(
+        { base: false, lg: true },
+        { fallback: 'lg' },
+      )}
     >
       <Sidebar variant={variant} colorScheme={colorScheme} {...props}>
         <SidebarToggleButton />

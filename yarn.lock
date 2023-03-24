@@ -9539,6 +9539,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ui/lib@workspace:packages/ui-lib"
   dependencies:
+    "@app/i18n": "workspace:*"
     "@tiptap/core": ^2.0.0-beta.204
     "@tiptap/extension-mention": 2.0.0-beta.204
     "@tiptap/extension-placeholder": ^2.0.0-beta.204

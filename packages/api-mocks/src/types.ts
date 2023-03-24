@@ -31,11 +31,11 @@ export type Contact = {
   name: string
   email: string
   avatar?: string
-  status?: string
-  type?: string
+  status: string
+  type: string
   tags?: string[]
-  createdAt?: string
-  updatedAt?: string
+  createdAt: string
+  updatedAt: string
 }
 
 export type Activity = {
