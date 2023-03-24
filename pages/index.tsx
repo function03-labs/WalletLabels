@@ -59,7 +59,6 @@ export async function getStaticProps() {
 
     // revalidate every 24 hours
     revalidate: 60 * 60 * 24,
-    staticPageGenerationTimeout: 60 * 15,
   }
 }
 
