@@ -1,15 +1,20 @@
 // import dynamic grid
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import Head from "next/head"
 import Link from "next/link"
 import { useLabels } from "@/hooks/searchQuery"
 import axios from "axios"
+import { motion, useInView } from "framer-motion"
 import { Search } from "lucide-react"
 // import mongp from "mongodb"
 import { MongoClient } from "mongodb"
+import { useTheme } from "next-themes"
 import CountUp from "react-countup"
+import styles from "styles/index.module.scss"
+
+// imprt color mode from config
 
 import { siteConfig } from "@/config/site"
 import getHistory from "@/lib/getHistory"
@@ -63,6 +68,7 @@ export async function getStaticProps() {
 }
 
 export default function IndexPage(props) {
+  const { theme } = useTheme()
   const [searchInput, setSearchInput] = useState("")
   const { data, isLoading, isError, error } = useLabels(searchInput, props)
 
@@ -127,7 +133,7 @@ export default function IndexPage(props) {
           </Link>
         </div>
       </section>
-      <div className="mx-8 mb-32 flex flex-col items-center gap-2">
+      <div className="mx-8 mb-24 flex flex-col items-center gap-2">
         {/* align normal  tailwind */}{" "}
         <div className="flex w-full  items-end  justify-between">
           <div className="w-full sm:w-auto">
@@ -165,6 +171,47 @@ export default function IndexPage(props) {
         </div>
         {isLoading ? "Loading" : <Grid data={data} />}
       </div>
+      <Footer />
     </Layout>
+  )
+}
+
+function Footer() {
+  const { theme } = useTheme()
+  const [defaulttheme, setDefaultTheme] = useState("light")
+  const ref = useRef<HTMLElement | null>(null)
+  const isInView = useInView(ref, {
+    once: true,
+    margin: "100px",
+  })
+
+  useEffect(() => {
+    setDefaultTheme(theme)
+  }, [theme])
+
+  return (
+    <footer
+      ref={ref}
+      className={styles.footer}
+      data-animate={isInView}
+      data-theme={defaulttheme}
+    >
+      <div className={styles.footerText}>
+        Crafted by{" "}
+        <a
+          href="https://twitter.com/aiden0x4"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:bg-slate-100 dark:hover:bg-slate-800"
+        >
+          <img
+            src="https://pbs.twimg.com/profile_images/1626383708054757377/ejkm30BA_400x400.jpg"
+            alt="Avatar of Aiden"
+          />
+          Aiden
+        </a>
+      </div>
+      {/* <RaunoSignature /> */}
+    </footer>
   )
 }

@@ -215,7 +215,7 @@ export default function Grid(props) {
         id: "balanceHistory",
         icon: GridColumnIcon.HeaderGeoDistance,
         grow: 1,
-        group: "Additional Information",
+        group: "Extra",
       },
     ]
   }, [])

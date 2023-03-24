@@ -53,6 +53,7 @@
     "cmdk": "^0.1.21",
     "cryptocurrency-icons": "^0.18.1",
     "date-fns": "^2.29.3",
+    "framer-motion": "^10.9.1",
     "fuse.js": "^6.6.2",
     "hashcode": "^1.0.3",
     "lodash": "^4.17.21",
@@ -65,6 +66,7 @@
     "react-countup": "^6.4.2",
     "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
+    "sass": "^1.60.0",
     "sharp": "^0.31.3",
     "tailwind-merge": "^1.8.0",
     "tailwindcss-animate": "^1.0.5"
