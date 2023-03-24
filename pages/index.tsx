@@ -194,7 +194,7 @@ function Footer() {
       ref={ref}
       className={styles.footer}
       data-animate={isInView}
-      data-theme={defaulttheme}
+      data-theme={defaulttheme ? defaulttheme : "light"}
     >
       <div className={styles.footerText}>
         Crafted by{" "}
