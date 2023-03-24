@@ -27,7 +27,7 @@ export async function getStaticProps() {
 
   //replace api with mongodb
   let db = await connectToDatabase()
-  const labels = await db.db.collection("labels").find().limit(10).toArray()
+  const labels = await db.db.collection("labels").find().limit(100).toArray()
   // console.log("labels", labels, "versus res", await res.json())
   // get addresses from response
   let response = labels
