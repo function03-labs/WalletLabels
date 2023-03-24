@@ -201,7 +201,7 @@ export const DataGrid = React.forwardRef(
     } = props
 
     const theme = useTheme()
-    const styleConfig = theme.components?.DataGrid
+    const styleConfig = theme.components?.SuiDataGrid
 
     const styles = useMultiStyleConfig('SuiDataGrid', props) as Record<
       string,
