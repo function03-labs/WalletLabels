@@ -136,7 +136,7 @@ function ContactDetails({ contact }: { contact: Contact }) {
             value={
               <TagsList mt="2" ms="-2">
                 {tags.map((t) => {
-                  const tag = allTags?.find((tag) => tag.label === t)
+                  const tag = allTags?.tags.find((tag) => tag.label === t)
                   return (
                     <TagsListItem
                       key={t}
@@ -147,7 +147,7 @@ function ContactDetails({ contact }: { contact: Contact }) {
                   )
                 })}
                 <AddTag
-                  tags={allTags}
+                  tags={allTags?.tags}
                   onCreate={onCreateTags}
                   onChange={onChangeTags}
                 />

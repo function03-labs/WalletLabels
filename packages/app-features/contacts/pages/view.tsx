@@ -77,7 +77,7 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
         spacing="0"
       >
         <Tabs
-          colorScheme="primary"
+          variant="line"
           isLazy
           flex="1"
           minH="0"
@@ -85,8 +85,8 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
           flexDirection="column"
           size="md"
         >
-          <TabList borderBottomWidth="1px">
-            <Tab h="49px">Activity</Tab>
+          <TabList borderBottomWidth="1px" px="3" pt="2">
+            <Tab borderTopRadius="md">Activity</Tab>
           </TabList>
           <TabPanels
             py="8"

@@ -3,10 +3,9 @@ import { useQuery } from '@tanstack/react-query'
 
 export const useTags = () => {
   return useQuery({
-    queryKey: ['Tags'],
+    queryKey: ['GetTags'],
     queryFn: async () => {
-      const { tags } = await getTags()
-      return tags
+      return await getTags()
     },
   })
 }

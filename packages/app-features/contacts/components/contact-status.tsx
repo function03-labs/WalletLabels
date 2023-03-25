@@ -16,14 +16,16 @@ const contactStatus: Record<string, { label: string; color: string }> = {
   },
 }
 
-export const ContactStatus: React.FC<{ status: keyof typeof contactStatus }> = (
-  props,
-) => {
+export const ContactStatus: React.FC<{
+  status: keyof typeof contactStatus
+  hideLabel?: boolean
+  color?: string
+}> = (props) => {
   const status = contactStatus[props.status] || contactStatus.new
   return (
-    <HStack display="inline-flex">
+    <HStack display="inline-flex" color={props.color}>
       <StatusBadge colorScheme={status.color} />
-      <Text>{status.label}</Text>
+      {!props.hideLabel && <Text>{status.label}</Text>}
     </HStack>
   )
 }

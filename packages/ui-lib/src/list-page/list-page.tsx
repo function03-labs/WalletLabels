@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box, useColorModeValue } from '@chakra-ui/react'
+import { Box, Spacer, useColorModeValue } from '@chakra-ui/react'
 
 import { EmptyState, useModals } from '@saas-ui/react'
 
@@ -23,6 +23,7 @@ import {
   BulkActionsProps,
   ColumnFiltersState,
   useColumnVisibility,
+  ResetFilters,
 } from '@saas-ui/pro'
 
 import { useDebouncedCallback } from '@react-hookz/web'
@@ -46,6 +47,7 @@ export interface ListPageProps<D extends object>
   emptyState: React.ReactNode
   bulkActions?: BulkActionsProps['actions']
   filters?: FilterItem[]
+  defaultFilters?: Filter[]
   operators?: FilterOperators
   searchQuery?: string
   visibleColumns: string[]
@@ -70,6 +72,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     onSortChange,
     bulkActions,
     filters,
+    defaultFilters,
     operators,
     searchQuery,
     initialState = {
@@ -181,7 +184,10 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         getRowId={(row: any, index, parent) =>
           row.id || `${parent ? [parent.id, index].join('.') : index}`
         }
-        initialState={initialState}
+        initialState={{
+          columnVisibility,
+          ...initialState,
+        }}
         state={{
           columnVisibility,
         }}
@@ -201,6 +207,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   return (
     <FiltersProvider
       filters={filters}
+      activeFilters={defaultFilters} // Pass the default filters to active filters, so they are updated when the filters change.
       operators={operators}
       onChange={onFilter}
       onBeforeEnableFilter={onBeforeEnableFilter}
@@ -226,7 +233,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
               '0 1px 2px 0 rgba(255, 255, 255, 0.08)',
             ),
           },
-          '& .saas-data-grid__pagination': {
+          '& .sui-data-grid__pagination': {
             ...stickyStyles,
             bottom: 0,
             borderTopWidth: '1px',
@@ -243,8 +250,21 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         }}
         {...rest}
       >
-        <BulkActions selections={selections} actions={bulkActions} />
-        <ActiveFiltersList />
+        <BulkActions
+          selections={selections}
+          actions={bulkActions}
+          variant="floating"
+          motionPreset="slideOutBottom"
+          colorScheme="gray"
+          position="fixed"
+          _dark={{
+            bg: 'gray.700',
+          }}
+        />
+        <ActiveFiltersList>
+          <Spacer />
+          <ResetFilters>Clear all</ResetFilters>
+        </ActiveFiltersList>
         <PageBody fullWidth>{content}</PageBody>
       </Page>
     </FiltersProvider>

@@ -16,7 +16,7 @@ export const ContactType: React.FC<
   const { type: typeProp, ...rest } = props
   const type = (typeProp && contactTypes[typeProp]) || contactTypes.lead
   return (
-    <Tag size="sm" variant="outline" colorScheme="gray" h="6" {...rest}>
+    <Tag size="sm" colorScheme="gray" h="6" {...rest}>
       <Badge
         colorScheme={type.color}
         bg="currentColor"

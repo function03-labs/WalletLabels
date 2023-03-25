@@ -1,3 +1,4 @@
+import React from 'react'
 import { Row, FilterFn } from '@tanstack/react-table'
 import { FilterValue } from './use-active-filter'
 import {
@@ -11,7 +12,7 @@ function testFalsey(val: any) {
   return val === undefined || val === null || val === ''
 }
 
-export const useDataGridFilter = <D extends object>(
+export const getDataGridFilter = <D extends object>(
   type: FilterType = 'string',
   operators = defaultOperators,
 ) => {
@@ -42,4 +43,14 @@ export const useDataGridFilter = <D extends object>(
   }
   dataGridFilter.autoRemove = (val: any) => testFalsey(val)
   return dataGridFilter
+}
+
+export const useDataGridFilter = <D extends object>(
+  type: FilterType = 'string',
+  operators = defaultOperators,
+) => {
+  return React.useMemo(
+    () => getDataGridFilter<D>(type, operators),
+    [type, operators],
+  )
 }

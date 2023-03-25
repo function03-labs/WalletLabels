@@ -1,6 +1,14 @@
 import * as React from 'react'
 import { Story, Meta } from '@storybook/react'
-import { Badge, BadgeProps, Stack, Box, Text, Tag } from '@chakra-ui/react'
+import {
+  Button,
+  Badge,
+  BadgeProps,
+  Stack,
+  Box,
+  Text,
+  Tag,
+} from '@chakra-ui/react'
 
 import { FiCircle, FiUser } from 'react-icons/fi'
 
@@ -8,7 +16,6 @@ import { FiltersProvider, FiltersProviderProps } from '../provider'
 import { FiltersAddButton } from '../filters'
 import { ActiveFiltersList } from '../active-filter'
 import {
-  ColumnDef,
   DataGrid,
   DataGridCell,
   TableInstance,
@@ -16,7 +23,6 @@ import {
   useColumns,
 } from '../../data-grid'
 import { useDataGridFilter } from '../use-data-grid-filter'
-import { Button } from '@saas-ui/react'
 import { NoFilteredResults } from '../no-filtered-results'
 import { Filter } from '../use-active-filter'
 

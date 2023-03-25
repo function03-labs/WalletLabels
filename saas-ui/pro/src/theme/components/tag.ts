@@ -22,6 +22,24 @@ const outlineVariant = definePartsStyle((props) => {
   return {}
 })
 
+const solidVariant = definePartsStyle((props) => {
+  const { colorScheme: c } = props
+  if (c === 'gray') {
+    return {
+      container: {
+        bg: 'blackAlpha.100',
+        color: 'gray.600',
+        _dark: {
+          bg: 'whiteAlpha.100',
+          color: 'gray.400',
+        },
+      },
+    }
+  }
+
+  return {}
+})
+
 const plainVariant = definePartsStyle((props) => ({
   container: {
     borderColor: 'default-border-color',
@@ -32,7 +50,7 @@ const plainVariant = definePartsStyle((props) => ({
 
 export default defineMultiStyleConfig({
   defaultProps: {
-    variant: 'plain',
+    variant: 'solid',
   },
   baseStyle: {
     container: {
@@ -42,5 +60,6 @@ export default defineMultiStyleConfig({
   variants: {
     plain: plainVariant,
     outline: outlineVariant,
+    solid: solidVariant,
   },
 })

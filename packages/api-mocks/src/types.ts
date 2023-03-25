@@ -22,6 +22,9 @@ export type User = {
   email: string
   avatar?: string
   status?: string
+  workspace?: {
+    tags?: string[]
+  }
 }
 
 export type Contact = {
@@ -44,3 +47,10 @@ export type Activity = {
   comment?: string
   date: string
 }
+
+export type Tags = {
+  id: string
+  label: string
+  color?: string
+  count?: number
+}[]

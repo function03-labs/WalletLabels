@@ -69,7 +69,7 @@ export const TagColor: React.FC<TagColorProps> = (props) => {
 export interface AddTagProps
   extends UseControllableStateProps<string[]>,
     Omit<MenuProps, 'children'> {
-  tags?: Array<{ label: string; color: string }>
+  tags?: Array<{ id: string; label: string; color?: string }>
   onCreate?(tag: string): void
 }
 

@@ -10,7 +10,6 @@ export type FilterOperatorId =
   | 'lessThan'
   | 'moreThan'
   | 'between'
-  | string
 
 export type FilterOperator = {
   id: FilterOperatorId
@@ -49,7 +48,14 @@ export const defaultOperators: FilterOperators = [
     id: 'contains',
     label: 'contains',
     types: ['string'],
-    comparator(value: string | undefined, filterValue: string | undefined) {
+    comparator(
+      value: string | string[] | undefined,
+      filterValue: string | undefined,
+    ) {
+      if (Array.isArray(value)) {
+        return value.some((v) => v.toLowerCase() === filterValue?.toLowerCase())
+      }
+
       return (
         !!filterValue &&
         value?.toLowerCase().includes(filterValue.toLowerCase())
@@ -60,7 +66,15 @@ export const defaultOperators: FilterOperators = [
     id: 'containsNot',
     label: 'does not contain',
     types: ['string'],
-    comparator(value: string | undefined, filterValue: string | undefined) {
+    comparator(
+      value: string | string[] | undefined,
+      filterValue: string | undefined,
+    ) {
+      if (Array.isArray(value)) {
+        return !value.some(
+          (v) => v.toLowerCase() === filterValue?.toLowerCase(),
+        )
+      }
       return (
         value !== undefined &&
         !!filterValue &&

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { FiCircle, FiFilter, FiCalendar } from 'react-icons/fi'
+import { FiCircle, FiFilter, FiCalendar, FiTag } from 'react-icons/fi'
 
 import { Badge, useDisclosure } from '@chakra-ui/react'
 
@@ -14,6 +14,8 @@ import { useHotkeysShortcut } from '@saas-ui/react'
 
 import { startOfDay, subDays, formatDistanceToNowStrict } from 'date-fns'
 import { StatusBadge } from '@ui/lib'
+import { queryClient } from '@app/features/core/lib/react-query'
+import { Tags } from '@api/client'
 
 const days = [1, 2, 3, 7, 14, 21, 31, 60]
 
@@ -40,6 +42,27 @@ export const filters: FilterItem[] = [
         icon: <StatusBadge colorScheme="yellow" />,
       },
     ],
+  },
+  {
+    id: 'tags',
+    label: 'Tags',
+    icon: <FiTag />,
+    type: 'string',
+    defaultOperator: 'contains',
+    operators: ['contains', 'containsNot'],
+    items: () => {
+      return (
+        queryClient
+          .getQueryData<{ tags: Tags }>(['GetTags'])
+          ?.tags?.map<FilterItem>((tag) => {
+            return {
+              id: tag.id,
+              label: tag.label,
+              icon: <StatusBadge color={tag.color} />,
+            }
+          }) || []
+      )
+    },
   },
   {
     id: 'createdAt',
@@ -76,7 +99,7 @@ export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'items'>> = (
 
   const onSelect = (item: FilterItem) => {
     const { id, value } = item
-    enableFilter({ id, value })
+    enableFilter({ id, operator: item.defaultOperator, value })
   }
 
   return (

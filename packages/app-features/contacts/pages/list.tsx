@@ -5,13 +5,15 @@ import { z } from 'zod'
 import {
   Box,
   Button,
-  Tag,
   Spacer,
   MenuItem,
   Menu,
   MenuButton,
   MenuList,
   Portal,
+  Tooltip,
+  HStack,
+  Text,
 } from '@chakra-ui/react'
 import { FiSliders, FiUser } from 'react-icons/fi'
 import {
@@ -27,13 +29,14 @@ import {
   Toolbar,
   ToolbarButton,
   useTenant,
-  useDataGridFilter,
   DataGridCell,
   BulkActionsSelections,
   MenuProperty,
   ToggleButtonGroup,
   ToggleButton,
   useColumns,
+  getDataGridFilter,
+  Filter,
 } from '@saas-ui/pro'
 
 import { ListPage, InlineSearch } from '@ui/lib'
@@ -47,17 +50,11 @@ import { filters, AddFilterButton } from '../components/contact-filters'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { ContactStatus } from '../components/contact-status'
 import { ContactType } from '../components/contact-type'
+import { CommandIcon, TagIcon } from 'lucide-react'
+import { ContactTag } from '../components/contact-tag'
 
-const StatusCell: DataGridCell<Contact> = (cell) => {
-  return <ContactStatus status={cell.getValue<string>()} />
-}
-
-const TypeCell: DataGridCell<Contact> = ({ cell }) => {
-  return <ContactType type={cell.getValue<string>()} />
-}
-
-const DateCell: DataGridCell<Contact> = ({ cell }) => {
-  return <>{format(new Date(cell.getValue<string>()), 'PP')}</>
+const DateCell = ({ date }: { date: string }) => {
+  return <>{format(new Date(date), 'PP')}</>
 }
 
 const ActionCell: DataGridCell<Contact> = (cell) => {
@@ -89,13 +86,15 @@ export function ContactsListPage() {
   const modals = useModals()
   const params = useParams()
 
+  const type = params?.type?.toString()
+
   const [searchQuery, setSearchQuery] = React.useState('')
 
   const { data, isLoading } = useQuery({
     queryKey: [
       'GetContacts',
       {
-        type: params?.type as string,
+        type,
       },
     ] as const,
     queryFn: ({ queryKey }) => getContacts(queryKey[1]),
@@ -106,55 +105,58 @@ export function ContactsListPage() {
   })
 
   const columns = useColumns<Contact>(
-    () => [
-      {
-        id: 'name',
+    (helper) => [
+      helper.accessor('name', {
         header: 'Name',
         size: 300,
         meta: {
           href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
         },
-      },
-      {
-        id: 'email',
+      }),
+      helper.accessor('email', {
         header: 'Email',
         size: 300,
-      },
-      {
-        id: 'createdAt',
+        cell: (cell) => <Text color="muted">{cell.getValue()}</Text>,
+      }),
+      helper.accessor('createdAt', {
         header: 'Created at',
-        cell: DateCell,
-        filterFn: useDataGridFilter('date'),
+        cell: (cell) => <DateCell date={cell.getValue()} />,
+        filterFn: getDataGridFilter('date'),
         enableGlobalFilter: false,
-      },
-      {
-        id: 'updatedAt',
+      }),
+      helper.accessor('updatedAt', {
         header: 'Updated at',
-        cell: DateCell,
-        filterFn: useDataGridFilter('date'),
+        cell: (cell) => <DateCell date={cell.getValue()} />,
+        filterFn: getDataGridFilter('date'),
         enableGlobalFilter: false,
-      },
-      {
-        id: 'type',
+      }),
+      helper.accessor('type', {
         header: 'Type',
-        cell: TypeCell,
-        filterFn: useDataGridFilter('string'),
+        cell: (cell) => <ContactType type={cell.getValue()} />,
+        filterFn: getDataGridFilter('string'),
         enableGlobalFilter: false,
-        meta: {
-          isNumeric: true,
-        },
-      },
-      {
-        id: 'status',
+      }),
+      helper.accessor('tags', {
+        header: 'Tags',
+        cell: (cell) => (
+          <HStack>
+            {cell.getValue()?.map((tag) => (
+              <ContactTag key={tag} tag={tag} />
+            ))}
+          </HStack>
+        ),
+        filterFn: getDataGridFilter('string'),
+        enableGlobalFilter: false,
+      }),
+      helper.accessor('status', {
         header: 'Status',
-        cell: StatusCell,
-        filterFn: useDataGridFilter('string'),
+        cell: (cell) => (
+          <ContactStatus status={cell.getValue()} color="muted" />
+        ),
+        filterFn: getDataGridFilter('string'),
         enableGlobalFilter: false,
-        meta: {
-          isNumeric: true,
-        },
-      },
-      {
+      }),
+      helper.display({
         id: 'action',
         header: '',
         cell: ActionCell,
@@ -162,9 +164,9 @@ export function ContactsListPage() {
         enableGlobalFilter: false,
         enableHiding: false,
         enableSorting: false,
-      },
+      }),
     ],
-    [],
+    [params.tag],
   )
 
   const addPerson = () => {
@@ -198,20 +200,24 @@ export function ContactsListPage() {
       value={visibleColumns}
       onChange={setVisibleColumns}
     >
-      {columns.map(({ id, enableHiding }) =>
-        id && enableHiding !== false ? (
-          <ToggleButton
-            key={id}
-            value={id}
-            mb="1"
-            me="1"
-            color="muted"
-            _checked={{ color: 'app-text', bg: 'whiteAlpha.200' }}
-          >
-            {id.charAt(0).toUpperCase() + id.slice(1)}
-          </ToggleButton>
-        ) : null,
-      )}
+      {columns.map((col) => {
+        if ('accessorKey' in col && col.enableHiding !== false) {
+          const id = col.id || col.accessorKey
+          return (
+            <ToggleButton
+              key={id}
+              value={id}
+              mb="1"
+              me="1"
+              color="muted"
+              _checked={{ color: 'app-text', bg: 'whiteAlpha.200' }}
+            >
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </ToggleButton>
+          )
+        }
+        return null
+      })}
     </ToggleButtonGroup>
   )
 
@@ -271,10 +277,36 @@ export function ContactsListPage() {
     selections: BulkActionsSelections
   }) => (
     <>
-      <Button>Add to segment</Button>
-      <Button>Add tags</Button>
+      <Tooltip
+        placement="top"
+        label={
+          <>
+            Add tags <Command>⇧ T</Command>
+          </>
+        }
+      >
+        <Button colorScheme="gray" leftIcon={<TagIcon size="1em" />}>
+          Add tags
+        </Button>
+      </Tooltip>
+      <Tooltip
+        placement="top"
+        label={
+          <>
+            Command <Command>⇧ K</Command>
+          </>
+        }
+      >
+        <Button leftIcon={<CommandIcon size="1em" />}>Command</Button>
+      </Tooltip>
     </>
   )
+
+  let defaultFilters: Filter[] = []
+
+  if (params?.tag) {
+    defaultFilters = [{ id: 'tags', operator: 'contains', value: params.tag }]
+  }
 
   const emptyState = (
     <EmptyState
@@ -300,6 +332,7 @@ export function ContactsListPage() {
       tabbar={tabbar}
       bulkActions={bulkActions}
       filters={filters}
+      defaultFilters={defaultFilters}
       searchQuery={searchQuery}
       emptyState={emptyState}
       columns={columns}

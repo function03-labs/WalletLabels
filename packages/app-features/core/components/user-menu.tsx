@@ -19,8 +19,8 @@ import {
 } from '@saas-ui/react'
 import { Has } from '@saas-ui/features'
 
-import { HotkeysWindow } from '../hotkeys'
-import { usePath } from '../../hooks/use-path'
+import { HotkeysWindow } from './hotkeys-window'
+import { usePath } from '../hooks/use-path'
 import { getCurrentUser } from '@api/client'
 import { useQuery } from '@tanstack/react-query'
 

@@ -9,6 +9,7 @@ import Tag from './tag'
 // Saas UI Components
 import SuiAppShell from './app-shell'
 import SuiActiveFiltersList from './active-filters-list'
+import { bannerTheme as SuiBanner } from './banner'
 import SuiBeacon from './beacon'
 import SuiCommand from './command'
 import SuiEmptyState from './empty-state'
@@ -28,6 +29,7 @@ import SuiToolbar from './toolbar'
 export const components = {
   SuiAppShell,
   SuiActiveFiltersList,
+  SuiBanner,
   SuiBeacon,
   SuiCommand,
   SuiEmptyState,

@@ -1,6 +1,14 @@
 import * as React from 'react'
 
-import { Box, IconButton, Spacer, useBreakpointValue } from '@chakra-ui/react'
+import {
+  Badge,
+  Box,
+  IconButton,
+  Spacer,
+  Text,
+  useBreakpointValue,
+  useControllableState,
+} from '@chakra-ui/react'
 
 import {
   FiHome,
@@ -14,7 +22,12 @@ import {
 
 import { Command, Resizer, ResizeHandle, ResizeHandler } from '@saas-ui/pro'
 
-import { useActivePath, useLocation, useNavigate } from '@saas-ui/router'
+import {
+  useActivePath,
+  useLocation,
+  useNavigate,
+  useParams,
+} from '@saas-ui/router'
 
 import {
   MenuItem,
@@ -32,18 +45,27 @@ import {
   useHotkeysShortcut,
 } from '@saas-ui/react'
 
-import { ElectronNav, InviteDialog } from '@ui/lib'
+import {
+  ElectronNav,
+  InviteDialog,
+  SortableNavGroup,
+  SortableNavItem,
+} from '@ui/lib'
 
-import { BillingStatus } from '../billing-status'
-import { GlobalSearchInput } from '../global-search'
-import { TenantMenu } from '../tenant-menu'
-import { UserMenu } from '../user-menu'
+import { BillingStatus } from './billing-status'
+import { GlobalSearchInput } from './global-search-input'
+import { TenantMenu } from './tenant-menu'
+import { UserMenu } from './user-menu'
 
 import { usePath } from '@app/features/core/hooks/use-path'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { getTags, Tags, User } from '@api/client'
+import { useCurrentUser } from '../hooks/use-current-user'
 
 export interface AppSidebarProps extends SidebarProps {}
 
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
+  const user = useCurrentUser()
   const modals = useModals()
   const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
 
@@ -115,36 +137,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             />
           </NavGroup>
 
-          {!isCondensed && (
-            <NavGroup title="Tags" isCollapsible>
-              <NavItem
-                href={usePath('contacts/tag/design-system')}
-                icon={<FiHash />}
-              >
-                Design system
-              </NavItem>
-              <NavItem
-                href={usePath('contacts/tag/framework')}
-                icon={<FiHash />}
-              >
-                Framework
-              </NavItem>
-              <NavItem
-                href={usePath('contacts/tag/chakra-ui')}
-                inset={5}
-                icon={<FiHash />}
-              >
-                Chakra UI
-              </NavItem>
-              <NavItem
-                href={usePath('contacts/tag/react')}
-                inset={5}
-                icon={<FiHash />}
-              >
-                React
-              </NavItem>
-            </NavGroup>
-          )}
+          {!isCondensed && user && <AppSidebarTags user={user} />}
 
           <Spacer />
 
@@ -218,5 +211,102 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
     >
       {label}
     </NavItem>
+  )
+}
+
+const AppSidebarTags = ({ user }: { user: User }) => {
+  const queryClient = useQueryClient()
+  const params = useParams()
+
+  const userTags = user.workspace?.tags || []
+
+  const mutation = useMutation({
+    mutationFn: async (tags: string[]) => {
+      /**
+       * This just updates the local cache, you should also update the server.
+       */
+      queryClient.setQueryData<any>(
+        ['CurrentUser'],
+        (data: { currentUser: User }) => ({
+          currentUser: {
+            ...data.currentUser,
+            workspace: {
+              ...data?.currentUser?.workspace,
+              tags,
+            },
+          },
+        }),
+      )
+    },
+  })
+
+  const getSortedTags = React.useCallback(
+    (tags: Tags) => {
+      return userTags
+        .map((id) => tags.find((tag) => tag.id === id))
+        .filter(Boolean) as Tags
+    },
+    [userTags],
+  )
+
+  const { data } = useQuery({
+    queryKey: ['GetTags'],
+    queryFn: () => getTags(),
+    onSuccess(data) {
+      setTags(getSortedTags(data?.tags || []))
+    },
+  })
+
+  const [sortedTags, setTags] = useControllableState<Tags>({
+    defaultValue: getSortedTags(data?.tags || []),
+    onChange(tags) {
+      if (sortedTags.length) {
+        mutation.mutate(tags.map(({ id }) => id))
+      }
+    },
+  })
+
+  const basePath = usePath(`/tag/`)
+
+  if (!sortedTags.length) {
+    return null
+  }
+
+  return (
+    <SortableNavGroup
+      title="Tags"
+      isCollapsible
+      items={sortedTags}
+      onSorted={setTags}
+    >
+      {sortedTags.map((tag) => (
+        <SortableNavItem
+          key={tag.id}
+          id={tag.id}
+          my="0"
+          href={`${basePath}/${tag.id}`}
+          isActive={params.tag === tag.id}
+          icon={
+            <Badge
+              bg={tag.color}
+              boxSize="2"
+              borderRadius="full"
+              variant="solid"
+            />
+          }
+        >
+          <Text>{tag.label}</Text>
+          <Badge
+            opacity="0.6"
+            borderRadius="full"
+            bg="none"
+            ms="auto"
+            fontWeight="medium"
+          >
+            {tag.count}
+          </Badge>
+        </SortableNavItem>
+      ))}
+    </SortableNavGroup>
   )
 }

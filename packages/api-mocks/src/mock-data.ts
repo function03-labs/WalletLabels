@@ -43,7 +43,7 @@ const mapContact = (user: User, type?: string): Contact => {
     email,
     status: rand(['new', 'active', 'inactive']),
     type: type || rand(['lead', 'customer']),
-    tags: [],
+    tags: rand([[], [rand(['developer', 'designer', 'partner', 'prospect'])]]),
     createdAt: randBetweenDate({
       from: new Date('01/01/2020'),
       to: new Date(),
@@ -77,7 +77,38 @@ export const getCurrentUser = () => {
     lastName: 'Alink',
     avatar: 'https://www.saas-ui.dev/showcase-avatar.jpg',
     status: 'online',
+    workspace: {
+      tags: ['developer', 'designer', 'partner', 'prospect'],
+    },
   }
+}
+
+export const getTags = () => {
+  return [
+    {
+      id: 'developer',
+      label: 'Developer',
+      color: 'purple.500',
+      count: 210,
+    },
+    {
+      id: 'designer',
+      label: 'Designer',
+      color: 'green.500',
+      count: 83,
+    },
+    {
+      id: 'partner',
+      label: 'Partner',
+      color: 'blue.500',
+      count: 12,
+    },
+    {
+      id: 'prospect',
+      label: 'Prospect',
+      count: 23,
+    },
+  ]
 }
 
 export const getComment = (comment: string) => {

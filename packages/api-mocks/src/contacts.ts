@@ -4,6 +4,7 @@ import {
   getComment,
   getContact as getMockContact,
   getContacts as getMockContacts,
+  getTags as getMockTags,
 } from './mock-data'
 import { Contact } from './types'
 
@@ -93,15 +94,6 @@ export const deleteComment = async (variables: { id: string }) => {
 
 export const getTags = async () => {
   return {
-    tags: [
-      {
-        label: 'VIP',
-        color: 'yellow',
-      },
-      {
-        label: 'Warm',
-        color: 'orange',
-      },
-    ],
+    tags: getMockTags(),
   }
 }

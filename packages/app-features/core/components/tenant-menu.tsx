@@ -14,7 +14,7 @@ import { FiCheck } from 'react-icons/fi'
 import { useTenancy } from '@saas-ui/pro'
 import { MenuGroup, MenuItem } from '@saas-ui/react'
 
-import { useGetTenants } from '../../hooks/use-get-tenants'
+import { useGetTenants } from '../hooks/use-get-tenants'
 
 const TenantLogo: React.FC<AvatarProps> = (props) => {
   const { src, ...rest } = props
