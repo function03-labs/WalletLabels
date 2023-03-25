@@ -48,11 +48,10 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
       initial="exit"
       isOpen={isOpen}
       colorScheme="primary"
-      variant="solid"
+      variant="floating"
       position="absolute"
       minH="14"
       zIndex="banner"
-      variant="floating"
       {...rest}
     >
       <BannerContent>

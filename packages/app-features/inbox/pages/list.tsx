@@ -55,7 +55,7 @@ export function InboxListPage() {
       {!data?.conversations?.length && isMobile ? (
         emptyState
       ) : (
-        <InboxList items={data?.conversations} />
+        <InboxList items={data?.conversations || []} />
       )}
     </SplitPage>
   )

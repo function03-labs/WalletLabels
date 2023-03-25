@@ -1,19 +1,14 @@
 import * as React from 'react'
 import { BackButton, Page, PageBody, useTenant } from '@saas-ui/pro'
 import { InlineCheckout, usePaddle } from '@saas-ui/paddle'
-import {
-  Loader,
-  EmptyState,
-  useSnackbar,
-  Link,
-  Card,
-  CardBody,
-} from '@saas-ui/react'
+import { Loader, EmptyState, useSnackbar, Link } from '@saas-ui/react'
 import { useNavigate } from '@saas-ui/router'
 import { usePath } from '@app/features/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
 import { LinkButton } from '@ui/lib'
 import {
+  Card,
+  CardBody,
   HStack,
   Stack,
   Table,

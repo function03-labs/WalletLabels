@@ -13,7 +13,7 @@ import { useNavigate } from '@saas-ui/router'
 import { DateTimeSince } from '@ui/lib'
 
 export interface InboxListProps extends StructuredListProps {
-  items: []
+  items: any[]
 }
 
 export const InboxList: React.FC<InboxListProps> = (props) => {

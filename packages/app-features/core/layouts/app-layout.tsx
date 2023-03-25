@@ -166,7 +166,7 @@ interface AppLayoutProps {
   /**
    * The sidebar component.
    */
-  sidebar?: React.ReactNode
+  sidebar?: React.ReactElement
 }
 
 /**

@@ -24,7 +24,7 @@ export const getDataGridFilter = <D extends object>(
 
       return memo
     },
-    {},
+    {} as Record<FilterOperatorId, FilterOperator>,
   )
 
   const dataGridFilter: FilterFn<D> = (

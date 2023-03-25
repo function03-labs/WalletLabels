@@ -84,11 +84,9 @@ export const IntroTour = () => {
               </Text>
               <TourDialogActions>
                 <TourDismissButton />
-                <TourNextButton
-                  label={step.primaryAction}
-                  variant="subtle"
-                  colorScheme="white"
-                />
+                <TourNextButton variant="subtle" colorScheme="white">
+                  {step.primaryAction}
+                </TourNextButton>
               </TourDialogActions>
             </TourDialogFooter>
           </TourDialog>
