@@ -12,7 +12,7 @@ import {
   createStylesContext,
 } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
-import { Loader } from '@saas-ui/react'
+import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { getChildOfType } from '@saas-ui/react-utils'
 
 import { ErrorBoundary } from '../app/error-boundary'
@@ -147,7 +147,11 @@ export const Aside: React.FC<AsideProps> = (props) => {
 
   let content
   if (isLoading) {
-    content = skeleton || <Loader />
+    content = skeleton || (
+      <LoadingOverlay>
+        <LoadingSpinner />
+      </LoadingOverlay>
+    )
   } else {
     content = children
   }

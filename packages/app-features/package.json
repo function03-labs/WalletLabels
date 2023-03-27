@@ -8,7 +8,7 @@
     "@app/i18n": "workspace:*",
     "@react-hookz/web": "^15.1.0",
     "@saas-ui/charts": "^0.8.0-next.0",
-    "@saas-ui/forms": "^2.0.0-next.2",
+    "@saas-ui/forms": "^2.0.0-next.5",
     "@tanstack/react-query": "^4.24.10",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",

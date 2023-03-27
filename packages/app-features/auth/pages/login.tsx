@@ -4,13 +4,17 @@ import { Container, Stack } from '@chakra-ui/react'
 import { Link } from '@ui/lib'
 
 import { LoginView, useAuth } from '@saas-ui/auth'
-import { Loader } from '@saas-ui/react'
+import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 
 export const LoginPage = () => {
   const { isAuthenticated } = useAuth()
 
   if (isAuthenticated) {
-    return <Loader />
+    return (
+      <LoadingOverlay>
+        <LoadingSpinner />
+      </LoadingOverlay>
+    )
   }
 
   return (

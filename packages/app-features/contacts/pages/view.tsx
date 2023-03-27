@@ -12,7 +12,7 @@ import {
   Tabs,
   useDisclosure,
 } from '@chakra-ui/react'
-import { ErrorBoundary, Loader } from '@saas-ui/react'
+import { ErrorBoundary, LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { FiSidebar } from 'react-icons/fi'
 
 import { Page, Toolbar, ToolbarButton } from '@saas-ui/pro'
@@ -137,7 +137,9 @@ const ActivitiesPanel: React.FC<{ contactId: string }> = ({ contactId }) => {
   return (
     <>
       {!currentUser || isLoading ? (
-        <Loader />
+        <LoadingOverlay>
+          <LoadingSpinner />
+        </LoadingOverlay>
       ) : (
         <>
           <Heading size="md" mb="8">

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { useRouter } from 'next/router'
 import { useTenant } from '@saas-ui/pro'
-import { Loader } from '@saas-ui/react'
+import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { getCurrentUser } from '@api/client'
 
@@ -26,5 +26,9 @@ export const HomePage: React.FC = () => {
     }
   }, [router, isLoading, data, tenant])
 
-  return <Loader />
+  return (
+    <LoadingOverlay>
+      <LoadingSpinner />
+    </LoadingOverlay>
+  )
 }

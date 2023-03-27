@@ -17,5 +17,6 @@ const Template: Story<ListPageProps<Data>> = (args) => <ListPage {...args} />
 export const Basic = Template.bind({})
 Basic.args = {
   title: 'Basic List Page',
+  columns: [],
   data: [],
 }

@@ -11,7 +11,7 @@ import {
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
 
-import { Loader } from '@saas-ui/react'
+import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 
 const [StylesProvider, useStyles] = createStylesContext('SuiSection')
 
@@ -35,7 +35,11 @@ export const Section: React.FC<SectionProps> = (props) => {
 
   let content
   if (isLoading) {
-    content = <Loader p={4} />
+    content = (
+      <LoadingOverlay p={4}>
+        <LoadingSpinner />
+      </LoadingOverlay>
+    )
   } else {
     content = children
   }

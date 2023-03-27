@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { SaasUIGlyph } from '../logo/saas-ui-glyph'
 
-import { Loader, LoaderProps } from '@saas-ui/react'
+import { LoadingOverlay, LoadingOverlayProps } from '@saas-ui/react'
 import { keyframes } from '@chakra-ui/react'
 
 const scale = keyframes`
@@ -17,12 +17,12 @@ const scale = keyframes`
 /**
  * Show a fullscreen loading animation while the app is loading.
  */
-export const AppLoader: React.FC<LoaderProps> = (props) => {
+export const AppLoader: React.FC<LoadingOverlayProps> = (props) => {
   return (
-    <Loader
+    <LoadingOverlay
       {...props}
       variant="fullscreen"
-      spinner={
+      children={
         <SaasUIGlyph
           boxSize="8"
           animation={`5s ease-out ${scale}`}

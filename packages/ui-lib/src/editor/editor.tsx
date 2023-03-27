@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { chakra, forwardRef, useMultiStyleConfig } from '@chakra-ui/react'
-import { FieldProps, registerFieldType } from '@saas-ui/react'
+import { createField } from '@saas-ui/react'
 import { useEditor, EditorContent, EditorContentProps } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
@@ -67,8 +67,7 @@ export const Editor = forwardRef<EditorProps, 'div'>((props, ref) => {
 
 export default Editor
 
-export const EditorField = registerFieldType<FieldProps & EditorProps>(
-  'editor',
+export const EditorField = createField<EditorProps>(
   forwardRef((props, ref) => {
     const { name, ...rest } = props
     return <Editor ref={ref} {...rest} />

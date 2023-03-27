@@ -25,6 +25,7 @@ import {
 import { useDataGridFilter } from '../use-data-grid-filter'
 import { NoFilteredResults } from '../no-filtered-results'
 import { Filter } from '../use-active-filter'
+import { FilterItem, FilterItems } from '../filter-menu'
 
 export default {
   title: 'Components/Filters/Filters',
@@ -49,7 +50,7 @@ const StatusBadge = (props: BadgeProps) => (
   <Badge boxSize="8px" mx="2px" borderRadius="full" {...props} />
 )
 
-const filters = [
+const filters: FilterItem[] = [
   {
     id: 'status',
     label: 'Status',
@@ -73,7 +74,6 @@ const filters = [
     type: 'boolean',
     icon: <FiUser />,
     value: true,
-    format: () => 'lead',
   },
 ]
 
@@ -159,7 +159,7 @@ const initialState = {
 const StatusCell: DataGridCell<ExampleData> = (cell) => {
   return (
     <Tag colorScheme={cell.getValue() === 'new' ? 'orange' : 'green'} size="sm">
-      {cell.getValue()}
+      {cell.getValue<string>()}
     </Tag>
   )
 }
@@ -168,32 +168,33 @@ export const WithDataGrid = () => {
   const gridRef = React.useRef<TableInstance<ExampleData>>(null)
 
   const filters = React.useMemo(
-    () => [
-      {
-        id: 'status',
-        label: 'Status',
-        icon: <FiCircle />,
-        items: [
-          {
-            id: 'new',
-            label: 'New',
-            icon: <StatusBadge bg="blue.400" />,
-          },
-          {
-            id: 'active',
-            label: 'Active',
-            icon: <StatusBadge bg="green.400" />,
-          },
-        ],
-      },
-      {
-        id: 'isLead',
-        label: 'Is lead',
-        type: 'boolean',
-        icon: <FiUser />,
-        value: true,
-      },
-    ],
+    () =>
+      [
+        {
+          id: 'status',
+          label: 'Status',
+          icon: <FiCircle />,
+          items: [
+            {
+              id: 'new',
+              label: 'New',
+              icon: <StatusBadge bg="blue.400" />,
+            },
+            {
+              id: 'active',
+              label: 'Active',
+              icon: <StatusBadge bg="green.400" />,
+            },
+          ],
+        },
+        {
+          id: 'isLead',
+          label: 'Is lead',
+          type: 'boolean',
+          icon: <FiUser />,
+          value: true,
+        },
+      ] as FilterItem[],
     [],
   )
 
@@ -245,7 +246,9 @@ export const WithDataGrid = () => {
     )
   }, [])
 
-  const defaultFilters = [{ id: 'status', operator: 'isNot', value: 'new' }]
+  const defaultFilters: Filter[] = [
+    { id: 'status', operator: 'isNot', value: 'new' },
+  ]
 
   return (
     <FiltersProvider
