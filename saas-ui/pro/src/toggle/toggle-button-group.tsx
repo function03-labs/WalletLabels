@@ -9,7 +9,7 @@ import {
   useCheckbox,
   UseCheckboxProps,
 } from '@chakra-ui/react'
-import { registerFieldType } from '@saas-ui/react'
+import { createField } from '@saas-ui/react'
 import * as React from 'react'
 import { useToggleGroup, Value, Type } from './use-toggle-group'
 
@@ -124,8 +124,7 @@ export const ToggleButton = (props: ToggleButtonProps) => {
   )
 }
 
-export const CheckboxButtonGroupField = registerFieldType(
-  'checkbox-button-group',
+export const CheckboxButtonGroupField = createField(
   forwardRef((props, ref) => {
     return <ToggleButtonGroup type="checkbox" {...props} ref={ref} />
   }),
@@ -134,8 +133,7 @@ export const CheckboxButtonGroupField = registerFieldType(
   },
 )
 
-export const RadioButtonGroupField = registerFieldType(
-  'radio-button-group',
+export const RadioButtonGroupField = createField(
   forwardRef((props, ref) => {
     return <ToggleButtonGroup type="radio" {...props} ref={ref} />
   }),
