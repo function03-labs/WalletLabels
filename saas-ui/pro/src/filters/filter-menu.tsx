@@ -7,32 +7,53 @@ import {
   Button,
   ButtonProps,
 } from '@chakra-ui/react'
-import { __DEV__ } from '@chakra-ui/utils'
 
-import { MenuProps, MenuButton } from '@saas-ui/react'
+import { MenuProps, MenuButton, usePromise } from '@saas-ui/react'
 
 import {
   ResponsiveMenu,
   ResponsiveMenuList,
-  MenuListFilter,
+  MenuInput,
   MenuFilterItem,
 } from '../menu'
 import { useSearchQuery } from '..'
-import { FilterOperatorId } from './operators'
+import { FilterOperatorId, FilterType } from './operators'
+
+export type FilterItems =
+  | FilterItem[]
+  | ((query: string) => Promise<FilterItem[]>)
+  | ((query: string) => FilterItem[])
+
+export const useFilterItems = (items: FilterItems, inputValue?: string) => {
+  const [data, setData] = React.useState<FilterItem[]>([])
+
+  const getItems = async () => {
+    if (typeof items === 'function') {
+      return items(inputValue || '')
+    }
+    return items
+  }
+
+  React.useEffect(() => {
+    getItems().then((data) => setData(data))
+  }, [items])
+
+  return data
+}
 
 export interface FilterItem {
   id: string
   label?: string
   icon?: React.ReactElement
-  type?: string
-  items?: FilterItem[]
+  type?: FilterType
+  items?: FilterItems
   value?: string | number | boolean | Date
   operators?: FilterOperatorId[]
   defaultOperator?: FilterOperatorId
 }
 
 export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
-  items: FilterItem[]
+  items: FilterItems
   icon?: React.ReactNode
   label?: React.ReactNode
   placeholder?: string
@@ -87,8 +108,10 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
     const [activeItem, setActiveItem] = React.useState<FilterItem | null>(null)
 
+    const data = useFilterItems(activeItem?.items || items, inputValue)
+
     const { results, onReset, ...inputProps } = useSearchQuery<FilterItem>({
-      items: activeItem?.items || items,
+      items: data,
       fields: ['id', 'label'],
       value: inputValue,
       defaultValue: inputDefaultValue,
@@ -97,7 +120,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
     const onItemClick = React.useCallback(
       (item: FilterItem) => {
-        if (item.items?.length) {
+        if (item.items?.length || typeof item.items === 'function') {
           setActiveItem(item)
           onReset()
           filterRef.current?.focus()
@@ -116,7 +139,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     )
 
     const input = (
-      <MenuListFilter
+      <MenuInput
         placeholder={activeItem?.label || placeholder}
         ref={filterRef}
         command={command}

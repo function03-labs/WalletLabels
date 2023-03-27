@@ -48,14 +48,15 @@ const baseStyleContent: SystemStyleFunction = (props) => {
 }
 
 const baseStyleHeader: SystemStyleObject = {
-  px: 3,
-  py: 2,
+  px: 4,
+  py: 3,
   fontWeight: 'bold',
 }
 
 const baseStyleBody: SystemStyleObject = {
   px: 3,
   py: 2,
+  fontSize: 'md',
 }
 
 const baseStyleFooter: SystemStyleObject = {

@@ -1,7 +1,12 @@
-import { Flex, Heading, keyframes, Text } from '@chakra-ui/react'
 import {
   Card,
   CardBody,
+  Flex,
+  Heading,
+  keyframes,
+  Text,
+} from '@chakra-ui/react'
+import {
   FieldValues,
   Form,
   SubmitButton,
@@ -61,7 +66,7 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
       </Text>
 
       <Form<TFieldValues>
-        ref={formRef}
+        formRef={formRef}
         defaultValues={defaultValues}
         onSubmit={onSubmit}
         alignSelf="stretch"
@@ -72,12 +77,13 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
         </Card>
 
         <SubmitButton
-          label={submitLabel}
           size="md"
           width="80%"
           margin="0 10%"
           animation={animation(0.3)}
-        />
+        >
+          {submitLabel}
+        </SubmitButton>
       </Form>
     </Flex>
   )

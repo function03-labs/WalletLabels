@@ -8,7 +8,7 @@ import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext } from '@chakra-ui/react-utils'
 import { formatDistanceToNowStrict, isAfter } from 'date-fns'
 
-import { FilterItem } from './filter-menu'
+import { FilterItem, FilterItems, FilterMenuProps } from './filter-menu'
 
 import { FilterOperatorId, FilterOperators } from './operators'
 import { format } from 'date-fns'
@@ -36,7 +36,7 @@ export const [ActiveFilterProvider, useActiveFilterContext] =
   })
 
 export interface ActiveFilterValueOptions {
-  items?: FilterItem[]
+  items?: FilterItems
   value?: FilterValue
   onChange?(value: FilterValue): void
   defaultValue?: FilterValue
@@ -122,7 +122,7 @@ export const useFilterOperator = (props: UseFilterOperatorProps) => {
   const getItemProps = React.useCallback(
     (item: FilterItem) => {
       return {
-        onClick: () => setValue(item.id),
+        onClick: () => setValue(item.id as FilterOperatorId),
       }
     },
     [setValue],
@@ -178,13 +178,12 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
   const label = formatter(value)
 
   const getMenuProps = React.useCallback(
-    (props: ActiveFilterValueOptions) => {
-      const item = props.items?.find(({ id }) => id === value)
+    (props: FilterMenuProps) => {
       return {
         items: props.items || [],
-        label: item?.label || label,
+        label: props.label || label,
         placeholder: filter.label || props.placeholder,
-        icon: item?.icon,
+        icon: props?.icon,
         onSelect,
       }
     },

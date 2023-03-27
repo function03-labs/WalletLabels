@@ -95,7 +95,7 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
         td: {
           background: mode(
             `${c}.50`,
-            transparentize(`${c}.500`, 0.3)(theme),
+            transparentize(`${c}.500`, 0.1)(theme),
           )(props),
           borderColor: transparentize(
             mode(`${c}.400`, `${c}.500`)(props),
@@ -105,7 +105,7 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
         '&[data-hover]:hover td': {
           background: mode(
             `${c}.100`,
-            transparentize(`${c}.500`, 0.4)(theme),
+            transparentize(`${c}.500`, 0.2)(theme),
           )(props),
         },
       },

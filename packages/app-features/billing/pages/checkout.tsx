@@ -1,20 +1,14 @@
 import * as React from 'react'
 import { BackButton, Page, PageBody, useTenant } from '@saas-ui/pro'
 import { InlineCheckout, usePaddle } from '@saas-ui/paddle'
-import {
-  Loader,
-  EmptyState,
-  useSnackbar,
-  Link,
-  Card,
-  CardBody,
-} from '@saas-ui/react'
+import { Loader, EmptyState, useSnackbar, Link } from '@saas-ui/react'
 import { useNavigate } from '@saas-ui/router'
-import { useGetOrganizationQuery } from '@app/graphql'
 import { usePath } from '@app/features/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
 import { LinkButton } from '@ui/lib'
 import {
+  Card,
+  CardBody,
   HStack,
   Stack,
   Table,
@@ -27,6 +21,8 @@ import {
   Tr,
 } from '@chakra-ui/react'
 import { FormattedNumber } from '@app/i18n'
+import { useQuery } from '@tanstack/react-query'
+import { getOrganization } from '@api/client'
 
 interface CheckoutPageProps {
   plan: string
@@ -43,8 +39,9 @@ export function CheckoutPage({ plan }: CheckoutPageProps) {
 
   const selectedPlan = plans.find(({ id }) => id === plan)
 
-  const { data: { organization } = {}, isLoading } = useGetOrganizationQuery({
-    slug: tenant,
+  const { data: { organization } = {}, isLoading } = useQuery({
+    queryKey: ['GetOrganization', { slug: tenant }] as const,
+    queryFn: ({ queryKey }) => getOrganization(queryKey[1]),
   })
 
   const [checkoutData, setCheckoutData] = React.useState<any>(null)

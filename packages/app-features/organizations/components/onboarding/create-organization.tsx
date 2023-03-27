@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from 'react'
+import { FormEvent, useRef } from 'react'
 import slug from 'slug'
 import { InputLeftElement, Text } from '@chakra-ui/react'
 import { useTenancy } from '@saas-ui/pro'
@@ -7,12 +7,11 @@ import {
   FormLayout,
   UseFormReturn,
   useStepperContext,
-  WatchField,
 } from '@saas-ui/react'
 
-import { useCreateOrganizationMutation } from '@app/graphql'
-
 import { OnboardingStep } from './onboarding-step'
+import { useMutation } from '@tanstack/react-query'
+import { createOrganization } from '@api/client'
 
 type FormInput = {
   name: string
@@ -25,7 +24,9 @@ export const CreateOrganizationStep = () => {
 
   const formRef = useRef<UseFormReturn<FormInput>>(null)
 
-  const { mutateAsync: createOrganization } = useCreateOrganizationMutation()
+  const { mutateAsync } = useMutation({
+    mutationFn: createOrganization,
+  })
 
   return (
     <OnboardingStep<FormInput>
@@ -34,7 +35,7 @@ export const CreateOrganizationStep = () => {
       description="Saas UI is multi-tenant and supports organization workspaces with multiple teams."
       defaultValues={{ name: '', slug: '' }}
       onSubmit={(data) => {
-        return createOrganization({ name: data.name }).then((result) => {
+        return mutateAsync({ name: data.name }).then((result) => {
           if (result.createOrganization?.slug) {
             tenancy.setTenant(result.createOrganization.slug)
             stepper.nextStep()

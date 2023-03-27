@@ -1,24 +1,18 @@
 import * as React from 'react'
 
 import { Section, useTenant } from '@saas-ui/pro'
-import { useGetOrganizationQuery } from '@app/graphql'
 
-import { Stack, Text } from '@chakra-ui/react'
+import { Card, CardBody, Stack, Text } from '@chakra-ui/react'
 
-import {
-  Card,
-  CardBody,
-  Field,
-  Form,
-  FormLayout,
-  SubmitButton,
-} from '@saas-ui/react'
+import { Field, Form, FormLayout, SubmitButton } from '@saas-ui/react'
 import { LinkButton, SettingsPage } from '@ui/lib'
 import { usePath } from '@app/features/core/hooks/use-path'
 
 import { useBilling } from '@saas-ui/billing'
 
 import { FormattedDate } from '@app/i18n'
+import { useQuery } from '@tanstack/react-query'
+import { getOrganization } from '@api/client'
 
 function BillingPlan() {
   const { isTrialing, isTrialExpired, trialEndsAt, currentPlan } = useBilling()
@@ -51,10 +45,9 @@ function BillingPlan() {
               </Text>
             )}
 
-            <LinkButton
-              label="View plans and upgrade"
-              href={usePath('/settings/plans')}
-            />
+            <LinkButton href={usePath('/settings/plans')}>
+              View plans and upgrade
+            </LinkButton>
           </Stack>
         </CardBody>
       </Card>
@@ -74,7 +67,7 @@ function BillingEmail() {
           <Form onSubmit={() => null}>
             <FormLayout>
               <Field name="billing.email" label="Email address" type="email" />
-              <SubmitButton label="Update" />
+              <SubmitButton>Update</SubmitButton>
             </FormLayout>
           </Form>
         </CardBody>
@@ -102,8 +95,10 @@ function BillingInvoices() {
 export function BillingPage() {
   const tenant = useTenant()
 
-  const { data, isLoading, error } = useGetOrganizationQuery({
-    slug: tenant,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['Organization', tenant],
+    queryFn: () => getOrganization({ slug: tenant }),
+    enabled: !!tenant,
   })
 
   const organization = data?.organization

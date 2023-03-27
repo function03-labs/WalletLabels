@@ -4,12 +4,15 @@ import { Box, BoxProps, Text, useBreakpointValue } from '@chakra-ui/react'
 
 import { FiAlertCircle } from 'react-icons/fi'
 
-import { AppShell } from '../../app-shell'
-
 import { Toolbar, ToolbarButton } from '../../toolbar'
 
 import { SplitPage, Page } from '..'
-import { EmptyState, List, ListItem } from '@saas-ui/react'
+import {
+  AppShell,
+  EmptyState,
+  StructuredList,
+  StructuredListItem,
+} from '@saas-ui/react'
 import { BackButton } from '../back-button'
 import { useSplitPage } from '../split-page'
 
@@ -142,9 +145,9 @@ const ResponsiveContent = () => {
 const ResponsiveList = () => {
   const { onOpen } = useSplitPage()
   return (
-    <List>
-      <ListItem onClick={onOpen}>Responsive item</ListItem>
-    </List>
+    <StructuredList>
+      <StructuredListItem onClick={onOpen}>Responsive item</StructuredListItem>
+    </StructuredList>
   )
 }
 

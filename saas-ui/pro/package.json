@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui/pro",
-  "version": "0.16.0",
+  "version": "0.17.1",
   "engines": {
     "node": ">=16 <=19"
   },
@@ -20,6 +20,11 @@
       "types": "./dist/glass-theme/index.d.ts",
       "import": "./dist/glass-theme/index.mjs"
     },
+    "./icons": {
+      "require": "./dist/icons/index.js",
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.mjs"
+    },
     "./src": {
       "default": "./src/index.ts"
     },
@@ -28,6 +33,9 @@
     },
     "./src/glass-theme": {
       "default": "./src/glass-theme/index.ts"
+    },
+    "./icons/src": {
+      "default": "./src/icons/index.ts"
     }
   },
   "main": "./dist/index.js",
@@ -52,27 +60,27 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "^2.1.2",
+    "@chakra-ui/anatomy": "^2.1.1",
     "@chakra-ui/clickable": "^2.0.14",
-    "@chakra-ui/react-utils": "^2.0.12",
-    "@chakra-ui/styled-system": "^2.5.2",
-    "@chakra-ui/system": "^2.4.0",
-    "@chakra-ui/theme-tools": "^2.0.17",
-    "@chakra-ui/utils": "^2.0.15",
+    "@chakra-ui/react-utils": "^2.0.11",
+    "@chakra-ui/styled-system": "^2.6.1",
+    "@chakra-ui/system": "^2.5.1",
+    "@chakra-ui/theme-tools": "^2.0.16",
+    "@chakra-ui/utils": "^2.0.14",
     "@react-hookz/web": "^15.1.0",
     "@saas-ui/onboarding": "workspace:*",
-    "@saas-ui/react-utils": "^1.2.0",
+    "@saas-ui/react-utils": "^2.0.0-next.1",
     "@saas-ui/router": "workspace:*",
-    "@saas-ui/theme": "^1.8.0",
+    "@saas-ui/theme": "^2.0.0-next.1",
     "@tanstack/react-table": "^8.7.6",
     "date-fns": "^2.29.3",
     "polished": "^4.2.2"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2.4.8",
+    "@chakra-ui/react": ">=2.5.0",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "@saas-ui/react": ">=1.8.0",
+    "@saas-ui/react": ">=2.0.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18",
     "react-dom": ">=18"

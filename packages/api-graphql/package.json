@@ -1,0 +1,10 @@
+{
+  "name": "@api/graphql",
+  "description": "Example GraphQL schema",
+  "version": "0.0.0",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@graphql-tools/schema": "^9.0.16",
+    "graphql-tag": "^2.12.6"
+  }
+}

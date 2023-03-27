@@ -1,0 +1,13 @@
+query GetContact($id: String!) {
+  contact(id: $id) {
+    id
+    firstName
+    lastName
+    name
+    email
+    status
+    type
+    createdAt
+    updatedAt
+  }
+}

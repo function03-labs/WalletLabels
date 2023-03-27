@@ -1,38 +1,23 @@
-import { useGetOrganizationQuery } from '@app/graphql'
-
-import {
-  useUpdateOrganizationMutation,
-  GetOrganizationQuery,
-} from '@app/graphql'
-
 import { z } from 'zod'
-
+import { getOrganization, Organization, updateOrganization } from '@api/client'
 const schema = z.object({
   name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
 })
-
+import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
 import { Section, useTenant } from '@saas-ui/pro'
-
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Form,
-  FormLayout,
-  Field,
-  useSnackbar,
-} from '@saas-ui/react'
+import { Form, FormLayout, useSnackbar } from '@saas-ui/react'
 import { SettingsPage } from '@ui/lib'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 interface OrganizationDetailsProps {
-  organization?: GetOrganizationQuery['organization'] | null
+  organization?: Organization | null
 }
 
 function OrganizationDetails({ organization }: OrganizationDetailsProps) {
   const snackbar = useSnackbar()
-  const { isLoading, mutateAsync: updateOrganization } =
-    useUpdateOrganizationMutation()
+  const { isLoading, mutateAsync } = useMutation({
+    mutationFn: updateOrganization,
+  })
 
   let form
   if (organization) {
@@ -41,9 +26,10 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
         schema={schema}
         defaultValues={{
           name: organization.name,
+          email: organization.email,
         }}
         onSubmit={(data) => {
-          return updateOrganization({
+          return mutateAsync({
             id: organization.id,
             name: data.name,
           }).then(() =>
@@ -53,22 +39,26 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
           )
         }}
       >
-        <CardBody>
-          <FormLayout>
-            <Field name="name" label="Organization name" />
-            <Field name="email" label="Email address" />
-          </FormLayout>
-        </CardBody>
-        <CardFooter>
-          <Button
-            variant="solid"
-            colorScheme="primary"
-            type="submit"
-            isLoading={isLoading}
-          >
-            Save
-          </Button>
-        </CardFooter>
+        {({ Field }) => (
+          <>
+            <CardBody>
+              <FormLayout>
+                <Field name="name" label="Organization name" />
+                <Field name="email" label="Email address" />
+              </FormLayout>
+            </CardBody>
+            <CardFooter>
+              <Button
+                variant="solid"
+                colorScheme="primary"
+                type="submit"
+                isLoading={isLoading}
+              >
+                Save
+              </Button>
+            </CardFooter>
+          </>
+        )}
       </Form>
     )
   }
@@ -86,8 +76,9 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
 export function OrganizationSettingsPage() {
   const tenant = useTenant()
 
-  const { data, isLoading, error } = useGetOrganizationQuery({
-    slug: tenant,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['Organization', tenant],
+    queryFn: () => getOrganization({ slug: tenant }),
   })
 
   const organization = data?.organization

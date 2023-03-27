@@ -155,5 +155,6 @@ export const useResize = (props: UseResizeProps = {}) => {
   return {
     getContainerProps,
     getHandleProps,
+    width,
   }
 }

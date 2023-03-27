@@ -1,0 +1,8 @@
+{
+  "name": "@api/client",
+  "version": "0.2.0",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@api/mocks": "workspace:*"
+  }
+}

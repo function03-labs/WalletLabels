@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { IntlProvider } from 'react-intl'
-import { useAuth } from '@saas-ui/react'
+import { useAuth } from '@saas-ui/auth'
 
 export interface I18nProviderProps {
   children: React.ReactNode

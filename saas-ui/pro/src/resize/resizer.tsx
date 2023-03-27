@@ -14,7 +14,7 @@ export const Resizer: React.FC<ResizerProps> = (props) => {
     children,
   } = props
 
-  const { getContainerProps, getHandleProps } = useResize({
+  const { getContainerProps, getHandleProps, width } = useResize({
     handlePosition,
     onResize,
     defaultWidth,
@@ -26,6 +26,7 @@ export const Resizer: React.FC<ResizerProps> = (props) => {
     getHandleProps,
     isResizable,
     handlePosition,
+    width,
   }
 
   let _child

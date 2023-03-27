@@ -16,13 +16,13 @@ module.exports = withWorkspaces({
     webpack: (config, options) => {
       const { isServer } = options
       if (!isServer && isElectron) {
-        // config.target = 'electron-renderer' // Disable this otherwise MSW doesn't work.
+        config.target = 'electron-renderer' // Disable this otherwise MSW doesn't work.
       }
 
       // Load pro packages from src instead of dist
       config.plugins = config.plugins.concat([
         new webpack.NormalModuleReplacementPlugin(
-          /\@saas-ui\/(pro|billing|charts|router|onboarding|features|paddle.*|pro\/theme|pro-.*)$/,
+          /\@saas-ui\/(pro|billing|router|onboarding|features|paddle.*|pro\/theme|pro-.*)$/,
           (resource) => {
             resource.request = resource.request + '/src'
           },

@@ -1,8 +1,45 @@
-import { Switch } from '@chakra-ui/react'
-import { Card, Divider, List, ListHeader, ListItem } from '@saas-ui/react'
+import { Card, Heading, Switch, Text } from '@chakra-ui/react'
+import {
+  Divider,
+  StructuredList,
+  StructuredListCell,
+  StructuredListHeader,
+  StructuredListItem,
+} from '@saas-ui/react'
 import { Section } from '@saas-ui/pro'
 
 import { SettingsPage } from '@ui/lib'
+
+interface NotificationItemProps {
+  title: string
+  description?: string
+  isChecked?: boolean
+  onChange?: (checked: boolean) => void
+}
+
+const NotificationItem: React.FC<NotificationItemProps> = (props) => {
+  const { title, description, isChecked, onChange } = props
+  return (
+    <StructuredListItem>
+      <StructuredListCell flex="1">
+        <Heading size="sm" fontWeight="normal">
+          {title}
+        </Heading>
+        {description ? (
+          <Text color="muted" size="sm">
+            {description}
+          </Text>
+        ) : null}
+      </StructuredListCell>
+      <StructuredListCell>
+        <Switch
+          isChecked={isChecked}
+          onChange={(e) => onChange?.(!!e.target.value)}
+        />
+      </StructuredListCell>
+    </StructuredListItem>
+  )
+}
 
 function NotificationChannels() {
   const onDesktopChange = async () => {
@@ -18,18 +55,18 @@ function NotificationChannels() {
       isAnnotated
     >
       <Card>
-        <List variant="settings">
-          <ListItem
-            primary="Email"
-            secondary="Receive a dialy email digest."
-            action={<Switch />}
+        <StructuredList variant="settings">
+          <NotificationItem
+            title="Email"
+            description="Receive a daily email digest."
+            isChecked={true}
           />
-          <ListItem
-            primary="Desktop"
-            secondary="Receive desktop notifications."
-            action={<Switch onChange={onDesktopChange} />}
+          <NotificationItem
+            title="Desktop"
+            description="Receive desktop notifications."
+            onChange={onDesktopChange}
           />
-        </List>
+        </StructuredList>
       </Card>
     </Section>
   )
@@ -43,29 +80,20 @@ function NotificationTopics() {
       isAnnotated
     >
       <Card>
-        <List size="condensed">
-          <ListHeader>Contacts</ListHeader>
-          <ListItem
-            primary="A new lead is added."
-            action={<Switch defaultChecked />}
-          />
-          <ListItem
-            primary="An account has upgraded."
-            action={<Switch defaultChecked />}
-          />
-        </List>
+        <StructuredList size="condensed">
+          <StructuredListHeader>Contacts</StructuredListHeader>
+          <NotificationItem title="A new lead is added." isChecked={true} />
+          <NotificationItem title="An account has upgraded." isChecked={true} />
+        </StructuredList>
         <Divider />
-        <List size="condensed">
-          <ListHeader>Inbox</ListHeader>
-          <ListItem
-            primary="A message is assigned to me."
-            action={<Switch defaultChecked />}
+        <StructuredList size="condensed">
+          <StructuredListHeader>Inbox</StructuredListHeader>
+          <NotificationItem
+            title="A message is assigned to me."
+            isChecked={true}
           />
-          <ListItem
-            primary="Somebody mentions me."
-            action={<Switch defaultChecked />}
-          />
-        </List>
+          <NotificationItem title="Somebody mentions me." isChecked={true} />
+        </StructuredList>
       </Card>
     </Section>
   )
@@ -79,18 +107,18 @@ function AccountUpdates() {
       isAnnotated
     >
       <Card>
-        <List variant="settings">
-          <ListItem
-            primary="Product updates"
-            secondary="Receive a weekly email with all new features and updates."
-            action={<Switch defaultChecked />}
+        <StructuredList variant="settings">
+          <NotificationItem
+            title="Product updates"
+            description="Receive a weekly email with all new features and updates."
+            isChecked={true}
           />
-          <ListItem
-            primary="Important updates"
-            secondary="Receive emails about important updates like security fixes, maintenance, etc."
-            action={<Switch defaultChecked />}
+          <NotificationItem
+            title="Important updates"
+            description="Receive emails about important updates like security fixes, maintenance, etc."
+            isChecked={true}
           />
-        </List>
+        </StructuredList>
       </Card>
     </Section>
   )

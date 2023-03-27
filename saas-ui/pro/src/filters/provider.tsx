@@ -28,6 +28,7 @@ export { useFiltersContext }
 
 export interface FiltersProviderProps {
   filters?: FilterItem[]
+  activeFilters?: Filter[]
   defaultFilters?: Filter[]
   operators?: FilterOperators
   onChange?(activeFilters: Filter[]): void
@@ -42,6 +43,7 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   const {
     children,
     filters,
+    activeFilters: activeFiltersProp,
     defaultFilters,
     operators = defaultOperators,
     onChange,
@@ -75,6 +77,19 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
     [operators],
   )
 
+  const _setFilter = React.useCallback((filter: Filter) => {
+    const key = filter.key || `${filter.id}-${activeFilterMap.size}`
+
+    const def = getFilter(filter.id)
+
+    const operator = filter.operator || def?.defaultOperator || 'is'
+
+    activeFilterMap.set(key, {
+      ...filter,
+      operator,
+    })
+  }, [])
+
   const enableFilter = React.useCallback(
     async (filter: Filter) => {
       const key = filter.key || `${filter.id}-${activeFilterMap.size}`
@@ -90,21 +105,16 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
       }
 
       if (onBeforeEnableFilter) {
-        try {
-          const result = await onBeforeEnableFilter(
-            {
-              ...filter,
-              operator,
-              key,
-            },
-            def,
-          )
+        const result = await onBeforeEnableFilter(
+          {
+            ...filter,
+            operator,
+            key,
+          },
+          def,
+        )
 
-          return _enable(result.key || key, result)
-        } catch (e) {
-          /* ignore */
-          return
-        }
+        return _enable(result.key || key, result)
       }
 
       _enable(key, {
@@ -139,6 +149,13 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
       setInitialized(true)
     }
   }, [defaultFilters, enableFilter])
+
+  React.useEffect(() => {
+    if (activeFiltersProp) {
+      activeFilterMap.clear()
+      activeFiltersProp?.forEach(_setFilter)
+    }
+  }, [activeFiltersProp])
 
   const context = {
     filters,

@@ -48,7 +48,10 @@ export const SettingsSidebar = () => {
     <Resizer
       defaultWidth={width}
       onResize={onResize}
-      isResizable={useBreakpointValue({ base: false, lg: true })}
+      isResizable={useBreakpointValue(
+        { base: false, lg: true },
+        { fallback: 'lg' },
+      )}
     >
       <Sidebar>
         <SidebarToggleButton />
@@ -63,19 +66,21 @@ export const SettingsSidebar = () => {
         <SidebarSection flex="1" overflowY="auto">
           <Has feature="settings">
             <NavGroup title="Organization" icon={<FiFolder />}>
-              <SettingsLink path="/" label="Overview" />
-              <SettingsLink path="/organization" label="Organization" />
-              <SettingsLink path="/members" label="Members" />
-              <SettingsLink path="/plans" label="Plans" />
-              <SettingsLink path="/billing" label="Billing" />
+              <SettingsLink path="/">Overview</SettingsLink>
+              <SettingsLink path="/organization">Organization</SettingsLink>
+              <SettingsLink path="/members">Members</SettingsLink>
+              <SettingsLink path="/plans">Plans</SettingsLink>
+              <SettingsLink path="/billing">Billing</SettingsLink>
             </NavGroup>
           </Has>
 
           <NavGroup title="Account" icon={<FiUser />}>
-            <SettingsLink path="/account" label="Profile" />
-            <SettingsLink path="/account/security" label="Security" />
-            <SettingsLink path="/account/notifications" label="Notifications" />
-            <SettingsLink path="/account/api" label="Api" />
+            <SettingsLink path="/account">Profile</SettingsLink>
+            <SettingsLink path="/account/security">Security</SettingsLink>
+            <SettingsLink path="/account/notifications">
+              Notifications
+            </SettingsLink>
+            <SettingsLink path="/account/api">Api</SettingsLink>
           </NavGroup>
         </SidebarSection>
         <SidebarOverlay />

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 import { FiFrown } from 'react-icons/fi'
 
-import { Button } from '@saas-ui/react'
+import { Button } from '@chakra-ui/react'
 import { ErrorPage } from '@saas-ui/pro'
 
 export default function Error500() {
@@ -15,12 +15,10 @@ export default function Error500() {
       icon={FiFrown}
       actions={
         <>
-          <Button
-            label="Go back"
-            colorScheme="primary"
-            onClick={() => router.back()}
-          />
-          <Button label="Home" onClick={() => router.push('/app')} />
+          <Button colorScheme="primary" onClick={() => router.back()}>
+            Go back
+          </Button>
+          <Button onClick={() => router.push('/app')}>Home</Button>
         </>
       }
     />

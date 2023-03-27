@@ -5,8 +5,9 @@ import { Container, Text, ModalFooter, useDisclosure } from '@chakra-ui/react'
 import { Field, FormLayout, SubmitButton, FormDialog } from '@saas-ui/react'
 import { Page } from '@saas-ui/pro'
 
-import { useCreateOrganizationMutation } from '@app/graphql'
 import { useNavigate } from '@saas-ui/router'
+import { useMutation } from '@tanstack/react-query'
+import { createOrganization } from '@api/client'
 
 const schema = z.object({
   name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
@@ -14,7 +15,9 @@ const schema = z.object({
 
 export function GettingStartedPage(props: any) {
   const navigate = useNavigate()
-  const { mutateAsync: createOrganization } = useCreateOrganizationMutation()
+  const { mutateAsync } = useMutation({
+    mutationFn: createOrganization,
+  })
 
   const disclosure = useDisclosure()
 

@@ -7,7 +7,7 @@ import {
   BannerActions,
 } from '@saas-ui/react'
 import { MaybeRenderProp } from '@chakra-ui/react-utils'
-import { runIfFn, __DEV__ } from '@chakra-ui/utils'
+import { runIfFn } from '@chakra-ui/utils'
 
 export type BulkActionsSelections = string[] | number[]
 
@@ -48,10 +48,8 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
       initial="exit"
       isOpen={isOpen}
       colorScheme="primary"
-      variant="solid"
+      variant="floating"
       position="absolute"
-      right="0"
-      top="0"
       minH="14"
       zIndex="banner"
       {...rest}
@@ -68,6 +66,4 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  BulkActions.displayName = 'BulkActions'
-}
+BulkActions.displayName = 'BulkActions'

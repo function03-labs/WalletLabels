@@ -1,0 +1,17 @@
+{
+  "name": "@api/graphql-client",
+  "version": "0.6.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "generate": "graphql-codegen"
+  },
+  "dependencies": {
+    "@app/config": "workspace:*",
+    "graphql": "16.6.0",
+    "graphql-request": "^5.1.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^3.2.1",
+    "@graphql-codegen/client-preset": "^2.1.0"
+  }
+}

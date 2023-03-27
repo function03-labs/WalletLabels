@@ -8,11 +8,13 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "generate": "yarn workspace @app/graphql generate",
+    "generate": "yarn workspace @api/graphql-client generate",
     "predev": "yarn generate",
     "dev:web": "yarn workspace web dev",
     "dev:desktop": "yarn workspace desktop dev",
     "storybook": "yarn workspace @ui/storybook dev",
+    "build:web": "yarn workspace web build",
+    "build:desktop": "yarn workspace web build",
     "build:storybook": "yarn workspace @ui/storybook build-storybook",
     "build:tokens": "chakra-cli tokens packages/ui-theme/src/index.ts",
     "clean:packages": "turbo run clean",
@@ -21,7 +23,7 @@
     "lint:staged": "lint-staged --allow-empty --config lint-staged.config.js",
     "typecheck": "tsc --noEmit",
     "saas-ui:build": "turbo run build --scope='@saas-ui/*' --concurrency=5 --no-deps --continue && yarn build:tokens",
-    "saas-ui:storybook": "yarn workspace saas-ui-storybook start-storybook -p 6007",
+    "saas-ui:storybook": "yarn workspace saas-ui-storybook-pro start-storybook -p 6007",
     "saas-ui:publish": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish && yarn changeset tag",
     "saas-ui:publish:next": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish --tag next && yarn changeset tag"
   },
@@ -51,7 +53,7 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
     "turbo": "^1.7.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "resolutions": {
     "@hookform/resolvers": "2.9.3",

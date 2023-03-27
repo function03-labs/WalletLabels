@@ -1,5 +1,19 @@
 # @saas-ui/pro
 
+## 0.17.1
+
+### Patch Changes
+
+- a0ec847: added more contrast to muted color in dark mode.
+- Updated dependencies [446d598]
+  - @saas-ui/onboarding@0.9.0
+
+## 0.17.0
+
+### Minor Changes
+
+- 93fa5d0: Improved TimeLine composition and theme. TimeLine items now work properly on all background colors.
+
 ## 0.16.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 import { Button, SimpleGrid } from '@chakra-ui/react'
 import { PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
-import { Section } from '@saas-ui/pro'
+import { Section, useTenant } from '@saas-ui/pro'
 import { useBilling } from '@saas-ui/billing'
 
 import {
@@ -17,11 +17,15 @@ import { FormattedDate } from '@app/i18n'
 
 import { SettingsCard } from '../components/settings-card'
 import { SupportCard } from '../components/support-card'
-
-import { useGetOrganizationQuery } from '@app/graphql'
+import { useQuery } from '@tanstack/react-query'
+import { getOrganization } from '@api/client'
 
 export function SettingsOverviewPage() {
-  const { data, isLoading } = useGetOrganizationQuery()
+  const tenant = useTenant()
+  const { data, isLoading } = useQuery({
+    queryKey: ['Organization', tenant],
+    queryFn: () => getOrganization({ slug: tenant }),
+  })
 
   const { currentPlan, isTrialing, isCanceled, trialEndsAt, status } =
     useBilling()
@@ -36,7 +40,7 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={[1, null, 2]} spacing={4}>
           <SettingsCard
             title="Billing"
-            subtitle="Manage your subscription."
+            description="Manage your subscription."
             icon={FiBriefcase}
             footer={
               <LinkButton href={usePath('/settings/plans')} variant="primary">
@@ -58,7 +62,7 @@ export function SettingsOverviewPage() {
           </SettingsCard>
           <SettingsCard
             title="Organization"
-            subtitle="Manage your organization details."
+            description="Manage your organization details."
             avatar={<PersonaAvatar name={data?.organization?.name} size="sm" />}
             footer={
               <LinkButton
@@ -81,7 +85,7 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={[1, null, 2]} spacing={4}>
           <SettingsCard
             title="Security recommendations"
-            subtitle="Improve your account security by enabling two-factor
+            description="Improve your account security by enabling two-factor
               authentication."
             icon={FiShield}
             footer={
@@ -97,21 +101,21 @@ export function SettingsOverviewPage() {
         <SimpleGrid columns={[1, null, 3]} spacing={4}>
           <SupportCard
             title="Start guide"
-            subtitle="Read how to get started with Saas UI."
+            description="Read how to get started with Saas UI Pro."
             icon={FiHelpCircle}
-            href="https://saas-ui.dev/docs/getting-started"
+            href="https://saas-ui.dev/docs/pro/overview"
           />
           <SupportCard
             title="Components"
-            subtitle="See all components and how they work."
+            description="See all components and how they work."
             icon={FiBox}
-            href="https://www.saas-ui.dev/docs/auth/auth-provider"
+            href="https://www.saas-ui.dev/docs/components"
           />
           <SupportCard
-            title="Feedback"
-            subtitle="Post feedback, bug reports and feature requests."
+            title="Roadmap"
+            description="Post feedback, bug reports and feature requests."
             icon={FiGithub}
-            href="https://github.com/saas-js/saas-ui/issues"
+            href="https://roadmap.saas-ui.dev"
           />
         </SimpleGrid>
       </Section>

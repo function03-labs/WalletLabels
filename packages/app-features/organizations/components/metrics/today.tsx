@@ -1,7 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/react'
-import { Card, CardBody } from '@saas-ui/react'
 
 import { Metric } from './metric'
+import { MetricsCard } from './metrics-card'
 
 const data = [
   {
@@ -19,7 +19,7 @@ const data = [
   {
     label: 'Churned customers',
     value: '5',
-    change: -10,
+    change: 2,
     data: [2, 1, 4, 8, 4, 1, 6],
   },
   {
@@ -32,13 +32,11 @@ const data = [
 
 export const Today = () => {
   return (
-    <SimpleGrid columns={[1, 2, 4]} gap="4">
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap="4">
       {data.map((metric) => (
-        <Card key={metric.label}>
-          <CardBody>
-            <Metric {...metric} color="primary" />
-          </CardBody>
-        </Card>
+        <MetricsCard key={metric.label}>
+          <Metric {...metric} color="primary" />
+        </MetricsCard>
       ))}
     </SimpleGrid>
   )

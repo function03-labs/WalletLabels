@@ -4,10 +4,11 @@ import {
   FormLayout,
   Field,
   FormDialog,
-  useUpdatePassword,
   FormDialogProps,
   SubmitHandler,
 } from '@saas-ui/react'
+
+import { useUpdatePassword } from '@saas-ui/auth'
 
 import { ConfirmPasswordField } from '@ui/lib'
 

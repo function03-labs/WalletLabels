@@ -4,10 +4,12 @@ import Card from './card'
 import Form from './form'
 import Kbd from './kbd'
 import Tabs from './tabs'
+import Tag from './tag'
 
 // Saas UI Components
 import SuiAppShell from './app-shell'
 import SuiActiveFiltersList from './active-filters-list'
+import { bannerTheme as SuiBanner } from './banner'
 import SuiBeacon from './beacon'
 import SuiCommand from './command'
 import SuiEmptyState from './empty-state'
@@ -17,7 +19,7 @@ import SuiNavItem from './nav-item'
 import SuiPage from './page'
 import SuiSplitPage from './split-page'
 import SuiStepper from './stepper'
-import SuiPageSidebar from './page-sidebar'
+import SuiAside from './aside'
 import SuiProperty from './property'
 import SuiSection from './section'
 import SuiSidebar from './sidebar'
@@ -27,6 +29,7 @@ import SuiToolbar from './toolbar'
 export const components = {
   SuiAppShell,
   SuiActiveFiltersList,
+  SuiBanner,
   SuiBeacon,
   SuiCommand,
   SuiEmptyState,
@@ -36,7 +39,7 @@ export const components = {
   SuiPage,
   SuiSplitPage,
   SuiStepper,
-  SuiPageSidebar,
+  SuiAside,
   SuiProperty,
   SuiSection,
   SuiSidebar,
@@ -47,5 +50,6 @@ export const components = {
   Form,
   Kbd,
   Tabs,
+  Tag,
   ...Form,
 }

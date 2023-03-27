@@ -18,9 +18,10 @@ import {
   ThemingProps,
   SystemStyleObject,
   createStylesContext,
+  Spacer,
 } from '@chakra-ui/react'
 
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx } from '@chakra-ui/utils'
 
 import {
   MenuButton,
@@ -30,7 +31,12 @@ import {
   MenuProps,
 } from '@saas-ui/react'
 
-import { FilterMenu, FilterItem } from './filter-menu'
+import {
+  FilterMenu,
+  FilterItem,
+  useFilterItems,
+  FilterItems,
+} from './filter-menu'
 
 import { XIcon } from '../icons'
 import { ResponsiveMenu, ResponsiveMenuList } from '../menu'
@@ -59,7 +65,7 @@ export interface ActiveFilterProps
   label?: string
   value?: FilterValue
   defaultValue?: FilterValue
-  items?: FilterItem[]
+  items?: FilterItems
   operators?: FilterItem[]
   operator?: FilterOperatorId
   defaultOperator?: FilterOperatorId
@@ -122,9 +128,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  ActiveFilter.displayName = 'ActiveFilter'
-}
+ActiveFilter.displayName = 'ActiveFilter'
 
 export interface ActiveFilterContainerProps
   extends Omit<ButtonGroupProps, 'size' | 'variant' | 'colorScheme'>,
@@ -162,9 +166,7 @@ export const ActiveFilterContainer: React.FC<ActiveFilterContainerProps> = (
   )
 }
 
-if (__DEV__) {
-  ActiveFilterContainer.displayName = 'ActiveFilterContainer'
-}
+ActiveFilterContainer.displayName = 'ActiveFilterContainer'
 
 export interface ActiveFilterLabelProps extends HTMLChakraProps<'div'> {
   icon?: React.ReactNode
@@ -206,9 +208,7 @@ export const ActiveFilterLabel: React.FC<ActiveFilterLabelProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  ActiveFilterLabel.displayName = 'ActiveFilterLabel'
-}
+ActiveFilterLabel.displayName = 'ActiveFilterLabel'
 
 /**
  * ActiveFilterOperator
@@ -263,9 +263,7 @@ export const ActiveFilterOperator: React.FC<ActiveFilterOperatorProps> = (
   )
 }
 
-if (__DEV__) {
-  ActiveFilterOperator.displayName = 'ActiveFilterOperator'
-}
+ActiveFilterOperator.displayName = 'ActiveFilterOperator'
 
 export interface ActiveFilterValueProps
   extends ActiveFilterValueOptions,
@@ -278,6 +276,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
     value: valueProp,
     defaultValue,
     format,
+    items: itemsProp,
     ...htmlProps
   } = props
 
@@ -292,13 +291,20 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
 
   const { label, getMenuProps } = useFilterValue(props)
 
-  const { icon, ...menuProps } = getMenuProps(props)
+  const items = useFilterItems(props.items || [])
+
+  const item = items?.find(({ id }) => id === valueProp)
+
+  const { icon, ...menuProps } = getMenuProps({
+    label: item?.label,
+    items,
+  })
 
   if (menuProps.items?.length) {
     return (
       <FilterMenu
         {...menuProps}
-        buttonProps={{ as: ActiveFilterButton, leftIcon: icon }}
+        buttonProps={{ as: ActiveFilterButton, leftIcon: item?.icon }}
       />
     )
   }
@@ -314,9 +320,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  ActiveFilterValue.displayName = 'ActiveFilterValue'
-}
+ActiveFilterValue.displayName = 'ActiveFilterValue'
 
 export interface ActiveFilterRemove extends HTMLChakraProps<'button'> {}
 
@@ -342,9 +346,7 @@ export const ActiveFilterRemove: React.FC<ActiveFilterRemove> = (props) => {
   )
 }
 
-if (__DEV__) {
-  ActiveFilterRemove.displayName = 'ActiveFilterRemove'
-}
+ActiveFilterRemove.displayName = 'ActiveFilterRemove'
 
 const ActiveFilterButton = forwardRef<ButtonProps, 'div'>((props, ref) => {
   return (
@@ -360,22 +362,21 @@ const ActiveFilterButton = forwardRef<ButtonProps, 'div'>((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  ActiveFilterButton.displayName = 'ActiveFilterButton'
-}
+ActiveFilterButton.displayName = 'ActiveFilterButton'
 
 export interface ActiveFiltersListProps extends WrapProps {
   formatValue?(value: FilterValue): string
 }
 
 export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
-  const { formatValue, ...rest } = props
+  const { formatValue, children, ...rest } = props
   const {
     activeFilters,
     getOperators,
     getFilter,
     enableFilter,
     disableFilter,
+    reset,
   } = useFiltersContext()
 
   const styles = useStyleConfig('SuiActiveFiltersList', props)
@@ -418,6 +419,17 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
           </WrapItem>
         )
       })}
+      {children}
     </Wrap>
   ) : null
+}
+
+export const ResetFilters: React.FC<ButtonProps> = (props) => {
+  const { children, ...rest } = props
+  const { reset } = useFiltersContext()
+  return (
+    <Button variant="ghost" size="sm" {...rest} onClick={reset}>
+      {children}
+    </Button>
+  )
 }

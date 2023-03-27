@@ -8,11 +8,16 @@ import { InboxList } from '../components/inbox-list'
 
 import { useParams } from '@saas-ui/router'
 import { useBreakpointValue } from '@chakra-ui/react'
+import { useQuery } from '@tanstack/react-query'
+import { getConversations } from '@api/client'
 
 export function InboxListPage() {
   const params = useParams()
 
-  const items: any[] = [] // @todo create mocks {id: 1, title: 'Test'}
+  const { data, isLoading } = useQuery({
+    queryKey: ['Conversations'],
+    queryFn: () => getConversations(),
+  })
 
   const isMobile = useBreakpointValue({ base: true, lg: false })
 
@@ -41,8 +46,17 @@ export function InboxListPage() {
   }
 
   return (
-    <SplitPage title="Inbox" toolbar={toolbar} content={content}>
-      {!items.length && isMobile ? emptyState : <InboxList items={items} />}
+    <SplitPage
+      title="Inbox"
+      toolbar={toolbar}
+      content={content}
+      isLoading={isLoading}
+    >
+      {!data?.conversations?.length && isMobile ? (
+        emptyState
+      ) : (
+        <InboxList items={data?.conversations || []} />
+      )}
     </SplitPage>
   )
 }

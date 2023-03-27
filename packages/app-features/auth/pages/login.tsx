@@ -3,7 +3,8 @@ import * as React from 'react'
 import { Container, Stack } from '@chakra-ui/react'
 import { Link } from '@ui/lib'
 
-import { Loader, LoginView, useAuth } from '@saas-ui/react'
+import { LoginView, useAuth } from '@saas-ui/auth'
+import { Loader } from '@saas-ui/react'
 
 export const LoginPage = () => {
   const { isAuthenticated } = useAuth()

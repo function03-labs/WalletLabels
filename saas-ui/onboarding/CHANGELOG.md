@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.9.0
+
+### Minor Changes
+
+- 446d598: Fixed issue where TourDialog would close when hovering charts.
+
 ## 0.8.1
 
 ### Patch Changes

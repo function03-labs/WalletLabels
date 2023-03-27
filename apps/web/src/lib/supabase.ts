@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { createAuthService } from '@saas-ui/auth/services/supabase'
+// import { createAuthService } from '@saas-ui/auth/services/supabase'
 
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL)
   throw new Error(
@@ -17,4 +17,4 @@ export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_KEY,
 )
 
-export const authService = createAuthService(supabase)
+// export const authService = createAuthService(supabase)

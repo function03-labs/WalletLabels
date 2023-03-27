@@ -37,8 +37,8 @@
     "zustand": "^4.3.2"
   },
   "peerDependencies": {
-    "@chakra-ui/react": ">=2.4.8",
-    "@saas-ui/react": ">=1.8.0",
+    "@chakra-ui/react": ">=2.5.0",
+    "@saas-ui/react": ">=2.0.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18"
   },

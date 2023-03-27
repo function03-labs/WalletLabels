@@ -1,3 +1,3 @@
 export * from './pages/getting-started'
 export * from './pages/home'
-export * from './pages/overview'
+export * from './pages/dashboard'

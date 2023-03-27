@@ -1,6 +1,6 @@
 const path = require('path')
 const toPath = (_path) => path.join(process.cwd(), _path)
-
+const webpack = require('webpack')
 module.exports = {
   stories: [
     {
@@ -71,6 +71,14 @@ module.exports = {
           },
         ]),
       },
+      plugins: config.plugins.concat([
+        new webpack.NormalModuleReplacementPlugin(
+          /\@saas-ui\/(pro|onboarding)$/,
+          (resource) => {
+            resource.request = resource.request + '/src'
+          },
+        ),
+      ]),
     }
   },
   core: {

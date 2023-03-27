@@ -2,10 +2,19 @@ import * as React from 'react'
 
 import { InviteDialog, InviteData, defaultMemberRoles } from '@ui/lib'
 
-import { Box, Tag, useDisclosure } from '@chakra-ui/react'
 import {
+  Box,
+  Button,
   Card,
+  CardHeader,
   CardProps,
+  Heading,
+  HStack,
+  Tag,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react'
+import {
   EmptyState,
   Field,
   FormLayout,
@@ -15,13 +24,10 @@ import {
 import { useSearchQuery } from '@saas-ui/pro'
 
 import {
-  Button,
-  List,
-  ListItem,
-  ListItemAction,
-  ListItemIcon,
-  ListItemLabel,
-  ListItemTertiary,
+  StructuredList,
+  StructuredListItem,
+  StructuredListIcon,
+  StructuredListCell,
   MenuItem,
   OverflowMenu,
   PersonaAvatar,
@@ -101,37 +107,39 @@ function MembersListItem<M extends Member = Member>({
   }
 
   return (
-    <ListItem
-      px="4"
-      py="2"
-      pe="14"
+    <StructuredListItem
+      py="4"
       borderBottomWidth="1px"
       sx={{ '&:last-of-type': { borderWidth: 0 } }}
     >
-      <ListItemIcon>
+      <StructuredListIcon>
         <PersonaAvatar
           name={member.name}
           presence={member.presence}
           size="xs"
         />
-      </ListItemIcon>
-      <ListItemLabel
-        primary={member.name || member.email}
-        secondary={member.name ? member.email : null}
-      ></ListItemLabel>
-      <ListItemTertiary>
-        {isInvite ? (
-          <Tag size="sm">{member.status}</Tag>
-        ) : (
-          <Roles roles={member.roles} />
-        )}
-      </ListItemTertiary>
-      <ListItemAction>
+      </StructuredListIcon>
+      <StructuredListCell flex="1" px="4">
+        <Heading size="sm">{member.name || member.email}</Heading>
+        <Text color="muted" size="sm">
+          {member.name ? member.email : null}
+        </Text>
+      </StructuredListCell>
+      <StructuredListCell>
+        <HStack>
+          {isInvite ? (
+            <Tag size="sm">{member.status}</Tag>
+          ) : (
+            <Roles roles={member.roles} />
+          )}
+        </HStack>
+      </StructuredListCell>
+      <StructuredListCell>
         <Box>
           <OverflowMenu>{actions}</OverflowMenu>
         </Box>
-      </ListItemAction>
-    </ListItem>
+      </StructuredListCell>
+    </StructuredListItem>
   )
 }
 
@@ -191,19 +199,25 @@ export function MembersList<M extends Member = Member>({
   )
 
   return (
-    <Card
-      title={
-        <SearchInput placeholder={searchLabel} size="sm" {...searchProps} />
-      }
-      action={
-        <Button onClick={invite.onOpen} colorScheme="primary" variant="solid">
+    <Card {...cardProps}>
+      <CardHeader display="flex">
+        <SearchInput
+          placeholder={searchLabel}
+          size="sm"
+          {...searchProps}
+          mr="2"
+        />
+        <Button
+          onClick={invite.onOpen}
+          colorScheme="primary"
+          variant="solid"
+          flexShrink="0"
+        >
           {inviteLabel}
         </Button>
-      }
-      {...cardProps}
-    >
+      </CardHeader>
       {results?.length ? (
-        <List>
+        <StructuredList py="0">
           {results.map((member, i) => (
             <MembersListItem<M>
               key={i}
@@ -216,7 +230,7 @@ export function MembersList<M extends Member = Member>({
               onChangeRole={onChangeRole}
             />
           ))}
-        </List>
+        </StructuredList>
       ) : (
         <EmptyState title={noResults} size="sm" p="4" />
       )}

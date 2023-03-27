@@ -22,6 +22,9 @@ import {
   FilterFn,
   SortingFn,
   OnChangeFn,
+  createColumnHelper,
+  ColumnHelper,
+  RowData,
 } from '@tanstack/react-table'
 
 import {
@@ -103,12 +106,16 @@ export const useDataGridContext = <Data extends object>() => {
   return React.useContext(DataGridContext) as DataGridContextValue<Data>
 }
 
-type UseColumns = <Data extends object>(
-  factory: () => Array<ColumnDef<Data>>,
+export const useColumns = <Data extends RowData, Columns = unknown>(
+  factory: <TData>(
+    columnHelper: Pick<ColumnHelper<Data>, 'accessor' | 'display'>,
+  ) => Array<Columns>,
   deps: React.DependencyList,
-) => Array<ColumnDef<Data>>
-export const useColumns: UseColumns = (factory, deps) =>
-  React.useMemo(() => factory(), [...deps])
+) =>
+  React.useMemo(() => {
+    const columnHelper = createColumnHelper<Data>()
+    return factory(columnHelper) as Array<ColumnDef<Data>>
+  }, [...deps])
 
 export interface DataGridProps<Data extends object>
   extends Omit<TableOptions<Data>, 'getCoreRowModel'>,
@@ -201,7 +208,7 @@ export const DataGrid = React.forwardRef(
     } = props
 
     const theme = useTheme()
-    const styleConfig = theme.components?.DataGrid
+    const styleConfig = theme.components?.SuiDataGrid
 
     const styles = useMultiStyleConfig('SuiDataGrid', props) as Record<
       string,
@@ -225,7 +232,7 @@ export const DataGrid = React.forwardRef(
               return column
             }),
         )
-      }, []),
+      }, [columns]),
       data,
       initialState: React.useMemo(() => initialState, []),
       defaultColumn,
@@ -524,22 +531,37 @@ export const useColumnVisibility = <Data extends object>(
   props: UseColumnVisibilityProps<Data>,
 ) => {
   const { columns, visibleColumns } = props
-  const [columnVisibility, setColumnVisibility] = React.useState({})
+  const initRef = React.useRef(false)
+
+  const getVisibleColumns = React.useCallback(() => {
+    return (
+      columns.reduce<Record<string, boolean>>((memo, column) => {
+        let id = column.id
+        if (
+          !id &&
+          'accessorKey' in column &&
+          typeof column.accessorKey === 'string'
+        ) {
+          id = column.accessorKey
+        }
+        if (id) {
+          memo[id] =
+            column.enableHiding !== false ? visibleColumns.includes(id) : true
+        }
+        return memo
+      }, {}) || {}
+    )
+  }, [columns, visibleColumns])
+
+  const [columnVisibility, setColumnVisibility] = React.useState(
+    getVisibleColumns(),
+  )
 
   React.useEffect(() => {
-    setColumnVisibility(() => {
-      return (
-        columns.reduce<Record<string, boolean>>((memo, column) => {
-          if (column.id) {
-            memo[column.id] =
-              column.enableHiding !== false
-                ? visibleColumns.includes(column.id)
-                : true
-          }
-          return memo
-        }, {}) || {}
-      )
-    })
+    if (!initRef.current) {
+      setColumnVisibility(getVisibleColumns)
+    }
+    initRef.current = true
   }, [visibleColumns])
 
   return columnVisibility

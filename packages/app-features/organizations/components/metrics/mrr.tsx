@@ -1,12 +1,11 @@
 import * as React from 'react'
 
-import { Card, CardBody } from '@saas-ui/react'
-
-import { LineChart, LineChartProps, ChartData } from '@saas-ui/charts'
+import { LineChart, ChartData } from '@saas-ui/charts'
 
 import { format, subDays, eachDayOfInterval } from 'date-fns'
 
 import { useIntl, IntlShape } from 'react-intl'
+import { MetricsCard } from './metrics-card'
 
 // @todo move this to Graphql mock
 const createData = ({
@@ -16,14 +15,14 @@ const createData = ({
   date?: Date
   intl: IntlShape
 }): ChartData[] => {
-  const start = subDays(date, 30)
+  const start = subDays(date, 14)
 
   const days = eachDayOfInterval({
     start,
     end: date,
   })
 
-  let r = 30000
+  let r = 20000
 
   return days.map((date) => {
     r = r += Math.random() * 1000
@@ -46,22 +45,22 @@ export const MRR = () => {
   const data = React.useMemo(() => createData({ intl }), [])
 
   return (
-    <Card title="Monthly recurring revenue">
-      <CardBody>
-        <LineChart
-          data={data}
-          name="Revenue"
-          strokeWidth="2"
-          tickFormatter={(value: number) =>
-            intl.formatNumber(value, {
-              currency: 'EUR',
-              style: 'currency',
-              maximumFractionDigits: 0,
-            })
-          }
-          height="290px"
-        />
-      </CardBody>
-    </Card>
+    <MetricsCard title="Monthly recurring revenue">
+      <LineChart
+        data={data}
+        name="Revenue"
+        strokeWidth="2"
+        variant="gradient"
+        gradientOpacity={0.2}
+        tickFormatter={(value: number) =>
+          intl.formatNumber(value, {
+            currency: 'EUR',
+            style: 'currency',
+            maximumFractionDigits: 0,
+          })
+        }
+        height="290px"
+      />
+    </MetricsCard>
   )
 }
