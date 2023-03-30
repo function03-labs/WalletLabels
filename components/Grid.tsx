@@ -121,7 +121,7 @@ export default function Grid(props) {
   }
 
   const updateLastSeen = React.useCallback(() => {
-    console.log("update last seen")
+    // if props has last_txs then return
 
     // for each row in the data, get row number and get address
     props.data.forEach(async (row, i) => {

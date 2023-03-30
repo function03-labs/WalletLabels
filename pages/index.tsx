@@ -5,11 +5,9 @@ import dynamic from "next/dynamic"
 import Head from "next/head"
 import Link from "next/link"
 import { useLabels } from "@/hooks/searchQuery"
-import axios from "axios"
 import { motion, useInView } from "framer-motion"
 import { Search } from "lucide-react"
 // import mongp from "mongodb"
-import { MongoClient } from "mongodb"
 import { useTheme } from "next-themes"
 import CountUp from "react-countup"
 import styles from "styles/index.module.scss"
@@ -32,8 +30,7 @@ export async function getStaticProps() {
 
   //replace api with mongodb
   let db = await connectToDatabase()
-  const labels = await db.db.collection("labels").find().limit(100).toArray()
-  // console.log("labels", labels, "versus res", await res.json())
+  const labels = await db.db.collection("labels").find().limit(1).toArray()
   // get addresses from response
   let response = labels
     // drop _id property
@@ -73,6 +70,7 @@ export default function IndexPage(props) {
   const { data, isLoading, isError, error } = useLabels(searchInput, props)
 
   console.log("data returned to table: ", isLoading, isError, error, data)
+  // const last_txs = props.data_txs ? props.data_txs : null
   const handleSearch = (e) => {
     e.preventDefault()
     //show value of input field
@@ -117,7 +115,7 @@ export default function IndexPage(props) {
         <div className="flex justify-center gap-4 sm:gap-4">
           <Link
             href={siteConfig.links.docs}
-            target="_blank"
+            target="/docs"
             rel="noreferrer"
             className={buttonVariants({ size: "lg" })}
           >

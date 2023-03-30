@@ -1,7 +1,14 @@
+// import middlewares from "@/pages/api/rateLimits"
+import middlewares from "@/lib/rateLimits"
 import { connectToDatabase } from "../../lib/mongodb"
 
 export default async function handler(req, res) {
-  console.log(req.query.query, " received")
+  try {
+    await Promise.all(middlewares.map((middleware) => middleware(req, res)))
+  } catch {
+    return res.status(429).send("Too Many Requests")
+  }
+
   let db
   //wrap db connection in try/catch
   try {
@@ -17,7 +24,7 @@ export default async function handler(req, res) {
   // get query from req
   //  if undefined set to empty
   if (req.query.query === undefined) {
-    res.status(400).json({ message: "Bad request" })``
+    res.status(400).json({ message: "Bad request" })
   }
   // if query is not defined, set to empty string
   // if query is defined, set to query
@@ -29,13 +36,15 @@ export default async function handler(req, res) {
   }
 
   if (req.query.limit === "" || req.query.limit === undefined) {
-    limit = 100
+    limit = 20
   } else {
     limit = Number(req.query.limit)
   }
 
-  console.log(req.query.query, req.query.limit, query, limit, " siss query")
-  console.log(limit, " limit")
+  // max limit is 100
+  if (limit > 100) {
+    limit = 100
+  }
 
   // limit to only GET method or throw error
   if (req.method !== "GET") {
@@ -84,7 +93,6 @@ export default async function handler(req, res) {
     return
   }
 
-  console.log("query returned")
   const response = {
     data: labels,
   }

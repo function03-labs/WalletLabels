@@ -3,7 +3,7 @@ import axios from "axios"
 import processPortfolioResponse from "./BalanceHistory"
 
 export default async function getHistory(addresses: string[]) {
-  const api = "ckey_24f3eaef4e164f638865e03ebc1"
+  const api = process.env.COVALENT_API
   const mapping: { [address: string]: any } = {}
 
   const fetchHistory = async (
@@ -12,10 +12,14 @@ export default async function getHistory(addresses: string[]) {
   ): Promise<any> => {
     try {
       const endpoint = `https://api.covalenthq.com/v1/eth-mainnet/address/${address}/portfolio_v2/?key=${api}`
-      const response = await axios.get(endpoint)
-      const data = response.data
+      // add timeout to avoid hanging
+      const response = await axios.get(endpoint, { timeout: 1000 })
+      const data = response.data ? response.data : null
+      if (data.error || !data) {
+        return []
+      }
       const history = processPortfolioResponse(data)
-      console.log(history.length, " succeeded for ", address)
+      // console.log(history.length, " succeeded for ", address)
       return history
     } catch (error) {
       if (retryCount <= 5) {
@@ -23,7 +27,7 @@ export default async function getHistory(addresses: string[]) {
         await new Promise((resolve) => setTimeout(resolve, delay))
         return fetchHistory(address, retryCount + 1)
       } else {
-        console.log("failed for ", address)
+        // console.log("failed for ", address)
         return []
       }
     }

@@ -1,0 +1,190 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Label API",
+    "description": "API for finding labels for addresses.\n\n This is the official documentation for the WalletLabels API, which is built on the OpenAPI 3.1 specification.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://walletlabels.xyz/api",
+      "description": "Production server"
+    }
+  ],
+
+  "tags": [
+    {
+      "name": "query",
+      "description": "Find labels for an address or addresses for a label name"
+    }
+  ],
+
+  "paths": {
+    "/query": {
+      "get": {
+        "tags": ["query"],
+        "summary": "Find labels for an address",
+        "description": "This endpoint allows you to retrieve labels for a given address.\n\n  You can specify an address or label query and a limit on the number of results returned. The endpoint uses a search index to search for matching labels, based on the query string. It is updated periodically, so it may take a few minutes for new labels to be searchable.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The address query or label name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of labels to return (default is 20, maximum is 100).",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of labels that match the given address query.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Label"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The HTTP method used is not allowed for this endpoint.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Method not allowed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Too Many Requests"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Label": {
+        "type": "object",
+        "properties": {
+          "address_name": {
+            "type": "string",
+            "description": "The name of the address for the label"
+          },
+          "address": {
+            "type": "string",
+            "description": "The address for the label"
+          },
+          "label_type": {
+            "type": "string",
+            "description": "The type of label (e.g. 'restaurant', 'park', etc.)"
+          },
+          "label_subtype": {
+            "type": "string",
+            "description": "The subtype of label (e.g. 'Mexican restaurant', 'skate park', etc.)"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Successful response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Label"
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request"
+      },
+      "401": {
+        "description": "Unauthorized"
+      },
+      "429": {
+        "description": "Too many requests"
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

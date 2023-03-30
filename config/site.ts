@@ -22,13 +22,13 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: "Documentation",
-      href: "#",
-      disabled: true,
+      href: "/docs",
+      disabled: false,
     },
   ],
   links: {
     twitter: "#",
     github: "#",
-    docs: "#",
+    docs: "/docs",
   },
 }

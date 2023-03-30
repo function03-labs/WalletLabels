@@ -4,10 +4,11 @@
 export default async function findLastTx(
   address: string
 ): Promise<{ timestamp: number; txHash: string } | string> {
-  const api = "ckey_24f3eaef4e164f638865e03ebc1"
+  const api = process.env.NEXT_PUBLIC_COVALENT2_API
+  console.log("api", process.env)
   const endpoint = `https://api.covalenthq.com/v1/eth-mainnet/address/${address}/transactions_v3/?key=${api}`
 
-  let retries = 3
+  let retries = 2
   while (retries > 0) {
     try {
       const response = await fetch(endpoint)
@@ -27,7 +28,7 @@ export default async function findLastTx(
       if (retries === 0) {
         return `Failed to fetch data for address ${address}: ${error}`
       }
-      await new Promise((resolve) => setTimeout(resolve, 1000)) // wait for 3 seconds before retrying
+      await new Promise((resolve) => setTimeout(resolve, 1000)) // wait for 1 sec before retrying
     }
   }
 }
