@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://walletlabels.xyz/api",
+      "url": "https://www.walletlabels.xyz/api",
       "description": "Production server"
     }
   ],

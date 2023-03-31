@@ -28,7 +28,7 @@ export const siteConfig: SiteConfig = {
   ],
   links: {
     twitter: "#",
-    github: "#",
+    github: "https://github.com/0xaaiden/WalletLabels",
     docs: "/docs",
   },
 }
