@@ -1,4 +1,3 @@
-// import middlewares from "@/pages/api/rateLimits"
 import middlewares from "@/lib/rateLimits"
 import { connectToDatabase } from "../../lib/mongodb"
 
@@ -36,7 +35,7 @@ export default async function handler(req, res) {
   }
 
   if (req.query.limit === "" || req.query.limit === undefined) {
-    limit = 20
+    limit = 40
   } else {
     limit = Number(req.query.limit)
   }
@@ -50,10 +49,6 @@ export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed" })
   }
-  // return labels
-  // limit to 5000 results based on query field in req
-  //search index address_name_text_label_type_text_label_subtype_text
-  //for query string
 
   //if query is empty don't search
   let labels = null
@@ -61,7 +56,6 @@ export default async function handler(req, res) {
     if (query === "") {
       labels = await db.collection("labels").find().limit(limit).toArray()
     } else {
-      // build atlas search query
       const atlasSearchQuery = [
         {
           $search: {
@@ -86,7 +80,17 @@ export default async function handler(req, res) {
         .collection("labels")
         .aggregate(atlasSearchQuery)
         .toArray()
+      // only keep "address_name", "label_type", "label_subtype", "address","label"
     }
+    labels = labels.map((label) => {
+      return {
+        address: label.address,
+        address_name: label.address_name,
+        label_type: label.label_type,
+        label_subtype: label.label_subtype,
+        label: label.label,
+      }
+    })
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: "Internal server error" })

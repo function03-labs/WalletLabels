@@ -150,11 +150,15 @@
           },
           "label_type": {
             "type": "string",
-            "description": "The type of label (e.g. 'restaurant', 'park', etc.)"
+            "description": "The type of label (e.g. token, exchange, etc.)"
           },
           "label_subtype": {
             "type": "string",
-            "description": "The subtype of label (e.g. 'Mexican restaurant', 'skate park', etc.)"
+            "description": "The subtype of label (e.g. token_contract_address, exchange_name, etc)"
+          },
+          "label": {
+            "type": "string",
+            "description": "The name of the label"
           }
         }
       }

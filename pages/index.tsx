@@ -5,7 +5,7 @@ import dynamic from "next/dynamic"
 import Head from "next/head"
 import Link from "next/link"
 import { useLabels } from "@/hooks/searchQuery"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
 import { Search } from "lucide-react"
 // import mongp from "mongodb"
 import { useTheme } from "next-themes"
@@ -17,39 +17,37 @@ import styles from "styles/index.module.scss"
 import { siteConfig } from "@/config/site"
 import getHistory from "@/lib/getHistory"
 import { Layout } from "@/components/layout"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { connectToDatabase } from "../lib/mongodb"
 
 const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 
 //feetch initial data from api
 export async function getStaticProps() {
-  // const res: any = await fetch(
-  //   "http://localhost:3000/api/query?query=&limit=10"
-  // )
-
-  //replace api with mongodb
   let db = await connectToDatabase()
-  const labels = await db.db.collection("labels").find().limit(1).toArray()
+  let labels = await db.db.collection("labels").find().limit(30).toArray()
+  labels = labels.map((label) => {
+    return {
+      address: label.address,
+      address_name: label.address_name,
+      label_type: label.label_type,
+      label_subtype: label.label_subtype,
+      label: label.label,
+    }
+  })
+
   // get addresses from response
   let response = labels
-    // drop _id property
-    .map((item) => {
-      delete item._id
-      return item
-    })
 
   // drop
   const addresses = response.map((item) => item.address)
 
   // get history
   const history = await getHistory(addresses)
-  // console.log("history is", history)
   //get data from fetch
   //return data
   // add a balanceHistory property to each item in the data array
   const data = response.map((item, index) => {
-    // console.log(history[item["address"]], "history")
     item.balanceHistory = JSON.stringify(history[item["address"]])
     return item
   })
@@ -69,13 +67,10 @@ export default function IndexPage(props) {
   const [searchInput, setSearchInput] = useState("")
   const { data, isLoading, isError, error } = useLabels(searchInput, props)
 
-  console.log("data returned to table: ", isLoading, isError, error, data)
   // const last_txs = props.data_txs ? props.data_txs : null
   const handleSearch = (e) => {
     e.preventDefault()
     //show value of input field
-    // get value of input from for
-    console.log(e.target.query.value)
     setSearchInput(e.target.query.value)
   }
 
@@ -217,7 +212,6 @@ function Footer() {
           Aiden
         </a>
       </div>
-      {/* <RaunoSignature /> */}
     </footer>
   )
 }

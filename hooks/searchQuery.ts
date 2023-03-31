@@ -5,8 +5,6 @@ import axios from "axios"
 function fetchFromDB(searchInput: string = "") {
   // fetch from mongodb atlas
 
-  //return first 5000 documents
-
   return axios.get(`./api/query?query=${searchInput}`).then((res) => res)
 }
 
@@ -19,7 +17,7 @@ export const useLabels = (searchInput: string, props: { data: string }) => {
         return props.data
       }
       const response = await fetchFromDB(searchInput)
-      console.log(response, " responsell")
+
       return response.data.data
     },
     //cache response for 5 mins

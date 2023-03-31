@@ -16,7 +16,7 @@ const applyMiddleware = (middleware) => (request, response) =>
   })
 
 const getRateLimitMiddlewares = ({
-  limit = 6,
+  limit = 8,
   windowMs = 60 * 1000,
   delayAfter = Math.round(10 / 2),
   delayMs = 500,
@@ -25,5 +25,5 @@ const getRateLimitMiddlewares = ({
   rateLimit({ keyGenerator: getIP, windowMs, max: limit }),
 ]
 
-const middlewares = getRateLimitMiddlewares({ limit: 6 }).map(applyMiddleware)
+const middlewares = getRateLimitMiddlewares({ limit: 8 }).map(applyMiddleware)
 export default middlewares

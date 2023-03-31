@@ -1,6 +1,3 @@
-import { time } from "console"
-import { create } from "domain"
-import path from "path"
 import React from "react"
 import DataEditor, {
   DataEditorProps,
@@ -17,14 +14,9 @@ import DataEditor, {
   UriCell,
 } from "@glideapps/glide-data-grid"
 import {
-  ButtonCell,
   ButtonCellType,
-  LinksCell,
-  LinksCellType,
-  SparklineCell,
   SparklineCellType,
   SpinnerCellType,
-  TagsCell,
   TagsCellType,
   useExtraCells,
 } from "@glideapps/glide-data-grid-cells"
