@@ -25,7 +25,7 @@ const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 //feetch initial data from api
 export async function getStaticProps() {
   let db = await connectToDatabase()
-  let labels = await db.db.collection("labels").find().limit(1).toArray()
+  let labels = await db.db.collection("labels").find().limit(30).toArray()
   labels = labels.map((label) => {
     return {
       address: label.address,
