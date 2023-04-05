@@ -39,7 +39,7 @@
     "directory": "saas-ui/paddle"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^2.0.14",
+    "@chakra-ui/utils": "^2.0.15",
     "@saas-ui/pro": "workspace:*"
   },
   "peerDependencies": {
