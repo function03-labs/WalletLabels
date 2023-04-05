@@ -35,8 +35,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^12.3.4",
-    "@svgr/webpack": "5.5.0"
+    "@next/eslint-plugin-next": "^13.2.4",
+    "@svgr/webpack": "^5.5.0"
   },
   "msw": {
     "workerDirectory": "public"
