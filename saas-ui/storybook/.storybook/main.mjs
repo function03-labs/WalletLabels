@@ -3,22 +3,25 @@ export default {
   stories: [
     {
       directory: '../../',
-      files: '*/!(node_modules)/**/*.@(mdx|stories.@(tsx))',
+      files: '*/!(node_modules)/**/*.@(mdx|stories.@(tsx|mdx))',
     },
   ],
+  features: {
+    previewMdx2: true,
+  },
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-toolbars',
     '@storybook/addon-viewport',
     '@storybook/addon-docs',
     '@storybook/addon-controls',
-    '@saas-ui/storybook-addon',
+    '@storybook/addon-links',
   ],
   staticDirs: ['./static'],
   typescript: {
     reactDocgen: false,
   },
-  refs: () => {
+  refs: (config, { configType }) => {
     const refs = {
       '@chakra-ui/react': {
         disable: true, // Make sure Chakra gets loaded last
@@ -30,13 +33,9 @@ export default {
       },
     }
     return {
-      '@saas-ui/pro': {
-        title: 'Saas UI Pro',
-        url: 'https://storybook.saas-ui.pro/',
-      },
       '@saas-ui/react': {
         title: 'Saas UI',
-        url: 'https://storybook.saas-ui.dev/',
+        url: 'https://storybook.saas-ui.dev',
       },
       ...refs,
     }
@@ -60,8 +59,5 @@ export default {
   },
   framework: {
     name: '@storybook/react-vite',
-  },
-  docs: {
-    autodocs: true,
   },
 }
