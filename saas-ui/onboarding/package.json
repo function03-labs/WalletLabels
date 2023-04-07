@@ -33,8 +33,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "^2.1.2",
-    "@chakra-ui/react-utils": "^2.0.12",
+    "@chakra-ui/anatomy": "^2.1.1",
+    "@chakra-ui/react-utils": "^2.0.11",
     "@chakra-ui/styled-system": "^2.8.0",
     "@chakra-ui/system": "^2.5.5",
     "@chakra-ui/theme-tools": "^2.0.17",
@@ -51,6 +51,6 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "tsup": "^6.5.0"
+    "tsup": "^6.7.0"
   }
 }
