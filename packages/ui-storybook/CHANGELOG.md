@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.5.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
 ## 0.4.3
 
 ### Patch Changes

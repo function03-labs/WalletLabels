@@ -21,7 +21,7 @@ import {
   OverflowMenu,
   useModals,
   useHotkeysShortcut,
-  useLocalStorage,
+  // useLocalStorage,
 } from '@saas-ui/react'
 import {
   Command,
@@ -36,6 +36,7 @@ import {
   useColumns,
   getDataGridFilter,
   Filter,
+  useLocalStorage,
 } from '@saas-ui-pro/react'
 
 import { ListPage, InlineSearch } from '@ui/lib'
@@ -166,7 +167,7 @@ export function ContactsListPage() {
         enableSorting: false,
       }),
     ],
-    [query.tag],
+    [],
   )
 
   const addPerson = () => {
@@ -225,6 +226,7 @@ export function ContactsListPage() {
     <ToolbarButton
       label="Add person"
       variant="solid"
+      size="md"
       colorScheme="primary"
       onClick={addPerson}
       tooltipProps={{
@@ -243,7 +245,13 @@ export function ContactsListPage() {
       <AddFilterButton />
       <Spacer />
       <Menu>
-        <MenuButton as={ToolbarButton} leftIcon={<FiSliders />} label="View" />
+        <MenuButton
+          as={ToolbarButton}
+          leftIcon={<FiSliders />}
+          label="View"
+          size="sm"
+          variant="tertiary"
+        />
         <Portal>
           <MenuList maxW="260px">
             <MenuProperty
@@ -258,7 +266,7 @@ export function ContactsListPage() {
   )
 
   const toolbar = (
-    <Toolbar>
+    <Toolbar size="sm">
       <InlineSearch
         placeholder="Search by name or email..."
         value={searchQuery}

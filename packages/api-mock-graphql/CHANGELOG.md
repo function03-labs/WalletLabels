@@ -1,5 +1,17 @@
 # @app/mock-graphql
 
+## 0.9.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
+### Patch Changes
+
+- Updated dependencies [24f7eee]
+  - @api/graphql-client@0.7.0
+  - @api/mocks@0.4.0
+
 ## 0.8.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @saas-ui/pro
 
+## 0.19.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
+### Patch Changes
+
+- Updated dependencies [24f7eee]
+  - @saas-ui-pro/onboarding@0.10.0
+
 ## 0.18.0
 
 ### Minor Changes

@@ -60,7 +60,9 @@
     "react-hook-form": "7.42.1",
     "react-inspector": "^6.0.1",
     "@mdx-js/react": "^2.1.5",
-    "react-element-to-jsx-string": "^15.0.0"
+    "react-element-to-jsx-string": "^15.0.0",
+    "@saas-ui/forms": "2.0.0-next.7",
+    "@saas-ui/react": "2.0.0-next.7"
   },
   "packageManager": "yarn@3.3.0"
 }

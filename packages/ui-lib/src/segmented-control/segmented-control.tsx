@@ -77,6 +77,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = (props) => {
       index={activeIndex}
       onChange={(index) => setValue(segments[index].id)}
       variant="segments"
+      size="sm"
     >
       <TabList>
         {segments?.map(({ id, label }) => (

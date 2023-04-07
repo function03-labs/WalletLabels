@@ -6,7 +6,6 @@ import Head from 'next/head'
 import '@fontsource/inter/variable.css'
 
 import { NProgressNextRouter } from '@saas-ui/react'
-import { NextRouterProvider } from '@app/nextjs'
 import { AppProvider } from '@app/features/core/providers/app'
 import { AppLayout } from '@app/features/core/layouts/app-layout'
 
@@ -26,33 +25,31 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <NextRouterProvider>
-        <AppProvider
-          authService={authService}
-          linkComponent={NextLink}
-          onError={(error, info) => console.error(error, info)}
-          tenant={tenant}
-          onTenantChange={(key) => {
-            router.push({
-              ...router,
-              query: {
-                ...router.query,
-                tenant: key,
-              },
-            })
-          }}
+      <AppProvider
+        authService={authService}
+        linkComponent={NextLink}
+        onError={(error, info) => console.error(error, info)}
+        tenant={tenant}
+        onTenantChange={(key) => {
+          router.push({
+            ...router,
+            query: {
+              ...router.query,
+              tenant: key,
+            },
+          })
+        }}
+      >
+        <AppLayout
+          publicRoutes={['/']}
+          isPublic={Component.isPublic}
+          layout={Component.layout}
+          sidebar={pageProps.sidebar}
         >
-          <AppLayout
-            publicRoutes={['/']}
-            isPublic={Component.isPublic}
-            layout={Component.layout}
-            sidebar={pageProps.sidebar}
-          >
-            <NProgressNextRouter router={router} />
-            <Component {...pageProps} />
-          </AppLayout>
-        </AppProvider>
-      </NextRouterProvider>
+          <NProgressNextRouter router={router} />
+          <Component {...pageProps} />
+        </AppLayout>
+      </AppProvider>
     </>
   )
 }

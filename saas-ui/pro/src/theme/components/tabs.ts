@@ -74,23 +74,24 @@ const sizes = {
   }),
   sm: definePartsStyle({
     tab: {
-      h: 8,
+      fontSize: 'sm',
+      h: 7,
       py: 0,
-      px: 4,
+      px: 2,
     },
   }),
   md: definePartsStyle({
     tab: {
-      h: 10,
+      h: 8,
       py: 0,
       px: 4,
     },
   }),
   lg: definePartsStyle({
     tab: {
-      h: 12,
+      h: 10,
       py: 0,
-      px: 6,
+      px: 4,
     },
   }),
 }

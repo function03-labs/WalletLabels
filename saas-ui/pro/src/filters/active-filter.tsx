@@ -364,12 +364,14 @@ const ActiveFilterButton = forwardRef<ButtonProps, 'div'>((props, ref) => {
 
 ActiveFilterButton.displayName = 'ActiveFilterButton'
 
-export interface ActiveFiltersListProps extends WrapProps {
+export interface ActiveFiltersListProps
+  extends WrapProps,
+    ThemingProps<'SuiActiveFiltersList'> {
   formatValue?(value: FilterValue): string
 }
 
 export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
-  const { formatValue, children, ...rest } = props
+  const { formatValue, children, size, ...rest } = props
   const {
     activeFilters,
     getOperators,
@@ -400,6 +402,7 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
           <WrapItem key={key}>
             <ActiveFilter
               id={id}
+              size={size}
               icon={filter?.icon}
               label={filter?.label}
               placeholder={filter?.label}

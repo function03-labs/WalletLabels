@@ -1,5 +1,16 @@
 # saas-ui-storybook
 
+## 17.0.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
+### Patch Changes
+
+- Updated dependencies [24f7eee]
+  - @saas-ui-pro/react@0.19.0
+
 ## 16.0.0
 
 ### Patch Changes

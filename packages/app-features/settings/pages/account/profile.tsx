@@ -20,11 +20,9 @@ import {
   Tooltip,
 } from '@chakra-ui/react'
 
-import { Form, FormLayout, useSnackbar } from '@saas-ui/react'
-
+import { FormLayout, useSnackbar } from '@saas-ui/react'
 import { Section } from '@saas-ui-pro/react'
-
-import { SettingsPage } from '@ui/lib'
+import { Form, SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { getCurrentUser, updateUser, User } from '@api/client'
 

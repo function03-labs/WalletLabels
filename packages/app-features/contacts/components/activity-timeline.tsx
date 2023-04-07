@@ -17,7 +17,6 @@ import { EditorField, StatusBadge } from '@ui/lib'
 
 import { Toolbar, ToolbarButton, MotionBox, Command } from '@saas-ui-pro/react'
 import {
-  Form,
   FormLayout,
   Link,
   LinkProps,
@@ -40,6 +39,8 @@ import {
 import { User } from '@saas-ui/auth'
 import { FiPaperclip } from 'react-icons/fi'
 import { AnimatePresence } from 'framer-motion'
+
+import { Form } from '@ui/lib'
 
 type Activity<Type, TData extends object, TUser = Partial<User>> = {
   id: string

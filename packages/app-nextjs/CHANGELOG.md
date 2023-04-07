@@ -1,5 +1,12 @@
 # @app/nextjs
 
+## 0.3.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+- 24f7eee: Removed router package, useActivePath moved to @app/nextjs
+
 ## 0.2.4
 
 ### Patch Changes

@@ -7,13 +7,11 @@ import {
   ThemingProps,
   omitThemingProps,
   useMultiStyleConfig,
-  SystemProps,
   SystemStyleObject,
   createStylesContext,
 } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
 import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
-import { getChildOfType } from '@saas-ui/react-utils'
 
 import { ErrorBoundary } from '../app/error-boundary'
 

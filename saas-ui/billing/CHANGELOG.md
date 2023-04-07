@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.10.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
 ## 0.9.0
 
 ### Minor Changes

@@ -38,7 +38,7 @@ export const IntroTour = () => {
     {
       target: '.pre-order',
       title: 'Share the love ❤️',
-      content: 'Pre-order now and get 50% discount.',
+      content: 'Pre-order Saas UI Pro now.',
       primaryAction: 'Complete',
     },
   ]

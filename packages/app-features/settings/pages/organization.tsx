@@ -5,8 +5,8 @@ const schema = z.object({
 })
 import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
 import { Section, useTenant } from '@saas-ui-pro/react'
-import { Form, FormLayout, useSnackbar } from '@saas-ui/react'
-import { SettingsPage } from '@ui/lib'
+import { FormLayout, useSnackbar } from '@saas-ui/react'
+import { Form, SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 interface OrganizationDetailsProps {

@@ -8,13 +8,14 @@ import {
 } from '@chakra-ui/react'
 import {
   FieldValues,
-  Form,
   SubmitButton,
   SubmitHandler,
   UseFormReturn,
   DeepPartial,
   WatchObserver,
 } from '@saas-ui/react'
+
+import { Form } from '@ui/lib'
 
 export interface OnboardingStepProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -65,7 +66,7 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
         {description}
       </Text>
 
-      <Form<TFieldValues>
+      <Form
         formRef={formRef}
         defaultValues={defaultValues}
         onSubmit={onSubmit}

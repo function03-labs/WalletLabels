@@ -1,5 +1,16 @@
 # @api/client
 
+## 0.3.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
+### Patch Changes
+
+- Updated dependencies [24f7eee]
+  - @api/mocks@0.4.0
+
 ## 0.2.1
 
 ### Patch Changes

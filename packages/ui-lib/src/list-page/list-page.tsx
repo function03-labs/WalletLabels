@@ -261,7 +261,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
             bg: 'gray.700',
           }}
         />
-        <ActiveFiltersList>
+        <ActiveFiltersList size="sm">
           <Spacer />
           <ResetFilters>Clear all</ResetFilters>
         </ActiveFiltersList>

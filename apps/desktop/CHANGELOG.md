@@ -1,5 +1,22 @@
 # electron-app
 
+## 0.12.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
+### Patch Changes
+
+- Updated dependencies [24f7eee]
+- Updated dependencies [24f7eee]
+  - @app/features@9.0.0
+  - @saas-ui-pro/feature-flags@0.11.0
+  - @saas-ui-pro/onboarding@0.10.0
+  - @ui/theme@0.4.0
+  - @saas-ui-pro/billing@0.10.0
+  - @saas-ui-pro/react@0.19.0
+
 ## 0.11.0
 
 ### Minor Changes

@@ -1,11 +1,11 @@
-import * as React from 'react'
-
+import { z } from 'zod'
 import { Section, useTenant } from '@saas-ui-pro/react'
 
 import { Card, CardBody, Stack, Text } from '@chakra-ui/react'
 
-import { Field, Form, FormLayout, SubmitButton } from '@saas-ui/react'
-import { LinkButton, SettingsPage } from '@ui/lib'
+import { Field, FormLayout, SubmitButton } from '@saas-ui/react'
+import { LinkButton, SettingsPage, Form } from '@ui/lib'
+
 import { usePath } from '@app/features/core/hooks/use-path'
 
 import { useBilling } from '@saas-ui-pro/billing'
@@ -64,7 +64,10 @@ function BillingEmail() {
     >
       <Card>
         <CardBody>
-          <Form onSubmit={() => null}>
+          <Form
+            schema={z.object({ billing: z.object({ email: z.string() }) })}
+            onSubmit={() => null}
+          >
             <FormLayout>
               <Field name="billing.email" label="Email address" type="email" />
               <SubmitButton>Update</SubmitButton>

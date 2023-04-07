@@ -1,5 +1,12 @@
-import { Container, Stack, Text } from '@chakra-ui/react'
-import { Button, Card, CardBody, Field, Form } from '@saas-ui/react'
+import {
+  Button,
+  Card,
+  CardBody,
+  Container,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
+import { Field, Form } from '@saas-ui/react'
 import { Meta, Story } from '@storybook/react'
 import React from 'react'
 import {
@@ -64,7 +71,7 @@ const Template: Story<TourProps> = (args) => {
             <Text>Step 1 of 3</Text>
             <TourDialogActions>
               <TourDismissButton />
-              <TourNextButton label="Start" />
+              <TourNextButton>Start</TourNextButton>
             </TourDialogActions>
           </TourDialogFooter>
         </TourDialog>
@@ -88,7 +95,7 @@ const Template: Story<TourProps> = (args) => {
           <TourDialogFooter>
             <Text>Step 3 of 3</Text>
             <TourDialogActions>
-              <TourNextButton label="Finish" />
+              <TourNextButton>Finish</TourNextButton>
             </TourDialogActions>
           </TourDialogFooter>
         </TourDialog>
@@ -169,7 +176,7 @@ export const WithModal = () => {
             <Text>Step 1 of 3</Text>
             <TourDialogActions>
               <TourDismissButton />
-              <TourNextButton label="Start" />
+              <TourNextButton>Start</TourNextButton>
             </TourDialogActions>
           </TourDialogFooter>
         </TourDialog>
@@ -193,7 +200,7 @@ export const WithModal = () => {
           <TourDialogFooter>
             <Text>Step 3 of 3</Text>
             <TourDialogActions>
-              <TourNextButton label="Finish" />
+              <TourNextButton>Finish</TourNextButton>
             </TourDialogActions>
           </TourDialogFooter>
         </TourDialog>
@@ -226,7 +233,7 @@ export const WithNoCloseOnBlur = () => {
             <Text>Step 1 of 3</Text>
             <TourDialogActions>
               <TourDismissButton />
-              <TourNextButton label="Start" />
+              <TourNextButton>Start</TourNextButton>
             </TourDialogActions>
           </TourDialogFooter>
         </TourDialog>
@@ -250,7 +257,7 @@ export const WithNoCloseOnBlur = () => {
           <TourDialogFooter>
             <Text>Step 3 of 3</Text>
             <TourDialogActions>
-              <TourNextButton label="Finish" />
+              <TourNextButton>Finish</TourNextButton>
             </TourDialogActions>
           </TourDialogFooter>
         </TourDialog>

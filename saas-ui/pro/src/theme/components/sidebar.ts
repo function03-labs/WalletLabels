@@ -14,6 +14,9 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       '&, & *, & *::before, & &::after': {
         borderColor: 'sidebar-border-color',
       },
+      _dark: {
+        bg,
+      },
     },
   }
 }

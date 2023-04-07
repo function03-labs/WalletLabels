@@ -1,7 +1,7 @@
 {
   "name": "saas-ui-storybook-pro",
   "private": true,
-  "version": "16.0.0",
+  "version": "17.0.0",
   "scripts": {
     "dev": "sb dev -p 6007",
     "build": "sb build"

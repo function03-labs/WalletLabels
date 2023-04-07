@@ -22,7 +22,7 @@ export function InboxListPage() {
 
   const toolbar = (
     <Toolbar>
-      <ToolbarButton icon={<FiFilter />} label="Filter" />
+      <ToolbarButton icon={<FiFilter />} label="Filter" variant="tertiary" />
     </Toolbar>
   )
 

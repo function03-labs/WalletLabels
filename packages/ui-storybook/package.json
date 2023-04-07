@@ -1,7 +1,7 @@
 {
   "name": "@ui/storybook",
   "type": "module",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build:storybook": "storybook build"

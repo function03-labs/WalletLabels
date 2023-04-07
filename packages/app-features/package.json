@@ -1,6 +1,6 @@
 {
   "name": "@app/features",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "main": "src/index.ts",
   "dependencies": {
     "@api/client": "workspace:*",
@@ -8,7 +8,7 @@
     "@app/i18n": "workspace:*",
     "@react-hookz/web": "^15.1.0",
     "@saas-ui/charts": "^0.8.0-next.0",
-    "@saas-ui/forms": "^2.0.0-next.5",
+    "@saas-ui/forms": "^2.0.0-next.7",
     "@tanstack/react-query": "^4.28.0",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",

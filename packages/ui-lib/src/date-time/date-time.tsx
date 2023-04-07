@@ -4,7 +4,7 @@ import {
   useIntl,
 } from '@app/i18n'
 import { Box, BoxProps, Tooltip } from '@chakra-ui/react'
-import { useLocalStorage } from './use-local-storage'
+import { useLocalStorage } from '@saas-ui/react'
 
 export interface DateTimeSinceProps extends BoxProps {
   date: Date

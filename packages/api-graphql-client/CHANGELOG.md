@@ -1,5 +1,16 @@
 # @app/graphql
 
+## 0.7.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
+### Patch Changes
+
+- Updated dependencies [24f7eee]
+  - @app/config@0.3.0
+
 ## 0.6.0
 
 ### Minor Changes

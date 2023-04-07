@@ -60,7 +60,7 @@ export function DashboardPage() {
       />
       <ToolbarButton
         as="a"
-        href="https://appulse.gumroad.com/l/saas-ui-pro-pre-order"
+        href="https://saas-ui.lemonsqueezy.com/checkout"
         label="Pre-order"
         colorScheme="primary"
         variant="solid"

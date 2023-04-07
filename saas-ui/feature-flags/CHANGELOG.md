@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.11.0
+
+### Minor Changes
+
+- 24f7eee: Upgrade packages
+
 ## 0.10.1
 
 ### Patch Changes
