@@ -1,5 +1,28 @@
 # @saas-ui/pro
 
+## 0.18.0
+
+### Minor Changes
+
+- fa9ed9f: Increased annotated section variant header spacing on large screens.
+- fa9ed9f: Updated Page settings variant default width to container.xl
+- 6ac2537: BulkActions now use floating banner variant by default.
+- 1558662: Renamed @saas-ui/features to @saas-ui/feature-flags
+- dbd06ff: MenuListFilter renamed to MenuInput
+- dbd06ff: Renamed PageSidebar to Aside
+- 6ac2537: FiltersMenu now accepts async items, allowing you to fetch filter items asynchronous
+
+### Patch Changes
+
+- 6ac2537: onBeforeEnableFilter no longer swallows thrown errors
+- 6ac2537: ActiveFiltersList now accepts children
+- 6ac2537: Added new ResetFilters button
+- 6ac2537: useColumns now gives you a column helper (createColumnHelper) property for better typesafety
+- dbd06ff: useResize now returns the current width
+- 6ac2537: Added new floating banner variant.
+- 6ac2537: DataGrid selected styles are now more subtle.
+- 6ac2537: FiltersProvider can now be controlled using the activeFilters prop
+
 ## 0.17.1
 
 ### Patch Changes

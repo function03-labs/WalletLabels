@@ -1,5 +1,40 @@
 # nextjs-app
 
+## 0.12.0
+
+### Minor Changes
+
+- 6ac2537: Update to Next.js 13.2
+
+### Patch Changes
+
+- Updated dependencies [29e18b8]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [fa9ed9f]
+- Updated dependencies [1de98df]
+- Updated dependencies [6ac2537]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [fa9ed9f]
+- Updated dependencies [6ac2537]
+- Updated dependencies [1558662]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [6ac2537]
+- Updated dependencies [1de98df]
+  - @app/features@8.0.0
+  - @saas-ui/pro@0.18.0
+  - @ui/lib@0.2.0
+  - @api/client@0.2.1
+  - @saas-ui/paddle@0.7.6
+  - @ui/theme@0.3.11
+
 ## 0.11.0
 
 ### Minor Changes

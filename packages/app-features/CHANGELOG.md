@@ -1,5 +1,39 @@
 # @app/features
 
+## 8.0.0
+
+### Minor Changes
+
+- 29e18b8: Add conversation mocks to inbox
+- 6ac2537: Added sortable tags to the sidebar.
+- 1de98df: Settings and Support cards subtitle prop renamed to description.
+- 6ac2537: BulkActions now use floating banner variant by default.
+- 1de98df: Updated all settings components to use new Card and StructuredList components.
+
+### Patch Changes
+
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [fa9ed9f]
+- Updated dependencies [6ac2537]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [fa9ed9f]
+- Updated dependencies [6ac2537]
+- Updated dependencies [1558662]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [6ac2537]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [dbd06ff]
+- Updated dependencies [6ac2537]
+  - @saas-ui/pro@0.18.0
+  - @ui/lib@0.2.0
+  - @api/client@0.2.1
+  - @ui/theme@0.3.11
+
 ## 7.0.0
 
 ### Minor Changes

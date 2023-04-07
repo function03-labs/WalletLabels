@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.3.0
+
+### Minor Changes
+
+- 29e18b8: Add conversation mocks to inbox
+
 ## 0.2.0
 
 ### Minor Changes
