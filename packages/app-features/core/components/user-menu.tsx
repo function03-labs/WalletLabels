@@ -8,7 +8,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 
-import { useTenant } from '@saas-ui/pro'
+import { useTenant } from '@saas-ui-pro/react'
 import { useAuth } from '@saas-ui/auth'
 import {
   MenuItem,
@@ -17,7 +17,7 @@ import {
   PersonaAvatar,
   useHotkeysShortcut,
 } from '@saas-ui/react'
-import { Has } from '@saas-ui/feature-flags'
+import { Has } from '@saas-ui-pro/feature-flags'
 
 import { HotkeysWindow } from './hotkeys-window'
 import { usePath } from '../hooks/use-path'

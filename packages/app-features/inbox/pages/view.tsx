@@ -1,5 +1,5 @@
 import { useBreakpointValue } from '@chakra-ui/react'
-import { BackButton, Page, PageProps, useSplitPage } from '@saas-ui/pro'
+import { BackButton, Page, PageProps, useSplitPage } from '@saas-ui-pro/react'
 
 export function InboxViewPage(props: PageProps) {
   const { onClose } = useSplitPage()

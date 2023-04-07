@@ -1,6 +1,7 @@
 import { ColorModeScript } from '@chakra-ui/react'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 import { theme } from '@ui/theme'
+import { LemonSqueezyScript } from '../lib/lemonsqueezy'
 
 export default class Document extends NextDocument {
   render() {
@@ -28,6 +29,7 @@ export default class Document extends NextDocument {
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <LemonSqueezyScript />
           <Main />
           <NextScript />
         </body>

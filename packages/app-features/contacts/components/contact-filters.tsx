@@ -9,7 +9,7 @@ import {
   FilterMenu,
   FilterMenuProps,
   useFiltersContext,
-} from '@saas-ui/pro'
+} from '@saas-ui-pro/react'
 import { useHotkeysShortcut } from '@saas-ui/react'
 
 import { startOfDay, subDays, formatDistanceToNowStrict } from 'date-fns'

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { useTenant } from '@saas-ui/pro'
+import { useTenant } from '@saas-ui-pro/react'
 import { Field, FormLayout, useStepperContext } from '@saas-ui/react'
 import { inviteToOrganization } from '@api/client'
 import { OnboardingStep } from './onboarding-step'

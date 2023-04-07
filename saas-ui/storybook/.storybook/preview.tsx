@@ -5,7 +5,7 @@ import * as React from 'react'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 import { SaasProvider } from '@saas-ui/react'
-import { theme as proTheme } from '@saas-ui/pro'
+import { theme as proTheme } from '@saas-ui-pro/react'
 
 import '@fontsource/inter/variable.css'
 

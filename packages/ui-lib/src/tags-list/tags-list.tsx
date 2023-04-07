@@ -22,7 +22,7 @@ import {
   UseControllableStateProps,
   useDisclosure,
 } from '@chakra-ui/react'
-import { MenuInput, useSearchQuery } from '@saas-ui/pro'
+import { MenuInput, useSearchQuery } from '@saas-ui-pro/react'
 import { FiPlus } from 'react-icons/fi'
 
 export interface TagsListProps extends HTMLChakraProps<'div'> {

@@ -1,4 +1,4 @@
-import { theme } from '@saas-ui/pro'
+import { theme } from '@saas-ui-pro/react'
 
 export default {
   colors: {

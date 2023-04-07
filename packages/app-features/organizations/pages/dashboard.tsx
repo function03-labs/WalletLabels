@@ -9,7 +9,7 @@ import {
   ToolbarButton,
   useTenant,
   PageBody,
-} from '@saas-ui/pro'
+} from '@saas-ui-pro/react'
 
 import { IntroTour } from '../components/intro-tour'
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { useRouter } from 'next/router'
-import { useTenant } from '@saas-ui/pro'
+import { useTenant } from '@saas-ui-pro/react'
 import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { getCurrentUser } from '@api/client'

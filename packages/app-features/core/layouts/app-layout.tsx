@@ -4,8 +4,8 @@ import { Flex, FlexProps, Container } from '@chakra-ui/react'
 
 import { AppShell, AppShellProps, HotkeysListOptions } from '@saas-ui/react'
 import { Auth, AuthProps } from '@saas-ui/auth'
-import { useLocation } from '@saas-ui/router'
-import { BillingProvider } from '@saas-ui/billing'
+import { useLocation } from '@app/nextjs'
+import { BillingProvider } from '@saas-ui-pro/billing'
 
 import { authType, authProviders, authPaths } from '@app/config/auth'
 import { settingsHotkeys, fullscreenHotkeys } from '@app/config/hotkeys'
@@ -44,7 +44,6 @@ export const Authenticated: React.FC<AuthProps> = ({ children, ...rest }) => {
           <Auth
             title={title}
             providers={authProviders}
-            onError={(err) => console.error(err)}
             view={view}
             type={authType}
             signupLink={<Link href="/signup">Sign up</Link>}

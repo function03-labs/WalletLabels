@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { PropertyList, Property, Persona, OverflowMenu } from '@saas-ui/react'
 
-import { Aside, AsideHeader, AsideProps } from '@saas-ui/pro'
+import { Aside, AsideHeader, AsideProps } from '@saas-ui-pro/react'
 
 import type { Contact } from '@api/client'
 import {

@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 
-import { BackButton, Page } from '@saas-ui/pro'
+import { BackButton, Page } from '@saas-ui-pro/react'
 
 import { useAuth } from '@saas-ui/auth'
 import { Link } from '@saas-ui/react'

@@ -20,14 +20,14 @@ import {
   FiSearch,
 } from 'react-icons/fi'
 
-import { Command, Resizer, ResizeHandle, ResizeHandler } from '@saas-ui/pro'
-
 import {
-  useActivePath,
-  useLocation,
-  useNavigate,
-  useParams,
-} from '@saas-ui/router'
+  Command,
+  Resizer,
+  ResizeHandle,
+  ResizeHandler,
+} from '@saas-ui-pro/react'
+
+import { useActivePath } from '@app/nextjs'
 
 import {
   MenuItem,
@@ -61,6 +61,7 @@ import { usePath } from '@app/features/core/hooks/use-path'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getTags, Tags, User } from '@api/client'
 import { useCurrentUser } from '../hooks/use-current-user'
+import { useRouter } from 'next/router'
 
 export interface AppSidebarProps extends SidebarProps {}
 
@@ -187,13 +188,13 @@ interface AppSidebarlink extends NavItemProps {
 
 const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
   const { href, label, hotkey, ...rest } = props
-  const navigate = useNavigate()
+  const { push } = useRouter()
   const isActive = useActivePath(href)
 
   const command = useHotkeysShortcut(
     hotkey,
     () => {
-      navigate(href)
+      push(href)
     },
     [href],
   )
@@ -216,7 +217,7 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
 
 const AppSidebarTags = ({ user }: { user: User }) => {
   const queryClient = useQueryClient()
-  const params = useParams()
+  const { query } = useRouter()
 
   const userTags = user.workspace?.tags || []
 
@@ -285,7 +286,7 @@ const AppSidebarTags = ({ user }: { user: User }) => {
           id={tag.id}
           my="0"
           href={`${basePath}/${tag.id}`}
-          isActive={params.tag === tag.id}
+          isActive={query.tag === tag.id}
           icon={
             <Badge
               bg={tag.color}

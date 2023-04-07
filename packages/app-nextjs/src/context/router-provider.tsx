@@ -2,12 +2,6 @@ import * as React from 'react'
 
 import { useRouter } from 'next/router'
 
-import { RouterProvider, RouterContextValue } from '@saas-ui/router'
-
-interface NextRouterProviderProps {
-  children: React.ReactNode
-}
-
 const parseAsPath = (asPath: string) => {
   const [, pathname, search, hash] =
     asPath.match(/([^#?\s]+)(\??[^#]*)?(#.*)?$/) || []
@@ -15,7 +9,42 @@ const parseAsPath = (asPath: string) => {
   return { pathname, search, hash }
 }
 
-export function NextRouterProvider({ children }: NextRouterProviderProps) {
+/**
+ * Returns the current router query
+ * @returns ParsedUrlQuery
+ */
+export const useParams = () => {
+  const router = useRouter()
+  return router.query
+}
+
+export interface UseActivePathOptions {
+  /**
+   * Set to false to match the first parth of the path.
+   * eg: /contacts will match /contacts/people
+   */
+  end?: boolean
+}
+
+/**
+ * Matches the given path to the current active path.
+ * @param path string
+ * @param options UseActivePathOptions
+ * @returns boolean
+ */
+export function useActivePath(
+  path: string,
+  options: UseActivePathOptions = {},
+) {
+  const { end = true } = options
+  const location = useLocation()
+  return !!React.useMemo(
+    () => location?.pathname.match(new RegExp(`${path}${end ? '$' : ''}`)),
+    [location?.pathname, path, options],
+  )
+}
+
+export const useLocation = () => {
   const router = useRouter()
 
   const location = React.useMemo(
@@ -23,22 +52,5 @@ export function NextRouterProvider({ children }: NextRouterProviderProps) {
     [router.asPath],
   )
 
-  const context: RouterContextValue = {
-    navigate: React.useCallback(
-      (path, options) => {
-        if (options?.replace) {
-          router.replace(path)
-        } else {
-          router.push(path)
-        }
-      },
-      [router],
-    ),
-    back: router.back,
-    params: router.query,
-    location,
-    route: router.route,
-  }
-
-  return <RouterProvider value={context}>{children}</RouterProvider>
+  return location
 }

@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from 'react'
 import slug from 'slug'
 import { InputLeftElement, Text } from '@chakra-ui/react'
-import { useTenancy } from '@saas-ui/pro'
+import { useTenancy } from '@saas-ui-pro/react'
 import {
   Field,
   FormLayout,

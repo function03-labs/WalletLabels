@@ -1,7 +1,7 @@
 import { VStack, StackDivider, useBreakpointValue } from '@chakra-ui/react'
 import { usePath } from '@app/features/core/hooks/use-path'
 
-import { BackButton, Page, PageProps, Toolbar } from '@saas-ui/pro'
+import { BackButton, Page, PageProps, Toolbar } from '@saas-ui-pro/react'
 
 interface SettingsPageProps extends PageProps {}
 

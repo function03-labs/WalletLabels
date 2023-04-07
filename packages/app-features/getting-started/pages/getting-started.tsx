@@ -3,18 +3,18 @@ import { z } from 'zod'
 import { Container, Text, ModalFooter, useDisclosure } from '@chakra-ui/react'
 
 import { Field, FormLayout, SubmitButton, FormDialog } from '@saas-ui/react'
-import { Page } from '@saas-ui/pro'
+import { Page } from '@saas-ui-pro/react'
 
-import { useNavigate } from '@saas-ui/router'
 import { useMutation } from '@tanstack/react-query'
 import { createOrganization } from '@api/client'
+import { useRouter } from 'next/router'
 
 const schema = z.object({
   name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
 })
 
 export function GettingStartedPage(props: any) {
-  const navigate = useNavigate()
+  const { push } = useRouter()
   const { mutateAsync } = useMutation({
     mutationFn: createOrganization,
   })
@@ -40,11 +40,9 @@ export function GettingStartedPage(props: any) {
           }}
           footer={
             <ModalFooter>
-              <SubmitButton
-                label="Create organization"
-                size="md"
-                width="full"
-              />
+              <SubmitButton size="md" width="full">
+                Create organization
+              </SubmitButton>
             </ModalFooter>
           }
           onSubmit={(data) => {
@@ -58,7 +56,7 @@ export function GettingStartedPage(props: any) {
                   throw new Error('Could not create a new organization.')
                 }
               })
-              .then((slug) => navigate(`/app/${slug}`))
+              .then((slug) => push(`/app/${slug}`))
           }}
           {...disclosure}
         >

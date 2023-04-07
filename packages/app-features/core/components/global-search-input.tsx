@@ -2,7 +2,7 @@ import * as React from 'react'
 import { forwardRef, useMergeRefs } from '@chakra-ui/react'
 
 import { useHotkeysShortcut } from '@saas-ui/react'
-import { Command } from '@saas-ui/pro'
+import { Command } from '@saas-ui-pro/react'
 
 import { SearchInput } from '@ui/lib'
 

@@ -21,7 +21,7 @@ const [SplitPageProvider, useSplitPage] = createContext<UseDisclosureReturn>({
 
 export { useSplitPage }
 
-export interface SplitPageProps extends PageProps {
+export interface SplitPageProps extends Omit<PageProps, 'content'> {
   content?: React.ReactNode
   defaultIsOpen?: boolean
   isOpen?: boolean

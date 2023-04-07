@@ -15,7 +15,7 @@ import {
 import { ErrorBoundary, LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { FiSidebar } from 'react-icons/fi'
 
-import { Page, Toolbar, ToolbarButton } from '@saas-ui/pro'
+import { Page, Toolbar, ToolbarButton } from '@saas-ui-pro/react'
 import { Breadcrumbs } from '@ui/lib'
 
 import { useCurrentUser } from '@app/features/core/hooks/use-current-user'

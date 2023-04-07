@@ -3,12 +3,12 @@ import * as React from 'react'
 import { parseISO } from 'date-fns'
 
 import { useAuth } from '@saas-ui/auth'
-import { useTenant } from '@saas-ui/pro'
+import { useTenant } from '@saas-ui-pro/react'
 
-import { BillingStatus } from '@saas-ui/billing'
+import { BillingStatus } from '@saas-ui-pro/billing'
 import { plans } from '@app/config/billing'
 
-import { useFeatures } from '@saas-ui/feature-flags'
+import { useFeatures } from '@saas-ui-pro/feature-flags'
 import { useQuery } from '@tanstack/react-query'
 import { getCurrentUser, getOrganization, getSubscription } from '@api/client'
 

@@ -21,7 +21,7 @@ import {
   Option,
   useModals,
 } from '@saas-ui/react'
-import { useSearchQuery } from '@saas-ui/pro'
+import { useSearchQuery } from '@saas-ui-pro/react'
 
 import {
   StructuredList,

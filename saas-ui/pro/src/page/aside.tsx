@@ -76,11 +76,15 @@ export const AsideBody: React.FC<AsideBodyProps> = (props) => {
 AsideBody.displayName = 'AsideBody'
 
 export interface AsideContainerProps
-  extends Omit<HTMLMotionProps<'div'>, 'color' | 'transition' | 'onResize'>,
+  extends Omit<
+      HTMLMotionProps<'div'>,
+      'color' | 'transition' | 'onResize' | 'children'
+    >,
     Omit<ChakraProps, 'css'>,
     Omit<ResizeOptions, 'position'>,
     ThemingProps<'SuiAside'> {
   isOpen?: boolean
+  children?: React.ReactNode
 }
 
 export const AsideContainer: React.FC<AsideContainerProps> = (props) => {
@@ -140,7 +144,9 @@ AsideContainer.displayName = 'AsideContainer'
 
 export interface AsideProps
   extends AsideOptions,
-    Omit<AsideContainerProps, 'title'> {}
+    Omit<AsideContainerProps, 'title' | 'children'> {
+  children?: React.ReactNode
+}
 
 export const Aside: React.FC<AsideProps> = (props) => {
   const { isLoading, skeleton, errorComponent, children, ...rest } = props

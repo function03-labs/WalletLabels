@@ -6,7 +6,7 @@ import {
   useModals,
   useSnackbar,
 } from '@saas-ui/react'
-import { Section } from '@saas-ui/pro'
+import { Section } from '@saas-ui-pro/react'
 
 import { FiChevronRight } from 'react-icons/fi'
 

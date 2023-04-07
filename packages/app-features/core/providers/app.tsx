@@ -7,8 +7,8 @@ import { IconContext } from 'react-icons'
 import { SaasProvider, ModalsProvider, Form } from '@saas-ui/react'
 import { AuthProvider, AuthProviderProps } from '@saas-ui/auth'
 
-import { TenancyProvider, Tenant } from '@saas-ui/pro'
-import { FeaturesProvider } from '@saas-ui/feature-flags'
+import { TenancyProvider, Tenant } from '@saas-ui-pro/react'
+import { FeaturesProvider } from '@saas-ui-pro/feature-flags'
 
 import { I18nProvider } from '@app/i18n'
 

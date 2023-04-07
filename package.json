@@ -22,7 +22,7 @@
     "lint": "yarn run eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:staged": "lint-staged --allow-empty --config lint-staged.config.js",
     "typecheck": "tsc --noEmit",
-    "saas-ui:build": "turbo run build --scope='@saas-ui/*' --concurrency=5 --no-deps --continue && yarn build:tokens",
+    "saas-ui:build": "turbo run build --scope='@saas-ui-pro/*' --concurrency=5 --no-deps --continue && yarn build:tokens",
     "saas-ui:storybook": "yarn workspace saas-ui-storybook-pro start-storybook -p 6007",
     "saas-ui:publish": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish && yarn changeset tag",
     "saas-ui:publish:next": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish --tag next && yarn changeset tag"

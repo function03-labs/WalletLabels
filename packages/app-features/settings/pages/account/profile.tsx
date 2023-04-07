@@ -22,7 +22,7 @@ import {
 
 import { Form, FormLayout, useSnackbar } from '@saas-ui/react'
 
-import { Section } from '@saas-ui/pro'
+import { Section } from '@saas-ui-pro/react'
 
 import { SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'

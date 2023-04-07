@@ -1,8 +1,5 @@
-import * as React from 'react'
-
-import { useTenant } from '@saas-ui/pro'
-import { useNavigate } from '@saas-ui/router'
-import { useBilling } from '@saas-ui/billing'
+import { useTenant } from '@saas-ui-pro/react'
+import { useBilling } from '@saas-ui-pro/billing'
 
 import { SettingsPage } from '@ui/lib'
 import {
@@ -11,15 +8,16 @@ import {
 } from '@app/features/billing/components/pricing-table'
 
 import { plans, features } from '@app/config/billing'
+import { useRouter } from 'next/router'
 
 export function PlansPage() {
   const tenant = useTenant()
-  const navigate = useNavigate()
+  const { push } = useRouter()
 
   const { planId, currentPlan } = useBilling()
 
   const onUpgrade = (plan: PricingPlan) => {
-    navigate(`/app/${tenant}/checkout?plan=${plan.id}`)
+    push(`/app/${tenant}/checkout?plan=${plan.id}`)
   }
 
   return (

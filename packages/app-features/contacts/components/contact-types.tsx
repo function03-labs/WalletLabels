@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import { usePath } from '@app/features/core/hooks/use-path'
-import { useParams, useNavigate } from '@saas-ui/router'
 
 import { SegmentedControl } from '@ui/lib'
+import { useRouter } from 'next/router'
 
 const types = [
   {
@@ -26,11 +26,11 @@ const types = [
 const segments = types.map((type) => ({ id: type.id, label: type.label }))
 
 export const ContactTypes = () => {
-  const params = useParams()
-  const navigate = useNavigate()
+  const { query, push } = useRouter()
+
   const basePath = usePath()
 
-  const type = params?.type?.toString() || 'all'
+  const type = query?.type?.toString() || 'all'
 
   const [value, setValue] = React.useState(type)
 
@@ -46,7 +46,7 @@ export const ContactTypes = () => {
   const setType = (id: string) => {
     const type = getType(id)
 
-    navigate(basePath + '/' + type.href)
+    push(basePath + '/' + type.href)
     setValue(type.id)
   }
 

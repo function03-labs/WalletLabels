@@ -1,7 +1,7 @@
 import { Button, SimpleGrid } from '@chakra-ui/react'
 import { PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
-import { Section, useTenant } from '@saas-ui/pro'
-import { useBilling } from '@saas-ui/billing'
+import { Section, useTenant } from '@saas-ui-pro/react'
+import { useBilling } from '@saas-ui-pro/billing'
 
 import {
   FiHelpCircle,

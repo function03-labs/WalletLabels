@@ -23,7 +23,6 @@ import {
   useHotkeysShortcut,
   useLocalStorage,
 } from '@saas-ui/react'
-import { useParams } from '@saas-ui/router'
 import {
   Command,
   Toolbar,
@@ -37,7 +36,7 @@ import {
   useColumns,
   getDataGridFilter,
   Filter,
-} from '@saas-ui/pro'
+} from '@saas-ui-pro/react'
 
 import { ListPage, InlineSearch } from '@ui/lib'
 
@@ -52,6 +51,7 @@ import { ContactStatus } from '../components/contact-status'
 import { ContactType } from '../components/contact-type'
 import { CommandIcon, TagIcon } from 'lucide-react'
 import { ContactTag } from '../components/contact-tag'
+import { useRouter } from 'next/router'
 
 const DateCell = ({ date }: { date: string }) => {
   return <>{format(new Date(date), 'PP')}</>
@@ -84,9 +84,9 @@ const schema = z.object({
 export function ContactsListPage() {
   const tenant = useTenant()
   const modals = useModals()
-  const params = useParams()
+  const { query } = useRouter()
 
-  const type = params?.type?.toString()
+  const type = query?.type?.toString()
 
   const [searchQuery, setSearchQuery] = React.useState('')
 
@@ -110,7 +110,7 @@ export function ContactsListPage() {
         header: 'Name',
         size: 300,
         meta: {
-          href: ({ id }) => `/app/${tenant}/contacts/view/${id}`,
+          href: ({ id }: any) => `/app/${tenant}/contacts/view/${id}`,
         },
       }),
       helper.accessor('email', {
@@ -166,7 +166,7 @@ export function ContactsListPage() {
         enableSorting: false,
       }),
     ],
-    [params.tag],
+    [query.tag],
   )
 
   const addPerson = () => {
@@ -178,7 +178,7 @@ export function ContactsListPage() {
       onSubmit: (contact: z.infer<typeof schema>) =>
         mutation.mutateAsync({
           ...contact,
-          type: params?.type as string,
+          type: query?.type as string,
         }),
     })
   }
@@ -304,8 +304,8 @@ export function ContactsListPage() {
 
   let defaultFilters: Filter[] = []
 
-  if (params?.tag) {
-    defaultFilters = [{ id: 'tags', operator: 'contains', value: params.tag }]
+  if (query?.tag) {
+    defaultFilters = [{ id: 'tags', operator: 'contains', value: query.tag }]
   }
 
   const emptyState = (

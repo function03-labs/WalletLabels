@@ -15,10 +15,15 @@ import {
   useLocalStorage,
 } from '@saas-ui/react'
 
-import { BackButton, Resizer, ResizeHandler, ResizeHandle } from '@saas-ui/pro'
+import {
+  BackButton,
+  Resizer,
+  ResizeHandler,
+  ResizeHandle,
+} from '@saas-ui-pro/react'
 
 import { usePath } from '@app/features/core/hooks/use-path'
-import { Has } from '@saas-ui/feature-flags'
+import { Has } from '@saas-ui-pro/feature-flags'
 
 import { ElectronNav } from '@ui/lib'
 

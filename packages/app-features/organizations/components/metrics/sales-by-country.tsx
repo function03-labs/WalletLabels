@@ -1,4 +1,4 @@
-import { DataGrid, ColumnDef, DataGridCell } from '@saas-ui/pro'
+import { DataGrid, ColumnDef, DataGridCell } from '@saas-ui-pro/react'
 import { HStack, Progress, Text } from '@chakra-ui/react'
 import { useIntl } from 'react-intl'
 import { MetricsCard } from './metrics-card'

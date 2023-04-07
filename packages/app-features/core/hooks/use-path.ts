@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTenant } from '@saas-ui/pro'
+import { useTenant } from '@saas-ui-pro/react'
 
 /**
  * Returns the path including the app base path and tenant.

@@ -30,7 +30,7 @@ export default {
       },
     }
     return {
-      '@saas-ui/pro': {
+      '@saas-ui-pro/react': {
         title: 'Saas UI Pro',
         url: 'https://storybook.saas-ui.pro/',
       },

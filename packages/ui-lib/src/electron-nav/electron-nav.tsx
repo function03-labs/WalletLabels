@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import { isElectron } from '@saas-ui/pro'
+import { isElectron } from '@saas-ui-pro/react'
 export const ElectronNav = () => {
   if (!isElectron()) {
     return null

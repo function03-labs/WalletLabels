@@ -1,6 +1,7 @@
+import { useRouter } from 'next/router'
 import { usePath } from '@app/features/core/hooks/use-path'
 import { HStack, Text } from '@chakra-ui/react'
-import { useSplitPage } from '@saas-ui/pro'
+import { useSplitPage } from '@saas-ui-pro/react'
 import {
   PersonaAvatar,
   StructuredList,
@@ -9,7 +10,6 @@ import {
   StructuredListItemProps,
   StructuredListProps,
 } from '@saas-ui/react'
-import { useNavigate } from '@saas-ui/router'
 import { DateTimeSince } from '@ui/lib'
 
 export interface InboxListProps extends StructuredListProps {
@@ -34,7 +34,7 @@ interface InboxListItemProps extends StructuredListItemProps {
 const InboxListItem: React.FC<InboxListItemProps> = (props) => {
   const { item, ...rest } = props
   const basePath = usePath('inbox')
-  const navigate = useNavigate()
+  const { push } = useRouter()
   const { onOpen } = useSplitPage()
 
   const color = !item.readAt ? 'app-text' : 'muted'
@@ -43,7 +43,7 @@ const InboxListItem: React.FC<InboxListItemProps> = (props) => {
     <StructuredListItem
       {...rest}
       onClick={() => {
-        navigate(`${basePath}/1`)
+        push(`${basePath}/1`)
         onOpen()
       }}
     >

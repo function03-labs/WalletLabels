@@ -4,7 +4,7 @@ import {
   StructuredListCell,
   StructuredListItem,
 } from '@saas-ui/react'
-import { Section } from '@saas-ui/pro'
+import { Section } from '@saas-ui-pro/react'
 
 import { SettingsPage, Link } from '@ui/lib'
 import { SettingsCard } from '@app/features/settings/components/settings-card'

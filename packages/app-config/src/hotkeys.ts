@@ -1,6 +1,6 @@
 import { HotkeysListOptions } from '@saas-ui/react'
 
-import { platformSelect } from '@saas-ui/pro'
+import { platformSelect } from '@saas-ui-pro/react'
 
 export const appHotkeys: HotkeysListOptions = {
   general: {

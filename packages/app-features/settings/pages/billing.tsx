@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Section, useTenant } from '@saas-ui/pro'
+import { Section, useTenant } from '@saas-ui-pro/react'
 
 import { Card, CardBody, Stack, Text } from '@chakra-ui/react'
 
@@ -8,7 +8,7 @@ import { Field, Form, FormLayout, SubmitButton } from '@saas-ui/react'
 import { LinkButton, SettingsPage } from '@ui/lib'
 import { usePath } from '@app/features/core/hooks/use-path'
 
-import { useBilling } from '@saas-ui/billing'
+import { useBilling } from '@saas-ui-pro/billing'
 
 import { FormattedDate } from '@app/i18n'
 import { useQuery } from '@tanstack/react-query'

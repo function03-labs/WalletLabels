@@ -1,18 +1,17 @@
-import * as React from 'react'
+import { useRouter } from 'next/router'
 import { FiInbox, FiFilter } from 'react-icons/fi'
 import { EmptyState } from '@saas-ui/react'
-import { SplitPage, Toolbar, ToolbarButton } from '@saas-ui/pro'
+import { SplitPage, Toolbar, ToolbarButton } from '@saas-ui-pro/react'
 
 import { InboxViewPage } from './view'
 import { InboxList } from '../components/inbox-list'
 
-import { useParams } from '@saas-ui/router'
 import { useBreakpointValue } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { getConversations } from '@api/client'
 
 export function InboxListPage() {
-  const params = useParams()
+  const { query } = useRouter()
 
   const { data, isLoading } = useQuery({
     queryKey: ['Conversations'],
@@ -39,7 +38,7 @@ export function InboxListPage() {
 
   let content
 
-  if (params.id) {
+  if (query.id) {
     content = <InboxViewPage />
   } else {
     content = emptyState

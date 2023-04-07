@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { EditorField, StatusBadge } from '@ui/lib'
 
-import { Toolbar, ToolbarButton, MotionBox, Command } from '@saas-ui/pro'
+import { Toolbar, ToolbarButton, MotionBox, Command } from '@saas-ui-pro/react'
 import {
   Form,
   FormLayout,

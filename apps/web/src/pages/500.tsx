@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { FiFrown } from 'react-icons/fi'
 
 import { Button } from '@chakra-ui/react'
-import { ErrorPage } from '@saas-ui/pro'
+import { ErrorPage } from '@saas-ui-pro/react'
 
 export default function Error500() {
   const router = useRouter()

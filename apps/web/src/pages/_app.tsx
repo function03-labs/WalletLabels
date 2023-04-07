@@ -14,8 +14,6 @@ import { AppLayout } from '@app/features/core/layouts/app-layout'
 // import { authService } from '../lib/magic'
 import { authService } from '@app/config/mock-auth-service'
 
-import { Paddle } from '../lib/paddle'
-
 const NextLink = (props: LinkProps) => <Link {...props} legacyBehavior />
 
 function App({ Component, pageProps }: AppProps) {
@@ -50,7 +48,6 @@ function App({ Component, pageProps }: AppProps) {
             layout={Component.layout}
             sidebar={pageProps.sidebar}
           >
-            <Paddle />
             <NProgressNextRouter router={router} />
             <Component {...pageProps} />
           </AppLayout>

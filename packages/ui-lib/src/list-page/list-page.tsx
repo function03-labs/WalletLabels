@@ -24,7 +24,7 @@ import {
   ColumnFiltersState,
   useColumnVisibility,
   ResetFilters,
-} from '@saas-ui/pro'
+} from '@saas-ui-pro/react'
 
 import { useDebouncedCallback } from '@react-hookz/web'
 

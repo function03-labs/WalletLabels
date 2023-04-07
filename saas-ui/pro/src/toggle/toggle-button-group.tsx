@@ -9,7 +9,7 @@ import {
   useCheckbox,
   UseCheckboxProps,
 } from '@chakra-ui/react'
-import { createField } from '@saas-ui/react'
+import { createField } from '@saas-ui/forms'
 import * as React from 'react'
 import { useToggleGroup, Value, Type } from './use-toggle-group'
 
