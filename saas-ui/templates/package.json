@@ -8,7 +8,7 @@
     "@dnd-kit/sortable": "^7.0.2",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@saas-ui/pro": "^0.17.0",
+    "@saas-ui-pro/react": "^0.17.0",
     "@saas-ui/react": "^2.0.0-beta.7",
     "framer-motion": "^10.11.2",
     "lucide-react": "^0.130.1",

@@ -4,9 +4,6 @@
   "description": "Next.js specific shared code",
   "private": true,
   "main": "src/index.ts",
-  "dependencies": {
-    "@saas-ui/router": "workspace:*"
-  },
   "peerDependencies": {
     "next": ">=12",
     "react": ">=16.8.0",
