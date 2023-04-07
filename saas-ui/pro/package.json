@@ -1,5 +1,5 @@
 {
-  "name": "@saas-ui/pro",
+  "name": "@saas-ui-pro/react",
   "version": "0.18.0",
   "engines": {
     "node": ">=16 <=19"
@@ -68,9 +68,8 @@
     "@chakra-ui/theme-tools": "^2.0.17",
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^15.1.0",
-    "@saas-ui/onboarding": "workspace:*",
+    "@saas-ui-pro/onboarding": "workspace:*",
     "@saas-ui/react-utils": "^2.0.0-next.1",
-    "@saas-ui/router": "workspace:*",
     "@saas-ui/theme": "^2.0.0-next.1",
     "@tanstack/react-table": "^8.8.5",
     "date-fns": "^2.29.3",
