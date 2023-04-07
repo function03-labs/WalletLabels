@@ -1,7 +1,7 @@
 import { Stack, Text, Progress } from '@chakra-ui/react'
 import { usePath } from '@app/features/core/hooks/use-path'
 import { useBilling } from '@saas-ui/billing'
-import { Has } from '@saas-ui/features'
+import { Has } from '@saas-ui/feature-flags'
 
 import { differenceInDays, formatDistanceStrict } from 'date-fns'
 

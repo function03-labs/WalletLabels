@@ -1,5 +1,5 @@
 {
-  "name": "@saas-ui/features",
+  "name": "@saas-ui/feature-flags",
   "description": "Feature flags for Saas UI",
   "version": "0.10.1",
   "exports": {

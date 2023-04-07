@@ -17,7 +17,7 @@ import {
   PersonaAvatar,
   useHotkeysShortcut,
 } from '@saas-ui/react'
-import { Has } from '@saas-ui/features'
+import { Has } from '@saas-ui/feature-flags'
 
 import { HotkeysWindow } from './hotkeys-window'
 import { usePath } from '../hooks/use-path'

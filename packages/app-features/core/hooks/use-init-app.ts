@@ -8,7 +8,7 @@ import { useTenant } from '@saas-ui/pro'
 import { BillingStatus } from '@saas-ui/billing'
 import { plans } from '@app/config/billing'
 
-import { useFeatures } from '@saas-ui/features'
+import { useFeatures } from '@saas-ui/feature-flags'
 import { useQuery } from '@tanstack/react-query'
 import { getCurrentUser, getOrganization, getSubscription } from '@api/client'
 

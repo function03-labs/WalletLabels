@@ -19,7 +19,7 @@
     "@saas-ui/auth": "^2.0.0-next.7",
     "@saas-ui/billing": "workspace:*",
     "@saas-ui/date-picker": "^0.8.5-next.7",
-    "@saas-ui/features": "workspace:*",
+    "@saas-ui/feature-flags": "workspace:*",
     "@saas-ui/next-workspaces": "^0.3.0",
     "@saas-ui/onboarding": "workspace:*",
     "@saas-ui/paddle": "workspace:*",

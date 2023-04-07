@@ -1,4 +1,4 @@
-import { FeaturesOptions } from '@saas-ui/features'
+import { FeaturesOptions } from '@saas-ui/feature-flags'
 
 const options: FeaturesOptions = {
   segments: [

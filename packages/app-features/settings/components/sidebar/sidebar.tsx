@@ -18,7 +18,7 @@ import {
 import { BackButton, Resizer, ResizeHandler, ResizeHandle } from '@saas-ui/pro'
 
 import { usePath } from '@app/features/core/hooks/use-path'
-import { Has } from '@saas-ui/features'
+import { Has } from '@saas-ui/feature-flags'
 
 import { ElectronNav } from '@ui/lib'
 

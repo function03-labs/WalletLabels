@@ -127,7 +127,7 @@ __metadata:
     "@react-hookz/web": ^15.0.0
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/date-picker": ">=0.7.0"
-    "@saas-ui/features": "workspace:*"
+    "@saas-ui/feature-flags": "workspace:*"
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/pro": "workspace:*"
     "@saas-ui/react": ">=2"
@@ -6891,9 +6891,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/features@workspace:*, @saas-ui/features@workspace:saas-ui/features":
+"@saas-ui/feature-flags@workspace:*, @saas-ui/feature-flags@workspace:saas-ui/feature-flags":
   version: 0.0.0-use.local
-  resolution: "@saas-ui/features@workspace:saas-ui/features"
+  resolution: "@saas-ui/feature-flags@workspace:saas-ui/feature-flags"
   dependencies:
     tsup: 6.7.0
     zustand: ^4.3.7
@@ -13988,7 +13988,7 @@ __metadata:
     "@saas-ui/auth": ^2.0.0-next.7
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/date-picker": ^0.8.5-next.7
-    "@saas-ui/features": "workspace:*"
+    "@saas-ui/feature-flags": "workspace:*"
     "@saas-ui/next-workspaces": ^0.3.0
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/paddle": "workspace:*"
@@ -25668,7 +25668,7 @@ __metadata:
     "@saas-ui/auth": ^2.0.0-next.7
     "@saas-ui/billing": "workspace:*"
     "@saas-ui/date-picker": ^0.8.5-next.7
-    "@saas-ui/features": "workspace:*"
+    "@saas-ui/feature-flags": "workspace:*"
     "@saas-ui/next-workspaces": ^0.3.0
     "@saas-ui/onboarding": "workspace:*"
     "@saas-ui/paddle": "workspace:*"
