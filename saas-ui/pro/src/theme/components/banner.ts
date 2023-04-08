@@ -1,4 +1,7 @@
-import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
+} from '@chakra-ui/styled-system'
 
 // @todo import anatomy
 const { definePartsStyle, defineMultiStyleConfig } =
@@ -6,9 +9,21 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const variantFloating = definePartsStyle((props) => {
   const { colorScheme: c } = props
+
+  let containerStyles = defineStyle({
+    bg: `${c}.500`,
+  })
+  if (c === 'gray') {
+    containerStyles = defineStyle({
+      bg: 'gray.300',
+      _dark: {
+        bg: 'gray.500',
+      },
+    })
+  }
+
   return {
     container: {
-      bg: `${c}.500`,
       top: 'auto',
       left: '50%',
       bottom: '40px',
@@ -16,6 +31,7 @@ const variantFloating = definePartsStyle((props) => {
       borderRadius: 'lg',
       maxW: 'container.lg',
       marginLeft: '-25%',
+      ...containerStyles,
     },
   }
 })

@@ -1,7 +1,7 @@
 import { defineStyle } from '@chakra-ui/styled-system'
-import { SystemStyleFunction, transparentize } from '@chakra-ui/theme-tools'
+import { transparentize } from '@chakra-ui/theme-tools'
 
-const variantGhost: SystemStyleFunction = (props) => {
+const variantGhost = defineStyle((props) => {
   const { colorScheme: c, theme } = props
 
   if (c === 'gray') {
@@ -24,11 +24,14 @@ const variantGhost: SystemStyleFunction = (props) => {
       },
     },
   }
-}
+})
 
-const variantOutline: SystemStyleFunction = (props) => {
-  return variantGhost(props)
-}
+const variantOutline = defineStyle((props) => {
+  return {
+    ...variantGhost(props),
+    color: 'inherit', // fix in main theme
+  }
+})
 
 // const variantSecondary: SystemStyleFunction = (props) => {
 //   return {

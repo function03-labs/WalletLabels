@@ -9,12 +9,7 @@ import {
 
 import { useClickable } from '@chakra-ui/clickable'
 
-import {
-  isHTMLElement,
-  isActiveElement,
-  dataAttr,
-  __DEV__,
-} from '@chakra-ui/utils'
+import { isHTMLElement, isActiveElement, dataAttr } from '@chakra-ui/utils'
 
 import { mergeRefs } from '@chakra-ui/react-utils'
 

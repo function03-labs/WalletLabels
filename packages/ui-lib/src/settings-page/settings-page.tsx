@@ -1,9 +1,19 @@
 import { VStack, StackDivider, useBreakpointValue } from '@chakra-ui/react'
 import { usePath } from '@app/features/core/hooks/use-path'
 
-import { BackButton, Page, PageProps, Toolbar } from '@saas-ui-pro/react'
+import {
+  BackButton,
+  Page,
+  PageBody,
+  PageHeader,
+  PageHeaderProps,
+  PageProps,
+  Toolbar,
+} from '@saas-ui-pro/react'
 
-interface SettingsPageProps extends PageProps {}
+interface SettingsPageProps
+  extends PageProps,
+    Pick<PageHeaderProps, 'title' | 'description' | 'toolbar'> {}
 
 /**
  * SettingsPage
@@ -11,7 +21,7 @@ interface SettingsPageProps extends PageProps {}
  * Use this component as a base for your settings pages.
  */
 export const SettingsPage = (props: SettingsPageProps) => {
-  const { children, ...rest } = props
+  const { children, title, description, toolbar, ...rest } = props
 
   const isMobile = useBreakpointValue({ base: true, md: false })
 
@@ -37,10 +47,18 @@ export const SettingsPage = (props: SettingsPageProps) => {
   )
 
   return (
-    <Page variant="settings" nav={nav} mt={[14, null, 0]} {...rest}>
-      <VStack divider={<StackDivider />} align="stretch" spacing={8} pb="16">
-        {children}
-      </VStack>
+    <Page variant="settings" mt={[14, null, 0]} {...rest}>
+      <PageHeader
+        title={title}
+        description={description}
+        nav={nav}
+        toolbar={toolbar}
+      />
+      <PageBody>
+        <VStack divider={<StackDivider />} align="stretch" spacing={8} pb="16">
+          {children}
+        </VStack>
+      </PageBody>
     </Page>
   )
 }

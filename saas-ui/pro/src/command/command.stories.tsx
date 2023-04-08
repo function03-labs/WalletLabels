@@ -1,9 +1,6 @@
-import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
-import { Center, Tooltip, VStack } from '@chakra-ui/react'
+import { Button, Center, Tooltip, VStack } from '@chakra-ui/react'
 
-import { Command } from '..'
-import { Button } from '@saas-ui/react'
+import { Command } from './command'
 
 export default {
   title: 'Components/Data Display/Command',
@@ -14,20 +11,20 @@ export default {
       </Center>
     ),
   ],
-} as Meta
+}
 
-export const Basic = () => {
-  return (
+export const Basic = {
+  render: () => (
     <VStack>
       <Command>shift+X</Command>
       <Command>A then B</Command>
       <Command>alt or option</Command>
     </VStack>
-  )
+  ),
 }
 
-export const TooltipWithCommand = () => {
-  return (
+export const TooltipCommand = {
+  render: () => (
     <Tooltip
       label={
         <>
@@ -37,5 +34,5 @@ export const TooltipWithCommand = () => {
     >
       <Button>Inbox</Button>
     </Tooltip>
-  )
+  ),
 }

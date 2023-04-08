@@ -24,6 +24,8 @@ import {
   ColumnFiltersState,
   useColumnVisibility,
   ResetFilters,
+  PageHeaderProps,
+  PageHeader,
 } from '@saas-ui-pro/react'
 
 import { useDebouncedCallback } from '@react-hookz/web'
@@ -36,6 +38,7 @@ import {
 
 export interface ListPageProps<D extends object>
   extends PageProps,
+    PageHeaderProps,
     Pick<
       DataGridProps<D>,
       | 'columns'
@@ -45,12 +48,13 @@ export interface ListPageProps<D extends object>
       | 'initialState'
     > {
   emptyState: React.ReactNode
-  bulkActions?: BulkActionsProps['actions']
+  bulkActions?: BulkActionsProps['children']
   filters?: FilterItem[]
   defaultFilters?: Filter[]
   operators?: FilterOperators
   searchQuery?: string
   visibleColumns: string[]
+  tabbar?: React.ReactNode
 }
 
 /**
@@ -213,11 +217,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
       onBeforeEnableFilter={onBeforeEnableFilter}
     >
       <Page
-        title={title}
-        toolbar={toolbar}
-        tabbar={tabbar}
         isLoading={isLoading}
-        fullWidth
         position="relative"
         sx={{
           '& thead th': {
@@ -250,9 +250,9 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         }}
         {...rest}
       >
+        <PageHeader title={title} toolbar={toolbar} footer={tabbar} />
         <BulkActions
           selections={selections}
-          actions={bulkActions}
           variant="floating"
           motionPreset="slideOutBottom"
           colorScheme="gray"
@@ -260,12 +260,16 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
           _dark={{
             bg: 'gray.700',
           }}
-        />
+        >
+          {bulkActions}
+        </BulkActions>
         <ActiveFiltersList size="sm">
           <Spacer />
           <ResetFilters>Clear all</ResetFilters>
         </ActiveFiltersList>
-        <PageBody fullWidth>{content}</PageBody>
+        <PageBody p="0" contentWidth="full">
+          {content}
+        </PageBody>
       </Page>
     </FiltersProvider>
   )

@@ -11,7 +11,7 @@ import { runIfFn } from '@chakra-ui/utils'
 
 export type BulkActionsSelections = string[] | number[]
 
-export interface BulkActionsProps extends BannerProps {
+export interface BulkActionsProps extends Omit<BannerProps, 'children'> {
   /**
    * Array with selected ids.
    */
@@ -27,7 +27,7 @@ export interface BulkActionsProps extends BannerProps {
   /**
    * The action buttons.
    */
-  actions: MaybeRenderProp<{ selections: BulkActionsSelections }>
+  children: MaybeRenderProp<{ selections: BulkActionsSelections }>
 }
 
 /**
@@ -37,7 +37,7 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
   const {
     selections = [],
     title = ':selections selected',
-    actions,
+    children,
     ...rest
   } = props
 
@@ -47,7 +47,7 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
     <Banner
       initial="exit"
       isOpen={isOpen}
-      colorScheme="primary"
+      colorScheme="gray"
       variant="floating"
       position="absolute"
       minH="14"
@@ -60,7 +60,7 @@ export const BulkActions: React.FC<BulkActionsProps> = (props) => {
         </BannerTitle>
       </BannerContent>
       <BannerActions flexShrink={0}>
-        {runIfFn(actions, { selections })}
+        {runIfFn(children, { selections })}
       </BannerActions>
     </Banner>
   )

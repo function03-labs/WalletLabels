@@ -10,31 +10,31 @@ import {
   SystemStyleObject,
   createStylesContext,
 } from '@chakra-ui/react'
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx } from '@chakra-ui/utils'
 
 import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { getChildOfType } from '@saas-ui/react-utils'
 
 import { ErrorBoundary } from '../app/error-boundary'
 import { ErrorPage } from './error-page'
+import { createContext } from '@chakra-ui/react-utils'
 
 const [StylesProvider, useStyles] = createStylesContext('SuiPage')
 
+interface PageProviderValue {
+  isLoading?: boolean
+  skeleton?: React.ReactNode
+  hasError?: boolean
+  errorComponent?: React.ReactNode
+}
+
+const [PageProvider, usePageContext] = createContext<PageProviderValue>()
+
 export interface PageOptions {
-  /**
-   * The page title
-   */
-  title?: React.ReactNode
-  description?: React.ReactNode
-  nav?: React.ReactNode
-  toolbar?: React.ReactNode
-  tabbar?: React.ReactNode
   children?: React.ReactNode
   isLoading?: boolean
   skeleton?: React.ReactNode
   hasError?: boolean
-  fullWidth?: boolean
-  contentWidth?: SystemProps['maxW']
   errorComponent?: React.ReactNode
 }
 
@@ -43,18 +43,14 @@ export const PageTitle: React.FC<HTMLChakraProps<'div'>> = (props) => {
   return <chakra.div __css={styles.title} as="h2" {...props} />
 }
 
-if (__DEV__) {
-  PageTitle.displayName = 'PageTitle'
-}
+PageTitle.displayName = 'PageTitle'
 
 export const PageDescription: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const styles = useStyles()
   return <chakra.div __css={styles.description} {...props} />
 }
 
-if (__DEV__) {
-  PageDescription.displayName = 'PageDescription'
-}
+PageDescription.displayName = 'PageDescription'
 
 export interface PageHeaderProps
   extends Omit<HTMLChakraProps<'header'>, 'title'> {
@@ -62,11 +58,11 @@ export interface PageHeaderProps
   title?: React.ReactNode
   description?: React.ReactNode
   toolbar?: React.ReactNode
-  tabbar?: React.ReactNode
+  footer?: React.ReactNode
 }
 
 export const PageHeader: React.FC<PageHeaderProps> = (props) => {
-  const { children, nav, title, description, toolbar, tabbar, ...rest } = props
+  const { children, nav, title, description, toolbar, footer, ...rest } = props
 
   const styles = useStyles()
 
@@ -84,10 +80,9 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
     )
   }
 
-  let footer
-
-  if (tabbar) {
-    footer = <chakra.div __css={styles.headerFooter}>{tabbar}</chakra.div>
+  let _footer
+  if (footer) {
+    _footer = <chakra.div __css={styles.headerFooter}>{footer}</chakra.div>
   }
 
   return (
@@ -101,36 +96,40 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
         {heading}
         {toolbar}
       </chakra.div>
-      {footer}
+      {_footer}
     </chakra.header>
   )
 }
 
-if (__DEV__) {
-  PageHeader.displayName = 'PageHeader'
-}
+PageHeader.displayName = 'PageHeader'
 
 interface PageBodyProps extends HTMLChakraProps<'div'> {
-  fullWidth?: boolean
   contentWidth?: SystemProps['maxW']
   contentProps?: HTMLChakraProps<'div'>
 }
 
 export const PageBody: React.FC<PageBodyProps> = (props) => {
   const {
-    fullWidth,
     contentWidth = 'container.xl',
     children,
     contentProps,
     ...rest
   } = props
 
-  let innerWidth = contentWidth
-  if (fullWidth) {
-    innerWidth = '100%'
-  }
-
   const styles = useStyles()
+
+  const { isLoading, skeleton, hasError, errorComponent } = usePageContext()
+
+  let content = children
+  if (isLoading) {
+    content = skeleton || (
+      <LoadingOverlay>
+        <LoadingSpinner />
+      </LoadingOverlay>
+    )
+  } else if (hasError) {
+    content = errorComponent
+  }
 
   return (
     <chakra.div
@@ -138,47 +137,55 @@ export const PageBody: React.FC<PageBodyProps> = (props) => {
       __css={styles.body}
       className={cx('sui-page__body', props.className)}
     >
-      <chakra.div {...contentProps} maxW={innerWidth}>
-        {children}
+      <chakra.div {...contentProps} maxW={contentWidth}>
+        {content}
       </chakra.div>
     </chakra.div>
   )
 }
 
-if (__DEV__) {
-  PageBody.displayName = 'PageBody'
-}
+PageBody.displayName = 'PageBody'
 
 interface PageContainerProps
-  extends HTMLChakraProps<'main'>,
-    ThemingProps<'SuiPage'> {
-  fullWidth?: boolean
-}
+  extends PageOptions,
+    HTMLChakraProps<'main'>,
+    ThemingProps<'SuiPage'> {}
 
 export const PageContainer: React.FC<PageContainerProps> = (props) => {
-  const { children, fullWidth, ...containerProps } = omitThemingProps(props)
+  const {
+    isLoading,
+    errorComponent,
+    skeleton,
+    hasError,
+    children,
+    ...containerProps
+  } = omitThemingProps(props)
 
-  const styles = useMultiStyleConfig('SuiPage', props) as Record<
-    string,
-    SystemStyleObject
-  >
+  const styles = useMultiStyleConfig('SuiPage', props)
+
+  const context = {
+    isLoading,
+    errorComponent,
+    skeleton,
+    hasError,
+  }
 
   return (
-    <StylesProvider value={styles}>
-      <chakra.main
-        {...containerProps}
-        __css={styles.container}
-        className={cx('sui-page', props.className)}
-      >
-        {children}
-      </chakra.main>
-    </StylesProvider>
+    <PageProvider value={context}>
+      <StylesProvider value={styles}>
+        <chakra.main
+          {...containerProps}
+          __css={styles.container}
+          className={cx('sui-page', props.className)}
+        >
+          {children}
+        </chakra.main>
+      </StylesProvider>
+    </PageProvider>
   )
 }
 
-if (__DEV__) {
-  PageContainer.displayName = 'PageContainer'
-}
+PageContainer.displayName = 'PageContainer'
 
 export interface PageProps
   extends PageOptions,
@@ -186,16 +193,6 @@ export interface PageProps
 
 export const Page: React.FC<PageProps> = (props) => {
   const {
-    title,
-    description,
-    nav,
-    toolbar,
-    tabbar,
-    isLoading,
-    skeleton,
-    hasError,
-    fullWidth,
-    contentWidth,
     errorComponent = (
       <ErrorPage
         title="Something went wrong"
@@ -206,48 +203,13 @@ export const Page: React.FC<PageProps> = (props) => {
     ...rest
   } = props
 
-  let content
-  if (isLoading) {
-    content = skeleton || (
-      <LoadingOverlay>
-        <LoadingSpinner />
-      </LoadingOverlay>
-    )
-  } else {
-    content = children
-  }
-
-  const bodyComponent = getChildOfType(content, PageBody)
-
-  if (!bodyComponent) {
-    content = (
-      <PageBody fullWidth={fullWidth} contentWidth={contentWidth}>
-        {content}
-      </PageBody>
-    )
-  }
-
   return (
     <ErrorBoundary errorComponent={errorComponent}>
-      {hasError ? (
-        errorComponent
-      ) : (
-        <PageContainer fullWidth={fullWidth} {...rest}>
-          <PageHeader
-            nav={nav}
-            title={title}
-            description={description}
-            toolbar={toolbar}
-            tabbar={tabbar}
-          />
-
-          {content}
-        </PageContainer>
-      )}
+      <PageContainer errorComponent={errorComponent} {...rest}>
+        {children}
+      </PageContainer>
     </ErrorBoundary>
   )
 }
 
-if (__DEV__) {
-  Page.displayName = 'Page'
-}
+Page.displayName = 'Page'

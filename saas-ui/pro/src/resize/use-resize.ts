@@ -6,6 +6,7 @@ import {
   HTMLChakraProps,
 } from '@chakra-ui/react'
 import { createContext } from '@chakra-ui/react-utils'
+import { dataAttr } from '@chakra-ui/utils'
 
 export type Dimensions = {
   width: number
@@ -29,6 +30,10 @@ export interface ResizeOptions {
    * Callback called when resizing is finished.
    */
   onResize?: ResizeHandler
+  /**
+   * Callback called when the handle is clicked.
+   */
+  onHandleClick?: React.MouseEventHandler
   /**
    * Indicate if resizing is enabled.
    * @default true
@@ -64,10 +69,12 @@ export const useResize = (props: UseResizeProps = {}) => {
   const {
     defaultWidth = 280,
     onResize,
+    onHandleClick,
     isResizable = true,
     handlePosition = 'right',
   } = props
   const containerRef = React.useRef<HTMLDivElement>(null)
+  const timeoutRef = React.useRef<any>()
   const [isResizing, setIsResizing] = React.useState(false)
   const [width, setWidth] = React.useState(defaultWidth)
 
@@ -146,10 +153,20 @@ export const useResize = (props: UseResizeProps = {}) => {
 
   const getHandleProps = React.useCallback(
     () => ({
-      onMouseDown: () => setIsResizing(true),
+      onMouseDown: () => {
+        timeoutRef.current = setTimeout(() => setIsResizing(true), 100)
+      },
+      onMouseUp: (e: any) => {
+        if (!isResizing) {
+          clearTimeout(timeoutRef.current)
+          setIsResizing(false)
+          onHandleClick?.(e)
+        }
+      },
+      'data-resizing': dataAttr(isResizing),
       [handlePosition]: '-5px',
     }),
-    [handlePosition],
+    [handlePosition, isResizing],
   )
 
   return {

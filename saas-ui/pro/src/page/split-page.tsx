@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {
   chakra,
+  HTMLChakraProps,
   SystemStyleObject,
   useBreakpointValue,
   useDisclosure,
@@ -21,32 +22,45 @@ const [SplitPageProvider, useSplitPage] = createContext<UseDisclosureReturn>({
 
 export { useSplitPage }
 
-export interface SplitPageProps extends Omit<PageProps, 'content'> {
-  content?: React.ReactNode
+export interface SplitPageProps
+  extends Omit<HTMLChakraProps<'div'>, 'children'> {
   defaultIsOpen?: boolean
   isOpen?: boolean
   onClose?(): void
   onOpen?(): void
+  orientation?: 'vertical' | 'horizontal'
+  children: [React.ReactElement, React.ReactElement]
+  breakpoints?: Record<string, string | boolean> | (string | boolean)[]
+  breakpoint?: string
 }
 
 export const SplitPage: React.FC<SplitPageProps> = (props) => {
   const {
-    content,
+    children,
     defaultIsOpen,
     onClose,
     onOpen,
     isOpen,
-    width = '30%',
-    maxW = '360px',
+    orientation,
+    breakpoint = 'lg',
     ...rest
   } = props
 
   const styles = useMultiStyleConfig('SuiSplitPage', props)
 
-  const isMobile = useBreakpointValue({ base: true, lg: false })
+  const isMobile = useBreakpointValue(
+    {
+      base: true,
+      [breakpoint]: false,
+    },
+    {
+      fallback: breakpoint,
+      ssr: false,
+    },
+  )
 
   const context = useDisclosure({
-    defaultIsOpen,
+    defaultIsOpen: defaultIsOpen || !isMobile,
     onClose,
     onOpen,
     isOpen,
@@ -54,18 +68,10 @@ export const SplitPage: React.FC<SplitPageProps> = (props) => {
 
   const containerStyles: SystemStyleObject = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: orientation === 'vertical' ? 'column' : 'row',
     flex: 1,
     ...styles.container,
   }
-
-  const pageStyles: SystemStyleObject = isMobile
-    ? {}
-    : {
-        borderRightWidth: 1,
-        width,
-        maxW,
-      }
 
   const contentStyles: SystemStyleObject = {
     ...styles.content,
@@ -81,27 +87,30 @@ export const SplitPage: React.FC<SplitPageProps> = (props) => {
       : {}),
   }
 
+  const [startPage, endPage] = children
+
   return (
     <SplitPageProvider value={context}>
       <chakra.main
         __css={containerStyles}
         className="saas-split-page__container"
+        {...rest}
       >
-        <Page as="div" height="100%" sx={pageStyles} {...rest} />
+        {startPage}
         <MotionBox
-          animate={!isMobile || context.isOpen ? 'enter' : 'exit'}
+          animate={context.isOpen ? 'enter' : 'exit'}
           variants={{
             enter: {
               right: 0,
               opacity: 1,
-              transition: { ease: 'easeOut', duration: 0.2 },
+              transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
             },
             exit: { right: '-100%', opacity: 0 },
           }}
           __css={contentStyles}
           className={'saas-split-page__content'}
         >
-          {content}
+          {endPage}
         </MotionBox>
       </chakra.main>
     </SplitPageProvider>

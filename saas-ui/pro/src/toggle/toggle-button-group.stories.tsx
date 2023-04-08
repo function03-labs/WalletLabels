@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import { Center, Box } from '@chakra-ui/react'
 
 import { ToggleButtonGroup, ToggleButtonGroupProps, ToggleButton } from '..'
 
 export default {
   title: 'Components/Toggle/ToggleButtonGroup',
+  component: ToggleButtonGroup,
   decorators: [
     (Story: any) => (
       <Center height="100%">
@@ -17,14 +18,11 @@ export default {
   ],
 } as Meta
 
-const Template: Story<ToggleButtonGroupProps> = (args) => (
-  <ToggleButtonGroup {...args} />
-)
-
-export const CheckboxGroup = () => {
-  return (
+export const CheckboxGroup = {
+  render: () => (
     <ToggleButtonGroup
       type="checkbox"
+      variant="outline"
       defaultValue={['1', '2']}
       onChange={(e) => console.log(e)}
     >
@@ -32,13 +30,14 @@ export const CheckboxGroup = () => {
       <ToggleButton value="2">Leads</ToggleButton>
       <ToggleButton value="3">Customers</ToggleButton>
     </ToggleButtonGroup>
-  )
+  ),
 }
 
-export const RadioGroup = () => {
-  return (
+export const RadioGroup = {
+  render: () => (
     <ToggleButtonGroup
       type="radio"
+      variant="outline"
       defaultValue="1"
       onChange={(e) => console.log(e)}
     >
@@ -46,5 +45,5 @@ export const RadioGroup = () => {
       <ToggleButton value="2">Leads</ToggleButton>
       <ToggleButton value="3">Customers</ToggleButton>
     </ToggleButtonGroup>
-  )
+  ),
 }

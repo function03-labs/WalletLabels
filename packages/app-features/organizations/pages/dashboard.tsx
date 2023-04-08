@@ -9,6 +9,7 @@ import {
   ToolbarButton,
   useTenant,
   PageBody,
+  PageHeader,
 } from '@saas-ui-pro/react'
 
 import { IntroTour } from '../components/intro-tour'
@@ -70,7 +71,8 @@ export function DashboardPage() {
   )
 
   return (
-    <Page title={organization?.name} toolbar={toolbar} isLoading={isLoading}>
+    <Page isLoading={isLoading}>
+      <PageHeader title={organization?.name} toolbar={toolbar} />
       <PageBody pt="8">
         <IntroTour />
         <Grid

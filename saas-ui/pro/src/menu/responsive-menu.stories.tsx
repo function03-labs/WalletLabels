@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import {
   Center,
   Box,
@@ -16,6 +16,7 @@ import { ResponsiveMenu, ResponsiveMenuList } from '..'
 
 export default {
   title: 'Components/Menu/ResponsiveMenu',
+  component: ResponsiveMenu,
   decorators: [
     (Story: any) => (
       <Center height="100%">
@@ -27,7 +28,7 @@ export default {
   ],
 } as Meta
 
-const Template: Story<MenuDialogListProps> = (args) => (
+const Template: StoryFn<MenuDialogListProps> = (args) => (
   <ResponsiveMenu isOpen>
     <MenuButton as={Button}>Responsive menu</MenuButton>
     <ResponsiveMenuList {...args}>
@@ -37,22 +38,34 @@ const Template: Story<MenuDialogListProps> = (args) => (
   </ResponsiveMenu>
 )
 
-export const Basic = Template.bind({})
-Basic.args = {}
-
-export const DialogTitle = Template.bind({})
-DialogTitle.args = {
-  title: 'Dialog title',
+export const Basic = {
+  render: Template,
 }
 
-export const Playground = () => {
-  return (
-    <ResponsiveMenu>
-      <MenuButton as={Button}>Menu</MenuButton>
-      <MenuList position="static">
-        <MenuItem>Edit</MenuItem>
-        <MenuItem>Delete</MenuItem>
-      </MenuList>
-    </ResponsiveMenu>
-  )
+export const DialogTitle = {
+  render: Template,
+  args: {
+    title: 'Dialog title',
+  },
+}
+
+export const Breakpoints = {
+  render: Template,
+  args: {
+    breakpoints: { base: true, lg: false },
+  },
+}
+
+export const Playground = {
+  render: () => {
+    return (
+      <ResponsiveMenu>
+        <MenuButton as={Button}>Menu</MenuButton>
+        <ResponsiveMenuList position="static">
+          <MenuItem>Edit</MenuItem>
+          <MenuItem>Delete</MenuItem>
+        </ResponsiveMenuList>
+      </ResponsiveMenu>
+    )
+  },
 }

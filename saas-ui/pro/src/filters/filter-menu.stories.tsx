@@ -4,7 +4,7 @@ import { Center, Badge, BadgeProps } from '@chakra-ui/react'
 
 import { FiCircle, FiUser } from 'react-icons/fi'
 
-import { FilterItem, FilterMenu, FilterMenuProps } from '..'
+import { FilterItem, FilterMenu, FilterMenuProps } from '.'
 
 export default {
   title: 'Components/Filters/FilterMenu',
@@ -42,7 +42,7 @@ const filtersNested: FilterItem[] = [
   {
     id: 'status',
     label: 'Status',
-    type: 'array',
+    type: 'enum',
     icon: <FiCircle />,
     items: [
       {

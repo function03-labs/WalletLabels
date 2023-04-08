@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx } from '@chakra-ui/utils'
 import { chakra, HTMLChakraProps } from '@chakra-ui/react'
 import { useResize, UseResizeProps } from './use-resize'
 import { ResizeHandle } from './resize-handle'
@@ -39,6 +39,4 @@ export const ResizeBox: React.FC<ResizeBoxProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  ResizeBox.displayName = 'ResizeBox'
-}
+ResizeBox.displayName = 'ResizeBox'

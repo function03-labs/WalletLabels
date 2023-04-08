@@ -15,7 +15,13 @@ import {
 import { ErrorBoundary, LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { FiSidebar } from 'react-icons/fi'
 
-import { Page, Toolbar, ToolbarButton } from '@saas-ui-pro/react'
+import {
+  Page,
+  PageBody,
+  PageHeader,
+  Toolbar,
+  ToolbarButton,
+} from '@saas-ui-pro/react'
 import { Breadcrumbs } from '@ui/lib'
 
 import { useCurrentUser } from '@app/features/core/hooks/use-current-user'
@@ -67,45 +73,48 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
   )
 
   return (
-    <Page title={breadcrumbs} toolbar={toolbar} isLoading={isLoading} fullWidth>
-      <HStack
-        alignItems="stretch"
-        width="100%"
-        height="100%"
-        overflowX="hidden"
-        position="relative"
-        spacing="0"
-      >
-        <Tabs
-          variant="line"
-          isLazy
-          flex="1"
-          minH="0"
-          display="flex"
-          flexDirection="column"
-          size="md"
+    <Page isLoading={isLoading}>
+      <PageHeader title={breadcrumbs} toolbar={toolbar} />
+      <PageBody contentWidth="full" p="0">
+        <HStack
+          alignItems="stretch"
+          width="100%"
+          height="100%"
+          overflowX="hidden"
+          position="relative"
+          spacing="0"
         >
-          <TabList borderBottomWidth="1px" px="3" pt="2">
-            <Tab borderTopRadius="md">Activity</Tab>
-          </TabList>
-          <TabPanels
-            py="8"
-            px="20"
-            overflowY="auto"
-            maxW="container.xl"
-            margin="0 auto"
+          <Tabs
+            variant="line"
+            isLazy
             flex="1"
+            minH="0"
+            display="flex"
+            flexDirection="column"
+            size="md"
           >
-            <TabPanel>
-              <ErrorBoundary>
-                <ActivitiesPanel contactId={id} />
-              </ErrorBoundary>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+            <TabList borderBottomWidth="1px" px="3" pt="2">
+              <Tab borderTopRadius="md">Activity</Tab>
+            </TabList>
+            <TabPanels
+              py="8"
+              px="20"
+              overflowY="auto"
+              maxW="container.xl"
+              margin="0 auto"
+              flex="1"
+            >
+              <TabPanel>
+                <ErrorBoundary>
+                  <ActivitiesPanel contactId={id} />
+                </ErrorBoundary>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
 
-        <ContactSidebar contact={data?.contact} isOpen={sidebar.isOpen} />
-      </HStack>
+          <ContactSidebar contact={data?.contact} isOpen={sidebar.isOpen} />
+        </HStack>
+      </PageBody>
     </Page>
   )
 }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import {
   Button,
   Badge,
@@ -12,27 +12,27 @@ import {
 
 import { FiCircle, FiUser } from 'react-icons/fi'
 
-import { FiltersProvider, FiltersProviderProps } from '../provider'
-import { FiltersAddButton } from '../filters'
-import { ActiveFiltersList } from '../active-filter'
+import { FiltersProvider, FiltersProviderProps } from './provider'
+import { FiltersAddButton } from './filters'
+import { ActiveFiltersList } from './active-filter'
 import {
   DataGrid,
   DataGridCell,
   TableInstance,
   ColumnFiltersState,
   useColumns,
-} from '../../data-grid'
-import { useDataGridFilter } from '../use-data-grid-filter'
-import { NoFilteredResults } from '../no-filtered-results'
-import { Filter } from '../use-active-filter'
-import { FilterItem, FilterItems } from '../filter-menu'
+} from '../data-grid'
+import { useDataGridFilter } from './use-data-grid-filter'
+import { NoFilteredResults } from './no-filtered-results'
+import { Filter } from './use-active-filter'
+import { FilterItem, FilterItems } from './filter-menu'
 
 export default {
   title: 'Components/Filters/Filters',
   decorators: [(Story: any) => <Story />],
 } as Meta
 
-const Template: Story<FiltersProviderProps> = (args) => {
+const Template: StoryFn<FiltersProviderProps> = (args) => {
   return (
     <FiltersProvider {...args}>
       <Stack alignItems="flex-start" width="400px">

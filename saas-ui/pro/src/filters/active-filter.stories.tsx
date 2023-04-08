@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import { Center, Badge, BadgeProps } from '@chakra-ui/react'
 
 import { FiCircle, FiUser, FiPlus, FiX } from 'react-icons/fi'
@@ -16,7 +16,7 @@ import {
   FilterOperators,
   FilterOperatorId,
 } from '..'
-import { ActiveFilterProvider, useActiveFilter } from '../..'
+import { ActiveFilterProvider, useActiveFilter } from './'
 
 export default {
   title: 'Components/Filters/ActiveFilter',
@@ -29,7 +29,9 @@ export default {
   ],
 } as Meta
 
-const Template: Story<ActiveFilterProps> = (args) => <ActiveFilter {...args} />
+const Template: StoryFn<ActiveFilterProps> = (args) => (
+  <ActiveFilter {...args} />
+)
 
 const StatusBadge = (props: BadgeProps) => (
   <Badge boxSize="8px" mx="2px" borderRadius="full" {...props} />

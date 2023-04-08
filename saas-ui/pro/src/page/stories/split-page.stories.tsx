@@ -1,16 +1,26 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
-import { Box, BoxProps, Text, useBreakpointValue } from '@chakra-ui/react'
+import { StoryFn, Meta } from '@storybook/react'
+import {
+  chakra,
+  Avatar,
+  Box,
+  BoxProps,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react'
 
-import { FiAlertCircle } from 'react-icons/fi'
+import { FiAlertCircle, FiCode, FiFilter } from 'react-icons/fi'
 
 import { Toolbar, ToolbarButton } from '../../toolbar'
 
-import { SplitPage, Page } from '..'
+import { SplitPage, Page, PageHeader, PageBody } from '..'
 import {
   AppShell,
   EmptyState,
   StructuredList,
+  StructuredListCell,
+  StructuredListHeader,
+  StructuredListIcon,
   StructuredListItem,
 } from '@saas-ui/react'
 import { BackButton } from '../back-button'
@@ -27,11 +37,43 @@ export default {
   ],
 } as Meta
 
-const Template: Story = (args) => <SplitPage {...args} />
+const List = () => (
+  <StructuredList>
+    <StructuredListItem href="#">
+      <StructuredListCell width="14">
+        <Avatar name="Elliot Alderson" size="sm" />
+      </StructuredListCell>
+      <StructuredListCell flex="1">
+        <Text fontWeight="bold">A bug is never just a mistake.</Text>
+        <Text fontSize="sm" color="muted" noOfLines={2}>
+          <Text as="span" color="app-text">
+            Elliot Alderson
+          </Text>{' '}
+          — It represents something bigger. An error of thinking that makes you
+          who you are.
+        </Text>
+      </StructuredListCell>
+    </StructuredListItem>
+    <StructuredListItem href="#">
+      <StructuredListCell width="14">
+        <Avatar name="Tyrell Wellick" size="sm" />
+      </StructuredListCell>
+      <StructuredListCell flex="1">
+        <Text fontWeight="bold">Hi</Text>
+        <Text fontSize="sm" color="muted" noOfLines={2}>
+          <Text as="span" color="app-text">
+            Tyrell Wellick
+          </Text>{' '}
+          — Unfortunately, we’re all human. Except me, of course.
+        </Text>
+      </StructuredListCell>
+    </StructuredListItem>
+  </StructuredList>
+)
 
-const PageContent = (props: BoxProps) => {
+const Content = (props: BoxProps) => {
   return (
-    <Box p="8" {...props}>
+    <Box {...props}>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed nibh
         sit amet nulla ultricies vehicula. Proin consequat auctor vestibulum.
@@ -49,95 +91,89 @@ const ErrorContent = () => {
   throw new Error()
 }
 
-export const Basic = Template.bind({})
-Basic.args = {
-  title: 'Basic page',
-  children: <PageContent />,
-}
-
-export const WithContent = Template.bind({})
-WithContent.args = {
-  title: 'Page with content',
-  toolbar: (
-    <Toolbar>
-      <ToolbarButton label="Save" colorScheme="primary" variant="solid" />
-    </Toolbar>
-  ),
-  children: <PageContent />,
-  content: (
-    <Page>
-      <PageContent />
-    </Page>
+export const Basic = {
+  render: () => (
+    <SplitPage>
+      <Page borderRightWidth="1px" width="30%" maxW="300px">
+        <PageHeader title="Inbox" />
+        <PageBody p="0">
+          <List />
+        </PageBody>
+      </Page>
+      <EmptyState title="Inbox zero" />
+    </SplitPage>
   ),
 }
 
-export const WithEmptyContent = Template.bind({})
-WithEmptyContent.args = {
-  title: 'Page with empty content',
-  toolbar: (
-    <Toolbar>
-      <ToolbarButton label="Save" colorScheme="primary" variant="solid" />
-    </Toolbar>
-  ),
-  children: <PageContent />,
-  content: <EmptyState title="Nothing here" />,
-}
-
-export const WithToolbar = Template.bind({})
-WithToolbar.args = {
-  title: 'Page with toolbar',
-  toolbar: (
-    <Toolbar>
-      <ToolbarButton label="Save" colorScheme="primary" variant="solid" />
-    </Toolbar>
-  ),
-  children: <PageContent />,
-}
-
-export const WithDescription = Template.bind({})
-WithDescription.args = {
-  title: 'Page with description',
-  description: 'Description',
-  children: <PageContent />,
-}
-
-export const WithLoading = Template.bind({})
-WithLoading.args = {
-  title: 'Page with loading',
-  isLoading: true,
-  children: <PageContent />,
-}
-
-export const WithLoadingContent = Template.bind({})
-WithLoadingContent.args = {
-  title: 'Page with loading',
-  isLoading: true,
-  children: <PageContent />,
-  content: <Page isLoading />,
-}
-
-export const WithError = Template.bind({})
-WithError.args = {
-  title: 'Page with error',
-  children: <ErrorContent />,
-  errorComponent: (
-    <EmptyState
-      icon={FiAlertCircle}
-      title="Oops, this doesn't look right"
-      description="We've been notified about the problem"
-    />
+export const WithContent = {
+  render: () => (
+    <SplitPage>
+      <Page borderRightWidth="1px" width="30%" maxW="300px">
+        <PageHeader title="Inbox" />
+        <PageBody p="0">
+          <List />
+        </PageBody>
+      </Page>
+      <Page>
+        <PageHeader
+          title="Elliot Alderson"
+          description="A bug is never just a mistake"
+        />
+        <PageBody>
+          <Content />
+        </PageBody>
+      </Page>
+    </SplitPage>
   ),
 }
+
+export const WithToolbar = {
+  render: () => (
+    <SplitPage>
+      <Page borderRightWidth="1px" width="30%" maxW="300px">
+        <PageHeader
+          title="Inbox"
+          toolbar={
+            <Toolbar>
+              <ToolbarButton label="Filter" icon={<FiFilter />} />
+            </Toolbar>
+          }
+        />
+        <PageBody p="0">
+          <List />
+        </PageBody>
+      </Page>
+      <Page>
+        <PageHeader
+          title="Elliot Alderson"
+          description="A bug is never just a mistake"
+        />
+        <PageBody>
+          <Content />
+        </PageBody>
+      </Page>
+    </SplitPage>
+  ),
+}
+
+const breakpoints = { base: true, lg: false }
 
 const ResponsiveContent = () => {
   const { onClose } = useSplitPage()
 
-  const isMobile = useBreakpointValue({ base: true, lg: false })
+  const isMobile = useBreakpointValue(breakpoints)
+  const nav = isMobile && <BackButton onClick={onClose} ms="-2" />
 
-  const nav = isMobile && <BackButton onClick={onClose} />
   return (
-    <Page nav={nav}>
-      <PageContent />
+    <Page>
+      <PageHeader
+        title="Elliot Alderson"
+        description="A bug is never just a mistake"
+        nav={nav}
+      />
+      <PageBody>
+        <Content />
+      </PageBody>
     </Page>
   )
 }
@@ -151,9 +187,70 @@ const ResponsiveList = () => {
   )
 }
 
-export const Responsive = Template.bind({})
-Responsive.args = {
-  title: 'Responsive SplitPage',
-  children: <ResponsiveList />,
-  content: <ResponsiveContent />,
+export const Responsive = {
+  render: () => {
+    return (
+      <SplitPage defaultIsOpen={false} breakpoint="lg">
+        <Page
+          borderRightWidth="1px"
+          width="30%"
+          maxW={{ base: 'full', lg: '300px' }}
+        >
+          <PageHeader title="Inbox" />
+          <PageBody p="0">
+            <ResponsiveList />
+          </PageBody>
+        </Page>
+        <ResponsiveContent />
+      </SplitPage>
+    )
+  },
+}
+
+const Queries = () => {
+  const { onOpen } = useSplitPage()
+  return (
+    <StructuredList>
+      <StructuredListItem onClick={() => onOpen}>
+        <StructuredListIcon color="muted">
+          <FiCode />
+        </StructuredListIcon>
+        <StructuredListCell px="2" flex="1">
+          Get all users
+        </StructuredListCell>
+      </StructuredListItem>
+    </StructuredList>
+  )
+}
+
+export const Vertical = {
+  render: () => {
+    const breakpoints = { base: false }
+
+    return (
+      <SplitPage
+        defaultIsOpen={false}
+        breakpoints={breakpoints}
+        orientation="vertical"
+      >
+        <Page borderBottomWidth="1px" height="30%">
+          <PageHeader title="Queries" />
+          <PageBody p="0">
+            <Queries />
+          </PageBody>
+        </Page>
+        <Page>
+          <PageBody p="0">
+            <chakra.div
+              _focus={{ outline: 0 }}
+              minH="100%"
+              p="4"
+              contentEditable
+              dangerouslySetInnerHTML={{ __html: 'SELECT * FROM users' }}
+            />
+          </PageBody>
+        </Page>
+      </SplitPage>
+    )
+  },
 }

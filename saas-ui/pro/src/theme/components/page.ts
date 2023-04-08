@@ -23,7 +23,6 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'stretch',
-      py: 2,
       px: 4,
       minH: 14,
       borderBottomWidth: '1px',
@@ -39,11 +38,12 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
     },
     description: {
       color: 'muted',
-      fontSize: 'md',
+      fontSize: 'sm',
     },
     body: {
       flex: 1,
       overflowY: 'auto',
+      p: 4,
       '& > div': {
         margin: '0 auto',
         minHeight: '100%',
@@ -56,7 +56,8 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
 const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
   return {
     header: {
-      ps: { base: 14, lg: 4 },
+      // ps: { base: 14, lg: 4 },
+      ps: 4,
       '& > .saas-toolbar': {
         ms: 4,
       },
@@ -69,7 +70,6 @@ const variantHero: PartsStyleFunction<typeof parts> = (props) => {
   return {
     headerContainer: {
       bg: mode(`${c}.500`, `${c}.500`)(props),
-      mb: 8,
     },
     header: {
       flexDirection: 'column',
@@ -77,16 +77,19 @@ const variantHero: PartsStyleFunction<typeof parts> = (props) => {
       borderBottomWidth: 0,
       maxW: 'container.xl',
       margin: '0 auto',
-      py: 14,
+      p: { base: 8, lg: 14 },
     },
     title: {
       fontSize: '2xl',
       color: 'white',
     },
     description: {
-      fontSize: 'xl',
+      fontSize: 'lg',
       color: 'whiteAlpha.700',
       mb: 4,
+    },
+    body: {
+      p: { base: 8, lg: 14 },
     },
   }
 }
@@ -102,7 +105,6 @@ const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
       alignItems: 'stretch',
       maxW: 'container.xl',
       margin: '0 auto',
-      mt: [0, null, 8],
       mb: 8,
       minH: 24,
       p: 0,
@@ -113,12 +115,11 @@ const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
     title: {
       fontSize: '2xl',
     },
+    description: {
+      fontSize: 'md',
+    },
     body: {
       overflow: 'visible',
-      '& > div': {
-        margin: '0 auto',
-        maxWidth: props.fullWidth ? '100%' : 'container.xl',
-      },
     },
   }
 }

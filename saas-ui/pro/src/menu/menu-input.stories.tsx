@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import {
   Center,
   Box,
@@ -10,7 +10,7 @@ import {
   MenuItem,
 } from '@chakra-ui/react'
 
-import { MenuInput, MenuInputProps, MenuFilterItem } from '..'
+import { MenuInput, MenuInputProps, MenuFilterItem } from './menu-input'
 
 export default {
   title: 'Components/Menu/MenuInput',
@@ -25,7 +25,7 @@ export default {
   ],
 } as Meta
 
-const Template: Story<MenuInputProps> = (args) => {
+const Template: StoryFn<MenuInputProps> = (args) => {
   const items = [
     {
       label: 'Edit',
@@ -36,11 +36,11 @@ const Template: Story<MenuInputProps> = (args) => {
   ]
   return (
     <Menu isOpen>
-      <MenuButton>Menu list filter</MenuButton>
+      <MenuButton>Menu with Input</MenuButton>
       <MenuList pt="0">
         <MenuInput {...args} />
         {items.map(({ label, ...rest }) => (
-          <MenuItem {...rest}>{label}</MenuItem>
+          <MenuFilterItem {...rest}>{label}</MenuFilterItem>
         ))}
       </MenuList>
     </Menu>
@@ -66,11 +66,11 @@ export const Playground = () => {
   ]
   return (
     <Menu>
-      <MenuButton as={Button}>Menu</MenuButton>
+      <MenuButton as={Button}>Menu with Input</MenuButton>
       <MenuList position="static" pt="0">
         <MenuInput placeholder="Filter..." />
         {items.map(({ label, ...rest }) => (
-          <MenuItem {...rest}>{label}</MenuItem>
+          <MenuFilterItem {...rest}>{label}</MenuFilterItem>
         ))}
       </MenuList>
     </Menu>

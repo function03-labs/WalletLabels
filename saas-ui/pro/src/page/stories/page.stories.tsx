@@ -1,16 +1,17 @@
 import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { StoryFn, Meta } from '@storybook/react'
 import { Box, BoxProps, Text } from '@chakra-ui/react'
 
 import { FiAlertCircle } from 'react-icons/fi'
 
 import { Toolbar, ToolbarButton } from '../../toolbar'
 
-import { Page, BackButton } from '..'
+import { Page, BackButton, PageHeader, PageBody, PageDescription } from '..'
 import { AppShell, EmptyState } from '@saas-ui/react'
 
 export default {
   title: 'Components/Layout/Page',
+  component: Page,
   decorators: [
     (Story: any) => (
       <AppShell borderWidth="1px" variant="default" height="calc(100vh - 40px)">
@@ -20,11 +21,9 @@ export default {
   ],
 } as Meta
 
-const Template: Story = (args) => <Page {...args} />
-
 const PageContent = (props: BoxProps) => {
   return (
-    <Box p="8" {...props}>
+    <Box {...props}>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed nibh
         sit amet nulla ultricies vehicula. Proin consequat auctor vestibulum.
@@ -42,82 +41,125 @@ const ErrorContent = () => {
   throw new Error()
 }
 
-export const Basic = Template.bind({})
-Basic.args = {
-  title: 'Basic page',
-  children: <PageContent />,
-}
-
-export const WithToolbar = Template.bind({})
-WithToolbar.args = {
-  title: 'Page with toolbar',
-  toolbar: (
-    <Toolbar>
-      <ToolbarButton label="Save" colorScheme="primary" variant="solid" />
-    </Toolbar>
-  ),
-  children: <PageContent />,
-}
-
-export const WithDescription = Template.bind({})
-WithDescription.args = {
-  title: 'Page with description',
-  description: 'Description',
-  children: <PageContent />,
-}
-
-export const WithFullWidth = Template.bind({})
-WithFullWidth.args = {
-  title: 'Page with full width',
-  fullWidth: true,
-  children: <PageContent />,
-}
-
-export const WithLoading = Template.bind({})
-WithLoading.args = {
-  title: 'Page with loading',
-  isLoading: true,
-  children: <PageContent />,
-}
-
-export const WithError = Template.bind({})
-WithError.args = {
-  title: 'Page with error',
-  children: <ErrorContent />,
-  errorComponent: (
-    <EmptyState
-      icon={FiAlertCircle}
-      title="Oops, this doesn't look right"
-      description="We've been notified about the problem"
-    />
+export const Basic = {
+  render: () => (
+    <Page>
+      <PageHeader title="Basic page" />
+      <PageBody>
+        <PageContent />
+      </PageBody>
+    </Page>
   ),
 }
 
-export const VariantHero = Template.bind({})
-VariantHero.args = {
-  title: 'Hero page',
-  description: 'My hero page',
-  variant: 'hero',
-  colorScheme: 'purple',
-  toolbar: (
-    <Toolbar>
-      <ToolbarButton label="Save" colorScheme="white" variant="subtle" />
-    </Toolbar>
+export const WithToolbar = {
+  render: () => (
+    <Page>
+      <PageHeader
+        title="Page with toolbar"
+        toolbar={
+          <Toolbar>
+            <ToolbarButton label="Save" colorScheme="white" variant="subtle" />
+          </Toolbar>
+        }
+      />
+      <PageBody>
+        <PageContent />
+      </PageBody>
+    </Page>
   ),
-  children: <PageContent />,
 }
 
-export const VariantSettings = Template.bind({})
-VariantSettings.args = {
-  title: 'Settings page',
-  description: 'Manage your settings',
-  variant: 'settings',
-  children: <PageContent px="0" />,
+export const WithDescription = {
+  render: () => (
+    <Page>
+      <PageHeader
+        title="Page with description"
+        description="My page description"
+      />
+      <PageBody>
+        <PageContent />
+      </PageBody>
+    </Page>
+  ),
 }
 
-export const WithBackButton = Template.bind({})
-WithBackButton.args = {
-  title: 'Page with back button',
-  nav: <BackButton />,
-  children: <PageContent />,
+export const WithBackButton = {
+  render: () => (
+    <Page>
+      <PageHeader title="Page with back button" nav={<BackButton />} />
+      <PageBody>
+        <PageContent />
+      </PageBody>
+    </Page>
+  ),
+}
+
+export const WithLoading = {
+  render: () => (
+    <Page isLoading>
+      <PageHeader title="Page with loading" />
+      <PageBody>
+        <PageContent />
+      </PageBody>
+    </Page>
+  ),
+}
+
+export const WithError = {
+  render: () => (
+    <Page
+      errorComponent={
+        <EmptyState
+          icon={FiAlertCircle}
+          title="Oops, this doesn't look right"
+          description="We've been notified about the problem"
+        />
+      }
+    >
+      <PageHeader title="Page with error" />
+      <PageBody>
+        <ErrorContent />
+      </PageBody>
+    </Page>
+  ),
+}
+
+export const VariantHero = {
+  render: () => (
+    <Page variant="hero" colorScheme="purple">
+      <PageHeader
+        title="Analytics"
+        description={
+          <PageDescription maxW="400px">
+            Get detailed analytics to measure and analyze how users engage with
+            your apps description
+          </PageDescription>
+        }
+        toolbar={
+          <Toolbar>
+            <ToolbarButton
+              label="Upgrade"
+              colorScheme="white"
+              variant="subtle"
+            />
+          </Toolbar>
+        }
+      />
+      <PageBody>
+        <PageContent />
+      </PageBody>
+    </Page>
+  ),
+}
+
+export const VariantSettings = {
+  render: () => (
+    <Page variant="settings">
+      <PageHeader title="Settings page" description="Manage your settings" />
+      <PageBody>
+        <PageContent px="0" />
+      </PageBody>
+    </Page>
+  ),
 }

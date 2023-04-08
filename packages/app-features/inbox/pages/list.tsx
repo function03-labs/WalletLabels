@@ -1,7 +1,14 @@
 import { useRouter } from 'next/router'
 import { FiInbox, FiFilter } from 'react-icons/fi'
 import { EmptyState } from '@saas-ui/react'
-import { SplitPage, Toolbar, ToolbarButton } from '@saas-ui-pro/react'
+import {
+  Page,
+  PageBody,
+  PageHeader,
+  SplitPage,
+  Toolbar,
+  ToolbarButton,
+} from '@saas-ui-pro/react'
 
 import { InboxViewPage } from './view'
 import { InboxList } from '../components/inbox-list'
@@ -45,17 +52,23 @@ export function InboxListPage() {
   }
 
   return (
-    <SplitPage
-      title="Inbox"
-      toolbar={toolbar}
-      content={content}
-      isLoading={isLoading}
-    >
-      {!data?.conversations?.length && isMobile ? (
-        emptyState
-      ) : (
-        <InboxList items={data?.conversations || []} />
-      )}
+    <SplitPage>
+      <Page
+        isLoading={isLoading}
+        borderRightWidth="1px"
+        width="30%"
+        maxWidth="400px"
+      >
+        <PageHeader title="Inbox" toolbar={toolbar} />
+        <PageBody p="0">
+          {!data?.conversations?.length && isMobile ? (
+            emptyState
+          ) : (
+            <InboxList items={data?.conversations || []} />
+          )}
+        </PageBody>
+      </Page>
+      {content}
     </SplitPage>
   )
 }

@@ -9,11 +9,28 @@ import {
   MenuDialogList,
   MenuDialogListProps,
 } from '@saas-ui/react'
+import {
+  ResponseMenuContext,
+  useResponsiveMenuContext,
+} from './responsive-menu-context'
 
-export const ResponsiveMenu: React.FC<MenuProps> = (props) => {
-  const isMobile = useBreakpointValue({ base: 'true', md: false })
+export interface ResponsiveMenuProps extends MenuProps {
+  /**
+   * The breakpoints to use for the responsive menu.
+   * @default { base: true, md: false }
+   */
+  breakpoints?: Record<string, boolean | string> | (string | boolean)[]
+}
 
-  return <Menu variant={isMobile ? 'dialog' : 'menu'} {...props} />
+export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = (props) => {
+  const { breakpoints = { base: true, md: false }, ...rest } = props
+  const isMobile = useBreakpointValue(breakpoints)
+
+  return (
+    <ResponseMenuContext value={{ breakpoints }}>
+      <Menu variant={isMobile ? 'dialog' : 'menu'} {...rest} />
+    </ResponseMenuContext>
+  )
 }
 
 export const ResponsiveMenuList: React.FC<MenuDialogListProps> = (props) => {
@@ -29,7 +46,9 @@ export const ResponsiveMenuList: React.FC<MenuDialogListProps> = (props) => {
     ...rest
   } = props
 
-  const isMobile = useBreakpointValue({ base: 'true', md: false })
+  const context = useResponsiveMenuContext()
+
+  const isMobile = useBreakpointValue(context.breakpoints)
 
   if (isMobile) {
     const dialogProps = {
