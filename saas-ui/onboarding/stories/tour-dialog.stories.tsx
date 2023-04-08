@@ -38,7 +38,7 @@ const Template: Story<TourDialogProps> = (args) => {
   return (
     <TourDialog isOpen={isOpen} onClose={onClose} {...args}>
       <TourDialogTrigger>
-        <Button label="Toggle tour dialog" onClick={onToggle} />
+        <Button onClick={onToggle}>Toggle tour dialog</Button>
       </TourDialogTrigger>
       <TourDialogCloseButton />
       <TourDialogHeader>Check out this new feature</TourDialogHeader>

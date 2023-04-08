@@ -3,7 +3,7 @@ export default {
   stories: [
     {
       directory: '../../',
-      files: '*/!(node_modules)/**/*.@(mdx|stories.@(tsx|mdx))',
+      files: '*/!(node_modules)/**/*.@(mdx|stories.@(tsx))',
     },
   ],
   features: {
@@ -19,7 +19,7 @@ export default {
   ],
   staticDirs: ['./static'],
   typescript: {
-    reactDocgen: false,
+    reactDocgen: true,
   },
   refs: (config, { configType }) => {
     const refs = {

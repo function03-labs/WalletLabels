@@ -23,7 +23,7 @@
     "lint:staged": "lint-staged --allow-empty --config lint-staged.config.js",
     "typecheck": "tsc --noEmit",
     "saas-ui:build": "turbo run build --scope='@saas-ui-pro/*' --concurrency=5 --no-deps --continue && yarn build:tokens",
-    "saas-ui:storybook": "yarn workspace saas-ui-storybook-pro start-storybook -p 6007",
+    "saas-ui:storybook": "yarn workspace saas-ui-storybook-pro dev",
     "saas-ui:publish": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish && yarn changeset tag",
     "saas-ui:publish:next": "yarn workspaces foreach -p --from '@saas-ui/*' npm publish --tag next && yarn changeset tag"
   },
@@ -61,8 +61,8 @@
     "react-inspector": "^6.0.1",
     "@mdx-js/react": "^2.1.5",
     "react-element-to-jsx-string": "^15.0.0",
-    "@saas-ui/forms": "2.0.0-next.7",
-    "@saas-ui/react": "2.0.0-next.7"
+    "@saas-ui/forms": "2.0.0-next.8",
+    "@saas-ui/react": "2.0.0-next.8"
   },
   "packageManager": "yarn@3.3.0"
 }

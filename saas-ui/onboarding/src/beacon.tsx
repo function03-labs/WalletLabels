@@ -11,7 +11,7 @@ import {
   SystemStyleObject,
 } from '@chakra-ui/react'
 
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx } from '@chakra-ui/utils'
 
 const pulse = keyframes`
   0% {
@@ -53,7 +53,7 @@ const defaultStyleConfig: SystemStyleObject = {
 export const Beacon = forwardRef<BeaconProps, 'div'>((props, ref) => {
   const theme = useTheme()
 
-  const styleConfig = theme.components.Beacon || defaultStyleConfig
+  const styleConfig = theme.components.SuiBeacon || defaultStyleConfig
 
   const styles = useStyleConfig('SuiBeacon', {
     styleConfig,
@@ -70,6 +70,4 @@ export const Beacon = forwardRef<BeaconProps, 'div'>((props, ref) => {
   )
 })
 
-if (__DEV__) {
-  Beacon.displayName = 'Beacon'
-}
+Beacon.displayName = 'Beacon'
