@@ -1,6 +1,6 @@
-import { AppProps } from 'next/app.js'
-import { useRouter } from 'next/router.js'
-import Link, { LinkProps } from 'next/link.js'
+import { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
+import Link, { LinkProps } from 'next/link'
 import Head from 'next/head'
 import '@fontsource/inter/variable.css'
 

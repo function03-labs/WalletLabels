@@ -17,7 +17,7 @@
     "baseUrl": "./",
     "paths": {
       "@app/features/*": ["../../packages/app-features/*"],
-      "@app/config/*": ["../../packages/app-config/src/*"]
+      "@app/config": ["../../packages/app-config"]
     },
     "incremental": true
   },
