@@ -7,7 +7,7 @@ import {
   PricingTable,
 } from '@app/features/billing/components/pricing-table'
 
-import { plans, features } from '@app/config/billing'
+import { plans, features } from '@app/config'
 import { useRouter } from 'next/router'
 
 export function PlansPage() {

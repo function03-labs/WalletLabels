@@ -17,8 +17,8 @@
     "baseUrl": "./",
     "paths": {
       "@app/features/*": ["../../packages/app-features/*"],
-      "@app/config/*": ["../../packages/app-config/src/*"],
-      "@ui/*": ["../../packages/ui-core/src/*"]
+      "@app/config": ["../../packages/app-config/src"],
+      "@ui/lib": ["../../packages/ui-lib/src"]
     }
   },
   "exclude": ["node_modules", "renderer/next.config.js", "app", "dist"]
