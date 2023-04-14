@@ -1,6 +1,6 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 
-import { FaGithub, FaTwitter } from 'react-icons/fa'
+import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 
 import {
   Page,
@@ -58,6 +58,12 @@ export function DashboardPage() {
         href="https://github.com/saas-js/saas-ui"
         icon={<FaGithub />}
         label="Star on Github"
+      />
+      <ToolbarButton
+        as="a"
+        href="https://discord.gg/4PmJGFcAjX"
+        icon={<FaDiscord />}
+        label="Join Discord"
       />
       <ToolbarButton
         as="a"

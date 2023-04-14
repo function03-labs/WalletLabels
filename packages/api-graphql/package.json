@@ -3,6 +3,7 @@
   "description": "Example GraphQL schema",
   "version": "0.1.0",
   "main": "src/index.ts",
+  "type": "module",
   "dependencies": {
     "@graphql-tools/schema": "^9.0.17",
     "graphql-tag": "^2.12.6"

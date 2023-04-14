@@ -4,6 +4,7 @@
   "description": "API client mocks",
   "private": true,
   "main": "src/index.ts",
+  "type": "module",
   "dependencies": {
     "@ngneat/falso": "^2.27.0",
     "date-fns": "^2.29.3",

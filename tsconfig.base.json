@@ -31,12 +31,5 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*/*.stories.tsx"
-  ],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "resolveJsonModule": true,
-      "noImplicitAny": false
-    }
-  }
+  ]
 }

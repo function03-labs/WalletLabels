@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "description": "Next.js specific shared code",
   "private": true,
+  "type": "module",
   "main": "src/index.ts",
   "peerDependencies": {
     "next": ">=12",

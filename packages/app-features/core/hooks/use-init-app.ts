@@ -6,7 +6,7 @@ import { useAuth } from '@saas-ui/auth'
 import { useTenant } from '@saas-ui-pro/react'
 
 import { BillingStatus } from '@saas-ui-pro/billing'
-import { plans } from '@app/config/billing'
+import { plans } from '@app/config'
 
 import { useFeatures } from '@saas-ui-pro/feature-flags'
 import { useQuery } from '@tanstack/react-query'

@@ -1,13 +1,18 @@
 import { z } from 'zod'
 import { getOrganization, Organization, updateOrganization } from '@api/client'
-const schema = z.object({
-  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
-})
 import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
 import { Section, useTenant } from '@saas-ui-pro/react'
 import { FormLayout, useSnackbar } from '@saas-ui/react'
 import { Form, SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
+
+const schema = z.object({
+  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
+  email: z
+    .string()
+    .email({ message: 'Please enter your email address' })
+    .describe('Email'),
+})
 
 interface OrganizationDetailsProps {
   organization?: Organization | null

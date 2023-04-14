@@ -1,10 +1,10 @@
-const withSvgr = require('next-svgr')
-const webpack = require('webpack')
-const withWorkspaces = require('@saas-ui/next-workspaces')
+import withSvgr from 'next-svgr'
+import webpack from 'webpack'
+import withWorkspaces from '@saas-ui/next-workspaces'
 
 const isElectron = process.env.npm_package_name === 'electron-app'
 
-module.exports = withWorkspaces({
+export default withWorkspaces({
   workspaces: ['packages', 'saas-ui'],
   basePath: '../../',
 })(
@@ -22,12 +22,17 @@ module.exports = withWorkspaces({
       // Load pro packages from src instead of dist
       config.plugins = config.plugins.concat([
         new webpack.NormalModuleReplacementPlugin(
-          /\@saas-ui\/(pro|billing|router|onboarding|features|paddle.*|pro\/theme|pro-.*)$/,
+          /@saas-ui\/(pro|billing|router|onboarding|features|paddle.*|pro\/theme|pro-.*)$/,
           (resource) => {
             resource.request = resource.request + '/src'
           },
         ),
       ])
+
+      config.resolve.extensionAlias = {
+        '.js': ['.js', '.ts', 'tsx'],
+        '.jsx': ['.jsx', '.tsx'],
+      }
 
       return config
     },

@@ -3,18 +3,19 @@
   "version": "0.3.0",
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "dependencies": {
     "@app/i18n": "workspace:*",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
     "@hookform/resolvers": "^3.0.1",
-    "@saas-ui/forms": "^2.0.0-next.7",
-    "@tiptap/core": "^2.0.2",
-    "@tiptap/extension-mention": "2.0.2",
-    "@tiptap/extension-placeholder": "^2.0.2",
-    "@tiptap/pm": "^2.0.2",
-    "@tiptap/react": "^2.0.2",
-    "@tiptap/starter-kit": "^2.0.2",
+    "@saas-ui/forms": "^2.0.0-next.11",
+    "@tiptap/core": "^2.0.3",
+    "@tiptap/extension-mention": "2.0.3",
+    "@tiptap/extension-placeholder": "^2.0.3",
+    "@tiptap/pm": "^2.0.3",
+    "@tiptap/react": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
     "lucide-react": "^0.130.1",
     "prosemirror-commands": "^1.5.1",
     "prosemirror-dropcursor": "1.5.0",
@@ -35,5 +36,8 @@
     "react": ">=18",
     "react-dom": ">=18",
     "react-icons": "^4.8.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "^2.5.5"
   }
 }

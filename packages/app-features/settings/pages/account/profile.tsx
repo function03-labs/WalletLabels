@@ -3,7 +3,16 @@ import { useRef, useState } from 'react'
 import { z } from 'zod'
 
 const schema = z.object({
-  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
+  firstName: z
+    .string()
+    .min(2, 'Too short')
+    .max(25, 'Too long')
+    .describe('First name'),
+  lastName: z
+    .string()
+    .min(2, 'Too short')
+    .max(25, 'Too long')
+    .describe('Last name'),
   email: z
     .string()
     .email({ message: 'Please enter your email address' })
@@ -46,7 +55,8 @@ function ProfileDetails({ user }: { user: User }) {
             lastName: user?.lastName,
             email: user?.email,
           }}
-          onSubmit={(data) => {
+          onSubmit={(data: any) => {
+            // @todo fix types
             mutateAsync({
               id: user.id,
               firstName: data.firstName,
@@ -59,7 +69,9 @@ function ProfileDetails({ user }: { user: User }) {
             )
           }}
         >
-          {({ Field }) => (
+          {(
+            { Field }: any, // @todo fix types
+          ) => (
             <CardBody>
               <FormLayout>
                 <ProfileAvatar user={user} />

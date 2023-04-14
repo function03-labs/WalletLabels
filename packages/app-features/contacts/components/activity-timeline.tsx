@@ -41,6 +41,7 @@ import { FiPaperclip } from 'react-icons/fi'
 import { AnimatePresence } from 'framer-motion'
 
 import { Form } from '@ui/lib'
+import * as z from 'zod'
 
 type Activity<Type, TData extends object, TUser = Partial<User>> = {
   id: string
@@ -293,6 +294,10 @@ const ActivityTimelineComment: React.FC<ActivityTimelineCommentProps> = (
   )
 }
 
+const commentSchema = z.object({
+  comment: z.string().nonempty(),
+})
+
 interface Comment {
   files?: FileList
   comment: string
@@ -308,7 +313,7 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
 ) => {
   const { onSubmit, user } = props
 
-  const formRef = React.useRef<UseFormReturn<Comment>>(null)
+  const formRef = React.useRef<UseFormReturn<any>>(null)
   const submitRef = React.useRef<HTMLButtonElement>(null)
 
   return (
@@ -326,6 +331,7 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
       <TimelineContent ps="4" pt="0">
         <Card py="3" px="4">
           <Form
+            schema={commentSchema}
             formRef={formRef}
             onSubmit={async (data) => {
               await onSubmit(data)

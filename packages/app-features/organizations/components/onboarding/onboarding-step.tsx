@@ -15,6 +15,8 @@ import {
   WatchObserver,
 } from '@saas-ui/react'
 
+import * as z from 'zod'
+
 import { Form } from '@ui/lib'
 
 export interface OnboardingStepProps<
@@ -22,6 +24,7 @@ export interface OnboardingStepProps<
 > {
   title: string
   description: string
+  schema: z.ZodObject<any, any, any>
   defaultValues: DeepPartial<TFieldValues>
   onChange?: WatchObserver<TFieldValues>
   onSubmit: SubmitHandler<TFieldValues>
@@ -50,6 +53,7 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
   const {
     title,
     description,
+    schema,
     defaultValues,
     onChange,
     onSubmit,
@@ -66,12 +70,13 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
         {description}
       </Text>
 
-      <Form
+      <Form<any>
+        schema={schema}
         formRef={formRef}
         defaultValues={defaultValues}
         onSubmit={onSubmit}
-        alignSelf="stretch"
         onChange={onChange}
+        alignSelf="stretch"
       >
         <Card mb="6" animation={animation(0.2)}>
           <CardBody>{children}</CardBody>

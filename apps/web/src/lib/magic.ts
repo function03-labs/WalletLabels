@@ -1,3 +1,4 @@
+/* @ts-ignore */
 import { Magic } from 'magic-sdk'
 // import { createAuthService } from '@saas-ui/auth/services/magic-link'
 

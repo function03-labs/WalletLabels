@@ -5,6 +5,7 @@
   "version": "0.12.0",
   "author": "Eelco Wiersma <eelco@appule.nl>",
   "main": "app/background.js",
+  "type": "module",
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",

@@ -14,7 +14,7 @@ import { I18nProvider } from '@app/i18n'
 
 import { theme } from '@ui/theme'
 
-import features from '@app/config/feature-flags'
+import { segments } from '@app/config'
 
 import { queryClient } from '../lib/react-query'
 
@@ -46,7 +46,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
           theme={theme}
         >
           <AuthProvider {...authService}>
-            <FeaturesProvider value={features}>
+            <FeaturesProvider value={segments}>
               <I18nProvider>
                 <TenancyProvider tenant={tenant} onChange={onTenantChange}>
                   <ModalsProvider>{children}</ModalsProvider>

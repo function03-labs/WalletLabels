@@ -47,6 +47,7 @@ import {
 
 import {
   ElectronNav,
+  HelpCenter,
   InviteDialog,
   SortableNavGroup,
   SortableNavItem,
@@ -148,6 +149,9 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
                 modals.open({
                   title: 'Invite people',
                   component: InviteDialog,
+                  onInvite: async () => {
+                    // TODO: handle invite
+                  },
                 })
               }
               color="sidebar-muted"
@@ -156,11 +160,11 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               Invite people
             </NavItem>
             <NavItem
-              href="https://saas-ui.dev/docs"
+              onClick={() => modals.open(HelpCenter)}
               color="sidebar-muted"
               icon={<FiHelpCircle />}
             >
-              Documentation
+              Help &amp; support
             </NavItem>
           </NavGroup>
         </SidebarSection>

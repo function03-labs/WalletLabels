@@ -2,6 +2,7 @@
   "name": "@app/config",
   "main": "src/index.ts",
   "version": "0.3.0",
+  "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^2.15.0",
     "magic-sdk": "^16.1.0"

@@ -1,5 +1,5 @@
 import { ColorModeScript } from '@chakra-ui/react'
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document.js'
 import { theme } from '@ui/theme'
 import { LemonSqueezyScript } from '../lib/lemonsqueezy'
 

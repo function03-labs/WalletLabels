@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 
-import { BackButton, Page } from '@saas-ui-pro/react'
+import { BackButton, Page, PageBody, PageHeader } from '@saas-ui-pro/react'
 
 import { useAuth } from '@saas-ui/auth'
 import { Link } from '@saas-ui/react'
@@ -22,7 +22,7 @@ export interface OnboardingPageProps {
 }
 
 export const OnboardingPage: React.FC<OnboardingPageProps> = (props) => {
-  const { hideBackButton, ...pageProps } = props
+  const { hideBackButton, children, ...pageProps } = props
   const { user, logOut } = useAuth()
 
   const nav = (
@@ -48,5 +48,10 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = (props) => {
     </HStack>
   )
 
-  return <Page nav={nav} fullWidth {...pageProps} />
+  return (
+    <Page {...pageProps}>
+      <PageHeader nav={nav}></PageHeader>
+      <PageBody maxW="full">{children}</PageBody>
+    </Page>
+  )
 }

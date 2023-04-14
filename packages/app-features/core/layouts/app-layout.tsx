@@ -7,8 +7,13 @@ import { Auth, AuthProps } from '@saas-ui/auth'
 import { useLocation } from '@app/nextjs'
 import { BillingProvider } from '@saas-ui-pro/billing'
 
-import { authType, authProviders, authPaths } from '@app/config/auth'
-import { settingsHotkeys, fullscreenHotkeys } from '@app/config/hotkeys'
+import {
+  authType,
+  authProviders,
+  authPaths,
+  settingsHotkeys,
+  fullscreenHotkeys,
+} from '@app/config'
 import { SettingsSidebar } from '@app/features/settings/components/sidebar'
 
 import { Hotkeys } from '../components/hotkeys'

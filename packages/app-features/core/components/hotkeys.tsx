@@ -1,6 +1,6 @@
 import { HotkeysProvider, HotkeysListOptions } from '@saas-ui/react'
 
-import { appHotkeys } from '@app/config/hotkeys'
+import { appHotkeys } from '@app/config'
 
 interface HotkeysProps {
   hotkeys?: HotkeysListOptions

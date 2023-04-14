@@ -2,6 +2,7 @@
   "name": "@api/client",
   "version": "0.3.0",
   "main": "src/index.ts",
+  "type": "module",
   "dependencies": {
     "@api/mocks": "workspace:*"
   }

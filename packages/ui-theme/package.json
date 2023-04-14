@@ -1,6 +1,7 @@
 {
   "name": "@ui/theme",
   "version": "0.4.0",
+  "type": "module",
   "sideEffects": false,
   "author": "Eelco Wiersma <eelco@appulse.nl>",
   "homepage": "https://saas-ui.dev/",

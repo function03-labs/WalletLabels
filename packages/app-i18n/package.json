@@ -3,6 +3,7 @@
   "main": "src/index",
   "version": "0.3.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "extract": "formatjs extract",
     "compile": "formatjs compile",

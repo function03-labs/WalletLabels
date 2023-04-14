@@ -1,6 +1,6 @@
 import { FeaturesOptions } from '@saas-ui-pro/feature-flags'
 
-const options: FeaturesOptions = {
+export const segments: FeaturesOptions = {
   segments: [
     {
       id: 'admin',
@@ -14,5 +14,3 @@ const options: FeaturesOptions = {
     },
   ],
 }
-
-export default options

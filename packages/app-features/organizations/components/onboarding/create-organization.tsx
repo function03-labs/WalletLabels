@@ -9,14 +9,18 @@ import {
   useStepperContext,
 } from '@saas-ui/react'
 
+import * as z from 'zod'
+
 import { OnboardingStep } from './onboarding-step'
 import { useMutation } from '@tanstack/react-query'
 import { createOrganization } from '@api/client'
 
-type FormInput = {
-  name: string
-  slug: string
-}
+const schema = z.object({
+  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
+  slug: z.string(),
+})
+
+type FormInput = z.infer<typeof schema>
 
 export const CreateOrganizationStep = () => {
   const stepper = useStepperContext()
@@ -29,7 +33,8 @@ export const CreateOrganizationStep = () => {
   })
 
   return (
-    <OnboardingStep<FormInput>
+    <OnboardingStep
+      schema={schema}
       formRef={formRef}
       title="Create a new organization"
       description="Saas UI is multi-tenant and supports organization workspaces with multiple teams."

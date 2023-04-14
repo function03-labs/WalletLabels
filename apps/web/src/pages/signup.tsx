@@ -1,5 +1,5 @@
 import * as React from 'react'
-import router from 'next/router'
+import { useRouter } from 'next/router'
 
 import { useAuth } from '@saas-ui/auth'
 import { createPage } from '@app/nextjs'
@@ -15,6 +15,7 @@ export default createPage({
   // isPublic: true,
   renderComponent: () => {
     const { isAuthenticated } = useAuth()
+    const router = useRouter()
 
     React.useEffect(() => {
       if (isAuthenticated) {
