@@ -51,7 +51,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "tsup": "^6.7.0",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "tsup": "^6.7.0"
   }
 }

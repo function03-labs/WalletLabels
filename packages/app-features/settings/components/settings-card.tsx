@@ -10,10 +10,9 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import {} from '@saas-ui/react'
 
 interface SettingsCardProps extends Omit<CardProps, 'title'> {
-  icon?: As<any>
+  icon?: As
   title?: React.ReactNode
   description?: React.ReactNode
   avatar?: React.ReactNode
@@ -21,10 +20,10 @@ interface SettingsCardProps extends Omit<CardProps, 'title'> {
 }
 
 export const SettingsCard: React.FC<SettingsCardProps> = (props) => {
-  const { title, description, footer, avatar, icon, children } = props
+  const { title, description, footer, avatar, icon, children, ...rest } = props
   const showHeader = title || description || avatar || icon
   return (
-    <Card>
+    <Card {...rest}>
       {showHeader ? (
         <CardHeader display="flex" px="4" py="3">
           <Box mr="4">{icon ? <Icon as={icon} boxSize="8" /> : avatar}</Box>

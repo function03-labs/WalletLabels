@@ -1,6 +1,5 @@
 // Chakra UI Components
 import Button from './button'
-import Card from './card'
 import Form from './form'
 import Kbd from './kbd'
 import Tabs from './tabs'
@@ -46,7 +45,6 @@ export const components = {
   SuiDataGrid,
   SuiToolbar,
   Button,
-  Card,
   Form,
   Kbd,
   Tabs,

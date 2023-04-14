@@ -113,7 +113,7 @@ export function SettingsOverviewPage() {
           />
           <SupportCard
             title="Roadmap"
-            description="Post feedback, bug reports and feature requests."
+            description="Post feedback, bugs and feature requests."
             icon={FiGithub}
             href="https://roadmap.saas-ui.dev"
           />

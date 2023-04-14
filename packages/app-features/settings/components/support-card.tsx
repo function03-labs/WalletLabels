@@ -25,20 +25,7 @@ interface SupportCardProps
 export const SupportCard: React.FC<SupportCardProps> = (props) => {
   const { title, description, icon, href } = props
   return (
-    <Card
-      as={LinkBox}
-      variant="elevated"
-      _hover={{
-        borderColor: 'blackAlpha.300',
-      }}
-      bg="none"
-      _dark={{
-        bg: 'none',
-        _hover: {
-          borderColor: 'whiteAlpha.300',
-        },
-      }}
-    >
+    <Card as={LinkBox} variant="outline">
       <CardHeader display="flex">
         <Box mr="4">
           <Icon as={icon} boxSize="4" mt="0.5" />
