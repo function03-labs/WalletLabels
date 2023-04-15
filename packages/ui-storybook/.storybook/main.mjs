@@ -3,14 +3,13 @@ export default {
   stories: [
     {
       directory: '../../',
-      files: '*/!(node_modules)/**/*.@(mdx|stories.@(tsx))',
+      files: '*/!(node_modules)/**/*.@(stories.@(tsx))',
     },
   ],
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-toolbars',
     '@storybook/addon-viewport',
-    '@storybook/addon-docs',
     '@storybook/addon-controls',
     '@saas-ui/storybook-addon',
   ],
@@ -51,7 +50,7 @@ export default {
       resolve: {
         alias: [
           {
-            find: /(\@saas-ui\/[a-z-\/]+)$/,
+            find: /(\@saas-ui-pro\/[a-z-\/]+)$/,
             replacement: '$1/src',
           },
         ],

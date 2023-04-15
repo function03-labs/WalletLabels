@@ -4,7 +4,11 @@ import { Story, Meta } from '@storybook/react'
 import { ListPage, ListPageProps } from './list-page'
 
 export default {
-  title: 'Modules/Core/ListPage',
+  title: 'Components/ListPage',
+  component: ListPage,
+  parameters: {
+    layout: 'fullscreen',
+  },
 } as Meta
 
 interface Data {
@@ -12,11 +16,21 @@ interface Data {
   name: string
 }
 
-const Template: Story<ListPageProps<Data>> = (args) => <ListPage {...args} />
-
-export const Basic = Template.bind({})
-Basic.args = {
-  title: 'Basic List Page',
-  columns: [],
-  data: [],
+export const Default = {
+  args: {
+    title: 'List Page',
+    data: [
+      { id: '1', name: 'Item 1' },
+      { id: '2', name: 'Item 2' },
+      { id: '3', name: 'Item 3' },
+      { id: '4', name: 'Item 4' },
+      { id: '5', name: 'Item 5' },
+    ],
+    columns: [
+      {
+        id: 'name',
+        header: 'Name',
+      },
+    ],
+  },
 }

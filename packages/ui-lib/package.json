@@ -38,6 +38,11 @@
     "react-icons": "^4.8.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^2.5.5"
+    "@chakra-ui/system": "^2.5.5",
+    "@storybook/react": "^7.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intl": "^6.3.2",
+    "zod": "^3.21.4"
   }
 }

@@ -11,6 +11,9 @@ export interface DateTimeSinceProps extends BoxProps {
   format?: 'short' | 'long' | 'narrow'
 }
 
+/**
+ * Display a date and time in a relative or absolute format.
+ */
 export const DateTimeSince: React.FC<DateTimeSinceProps> = (props) => {
   const { date, format, ...rest } = props
   const [type, setType] = useLocalStorage('date-time-type', 'relative')

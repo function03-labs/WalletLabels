@@ -1,12 +1,9 @@
-import * as React from 'react'
-
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbItemProps,
   BreadcrumbLink,
   BreadcrumbProps,
-  Button,
   SkeletonText,
   Text,
 } from '@chakra-ui/react'
@@ -28,11 +25,11 @@ export interface BreadCrumbsProps extends BreadcrumbProps {
  * Renders items without a title as a Skeleton animation.
  */
 export const Breadcrumbs: React.FC<BreadCrumbsProps> = (props) => {
-  const { items, ...rest } = props
+  const { items = [], ...rest } = props
   const Link = useLink()
   return (
     <Breadcrumb {...rest}>
-      {items.map((item, i) => {
+      {items?.map((item, i) => {
         const { href, title, ...itemProps } = item
 
         return (

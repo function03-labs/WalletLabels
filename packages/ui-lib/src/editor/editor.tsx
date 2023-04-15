@@ -1,12 +1,18 @@
 import * as React from 'react'
-import { chakra, forwardRef, useMultiStyleConfig } from '@chakra-ui/react'
+import {
+  ThemingProps,
+  chakra,
+  forwardRef,
+  useMultiStyleConfig,
+} from '@chakra-ui/react'
 import { createField } from '@saas-ui/forms'
 import { useEditor, EditorContent, EditorContentProps } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 
 export interface EditorProps
-  extends Omit<EditorContentProps, 'editor' | 'as' | 'ref'> {
+  extends Omit<EditorContentProps, 'editor' | 'as' | 'ref' | 'size'>,
+    ThemingProps<'Textarea'> {
   value?: string
   defaultValue?: string
 }
@@ -15,7 +21,7 @@ export const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
   (props, ref) => {
     const { defaultValue, onChange, value, placeholder, ...rest } = props
 
-    const styles = useMultiStyleConfig('Textarea')
+    const styles = useMultiStyleConfig('Textarea', props)
 
     const editor = useEditor({
       extensions: [

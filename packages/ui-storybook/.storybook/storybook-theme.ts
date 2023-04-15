@@ -3,8 +3,8 @@ import { create } from '@storybook/theming'
 import brandImage from './storybook-logo.svg'
 
 export default create({
-  base: 'light',
-  brandTitle: 'Your Design System',
+  base: 'dark',
+  brandTitle: 'Saas UI',
   brandUrl: 'https://saas-ui.dev',
   brandImage,
 })

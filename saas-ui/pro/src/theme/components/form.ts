@@ -14,6 +14,5 @@ export default {
   Input,
   NumberInput: Input,
   PinInput: Input,
-  Textarea: Input,
   Select: Input,
 }

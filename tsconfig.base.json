@@ -3,7 +3,6 @@
     "target": "es2019",
     "module": "esnext",
     "lib": ["dom", "esnext"],
-    "declaration": true,
     "sourceMap": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
@@ -15,21 +14,12 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "incremental": true,
-    "declarationMap": true
+    "incremental": true
   },
-  "exclude": [
-    "node_modules",
-    "cypress",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*/*.stories.tsx"
-  ]
+  "exclude": ["node_modules"]
 }

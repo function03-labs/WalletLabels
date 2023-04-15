@@ -520,7 +520,7 @@ const getSelectionColumn = <Data extends object>(
 
 export interface UseColumnVisibilityProps<Data, VisibleColumns = string[]> {
   columns: ColumnDef<Data>[]
-  visibleColumns: VisibleColumns
+  visibleColumns?: VisibleColumns
 }
 
 /**
@@ -530,7 +530,7 @@ export interface UseColumnVisibilityProps<Data, VisibleColumns = string[]> {
 export const useColumnVisibility = <Data extends object>(
   props: UseColumnVisibilityProps<Data>,
 ) => {
-  const { columns, visibleColumns } = props
+  const { columns, visibleColumns = [] } = props
   const initRef = React.useRef(false)
 
   const getVisibleColumns = React.useCallback(() => {
@@ -546,7 +546,7 @@ export const useColumnVisibility = <Data extends object>(
         }
         if (id) {
           memo[id] =
-            column.enableHiding !== false ? visibleColumns.includes(id) : true
+            column.enableHiding !== false ? visibleColumns?.includes(id) : true
         }
         return memo
       }, {}) || {}

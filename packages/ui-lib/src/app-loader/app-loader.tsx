@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { SaasUIGlyph } from '../logo/saas-ui-glyph'
 
 import { LoadingOverlay, LoadingOverlayProps } from '@saas-ui/react'
