@@ -9,29 +9,23 @@ import {
   createStylesContext,
 } from '@chakra-ui/react'
 
-import { cx, __DEV__ } from '@chakra-ui/utils'
+import { cx } from '@chakra-ui/utils'
 
 import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 
 const [StylesProvider, useStyles] = createStylesContext('SuiSection')
 
+export const useSectionStyles = useStyles
+
 export interface SectionProps
   extends Omit<HTMLChakraProps<'div'>, 'title'>,
     ThemingProps<'SuiSection'> {
-  title?: React.ReactNode
-  description?: React.ReactNode
-  isAnnotated?: boolean
   isLoading?: boolean
   children: React.ReactNode
 }
 
 export const Section: React.FC<SectionProps> = (props) => {
-  const { title, description, isAnnotated, isLoading, children, ...rest } =
-    props
-
-  const showHeading = title || description || isAnnotated
-
-  const variant = isAnnotated ? 'annotated' : props.variant
+  const { isLoading, children, ...rest } = props
 
   let content
   if (isLoading) {
@@ -44,24 +38,10 @@ export const Section: React.FC<SectionProps> = (props) => {
     content = children
   }
 
-  return (
-    <SectionContainer {...rest} variant={variant}>
-      {showHeading && (
-        <SectionHeading>
-          {title && <SectionTitle>{title}</SectionTitle>}
-          {description && (
-            <SectionDescription>{description}</SectionDescription>
-          )}
-        </SectionHeading>
-      )}
-      <SectionBody>{content}</SectionBody>
-    </SectionContainer>
-  )
+  return <SectionContainer {...rest}>{content}</SectionContainer>
 }
 
-if (__DEV__) {
-  Section.displayName = 'Section'
-}
+Section.displayName = 'Section'
 
 export interface SectionBodyProps extends HTMLChakraProps<'div'> {}
 
@@ -87,16 +67,11 @@ export const SectionBody: React.FC<SectionBodyProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  SectionBody.displayName = 'SectionBody'
-}
+SectionBody.displayName = 'SectionBody'
 
 export const SectionContainer: React.FC<SectionProps> = (props) => {
-  const { children, title, description, isAnnotated, variant, ...rest } = props
-  const styles = useMultiStyleConfig('SuiSection', props) as Record<
-    string,
-    SystemStyleObject
-  >
+  const { children, variant, ...rest } = props
+  const styles = useMultiStyleConfig('SuiSection', props)
 
   const containerProps = omitThemingProps(rest)
 
@@ -120,30 +95,41 @@ export const SectionContainer: React.FC<SectionProps> = (props) => {
   )
 }
 
-if (__DEV__) {
-  SectionContainer.displayName = 'SectionContainer'
+SectionContainer.displayName = 'SectionContainer'
+
+export interface SectionHeaderProps
+  extends Omit<HTMLChakraProps<'div'>, 'title'> {
+  title?: React.ReactNode
+  description?: React.ReactNode
 }
 
-export const SectionHeading: React.FC<HTMLChakraProps<'div'>> = (props) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
+  const { title, description, children, ...rest } = props
   const styles = useStyles()
 
-  const headingStyles: SystemStyleObject = {
+  const headerStyles: SystemStyleObject = {
     flexShrink: 0,
-    ...styles.heading,
+    ...styles.header,
   }
 
   return (
     <chakra.div
-      {...props}
-      __css={headingStyles}
-      className={cx('sui-section__heading', props.className)}
-    />
+      {...rest}
+      __css={headerStyles}
+      className={cx('sui-section__header', props.className)}
+    >
+      {typeof title === 'string' ? <SectionTitle>{title}</SectionTitle> : title}
+      {typeof description === 'string' ? (
+        <SectionDescription>{description}</SectionDescription>
+      ) : (
+        description
+      )}
+      {children}
+    </chakra.div>
   )
 }
 
-if (__DEV__) {
-  SectionHeading.displayName = 'SectionHeading'
-}
+SectionHeader.displayName = 'SectionHeader'
 
 export const SectionTitle: React.FC<HTMLChakraProps<'h3'>> = (props) => {
   const styles = useStyles()
@@ -151,9 +137,7 @@ export const SectionTitle: React.FC<HTMLChakraProps<'h3'>> = (props) => {
   return <chakra.h3 {...props} __css={styles.title} />
 }
 
-if (__DEV__) {
-  SectionTitle.displayName = 'SectionTitle'
-}
+SectionTitle.displayName = 'SectionTitle'
 
 export const SectionDescription: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const styles = useStyles()
@@ -161,6 +145,4 @@ export const SectionDescription: React.FC<HTMLChakraProps<'div'>> = (props) => {
   return <chakra.div {...props} __css={styles.description} />
 }
 
-if (__DEV__) {
-  SectionDescription.displayName = 'SectionDescription'
-}
+SectionDescription.displayName = 'SectionDescription'

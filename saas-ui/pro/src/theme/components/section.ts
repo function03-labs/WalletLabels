@@ -2,7 +2,7 @@ import { anatomy, PartsStyleFunction } from '@chakra-ui/theme-tools'
 
 const parts = anatomy('section').parts(
   'container',
-  'heading',
+  'header',
   'title',
   'description',
   'body',
@@ -45,7 +45,7 @@ const variantAnnotated: PartsStyleFunction<typeof parts> = (props) => {
       flexDirection: ['column', null, 'row'],
       mt: 4,
     },
-    heading: {
+    header: {
       width: ['full', null, '30%'],
       mt: 0,
       mb: [4, null, 0],
