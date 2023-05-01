@@ -38,7 +38,7 @@ yarn generate
 
 ## Install from NPM
 
-Instructions for installing `@saas-ui/pro` from NPM can be found in the [Storybook documentation](https://saas-ui.dev/docs/pro/installation/npm).
+Instructions for installing `@saas-ui-pro/react` from NPM can be found in the [documentation](https://saas-ui.dev/docs/pro/installation/npm).
 
 ## Configuration
 

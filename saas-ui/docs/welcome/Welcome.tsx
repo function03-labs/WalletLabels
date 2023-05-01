@@ -1,5 +1,5 @@
 import React from 'react'
-import PackageInfo from '../../pro/package.json'
+import PackageInfo from '../../react/package.json'
 
 import { Box, Stack, Heading, Text } from '@chakra-ui/react'
 import { BackgroundGradient } from './background-gradient'
@@ -17,7 +17,7 @@ export const Welcome = () => {
       p="8"
     >
       <Stack zIndex="2" pos="relative">
-        <Heading>@saas-ui/pro</Heading>
+        <Heading>@saas-ui-pro/react</Heading>
         <Text>{`v${PackageInfo.version}`}</Text>
       </Stack>
       <BackgroundGradient />
