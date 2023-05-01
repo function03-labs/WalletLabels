@@ -1,5 +1,20 @@
 # @saas-ui/pro
 
+## 0.20.0
+
+### Minor Changes
+
+- 347eefb: SplitPage now accepts 2 children instead of composing the parent page using content
+- 347eefb: Restructured Page component composition. PageHeader and PageBody should now defined as child components.
+- 347eefb: BulkActions actions prop renamed to children.
+- 58e1f6c: Improved Section composition, Section no longer accepts title and description, SectionHeading renamed to SectionTitle
+
+### Patch Changes
+
+- 347eefb: SplitPage now accepts orientation vertical/horizontal prop for vertical splits
+- 95d9eba: Fix issue where DataGrid would throw an error when no visibleColumns are set.
+- 347eefb: ResizeBox now supports onHandleClick property
+
 ## 0.19.0
 
 ### Minor Changes

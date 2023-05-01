@@ -1,5 +1,18 @@
 # saas-ui-storybook
 
+## 18.0.0
+
+### Patch Changes
+
+- Updated dependencies [347eefb]
+- Updated dependencies [95d9eba]
+- Updated dependencies [347eefb]
+- Updated dependencies [347eefb]
+- Updated dependencies [347eefb]
+- Updated dependencies [347eefb]
+- Updated dependencies [58e1f6c]
+  - @saas-ui-pro/react@0.20.0
+
 ## 17.0.0
 
 ### Minor Changes
