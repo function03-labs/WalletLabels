@@ -9,7 +9,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@saas-ui-pro/react": "^0.20.0",
-    "@saas-ui/react": "^2.0.0-beta.9",
+    "@saas-ui/react": "^2.0.0-beta.12",
     "framer-motion": "^10.11.2",
     "lucide-react": "^0.130.1",
     "react": "^18.2.0",
