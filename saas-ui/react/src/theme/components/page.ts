@@ -56,8 +56,18 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
 const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
   return {
     header: {
-      // ps: { base: 14, lg: 4 },
       ps: 4,
+    },
+    title: {
+      me: 4,
+    },
+  }
+}
+
+const variantDefaultSidebar: PartsStyleFunction<typeof parts> = (props) => {
+  return {
+    header: {
+      ps: { base: 14, lg: 4 },
     },
     title: {
       me: 4,
@@ -133,6 +143,7 @@ export default {
   baseStyle,
   variants: {
     default: variantDefault,
+    'default-sidebar': variantDefaultSidebar,
     hero: variantHero,
     settings: variantSettings,
   },
