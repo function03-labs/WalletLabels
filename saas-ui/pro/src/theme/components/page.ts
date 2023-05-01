@@ -58,9 +58,9 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
     header: {
       // ps: { base: 14, lg: 4 },
       ps: 4,
-      '& > .saas-toolbar': {
-        ms: 4,
-      },
+    },
+    title: {
+      me: 4,
     },
   }
 }
