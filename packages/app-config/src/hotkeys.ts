@@ -1,4 +1,4 @@
-import { HotkeysListOptions } from '@saas-ui/react'
+import { HotkeysListOptions } from '@saas-ui/hotkeys'
 
 import { platformSelect } from '@saas-ui-pro/react'
 

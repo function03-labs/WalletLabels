@@ -33,7 +33,7 @@
     "apps/*"
   ],
   "devDependencies": {
-    "@chakra-ui/cli": "^2.3.0",
+    "@chakra-ui/cli": "^2.4.0",
     "@changesets/cli": "^2.26.0",
     "@formatjs/cli": "^5.1.13",
     "@types/node": "^18.15.11",
