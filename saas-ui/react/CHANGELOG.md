@@ -1,4 +1,4 @@
-# @saas-ui/pro
+# @saas-ui-pro/react
 
 ## 0.20.0
 
