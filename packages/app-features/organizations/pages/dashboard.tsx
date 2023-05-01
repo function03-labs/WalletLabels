@@ -91,7 +91,7 @@ export function DashboardPage() {
           <GridItem colSpan={{ base: 1, lg: 2 }}>
             <Today />
           </GridItem>
-          <GridItem colSpan={{ base: 1, lg: 2 }}>
+          <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <MRR />
           </GridItem>
           <GridItem as={SalesByCountry} />

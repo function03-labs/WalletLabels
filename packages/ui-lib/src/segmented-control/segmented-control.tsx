@@ -22,6 +22,7 @@ export interface SegmentedControlProps
   extends UseControllableStateProps<string> {
   segments: Array<SegmentItem>
   breakpoints?: Record<string, boolean>
+  size?: 'sm' | 'md' | 'lg'
 }
 
 export const SegmentedControl: React.FC<SegmentedControlProps> = (props) => {
@@ -31,6 +32,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = (props) => {
     value: valueProp,
     onChange: onChangeProp,
     breakpoints = { base: true, md: false },
+    size = 'sm',
   } = props
   const isMobile = useBreakpointValue(breakpoints, {
     fallback: 'lg',
@@ -51,7 +53,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = (props) => {
   if (isMobile) {
     return (
       <Menu>
-        <MenuButton as={Button} variant="secondary">
+        <MenuButton as={Button} variant="tertiary" size={size}>
           {activeSegment.label}
         </MenuButton>
         <Portal>
@@ -77,7 +79,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = (props) => {
       index={activeIndex}
       onChange={(index) => setValue(segments[index].id)}
       variant="segments"
-      size="sm"
+      size={size}
     >
       <TabList>
         {segments?.map(({ id, label }) => (

@@ -18,7 +18,7 @@ import {
 } from '@saas-ui-pro/onboarding'
 
 import { useLocalStorage } from '@saas-ui/react'
-import { ButtonGroup, Text } from '@chakra-ui/react'
+import { ButtonGroup, Text, useBreakpointValue } from '@chakra-ui/react'
 import { SaasUIGlyph } from '@ui/lib/src/logo/saas-ui-glyph'
 
 /**
@@ -29,7 +29,10 @@ export const IntroTour = () => {
 
   const steps = [
     {
-      target: '.tenant-menu',
+      target: useBreakpointValue({
+        base: '.sui-sidebar__toggle-button',
+        lg: '.tenant-menu',
+      }),
       title: 'Switch workspaces',
       content: 'Saas UI Pro supports multiple workspaces.',
       disableBeacon: true,
