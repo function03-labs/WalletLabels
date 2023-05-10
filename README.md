@@ -16,7 +16,7 @@ https://storybook.saas-ui.pro
 
 ## Documentation
 
-https://saas-ui.dev/docs/pro/overview
+https://beta.saas-ui.dev/docs/pro/overview
 
 ## Installation
 
@@ -38,7 +38,7 @@ yarn generate
 
 ## Install from NPM
 
-Instructions for installing `@saas-ui-pro/react` from NPM can be found in the [documentation](https://saas-ui.dev/docs/pro/installation/npm).
+Instructions for installing `@saas-ui-pro/react` from NPM can be found in the [documentation](https://beta.saas-ui.dev/docs/pro/installation/npm).
 
 ## Configuration
 
@@ -60,7 +60,7 @@ yarn dev:desktop
 
 The apps mocks authentication by default. Follow these steps to configure Supabase for Next.js.
 
-More [about authentication](https://saas-ui.dev/docs/pro/configuration/authentication).
+More [about authentication](https://beta.saas-ui.dev/docs/pro/configuration/authentication).
 
 ## Project structure
 
