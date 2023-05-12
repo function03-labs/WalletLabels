@@ -1,6 +1,11 @@
 import * as React from 'react'
 import { useSnackbar, useModals } from '@saas-ui/react'
-import { Section, useTenant } from '@saas-ui-pro/react'
+import {
+  Section,
+  SectionBody,
+  SectionHeader,
+  useTenant,
+} from '@saas-ui-pro/react'
 
 import {
   MembersList,
@@ -124,14 +129,17 @@ export function MembersSettingsPage() {
       title="Members"
       description="Manage who can access your organization"
     >
-      <Section title="Members" description="Invite your colleagues" isAnnotated>
-        <MembersList
-          members={members}
-          onInvite={onInvite}
-          onCancelInvite={onCancelInvite}
-          onRemove={onRemove}
-          onUpdateRoles={onUpdateRoles}
-        />
+      <Section variant="annotated">
+        <SectionHeader title="Members" description="Invite your colleagues" />
+        <SectionBody>
+          <MembersList
+            members={members}
+            onInvite={onInvite}
+            onCancelInvite={onCancelInvite}
+            onRemove={onRemove}
+            onUpdateRoles={onUpdateRoles}
+          />
+        </SectionBody>
       </Section>
     </SettingsPage>
   )

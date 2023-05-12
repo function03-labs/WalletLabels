@@ -30,7 +30,7 @@ import {
 } from '@chakra-ui/react'
 
 import { FormLayout, useSnackbar } from '@saas-ui/react'
-import { Section } from '@saas-ui-pro/react'
+import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 import { Form, SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { getCurrentUser, updateUser, User } from '@api/client'
@@ -42,54 +42,56 @@ function ProfileDetails({ user }: { user: User }) {
   })
 
   return (
-    <Section
-      title="Basic details"
-      description="Update your personal information."
-      isAnnotated
-    >
-      <Card>
-        <Form
-          schema={schema}
-          defaultValues={{
-            firstName: user?.firstName,
-            lastName: user?.lastName,
-            email: user?.email,
-          }}
-          onSubmit={(data: any) => {
-            // @todo fix types
-            mutateAsync({
-              id: user.id,
-              firstName: data.firstName,
-              lastName: data.lastName,
-              email: data.email,
-            }).then(() =>
-              snackbar.success({
-                description: 'Profile updated',
-              }),
-            )
-          }}
-        >
-          {(
-            { Field }: any, // @todo fix types
-          ) => (
-            <CardBody>
-              <FormLayout>
-                <ProfileAvatar user={user} />
-                <Field name="firstName" label="First name" />
-                <Field name="lastName" label="Last name" />
-                <Field name="email" label="Email" />
-                <Button
-                  colorScheme="primary"
-                  type="submit"
-                  isLoading={isLoading}
-                >
-                  Save
-                </Button>
-              </FormLayout>
-            </CardBody>
-          )}
-        </Form>
-      </Card>
+    <Section variant="annotated">
+      <SectionHeader
+        title="Basic details"
+        description="Update your personal information."
+      />
+      <SectionBody>
+        <Card>
+          <Form
+            schema={schema}
+            defaultValues={{
+              firstName: user?.firstName,
+              lastName: user?.lastName,
+              email: user?.email,
+            }}
+            onSubmit={(data: any) => {
+              // @todo fix types
+              mutateAsync({
+                id: user.id,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+              }).then(() =>
+                snackbar.success({
+                  description: 'Profile updated',
+                }),
+              )
+            }}
+          >
+            {(
+              { Field }: any, // @todo fix types
+            ) => (
+              <CardBody>
+                <FormLayout>
+                  <ProfileAvatar user={user} />
+                  <Field name="firstName" label="First name" />
+                  <Field name="lastName" label="Last name" />
+                  <Field name="email" label="Email" />
+                  <Button
+                    colorScheme="primary"
+                    type="submit"
+                    isLoading={isLoading}
+                  >
+                    Save
+                  </Button>
+                </FormLayout>
+              </CardBody>
+            )}
+          </Form>
+        </Card>
+      </SectionBody>
     </Section>
   )
 }

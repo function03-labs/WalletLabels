@@ -1,7 +1,12 @@
 import { z } from 'zod'
 import { getOrganization, Organization, updateOrganization } from '@api/client'
 import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
-import { Section, useTenant } from '@saas-ui-pro/react'
+import {
+  Section,
+  SectionBody,
+  SectionHeader,
+  useTenant,
+} from '@saas-ui-pro/react'
 import { FormLayout, useSnackbar } from '@saas-ui/react'
 import { Form, SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
@@ -68,12 +73,14 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
     )
   }
   return (
-    <Section
-      title="Organization details"
-      description="Basic details about your organization."
-      isAnnotated
-    >
-      <Card>{form}</Card>
+    <Section variant="annotated">
+      <SectionHeader
+        title="Organization details"
+        description="Basic details about your organization."
+      />
+      <SectionBody>
+        <Card>{form}</Card>
+      </SectionBody>
     </Section>
   )
 }

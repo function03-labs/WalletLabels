@@ -1,5 +1,10 @@
 import { z } from 'zod'
-import { Section, useTenant } from '@saas-ui-pro/react'
+import {
+  Section,
+  SectionBody,
+  SectionHeader,
+  useTenant,
+} from '@saas-ui-pro/react'
 
 import { Card, CardBody, Stack, Text } from '@chakra-ui/react'
 
@@ -18,79 +23,89 @@ function BillingPlan() {
   const { isTrialing, isTrialExpired, trialEndsAt, currentPlan } = useBilling()
 
   return (
-    <Section
-      title="Billing plan"
-      description="Update your billing plan."
-      isAnnotated
-    >
-      <Card>
-        <CardBody>
-          <Stack alignItems="flex-start">
-            {!isTrialExpired && (
-              <Text>
-                You are currently on the <strong>{currentPlan?.name}</strong>{' '}
-                plan.
-              </Text>
-            )}
+    <Section variant="annotated">
+      <SectionHeader
+        title="Billing plan"
+        description="Update your billing plan."
+      />
+      <SectionBody>
+        <Card>
+          <CardBody>
+            <Stack alignItems="flex-start">
+              {!isTrialExpired && (
+                <Text>
+                  You are currently on the <strong>{currentPlan?.name}</strong>{' '}
+                  plan.
+                </Text>
+              )}
 
-            {isTrialing && (
-              <Text>
-                Your trial ends <FormattedDate value={trialEndsAt} />.
-              </Text>
-            )}
+              {isTrialing && (
+                <Text>
+                  Your trial ends <FormattedDate value={trialEndsAt} />.
+                </Text>
+              )}
 
-            {isTrialExpired && (
-              <Text>
-                Your trial ended on <FormattedDate value={trialEndsAt} />.
-              </Text>
-            )}
+              {isTrialExpired && (
+                <Text>
+                  Your trial ended on <FormattedDate value={trialEndsAt} />.
+                </Text>
+              )}
 
-            <LinkButton href={usePath('/settings/plans')}>
-              View plans and upgrade
-            </LinkButton>
-          </Stack>
-        </CardBody>
-      </Card>
+              <LinkButton href={usePath('/settings/plans')}>
+                View plans and upgrade
+              </LinkButton>
+            </Stack>
+          </CardBody>
+        </Card>
+      </SectionBody>
     </Section>
   )
 }
 
 function BillingEmail() {
   return (
-    <Section
-      title="Billing email"
-      description="Send invoices to an alternative address."
-      isAnnotated
-    >
-      <Card>
-        <CardBody>
-          <Form
-            schema={z.object({ billing: z.object({ email: z.string() }) })}
-            onSubmit={() => null}
-          >
-            <FormLayout>
-              <Field name="billing.email" label="Email address" type="email" />
-              <SubmitButton>Update</SubmitButton>
-            </FormLayout>
-          </Form>
-        </CardBody>
-      </Card>
+    <Section variant="annotated">
+      <SectionHeader
+        title="Billing email"
+        description="Send invoices to an alternative address."
+      />
+      <SectionBody>
+        <Card>
+          <CardBody>
+            <Form
+              schema={z.object({ billing: z.object({ email: z.string() }) })}
+              onSubmit={() => null}
+            >
+              <FormLayout>
+                <Field
+                  name="billing.email"
+                  label="Email address"
+                  type="email"
+                />
+                <SubmitButton>Update</SubmitButton>
+              </FormLayout>
+            </Form>
+          </CardBody>
+        </Card>
+      </SectionBody>
     </Section>
   )
 }
 
 function BillingInvoices() {
   return (
-    <Section
-      title="Invoices"
-      description="Invoices are sent on the first of every month."
-      isAnnotated
-    >
-      <Card>
-        <CardBody>
-          <Text color="muted">No invoices received yet.</Text>
-        </CardBody>
-      </Card>
+    <Section variant="annotated">
+      <SectionHeader
+        title="Invoices"
+        description="Invoices are sent on the first of every month."
+      />
+      <SectionBody>
+        <Card>
+          <CardBody>
+            <Text color="muted">No invoices received yet.</Text>
+          </CardBody>
+        </Card>
+      </SectionBody>
     </Section>
   )
 }

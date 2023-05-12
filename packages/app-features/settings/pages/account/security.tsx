@@ -6,7 +6,7 @@ import {
   useModals,
   useSnackbar,
 } from '@saas-ui/react'
-import { Section } from '@saas-ui-pro/react'
+import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 
 import { FiChevronRight } from 'react-icons/fi'
 
@@ -60,17 +60,19 @@ function PasswordListItem() {
 
 function AccountSignIn() {
   return (
-    <Section
-      title="Signing in"
-      description="Update your password and improve account security."
-      isAnnotated
-    >
-      <Card>
-        <StructuredList variant="settings">
-          <PasswordListItem />
-          <TwoFactorAuthItem />
-        </StructuredList>
-      </Card>
+    <Section variant="annotated">
+      <SectionHeader
+        title="Signing in"
+        description="Update your password and improve account security."
+      />
+      <SectionBody>
+        <Card>
+          <StructuredList variant="settings">
+            <PasswordListItem />
+            <TwoFactorAuthItem />
+          </StructuredList>
+        </Card>
+      </SectionBody>
     </Section>
   )
 }

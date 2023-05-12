@@ -4,7 +4,7 @@ import {
   StructuredListCell,
   StructuredListItem,
 } from '@saas-ui/react'
-import { Section } from '@saas-ui-pro/react'
+import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 
 import { SettingsPage, Link } from '@ui/lib'
 import { SettingsCard } from '@app/features/settings/components/settings-card'
@@ -41,23 +41,25 @@ function PersonalAccessTokens() {
   const onRemove = () => null
 
   return (
-    <Section
-      title="Personal access tokens"
-      description={
-        <Stack spacing="2">
-          <Text>Use personal access tokens to access the API.</Text>
-          <Link href="#">Read documentation</Link>
-        </Stack>
-      }
-      isAnnotated
-    >
-      <SettingsCard
-        footer={<Button colorScheme="primary">Create new token</Button>}
-      >
-        <StructuredList variant="settings" p="0">
-          <AccessToken token="12345" onRemove={onRemove} />
-        </StructuredList>
-      </SettingsCard>
+    <Section variant="annotated">
+      <SectionHeader
+        title="Personal access tokens"
+        description={
+          <Stack spacing="2">
+            <Text>Use personal access tokens to access the API.</Text>
+            <Link href="#">Read documentation</Link>
+          </Stack>
+        }
+      />
+      <SectionBody>
+        <SettingsCard
+          footer={<Button colorScheme="primary">Create new token</Button>}
+        >
+          <StructuredList variant="settings" p="0">
+            <AccessToken token="12345" onRemove={onRemove} />
+          </StructuredList>
+        </SettingsCard>
+      </SectionBody>
     </Section>
   )
 }
