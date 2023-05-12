@@ -1,5 +1,19 @@
 # @saas-ui-pro/react
 
+## 0.20.2
+
+### Patch Changes
+
+- Bump version
+- Updated dependencies
+  - @saas-ui-pro/onboarding@0.10.1
+
+## 0.20.1
+
+### Patch Changes
+
+- d6e513e: Added new default-sidebar variant to Page for sidebar layouts.
+
 ## 0.20.0
 
 ### Minor Changes

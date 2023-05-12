@@ -1,5 +1,19 @@
 # @ui/theme
 
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui-pro/theme-glass@0.4.3
+
+## 0.4.2
+
+### Patch Changes
+
+- d6e513e: Added new default-sidebar variant to Page for sidebar layouts.
+  - @saas-ui-pro/theme-glass@0.4.2
+
 ## 0.4.1
 
 ### Patch Changes

@@ -1,5 +1,29 @@
 # nextjs-app
 
+## 0.13.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui-pro/feature-flags@0.11.1
+  - @saas-ui-pro/onboarding@0.10.1
+  - @saas-ui-pro/billing@0.10.1
+  - @saas-ui-pro/react@0.20.2
+  - @ui/theme@0.4.3
+  - @app/features@10.0.2
+
+## 0.13.2
+
+### Patch Changes
+
+- Updated dependencies [d6e513e]
+- Updated dependencies [eff306c]
+- Updated dependencies [07d1389]
+  - @ui/theme@0.4.2
+  - @saas-ui-pro/react@0.20.1
+  - @app/features@10.0.1
+  - @ui/lib@0.3.1
+
 ## 0.13.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.11.1
+
+### Patch Changes
+
+- Bump version
+
 ## 0.11.0
 
 ### Minor Changes

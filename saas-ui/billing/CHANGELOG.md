@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.10.1
+
+### Patch Changes
+
+- Bump version
+
 ## 0.10.0
 
 ### Minor Changes

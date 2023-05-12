@@ -1,5 +1,28 @@
 # @app/features
 
+## 10.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui-pro/feature-flags@0.11.1
+  - @saas-ui-pro/onboarding@0.10.1
+  - @saas-ui-pro/billing@0.10.1
+  - @saas-ui-pro/react@0.20.2
+  - @ui/theme@0.4.3
+
+## 10.0.1
+
+### Patch Changes
+
+- eff306c: fixed issue where intro tour would start out of view on mobile
+- 07d1389: improve segmented control styles on mobile
+- Updated dependencies [d6e513e]
+- Updated dependencies [07d1389]
+  - @ui/theme@0.4.2
+  - @saas-ui-pro/react@0.20.1
+  - @ui/lib@0.3.1
+
 ## 10.0.0
 
 ### Patch Changes

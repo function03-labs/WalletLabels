@@ -1,5 +1,11 @@
 # @ui/lib
 
+## 0.3.1
+
+### Patch Changes
+
+- 07d1389: improve segmented control styles on mobile
+
 ## 0.3.0
 
 ### Minor Changes

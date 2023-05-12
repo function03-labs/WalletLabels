@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/billing",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "exports": {
     ".": {
       "require": "./dist/index.js",
