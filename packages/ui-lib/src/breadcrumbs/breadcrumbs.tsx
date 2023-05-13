@@ -7,7 +7,7 @@ import {
   SkeletonText,
   Text,
 } from '@chakra-ui/react'
-import { useLink } from '@saas-ui/react'
+import { Link } from '@saas-ui/react'
 
 export interface BreadcrumbsItem extends Omit<BreadcrumbItemProps, 'title'> {
   title?: React.ReactNode
@@ -26,7 +26,6 @@ export interface BreadCrumbsProps extends BreadcrumbProps {
  */
 export const Breadcrumbs: React.FC<BreadCrumbsProps> = (props) => {
   const { items = [], ...rest } = props
-  const Link = useLink()
   return (
     <Breadcrumb {...rest}>
       {items?.map((item, i) => {
@@ -35,16 +34,15 @@ export const Breadcrumbs: React.FC<BreadCrumbsProps> = (props) => {
         return (
           <BreadcrumbItem key={i} {...itemProps} fontSize="md">
             {href ? (
-              <Link href={href}>
-                <BreadcrumbLink
-                  fontWeight="semibold"
-                  _hover={{
-                    textDecoration: 'none',
-                  }}
-                >
-                  {title}
-                </BreadcrumbLink>
-              </Link>
+              <BreadcrumbLink
+                as={Link}
+                fontWeight="semibold"
+                _hover={{
+                  textDecoration: 'none',
+                }}
+              >
+                {title}
+              </BreadcrumbLink>
             ) : title ? (
               <Text color="muted">{title}</Text>
             ) : (

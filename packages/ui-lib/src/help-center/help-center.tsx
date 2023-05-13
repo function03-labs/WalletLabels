@@ -10,7 +10,7 @@ import {
   Spacer,
   Text,
 } from '@chakra-ui/react'
-import { BaseDrawer, BaseDrawerProps, useLink, useModals } from '@saas-ui/react'
+import { BaseDrawer, BaseDrawerProps } from '@saas-ui/react'
 import { FiHelpCircle, FiKey } from 'react-icons/fi'
 import { FaDiscord } from 'react-icons/fa'
 

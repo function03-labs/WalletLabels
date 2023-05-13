@@ -42,7 +42,7 @@ export const SettingsPage = (props: SettingsPageProps) => {
       py="3"
       ps="16"
     >
-      <BackButton href={backPath} />
+      {/* <BackButton href={backPath} /> */}
     </Toolbar>
   )
 

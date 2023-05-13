@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Link } from '@saas-ui/react'
 import { IconButton, IconButtonProps, forwardRef } from '@chakra-ui/react'
 import { ArrowLeftIcon } from './icons'

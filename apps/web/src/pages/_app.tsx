@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Link, { LinkProps } from 'next/link'
@@ -12,7 +13,9 @@ import { AppLayout } from '@app/features/core/layouts/app-layout'
 // import { authService } from '../lib/magic'
 import { authService } from '@app/config'
 
-const NextLink = (props: LinkProps) => <Link {...props} legacyBehavior />
+const NextLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
+  (props, ref) => <Link ref={ref} {...props} />,
+)
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()

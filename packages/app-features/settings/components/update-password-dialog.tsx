@@ -19,7 +19,11 @@ interface SubmitParams {
 }
 
 export interface UpdatePasswordFormProps
-  extends Omit<FormDialogProps<SubmitParams>, 'onSubmit'> {
+  extends Omit<
+    FormDialogProps<SubmitParams>,
+    'onSubmit' | 'title' | 'scrollBehavior'
+  > {
+  title?: string
   label?: string
   confirmLabel?: string
   helpText?: string

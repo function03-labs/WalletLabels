@@ -33,7 +33,7 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
     container: {
       flexDirection: 'column',
     },
-    heading: {
+    header: {
       mb: 4,
     },
   }
