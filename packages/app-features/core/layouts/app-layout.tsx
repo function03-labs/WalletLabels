@@ -7,16 +7,9 @@ import { Auth, AuthProps } from '@saas-ui/auth'
 import { useLocation } from '@app/nextjs'
 import { BillingProvider } from '@saas-ui-pro/billing'
 
-import {
-  authType,
-  authProviders,
-  authPaths,
-  settingsHotkeys,
-  fullscreenHotkeys,
-} from '@app/config'
+import { authType, authProviders, authPaths } from '@app/config'
 import { SettingsSidebar } from '@app/features/settings/components/sidebar'
 
-import { Hotkeys } from '../components/hotkeys'
 import { AppSidebar } from '../components/sidebar'
 
 import { useInitApp } from '../hooks/use-init-app'
@@ -94,11 +87,9 @@ export const AuthenticatedLayout: React.FC<AuthenticatedLayoutProps> = ({
 }) => {
   return (
     <Authenticated>
-      <Hotkeys hotkeys={hotkeys}>
-        <AppShell sidebar={sidebar} {...rest}>
-          {children}
-        </AppShell>
-      </Hotkeys>
+      <AppShell sidebar={sidebar} {...rest}>
+        {children}
+      </AppShell>
     </Authenticated>
   )
 }
@@ -123,15 +114,10 @@ export const DefaultLayout: React.FC<AuthenticatedLayoutProps> = ({
  */
 export const SettingsLayout: React.FC<AuthenticatedLayoutProps> = ({
   children,
-  hotkeys = settingsHotkeys,
   ...rest
 }) => {
   return (
-    <AuthenticatedLayout
-      hotkeys={hotkeys}
-      {...rest}
-      sidebar={<SettingsSidebar />}
-    >
+    <AuthenticatedLayout {...rest} sidebar={<SettingsSidebar />}>
       {children}
     </AuthenticatedLayout>
   )
@@ -142,14 +128,9 @@ export const SettingsLayout: React.FC<AuthenticatedLayoutProps> = ({
  */
 export const FullscreenLayout: React.FC<AuthenticatedLayoutProps> = ({
   children,
-  hotkeys = fullscreenHotkeys,
   ...rest
 }) => {
-  return (
-    <AuthenticatedLayout hotkeys={hotkeys} {...rest}>
-      {children}
-    </AuthenticatedLayout>
-  )
+  return <AuthenticatedLayout {...rest}>{children}</AuthenticatedLayout>
 }
 
 interface AppLayoutProps {

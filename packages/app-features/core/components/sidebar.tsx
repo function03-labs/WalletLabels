@@ -15,7 +15,6 @@ import {
   FiPlus,
   FiInbox,
   FiHelpCircle,
-  FiHash,
   FiUsers,
   FiSearch,
 } from 'react-icons/fi'
@@ -47,10 +46,10 @@ import {
 
 import {
   ElectronNav,
-  HelpCenter,
   InviteDialog,
   SortableNavGroup,
   SortableNavItem,
+  useHelpCenter,
 } from '@ui/lib'
 
 import { BillingStatus } from './billing-status'
@@ -69,6 +68,8 @@ export interface AppSidebarProps extends SidebarProps {}
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const user = useCurrentUser()
   const modals = useModals()
+  const help = useHelpCenter()
+
   const [width, setWidth] = useLocalStorage('app.sidebar.width', 280)
 
   const { variant, colorScheme } = props
@@ -160,7 +161,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               Invite people
             </NavItem>
             <NavItem
-              onClick={() => modals.open(HelpCenter)}
+              onClick={() => help.open()}
               color="sidebar-muted"
               icon={<FiHelpCircle />}
             >
@@ -208,11 +209,13 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
       href={href}
       isActive={isActive}
       {...rest}
-      tooltip={
-        <>
-          {label} <Command>{command}</Command>
-        </>
-      }
+      tooltipProps={{
+        label: (
+          <>
+            {label} <Command>{command}</Command>
+          </>
+        ),
+      }}
     >
       {label}
     </NavItem>

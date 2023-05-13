@@ -14,9 +14,10 @@ import { I18nProvider } from '@app/i18n'
 
 import { theme } from '@ui/theme'
 
-import { segments } from '@app/config'
+import { appHotkeys, segments } from '@app/config'
 
 import { queryClient } from '../lib/react-query'
+import { Hotkeys } from '../components/hotkeys'
 
 export interface AppProviderProps {
   linkComponent?: React.ElementType<any>
@@ -49,7 +50,9 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
             <FeaturesProvider value={segments}>
               <I18nProvider>
                 <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-                  <ModalsProvider>{children}</ModalsProvider>
+                  <Hotkeys hotkeys={appHotkeys}>
+                    <ModalsProvider>{children}</ModalsProvider>
+                  </Hotkeys>
                 </TenancyProvider>
               </I18nProvider>
             </FeaturesProvider>

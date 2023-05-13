@@ -6,8 +6,8 @@ export const appHotkeys: HotkeysListOptions = {
   general: {
     title: 'General',
     hotkeys: {
-      showHotkeys: {
-        label: 'Show this window',
+      help: {
+        label: 'Help & support',
         command: '?',
       },
       search: {
@@ -50,20 +50,6 @@ export const appHotkeys: HotkeysListOptions = {
       },
     },
   },
-}
-
-export const settingsHotkeys: HotkeysListOptions = {
-  settings: {
-    hotkeys: {
-      close: {
-        label: 'Close settings',
-        command: 'Esc',
-      },
-    },
-  },
-}
-
-export const fullscreenHotkeys: HotkeysListOptions = {
   settings: {
     hotkeys: {
       close: {

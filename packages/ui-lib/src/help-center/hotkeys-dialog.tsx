@@ -15,9 +15,11 @@ import {
   HotkeysSearch,
   HotkeysListItems,
   useHotkeysContext,
+  useModals,
 } from '@saas-ui/react'
+import { BackButton } from '@saas-ui-pro/react'
 
-export interface HotkeysWindowProps extends Omit<DrawerProps, 'children'> {
+export interface HotkeysDialogProps extends Omit<DrawerProps, 'children'> {
   /**
    * The hotkeys window title
    * @type string
@@ -26,15 +28,17 @@ export interface HotkeysWindowProps extends Omit<DrawerProps, 'children'> {
   title?: string
 }
 
-export const HotkeysWindow = ({
+export const HotkeysDialog = ({
   title = 'Keyboard shortcuts',
   isOpen,
   onClose,
   ...rest
-}: HotkeysWindowProps) => {
+}: HotkeysDialogProps) => {
   const searchRef = useRef<HTMLInputElement | null>(null)
 
   const { hotkeys } = useHotkeysContext()
+
+  const modals = useModals()
 
   return (
     <Drawer
@@ -43,10 +47,12 @@ export const HotkeysWindow = ({
       initialFocusRef={searchRef}
       {...rest}
     >
-      <DrawerOverlay />
+      <DrawerOverlay onClick={() => modals.closeAll()} />
       <DrawerContent>
-        <DrawerCloseButton />
-        <DrawerHeader>{title}</DrawerHeader>
+        <DrawerCloseButton onClick={() => modals.closeAll()} />
+        <DrawerHeader>
+          <BackButton onClick={onClose} /> {title}
+        </DrawerHeader>
 
         <DrawerBody>
           <HotkeysList hotkeys={hotkeys}>

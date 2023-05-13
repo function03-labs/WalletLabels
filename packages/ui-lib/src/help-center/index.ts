@@ -1,1 +1,1 @@
-export { HelpCenter } from './help-center'
+export { useHelpCenter } from './help-center'

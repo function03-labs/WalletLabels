@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   As,
   Card,
@@ -10,14 +11,53 @@ import {
   Spacer,
   Text,
 } from '@chakra-ui/react'
-import { BaseDrawer, BaseDrawerProps } from '@saas-ui/react'
+import { BaseDrawer, BaseDrawerProps, useModals } from '@saas-ui/react'
 import { FiHelpCircle, FiKey } from 'react-icons/fi'
 import { FaDiscord } from 'react-icons/fa'
+import { HotkeysDialog } from './hotkeys-dialog'
 
-export interface HelpCenterProps extends BaseDrawerProps {}
+export const useHelpCenter = () => {
+  const modals = useModals()
 
-export const HelpCenter: React.FC<HelpCenterProps> = (props) => {
+  const modalRef = React.useRef<number | string | null>(null)
+
+  return {
+    open: () => {
+      if (!modalRef.current) {
+        modalRef.current = modals.open({
+          title: 'Help Center',
+          component: HelpCenterDialog,
+          onClose: () => {
+            modalRef.current = null
+          },
+        })
+      }
+    },
+    close: () => {
+      modals.closeAll()
+      modalRef.current = null
+    },
+  }
+}
+
+export interface HelpCenterProps {
+  children: React.ReactNode
+}
+
+export interface HelpCenterDialogProps
+  extends Omit<BaseDrawerProps, 'children'> {}
+
+export const HelpCenterDialog: React.FC<HelpCenterDialogProps> = (props) => {
   const { title = 'Help', ...rest } = props
+
+  const modals = useModals()
+
+  const showKeyboardShortcuts = React.useCallback(() => {
+    modals.open({
+      title: 'Keyboard shortcuts',
+      component: HotkeysDialog,
+    })
+  }, [])
 
   return (
     <BaseDrawer title={title} {...rest}>
@@ -32,8 +72,7 @@ export const HelpCenter: React.FC<HelpCenterProps> = (props) => {
           <HelpCard
             title="Keyboard shortcuts"
             icon={FiKey}
-            href="https://saas-ui.dev/docs"
-            // onClick={() => }
+            onClick={showKeyboardShortcuts}
           />
 
           <Spacer />
@@ -79,14 +118,3 @@ const HelpCard: React.FC<
     </Card>
   )
 }
-
-// export const useHelpCenter = () => {
-//   const modals = useModals()
-
-//   return {
-//     open: () =>
-//       modals.open(HelpCenter, {
-//         title: 'Help Center',
-//       }),
-//   }
-// }

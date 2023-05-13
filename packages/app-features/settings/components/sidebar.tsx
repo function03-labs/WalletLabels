@@ -25,7 +25,7 @@ import {
 import { usePath } from '@app/features/core/hooks/use-path'
 import { Has } from '@saas-ui-pro/feature-flags'
 
-import { ElectronNav } from '@ui/lib'
+import { ElectronNav, useHelpCenter } from '@ui/lib'
 
 const SettingsLink = (props: NavItemProps & { path: string }) => {
   const { path, ...rest } = props
@@ -37,6 +37,12 @@ const SettingsLink = (props: NavItemProps & { path: string }) => {
 
 export const SettingsSidebar = () => {
   const backRef = React.useRef<HTMLButtonElement>(null)
+
+  const help = useHelpCenter()
+
+  useHotkeysShortcut('general.help', () => {
+    help.open()
+  })
 
   useHotkeysShortcut('settings.close', () => {
     // Simply triggering a click here, so we don't need to reference the router.

@@ -19,7 +19,7 @@ import {
 } from '@saas-ui/react'
 import { Has } from '@saas-ui-pro/feature-flags'
 
-import { HotkeysWindow } from './hotkeys-window'
+import { useHelpCenter } from '@ui/lib'
 import { usePath } from '../hooks/use-path'
 import { getCurrentUser } from '@api/client'
 import { useQuery } from '@tanstack/react-query'
@@ -36,9 +36,9 @@ export const UserMenu = () => {
 
   const { toggleColorMode, colorMode } = useColorMode()
 
-  const hotkeysWindow = useDisclosure()
-  const showHotkeysCommand = useHotkeysShortcut('general.showHotkeys', () => {
-    hotkeysWindow.onOpen()
+  const help = useHelpCenter()
+  const helpCommand = useHotkeysShortcut('general.help', () => {
+    help.open()
   })
 
   const logoutCommand = useHotkeysShortcut('general.logout', () => {
@@ -77,12 +77,11 @@ export const UserMenu = () => {
           <MenuDivider />
           <MenuItem label="Changelog" />
           <MenuItem
-            command={showHotkeysCommand}
-            label="Show keyboard shortcuts"
-            onClick={() => hotkeysWindow.onOpen()}
+            command={helpCommand}
+            label="Help"
+            onClick={() => help.open()}
           />
           <MenuItem label="Feedback" />
-          <MenuItem label="Help &amp; Support" />
           <MenuItem
             label={colorMode === 'dark' ? 'Light mode' : 'Dark mode'}
             onClick={(e: React.MouseEvent) => {
@@ -98,7 +97,6 @@ export const UserMenu = () => {
           />
         </MenuList>
       </Portal>
-      <HotkeysWindow {...hotkeysWindow} />
     </Menu>
   )
 }

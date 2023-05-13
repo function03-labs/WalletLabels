@@ -20,7 +20,11 @@ interface InviteInputs {
 }
 
 export interface InviteDialogProps
-  extends Omit<FormDialogProps<InviteInputs>, 'onSubmit'> {
+  extends Omit<
+    FormDialogProps<InviteInputs>,
+    'onSubmit' | 'title' | 'scrollBehavior'
+  > {
+  title?: string
   onInvite(data: InviteData): Promise<any>
   roles?: Option[]
   requiredLabel?: string
@@ -45,6 +49,7 @@ export function InviteDialog(props: InviteDialogProps) {
     onError,
     roles,
     defaultValues,
+    title = 'Invite people',
     placeholder = 'example@company.com, example2@company.com',
     requiredLabel = 'Add at least one email address.',
     ...rest
