@@ -93,9 +93,7 @@ __metadata:
     "@emotion/react": ^11.10.6
     "@emotion/styled": ^11.10.6
     "@saas-ui/auth": ^2.0.0-next.12
-    "@supabase/supabase-js": ^2.15.0
     framer-motion: ^10.11.2
-    magic-sdk: ^16.1.0
     react: ">=18"
     react-dom: ">=18"
   languageName: unknown
@@ -5326,16 +5324,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@magic-sdk/commons@npm:^12.1.0":
-  version: 12.1.0
-  resolution: "@magic-sdk/commons@npm:12.1.0"
-  peerDependencies:
-    "@magic-sdk/provider": ">=4.3.0"
-    "@magic-sdk/types": ">=3.1.1"
-  checksum: ac7d1e0da284a2dbbde55cd3b11fb898ee5cc51548b106fdfd6bec75e705a4be86d2ab851170e927a44a61c4f7727b3f61325203c6f501efd358f62b57442723
-  languageName: node
-  linkType: hard
-
 "@magic-sdk/commons@npm:^12.2.0":
   version: 12.2.0
   resolution: "@magic-sdk/commons@npm:12.2.0"
@@ -5343,19 +5331,6 @@ __metadata:
     "@magic-sdk/provider": ">=4.3.0"
     "@magic-sdk/types": ">=3.1.1"
   checksum: 855492a89dbf6cda951da7696cbc2525bbec9a52a05f5b016aa675f5f7b4949752a396d024f7acb52430730d85a6b899ef9ce231bdf6fbcbbf9c3a13e6a5620b
-  languageName: node
-  linkType: hard
-
-"@magic-sdk/provider@npm:^16.1.0":
-  version: 16.1.0
-  resolution: "@magic-sdk/provider@npm:16.1.0"
-  dependencies:
-    "@magic-sdk/types": ^14.1.0
-    eventemitter3: ^4.0.4
-    web3-core: 1.5.2
-  peerDependencies:
-    localforage: ^1.7.4
-  checksum: a27866c4a181f9ccf4136a66b619611d89317e34a7f3dd82bc950cdd57a592af843b04a46fe37af2076c236eb89a750bdcd8e7b3ca494e879e4b81327ac421d7
   languageName: node
   linkType: hard
 
@@ -5369,13 +5344,6 @@ __metadata:
   peerDependencies:
     localforage: ^1.7.4
   checksum: d8de533428391dc77f0adbba83e8a8cf459b662ad1d0bf53b9e22a7c28b566d633a067474182055b86880bbe785fb59c6047ba1e8d263fa0987ce49c4a24e588
-  languageName: node
-  linkType: hard
-
-"@magic-sdk/types@npm:^14.1.0":
-  version: 14.1.0
-  resolution: "@magic-sdk/types@npm:14.1.0"
-  checksum: 3625cbe3e30af92694bb1b85d261f636f117d77799b2725b7766dc2f455b9789087bcd75e19212ba65989a7a6845804fc6ed056827730a3b231f909e7467a7da
   languageName: node
   linkType: hard
 
@@ -7872,67 +7840,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/functions-js@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@supabase/functions-js@npm:2.1.0"
-  dependencies:
-    cross-fetch: ^3.1.5
-  checksum: 231addfa49c1b109ddcc219dd8ed6b83e87cf2516cf7cf2742330176baa794d99a78694ff7f748fffa920f37a8078352822611d84ff43c8bc293c4d4486134fd
-  languageName: node
-  linkType: hard
-
-"@supabase/gotrue-js@npm:^2.18.1":
-  version: 2.20.1
-  resolution: "@supabase/gotrue-js@npm:2.20.1"
-  dependencies:
-    cross-fetch: ^3.1.5
-  checksum: ad92d6630237da9ab9cb6b73d47cc13fbac15622c5f7d13f9ccec349846669309ac74ee406ea8c8beccc4a944c59e55c13ac37d277fd87f38953a35893f5d482
-  languageName: node
-  linkType: hard
-
-"@supabase/postgrest-js@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@supabase/postgrest-js@npm:1.1.1"
-  dependencies:
-    cross-fetch: ^3.1.5
-  checksum: 71414e518c8990e87cba7563ab1a298fb25f92101990e9bbaa2da27e6cbd800a36a491630fbc9c4cf4f9929ae2fe5ddfc994a4f9724c2fc9de93288139811451
-  languageName: node
-  linkType: hard
-
-"@supabase/realtime-js@npm:^2.7.1":
-  version: 2.7.1
-  resolution: "@supabase/realtime-js@npm:2.7.1"
-  dependencies:
-    "@types/phoenix": ^1.5.4
-    "@types/websocket": ^1.0.3
-    websocket: ^1.0.34
-  checksum: 6a68d00752e54066c8add86524455d669d0db6a411b3ade9781c774f049ca966900b57870859896868c7a54a66aaac9520cf44592b5b59927b70a667c510df8e
-  languageName: node
-  linkType: hard
-
-"@supabase/storage-js@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@supabase/storage-js@npm:2.4.0"
-  dependencies:
-    cross-fetch: ^3.1.5
-  checksum: 10b6ea390a976e2fdad8e39ac227bf1a14f59e26b720bcc4d7f3b792a170ffb702298455dfe4e8fb7e308733de0222e5bb4a012fe5eb9b3fd08a56a07a5d2852
-  languageName: node
-  linkType: hard
-
-"@supabase/supabase-js@npm:^2.15.0":
-  version: 2.15.0
-  resolution: "@supabase/supabase-js@npm:2.15.0"
-  dependencies:
-    "@supabase/functions-js": ^2.1.0
-    "@supabase/gotrue-js": ^2.18.1
-    "@supabase/postgrest-js": ^1.1.1
-    "@supabase/realtime-js": ^2.7.1
-    "@supabase/storage-js": ^2.4.0
-    cross-fetch: ^3.1.5
-  checksum: 1862d8e4decd94c7e32223370f1763fc0b4ea9437479a91c0299a87e4fe4ddf182a449d9a032adc29dde3af095f4537f56fc1f4dbf8c04579e713f2ae79d2f63
-  languageName: node
-  linkType: hard
-
 "@svgr/babel-plugin-add-jsx-attribute@npm:^4.2.0":
   version: 4.2.0
   resolution: "@svgr/babel-plugin-add-jsx-attribute@npm:4.2.0"
@@ -9345,13 +9252,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/phoenix@npm:^1.5.4":
-  version: 1.5.4
-  resolution: "@types/phoenix@npm:1.5.4"
-  checksum: be6635e3dd63b9ae80e375c3918075cb1d63264f46039665c62390d2a5249335c32c7f0d154da27724a7859c0eaef1476fb61f7fa40541b4013e0bc1d5a47fd5
-  languageName: node
-  linkType: hard
-
 "@types/plist@npm:^3.0.1":
   version: 3.0.2
   resolution: "@types/plist@npm:3.0.2"
@@ -9528,15 +9428,6 @@ __metadata:
   version: 1.17.0
   resolution: "@types/webpack-env@npm:1.17.0"
   checksum: 9ad4d208c4429c9427191d1f4c92e4c43e530384c17a6bc298acb89003fc47fcde1d8372e50acefa3061e9100e57fd9d616e96def875afd06c0c2afe508f298e
-  languageName: node
-  linkType: hard
-
-"@types/websocket@npm:^1.0.3":
-  version: 1.0.5
-  resolution: "@types/websocket@npm:1.0.5"
-  dependencies:
-    "@types/node": "*"
-  checksum: 41c7a620f877a0165ff36e713455d888b7f5df9c51e71b5d0f47994f98cf22ccd339b8c6cfdc6bb417e950d40f405693974d393bd916971490553cc5e9e67a9d
   languageName: node
   linkType: hard
 
@@ -18393,18 +18284,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-sdk@npm:^16.1.0":
-  version: 16.1.0
-  resolution: "magic-sdk@npm:16.1.0"
-  dependencies:
-    "@magic-sdk/commons": ^12.1.0
-    "@magic-sdk/provider": ^16.1.0
-    "@magic-sdk/types": ^14.1.0
-    localforage: ^1.7.4
-  checksum: 535e81243e966bbf1aac4a7610f9fead276c1cc52121816ecda189c7680fe71cefcb65bbf2432f927af6a3bacae136f3c7efb7ada14329e15ee904393b5466bb
-  languageName: node
-  linkType: hard
-
 "magic-sdk@npm:^16.2.0":
   version: 16.2.0
   resolution: "magic-sdk@npm:16.2.0"
@@ -24779,7 +24658,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"websocket@npm:^1.0.32, websocket@npm:^1.0.34":
+"websocket@npm:^1.0.32":
   version: 1.0.34
   resolution: "websocket@npm:1.0.34"
   dependencies:

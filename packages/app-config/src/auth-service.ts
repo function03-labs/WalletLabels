@@ -1,3 +1,10 @@
+/**
+ * Authentication is mocked in this example.
+ * You should replace this file by your own auth service.
+ *
+ * @see https://saas-ui.dev/docs/pro/configuration/authentication
+ */
+
 import { AuthParams, User } from '@saas-ui/auth'
 
 const defaultUser = {

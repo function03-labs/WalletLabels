@@ -9,8 +9,6 @@ import { NProgressNextRouter } from '@saas-ui/react'
 import { AppProvider } from '@app/features/core/providers/app'
 import { AppLayout } from '@app/features/core/layouts/app-layout'
 
-// import { authService } from '../lib/supabase'
-// import { authService } from '../lib/magic'
 import { authService } from '@app/config'
 
 const NextLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
