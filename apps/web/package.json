@@ -15,8 +15,8 @@
     "@app/features": "workspace:*",
     "@chakra-ui/react": "^2.5.5",
     "@chakra-ui/system": "^2.5.5",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@saas-ui-pro/billing": "workspace:*",
     "@saas-ui-pro/feature-flags": "workspace:*",
     "@saas-ui-pro/onboarding": "workspace:*",
@@ -27,15 +27,15 @@
     "@saas-ui/react": "^2.0.0-next.16",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
-    "framer-motion": "^10.11.2",
+    "framer-motion": "^10.12.12",
     "magic-sdk": "^16.2.0",
-    "next": "^13.3.4",
+    "next": "^13.4.2",
     "next-svgr": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.3.0",
+    "@next/eslint-plugin-next": "^13.4.2",
     "@svgr/webpack": "^5.5.0"
   },
   "msw": {

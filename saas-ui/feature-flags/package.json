@@ -34,7 +34,7 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "zustand": "^4.3.7"
+    "zustand": "^4.3.8"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.5.0",

@@ -12,7 +12,7 @@
     "graphql-request": "^5.2.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^3.3.0",
+    "@graphql-codegen/cli": "^3.3.1",
     "@graphql-codegen/client-preset": "^2.1.1"
   }
 }
