@@ -28,6 +28,7 @@ import {
 } from '@saas-ui/react'
 
 import { SearchInput, useModals } from '@ui/lib'
+import { z } from 'zod'
 
 export interface Member {
   id: string
@@ -173,11 +174,14 @@ export function MembersList<M extends Member = Member>({
 
   const onChangeRole = React.useCallback(
     (member: M) => {
-      modals.open?.({
+      modals.form?.({
         title: 'Update roles',
-        type: 'form',
-        onSubmit: ({ roles }: ChangeRoleFields) =>
-          onUpdateRoles?.(member, roles),
+        schema: z.object({
+          roles: isMultiRoles ? z.array(z.string()) : z.string(),
+        }),
+        onSubmit: async ({ roles }) => {
+          onUpdateRoles?.(member, roles)
+        },
         defaultValues: {
           roles: isMultiRoles ? member.roles : member.roles?.[0],
         },
