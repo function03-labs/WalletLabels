@@ -61,9 +61,9 @@
     "react-inspector": "^6.0.1",
     "@mdx-js/react": "^2.1.5",
     "react-element-to-jsx-string": "^15.0.0",
-    "@saas-ui/auth": "2.0.0-next.19",
+    "@saas-ui/auth": "2.0.0-next.20",
     "@saas-ui/forms": "2.0.0-next.19",
-    "@saas-ui/react": "2.0.0-next.19",
+    "@saas-ui/react": "2.0.0-next.20",
     "@saas-ui/theme": "2.0.0-next.10"
   },
   "packageManager": "yarn@3.3.0"
