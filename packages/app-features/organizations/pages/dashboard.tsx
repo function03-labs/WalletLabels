@@ -67,7 +67,7 @@ export function DashboardPage() {
       />
       <ToolbarButton
         as="a"
-        href="https://saas-ui.lemonsqueezy.com/checkout?cart=f3e5aad8-3098-44b7-a45e-46b50d664087"
+        href="https://saas-ui.lemonsqueezy.com/checkout"
         label="Buy Pro"
         colorScheme="primary"
         variant="solid"
