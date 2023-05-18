@@ -16,7 +16,12 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { FiSliders, FiUser } from 'react-icons/fi'
-import { EmptyState, OverflowMenu, useHotkeysShortcut } from '@saas-ui/react'
+import {
+  EmptyState,
+  OverflowMenu,
+  useHotkeysShortcut,
+  useSnackbar,
+} from '@saas-ui/react'
 import {
   Command,
   Toolbar,
@@ -79,6 +84,7 @@ const schema = z.object({
 export function ContactsListPage() {
   const tenant = useTenant()
   const modals = useModals()
+  const snackbar = useSnackbar()
   const { query } = useRouter()
 
   const type = query?.type?.toString()
@@ -165,20 +171,31 @@ export function ContactsListPage() {
   )
 
   const addPerson = () => {
-    modals.form?.({
+    modals.form({
       title: 'Add person',
+      defaultValues: {
+        firstName: '',
+        lastName: '',
+        email: '',
+      },
       schema,
       fields: {
         submit: {
           children: 'Save',
         },
       },
-      /* @ts-ignore @todo fix submit types on FormDialog */
-      onSubmit: (contact: z.infer<typeof schema>) =>
-        mutation.mutateAsync({
-          ...contact,
-          type: query?.type as string,
-        }),
+      // @todo SubmitHandler field value are not inferred
+      onSubmit: async (contact) => {
+        try {
+          await mutation.mutateAsync({
+            ...contact,
+            type: query?.type,
+          } as any),
+            modals.closeAll()
+        } catch (e) {
+          snackbar.error('Could not create contact')
+        }
+      },
     })
   }
 
