@@ -17,7 +17,7 @@ export function PlansPage() {
   const { planId, currentPlan } = useBilling()
 
   const onUpgrade = (plan: PricingPlan) => {
-    push(`/app/${tenant}/checkout?plan=${plan.id}`)
+    push(`${plan.url}?checkout[custom][organization_slug]=${tenant}`)
   }
 
   return (
