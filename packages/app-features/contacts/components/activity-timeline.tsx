@@ -13,7 +13,7 @@ import {
   Tooltip,
   useClipboard,
 } from '@chakra-ui/react'
-import { EditorField, StatusBadge } from '@ui/lib'
+import { EditorField, StatusBadge, useModals } from '@ui/lib'
 
 import { Toolbar, ToolbarButton, MotionBox, Command } from '@saas-ui-pro/react'
 import {
@@ -33,7 +33,6 @@ import {
   useSnackbar,
   OverflowMenu,
   MenuItem,
-  useModals,
   UseFormReturn,
 } from '@saas-ui/react'
 import { User } from '@saas-ui/auth'

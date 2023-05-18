@@ -16,13 +16,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { FiSliders, FiUser } from 'react-icons/fi'
-import {
-  EmptyState,
-  OverflowMenu,
-  useModals,
-  useHotkeysShortcut,
-  // useLocalStorage,
-} from '@saas-ui/react'
+import { EmptyState, OverflowMenu, useHotkeysShortcut } from '@saas-ui/react'
 import {
   Command,
   Toolbar,
@@ -39,7 +33,7 @@ import {
   useLocalStorage,
 } from '@saas-ui-pro/react'
 
-import { ListPage, InlineSearch } from '@ui/lib'
+import { ListPage, InlineSearch, useModals } from '@ui/lib'
 
 import { Contact, createContact, getContacts } from '@api/client'
 

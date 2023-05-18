@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useSnackbar, useModals } from '@saas-ui/react'
+import { useSnackbar } from '@saas-ui/react'
 import {
   Section,
   SectionBody,
@@ -11,7 +11,7 @@ import {
   MembersList,
   Member,
 } from '@app/features/organizations/components/members-list'
-import { InviteData, SettingsPage } from '@ui/lib'
+import { InviteData, SettingsPage, useModals } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import {
   getOrganization,

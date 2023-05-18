@@ -18,11 +18,12 @@ import {
   HotkeysListItems,
   HotkeysSearch,
   useHotkeysContext,
-  useModals,
 } from '@saas-ui/react'
 import { FiHelpCircle, FiKey } from 'react-icons/fi'
 import { FaDiscord } from 'react-icons/fa'
 import { BackButton } from '@saas-ui-pro/react'
+
+import { useModals } from '../modals'
 
 export const useHelpCenter = () => {
   const modals = useModals()

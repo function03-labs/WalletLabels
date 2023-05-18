@@ -14,13 +14,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import {
-  EmptyState,
-  Field,
-  FormLayout,
-  Option,
-  useModals,
-} from '@saas-ui/react'
+import { EmptyState, Field, FormLayout, Option } from '@saas-ui/react'
 import { useSearchQuery } from '@saas-ui-pro/react'
 
 import {
@@ -33,7 +27,7 @@ import {
   PersonaAvatar,
 } from '@saas-ui/react'
 
-import { SearchInput } from '@ui/lib'
+import { SearchInput, useModals } from '@ui/lib'
 
 export interface Member {
   id: string
