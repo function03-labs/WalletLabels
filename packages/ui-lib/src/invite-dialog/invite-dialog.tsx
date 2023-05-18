@@ -73,7 +73,7 @@ export function InviteDialog(props: InviteDialogProps) {
   const roleOptions = roles || defaultMemberRoles
 
   return (
-    <FormDialog<InviteInputs>
+    <FormDialog<any, any>
       {...rest}
       onClose={onClose}
       defaultValues={{

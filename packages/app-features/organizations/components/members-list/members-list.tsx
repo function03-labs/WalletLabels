@@ -181,6 +181,10 @@ export function MembersList<M extends Member = Member>({
           roles: isMultiRoles ? z.array(z.string()) : z.string(),
         }),
         onSubmit: async ({ roles }) => {
+          if (typeof roles === 'string') {
+            roles = [roles]
+          }
+
           onUpdateRoles?.(member, roles)
         },
         defaultValues: {
@@ -193,7 +197,7 @@ export function MembersList<M extends Member = Member>({
             children: 'Update',
           },
         },
-        body: (
+        children: (
           <FormLayout>
             <Field name="roles" type="radio" options={defaultMemberRoles} />
           </FormLayout>

@@ -1,12 +1,6 @@
 import * as React from 'react'
 
-import {
-  FormLayout,
-  Field,
-  FormDialog,
-  FormDialogProps,
-  SubmitHandler,
-} from '@saas-ui/react'
+import { FormLayout, Field, FormDialog, FormDialogProps } from '@saas-ui/react'
 
 import { useUpdatePassword } from '@saas-ui/auth'
 
@@ -48,13 +42,11 @@ export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
 }) => {
   const [, submit] = useUpdatePassword()
 
-  const handleSubmit: SubmitHandler<SubmitParams> = ({ newPassword }) => {
-    return submit({ password: newPassword }).then(onSuccess).catch(onError)
-  }
-
   return (
-    <FormDialog<SubmitParams>
-      onSubmit={handleSubmit}
+    <FormDialog
+      onSubmit={({ newPassword }) => {
+        return submit({ password: newPassword }).then(onSuccess).catch(onError)
+      }}
       defaultValues={{ password: '', newPassword: '', confirmPassword: '' }}
       {...formProps}
     >
