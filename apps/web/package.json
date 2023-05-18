@@ -28,7 +28,6 @@
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
     "framer-motion": "^10.12.12",
-    "magic-sdk": "^16.2.0",
     "next": "^13.4.2",
     "next-svgr": "^0.0.2",
     "react": "^18.2.0",
