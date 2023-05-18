@@ -168,7 +168,11 @@ export function ContactsListPage() {
     modals.form?.({
       title: 'Add person',
       schema,
-      submitLabel: 'Save',
+      fields: {
+        submit: {
+          children: 'Save',
+        },
+      },
       /* @ts-ignore @todo fix submit types on FormDialog */
       onSubmit: (contact: z.infer<typeof schema>) =>
         mutation.mutateAsync({
