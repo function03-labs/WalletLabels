@@ -21,6 +21,7 @@ import {
   OverflowMenu,
   useHotkeysShortcut,
   useSnackbar,
+  useLocalStorage,
 } from '@saas-ui/react'
 import {
   Command,
@@ -35,7 +36,6 @@ import {
   useColumns,
   getDataGridFilter,
   Filter,
-  useLocalStorage,
 } from '@saas-ui-pro/react'
 
 import { ListPage, InlineSearch, useModals } from '@ui/lib'
