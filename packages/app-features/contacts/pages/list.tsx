@@ -184,13 +184,12 @@ export function ContactsListPage() {
           children: 'Save',
         },
       },
-      // @todo SubmitHandler field value are not inferred
       onSubmit: async (contact) => {
         try {
           await mutation.mutateAsync({
             ...contact,
-            type: query?.type,
-          } as any),
+            type: query?.type?.toString() || 'lead',
+          }),
             modals.closeAll()
         } catch (e) {
           snackbar.error('Could not create contact')
