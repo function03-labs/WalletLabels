@@ -29,6 +29,7 @@ import {
 
 import { SearchInput, useModals } from '@ui/lib'
 import { z } from 'zod'
+import without from 'lodash/without'
 
 export interface Member {
   id: string
@@ -183,9 +184,15 @@ export function MembersList<M extends Member = Member>({
           onUpdateRoles?.(member, roles)
         },
         defaultValues: {
-          roles: isMultiRoles ? member.roles : member.roles?.[0],
+          roles: isMultiRoles
+            ? member.roles
+            : without(member.roles, 'owner')?.[0],
         },
-        submitLabel: 'Update',
+        fields: {
+          submit: {
+            children: 'Update',
+          },
+        },
         body: (
           <FormLayout>
             <Field name="roles" type="radio" options={defaultMemberRoles} />
