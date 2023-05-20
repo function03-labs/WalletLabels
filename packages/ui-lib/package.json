@@ -39,7 +39,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^2.5.5",
+    "@chakra-ui/system": "^2.5.7",
     "@storybook/react": "^7.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

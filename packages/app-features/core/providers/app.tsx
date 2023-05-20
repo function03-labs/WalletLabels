@@ -42,7 +42,10 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
 
   const [showDevtools, setShowDevtools] = React.useState(false)
 
-  useHotkeys('ctrl+D', () => {
+  /**
+   * Toggle React Query devtools
+   */
+  useHotkeys('ctrl+shift+d', () => {
     setShowDevtools((prev) => !prev)
   })
 
