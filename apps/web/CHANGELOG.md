@@ -1,5 +1,28 @@
 # nextjs-app
 
+## 0.14.0
+
+### Minor Changes
+
+- e8d50b8: Move hotkeys into help center and updated keyboard shortcuts and help links
+- 9f3b135: Link no longer use legacyBehavior
+
+### Patch Changes
+
+- 12ac18d: Fixed onTenantChange router.push parameters
+- Updated dependencies [12ac18d]
+- Updated dependencies [e8d50b8]
+- Updated dependencies [9f3b135]
+- Updated dependencies [7a9d427]
+- Updated dependencies [4eed19e]
+- Updated dependencies [41c7ef8]
+- Updated dependencies [9f3b135]
+- Updated dependencies [8511768]
+  - @saas-ui-pro/react@0.21.0
+  - @app/features@11.0.0
+  - @api/client@0.3.1
+  - @ui/theme@0.4.4
+
 ## 0.13.3
 
 ### Patch Changes

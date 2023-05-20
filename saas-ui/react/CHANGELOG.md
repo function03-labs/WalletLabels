@@ -1,5 +1,16 @@
 # @saas-ui-pro/react
 
+## 0.21.0
+
+### Minor Changes
+
+- 9f3b135: Link no longer uses legacyBehavior
+
+### Patch Changes
+
+- 12ac18d: Fix issue where TenantProvider onChange handler would not update the internal context memo.
+- 9f3b135: Fix default Section header spacing
+
 ## 0.20.2
 
 ### Patch Changes

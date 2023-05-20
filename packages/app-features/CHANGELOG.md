@@ -1,5 +1,27 @@
 # @app/features
 
+## 11.0.0
+
+### Minor Changes
+
+- e8d50b8: Move hotkeys into help center and updated keyboard shortcuts and help links
+- 4eed19e: TenantMenu now uses slug instead of id as key/value
+- 9f3b135: Link no longer use legacyBehavior
+- 8511768: Clear React Query cache when logging out
+
+### Patch Changes
+
+- 7a9d427: Emails no longer required in invite members onboarding step
+- 41c7ef8: Add React Query Devtools
+- Updated dependencies [12ac18d]
+- Updated dependencies [e8d50b8]
+- Updated dependencies [9f3b135]
+- Updated dependencies [9f3b135]
+  - @saas-ui-pro/react@0.21.0
+  - @app/config@0.4.0
+  - @api/client@0.3.1
+  - @ui/theme@0.4.4
+
 ## 10.0.2
 
 ### Patch Changes

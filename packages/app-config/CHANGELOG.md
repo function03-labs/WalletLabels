@@ -1,5 +1,11 @@
 # @app/config
 
+## 0.4.0
+
+### Minor Changes
+
+- e8d50b8: Move hotkeys into help center and updated keyboard shortcuts and help links
+
 ## 0.3.0
 
 ### Minor Changes

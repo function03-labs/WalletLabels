@@ -1,6 +1,6 @@
 {
   "name": "@api/graphql-client",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "main": "src/index.ts",
   "type": "module",
   "scripts": {

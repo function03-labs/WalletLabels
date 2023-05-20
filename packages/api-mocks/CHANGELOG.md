@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.5.0
+
+### Minor Changes
+
+- 8b14192: Improved mocking results and types
+
 ## 0.4.0
 
 ### Minor Changes
