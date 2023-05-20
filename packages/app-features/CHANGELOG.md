@@ -1,5 +1,13 @@
 # @app/features
 
+## 11.0.1
+
+### Patch Changes
+
+- Updated dependencies [9a17b0f]
+  - @saas-ui-pro/react@0.21.1
+  - @ui/theme@0.4.5
+
 ## 11.0.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.21.1
+
+### Patch Changes
+
+- 9a17b0f: Fix Stepper dot variant
+
 ## 0.21.0
 
 ### Minor Changes
