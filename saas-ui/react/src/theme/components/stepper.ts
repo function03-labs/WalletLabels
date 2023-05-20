@@ -4,23 +4,28 @@ const variantDots: PartsStyleFunction = (props) => {
   const { colorScheme: c } = props
 
   return {
-    steps: {
+    stepper: {
       alignItems: 'center',
       justifyContent: 'center',
     },
-    icon: {
+    step: {
+      flex: 0,
+    },
+    indicator: {
       overflow: 'hidden',
       textIndent: '-9999px',
       width: '8px',
       height: '8px',
-      '[data-active] &': {
+      border: 0,
+      bg: mode('gray.200', 'whiteAlpha.400')(props),
+      '[data-status="active"] &': {
         bg: c ? `${c}.500` : mode('black', 'white'),
-      },
-      '& > svg': {
-        display: 'none',
       },
     },
     title: {
+      display: 'none',
+    },
+    description: {
       display: 'none',
     },
     separator: {

@@ -4,7 +4,7 @@ import { Container } from '@chakra-ui/react'
 
 import { useRouter } from 'next/router'
 
-import { Stepper, StepperCompleted, StepperStep } from '@saas-ui/react'
+import { Steps, StepsCompleted, StepsItem } from '@saas-ui/react'
 import {
   OnboardingPage,
   InviteTeamMembersStep,
@@ -22,17 +22,17 @@ export const GettingStartedPage: React.FC = () => {
   return (
     <OnboardingPage isLoading={isLoading}>
       <Container py="40" maxW={['full', null, '480px']}>
-        <Stepper variant="dots" flexDirection="column-reverse">
-          <StepperStep title="Create organization">
+        <Steps variant="dots" flexDirection="column-reverse">
+          <StepsItem title="Create organization">
             <CreateOrganizationStep />
-          </StepperStep>
-          <StepperStep title="Invite team members">
+          </StepsItem>
+          <StepsItem title="Invite team members">
             <InviteTeamMembersStep />
-          </StepperStep>
-          <StepperCompleted>
+          </StepsItem>
+          <StepsCompleted>
             <OnboardingCompleted />
-          </StepperCompleted>
-        </Stepper>
+          </StepsCompleted>
+        </Steps>
       </Container>
     </OnboardingPage>
   )
