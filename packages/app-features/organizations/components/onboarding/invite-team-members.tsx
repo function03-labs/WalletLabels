@@ -6,7 +6,7 @@ import { OnboardingStep } from './onboarding-step'
 import * as z from 'zod'
 
 const schema = z.object({
-  emails: z.string().nonempty(),
+  emails: z.string(),
 })
 
 export const InviteTeamMembersStep = () => {

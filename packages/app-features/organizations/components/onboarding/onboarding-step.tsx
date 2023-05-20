@@ -79,7 +79,7 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
         alignSelf="stretch"
       >
         <Card mb="6" animation={animation(0.2)}>
-          <CardBody>{children}</CardBody>
+          <CardBody p="6">{children}</CardBody>
         </Card>
 
         <SubmitButton
