@@ -6699,13 +6699,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui/auth@npm:2.0.0-next.20":
-  version: 2.0.0-next.20
-  resolution: "@saas-ui/auth@npm:2.0.0-next.20"
+"@saas-ui/auth@npm:2.0.0-next.22":
+  version: 2.0.0-next.22
+  resolution: "@saas-ui/auth@npm:2.0.0-next.22"
   dependencies:
     "@chakra-ui/utils": ^2.0.15
-    "@saas-ui/core": 2.0.0-next.16
-    "@saas-ui/forms": 2.0.0-next.19
+    "@saas-ui/core": 2.0.0-next.18
+    "@saas-ui/forms": 2.0.0-next.21
     "@saas-ui/hooks": 2.0.0-next.4
   peerDependencies:
     "@chakra-ui/react": ">=2.4.9"
@@ -6714,7 +6714,7 @@ __metadata:
     framer-motion: ">=6.0.0"
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
-  checksum: 037f856962ebf7cd9d915c71950acc13705689333fd1ecdc49a042df72817b8c022f852897c590762c987dcf73786a7d47955592061f2d944812113018f3b7b5
+  checksum: 109b09173a83a7406c658aa97ded0b8607e9595844139d8d9a182475b4c2bc32344b02fac097af6c46294bcb9f36fe8add6aeb10d773b513a83aac15d27cea12
   languageName: node
   linkType: hard
 
@@ -6755,17 +6755,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/core@npm:2.0.0-next.16":
-  version: 2.0.0-next.16
-  resolution: "@saas-ui/core@npm:2.0.0-next.16"
+"@saas-ui/core@npm:2.0.0-next.18":
+  version: 2.0.0-next.18
+  resolution: "@saas-ui/core@npm:2.0.0-next.18"
   dependencies:
     "@chakra-ui/react-utils": ^2.0.12
-    "@chakra-ui/styled-system": ^2.8.0
-    "@chakra-ui/system": ^2.5.5
+    "@chakra-ui/styled-system": ^2.9.0
+    "@chakra-ui/system": ^2.5.7
     "@chakra-ui/theme-tools": ^2.0.17
     "@chakra-ui/utils": ^2.0.15
     "@saas-ui/react-utils": 2.0.0-next.3
-    "@saas-ui/theme": 2.0.0-next.10
+    "@saas-ui/theme": 2.0.0-next.11
   peerDependencies:
     "@chakra-ui/react": ">=2.4.0"
     "@emotion/react": ^11
@@ -6773,26 +6773,26 @@ __metadata:
     framer-motion: ">=5.5.0"
     react: ">=18"
     react-dom: ">=18"
-  checksum: 3876a317b4958962e8c21019b6624372de954b99d754faedb48ae9c28af2b90d152924f8d67c905be3812d86a0b09488b526eca85626bc0cf118c3a8c756bf81
+  checksum: 7f8a1878f19ccb0c112dccd571eebf668fe46e0f46af0258714754dd7d0451f0955de949d58c432d00c20e1ca551cde9f90b4cc5195ce1261c51ab9090a87272
   languageName: node
   linkType: hard
 
-"@saas-ui/data-table@npm:2.0.0-next.20":
-  version: 2.0.0-next.20
-  resolution: "@saas-ui/data-table@npm:2.0.0-next.20"
+"@saas-ui/data-table@npm:2.0.0-next.22":
+  version: 2.0.0-next.22
+  resolution: "@saas-ui/data-table@npm:2.0.0-next.22"
   dependencies:
     "@chakra-ui/utils": ^2.0.15
-    "@saas-ui/core": 2.0.0-next.16
-    "@tanstack/react-table": ^8.8.5
+    "@saas-ui/core": 2.0.0-next.18
+    "@tanstack/react-table": ^8.9.1
   peerDependencies:
     "@chakra-ui/react": ">=2.4.9"
     "@emotion/react": ">=11.0.0"
     "@emotion/styled": ">=11.0.0"
-    "@saas-ui/react": 2.0.0-next.20
+    "@saas-ui/react": 2.0.0-next.22
     framer-motion: ">=6.0.0"
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
-  checksum: 0b729b60630faa8b3f0c2f33d64330c314ea93cada01b6f869fd64782e5d20c81b2123f6fb758bf3c869aa6a05bd60a69583882dfcbd5e431d43b32554a84c1c
+  checksum: c37b934fc9a2745927a2eaa7a50a0aebcef92e97901154f4b02e1fb1d9b6fe290fcac7bd4b8a6ea3f6b4046ce66f4ca043c339b6dac67e472777b4782ecaf3be
   languageName: node
   linkType: hard
 
@@ -6824,14 +6824,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/forms@npm:2.0.0-next.19":
-  version: 2.0.0-next.19
-  resolution: "@saas-ui/forms@npm:2.0.0-next.19"
+"@saas-ui/forms@npm:2.0.0-next.21":
+  version: 2.0.0-next.21
+  resolution: "@saas-ui/forms@npm:2.0.0-next.21"
   dependencies:
     "@chakra-ui/react-utils": ^2.0.12
     "@chakra-ui/utils": ^2.0.15
-    "@hookform/resolvers": ^3.0.1
-    "@saas-ui/core": 2.0.0-next.16
+    "@hookform/resolvers": ^3.1.0
+    "@saas-ui/core": 2.0.0-next.18
     react-hook-form: ^7.43.9
   peerDependencies:
     "@chakra-ui/react": ">=2.4.9"
@@ -6840,7 +6840,7 @@ __metadata:
     framer-motion: ">=6.0.0"
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
-  checksum: f304a05ab51808ee674c4734eac97636c8d45140191c3cbbd2910153bb51677ee961a57e74a8e8fc3bd84f5f984bffd894a661fc0ca9b34b25548ab5ed4e56d6
+  checksum: 5f1b54f9303264de8b30a2e9afa0f47e946f6da2361547e3b5c350fa41b64df7d45f2ee8b1d257b94d05959e5f8367d9b21ad317137dd3f91b7d58d318967910
   languageName: node
   linkType: hard
 
@@ -6854,13 +6854,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/hotkeys@npm:2.0.0-next.16":
-  version: 2.0.0-next.16
-  resolution: "@saas-ui/hotkeys@npm:2.0.0-next.16"
+"@saas-ui/hotkeys@npm:2.0.0-next.18":
+  version: 2.0.0-next.18
+  resolution: "@saas-ui/hotkeys@npm:2.0.0-next.18"
   dependencies:
     "@chakra-ui/react-utils": ^2.0.12
     "@chakra-ui/utils": ^2.0.15
-    "@saas-ui/core": 2.0.0-next.16
+    "@saas-ui/core": 2.0.0-next.18
   peerDependencies:
     "@chakra-ui/react": ">=2.4.9"
     "@emotion/react": ">=11.0.0"
@@ -6868,17 +6868,17 @@ __metadata:
     framer-motion: ">=6.0.0"
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
-  checksum: 101d6d10316713a44a27c9839dc69dc0831ab5e31d5837ba8b885311adf39ec542500e89c20f28f458e314ee7f093163c3fe82f3978df58168f9fb72316177f6
+  checksum: 5d961f9f756274557928917c9a1742fab8917e422f8c3603b2add01ecd0b4e3dc1b8fd60fee6e62ae8d62f368b9b881a5885f00a022ff714a687be77179a7f1e
   languageName: node
   linkType: hard
 
-"@saas-ui/modals@npm:2.0.0-next.16":
-  version: 2.0.0-next.16
-  resolution: "@saas-ui/modals@npm:2.0.0-next.16"
+"@saas-ui/modals@npm:2.0.0-next.21":
+  version: 2.0.0-next.21
+  resolution: "@saas-ui/modals@npm:2.0.0-next.21"
   dependencies:
-    "@chakra-ui/react-utils": ^2.0.11
+    "@chakra-ui/react-utils": ^2.0.12
     "@chakra-ui/utils": ^2.0.15
-    "@saas-ui/forms": 2.0.0-next.16
+    "@saas-ui/forms": 2.0.0-next.21
     "@saas-ui/hooks": 2.0.0-next.4
     "@saas-ui/react-utils": 2.0.0-next.3
   peerDependencies:
@@ -6888,27 +6888,7 @@ __metadata:
     framer-motion: ">=6.0.0"
     react: ">=18.0.0"
     react-dom: ">=18.0.0"
-  checksum: cae29b576777a52ccc279b17edfc30ca1b18fd39c6e154bb829a243a467faf7da8e4d98661db5195530f27e5028ded05ff21fecbd9754219393c3ce1c607ff54
-  languageName: node
-  linkType: hard
-
-"@saas-ui/modals@npm:2.0.0-next.19":
-  version: 2.0.0-next.19
-  resolution: "@saas-ui/modals@npm:2.0.0-next.19"
-  dependencies:
-    "@chakra-ui/react-utils": ^2.0.11
-    "@chakra-ui/utils": ^2.0.15
-    "@saas-ui/forms": 2.0.0-next.19
-    "@saas-ui/hooks": 2.0.0-next.4
-    "@saas-ui/react-utils": 2.0.0-next.3
-  peerDependencies:
-    "@chakra-ui/react": ">=2.4.9"
-    "@emotion/react": ">=11.0.0"
-    "@emotion/styled": ">=11.0.0"
-    framer-motion: ">=6.0.0"
-    react: ">=18.0.0"
-    react-dom: ">=18.0.0"
-  checksum: f822754836656206f6b6ec9faf12d91d6d41a553e35fb6a241b2ef862268958bb61fd2b5a2d1eeee51390d65789b820efc39fe72699dd6ffc2a00618b6bf7d90
+  checksum: c701f33c9a2332e658df9fb90578ec421c030d5ff91913ce45dd24e2efee30de0eccb89cf16cf39ce06c2ada8807cf66cb0d25713825d2a6c2421fe04a4a3110
   languageName: node
   linkType: hard
 
@@ -6957,30 +6937,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/react@npm:2.0.0-next.20":
-  version: 2.0.0-next.20
-  resolution: "@saas-ui/react@npm:2.0.0-next.20"
+"@saas-ui/react@npm:2.0.0-next.22":
+  version: 2.0.0-next.22
+  resolution: "@saas-ui/react@npm:2.0.0-next.22"
   dependencies:
     "@chakra-ui/react-utils": ^2.0.12
-    "@chakra-ui/system": ^2.5.5
+    "@chakra-ui/system": ^2.5.7
     "@chakra-ui/utils": ^2.0.15
-    "@saas-ui/auth": 2.0.0-next.20
-    "@saas-ui/core": 2.0.0-next.16
-    "@saas-ui/data-table": 2.0.0-next.20
-    "@saas-ui/forms": 2.0.0-next.19
+    "@saas-ui/auth": 2.0.0-next.22
+    "@saas-ui/core": 2.0.0-next.18
+    "@saas-ui/data-table": 2.0.0-next.22
+    "@saas-ui/forms": 2.0.0-next.21
     "@saas-ui/hooks": 2.0.0-next.4
-    "@saas-ui/hotkeys": 2.0.0-next.16
-    "@saas-ui/modals": 2.0.0-next.19
+    "@saas-ui/hotkeys": 2.0.0-next.18
+    "@saas-ui/modals": 2.0.0-next.21
     "@saas-ui/nprogress": 2.0.0-next.3
-    "@saas-ui/theme": 2.0.0-next.10
+    "@saas-ui/theme": 2.0.0-next.11
   peerDependencies:
-    "@chakra-ui/react": ">=2.4.0"
+    "@chakra-ui/react": ">=2.6.0"
     "@emotion/react": ^11
     "@emotion/styled": ^11
     framer-motion: ">=5.5.0"
     react: ">=18"
     react-dom: ">=18"
-  checksum: 995945f74988ea8b89c6d077cd948f417eb83ed70a900e9fa074a8b7c3e3b192c336ce08f3927de05e1f4a5c33e906ff9598318df2458e68090987378a6c9ba9
+  checksum: 10e42df5fc489dc9973f2eb7d4b2c2c80ef3df83b3a7b04b929749164212de0ef0f4e776859d315cc7c8d9c11cc553cdc4cde322db1a82b743f936eaafec746f
   languageName: node
   linkType: hard
 
@@ -7018,18 +6998,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/theme@npm:2.0.0-next.10":
-  version: 2.0.0-next.10
-  resolution: "@saas-ui/theme@npm:2.0.0-next.10"
+"@saas-ui/theme@npm:2.0.0-next.11":
+  version: 2.0.0-next.11
+  resolution: "@saas-ui/theme@npm:2.0.0-next.11"
   dependencies:
-    "@chakra-ui/anatomy": ^2.1.2
-    "@chakra-ui/styled-system": ^2.8.0
+    "@chakra-ui/anatomy": ^2.1.1
+    "@chakra-ui/styled-system": ^2.9.0
     "@chakra-ui/theme-tools": ^2.0.17
   peerDependencies:
     "@chakra-ui/react": ">=2.4.6"
     "@chakra-ui/system": ">=2.3.8"
     react: ">=18.0.0"
-  checksum: aaee54b197f9648f9ecc4a56d31dc38b4312b46fb59e2f60c2df8e65e02b15bee9b33707be9d4ef02bd0bf49f55fc57bcbd2427152e7ef179a6eaf832538caaf
+  checksum: c5bd37fc4227b689867ab534ef00eaecce99dd3561e7b621792bf100d3b1d17a3bf28cd7445f6eb81e52e0634f257b27605a4062d6dfb74c4bb919e3dbf5abbf
   languageName: node
   linkType: hard
 
@@ -8695,18 +8675,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-table@npm:^8.8.5":
-  version: 8.8.5
-  resolution: "@tanstack/react-table@npm:8.8.5"
-  dependencies:
-    "@tanstack/table-core": 8.8.5
-  peerDependencies:
-    react: ">=16"
-    react-dom: ">=16"
-  checksum: 6c396b1a175699b8ebca56e81230194b03d94df5a83bde542a643363dfa40065e8fa795ef57bb8d540134d717538c420d7013e3d3cf7b8a93a0680d0d6192765
-  languageName: node
-  linkType: hard
-
 "@tanstack/react-table@npm:^8.9.1":
   version: 8.9.1
   resolution: "@tanstack/react-table@npm:8.9.1"
@@ -8716,13 +8684,6 @@ __metadata:
     react: ">=16"
     react-dom: ">=16"
   checksum: 16d044c382598aad3c984d8e175183c5fd48093249dfb51ee592d2f1bb16e253aa437e0834bf9d27d69043493feeb22a5185b3226c704b99e13c45950cb82141
-  languageName: node
-  linkType: hard
-
-"@tanstack/table-core@npm:8.8.5":
-  version: 8.8.5
-  resolution: "@tanstack/table-core@npm:8.8.5"
-  checksum: 7bbf00635e57294dd5bd12d82efb273d3b68c47b905a1d7f2fdabe83d9c10314e67d24f918b570ba8fecf80a120008359c52682cdd917d9de26eeece31c43a7d
   languageName: node
   linkType: hard
 
