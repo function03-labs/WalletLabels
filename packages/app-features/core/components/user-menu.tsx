@@ -5,7 +5,6 @@ import {
   MenuList,
   Portal,
   useColorMode,
-  useDisclosure,
 } from '@chakra-ui/react'
 
 import { useTenant } from '@saas-ui-pro/react'
@@ -22,7 +21,7 @@ import { Has } from '@saas-ui-pro/feature-flags'
 import { useHelpCenter } from '@ui/lib'
 import { usePath } from '../hooks/use-path'
 import { getCurrentUser } from '@api/client'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export const UserMenu = () => {
   const { logOut } = useAuth()
@@ -31,6 +30,14 @@ export const UserMenu = () => {
     queryKey: ['GetCurrentUser'],
     queryFn: () => getCurrentUser(),
   })
+
+  const queryClient = useQueryClient()
+
+  const logOutAndClearCache = () => {
+    logOut().then(() => {
+      queryClient.clear()
+    })
+  }
 
   const tenant = useTenant()
 
@@ -42,7 +49,7 @@ export const UserMenu = () => {
   })
 
   const logoutCommand = useHotkeysShortcut('general.logout', () => {
-    logOut()
+    logOutAndClearCache()
   })
 
   return (
@@ -92,7 +99,7 @@ export const UserMenu = () => {
           <MenuDivider />
           <MenuItem
             command={logoutCommand}
-            onClick={() => logOut()}
+            onClick={() => logOutAndClearCache()}
             label="Log out"
           />
         </MenuList>
