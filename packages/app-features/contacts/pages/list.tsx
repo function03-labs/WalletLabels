@@ -19,9 +19,9 @@ import { FiSliders, FiUser } from 'react-icons/fi'
 import {
   EmptyState,
   OverflowMenu,
-  useModals,
   useHotkeysShortcut,
-  // useLocalStorage,
+  useSnackbar,
+  useLocalStorage,
 } from '@saas-ui/react'
 import {
   Command,
@@ -36,10 +36,9 @@ import {
   useColumns,
   getDataGridFilter,
   Filter,
-  useLocalStorage,
 } from '@saas-ui-pro/react'
 
-import { ListPage, InlineSearch } from '@ui/lib'
+import { ListPage, InlineSearch, useModals } from '@ui/lib'
 
 import { Contact, createContact, getContacts } from '@api/client'
 
@@ -85,6 +84,7 @@ const schema = z.object({
 export function ContactsListPage() {
   const tenant = useTenant()
   const modals = useModals()
+  const snackbar = useSnackbar()
   const { query } = useRouter()
 
   const type = query?.type?.toString()
@@ -171,16 +171,30 @@ export function ContactsListPage() {
   )
 
   const addPerson = () => {
-    modals.form?.({
+    modals.form({
       title: 'Add person',
+      defaultValues: {
+        firstName: '',
+        lastName: '',
+        email: '',
+      },
       schema,
-      submitLabel: 'Save',
-      /* @ts-ignore @todo fix submit types on FormDialog */
-      onSubmit: (contact: z.infer<typeof schema>) =>
-        mutation.mutateAsync({
-          ...contact,
-          type: query?.type as string,
-        }),
+      fields: {
+        submit: {
+          children: 'Save',
+        },
+      },
+      onSubmit: async (contact) => {
+        try {
+          await mutation.mutateAsync({
+            ...contact,
+            type: query?.type?.toString() || 'lead',
+          }),
+            modals.closeAll()
+        } catch (e) {
+          snackbar.error('Could not create contact')
+        }
+      },
     })
   }
 

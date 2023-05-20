@@ -1,1 +1,1 @@
-saas-ui/pro/CHANGELOG.md
+saas-ui/react/CHANGELOG.md

@@ -11,10 +11,19 @@ import {
   Spacer,
   Text,
 } from '@chakra-ui/react'
-import { BaseDrawer, BaseDrawerProps, useModals } from '@saas-ui/react'
+import {
+  BaseDrawer,
+  BaseDrawerProps,
+  HotkeysList,
+  HotkeysListItems,
+  HotkeysSearch,
+  useHotkeysContext,
+} from '@saas-ui/react'
 import { FiHelpCircle, FiKey } from 'react-icons/fi'
 import { FaDiscord } from 'react-icons/fa'
-import { HotkeysDialog } from './hotkeys-dialog'
+import { BackButton } from '@saas-ui-pro/react'
+
+import { useModals } from '../modals'
 
 export const useHelpCenter = () => {
   const modals = useModals()
@@ -48,43 +57,51 @@ export interface HelpCenterDialogProps
   extends Omit<BaseDrawerProps, 'children'> {}
 
 export const HelpCenterDialog: React.FC<HelpCenterDialogProps> = (props) => {
-  const { title = 'Help', ...rest } = props
+  const { title: titleProp = 'Help', ...rest } = props
 
-  const modals = useModals()
+  const [view, setView] = React.useState<'help' | 'keyboard'>('help')
 
-  const showKeyboardShortcuts = React.useCallback(() => {
-    modals.open({
-      title: 'Keyboard shortcuts',
-      component: HotkeysDialog,
-    })
-  }, [])
+  const back = () => setView('help')
+
+  let content
+  let title = titleProp || 'Help'
+  if (view === 'keyboard') {
+    title = (
+      <>
+        <BackButton onClick={back} /> {title}
+      </>
+    )
+    content = <HotkeysView />
+  } else {
+    content = (
+      <Stack height="100%">
+        <HelpCard
+          title="Documentation"
+          icon={FiHelpCircle}
+          href="https://saas-ui.dev/docs"
+          target="_blank"
+        />
+        <HelpCard
+          title="Keyboard shortcuts"
+          icon={FiKey}
+          onClick={() => setView('keyboard')}
+        />
+
+        <Spacer />
+        <HelpCard
+          title="Discord"
+          description="Join our Discord community"
+          icon={FaDiscord}
+          href="https://discord.gg/4PmJGFcAjX"
+          target="_blank"
+        />
+      </Stack>
+    )
+  }
 
   return (
     <BaseDrawer title={title} {...rest}>
-      <DrawerBody>
-        <Stack height="100%">
-          <HelpCard
-            title="Documentation"
-            icon={FiHelpCircle}
-            href="https://saas-ui.dev/docs"
-            target="_blank"
-          />
-          <HelpCard
-            title="Keyboard shortcuts"
-            icon={FiKey}
-            onClick={showKeyboardShortcuts}
-          />
-
-          <Spacer />
-          <HelpCard
-            title="Discord"
-            description="Join our Discord community"
-            icon={FaDiscord}
-            href="https://discord.gg/4PmJGFcAjX"
-            target="_blank"
-          />
-        </Stack>
-      </DrawerBody>
+      <DrawerBody>{content}</DrawerBody>
     </BaseDrawer>
   )
 }
@@ -98,7 +115,7 @@ const HelpCard: React.FC<
     description?: string
   }
 > = (props) => {
-  const { icon, title, description, href, ...rest } = props
+  const { icon, title, description, href = '#', ...rest } = props
   return (
     <Card
       as="a"
@@ -116,5 +133,17 @@ const HelpCard: React.FC<
         </Stack>
       </CardBody>
     </Card>
+  )
+}
+
+const HotkeysView: React.FC = () => {
+  const searchRef = React.useRef<HTMLInputElement | null>(null)
+
+  const { hotkeys } = useHotkeysContext()
+  return (
+    <HotkeysList hotkeys={hotkeys}>
+      <HotkeysSearch ref={searchRef} />
+      <HotkeysListItems />
+    </HotkeysList>
   )
 }

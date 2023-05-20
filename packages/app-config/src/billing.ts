@@ -14,7 +14,7 @@ export const plans = [
       api: false,
       support: false,
     },
-    productId: 28551,
+    url: 'https://saas-ui.lemonsqueezy.com/checkout/buy/5c76854f-738a-46b8-b32d-932a97d477f5',
   },
   {
     id: 'pro_yearly',
@@ -32,7 +32,7 @@ export const plans = [
       api: false,
       support: false,
     },
-    productId: 28632,
+    url: 'https://saas-ui.lemonsqueezy.com/checkout/buy/5c76854f-738a-46b8-b32d-932a97d477f5',
   },
   {
     id: 'enterprise',
@@ -49,7 +49,7 @@ export const plans = [
       api: true,
       support: 'Priority',
     },
-    productId: 28552,
+    url: 'https://saas-ui.lemonsqueezy.com/checkout/buy/5c76854f-738a-46b8-b32d-932a97d477f5',
   },
   {
     id: 'enterprise_yearly',
@@ -67,7 +67,7 @@ export const plans = [
       api: true,
       support: 'Priority',
     },
-    productId: 28631,
+    url: 'https://saas-ui.lemonsqueezy.com/checkout/buy/5c76854f-738a-46b8-b32d-932a97d477f5',
   },
 ]
 

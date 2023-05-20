@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react'
-import { HelpCenter } from './'
+import { HelpCenterDialog } from './'
 
 export default {
   title: 'Components/HelpCenter',
-  component: HelpCenter,
+  component: HelpCenterDialog,
 } as Meta
 
 export const Default = {

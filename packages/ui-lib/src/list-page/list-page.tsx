@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Box, Spacer, useColorModeValue } from '@chakra-ui/react'
 
-import { EmptyState, useModals } from '@saas-ui/react'
+import { EmptyState } from '@saas-ui/react'
 
 import {
   Page,
@@ -35,6 +35,8 @@ import {
   DateValue,
   getLocalTimeZone,
 } from '@saas-ui/date-picker'
+
+import { useModals } from '@ui/lib'
 
 export interface ListPageProps<D extends object>
   extends PageProps,

@@ -3,17 +3,13 @@
   "main": "src/index.ts",
   "version": "0.3.0",
   "type": "module",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.15.0",
-    "magic-sdk": "^16.1.0"
-  },
   "devDependencies": {
     "@chakra-ui/react": "^2.5.5",
     "@chakra-ui/system": "^2.5.5",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@saas-ui/auth": "^2.0.0-next.12",
-    "framer-motion": "^10.11.2",
+    "framer-motion": "^10.12.12",
     "react": ">=18",
     "react-dom": ">=18"
   }

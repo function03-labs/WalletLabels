@@ -14,13 +14,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import {
-  EmptyState,
-  Field,
-  FormLayout,
-  Option,
-  useModals,
-} from '@saas-ui/react'
+import { EmptyState, Field, FormLayout, Option } from '@saas-ui/react'
 import { useSearchQuery } from '@saas-ui-pro/react'
 
 import {
@@ -33,7 +27,9 @@ import {
   PersonaAvatar,
 } from '@saas-ui/react'
 
-import { SearchInput } from '@ui/lib'
+import { SearchInput, useModals } from '@ui/lib'
+import { z } from 'zod'
+import without from 'lodash/without'
 
 export interface Member {
   id: string
@@ -179,16 +175,29 @@ export function MembersList<M extends Member = Member>({
 
   const onChangeRole = React.useCallback(
     (member: M) => {
-      modals.open?.({
+      modals.form?.({
         title: 'Update roles',
-        type: 'form',
-        onSubmit: ({ roles }: ChangeRoleFields) =>
-          onUpdateRoles?.(member, roles),
-        defaultValues: {
-          roles: isMultiRoles ? member.roles : member.roles?.[0],
+        schema: z.object({
+          roles: isMultiRoles ? z.array(z.string()) : z.string(),
+        }),
+        onSubmit: async ({ roles }) => {
+          if (typeof roles === 'string') {
+            roles = [roles]
+          }
+
+          onUpdateRoles?.(member, roles)
         },
-        submitLabel: 'Update',
-        body: (
+        defaultValues: {
+          roles: isMultiRoles
+            ? member.roles
+            : without(member.roles, 'owner')?.[0],
+        },
+        fields: {
+          submit: {
+            children: 'Update',
+          },
+        },
+        children: (
           <FormLayout>
             <Field name="roles" type="radio" options={defaultMemberRoles} />
           </FormLayout>

@@ -3,14 +3,13 @@ import {
   StructuredList,
   StructuredListItem,
   StructuredListCell,
-  useModals,
   useSnackbar,
 } from '@saas-ui/react'
 import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 
 import { FiChevronRight } from 'react-icons/fi'
 
-import { SettingsPage } from '@ui/lib'
+import { SettingsPage, useModals } from '@ui/lib'
 
 import { UpdatePasswordDialog } from '../../components/update-password-dialog'
 

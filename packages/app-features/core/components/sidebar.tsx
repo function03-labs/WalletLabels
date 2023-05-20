@@ -39,7 +39,6 @@ import {
   NavItem,
   NavItemProps,
   NavGroup,
-  useModals,
   useLocalStorage,
   useHotkeysShortcut,
 } from '@saas-ui/react'
@@ -50,6 +49,7 @@ import {
   SortableNavGroup,
   SortableNavItem,
   useHelpCenter,
+  useModals,
 } from '@ui/lib'
 
 import { BillingStatus } from './billing-status'

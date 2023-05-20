@@ -36,6 +36,7 @@ export const Breadcrumbs: React.FC<BreadCrumbsProps> = (props) => {
             {href ? (
               <BreadcrumbLink
                 as={Link}
+                href={href}
                 fontWeight="semibold"
                 _hover={{
                   textDecoration: 'none',
