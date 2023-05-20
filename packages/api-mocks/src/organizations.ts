@@ -6,6 +6,7 @@ import {
   getOrganizations as getMockOrganizations,
   organizationStore,
 } from './mock-data'
+import { addDays } from 'date-fns'
 
 export const getOrganization = async (variables: { slug?: string | null }) => {
   return {
@@ -52,6 +53,8 @@ export const createOrganization = async (variables: {
     ...organization,
     name: variables.name,
     slug: variables.slug || slug(variables.name),
+    email: 'hello@saas-ui.dev',
+    logo: '/img/saasui-round.png',
     members: [
       {
         id: '1',
@@ -61,6 +64,13 @@ export const createOrganization = async (variables: {
         roles: ['owner', 'admin'],
       },
     ],
+    subscription: {
+      id: '1',
+      plan: 'pro',
+      status: 'trialing',
+      startedAt: new Date('2022-01-01').toISOString(),
+      trialEndsAt: addDays(new Date(), 14).toISOString(),
+    },
   }
 
   organizationStore.getState().add(data)

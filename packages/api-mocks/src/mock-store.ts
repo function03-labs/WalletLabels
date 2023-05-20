@@ -13,6 +13,8 @@ export interface MockStore<Type extends MockStoreRecord = MockStoreRecord> {
   setData(data: Record<string, Type>): void
   add(value: Type): void
   update(id: string | number, value: Type): void
+  get(id?: string): Type | Record<string, Type>
+  all(): Type[]
   remove(id: string | number): void
   filter(fn: (value: Type, i: number, arr: Type[]) => value is Type): Type[]
 }
@@ -60,6 +62,9 @@ export const createMockStore = <Type extends MockStoreRecord = MockStoreRecord>(
           }
 
           return data
+        },
+        all: () => {
+          return Object.values(get().data)
         },
         filter: (fn) => {
           return Object.values(get().data).filter<Type>(fn)

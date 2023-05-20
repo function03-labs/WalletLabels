@@ -11,8 +11,16 @@ export type Organization = {
   logo?: string
   members: Array<OrganizationMember>
   name: string
-  plan?: string
   slug: string
+  subscription?: Subscription
+}
+
+export type Subscription = {
+  id: string
+  plan: string
+  status: string
+  startedAt: string
+  trialEndsAt: string
 }
 
 export type User = {
@@ -25,6 +33,7 @@ export type User = {
   workspace?: {
     tags?: string[]
   }
+  organizations?: Organization[]
 }
 
 export type Contact = {

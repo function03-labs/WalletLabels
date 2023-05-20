@@ -15,7 +15,7 @@ import { addDays, subDays } from 'date-fns'
 import { createMockStore } from './mock-store'
 import { Organization, Contact, Activity, DeepPartial } from './types'
 
-interface OrganizationsStore extends DeepPartial<Organization> {
+interface OrganizationsStore extends Organization {
   id: string
 }
 
@@ -237,49 +237,7 @@ export const getOrganizationMember = () => ({
 })
 
 export const getOrganizations = () => {
-  return [
-    {
-      id: '1',
-      name: 'Saas UI',
-      slug: 'saas-ui',
-      email: 'hello@saas-ui.dev',
-      logo: '/img/saasui-round.png',
-      subscription: {
-        id: '1',
-        plan: 'pro',
-        status: 'trialing',
-        startedAt: new Date('2022-01-01').toISOString(),
-        trialEndsAt: addDays(new Date(), 14).toISOString(),
-      },
-    },
-
-    {
-      id: '2',
-      name: 'ACME Corp',
-      slug: 'acme-corp',
-      email: 'info@acme-corp.com',
-      subscription: {
-        id: '2',
-        plan: 'pro',
-        status: 'trialing',
-        startedAt: new Date().toISOString(),
-        trialEndsAt: addDays(new Date(), 14).toISOString(),
-      },
-    },
-
-    {
-      id: '3',
-      name: 'Saas Inc',
-      slug: 'saas-inc',
-      subscription: {
-        id: '3',
-        plan: 'enterprise',
-        status: 'canceled',
-        startedAt: subDays(new Date(), 28).toISOString(),
-        trialEndsAt: subDays(new Date(), 14).toISOString(),
-      },
-    },
-  ]
+  return organizationStore.getState().all()
 }
 
 export const getSubscription = (slug: string) => {
