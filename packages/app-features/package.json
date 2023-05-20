@@ -12,6 +12,7 @@
     "@saas-ui/date-picker": "^0.10.0-next.0",
     "@saas-ui/forms": "^2.0.0-next.16",
     "@tanstack/react-query": "^4.29.7",
+    "@tanstack/react-query-devtools": "4.29.7",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
     "lucide-react": "^0.190.0",

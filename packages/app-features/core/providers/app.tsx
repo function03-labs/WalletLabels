@@ -1,10 +1,11 @@
 import * as React from 'react'
 
 import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { IconContext } from 'react-icons'
 
-import { SaasProvider } from '@saas-ui/react'
+import { SaasProvider, useHotkeys } from '@saas-ui/react'
 import { AuthProvider, AuthProviderProps } from '@saas-ui/auth'
 
 import { TenancyProvider, Tenant } from '@saas-ui-pro/react'
@@ -39,6 +40,12 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
     children,
   } = props
 
+  const [showDevtools, setShowDevtools] = React.useState(false)
+
+  useHotkeys('ctrl+D', () => {
+    setShowDevtools((prev) => !prev)
+  })
+
   return (
     <QueryClientProvider client={queryClient}>
       <IconContext.Provider value={{ className: 'react-icon', size: '1.1em' }}>
@@ -60,6 +67,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
           </AuthProvider>
         </SaasProvider>
       </IconContext.Provider>
+      {showDevtools && <ReactQueryDevtools position="bottom-right" />}
     </QueryClientProvider>
   )
 }
