@@ -50,7 +50,7 @@ export function TenancyProvider(props: TenancyProviderProps) {
         onChange?.(tenant)
       },
     }),
-    [tenant],
+    [tenant, onChange],
   )
 
   return (

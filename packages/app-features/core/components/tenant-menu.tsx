@@ -75,8 +75,8 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
             {tenants.map(({ id, slug, label, logo, ...props }) => {
               return (
                 <MenuItem
-                  key={id}
-                  value={id}
+                  key={slug}
+                  value={slug}
                   icon={<TenantLogo name={label} src={logo} />}
                   onClick={() => setTenant(slug)}
                   {...props}
@@ -84,7 +84,7 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
                   <HStack>
                     <Text>{label}</Text>
                     <Spacer />
-                    {id === activeTenant?.id ? <FiCheck /> : null}
+                    {slug === activeTenant?.slug ? <FiCheck /> : null}
                   </HStack>
                 </MenuItem>
               )

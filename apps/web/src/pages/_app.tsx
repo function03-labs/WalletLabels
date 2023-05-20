@@ -32,7 +32,7 @@ function App({ Component, pageProps }: AppProps) {
         tenant={tenant}
         onTenantChange={(key) => {
           router.push({
-            ...router,
+            pathname: router.pathname,
             query: {
               ...router.query,
               tenant: key,
