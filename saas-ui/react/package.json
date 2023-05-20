@@ -60,11 +60,11 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "^2.1.1",
+    "@chakra-ui/anatomy": "^2.1.2",
     "@chakra-ui/clickable": "^2.0.14",
-    "@chakra-ui/react-utils": "^2.0.11",
-    "@chakra-ui/styled-system": "^2.8.0",
-    "@chakra-ui/system": "^2.5.5",
+    "@chakra-ui/react-utils": "^2.0.12",
+    "@chakra-ui/styled-system": "^2.9.0",
+    "@chakra-ui/system": "^2.5.7",
     "@chakra-ui/theme-tools": "^2.0.17",
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^15.1.0",
