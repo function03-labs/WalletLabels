@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.21.2
+
+### Patch Changes
+
+- dfc2881: Fix issue where useColumnVisibility would not update
+
 ## 0.21.1
 
 ### Patch Changes

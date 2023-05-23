@@ -1,5 +1,14 @@
 # @app/features
 
+## 11.0.2
+
+### Patch Changes
+
+- 54c6f1c: Fixed issue where adding comments would invalidate incorrect query key
+- Updated dependencies [dfc2881]
+  - @saas-ui-pro/react@0.21.2
+  - @ui/theme@0.4.6
+
 ## 11.0.1
 
 ### Patch Changes
