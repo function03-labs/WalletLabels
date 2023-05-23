@@ -529,40 +529,42 @@ export interface UseColumnVisibilityProps<Data, VisibleColumns = string[]> {
  */
 export const useColumnVisibility = <Data extends object>(
   props: UseColumnVisibilityProps<Data>,
+  deps?: React.DependencyList,
 ) => {
   const { columns, visibleColumns = [] } = props
-  const initRef = React.useRef(false)
 
-  const getVisibleColumns = React.useCallback(() => {
-    return (
-      columns.reduce<Record<string, boolean>>((memo, column) => {
-        let id = column.id
-        if (
-          !id &&
-          'accessorKey' in column &&
-          typeof column.accessorKey === 'string'
-        ) {
-          id = column.accessorKey
-        }
-        if (id) {
-          memo[id] =
-            column.enableHiding !== false ? visibleColumns?.includes(id) : true
-        }
-        return memo
-      }, {}) || {}
-    )
-  }, [columns, visibleColumns])
+  const getVisibleColumns = React.useCallback(
+    (visibleColumns: string[]) => {
+      return (
+        columns.reduce<Record<string, boolean>>((memo, column) => {
+          let id = column.id
+          if (
+            !id &&
+            'accessorKey' in column &&
+            typeof column.accessorKey === 'string'
+          ) {
+            id = column.accessorKey
+          }
+          if (id) {
+            memo[id] =
+              column.enableHiding !== false
+                ? visibleColumns?.includes(id)
+                : true
+          }
+          return memo
+        }, {}) || {}
+      )
+    },
+    [columns],
+  )
 
   const [columnVisibility, setColumnVisibility] = React.useState(
-    getVisibleColumns(),
+    getVisibleColumns(visibleColumns),
   )
 
   React.useEffect(() => {
-    if (!initRef.current) {
-      setColumnVisibility(getVisibleColumns)
-    }
-    initRef.current = true
-  }, [visibleColumns])
-
+    setColumnVisibility(getVisibleColumns(visibleColumns))
+  }, deps || [visibleColumns])
+  console.log('render')
   return columnVisibility
 }
