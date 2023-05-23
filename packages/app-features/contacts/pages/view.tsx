@@ -131,15 +131,15 @@ const ActivitiesPanel: React.FC<{ contactId: string }> = ({ contactId }) => {
 
   const addMutation = useMutation({
     mutationFn: addComment,
-    onSettled: () => {
-      queryClient.invalidateQueries(['ContactActivities', { id: contactId }])
+    onSettled: (data) => {
+      queryClient.invalidateQueries(['ContactActivities', contactId])
     },
   })
 
   const deleteMutation = useMutation({
     mutationFn: deleteComment,
     onSettled: () => {
-      queryClient.invalidateQueries(['ContactActivities', { id: contactId }])
+      queryClient.invalidateQueries(['ContactActivities', contactId])
     },
   })
 
