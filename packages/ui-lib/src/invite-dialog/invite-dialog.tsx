@@ -75,6 +75,7 @@ export function InviteDialog(props: InviteDialogProps) {
   return (
     <FormDialog<any, any>
       {...rest}
+      title={title}
       onClose={onClose}
       defaultValues={{
         role: 'member',

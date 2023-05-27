@@ -148,9 +148,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           <NavGroup>
             <NavItem
               onClick={() =>
-                modals.open({
+                modals.open(InviteDialog, {
                   title: 'Invite people',
-                  component: InviteDialog,
                   onInvite: async () => {
                     // TODO: handle invite
                   },
