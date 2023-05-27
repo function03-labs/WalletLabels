@@ -1,5 +1,12 @@
 # @ui/theme
 
+## 0.4.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @saas-ui-pro/theme-glass@0.4.7
+
 ## 0.4.6
 
 ### Patch Changes

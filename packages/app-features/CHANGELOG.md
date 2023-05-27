@@ -1,5 +1,25 @@
 # @app/features
 
+## 11.1.0
+
+### Minor Changes
+
+- d3fa0df: Inbox navigation now fully working
+
+### Patch Changes
+
+- d4c6999: Fix Invite people dialog title
+- Updated dependencies [d4c6999]
+- Updated dependencies [8c5f49d]
+- Updated dependencies
+  - @ui/lib@0.3.2
+  - @saas-ui-pro/react@0.21.3
+  - @saas-ui-pro/feature-flags@0.11.2
+  - @saas-ui-pro/onboarding@0.10.2
+  - @saas-ui-pro/billing@0.10.2
+  - @api/client@0.3.2
+  - @ui/theme@0.4.7
+
 ## 11.0.2
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @saas-ui-pro/react
 
+## 0.21.3
+
+### Patch Changes
+
+- 8c5f49d: Fixed checked styles for ToggleButton
+- Bump version
+- Updated dependencies
+  - @saas-ui-pro/onboarding@0.10.2
+
 ## 0.21.2
 
 ### Patch Changes

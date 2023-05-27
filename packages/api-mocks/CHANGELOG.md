@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.6.0
+
+### Minor Changes
+
+- d3fa0df: Inbox navigation now fully working
+
 ## 0.5.0
 
 ### Minor Changes
