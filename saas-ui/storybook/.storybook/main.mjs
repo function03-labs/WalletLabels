@@ -50,7 +50,7 @@ export default {
       resolve: {
         alias: [
           {
-            find: /(\@saas-ui\/[a-z-\/]+)$/,
+            find: /(\@saas-ui-pro\/[a-z-\/]+)$/,
             replacement: '$1/src',
           },
         ],

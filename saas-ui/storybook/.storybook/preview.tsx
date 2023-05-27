@@ -6,6 +6,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 import { SaasProvider } from '@saas-ui/react'
 import { theme as proTheme } from '@saas-ui-pro/react'
+import { theme as glassTheme } from '@saas-ui-pro/theme-glass'
 
 import '@fontsource/inter/variable.css'
 
@@ -40,7 +41,7 @@ export const globalTypes = {
     defaultValue: 'pro',
     toolbar: {
       icon: 'paintbrush',
-      items: ['pro'],
+      items: ['pro', 'glass', 'chakra'],
     },
   },
   colorMode: {
@@ -71,10 +72,15 @@ const withChakra = (StoryFn: Function, context: StoryContext) => {
   const dir = direction.toLowerCase()
 
   const getTheme = React.useCallback(() => {
-    if (themeId === 'pro') {
-      return proTheme
+    switch (themeId) {
+      case 'glass':
+        return glassTheme
+      case 'chakra':
+        return {}
+      case 'pro':
+      default:
+        return proTheme
     }
-    return proTheme
   }, [themeId])
 
   const story = (
