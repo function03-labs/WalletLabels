@@ -39,13 +39,13 @@
     "@chakra-ui/system": "^2.5.7",
     "@chakra-ui/theme-tools": "^2.0.17",
     "@chakra-ui/utils": "^2.0.15",
-    "@saas-ui/react-utils": "^2.0.0-next.1"
+    "@saas-ui/react-utils": "^2.0.0-rc.3"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.1",
     "@emotion/react": ">=11",
     "@emotion/styled": ">=11",
-    "@saas-ui/react": ">=2.0.0-next.12",
+    "@saas-ui/react": ">=2.0.0-rc.25",
     "framer-motion": ">=5.5.0",
     "react": ">=18",
     "react-dom": ">=18"
