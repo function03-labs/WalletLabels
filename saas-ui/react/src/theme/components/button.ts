@@ -16,6 +16,11 @@ const variantGhost = defineStyle((props) => {
     }
   }
 
+  return variantOutline(props)
+})
+
+const variantOutline = defineStyle((props) => {
+  const { colorScheme: c, theme } = props
   return {
     _checked: {
       bg: `${c}.100`,
@@ -59,6 +64,7 @@ export default {
   },
   variants: {
     ghost: variantGhost,
+    outline: variantOutline,
   },
   sizes,
 }

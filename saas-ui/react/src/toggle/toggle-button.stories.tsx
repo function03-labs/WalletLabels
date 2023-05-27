@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { Story, Meta } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Center, Box, HStack, VStack } from '@chakra-ui/react'
 
-import { ToggleButton, ToggleButtonProps } from '..'
+import { ToggleButton } from '..'
 
 export default {
   title: 'Components/Toggle/ToggleButton',
+  component: ToggleButton,
   decorators: [
     (Story: any) => (
       <Center height="100%">
@@ -17,19 +17,36 @@ export default {
   ],
 } as Meta
 
-const Template: Story<ToggleButtonProps> = (args) => <ToggleButton {...args} />
+type Story = StoryObj<typeof ToggleButton>
 
-export const Basic = Template.bind({})
-Basic.args = {
-  value: '1',
-  variant: 'outline',
-  children: 'Toggle me',
+export const Basic: Story = {
+  args: {
+    value: '1',
+    variant: 'outline',
+    children: 'Toggle me',
+  },
 }
 
-export const ColorScheme = Template.bind({})
-ColorScheme.args = {
-  value: '1',
-  variant: 'outline',
-  colorScheme: 'primary',
-  children: 'Toggle me',
+export const ColorScheme: Story = {
+  args: {
+    value: '1',
+    variant: 'outline',
+    colorScheme: 'primary',
+    children: 'Toggle me',
+  },
+}
+
+export const Variants: Story = {
+  render: () => (
+    <VStack spacing="4">
+      <HStack spacing="4">
+        <ToggleButton value="1" variant="outline">
+          Outline
+        </ToggleButton>
+        <ToggleButton value="2" variant="ghost">
+          Ghost
+        </ToggleButton>
+      </HStack>
+    </VStack>
+  ),
 }
