@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import * as React from 'react'
 import { FiInbox, FiFilter } from 'react-icons/fi'
 import { EmptyState } from '@saas-ui/react'
 import {
@@ -13,19 +13,33 @@ import {
 import { InboxViewPage } from './view'
 import { InboxList } from '../components/inbox-list'
 
-import { useBreakpointValue } from '@chakra-ui/react'
+import { useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { getConversations } from '@api/client'
 
-export function InboxListPage() {
-  const { query } = useRouter()
+export interface InboxListPageProps {
+  id?: string
+}
 
+export function InboxListPage(props: InboxListPageProps) {
   const { data, isLoading } = useQuery({
     queryKey: ['Conversations'],
     queryFn: () => getConversations(),
   })
 
   const isMobile = useBreakpointValue({ base: true, lg: false })
+
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    defaultIsOpen: !!props.id,
+  })
+
+  React.useEffect(() => {
+    if (props.id) {
+      onOpen()
+    }
+    // the isMobile dep is needed so that the SplitPage
+    // will open again when the screen size changes to lg
+  }, [props.id, isMobile])
 
   const toolbar = (
     <Toolbar>
@@ -45,20 +59,23 @@ export function InboxListPage() {
 
   let content
 
-  if (query.id) {
-    content = <InboxViewPage />
+  if (props.id) {
+    content = <InboxViewPage id={props.id} />
   } else {
     content = emptyState
   }
 
+  const pageProps = isMobile
+    ? {}
+    : {
+        borderRightWidth: '1px',
+        width: '30%',
+        maxWidth: '400px',
+      }
+
   return (
-    <SplitPage>
-      <Page
-        isLoading={isLoading}
-        borderRightWidth="1px"
-        width="30%"
-        maxWidth="400px"
-      >
+    <SplitPage isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
+      <Page isLoading={isLoading} {...pageProps}>
         <PageHeader title="Inbox" toolbar={toolbar} />
         <PageBody p="0">
           {!data?.conversations?.length && isMobile ? (

@@ -127,6 +127,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             />
             <AppSidebarLink
               href={usePath('inbox')}
+              isActive={useActivePath('inbox', { end: false })}
               label="Inbox"
               icon={<FiInbox />}
               hotkey="navigation.inbox"
