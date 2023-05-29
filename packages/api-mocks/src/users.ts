@@ -23,6 +23,7 @@ export const updateUser = async (variables: {
       id: variables.id,
       firstName: variables.firstName,
       lastName: variables.lastName,
+      name: `${variables.firstName} ${variables.lastName}`,
       email: variables.email,
     },
   }

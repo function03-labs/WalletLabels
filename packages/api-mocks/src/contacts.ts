@@ -1,12 +1,6 @@
-import {
-  addActivity,
-  getActivities,
-  getComment,
-  getContact as getMockContact,
-  getContacts as getMockContacts,
-  getTags as getMockTags,
-} from './mock-data'
-import { Contact } from './types'
+import * as mocks from './mock-data'
+
+import { Contact, Notification } from './types'
 
 export const getContacts = async (variables: { type?: string | null }) => {
   const type = (() => {
@@ -18,7 +12,7 @@ export const getContacts = async (variables: { type?: string | null }) => {
     }
   })()
 
-  const contacts = getMockContacts(type)
+  const contacts = mocks.getContacts(type)
 
   return {
     contacts,
@@ -30,7 +24,7 @@ export const getContact = async (variables: { id: string }) => {
     throw new Error('Invalid contact id')
   }
 
-  const contact = getMockContact(variables.id)
+  const contact = mocks.getContact(variables.id)
 
   if (!contact) {
     throw new Error('Contact not found')
@@ -46,14 +40,14 @@ export const getContactActivities = async (variables: { id: string }) => {
     throw new Error('Invalid contact id')
   }
 
-  const contact = getMockContact(variables.id)
+  const contact = mocks.getContact(variables.id)
 
   if (!contact) {
     throw new Error('Contact not found')
   }
 
   return {
-    activities: getActivities() as any,
+    activities: mocks.getActivities() as any,
   }
 }
 
@@ -67,7 +61,7 @@ export const createContact = async (variables: {
   const { firstName, lastName, email, phone, type } = variables
   return {
     createContact: {
-      ...(getMockContact() as Contact),
+      ...(mocks.getContact() as Contact),
       name: `${firstName} ${lastName}`,
       firstName,
       lastName,
@@ -81,19 +75,41 @@ export const addComment = async (variables: {
   contactId: string
   comment: string
 }) => {
-  const comment = getComment(variables.comment)
-  addActivity(comment)
+  const comment = mocks.getComment(variables.comment)
+  mocks.addActivity(comment)
   return {
     addActivityComment: comment,
   }
 }
 
 export const deleteComment = async (variables: { id: string }) => {
-  return {}
+  mocks.deleteActivity(variables.id)
+  return
 }
 
 export const getTags = async () => {
   return {
-    tags: getMockTags(),
+    tags: mocks.getTags(),
+  }
+}
+
+export const getNotifications = async () => {
+  const activities = mocks.getActivities()
+  const contacts = mocks.getContacts()
+  return {
+    notifications: activities.map((activity) => {
+      const contact = contacts[0]
+      return {
+        id: activity.id,
+        type: activity.type,
+        contactId: contact.id,
+        contact: contacts[0],
+        data: activity.data,
+        userId: activity.id,
+        user: activity.user,
+        date: activity.date,
+        createdAt: activity.createdAt,
+      } as Notification
+    }),
   }
 }

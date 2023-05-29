@@ -27,6 +27,7 @@ export type User = {
   id: string
   firstName: string
   lastName: string
+  name: string
   email: string
   avatar?: string
   status?: string
@@ -47,14 +48,18 @@ export type Contact = {
   type: string
   tags?: string[]
   createdAt: string
-  updatedAt: string
+  updatedAt?: string
 }
 
 export type Activity = {
   id: string
+  userId?: string
   type: string
-  comment?: string
+  data?: MetaData
   date: string
+  createdAt: string
+  updatedAt?: string
+  user?: Partial<User>
 }
 
 export type Tags = {
@@ -63,3 +68,19 @@ export type Tags = {
   color?: string
   count?: number
 }[]
+
+export type Notification = {
+  id: string
+  userId?: string
+  contactId: string
+  type: string
+  data?: MetaData
+  date: string
+  createdAt: string
+  updatedAt?: string
+  readAt?: string
+  contact: Contact
+  user?: Partial<User>
+}
+
+export type MetaData = Record<string, string | string[] | number | number[]>

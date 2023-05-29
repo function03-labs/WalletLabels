@@ -53,8 +53,8 @@ import { CommandIcon, TagIcon } from 'lucide-react'
 import { ContactTag } from '../components/contact-tag'
 import { useRouter } from 'next/router'
 
-const DateCell = ({ date }: { date: string }) => {
-  return <>{format(new Date(date), 'PP')}</>
+const DateCell = ({ date }: { date?: string }) => {
+  return <>{date ? format(new Date(date), 'PP') : null}</>
 }
 
 const ActionCell: DataGridCell<Contact> = (cell) => {
@@ -262,7 +262,7 @@ export function ContactsListPage() {
         <MenuButton
           as={ToolbarButton}
           leftIcon={<FiSliders />}
-          label="View"
+          label="Disoplay"
           size="sm"
           variant="tertiary"
         />

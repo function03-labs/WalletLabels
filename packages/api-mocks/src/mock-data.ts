@@ -5,15 +5,22 @@ import {
   randUser,
   randNumber,
   randBetweenDate,
-  User,
   randFirstName,
   randLastName,
+  User as RandUser,
 } from '@ngneat/falso'
 
 import { addDays, subDays } from 'date-fns'
 
 import { createMockStore } from './mock-store'
-import { Organization, Contact, Activity, DeepPartial } from './types'
+import {
+  Organization,
+  Contact,
+  Activity,
+  DeepPartial,
+  Notification,
+  User,
+} from './types'
 
 interface OrganizationsStore extends Organization {
   id: string
@@ -33,7 +40,7 @@ interface ActivitiesStore extends Activity {
 
 const activitiesStore = createMockStore<ActivitiesStore>('activities')
 
-const mapContact = (user: User, type?: string): Contact => {
+const mapContact = (user: RandUser, type?: string): Contact => {
   const { id, firstName, lastName, email } = user
   return {
     id,
@@ -68,7 +75,7 @@ export const getUser = () => {
   }
 }
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (): User => {
   return {
     id: '1',
     email: 'hello@saas-ui.dev',
@@ -111,7 +118,7 @@ export const getTags = () => {
   ]
 }
 
-export const getComment = (comment: string) => {
+export const getComment = (comment: string): Activity => {
   const user = getCurrentUser()
   return {
     id: randNumber().toString(),
@@ -121,7 +128,8 @@ export const getComment = (comment: string) => {
       comment,
     },
     date: new Date().toISOString(),
-  } as Activity
+    createdAt: new Date().toISOString(),
+  }
 }
 
 export const getActivities = () => {
@@ -131,13 +139,15 @@ export const getActivities = () => {
 
   if (!activities.length) {
     const user = getCurrentUser()
-    ;[
+
+    const activities: Activity[] = [
       {
         id: '1',
         user,
         type: 'action',
         data: { action: 'created-contact' },
         date: subDays(new Date(), 1).toISOString(),
+        createdAt: subDays(new Date(), 1).toISOString(),
       },
       {
         id: '2',
@@ -148,6 +158,7 @@ export const getActivities = () => {
             'Just talked with the customer and they will upgrade to Pro.',
         },
         date: subDays(new Date(), 1).toISOString(),
+        createdAt: subDays(new Date(), 1).toISOString(),
       },
       {
         id: '3',
@@ -161,9 +172,11 @@ export const getActivities = () => {
           value: 'active',
         },
         date: subDays(new Date(), 1).toISOString(),
+        createdAt: subDays(new Date(), 1).toISOString(),
       },
-    ].forEach((activity) => {
-      state.add(activity as Activity)
+    ]
+    activities.forEach((activity) => {
+      state.add(activity)
     })
   }
 
@@ -242,4 +255,15 @@ export const getOrganizations = () => {
 
 export const getSubscription = (slug: string) => {
   return getOrganizations().find((org) => org.slug === slug)?.subscription
+}
+
+export const getNotification = (comment: string): Partial<Notification> => {
+  const user = getCurrentUser()
+  return {
+    id: randNumber().toString(),
+    userId: user.id,
+    user,
+    type: 'comment',
+    date: new Date().toISOString(),
+  }
 }
