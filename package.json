@@ -61,11 +61,11 @@
     "react-inspector": "^6.0.1",
     "@mdx-js/react": "^2.1.5",
     "react-element-to-jsx-string": "^15.0.0",
-    "@saas-ui/auth": "2.0.0-rc.24",
-    "@saas-ui/forms": "2.0.0-rc.23",
-    "@saas-ui/react": "2.0.0-rc.25",
-    "@saas-ui/theme": "2.0.0-rc.13",
-    "@saas-ui/modals": "2.0.0-rc.23"
+    "@saas-ui/auth": "2.0.0-rc.26",
+    "@saas-ui/forms": "2.0.0-rc.25",
+    "@saas-ui/react": "2.0.0-rc.27",
+    "@saas-ui/theme": "2.0.0-rc.14",
+    "@saas-ui/modals": "2.0.0-rc.25"
   },
   "packageManager": "yarn@3.3.0"
 }

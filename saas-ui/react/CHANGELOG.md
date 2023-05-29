@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.21.4
+
+### Patch Changes
+
+- 02a387f: Page / PageContainer now support passing a ref
+
 ## 0.21.3
 
 ### Patch Changes
