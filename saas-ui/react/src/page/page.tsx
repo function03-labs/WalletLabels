@@ -9,6 +9,7 @@ import {
   SystemProps,
   SystemStyleObject,
   createStylesContext,
+  forwardRef,
 } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
 
@@ -151,39 +152,42 @@ interface PageContainerProps
     HTMLChakraProps<'main'>,
     ThemingProps<'SuiPage'> {}
 
-export const PageContainer: React.FC<PageContainerProps> = (props) => {
-  const {
-    isLoading,
-    errorComponent,
-    skeleton,
-    hasError,
-    children,
-    ...containerProps
-  } = omitThemingProps(props)
+export const PageContainer = forwardRef<PageContainerProps, 'main'>(
+  (props, ref) => {
+    const {
+      isLoading,
+      errorComponent,
+      skeleton,
+      hasError,
+      children,
+      ...containerProps
+    } = omitThemingProps(props)
 
-  const styles = useMultiStyleConfig('SuiPage', props)
+    const styles = useMultiStyleConfig('SuiPage', props)
 
-  const context = {
-    isLoading,
-    errorComponent,
-    skeleton,
-    hasError,
-  }
+    const context = {
+      isLoading,
+      errorComponent,
+      skeleton,
+      hasError,
+    }
 
-  return (
-    <PageProvider value={context}>
-      <StylesProvider value={styles}>
-        <chakra.main
-          {...containerProps}
-          __css={styles.container}
-          className={cx('sui-page', props.className)}
-        >
-          {children}
-        </chakra.main>
-      </StylesProvider>
-    </PageProvider>
-  )
-}
+    return (
+      <PageProvider value={context}>
+        <StylesProvider value={styles}>
+          <chakra.main
+            ref={ref}
+            {...containerProps}
+            __css={styles.container}
+            className={cx('sui-page', props.className)}
+          >
+            {children}
+          </chakra.main>
+        </StylesProvider>
+      </PageProvider>
+    )
+  },
+)
 
 PageContainer.displayName = 'PageContainer'
 
@@ -191,7 +195,7 @@ export interface PageProps
   extends PageOptions,
     Omit<PageContainerProps, 'title'> {}
 
-export const Page: React.FC<PageProps> = (props) => {
+export const Page = forwardRef<PageProps, 'main'>((props, ref) => {
   const {
     errorComponent = (
       <ErrorPage
@@ -205,11 +209,11 @@ export const Page: React.FC<PageProps> = (props) => {
 
   return (
     <ErrorBoundary errorComponent={errorComponent}>
-      <PageContainer errorComponent={errorComponent} {...rest}>
+      <PageContainer ref={ref} errorComponent={errorComponent} {...rest}>
         {children}
       </PageContainer>
     </ErrorBoundary>
   )
-}
+})
 
 Page.displayName = 'Page'

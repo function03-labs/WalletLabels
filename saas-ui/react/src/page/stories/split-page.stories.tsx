@@ -25,6 +25,7 @@ import {
 } from '@saas-ui/react'
 import { BackButton } from '../back-button'
 import { useSplitPage } from '../split-page'
+import { ResizeHandle, ResizeHandler, Resizer } from '../../resize'
 
 export default {
   title: 'Components/Layout/SplitPage',
@@ -154,6 +155,59 @@ export const WithToolbar = {
       </Page>
     </SplitPage>
   ),
+}
+
+export const Resizable = {
+  render: () => {
+    const [width, setWidth] = React.useState(300)
+
+    const onResize: ResizeHandler = ({ width }) => {
+      setWidth(width)
+    }
+
+    return (
+      <SplitPage>
+        <Resizer
+          defaultWidth={width}
+          onResize={onResize}
+          isResizable={useBreakpointValue(
+            { base: false, lg: true },
+            { fallback: 'lg' },
+          )}
+        >
+          <Page
+            borderRightWidth="1px"
+            minWidth="220px"
+            maxW="600px"
+            flex="none"
+            position="relative"
+          >
+            <PageHeader
+              title="Inbox"
+              toolbar={
+                <Toolbar>
+                  <ToolbarButton label="Filter" icon={<FiFilter />} />
+                </Toolbar>
+              }
+            />
+            <PageBody p="0">
+              <List />
+            </PageBody>
+            <ResizeHandle />
+          </Page>
+        </Resizer>
+        <Page>
+          <PageHeader
+            title="Elliot Alderson"
+            description="A bug is never just a mistake"
+          />
+          <PageBody>
+            <Content />
+          </PageBody>
+        </Page>
+      </SplitPage>
+    )
+  },
 }
 
 const breakpoints = { base: true, lg: false }
