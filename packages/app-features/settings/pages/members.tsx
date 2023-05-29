@@ -71,7 +71,7 @@ export function MembersSettingsPage() {
             ? `Inviting ${emails[0]}...`
             : `Inviting ${emails.length} people...`,
         success: `Invitation(s) have been sent.`,
-        error: (err: Error) => err,
+        error: (err: Error) => err.message,
       },
     )
   }
@@ -87,7 +87,7 @@ export function MembersSettingsPage() {
       {
         loading: `Removing ${member.email}...`,
         success: `Removed ${member.email}!`,
-        error: (err: Error) => err,
+        error: (err: Error) => err.message,
       },
     )
   }
@@ -104,8 +104,8 @@ export function MembersSettingsPage() {
         colorScheme: 'red',
         children: 'Remove',
       },
-      onConfirm: () =>
-        snackbar.promise(
+      onConfirm: async () => {
+        await snackbar.promise(
           removeUser.mutateAsync({
             organizationId: organization.id,
             userId: member.id,
@@ -113,9 +113,10 @@ export function MembersSettingsPage() {
           {
             loading: `Removing ${member.email}...`,
             success: `Removed ${member.email}!`,
-            error: (err: Error) => err,
+            error: (err: Error) => err.message,
           },
-        ),
+        )
+      },
     })
   }
 

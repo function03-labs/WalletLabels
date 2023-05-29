@@ -33,6 +33,7 @@ export const inviteToOrganization = async (variables: {
   organizationId: string
   role?: string
 }) => {
+  throw new Error('test')
   return { inviteToOrganization: true }
 }
 
