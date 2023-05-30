@@ -262,7 +262,7 @@ export function ContactsListPage() {
         <MenuButton
           as={ToolbarButton}
           leftIcon={<FiSliders />}
-          label="Disoplay"
+          label="Display"
           size="sm"
           variant="tertiary"
         />
