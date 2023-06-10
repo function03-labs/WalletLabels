@@ -6,6 +6,7 @@ import {
   ButtonProps,
   ButtonGroup,
   ButtonGroupProps,
+  Divider,
   useButtonGroup,
   IconButton,
   forwardRef,
@@ -23,7 +24,6 @@ import {
 
 import { cx, __DEV__ } from '@chakra-ui/utils'
 
-import { Divider } from '@saas-ui/react'
 import { useDefaultProps } from '../theme-tools/use-default-props'
 
 const [StylesProvider, useStyles] = createStylesContext('SuiToolbar')

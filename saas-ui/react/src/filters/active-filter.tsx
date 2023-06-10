@@ -5,6 +5,10 @@ import {
   forwardRef,
   ButtonGroup,
   Button,
+  MenuButton,
+  MenuButtonProps,
+  MenuItem,
+  MenuProps,
   IconButton,
   ButtonProps,
   ButtonGroupProps,
@@ -18,18 +22,11 @@ import {
   ThemingProps,
   SystemStyleObject,
   createStylesContext,
-  Spacer,
 } from '@chakra-ui/react'
 
 import { cx } from '@chakra-ui/utils'
 
-import {
-  MenuButton,
-  MenuButtonProps,
-  MenuItem,
-  MenuDialogListProps,
-  MenuProps,
-} from '@saas-ui/react'
+import { MenuDialogListProps } from '@saas-ui/react'
 
 import {
   FilterMenu,

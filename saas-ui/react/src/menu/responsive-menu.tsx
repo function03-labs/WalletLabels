@@ -1,14 +1,8 @@
 import * as React from 'react'
 
-import { useBreakpointValue } from '@chakra-ui/react'
+import { Menu, MenuProps, MenuList, useBreakpointValue } from '@chakra-ui/react'
 
-import {
-  Menu,
-  MenuProps,
-  MenuList,
-  MenuDialogList,
-  MenuDialogListProps,
-} from '@saas-ui/react'
+import { MenuDialogList, MenuDialogListProps } from '@saas-ui/react'
 import {
   ResponseMenuContext,
   useResponsiveMenuContext,
