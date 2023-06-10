@@ -11,6 +11,7 @@ import {
   Text,
   TextProps,
   Tooltip,
+  MenuItem,
   useClipboard,
 } from '@chakra-ui/react'
 import { EditorField, StatusBadge, useModals } from '@ui/lib'
@@ -32,7 +33,6 @@ import {
   TimelineDot,
   useSnackbar,
   OverflowMenu,
-  MenuItem,
   UseFormReturn,
 } from '@saas-ui/react'
 import { User } from '@saas-ui/auth'

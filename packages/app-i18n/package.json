@@ -3,7 +3,6 @@
   "main": "src/index",
   "version": "0.3.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "extract": "formatjs extract",
     "compile": "formatjs compile",
@@ -11,6 +10,7 @@
   },
   "dependencies": {
     "date-fns": "^2.30.0",
+    "intl-messageformat": "10.3.5",
     "react-intl": "^6.4.2"
   },
   "peerDependencies": {

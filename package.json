@@ -52,7 +52,7 @@
     "prettier": "^2.8.8",
     "rimraf": "^4.4.1",
     "ts-node": "^10.9.1",
-    "turbo": "^1.9.8",
+    "turbo": "^1.10.3",
     "typescript": "^5.0.4"
   },
   "resolutions": {
@@ -61,11 +61,12 @@
     "react-inspector": "^6.0.1",
     "@mdx-js/react": "^2.1.5",
     "react-element-to-jsx-string": "^15.0.0",
-    "@saas-ui/auth": "2.0.0-rc.27",
-    "@saas-ui/forms": "2.0.0-rc.26",
-    "@saas-ui/react": "2.0.0-rc.28",
-    "@saas-ui/theme": "2.0.0-rc.14",
-    "@saas-ui/modals": "2.0.0-rc.26"
+    "intl-messageformat": "10.3.5",
+    "@saas-ui/auth": "2.0.0-rc.30",
+    "@saas-ui/forms": "2.0.0-rc.29",
+    "@saas-ui/react": "2.0.0-rc.31",
+    "@saas-ui/theme": "2.0.0-rc.16",
+    "@saas-ui/modals": "2.0.0-rc.29"
   },
   "packageManager": "yarn@3.3.0"
 }

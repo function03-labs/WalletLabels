@@ -1,6 +1,5 @@
-import { Card, Heading, Switch, Text } from '@chakra-ui/react'
+import { Card, Divider, Heading, Switch, Text } from '@chakra-ui/react'
 import {
-  Divider,
   StructuredList,
   StructuredListCell,
   StructuredListHeader,

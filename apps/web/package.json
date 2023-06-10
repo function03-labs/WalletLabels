@@ -13,8 +13,8 @@
   "dependencies": {
     "@api/client": "workspace:*",
     "@app/features": "workspace:*",
-    "@chakra-ui/react": "^2.6.1",
-    "@chakra-ui/system": "^2.5.7",
+    "@chakra-ui/react": "^2.7.0",
+    "@chakra-ui/system": "^2.5.8",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@saas-ui-pro/billing": "workspace:*",
@@ -27,8 +27,8 @@
     "@saas-ui/react": "^2.0.0-rc.25",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
-    "framer-motion": "^10.12.12",
-    "next": "^13.4.3",
+    "framer-motion": "^10.12.16",
+    "next": "^13.4.4",
     "next-svgr": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

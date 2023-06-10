@@ -9,10 +9,11 @@ import {
   MenuList,
   AvatarProps,
   Portal,
+  MenuGroup,
+  MenuItem,
 } from '@chakra-ui/react'
 import { FiCheck } from 'react-icons/fi'
 import { useTenancy } from '@saas-ui-pro/react'
-import { MenuGroup, MenuItem } from '@saas-ui/react'
 
 import { useGetTenants } from '../hooks/use-get-tenants'
 
