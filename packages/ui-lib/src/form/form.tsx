@@ -1,9 +1,8 @@
 import { forwardRef } from '@chakra-ui/react'
 import { createField } from '@saas-ui/forms'
-import { createZodForm } from '@saas-ui/forms/zod'
+import { createZodForm, createZodFormDialog } from '@saas-ui/forms/zod'
 import { DateInput, DateInputProps } from '@saas-ui/date-picker'
 import { EditorField } from '../editor'
-import { createFormDialog } from '@saas-ui/react'
 import { parseDate, DateValue } from '@internationalized/date'
 
 interface DateFieldProps extends Omit<DateInputProps, 'value' | 'onChange'> {
@@ -34,4 +33,4 @@ export const Form = createZodForm({
   },
 })
 
-export const FormDialog = createFormDialog(Form)
+export const FormDialog = createZodFormDialog(Form)
