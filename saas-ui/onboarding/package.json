@@ -33,11 +33,11 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "^2.1.1",
+    "@chakra-ui/anatomy": "^2.1.2",
     "@chakra-ui/react-utils": "^2.0.12",
-    "@chakra-ui/styled-system": "^2.9.0",
-    "@chakra-ui/system": "^2.5.7",
-    "@chakra-ui/theme-tools": "^2.0.17",
+    "@chakra-ui/styled-system": "^2.9.1",
+    "@chakra-ui/system": "^2.5.8",
+    "@chakra-ui/theme-tools": "^2.0.18",
     "@chakra-ui/utils": "^2.0.15",
     "@saas-ui/react-utils": "^2.0.0-rc.3"
   },
@@ -51,7 +51,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "react-icons": "^4.8.0",
+    "react-icons": "^4.9.0",
     "tsup": "^6.7.0"
   }
 }

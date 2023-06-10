@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.1.0",
   "devDependencies": {
-    "@chakra-ui/react": "^2.6.1",
+    "@chakra-ui/react": "^2.7.0",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@saas-ui-pro/react": "^0.21.0",
     "@saas-ui/react": "^2.0.0-beta.16",
-    "framer-motion": "^10.12.12",
+    "framer-motion": "^10.12.16",
     "lucide-react": "^0.130.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
