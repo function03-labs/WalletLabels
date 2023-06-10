@@ -1,5 +1,27 @@
 # nextjs-app
 
+## 0.16.0
+
+### Minor Changes
+
+- 66d6cf0: Update to Chakra UI 2.7 and Saas UI 2.0.0-rc.31
+
+### Patch Changes
+
+- Updated dependencies [e8f1af1]
+- Updated dependencies [d2e72ae]
+- Updated dependencies [e8f1af1]
+- Updated dependencies [d2e72ae]
+- Updated dependencies [1e3cea0]
+- Updated dependencies [66d6cf0]
+- Updated dependencies [d2e72ae]
+  - @saas-ui-pro/react@0.22.0
+  - @app/features@12.0.0
+  - @saas-ui-pro/onboarding@0.11.0
+  - @ui/theme@0.5.0
+  - @ui/lib@0.4.0
+  - @saas-ui-pro/billing@0.11.0
+
 ## 0.15.1
 
 ### Patch Changes

@@ -1,5 +1,26 @@
 # @app/features
 
+## 12.0.0
+
+### Minor Changes
+
+- d2e72ae: Inbox items now open the contact view for that specific notification
+- d2e72ae: Inbox list is now resizable.
+- 1e3cea0: MenuItem and Divider now imported from @chakra-ui/react
+- 66d6cf0: Update to Chakra UI 2.7 and Saas UI 2.0.0-rc.31
+- d2e72ae: Inbox pages have been moved inside the Contacts feature.
+
+### Patch Changes
+
+- Updated dependencies [e8f1af1]
+- Updated dependencies [e8f1af1]
+- Updated dependencies [66d6cf0]
+  - @saas-ui-pro/react@0.22.0
+  - @saas-ui-pro/onboarding@0.11.0
+  - @ui/theme@0.5.0
+  - @ui/lib@0.4.0
+  - @saas-ui-pro/billing@0.11.0
+
 ## 11.1.1
 
 ### Patch Changes

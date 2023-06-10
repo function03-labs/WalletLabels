@@ -1,5 +1,11 @@
 # @ui/lib
 
+## 0.4.0
+
+### Minor Changes
+
+- 66d6cf0: Update to Chakra UI 2.7 and Saas UI 2.0.0-rc.31
+
 ## 0.3.2
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @saas-ui-pro/react
 
+## 0.22.0
+
+### Minor Changes
+
+- e8f1af1: Menu/MenuList now imported from Chakra UI.
+- e8f1af1: Divider now imported from Chakra UI.
+- 66d6cf0: Update to Chakra UI 2.7 and Saas UI 2.0.0-rc.31
+
+### Patch Changes
+
+- Updated dependencies [66d6cf0]
+  - @saas-ui-pro/onboarding@0.11.0
+
 ## 0.21.4
 
 ### Patch Changes

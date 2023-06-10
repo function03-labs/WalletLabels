@@ -1,5 +1,16 @@
 # @ui/theme
 
+## 0.5.0
+
+### Minor Changes
+
+- 66d6cf0: Update to Chakra UI 2.7 and Saas UI 2.0.0-rc.31
+
+### Patch Changes
+
+- Updated dependencies [66d6cf0]
+  - @saas-ui-pro/theme-glass@0.5.0
+
 ## 0.4.8
 
 ### Patch Changes
