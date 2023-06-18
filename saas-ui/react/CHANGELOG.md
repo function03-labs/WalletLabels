@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.22.1
+
+### Patch Changes
+
+- 0230795: Fixed issue where single value filters would cause infinite loop.
+
 ## 0.22.0
 
 ### Minor Changes
