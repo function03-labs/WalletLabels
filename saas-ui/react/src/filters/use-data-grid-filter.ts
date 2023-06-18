@@ -34,12 +34,8 @@ export const getDataGridFilter = <D extends object>(
   ) => {
     const { value, operator } = filterValue
 
-    // return rows.filter((row) => {
-    // return columnIds.some((id) => {
     const rowValue = row.getValue(columnId)
     return !!typeOperators[operator]?.comparator(rowValue, value)
-    // })
-    // })
   }
   dataGridFilter.autoRemove = (val: any) => testFalsey(val)
   return dataGridFilter
