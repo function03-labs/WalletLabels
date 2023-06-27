@@ -39,7 +39,8 @@ const baseStyle: SystemStyleFunction = (props) => {
 
 export default {
   defaultProps: {
-    colorScheme: 'green',
+    colorScheme: 'primary',
+    size: 'sm',
   },
   baseStyle,
   sizes: {
