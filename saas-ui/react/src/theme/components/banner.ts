@@ -25,12 +25,14 @@ const variantFloating = definePartsStyle((props) => {
   return {
     container: {
       top: 'auto',
-      left: '50%',
       bottom: '40px',
       boxShadow: 'md',
       borderRadius: 'lg',
       maxW: 'container.lg',
-      marginLeft: '-25%',
+      left: 0,
+      right: 0,
+      marginLeft: 'auto',
+      marginRight: 'auto',
       ...containerStyles,
     },
   }
