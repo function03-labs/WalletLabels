@@ -1,5 +1,15 @@
 # @app/mock-graphql
 
+## 0.10.0
+
+### Minor Changes
+
+- ca33836: Update to Saas UI 2.0 🥳
+
+### Patch Changes
+
+- @api/graphql-client@0.7.2
+
 ## 0.9.2
 
 ### Patch Changes

@@ -8,7 +8,7 @@ import { SaasProvider } from '@saas-ui/react'
 import { theme as proTheme } from '@saas-ui-pro/react'
 import { theme as glassTheme } from '@saas-ui-pro/theme-glass'
 
-import '@fontsource/inter/variable.css'
+import '@fontsource-variable/inter'
 
 export const parameters = {
   viewport: {

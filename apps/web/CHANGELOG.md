@@ -1,5 +1,24 @@
 # nextjs-app
 
+## 0.17.0
+
+### Minor Changes
+
+- ca33836: Update to Saas UI 2.0 🥳
+
+### Patch Changes
+
+- Updated dependencies [cb6b80e]
+- Updated dependencies [807b4c8]
+- Updated dependencies [a3451a3]
+- Updated dependencies [ca33836]
+  - @saas-ui-pro/react@0.23.0
+  - @app/features@13.0.0
+  - @saas-ui-pro/feature-flags@0.12.0
+  - @saas-ui-pro/onboarding@0.12.0
+  - @ui/theme@0.6.0
+  - @ui/lib@0.5.0
+
 ## 0.16.1
 
 ### Patch Changes

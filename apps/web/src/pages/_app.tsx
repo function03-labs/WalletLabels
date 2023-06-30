@@ -3,7 +3,7 @@ import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Link, { LinkProps } from 'next/link'
 import Head from 'next/head'
-import '@fontsource/inter/variable.css'
+import '@fontsource-variable/inter'
 
 import { NProgressNextRouter } from '@saas-ui/react'
 import { AppProvider } from '@app/features/core/providers/app'

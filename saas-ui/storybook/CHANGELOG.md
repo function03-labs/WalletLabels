@@ -1,5 +1,19 @@
 # saas-ui-storybook
 
+## 21.0.0
+
+### Minor Changes
+
+- ca33836: Update to Saas UI 2.0 🥳
+
+### Patch Changes
+
+- Updated dependencies [cb6b80e]
+- Updated dependencies [807b4c8]
+- Updated dependencies [a3451a3]
+- Updated dependencies [ca33836]
+  - @saas-ui-pro/react@0.23.0
+
 ## 20.0.1
 
 ### Patch Changes

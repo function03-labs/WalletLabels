@@ -1,5 +1,19 @@
 # @saas-ui-pro/react
 
+## 0.23.0
+
+### Minor Changes
+
+- cb6b80e: Updated Beacon default size to sm and colorScheme to primary.
+- a3451a3: Fix issue where BulkActions would not align properly.
+- ca33836: Update to Saas UI 2.0 🥳
+
+### Patch Changes
+
+- 807b4c8: Improve DataGrid types.
+- Updated dependencies [ca33836]
+  - @saas-ui-pro/onboarding@0.12.0
+
 ## 0.22.1
 
 ### Patch Changes

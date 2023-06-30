@@ -1,7 +1,7 @@
 {
   "name": "@saas-ui-pro/feature-flags",
   "description": "Feature flags for Saas UI",
-  "version": "0.11.2",
+  "version": "0.12.0",
   "exports": {
     ".": {
       "require": "./dist/index.js",
