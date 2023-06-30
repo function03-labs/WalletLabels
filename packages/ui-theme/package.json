@@ -6,16 +6,16 @@
   "author": "Eelco Wiersma <eelco@appulse.nl>",
   "homepage": "https://saas-ui.dev/",
   "dependencies": {
-    "@fontsource/inter": "^4.5.15",
+    "@fontsource/inter": "^5.0.3",
     "@saas-ui-pro/theme-glass": "workspace:*",
-    "@saas-ui/theme": "^2.0.0-next.17"
+    "@saas-ui/theme": "^2.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.5.0",
     "@chakra-ui/system": ">=2.5.0",
     "@emotion/react": ">=11.0.0",
     "@emotion/styled": ">=11.0.0",
-    "@saas-ui/react": ">=2.0.0-rc.25",
+    "@saas-ui/react": ">=2.0.0",
     "framer-motion": ">=6",
     "react": ">=18",
     "react-dom": ">=18"

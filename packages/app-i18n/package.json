@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "intl-messageformat": "10.3.5",
-    "react-intl": "^6.4.2"
+    "intl-messageformat": "10.5.0",
+    "react-intl": "^6.4.4"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

@@ -34,26 +34,26 @@
   ],
   "devDependencies": {
     "@chakra-ui/cli": "^2.4.1",
-    "@changesets/cli": "^2.26.1",
+    "@changesets/cli": "^2.26.2",
     "@formatjs/cli": "^5.1.13",
-    "@types/node": "^18.16.12",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
-    "eslint": "^8.40.0",
+    "@types/node": "^18.16.18",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
     "jest": "^29.5.0",
-    "lint-staged": "^13.2.2",
+    "lint-staged": "^13.2.3",
     "prettier": "^2.8.8",
     "rimraf": "^4.4.1",
     "ts-node": "^10.9.1",
     "turbo": "^1.10.3",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.6"
   },
   "resolutions": {
     "@hookform/resolvers": "3.1.0",
@@ -61,12 +61,7 @@
     "react-inspector": "^6.0.1",
     "@mdx-js/react": "^2.1.5",
     "react-element-to-jsx-string": "^15.0.0",
-    "intl-messageformat": "10.3.5",
-    "@saas-ui/auth": "2.0.0-rc.33",
-    "@saas-ui/forms": "2.0.0-rc.32",
-    "@saas-ui/react": "2.0.0-rc.34",
-    "@saas-ui/theme": "2.0.0-rc.17",
-    "@saas-ui/modals": "2.0.0-rc.32"
+    "intl-messageformat": "10.3.5"
   },
   "packageManager": "yarn@3.3.0"
 }
