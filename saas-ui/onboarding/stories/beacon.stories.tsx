@@ -1,6 +1,7 @@
+import * as React from 'react'
 import { Button, Container, VStack } from '@chakra-ui/react'
-import { Meta, Story } from '@storybook/react'
-import { Beacon, BeaconProps } from '../src'
+import { Meta } from '@storybook/react'
+import { Beacon } from '../src'
 
 const meta: Meta = {
   title: 'Components/Onboarding/Beacon',
@@ -21,14 +22,12 @@ const meta: Meta = {
 }
 export default meta
 
-const Template: Story<BeaconProps> = (args) => <Beacon {...args} />
+export const Basic = {}
 
-export const Basic = Template.bind({})
-Basic.args = {}
-
-export const ColorScheme = Template.bind({})
-ColorScheme.args = {
-  colorScheme: 'primary',
+export const ColorScheme = {
+  args: {
+    colorScheme: 'green',
+  },
 }
 
 export const Sizes = () => {
@@ -47,11 +46,11 @@ export const WithButton = () => {
     <Button position="relative">
       Changelog{' '}
       <Beacon
-        size="xs"
+        size="sm"
         colorScheme="primary"
         position="absolute"
-        top="0"
-        right="0"
+        top="-2px"
+        right="-2px"
       />
     </Button>
   )

@@ -1,7 +1,7 @@
 {
   "name": "saas-ui-storybook-pro",
   "private": true,
-  "version": "19.0.4",
+  "version": "21.0.0",
   "scripts": {
     "dev": "sb dev -p 6007",
     "build": "sb build"
@@ -10,30 +10,30 @@
     "@chakra-ui/react": ">=2.5.0",
     "@chakra-ui/system": ">=2.5.0",
     "@saas-ui-pro/react": "workspace:*",
-    "@saas-ui/react": ">=2.0.0-rc.25",
+    "@saas-ui/react": ">=2.0.0",
     "framer-motion": ">=5.5.0",
     "jest": ">=27.0.0",
     "react": ">=18"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.8",
-    "@fontsource/inter": "^4.5.15",
-    "@storybook/addon-a11y": "^7.0.12",
-    "@storybook/addon-docs": "^7.0.12",
-    "@storybook/addon-essentials": "^7.0.12",
-    "@storybook/addon-storysource": "^7.0.12",
-    "@storybook/builder-webpack5": "^7.0.12",
-    "@storybook/cli": "^7.0.12",
+    "@babel/core": "^7.22.5",
+    "@fontsource-variable/inter": "^5.0.3",
+    "@storybook/addon-a11y": "^7.0.24",
+    "@storybook/addon-docs": "^7.0.24",
+    "@storybook/addon-essentials": "^7.0.24",
+    "@storybook/addon-storysource": "^7.0.24",
+    "@storybook/builder-webpack5": "^7.0.24",
+    "@storybook/cli": "^7.0.24",
     "@storybook/mdx2-csf": "^1.1.0",
-    "@storybook/react": "^7.0.12",
-    "@storybook/react-vite": "^7.0.12",
-    "chromatic": "^6.17.4",
-    "framer-motion": "^10.12.12",
-    "lucide-react": "^0.130.1",
+    "@storybook/react": "^7.0.24",
+    "@storybook/react-vite": "^7.0.24",
+    "chromatic": "^6.19.9",
+    "framer-motion": "^10.12.17",
+    "lucide-react": "^0.257.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "require-from-string": "^2.0.2",
-    "vite": "^4.3.8"
+    "vite": "^4.3.9"
   }
 }

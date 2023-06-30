@@ -1,5 +1,38 @@
 # @saas-ui-pro/react
 
+## 0.23.0
+
+### Minor Changes
+
+- cb6b80e: Updated Beacon default size to sm and colorScheme to primary.
+- a3451a3: Fix issue where BulkActions would not align properly.
+- ca33836: Update to Saas UI 2.0 🥳
+
+### Patch Changes
+
+- 807b4c8: Improve DataGrid types.
+- Updated dependencies [ca33836]
+  - @saas-ui-pro/onboarding@0.12.0
+
+## 0.22.1
+
+### Patch Changes
+
+- 0230795: Fixed issue where single value filters would cause infinite loop.
+
+## 0.22.0
+
+### Minor Changes
+
+- e8f1af1: Menu/MenuList now imported from Chakra UI.
+- e8f1af1: Divider now imported from Chakra UI.
+- 66d6cf0: Update to Chakra UI 2.7 and Saas UI 2.0.0-rc.31
+
+### Patch Changes
+
+- Updated dependencies [66d6cf0]
+  - @saas-ui-pro/onboarding@0.11.0
+
 ## 0.21.4
 
 ### Patch Changes

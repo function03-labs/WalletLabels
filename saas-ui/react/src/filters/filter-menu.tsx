@@ -6,9 +6,11 @@ import {
   useDisclosure,
   Button,
   ButtonProps,
+  MenuProps,
+  MenuButton,
 } from '@chakra-ui/react'
 
-import { MenuProps, MenuButton, usePromise } from '@saas-ui/react'
+import { usePromise } from '@saas-ui/react'
 
 import {
   ResponsiveMenu,

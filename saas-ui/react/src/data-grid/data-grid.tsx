@@ -225,7 +225,7 @@ export const DataGrid = React.forwardRef(
     const instance = useReactTable<Data>({
       columns: React.useMemo(() => {
         const selectionColumn =
-          columns[0].id === 'selection' ? columns[0] : undefined
+          columns?.[0]?.id === 'selection' ? columns[0] : undefined
         return getSelectionColumn<Data>(isSelectable, selectionColumn).concat(
           columns
             ?.filter(({ id }) => id !== 'selection')

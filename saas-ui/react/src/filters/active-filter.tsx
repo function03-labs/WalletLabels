@@ -288,7 +288,9 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
 
   const { label, getMenuProps } = useFilterValue(props)
 
-  const items = useFilterItems(props.items || [])
+  const items = useFilterItems(
+    React.useMemo(() => props.items || [], [props.items]),
+  )
 
   const item = items?.find(({ id }) => id === valueProp)
 

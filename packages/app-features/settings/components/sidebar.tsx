@@ -10,7 +10,6 @@ import {
   SidebarOverlay,
   SidebarSection,
   SidebarToggleButton,
-  useActivePath,
   useHotkeysShortcut,
   useLocalStorage,
 } from '@saas-ui/react'
@@ -26,6 +25,8 @@ import { usePath } from '@app/features/core/hooks/use-path'
 import { Has } from '@saas-ui-pro/feature-flags'
 
 import { ElectronNav, useHelpCenter } from '@ui/lib'
+
+import { useActivePath } from '@app/nextjs'
 
 const SettingsLink = (props: NavItemProps & { path: string }) => {
   const { path, ...rest } = props

@@ -1,9 +1,8 @@
 {
   "name": "@app/i18n",
   "main": "src/index",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "extract": "formatjs extract",
     "compile": "formatjs compile",
@@ -11,7 +10,8 @@
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "react-intl": "^6.4.2"
+    "intl-messageformat": "10.5.0",
+    "react-intl": "^6.4.4"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

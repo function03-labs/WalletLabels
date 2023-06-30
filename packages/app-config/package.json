@@ -1,15 +1,15 @@
 {
   "name": "@app/config",
   "main": "src/index.ts",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "type": "module",
   "devDependencies": {
-    "@chakra-ui/react": "^2.6.1",
-    "@chakra-ui/system": "^2.5.7",
-    "@emotion/react": "^11.11.0",
+    "@chakra-ui/react": "^2.7.1",
+    "@chakra-ui/system": "^2.5.8",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@saas-ui/auth": "^2.0.0-rc.24",
-    "framer-motion": "^10.12.12",
+    "@saas-ui/auth": "^2.0.0",
+    "framer-motion": "^10.12.17",
     "react": ">=18",
     "react-dom": ">=18"
   }

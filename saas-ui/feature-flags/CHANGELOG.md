@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.12.0
+
+### Minor Changes
+
+- ca33836: Update to Saas UI 2.0 🥳
+
 ## 0.11.2
 
 ### Patch Changes

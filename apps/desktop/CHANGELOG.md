@@ -1,5 +1,53 @@
 # electron-app
 
+## 0.14.0
+
+### Minor Changes
+
+- ca33836: Update to Saas UI 2.0 🥳
+
+### Patch Changes
+
+- Updated dependencies [cb6b80e]
+- Updated dependencies [807b4c8]
+- Updated dependencies [a3451a3]
+- Updated dependencies [ca33836]
+  - @saas-ui-pro/react@0.23.0
+  - @app/features@13.0.0
+  - @saas-ui-pro/feature-flags@0.12.0
+  - @saas-ui-pro/onboarding@0.12.0
+  - @ui/theme@0.6.0
+
+## 0.13.1
+
+### Patch Changes
+
+- Updated dependencies [0230795]
+  - @saas-ui-pro/react@0.22.1
+  - @app/features@12.0.1
+  - @ui/theme@0.5.1
+
+## 0.13.0
+
+### Minor Changes
+
+- 66d6cf0: Update to Chakra UI 2.7 and Saas UI 2.0.0-rc.31
+
+### Patch Changes
+
+- Updated dependencies [e8f1af1]
+- Updated dependencies [d2e72ae]
+- Updated dependencies [e8f1af1]
+- Updated dependencies [d2e72ae]
+- Updated dependencies [1e3cea0]
+- Updated dependencies [66d6cf0]
+- Updated dependencies [d2e72ae]
+  - @saas-ui-pro/react@0.22.0
+  - @app/features@12.0.0
+  - @saas-ui-pro/onboarding@0.11.0
+  - @ui/theme@0.5.0
+  - @saas-ui-pro/billing@0.11.0
+
 ## 0.12.8
 
 ### Patch Changes

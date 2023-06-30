@@ -1,9 +1,16 @@
 import * as React from 'react'
 import { StoryFn, Meta } from '@storybook/react'
-import { Button, Center, Portal } from '@chakra-ui/react'
+import {
+  Button,
+  Center,
+  Portal,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from '@chakra-ui/react'
 
 import { BulkActions, BulkActionsProps } from '..'
-import { Menu, MenuButton, MenuItem, MenuList } from '@saas-ui/react'
 
 export default {
   title: 'Components/Data Display/BulkActions',

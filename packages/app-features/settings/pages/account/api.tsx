@@ -4,7 +4,12 @@ import {
   StructuredListCell,
   StructuredListItem,
 } from '@saas-ui/react'
-import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
+import {
+  Section,
+  SectionBody,
+  SectionHeader,
+  SectionDescription,
+} from '@saas-ui-pro/react'
 
 import { SettingsPage, Link } from '@ui/lib'
 import { SettingsCard } from '@app/features/settings/components/settings-card'
@@ -45,10 +50,10 @@ function PersonalAccessTokens() {
       <SectionHeader
         title="Personal access tokens"
         description={
-          <Stack spacing="2">
+          <SectionDescription>
             <Text>Use personal access tokens to access the API.</Text>
             <Link href="#">Read documentation</Link>
-          </Stack>
+          </SectionDescription>
         }
       />
       <SectionBody>

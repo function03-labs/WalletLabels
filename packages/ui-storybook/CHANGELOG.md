@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.6.0
+
+### Minor Changes
+
+- ca33836: Update to Saas UI 2.0 🥳
+
 ## 0.5.0
 
 ### Minor Changes

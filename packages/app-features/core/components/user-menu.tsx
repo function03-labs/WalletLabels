@@ -3,19 +3,18 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  MenuItem,
+  MenuGroup,
+  MenuDivider,
   Portal,
   useColorMode,
 } from '@chakra-ui/react'
 
+import Link from 'next/link'
+
 import { useTenant } from '@saas-ui-pro/react'
 import { useAuth } from '@saas-ui/auth'
-import {
-  MenuItem,
-  MenuGroup,
-  MenuDivider,
-  PersonaAvatar,
-  useHotkeysShortcut,
-} from '@saas-ui/react'
+import { PersonaAvatar, useHotkeysShortcut } from '@saas-ui/react'
 import { Has } from '@saas-ui-pro/feature-flags'
 
 import { useHelpCenter } from '@ui/lib'
@@ -76,32 +75,36 @@ export const UserMenu = () => {
         {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}
         <MenuList zIndex={['modal', null, 'dropdown']}>
           <MenuGroup title={currentUser?.name || ''}>
-            <MenuItem href={usePath(`/settings/account`)} label="Profile" />
+            <MenuItem as={Link} href={usePath(`/settings/account`)}>
+              Profile
+            </MenuItem>
             <Has feature="settings">
-              <MenuItem href={`/app/${tenant}/settings`} label="Settings" />
+              <MenuItem as={Link} href={`/app/${tenant}/settings`}>
+                Settings
+              </MenuItem>
             </Has>
           </MenuGroup>
           <MenuDivider />
-          <MenuItem label="Changelog" />
+          <MenuItem>Changelog</MenuItem>
+          <MenuItem command={helpCommand} onClick={() => help.open()}>
+            Help
+          </MenuItem>
+          <MenuItem>Feedback</MenuItem>
           <MenuItem
-            command={helpCommand}
-            label="Help"
-            onClick={() => help.open()}
-          />
-          <MenuItem label="Feedback" />
-          <MenuItem
-            label={colorMode === 'dark' ? 'Light mode' : 'Dark mode'}
             onClick={(e: React.MouseEvent) => {
               e.preventDefault()
               toggleColorMode()
             }}
-          />
+          >
+            {colorMode === 'dark' ? 'Light mode' : 'Dark mode'}
+          </MenuItem>
           <MenuDivider />
           <MenuItem
             command={logoutCommand}
             onClick={() => logOutAndClearCache()}
-            label="Log out"
-          />
+          >
+            Log out
+          </MenuItem>
         </MenuList>
       </Portal>
     </Menu>

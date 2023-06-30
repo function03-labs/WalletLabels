@@ -1,5 +1,11 @@
 # @app/i18n
 
+## 0.4.0
+
+### Minor Changes
+
+- ca33836: Update to Saas UI 2.0 🥳
+
 ## 0.3.0
 
 ### Minor Changes

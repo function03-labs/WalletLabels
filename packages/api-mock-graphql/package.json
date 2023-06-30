@@ -1,6 +1,6 @@
 {
   "name": "@api/mock-graphql",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "description": "Graphql mock server and resolvers",
   "private": true,
   "main": "src/index.ts",
@@ -12,7 +12,7 @@
     "@ngneat/falso": "^2.27.0",
     "date-fns": "^2.30.0",
     "graphql": "^16.6.0",
-    "msw": "^1.2.1",
+    "msw": "^1.2.2",
     "slug": "^8.2.2",
     "zustand": "^4.3.8"
   },

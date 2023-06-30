@@ -6,6 +6,8 @@ import {
   IconButton,
   Spacer,
   Text,
+  MenuItem,
+  MenuDivider,
   useBreakpointValue,
   useControllableState,
 } from '@chakra-ui/react'
@@ -29,8 +31,6 @@ import {
 import { useActivePath } from '@app/nextjs'
 
 import {
-  MenuItem,
-  MenuDivider,
   Sidebar,
   SidebarProps,
   SidebarOverlay,
@@ -62,6 +62,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getTags, Tags, User } from '@api/client'
 import { useCurrentUser } from '../hooks/use-current-user'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export interface AppSidebarProps extends SidebarProps {}
 
@@ -94,14 +95,12 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
         <SidebarSection direction="row">
           <TenantMenu title="Organizations">
             <MenuDivider />
-            <MenuItem
-              href={usePath('settings/organization')}
-              label="Organization settings"
-            />
-            <MenuItem
-              href="/app/getting-started"
-              label="Create an organization"
-            />
+            <MenuItem as={Link} href={usePath('settings/organization')}>
+              Organization settings
+            </MenuItem>
+            <MenuItem as={Link} href="/app/getting-started">
+              Create an organization
+            </MenuItem>
           </TenantMenu>
           {!isCondensed && (
             <>

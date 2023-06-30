@@ -12,6 +12,7 @@ import {
   HStack,
   Tag,
   Text,
+  MenuItem,
   useDisclosure,
 } from '@chakra-ui/react'
 import { EmptyState, Field, FormLayout, Option } from '@saas-ui/react'
@@ -22,7 +23,6 @@ import {
   StructuredListItem,
   StructuredListIcon,
   StructuredListCell,
-  MenuItem,
   OverflowMenu,
   PersonaAvatar,
 } from '@saas-ui/react'

@@ -1,6 +1,6 @@
 import { FeaturesOptions } from '@saas-ui-pro/feature-flags'
 
-export const segments: FeaturesOptions = {
+export const segments = {
   segments: [
     {
       id: 'admin',
@@ -13,4 +13,4 @@ export const segments: FeaturesOptions = {
       features: ['settings', 'billing'],
     },
   ],
-}
+} satisfies FeaturesOptions
