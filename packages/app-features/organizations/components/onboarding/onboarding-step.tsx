@@ -72,10 +72,10 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
 
       <Form
         schema={schema}
-        formRef={formRef as any} // @todo fix this
+        formRef={formRef}
         defaultValues={defaultValues}
-        onSubmit={onSubmit as any}
-        onChange={onChange as any}
+        onSubmit={onSubmit}
+        onChange={onChange}
         alignSelf="stretch"
       >
         <Card mb="6" animation={animation(0.2)}>

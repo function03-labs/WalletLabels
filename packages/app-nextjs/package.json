@@ -6,8 +6,11 @@
   "type": "module",
   "main": "src/index.ts",
   "peerDependencies": {
-    "next": ">=12",
+    "next": ">=13",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "next": "^13.4.7"
   }
 }

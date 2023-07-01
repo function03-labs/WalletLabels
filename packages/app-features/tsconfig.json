@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@app/config": ["../app-config"],
-      "@app/features/core/*": ["./core/*"]
+      "@app/features/core/*": ["./core/*"],
+      "@app/nextjs": ["../app-nextjs/src"]
     }
   }
 }

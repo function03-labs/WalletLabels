@@ -1,15 +1,11 @@
 import { z } from 'zod'
 import { getOrganization, Organization, updateOrganization } from '@api/client'
 import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
-import {
-  Section,
-  SectionBody,
-  SectionHeader,
-  useTenant,
-} from '@saas-ui-pro/react'
+import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 import { FormLayout, useSnackbar } from '@saas-ui/react'
 import { Form, SettingsPage } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { useWorkspace } from '@app/features/core/hooks/use-workspace'
 
 const schema = z.object({
   name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
@@ -86,11 +82,11 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
 }
 
 export function OrganizationSettingsPage() {
-  const tenant = useTenant()
+  const slug = useWorkspace()
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['Organization', tenant],
-    queryFn: () => getOrganization({ slug: tenant }),
+    queryKey: ['Organization', slug],
+    queryFn: () => getOrganization({ slug }),
   })
 
   const organization = data?.organization

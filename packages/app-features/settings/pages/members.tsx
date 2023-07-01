@@ -1,16 +1,12 @@
 import * as React from 'react'
 import { useSnackbar } from '@saas-ui/react'
-import {
-  Section,
-  SectionBody,
-  SectionHeader,
-  useTenant,
-} from '@saas-ui-pro/react'
+import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 
 import {
   MembersList,
   Member,
 } from '@app/features/organizations/components/members-list'
+import { useWorkspace } from '@app/features/core/hooks/use-workspace'
 import { InviteData, SettingsPage, useModals } from '@ui/lib'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import {
@@ -20,13 +16,13 @@ import {
 } from '@api/client'
 
 export function MembersSettingsPage() {
-  const tenant = useTenant()
+  const slug = useWorkspace()
   const snackbar = useSnackbar()
   const modals = useModals()
 
   const { data, isLoading } = useQuery({
-    queryKey: ['Organization', tenant],
-    queryFn: () => getOrganization({ slug: tenant }),
+    queryKey: ['Organization', slug],
+    queryFn: () => getOrganization({ slug }),
   })
 
   const organization = data?.organization

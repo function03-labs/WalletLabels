@@ -8,7 +8,6 @@ import { IconContext } from 'react-icons'
 import { SaasProvider, useHotkeys } from '@saas-ui/react'
 import { AuthProvider, AuthProviderProps } from '@saas-ui/auth'
 
-import { TenancyProvider, Tenant } from '@saas-ui-pro/react'
 import { FeaturesProvider } from '@saas-ui-pro/feature-flags'
 
 import { I18nProvider } from '@app/i18n'
@@ -24,21 +23,12 @@ import { Hotkeys } from '../components/hotkeys'
 export interface AppProviderProps {
   linkComponent?: React.ElementType<any>
   authService?: AuthProviderProps
-  tenant?: Tenant | null
-  onTenantChange?: (key: string) => void
   onError?: (error: Error, info: any) => void
   children: React.ReactNode
 }
 
 export const AppProvider: React.FC<AppProviderProps> = (props) => {
-  const {
-    linkComponent,
-    tenant,
-    onTenantChange,
-    onError,
-    authService,
-    children,
-  } = props
+  const { linkComponent, onError, authService, children } = props
 
   const [showDevtools, setShowDevtools] = React.useState(false)
 
@@ -60,11 +50,9 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
           <AuthProvider {...authService}>
             <FeaturesProvider value={segments}>
               <I18nProvider>
-                <TenancyProvider tenant={tenant} onChange={onTenantChange}>
-                  <Hotkeys hotkeys={appHotkeys}>
-                    <ModalsProvider>{children}</ModalsProvider>
-                  </Hotkeys>
-                </TenancyProvider>
+                <Hotkeys hotkeys={appHotkeys}>
+                  <ModalsProvider>{children}</ModalsProvider>
+                </Hotkeys>
               </I18nProvider>
             </FeaturesProvider>
           </AuthProvider>

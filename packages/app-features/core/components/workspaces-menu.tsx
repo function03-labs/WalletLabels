@@ -15,9 +15,11 @@ import {
 import { FiCheck } from 'react-icons/fi'
 import { useTenancy } from '@saas-ui-pro/react'
 
-import { useGetTenants } from '../hooks/use-get-tenants'
+import { useWorkspaces } from '../hooks/use-workspaces'
+import { useWorkspace } from '../hooks/use-workspace'
+import { useRouter } from '@app/nextjs'
 
-const TenantLogo: React.FC<AvatarProps> = (props) => {
+const WorkspaceLogo: React.FC<AvatarProps> = (props) => {
   const { src, ...rest } = props
   return (
     <Avatar
@@ -35,28 +37,38 @@ export interface TenantMenuProps {
   children?: React.ReactNode
 }
 
-export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
-  const { title = 'Tenants', children } = props
+export const WorkspacesMenu: React.FC<TenantMenuProps> = (props) => {
+  const { title = 'Workspaces', children } = props
+  const router = useRouter()
+  const workspace = useWorkspace()
+  const workspaces = useWorkspaces()
 
-  const { tenant, setTenant } = useTenancy()
-
-  const tenants = useGetTenants()
-
-  const activeTenant = (function () {
-    for (const i in tenants) {
-      if (tenants[i].slug === tenant) {
-        return tenants[i]
+  const activeWorkspace = (function () {
+    for (const i in workspaces) {
+      if (workspaces[i].slug === workspace) {
+        return workspaces[i]
       }
     }
-    return tenants[0]
+    return workspaces[0]
   })()
+
+  const setWorkspace = (workspace: string) => {
+    router.push({
+      query: {
+        workspace,
+      },
+    })
+  }
 
   return (
     <Menu>
       <MenuButton
         as={Button}
         leftIcon={
-          <TenantLogo name={activeTenant?.label} src={activeTenant?.logo} />
+          <WorkspaceLogo
+            name={activeWorkspace?.label}
+            src={activeWorkspace?.logo}
+          />
         }
         className="tenant-menu"
         variant="ghost"
@@ -67,25 +79,25 @@ export const TenantMenu: React.FC<TenantMenuProps> = (props) => {
           bg: 'sidebar-on-subtle',
         }}
       >
-        {activeTenant?.label}
+        {activeWorkspace?.label}
       </MenuButton>
       <Portal>
         {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}
         <MenuList zIndex={['modal', null, 'dropdown']}>
           <MenuGroup title={title}>
-            {tenants.map(({ id, slug, label, logo, ...props }) => {
+            {workspaces.map(({ id, slug, label, logo, ...props }) => {
               return (
                 <MenuItem
                   key={slug}
                   value={slug}
-                  icon={<TenantLogo name={label} src={logo} />}
-                  onClick={() => setTenant(slug)}
+                  icon={<WorkspaceLogo name={label} src={logo} />}
+                  onClick={() => setWorkspace(slug)}
                   {...props}
                 >
                   <HStack>
                     <Text>{label}</Text>
                     <Spacer />
-                    {slug === activeTenant?.slug ? <FiCheck /> : null}
+                    {slug === activeWorkspace?.slug ? <FiCheck /> : null}
                   </HStack>
                 </MenuItem>
               )

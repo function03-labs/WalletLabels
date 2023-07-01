@@ -12,7 +12,6 @@ import {
 
 import Link from 'next/link'
 
-import { useTenant } from '@saas-ui-pro/react'
 import { useAuth } from '@saas-ui/auth'
 import { PersonaAvatar, useHotkeysShortcut } from '@saas-ui/react'
 import { Has } from '@saas-ui-pro/feature-flags'
@@ -37,8 +36,6 @@ export const UserMenu = () => {
       queryClient.clear()
     })
   }
-
-  const tenant = useTenant()
 
   const { toggleColorMode, colorMode } = useColorMode()
 
@@ -79,7 +76,7 @@ export const UserMenu = () => {
               Profile
             </MenuItem>
             <Has feature="settings">
-              <MenuItem as={Link} href={`/app/${tenant}/settings`}>
+              <MenuItem as={Link} href={usePath(`/settings`)}>
                 Settings
               </MenuItem>
             </Has>

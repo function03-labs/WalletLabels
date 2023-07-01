@@ -1,10 +1,5 @@
 import { z } from 'zod'
-import {
-  Section,
-  SectionBody,
-  SectionHeader,
-  useTenant,
-} from '@saas-ui-pro/react'
+import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 
 import { Card, CardBody, Stack, Text } from '@chakra-ui/react'
 
@@ -18,6 +13,7 @@ import { useBilling } from '@saas-ui-pro/billing'
 import { FormattedDate } from '@app/i18n'
 import { useQuery } from '@tanstack/react-query'
 import { getOrganization } from '@api/client'
+import { useWorkspace } from '@app/features/core/hooks/use-workspace'
 
 function BillingPlan() {
   const { isTrialing, isTrialExpired, trialEndsAt, currentPlan } = useBilling()
@@ -111,12 +107,12 @@ function BillingInvoices() {
 }
 
 export function BillingPage() {
-  const tenant = useTenant()
+  const slug = useWorkspace()
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['Organization', tenant],
-    queryFn: () => getOrganization({ slug: tenant }),
-    enabled: !!tenant,
+    queryKey: ['Organization', slug],
+    queryFn: () => getOrganization({ slug }),
+    enabled: !!slug,
   })
 
   const organization = data?.organization
