@@ -34,6 +34,7 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
+    "@chakra-ui/utils": "^2.0.14",
     "zustand": "^4.3.8"
   },
   "peerDependencies": {
