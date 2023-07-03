@@ -14,7 +14,8 @@
     "react-intl": "^6.4.4"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=16.8.6",
+    "@saas-ui/auth": ">=2.0.0"
   },
   "devDependencies": {
     "@formatjs/cli": "^5.1.13"
