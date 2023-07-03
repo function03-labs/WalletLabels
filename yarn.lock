@@ -3479,7 +3479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/utils@npm:2.0.15, @chakra-ui/utils@npm:^2.0.15":
+"@chakra-ui/utils@npm:2.0.15, @chakra-ui/utils@npm:^2.0.14, @chakra-ui/utils@npm:^2.0.15":
   version: 2.0.15
   resolution: "@chakra-ui/utils@npm:2.0.15"
   dependencies:
@@ -6322,6 +6322,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@saas-ui-pro/feature-flags@workspace:saas-ui/feature-flags"
   dependencies:
+    "@chakra-ui/utils": ^2.0.14
     tsup: 6.7.0
     zustand: ^4.3.8
   peerDependencies:
@@ -6356,7 +6357,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui-pro/react@^0.23.0, @saas-ui-pro/react@workspace:*, @saas-ui-pro/react@workspace:saas-ui/react":
+"@saas-ui-pro/react@^0.24.0, @saas-ui-pro/react@workspace:*, @saas-ui-pro/react@workspace:saas-ui/react":
   version: 0.0.0-use.local
   resolution: "@saas-ui-pro/react@workspace:saas-ui/react"
   dependencies:
@@ -20500,7 +20501,7 @@ __metadata:
     "@dnd-kit/sortable": ^7.0.2
     "@emotion/react": ^11.11.1
     "@emotion/styled": ^11.11.0
-    "@saas-ui-pro/react": ^0.23.0
+    "@saas-ui-pro/react": ^0.24.0
     "@saas-ui/react": ^2.0.0
     framer-motion: ^10.12.17
     lucide-react: ^0.257.0

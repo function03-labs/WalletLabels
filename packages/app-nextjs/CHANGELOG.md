@@ -1,5 +1,11 @@
 # @app/nextjs
 
+## 0.4.0
+
+### Minor Changes
+
+- 20103b7: Renamed tenant to workspace, no longer using TenancyProvider.
+
 ## 0.3.0
 
 ### Minor Changes

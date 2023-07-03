@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.12.1
+
+### Patch Changes
+
+- 4178c80: Add missing dependencies.
+
 ## 0.12.0
 
 ### Minor Changes

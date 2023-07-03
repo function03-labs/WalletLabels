@@ -1,6 +1,6 @@
 {
   "name": "@api/mock-graphql",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Graphql mock server and resolvers",
   "private": true,
   "main": "src/index.ts",
