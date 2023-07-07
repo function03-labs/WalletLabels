@@ -18,8 +18,6 @@ const NextLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
-  const tenant = router.query.tenant ? (router.query.tenant as string) : null
-
   return (
     <>
       <Head>
@@ -29,16 +27,6 @@ function App({ Component, pageProps }: AppProps) {
         authService={authService}
         linkComponent={NextLink}
         onError={(error, info) => console.error(error, info)}
-        tenant={tenant}
-        onTenantChange={(key) => {
-          router.push({
-            pathname: router.pathname,
-            query: {
-              ...router.query,
-              tenant: key,
-            },
-          })
-        }}
       >
         <AppLayout
           publicRoutes={['/']}

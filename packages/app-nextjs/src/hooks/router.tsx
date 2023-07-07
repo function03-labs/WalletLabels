@@ -1,6 +1,14 @@
 import * as React from 'react'
-
 import { useRouter } from 'next/router'
+
+/**
+ * Next.js Router helper hooks
+ * This currently uses the Pages router,
+ * but could be replaced with the App router
+ * once the performance issues are fixed.
+ */
+
+export { useRouter } from 'next/router'
 
 const parseAsPath = (asPath: string) => {
   const [, pathname, search, hash] =

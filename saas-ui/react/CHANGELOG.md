@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.24.0
+
+### Minor Changes
+
+- 20103b7: Deprecated TenancyProvider and useTenant in favor of a user defined useWorkspace hook.
+
 ## 0.23.0
 
 ### Minor Changes

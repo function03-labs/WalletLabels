@@ -26,6 +26,12 @@ interface TenancyProviderProps {
   children: React.ReactNode
 }
 
+/**
+ * @deprecated Tenancy context will be removed in future releases.
+ * Please use the `useWorkspace` hook instead.
+ *
+ * @see `packages/app-features/core/hooks/use-workspace.ts`
+ */
 export function TenancyProvider(props: TenancyProviderProps) {
   const {
     children,
@@ -58,6 +64,12 @@ export function TenancyProvider(props: TenancyProviderProps) {
   )
 }
 
+/**
+ * @deprecated Tenancy context will be removed in future releases.
+ * Please use the `useWorkspace` hook instead.
+ *
+ * @see `packages/app-features/core/hooks/use-workspace.ts`
+ */
 export const useTenant = () => {
   const context = useTenancy()
   return context.tenant

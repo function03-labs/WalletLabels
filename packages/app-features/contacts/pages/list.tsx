@@ -27,7 +27,6 @@ import {
   Command,
   Toolbar,
   ToolbarButton,
-  useTenant,
   DataGridCell,
   BulkActionsSelections,
   MenuProperty,
@@ -43,15 +42,16 @@ import { ListPage, InlineSearch, useModals } from '@ui/lib'
 import { Contact, createContact, getContacts } from '@api/client'
 
 import { format } from 'date-fns'
+import { CommandIcon, TagIcon } from 'lucide-react'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useParams } from '@app/nextjs'
 
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'
-import { useMutation, useQuery } from '@tanstack/react-query'
 import { ContactStatus } from '../components/contact-status'
 import { ContactType } from '../components/contact-type'
-import { CommandIcon, TagIcon } from 'lucide-react'
 import { ContactTag } from '../components/contact-tag'
-import { useRouter } from 'next/router'
+import { usePath } from '@app/features/core/hooks/use-path'
 
 const DateCell = ({ date }: { date?: string }) => {
   return <>{date ? format(new Date(date), 'PP') : null}</>
@@ -82,11 +82,11 @@ const schema = z.object({
 })
 
 export function ContactsListPage() {
-  const tenant = useTenant()
   const modals = useModals()
   const snackbar = useSnackbar()
-  const { query } = useRouter()
+  const query = useParams()
 
+  const basePath = usePath('/')
   const type = query?.type?.toString()
 
   const [searchQuery, setSearchQuery] = React.useState('')
@@ -111,7 +111,7 @@ export function ContactsListPage() {
         header: 'Name',
         size: 300,
         meta: {
-          href: ({ id }: any) => `/app/${tenant}/contacts/view/${id}`,
+          href: ({ id }: any) => `${basePath}/contacts/view/${id}`,
         },
       }),
       helper.accessor('email', {

@@ -7,7 +7,6 @@ import {
   ErrorPage,
   Toolbar,
   ToolbarButton,
-  useTenant,
   PageBody,
   PageHeader,
 } from '@saas-ui-pro/react'
@@ -20,18 +19,20 @@ import { MRR } from '../components/metrics/mrr'
 import { Activity } from '../components/metrics/activity'
 import { useQuery } from '@tanstack/react-query'
 import { getOrganization } from '@api/client'
+import { useWorkspace } from '@app/features/core/hooks/use-workspace'
 
 export function DashboardPage() {
-  const tenant = useTenant()
+  const slug = useWorkspace()
+
   const { data, isLoading } = useQuery({
     queryKey: [
       'Organization',
       {
-        slug: tenant,
+        slug,
       },
     ] as const,
     queryFn: ({ queryKey }) => getOrganization(queryKey[1]),
-    enabled: !!tenant,
+    enabled: !!slug,
   })
 
   const organization = data?.organization
@@ -40,7 +41,7 @@ export function DashboardPage() {
     return (
       <ErrorPage
         title="No organization found"
-        description={`We couldn't find a organization named ${tenant}`}
+        description={`We couldn't find a organization named ${slug}`}
       />
     )
   }

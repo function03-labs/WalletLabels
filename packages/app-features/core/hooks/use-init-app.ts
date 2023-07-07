@@ -3,7 +3,6 @@ import * as React from 'react'
 import { parseISO } from 'date-fns'
 
 import { useAuth } from '@saas-ui/auth'
-import { useTenant } from '@saas-ui-pro/react'
 
 import { BillingStatus } from '@saas-ui-pro/billing'
 import { plans } from '@app/config'
@@ -11,6 +10,7 @@ import { plans } from '@app/config'
 import { useFeatures } from '@saas-ui-pro/feature-flags'
 import { useQuery } from '@tanstack/react-query'
 import { getCurrentUser, getOrganization, getSubscription } from '@api/client'
+import { useWorkspace } from './use-workspace'
 
 /**
  * Use this hook to load all required data for the app to function.
@@ -20,17 +20,19 @@ export const useInitApp = () => {
   const { isLoading, isAuthenticated, isLoggingIn } = useAuth()
 
   /**
-   * Getting the tenant (organization slug) from the TenancyProvider,
-   * but you could store the active tenant in the user profile and retrieve it from `currentUser`.
+   * Get the workspace (organization slug), from the query params
+   * You could persist the active workspace in the user profile and retrieve it from `currentUser`.
    */
-  const tenant = useTenant()
+  const slug = useWorkspace()
 
   /**
    * The features context
    */
   const features = useFeatures()
 
-  // Load current user and tenant data
+  /**
+   * Load current user and tenant data
+   */
   const { data: { currentUser } = {}, isFetched: currentUserIsFetched } =
     useQuery({
       queryKey: ['CurrentUser'],
@@ -43,11 +45,11 @@ export const useInitApp = () => {
       queryKey: [
         'Organization',
         {
-          slug: tenant,
+          slug,
         },
       ] as const,
       queryFn: ({ queryKey }) => getOrganization(queryKey[1]),
-      enabled: isAuthenticated && !!tenant,
+      enabled: isAuthenticated && !!slug,
     })
 
   const { data: { subscription } = {}, isFetched: subscriptionIsFetched } =
@@ -55,11 +57,11 @@ export const useInitApp = () => {
       queryKey: [
         'Subscription',
         {
-          slug: tenant,
+          slug,
         },
       ] as const,
       queryFn: ({ queryKey }) => getSubscription(queryKey[1]),
-      enabled: isAuthenticated && !!tenant,
+      enabled: isAuthenticated && !!slug,
     })
 
   const billing = React.useMemo(() => {

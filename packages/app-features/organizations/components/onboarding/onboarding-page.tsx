@@ -51,7 +51,9 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = (props) => {
   return (
     <Page {...pageProps}>
       <PageHeader nav={nav}></PageHeader>
-      <PageBody maxW="full">{children}</PageBody>
+      <PageBody maxW="full" position="relative">
+        {children}
+      </PageBody>
     </Page>
   )
 }

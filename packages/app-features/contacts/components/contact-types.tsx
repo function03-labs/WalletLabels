@@ -3,7 +3,7 @@ import * as React from 'react'
 import { usePath } from '@app/features/core/hooks/use-path'
 
 import { SegmentedControl } from '@ui/lib'
-import { useRouter } from 'next/router'
+import { useRouter } from '@app/nextjs'
 
 const types = [
   {

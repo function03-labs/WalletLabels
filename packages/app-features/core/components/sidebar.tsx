@@ -28,7 +28,7 @@ import {
   ResizeHandler,
 } from '@saas-ui-pro/react'
 
-import { useActivePath } from '@app/nextjs'
+import { useActivePath, useParams, useRouter } from '@app/nextjs'
 
 import {
   Sidebar,
@@ -54,14 +54,14 @@ import {
 
 import { BillingStatus } from './billing-status'
 import { GlobalSearchInput } from './global-search-input'
-import { TenantMenu } from './tenant-menu'
+import { WorkspacesMenu } from './workspaces-menu'
 import { UserMenu } from './user-menu'
 
 import { usePath } from '@app/features/core/hooks/use-path'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getTags, Tags, User } from '@api/client'
 import { useCurrentUser } from '../hooks/use-current-user'
-import { useRouter } from 'next/router'
+
 import Link from 'next/link'
 
 export interface AppSidebarProps extends SidebarProps {}
@@ -93,7 +93,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
         <SidebarToggleButton />
         <ElectronNav />
         <SidebarSection direction="row">
-          <TenantMenu title="Organizations">
+          <WorkspacesMenu title="Organizations">
             <MenuDivider />
             <MenuItem as={Link} href={usePath('settings/organization')}>
               Organization settings
@@ -101,7 +101,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             <MenuItem as={Link} href="/app/getting-started">
               Create an organization
             </MenuItem>
-          </TenantMenu>
+          </WorkspacesMenu>
           {!isCondensed && (
             <>
               <Spacer />
@@ -223,7 +223,7 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
 
 const AppSidebarTags = ({ user }: { user: User }) => {
   const queryClient = useQueryClient()
-  const { query } = useRouter()
+  const query = useParams()
 
   const userTags = user.workspace?.tags || []
 

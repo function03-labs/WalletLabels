@@ -1,6 +1,6 @@
 {
   "name": "@api/mocks",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "API client mocks",
   "private": true,
   "main": "src/index.ts",

@@ -1,5 +1,24 @@
 # nextjs-app
 
+## 0.18.0
+
+### Minor Changes
+
+- 20103b7: Removed TenancyProvider.
+
+### Patch Changes
+
+- Updated dependencies [20103b7]
+- Updated dependencies [4178c80]
+- Updated dependencies [20103b7]
+- Updated dependencies [20103b7]
+- Updated dependencies [20103b7]
+  - @app/features@14.0.0
+  - @saas-ui-pro/feature-flags@0.12.1
+  - @saas-ui-pro/react@0.24.0
+  - @api/client@0.3.3
+  - @ui/theme@0.6.1
+
 ## 0.17.0
 
 ### Minor Changes

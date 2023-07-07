@@ -1,15 +1,15 @@
 import React from 'react'
-import { useTenant } from '@saas-ui-pro/react'
+import { useWorkspace } from './use-workspace'
 
 /**
- * Returns the path including the app base path and tenant.
+ * Returns the path including the app base path and workspace.
  * @param path
  * @returns string The router path
  */
 export const usePath = (path = '/') => {
-  const tenant = useTenant()
+  const workspace = useWorkspace()
   return React.useMemo(
-    () => `/app/${tenant}/${path}`.replace(/\/\//, '/').replace(/\/$/, ''),
-    [path, tenant],
+    () => `/app/${workspace}/${path}`.replace(/\/\//, '/').replace(/\/$/, ''),
+    [path, workspace],
   )
 }

@@ -1,14 +1,14 @@
 import { FormEvent, useRef } from 'react'
 import slug from 'slug'
 import { InputLeftElement, Text } from '@chakra-ui/react'
-import { useTenancy } from '@saas-ui-pro/react'
 import {
   Field,
   FormLayout,
   UseFormReturn,
+  useSnackbar,
   useStepperContext,
 } from '@saas-ui/react'
-
+import { useRouter } from '@app/nextjs'
 import * as z from 'zod'
 
 import { OnboardingStep } from './onboarding-step'
@@ -23,8 +23,9 @@ const schema = z.object({
 type FormInput = z.infer<typeof schema>
 
 export const CreateOrganizationStep = () => {
+  const router = useRouter()
   const stepper = useStepperContext()
-  const tenancy = useTenancy()
+  const snackbar = useSnackbar()
 
   const formRef = useRef<UseFormReturn<FormInput>>(null)
 
@@ -39,13 +40,20 @@ export const CreateOrganizationStep = () => {
       title="Create a new organization"
       description="Saas UI is multi-tenant and supports organization workspaces with multiple teams."
       defaultValues={{ name: '', slug: '' }}
-      onSubmit={(data) => {
-        return mutateAsync({ name: data.name }).then((result) => {
+      onSubmit={async (data) => {
+        try {
+          const result = await mutateAsync({ name: data.name })
           if (result.createOrganization?.slug) {
-            tenancy.setTenant(result.createOrganization.slug)
+            await router.replace({
+              query: {
+                tenant: result.createOrganization.slug,
+              },
+            })
             stepper.nextStep()
           }
-        })
+        } catch {
+          snackbar.error('Failed to create organization')
+        }
       }}
       submitLabel="Create organization"
     >

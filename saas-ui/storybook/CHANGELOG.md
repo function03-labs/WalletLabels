@@ -1,5 +1,12 @@
 # saas-ui-storybook
 
+## 22.0.0
+
+### Patch Changes
+
+- Updated dependencies [20103b7]
+  - @saas-ui-pro/react@0.24.0
+
 ## 21.0.0
 
 ### Minor Changes

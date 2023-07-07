@@ -1,4 +1,4 @@
-import { mode, PartsStyleFunction } from '@chakra-ui/theme-tools'
+import { PartsStyleFunction } from '@chakra-ui/theme-tools'
 
 const variantDots: PartsStyleFunction = (props) => {
   const { colorScheme: c } = props
@@ -17,9 +17,21 @@ const variantDots: PartsStyleFunction = (props) => {
       width: '8px',
       height: '8px',
       border: 0,
-      bg: mode('gray.200', 'whiteAlpha.400')(props),
+      bg: 'gray.200',
+      _dark: {
+        bg: 'whiteAlpha.400',
+      },
       '[data-status="active"] &': {
-        bg: c ? `${c}.500` : mode('black', 'white'),
+        bg: c ? `${c}.500` : 'black',
+        _dark: {
+          bg: c ? `${c}.500` : 'white',
+        },
+      },
+      '[data-status="complete"] &': {
+        bg: c ? `${c}.500` : 'black',
+        _dark: {
+          bg: c ? `${c}.500` : 'white',
+        },
       },
     },
     title: {
@@ -29,6 +41,9 @@ const variantDots: PartsStyleFunction = (props) => {
       display: 'none',
     },
     separator: {
+      display: 'none',
+    },
+    icon: {
       display: 'none',
     },
   }

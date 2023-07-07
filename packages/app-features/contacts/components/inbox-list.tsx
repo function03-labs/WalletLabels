@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { usePath } from '@app/features/core/hooks/use-path'
 import { HStack, Text } from '@chakra-ui/react'
 import { useSplitPage } from '@saas-ui-pro/react'
@@ -12,7 +11,7 @@ import {
   StructuredListProps,
 } from '@saas-ui/react'
 import { DateTimeSince } from '@ui/lib'
-import { useActivePath } from '@app/nextjs'
+import { useActivePath, useRouter } from '@app/nextjs'
 import { Notification } from '@api/client'
 
 export interface InboxListProps extends StructuredListProps {

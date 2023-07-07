@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.7.0
+
+### Minor Changes
+
+- 20103b7: Renamed tenant to workspace, no longer using TenancyProvider.
+
 ## 0.6.0
 
 ### Minor Changes

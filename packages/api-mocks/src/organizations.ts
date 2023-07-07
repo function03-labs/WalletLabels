@@ -1,31 +1,25 @@
 import slug from 'slug'
-import {
-  getCurrentUser,
-  getOrganization as getMockOrganization,
-  getOrganizationMember,
-  getOrganizations as getMockOrganizations,
-  organizationStore,
-} from './mock-data'
+import * as mocks from './mock-data'
 import { addDays } from 'date-fns'
 
 export const getOrganization = async (variables: { slug?: string | null }) => {
   return {
     organization: {
-      ...getMockOrganization(),
+      ...mocks.getOrganization(variables.slug),
       members: [
         {
           id: '1',
-          user: getCurrentUser(),
+          user: mocks.getCurrentUser(),
           roles: ['owner', 'admin'],
         },
-        getOrganizationMember(),
+        mocks.getOrganizationMember(),
       ],
     },
   }
 }
 
 export const getOrganizations = async () => {
-  return { organizations: getMockOrganizations() }
+  return { organizations: mocks.getOrganizations() }
 }
 
 export const inviteToOrganization = async (variables: {
@@ -33,7 +27,6 @@ export const inviteToOrganization = async (variables: {
   organizationId: string
   role?: string
 }) => {
-  throw new Error('test')
   return { inviteToOrganization: true }
 }
 
@@ -48,10 +41,11 @@ export const createOrganization = async (variables: {
   name: string
   slug?: string | null
 }) => {
-  const organization = getMockOrganization()
+  const organization = mocks.getOrganization()
 
   const data = {
     ...organization,
+    id: organization ? String(parseInt(organization.id) + 1) : '1',
     name: variables.name,
     slug: variables.slug || slug(variables.name),
     email: 'hello@saas-ui.dev',
@@ -74,7 +68,7 @@ export const createOrganization = async (variables: {
     },
   }
 
-  organizationStore.getState().add(data)
+  mocks.organizationStore.getState().add(data)
 
   return {
     createOrganization: data,

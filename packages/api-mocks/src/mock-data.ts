@@ -238,8 +238,9 @@ export const getContacts = (
   )
 }
 
-export const getOrganization = () => {
-  return getOrganizations()[0]
+export const getOrganization = (slug?: string | null) => {
+  const orgs = getOrganizations()
+  return slug ? orgs.find((org) => org.slug === slug) || orgs[0] : orgs[0]
 }
 
 export const getOrganizationMember = () => ({
