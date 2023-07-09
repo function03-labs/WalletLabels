@@ -19,7 +19,8 @@
     "lucide-react": "^0.257.0",
     "react-icons": "^4.10.1",
     "slug": "^8.2.2",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "date-fns": "^2.30.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
@@ -31,6 +32,7 @@
     "@saas-ui-pro/feature-flags": "workspace:*",
     "@saas-ui-pro/onboarding": "workspace:*",
     "@saas-ui-pro/react": "workspace:*",
+    "@saas-ui/auth": ">=2",
     "@saas-ui/date-picker": ">=0.9.0",
     "@saas-ui/react": ">=2",
     "framer-motion": ">=6",
