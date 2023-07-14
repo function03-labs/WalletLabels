@@ -12,5 +12,8 @@
     "framer-motion": "^10.12.17",
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "peerDependencies": {
+    "@saas-ui-pro/react": ">=0.23"
   }
 }

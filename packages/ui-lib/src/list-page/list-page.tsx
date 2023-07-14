@@ -36,7 +36,7 @@ import {
   getLocalTimeZone,
 } from '@saas-ui/date-picker'
 
-import { useModals } from '@ui/lib'
+import { useModals } from '../modals'
 
 export interface ListPageProps<D extends object>
   extends PageProps,
