@@ -1,6 +1,0 @@
-mutation RemoveUserFromOrganization(
-  $userId: String!
-  $organizationId: String!
-) {
-  removeUserFromOrganization(userId: $userId, organizationId: $organizationId)
-}
