@@ -1,0 +1,20 @@
+{
+  "name": "@db/prisma",
+  "version": "0.0.1",
+  "exports": {
+    ".": {
+      "require": "./generated/index.js",
+      "types": "./generated/index.d.ts"
+    }
+  },
+  "scripts": {
+    "format": "prisma format --schema schema.prisma",
+    "generate": "prisma generate --schema schema.prisma",
+    "migrate:init": "prisma migrate dev --name init"
+  },
+  "dependencies": {
+    "@prisma/client": "5.0.0",
+    "prisma": "^5.0.0"
+  },
+  "sideEffects": false
+}

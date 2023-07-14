@@ -4,6 +4,6 @@
  * For example, the demo app uses @api/mocks by default. Which returns fake data and is useful for testing and
  * development and is used in the demo application.
  *
- * The export could be switched to @api/graphql-client (work in progress), or @api/supabase-client (TBD) to use a different API implementation.
+ * The export could be your own api client, eg @api/graphql-client or @api/supabase-client.
  */
 export * from '@api/mocks'

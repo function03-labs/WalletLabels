@@ -1,0 +1,104 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+
+model User {
+  id                 String               @id @default(cuid())
+  email              String               @unique
+  firstName          String?
+  lastName           String?
+  name               String?
+  status             String?
+  avatar             String?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  organizations      Organization[]
+  OrganizationMember OrganizationMember[]
+  Activity           Activity[]
+}
+
+model Organization {
+  id           String               @id @default(cuid())
+  name         String
+  slug         String               @unique
+  plan         String?
+  email        String?
+  logo         String?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  members      OrganizationMember[]
+  User         User?                @relation(fields: [userId], references: [id])
+  userId       String?
+  Subscription Subscription[]
+}
+
+enum Role {
+  owner
+  admin
+  member
+}
+
+model OrganizationMember {
+  id             String       @id @default(cuid())
+  user           User         @relation(fields: [userId], references: [id])
+  userId         String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  roles          Role[]
+}
+
+enum SubscriptionStatus {
+  active
+  trialing
+  past_due
+  paused
+  canceled
+}
+
+model Subscription {
+  id             String             @id @default(cuid())
+  organization   Organization       @relation(fields: [organizationId], references: [id])
+  organizationId String
+  plan           String
+  status         SubscriptionStatus
+  startedAt      DateTime?
+  trialEndsAt    DateTime?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  firstName String?
+  lastName  String?
+  name      String?
+  status    String?
+  type      String?
+  tags      String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ActivityType {
+  action
+  update
+  comment
+}
+
+model Activity {
+  id        String       @id @default(cuid())
+  user      User         @relation(fields: [userId], references: [id])
+  userId    String
+  type      ActivityType
+  data      String
+  date      DateTime
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
