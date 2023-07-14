@@ -27,6 +27,7 @@
     "prosemirror-state": "^1.4.3",
     "prosemirror-transform": "^1.7.3",
     "prosemirror-view": "^1.31.5",
+    "react-hook-form": "^7.45.1",
     "react-icons": "^4.10.1"
   },
   "peerDependencies": {
