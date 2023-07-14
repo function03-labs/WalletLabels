@@ -24,9 +24,10 @@ export default withWorkspaces({
       }
 
       // Load pro packages from src instead of dist
+      // Remove this if you install pro packages from npm instead of the local `/saas-ui` folder.
       config.plugins = config.plugins.concat([
         new webpack.NormalModuleReplacementPlugin(
-          /@saas-ui-pro\/(react|billing|router|onboarding|feature-flags|pro\/theme|pro-.*)$/,
+          /@saas-ui-pro\/(react|billing|router|onboarding|feature-flags|kanban|pro\/theme|pro-.*)$/,
           (resource) => {
             resource.request = resource.request + '/src'
           },

@@ -15,7 +15,7 @@ import { useToggleGroup, Value, Type } from './use-toggle-group'
 
 export interface ToggleButtonGroupProps<
   TValue extends Value = Value,
-  TType extends Type = Type,
+  TType extends Type = 'checkbox',
 > extends Omit<ButtonGroupProps, 'defaultValue' | 'onChange'> {
   name?: string
   type?: TType
@@ -83,7 +83,6 @@ export const ToggleButtonGroup = forwardRef(
       <ButtonGroup
         isAttached={isAttached}
         variant="outline"
-        width="full"
         ref={ref}
         {...rest}
       >

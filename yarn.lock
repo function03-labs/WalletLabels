@@ -6333,6 +6333,32 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@saas-ui-pro/kanban@workspace:*, @saas-ui-pro/kanban@workspace:saas-ui/kanban":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui-pro/kanban@workspace:saas-ui/kanban"
+  dependencies:
+    "@chakra-ui/anatomy": ^2.1.2
+    "@chakra-ui/react-utils": ^2.0.12
+    "@chakra-ui/styled-system": ^2.9.1
+    "@chakra-ui/system": ^2.5.8
+    "@chakra-ui/theme-tools": ^2.0.18
+    "@chakra-ui/utils": ^2.0.15
+    "@dnd-kit/core": ^6.0.8
+    "@dnd-kit/sortable": ^7.0.2
+    "@saas-ui/react-utils": ^2.0.0
+    react-icons: ^4.10.1
+    tsup: ^6.7.0
+  peerDependencies:
+    "@chakra-ui/react": ">=2.1"
+    "@emotion/react": ">=11"
+    "@emotion/styled": ">=11"
+    "@saas-ui/react": ">=2.0.0"
+    framer-motion: ">=5.5.0"
+    react: ">=18"
+    react-dom: ">=18"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui-pro/onboarding@workspace:*, @saas-ui-pro/onboarding@workspace:saas-ui/onboarding":
   version: 0.0.0-use.local
   resolution: "@saas-ui-pro/onboarding@workspace:saas-ui/onboarding"
@@ -9351,6 +9377,7 @@ __metadata:
     "@dnd-kit/core": ^6.0.8
     "@dnd-kit/sortable": ^7.0.2
     "@hookform/resolvers": ^3.1.1
+    "@saas-ui-pro/kanban": "workspace:*"
     "@saas-ui/forms": ^2.0.0
     "@storybook/react": ^7.0.24
     "@tiptap/core": ^2.0.3
@@ -9379,6 +9406,7 @@ __metadata:
     "@chakra-ui/react": ">=2.5.0"
     "@emotion/react": ">=11.0.0"
     "@emotion/styled": ">=11.0.0"
+    "@saas-ui-pro/react": ">=2.0.0"
     "@saas-ui/react": ">=2.0.0"
     framer-motion: ">=5.5.0"
     react: ">=18"

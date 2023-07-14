@@ -14,14 +14,19 @@ import {
   Tooltip,
   HStack,
   Text,
+  Stack,
 } from '@chakra-ui/react'
-import { FiSliders, FiUser } from 'react-icons/fi'
+import { FiGrid, FiList, FiSliders, FiUser } from 'react-icons/fi'
 import {
   EmptyState,
   OverflowMenu,
   useHotkeysShortcut,
   useSnackbar,
   useLocalStorage,
+  Select,
+  SelectButton,
+  SelectList,
+  SelectOption,
 } from '@saas-ui/react'
 import {
   Command,
@@ -51,6 +56,8 @@ import { filters, AddFilterButton } from '../components/contact-filters'
 import { ContactStatus } from '../components/contact-status'
 import { ContactType } from '../components/contact-type'
 import { ContactTag } from '../components/contact-tag'
+import { ContactCard } from '../components/contact-card'
+
 import { usePath } from '@app/features/core/hooks/use-path'
 
 const DateCell = ({ date }: { date?: string }) => {
@@ -236,6 +243,15 @@ export function ContactsListPage() {
     </ToggleButtonGroup>
   )
 
+  const groupBy = (
+    <Select name="groupBy" value="status" size="xs">
+      <SelectButton>Status</SelectButton>
+      <SelectList>
+        <SelectOption value="status">Status</SelectOption>
+      </SelectList>
+    </Select>
+  )
+
   const primaryAction = (
     <ToolbarButton
       label="Add person"
@@ -253,11 +269,24 @@ export function ContactsListPage() {
     />
   )
 
+  const [view, setView] = useLocalStorage<'list' | 'board'>(
+    'app.contacts.view',
+    'board',
+  )
+
   const toolbarItems = (
     <>
       <ContactTypes />
       <AddFilterButton />
       <Spacer />
+      <ToggleButtonGroup value={view} onChange={setView} size="sm" width="auto">
+        <ToggleButton value="list">
+          <FiList />
+        </ToggleButton>
+        <ToggleButton value="board">
+          <FiGrid />
+        </ToggleButton>
+      </ToggleButtonGroup>
       <Menu>
         <MenuButton
           as={ToolbarButton}
@@ -268,6 +297,7 @@ export function ContactsListPage() {
         />
         <Portal>
           <MenuList maxW="260px">
+            <MenuProperty label="Group by" value={groupBy} />
             <MenuProperty
               label="Display properties"
               value={displayProperties}
@@ -347,6 +377,22 @@ export function ContactsListPage() {
     />
   )
 
+  const renderBoardHeader = React.useCallback((header: any) => {
+    return (
+      <HStack w="full" py="2" px="1">
+        <ContactStatus status={header.groupingValue} />
+        <Spacer />
+        <OverflowMenu size="sm">
+          <MenuItem>Hide</MenuItem>
+        </OverflowMenu>
+      </HStack>
+    )
+  }, [])
+
+  const renderBoardItem = React.useCallback((row: any) => {
+    return <ContactCard contact={row.original} />
+  }, [])
+
   return (
     <ListPage<Contact>
       title="Contacts"
@@ -361,6 +407,9 @@ export function ContactsListPage() {
       visibleColumns={visibleColumns}
       data={data?.contacts as Contact[]}
       isLoading={isLoading}
+      view={view}
+      renderBoardHeader={renderBoardHeader}
+      renderBoardItem={renderBoardItem}
     />
   )
 }

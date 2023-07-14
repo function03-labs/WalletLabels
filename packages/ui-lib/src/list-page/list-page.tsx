@@ -36,7 +36,7 @@ import {
   getLocalTimeZone,
 } from '@saas-ui/date-picker'
 
-import { useModals } from '@ui/lib'
+import { DataBoard, useModals } from '@ui/lib'
 
 export interface ListPageProps<D extends object>
   extends PageProps,
@@ -57,6 +57,9 @@ export interface ListPageProps<D extends object>
   searchQuery?: string
   visibleColumns: string[]
   tabbar?: React.ReactNode
+  view?: 'list' | 'board'
+  renderBoardHeader?: (data: D) => React.ReactNode
+  renderBoardItem?: (data: D) => React.ReactNode
 }
 
 /**
@@ -86,10 +89,18 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         pageSize: 20,
       },
     },
+    view,
+    renderBoardHeader,
+    renderBoardItem,
     ...rest
   } = props
 
   const gridRef = React.useRef<TableInstance<D>>(null)
+  const boardRef = React.useRef<TableInstance<D>>(null)
+
+  const getTableInstance = () => {
+    return view === 'board' ? boardRef.current : gridRef.current
+  }
 
   const [selections, setSelections] = React.useState<string[]>([])
 
@@ -98,6 +109,8 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     setSelections(rows)
   }, [])
 
+  const [globalFilter, setGlobalFilter] = React.useState<string | undefined>()
+
   const onRowClick = (row: Row<D>, e: React.MouseEvent) => {
     // Find the first A and trigger a click.
     const link: HTMLAnchorElement | null = e.currentTarget.querySelector('td a')
@@ -105,7 +118,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   }
 
   const onFilter = React.useCallback((filters: Filter[]) => {
-    gridRef.current?.setColumnFilters(
+    getTableInstance()?.setColumnFilters(
       filters.map((filter) => {
         return {
           id: filter.id,
@@ -118,13 +131,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     )
   }, [])
 
-  const onSearch = useDebouncedCallback(
-    (query?: string) => {
-      gridRef.current?.setGlobalFilter?.(query)
-    },
-    [],
-    100,
-  )
+  const onSearch = useDebouncedCallback(setGlobalFilter, [], 100)
 
   React.useEffect(() => {
     onSearch(searchQuery)
@@ -166,12 +173,35 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     visibleColumns,
   })
 
+  const state = {
+    columnVisibility,
+    globalFilter,
+  }
+
+  const getRowId = (row: any, index: number, parent: Row<D>) =>
+    row.id || `${parent ? [parent.id, index].join('.') : index}`
+
   let content
   if (!data || !data.length) {
     content = (
       <Box p="20">
         {emptyState || <EmptyState title="No results" variant="no-results" />}
       </Box>
+    )
+  } else if (view === 'board') {
+    content = (
+      <DataBoard
+        instanceRef={boardRef}
+        px="6"
+        height="100%"
+        columns={columns}
+        data={data}
+        renderHeader={renderBoardHeader}
+        renderItem={renderBoardItem}
+        getRowId={getRowId}
+        groupBy="status"
+        state={state}
+      />
     )
   } else {
     content = (
@@ -187,16 +217,12 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         onSortChange={onSortChange}
         noResults={NoFilteredResults}
         manualSorting={!!onSortChange}
-        getRowId={(row: any, index, parent) =>
-          row.id || `${parent ? [parent.id, index].join('.') : index}`
-        }
+        getRowId={getRowId}
         initialState={{
           columnVisibility,
           ...initialState,
         }}
-        state={{
-          columnVisibility,
-        }}
+        state={state}
       >
         <DataGridPagination />
       </DataGrid>
