@@ -8,8 +8,6 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "generate": "yarn workspace @api/graphql-client generate",
-    "predev": "yarn generate",
     "dev:web": "yarn workspace web dev",
     "dev:desktop": "yarn workspace desktop dev",
     "storybook": "yarn workspace @ui/storybook dev",
