@@ -2,14 +2,12 @@ import * as React from 'react'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Link, { LinkProps } from 'next/link'
-import Head from 'next/head'
 import '@fontsource-variable/inter'
 
 import { NProgressNextRouter } from '@saas-ui/react'
 import { AppProvider } from '@app/features/core/providers/app'
 import { AppLayout } from '@app/features/core/layouts/app-layout'
-
-import { authService } from '@app/config'
+import Head from 'next/head'
 
 const NextLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
   (props, ref) => <Link ref={ref} {...props} />,
@@ -24,7 +22,6 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <AppProvider
-        authService={authService}
         linkComponent={NextLink}
         onError={(error, info) => console.error(error, info)}
       >
