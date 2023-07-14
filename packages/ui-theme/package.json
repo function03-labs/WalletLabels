@@ -7,7 +7,7 @@
   "homepage": "https://saas-ui.dev/",
   "dependencies": {
     "@fontsource-variable/inter": "^5.0.3",
-    "@saas-ui-pro/theme-glass": "workspace:*",
+    "@saas-ui-pro/theme-glass": "^0.6.1",
     "@saas-ui/theme": "^2.0.0"
   },
   "peerDependencies": {
