@@ -9,9 +9,9 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@saas-ui-pro/react": "^0.24.0",
-    "@saas-ui/react": "^2.0.0",
-    "framer-motion": "^10.12.17",
-    "lucide-react": "^0.257.0",
+    "@saas-ui/react": "^2.0.2",
+    "framer-motion": "^10.12.21",
+    "lucide-react": "^0.260.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
