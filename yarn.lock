@@ -75,7 +75,7 @@ __metadata:
     "@app/i18n": "workspace:*"
     "@app/nextjs": "workspace:*"
     "@react-hookz/web": ^15.1.0
-    "@saas-ui/charts": ^0.8.0
+    "@saas-ui/charts": ^0.9.0
     "@saas-ui/date-picker": ^0.10.2
     "@saas-ui/forms": ^2.0.1
     "@tanstack/react-query": ^4.29.23
@@ -3474,7 +3474,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/styled-system@npm:2.9.1, @chakra-ui/styled-system@npm:^2.5.2, @chakra-ui/styled-system@npm:^2.9.1":
+"@chakra-ui/styled-system@npm:2.9.1, @chakra-ui/styled-system@npm:^2.9.1":
   version: 2.9.1
   resolution: "@chakra-ui/styled-system@npm:2.9.1"
   dependencies:
@@ -6096,18 +6096,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saas-ui/charts@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "@saas-ui/charts@npm:0.8.0"
+"@saas-ui/charts@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@saas-ui/charts@npm:0.9.0"
   dependencies:
-    "@chakra-ui/styled-system": ^2.5.2
-    recharts: ^2.3.2
+    "@chakra-ui/styled-system": ^2.9.1
+    recharts: ^2.6.2
   peerDependencies:
     "@chakra-ui/react": ">=2.4.8"
     "@emotion/react": ">=11"
     react: ">=18"
     react-dom: ">=18"
-  checksum: def835ab3a919eeb6e7c6ef7bacff9386ae9b41d6fa472e04c8c06b747c76d5ae5213a1c156ad94b3e3f8a27ca9fb878f0b038d273a77538081da4398a2a2b8c
+  checksum: 145b687b2ee57b3382925b73b7df536220826d5f8d90c5b6a934a7c0542e1f4992478961ba5abddf5180f3d3ff1a3504091ca348db540320fc9923dcd234c0ad
   languageName: node
   linkType: hard
 
@@ -19072,7 +19072,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"recharts@npm:^2.3.2":
+"recharts@npm:^2.6.2":
   version: 2.7.2
   resolution: "recharts@npm:2.7.2"
   dependencies:
