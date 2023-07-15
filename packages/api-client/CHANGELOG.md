@@ -1,5 +1,12 @@
 # @api/client
 
+## 0.3.4
+
+### Patch Changes
+
+- Updated dependencies [ef500b3]
+  - @api/mocks@0.7.1
+
 ## 0.3.3
 
 ### Patch Changes

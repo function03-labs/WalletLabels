@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.24.1
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+
 ## 0.24.0
 
 ### Minor Changes

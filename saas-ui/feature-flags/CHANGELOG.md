@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.12.2
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+
 ## 0.12.1
 
 ### Patch Changes

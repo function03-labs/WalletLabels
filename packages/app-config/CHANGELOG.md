@@ -1,5 +1,13 @@
 # @app/config
 
+## 0.5.1
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+- Updated dependencies [ef500b3]
+  - @saas-ui-pro/react@0.24.1
+
 ## 0.5.0
 
 ### Minor Changes

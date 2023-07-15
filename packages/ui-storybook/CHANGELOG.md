@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.6.1
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+
 ## 0.6.0
 
 ### Minor Changes
