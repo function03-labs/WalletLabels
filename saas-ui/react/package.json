@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/react",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "engines": {
     "node": ">=16 <=19"
   },

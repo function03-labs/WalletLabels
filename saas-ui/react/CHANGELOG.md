@@ -1,5 +1,12 @@
 # @saas-ui-pro/react
 
+## 0.24.2
+
+### Patch Changes
+
+- 4e958aa: Fix DataGrid striped variant name to be consistent with Chakra UI
+- 4e958aa: Page settings variant header now supports nav and toolbar
+
 ## 0.24.1
 
 ### Patch Changes

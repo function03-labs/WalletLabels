@@ -1,5 +1,14 @@
 # @ui/lib
 
+## 0.5.2
+
+### Patch Changes
+
+- f7615e9: Update date parser types
+- Updated dependencies [4e958aa]
+- Updated dependencies [4e958aa]
+  - @saas-ui-pro/react@0.24.2
+
 ## 0.5.1
 
 ### Patch Changes
