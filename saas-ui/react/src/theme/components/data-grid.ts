@@ -123,7 +123,7 @@ const variantSimple: PartsStyleFunction<typeof parts> = (props) => {
   }
 }
 
-const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
+const variantStriped: PartsStyleFunction<typeof parts> = (props) => {
   const { colorScheme: c } = props
 
   return {
@@ -169,7 +169,7 @@ const variantStripe: PartsStyleFunction<typeof parts> = (props) => {
 
 const variants = {
   simple: variantSimple,
-  stripe: variantStripe,
+  striped: variantStriped,
   unstyled: {},
 }
 

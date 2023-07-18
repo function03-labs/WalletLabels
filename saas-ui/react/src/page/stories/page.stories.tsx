@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StoryFn, Meta } from '@storybook/react'
-import { Box, BoxProps, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Button, Text } from '@chakra-ui/react'
 
 import { FiAlertCircle } from 'react-icons/fi'
 
@@ -157,6 +157,25 @@ export const VariantSettings = {
   render: () => (
     <Page variant="settings">
       <PageHeader title="Settings page" description="Manage your settings" />
+      <PageBody>
+        <PageContent px="0" />
+      </PageBody>
+    </Page>
+  ),
+}
+
+export const SettingsWithToolbar = {
+  render: () => (
+    <Page variant="settings">
+      <PageHeader
+        title="Settings page"
+        description="Manage your settings"
+        toolbar={
+          <Toolbar>
+            <Button variant="primary">Save</Button>
+          </Toolbar>
+        }
+      />
       <PageBody>
         <PageContent px="0" />
       </PageBody>
