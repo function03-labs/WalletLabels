@@ -1,5 +1,11 @@
 # @app/nextjs
 
+## 0.4.1
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+
 ## 0.4.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.7.1
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+
 ## 0.7.0
 
 ### Minor Changes

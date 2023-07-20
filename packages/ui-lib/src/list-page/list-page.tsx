@@ -58,8 +58,8 @@ export interface ListPageProps<D extends object>
   visibleColumns: string[]
   tabbar?: React.ReactNode
   view?: 'list' | 'board'
-  renderBoardHeader?: (data: D) => React.ReactNode
-  renderBoardItem?: (data: D) => React.ReactNode
+  renderBoardHeader?: (item: Row<D>) => React.ReactNode
+  renderBoardItem?: (item: Row<D>) => React.ReactNode
 }
 
 /**
@@ -178,7 +178,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     globalFilter,
   }
 
-  const getRowId = (row: any, index: number, parent: Row<D>) =>
+  const getRowId = (row: any, index: number, parent?: Row<D>) =>
     row.id || `${parent ? [parent.id, index].join('.') : index}`
 
   let content
@@ -190,7 +190,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     )
   } else if (view === 'board') {
     content = (
-      <DataBoard
+      <DataBoard<D>
         instanceRef={boardRef}
         px="6"
         height="100%"

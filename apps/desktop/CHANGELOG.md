@@ -1,5 +1,26 @@
 # electron-app
 
+## 0.14.3
+
+### Patch Changes
+
+- Updated dependencies [4e958aa]
+- Updated dependencies [4e958aa]
+  - @saas-ui-pro/react@0.24.2
+  - @app/features@14.1.1
+
+## 0.14.2
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+- Updated dependencies [ef500b3]
+- Updated dependencies [86f713a]
+  - @app/features@14.1.0
+  - @saas-ui-pro/feature-flags@0.12.2
+  - @ui/theme@0.6.2
+  - @saas-ui-pro/react@0.24.1
+
 ## 0.14.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/react",
-  "version": "0.24.0",
+  "version": "0.24.2",
   "engines": {
     "node": ">=16 <=19"
   },
@@ -69,7 +69,7 @@
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^15.1.0",
     "@saas-ui-pro/onboarding": "workspace:*",
-    "@saas-ui/forms": "^2.0.0",
+    "@saas-ui/forms": "^2.0.3",
     "@saas-ui/react-utils": "^2.0.0",
     "@saas-ui/theme": "^2.0.0",
     "@tanstack/react-table": "^8.9.3",

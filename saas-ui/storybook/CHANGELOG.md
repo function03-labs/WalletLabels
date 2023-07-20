@@ -1,5 +1,21 @@
 # saas-ui-storybook
 
+## 22.0.2
+
+### Patch Changes
+
+- Updated dependencies [4e958aa]
+- Updated dependencies [4e958aa]
+  - @saas-ui-pro/react@0.24.2
+
+## 22.0.1
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+- Updated dependencies [ef500b3]
+  - @saas-ui-pro/react@0.24.1
+
 ## 22.0.0
 
 ### Patch Changes

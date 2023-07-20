@@ -111,14 +111,15 @@ const variantSettings: PartsStyleFunction<typeof parts> = (props) => {
       px: 4,
     },
     header: {
-      flexDirection: 'column',
-      alignItems: 'stretch',
+      flexDirection: 'row',
+      alignItems: 'center',
       maxW: 'container.xl',
       margin: '0 auto',
       mb: 8,
       minH: 24,
       p: 0,
     },
+
     heading: {
       py: 8,
     },

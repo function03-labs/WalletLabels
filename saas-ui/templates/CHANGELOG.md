@@ -1,5 +1,11 @@
 # saas-ui-templates
 
+## 0.2.1
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+
 ## 0.2.0
 
 ### Minor Changes

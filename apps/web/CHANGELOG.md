@@ -1,5 +1,35 @@
 # nextjs-app
 
+## 0.19.1
+
+### Patch Changes
+
+- Updated dependencies [4e958aa]
+- Updated dependencies [f7615e9]
+- Updated dependencies [4e958aa]
+  - @saas-ui-pro/react@0.24.2
+  - @ui/lib@0.5.2
+  - @app/features@14.1.1
+
+## 0.19.0
+
+### Minor Changes
+
+- 86f713a: Improved AuthProvider configuration, AuthProvider can now be configured separately in auth.tsx
+
+### Patch Changes
+
+- ef500b3: Updated dependencies
+- Updated dependencies [ef500b3]
+- Updated dependencies [86f713a]
+  - @app/features@14.1.0
+  - @saas-ui-pro/feature-flags@0.12.2
+  - @app/nextjs@0.4.1
+  - @ui/theme@0.6.2
+  - @ui/lib@0.5.1
+  - @saas-ui-pro/react@0.24.1
+  - @api/client@0.3.4
+
 ## 0.18.0
 
 ### Minor Changes

@@ -6,29 +6,26 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { IconContext } from 'react-icons'
 
 import { SaasProvider, useHotkeys } from '@saas-ui/react'
-import { AuthProvider, AuthProviderProps } from '@saas-ui/auth'
-
 import { FeaturesProvider } from '@saas-ui-pro/feature-flags'
-
-import { I18nProvider } from '@app/i18n'
 
 import { theme } from '@ui/theme'
 import { ModalsProvider } from '@ui/lib'
 
+import { I18nProvider } from '@app/i18n'
 import { appHotkeys, segments } from '@app/config'
 
 import { queryClient } from '../lib/react-query'
 import { Hotkeys } from '../components/hotkeys'
+import { AuthProvider } from './auth'
 
 export interface AppProviderProps {
   linkComponent?: React.ElementType<any>
-  authService?: AuthProviderProps
   onError?: (error: Error, info: any) => void
   children: React.ReactNode
 }
 
 export const AppProvider: React.FC<AppProviderProps> = (props) => {
-  const { linkComponent, onError, authService, children } = props
+  const { linkComponent, onError, children } = props
 
   const [showDevtools, setShowDevtools] = React.useState(false)
 
@@ -47,7 +44,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
           onError={onError}
           theme={theme}
         >
-          <AuthProvider {...authService}>
+          <AuthProvider>
             <FeaturesProvider value={segments}>
               <I18nProvider>
                 <Hotkeys hotkeys={appHotkeys}>

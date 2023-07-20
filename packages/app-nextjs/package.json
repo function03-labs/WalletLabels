@@ -1,6 +1,6 @@
 {
   "name": "@app/nextjs",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Next.js specific shared code",
   "private": true,
   "type": "module",
@@ -11,6 +11,6 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "next": "^13.4.7"
+    "next": "^13.4.10"
   }
 }
