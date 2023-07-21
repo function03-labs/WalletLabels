@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.24.3
+
+### Patch Changes
+
+- 94bac41: Updated to @saas-ui/react@2.0.5
+
 ## 0.24.2
 
 ### Patch Changes

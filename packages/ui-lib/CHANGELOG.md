@@ -1,5 +1,13 @@
 # @ui/lib
 
+## 0.5.3
+
+### Patch Changes
+
+- 94bac41: Updated to @saas-ui/react@2.0.5
+- Updated dependencies [94bac41]
+  - @saas-ui-pro/react@0.24.3
+
 ## 0.5.2
 
 ### Patch Changes
