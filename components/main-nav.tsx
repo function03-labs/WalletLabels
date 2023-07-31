@@ -31,16 +31,28 @@ export function MainNav({ items }: MainNavProps) {
           {items?.map(
             (item, index) =>
               item.href && (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm",
-                    item.disabled && "cursor-not-allowed opacity-80"
-                  )}
-                >
-                  {item.title}
-                </Link>
+                <div>
+
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className={cn(
+                      "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm",
+                      item.disabled && "cursor-not-allowed opacity-80"
+                    )}
+                  >
+
+                    {item.title}
+                    {item.new && (
+                      <span className="relative bottom-[7px] flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500"></span>
+                      </span>
+                    )
+                    }
+                  </Link>
+                </div>
+
               )
           )}
         </nav>

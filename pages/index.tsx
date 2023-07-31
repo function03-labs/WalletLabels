@@ -1,16 +1,13 @@
 // import dynamic grid
 
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import dynamic from "next/dynamic"
-import Head from "next/head"
 import Link from "next/link"
 import { useLabels } from "@/hooks/searchQuery"
-import { useInView } from "framer-motion"
-import { Search } from "lucide-react"
+import { ChevronRightIcon, Search } from "lucide-react"
 // import mongp from "mongodb"
 import { useTheme } from "next-themes"
 import CountUp from "react-countup"
-import styles from "styles/index.module.scss"
 
 // imprt color mode from config
 
@@ -19,6 +16,8 @@ import getHistory from "@/lib/getHistory"
 import { Layout } from "@/components/layout"
 import { buttonVariants } from "@/components/ui/button"
 import { connectToDatabase } from "../lib/mongodb"
+import { header } from "./header"
+import { Footer } from "./Footer"
 
 const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 
@@ -76,17 +75,26 @@ export default function IndexPage(props) {
 
   return (
     <Layout>
-      <Head>
-        <title>WalletLabels</title>
-        <meta
-          name="description"
-          content="Wallet Labels - Easily identify your favorite wallets and exchanges with more than 7.5M labeled addressesS"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      {header()}
       <section className="container grid items-center gap-10 pt-12 pb-8 md:py-20">
         <div className="flex flex-col items-center gap-4">
+          {/* <div className="mt-24 sm:mt-32 lg:mt-16">
+            <a href="#" className="inline-flex space-x-6">
+              <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+                What's new
+              </span>
+              <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
+                <span>Just shipped v1.0</span>
+                <ChevronRightIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
+              </span>
+            </a>
+          </div> */}
+          <div className="hidden sm:flex sm:justify-center">
+            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
+              Announcing Social Labels. <a href="#" className="font-semibold text-blue-800 dark:text-white"><span className="absolute inset-0" aria-hidden="true"></span>Access now <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+
           <h1 className="text-center text-4xl font-semibold leading-tight sm:text-xl md:text-5xl lg:text-6xl">
             Wallet Labels <br className="hidden sm:inline" />
             for Popular Addresses
@@ -169,49 +177,4 @@ export default function IndexPage(props) {
   )
 }
 
-function Footer() {
-  const { theme } = useTheme()
-  const [defaulttheme, setDefaultTheme] = useState("light")
-  const ref = useRef<HTMLElement | null>(null)
-  const isInView = useInView(ref, {
-    once: true,
-    margin: "100px",
-  })
 
-  useEffect(() => {
-    if (theme == "system") {
-      setDefaultTheme(
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light"
-      )
-    } else {
-      setDefaultTheme(theme)
-    }
-  }, [theme])
-
-  return (
-    <footer
-      ref={ref}
-      className={styles.footer}
-      data-animate={isInView}
-      data-theme={defaulttheme ? defaulttheme : "light"}
-    >
-      <div className={styles.footerText}>
-        Crafted by{" "}
-        <a
-          href="https://twitter.com/aiden0x4"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-slate-100 dark:hover:bg-slate-800"
-        >
-          <img
-            src="https://pbs.twimg.com/profile_images/1626383708054757377/ejkm30BA_400x400.jpg"
-            alt="Avatar of Aiden"
-          />
-          Aiden
-        </a>
-      </div>
-    </footer>
-  )
-}

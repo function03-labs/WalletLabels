@@ -26,6 +26,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function ApiPage({ spec }) {
   const { setTheme } = useTheme()
+  
   //set theme light
   setTheme("light")
   return (
