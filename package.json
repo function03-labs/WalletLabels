@@ -88,6 +88,7 @@
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "@wixc3/react-board": "^2.2.1",
     "autoprefixer": "^10.4.13",
     "drizzle-kit": "^0.19.11",
     "eslint": "^8.31.0",
