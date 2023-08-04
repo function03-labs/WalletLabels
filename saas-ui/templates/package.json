@@ -1,15 +1,15 @@
 {
   "name": "saas-ui-templates",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "devDependencies": {
     "@chakra-ui/react": "^2.7.1",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@saas-ui-pro/react": "^0.24.1",
-    "@saas-ui/react": "^2.0.2",
+    "@saas-ui-pro/react": "^0.24.3",
+    "@saas-ui/react": "^2.0.5",
     "framer-motion": "^10.12.21",
     "lucide-react": "^0.260.0",
     "react": "^18.2.0",
