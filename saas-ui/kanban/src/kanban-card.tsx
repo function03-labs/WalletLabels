@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react'
-import type {
-  DraggableSyntheticListeners,
-  UniqueIdentifier,
-} from '@dnd-kit/core'
-import type { Transform } from '@dnd-kit/utilities'
+import type { UniqueIdentifier } from '@dnd-kit/core'
 
 import {
   chakra,

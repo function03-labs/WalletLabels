@@ -19,6 +19,7 @@ import {
   DndContextProps,
 } from '@dnd-kit/core'
 import { arrayMove, SortingStrategy } from '@dnd-kit/sortable'
+import { createRange } from './utilities/createRange'
 
 export type KanbanItems = Record<UniqueIdentifier, UniqueIdentifier[]>
 
@@ -39,7 +40,16 @@ export interface UseKanbanContainerProps {
 export const useKanbanContainer = (props: UseKanbanContainerProps) => {
   const { cancelDrop, coordinateGetter, items: initialItems, modifiers } = props
 
-  const [items, setItems] = useState<KanbanItems>(() => initialItems ?? {})
+  // const [items, setItems] = useState<KanbanItems>(() => initialItems ?? {})
+  const [items, setItems] = useState<KanbanItems>(
+    () =>
+      initialItems ?? {
+        A: createRange(20, (index) => `A${index + 1}`),
+        B: createRange(20, (index) => `B${index + 1}`),
+        C: createRange(20, (index) => `C${index + 1}`),
+        D: createRange(20, (index) => `D${index + 1}`),
+      },
+  )
   const [columns, setColumns] = useState(
     Object.keys(items) as UniqueIdentifier[],
   )
@@ -84,16 +94,13 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
         }
 
         if (overId in items) {
-          const ColumnItems = items[overId]
-
-          // If a Column is matched and it contains items (columns 'A', 'B', 'C')
-          if (ColumnItems.length > 0) {
-            // Return the closest droppable within that Column
+          const columnItems = items[overId]
+          if (columnItems.length > 0) {
             overId = closestCenter({
               ...args,
               droppableContainers: args.droppableContainers.filter(
                 (column) =>
-                  column.id !== overId && ColumnItems.includes(column.id),
+                  column.id !== overId && columnItems.includes(column.id),
               ),
             })[0]?.id
           }
@@ -146,13 +153,13 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
   }
 
   const getIndex = (id: UniqueIdentifier) => {
-    const Column = findColumn(id)
+    const column = findColumn(id)
 
-    if (!Column) {
+    if (!column) {
       return -1
     }
 
-    const index = items[Column].indexOf(id)
+    const index = items[column].indexOf(id)
 
     return index
   }

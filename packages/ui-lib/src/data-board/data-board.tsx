@@ -17,15 +17,10 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getGroupedRowModel,
-  getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { DragOverlay, UniqueIdentifier } from '@dnd-kit/core'
 import {
-  Card,
-  CardBody,
   HTMLChakraProps,
-  Portal,
   forwardRef,
   useControllableState,
 } from '@chakra-ui/react'
@@ -55,38 +50,39 @@ export const DataBoard = forwardRef(
       groupBy,
       defaultGroupBy,
       onGroupChange,
-      renderItem = () => null,
       renderHeader = () => null,
+      renderItem = () => null,
       getRowId,
       initialState,
       state,
       ...rest
     } = props
 
-    const _renderItem = React.useMemo(() => renderItem, [])
-    const _renderHeader = React.useMemo(() => renderHeader, [])
+    const _renderItem = React.useMemo(() => renderItem, [renderItem])
+    const _renderHeader = React.useMemo(() => renderHeader, [renderHeader])
 
-    // const [grouping, setGrouping] = useControllableState<GroupingState>({
-    //   defaultValue: defaultGroupBy ? [defaultGroupBy] : [],
-    //   value: groupBy ? [groupBy] : [],
-    //   onChange: (grouping) => onGroupChange?.(grouping[0]),
-    // })
+    const [grouping, setGrouping] = useControllableState<GroupingState>({
+      defaultValue: defaultGroupBy ? [defaultGroupBy] : [],
+      value: groupBy ? [groupBy] : [],
+      onChange: (grouping) => onGroupChange?.(grouping[0]),
+    })
 
     const instance = useReactTable({
       data: React.useMemo(() => data, []),
       columns: React.useMemo(() => columns, []),
-      // onGroupingChange: setGrouping,
+      onGroupingChange: setGrouping,
       getGroupedRowModel: getGroupedRowModel(),
       getCoreRowModel: getCoreRowModel(),
-      // getPaginationRowModel: getPaginationRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
-      debugTable: true,
       getRowId,
-      initialState,
-      state: {
-        ...state,
-        grouping: groupBy ? [groupBy] : [],
-      },
+      initialState: React.useMemo(() => initialState, []),
+      state: React.useMemo(
+        () => ({
+          ...state,
+          grouping,
+        }),
+        [state],
+      ),
       ...rest,
     })
 
@@ -94,7 +90,7 @@ export const DataBoard = forwardRef(
     React.useImperativeHandle(instanceRef, () => instance, [instanceRef])
 
     const items = React.useMemo(() => {
-      const items: Record<UniqueIdentifier, UniqueIdentifier[]> = {}
+      const items: Record<string, string[]> = {}
       instance.getRowModel().rows.forEach((row) => {
         if (row.getIsGrouped()) {
           items[row.id] = row.subRows.map((subRow) => subRow.id)
@@ -103,37 +99,31 @@ export const DataBoard = forwardRef(
       return items
     }, [])
 
-    const content = React.useMemo(
-      () =>
-        instance.getRowModel().rows.map((row) => {
-          if (row.getIsGrouped()) {
-            return (
-              <KanbanColumn key={row.id} id={row.id}>
-                <KanbanColumnHeader>
-                  {flexRender(_renderHeader, row)}
-                </KanbanColumnHeader>
-                <KanbanColumnBody>
-                  {row.subRows.map((subRow) => {
-                    return (
-                      <KanbanCard key={subRow.id} id={subRow.id}>
-                        {flexRender(_renderItem, subRow)}
-                      </KanbanCard>
-                    )
-                  })}
-                </KanbanColumnBody>
-              </KanbanColumn>
-            )
-          }
-        }),
-      [],
-    )
-
     return (
       <Kanban ref={ref} items={items} {...rest}>
-        {({ activeId }) => {
+        {({ columns, items, activeId }) => {
           return (
             <>
-              {content}
+              {columns.map((id) => {
+                const row = instance.getRowModel().rowsById[id]
+                return (
+                  <KanbanColumn key={id} id={id}>
+                    <KanbanColumnHeader>
+                      {flexRender(_renderHeader, row)}
+                    </KanbanColumnHeader>
+                    <KanbanColumnBody>
+                      {items[id].map((itemId) => {
+                        const item = instance.getRowModel().rowsById[itemId]
+                        return item ? (
+                          <KanbanCard key={item.id} id={item.id}>
+                            {flexRender(_renderItem, item)}
+                          </KanbanCard>
+                        ) : null
+                      })}
+                    </KanbanColumnBody>
+                  </KanbanColumn>
+                )
+              })}
               <KanbanDragOverlay>
                 {activeId && (
                   <KanbanCard id={activeId}>
