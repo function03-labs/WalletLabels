@@ -27,6 +27,28 @@ export type KanbanItems = Record<UniqueIdentifier, UniqueIdentifier[]>
 const TRASH_ID = 'void'
 const PLACEHOLDER_ID = 'placeholder'
 
+export type OnCardDragEndHandler = (args: {
+  items: KanbanItems
+  from: {
+    columnId: UniqueIdentifier
+    index: number
+  }
+  to: {
+    columnId: UniqueIdentifier
+    index: number
+  }
+}) => void
+
+export type OnColumnDragEndHandler = (args: {
+  items: KanbanItems
+  from: {
+    index: number
+  }
+  to: {
+    index: number
+  }
+}) => void
+
 export interface UseKanbanContainerProps {
   adjustScale?: boolean
   cancelDrop?: CancelDrop
@@ -38,26 +60,8 @@ export interface UseKanbanContainerProps {
   modifiers?: Modifiers
   orientation?: 'horizontal' | 'vertical'
   onChange?: (items: KanbanItems) => void
-  onCardDragEnd?: (args: {
-    items: KanbanItems
-    from: {
-      columnId: UniqueIdentifier
-      index: number
-    }
-    to: {
-      columnId: UniqueIdentifier
-      index: number
-    }
-  }) => void
-  onColumnDragEnd?: (args: {
-    items: KanbanItems
-    from: {
-      index: number
-    }
-    to: {
-      index: number
-    }
-  }) => void
+  onCardDragEnd?: OnCardDragEndHandler
+  onColumnDragEnd?: OnColumnDragEndHandler
 }
 
 export const useKanbanContainer = (props: UseKanbanContainerProps) => {

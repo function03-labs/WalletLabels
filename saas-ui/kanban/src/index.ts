@@ -4,6 +4,8 @@ export {
   type KanbanItems,
   type UseKanbanContainerProps,
   type UseKanbanContainerReturn,
+  type OnCardDragEndHandler,
+  type OnColumnDragEndHandler,
   useKanbanContainer,
 } from './use-kanban-container'
 export {
@@ -23,7 +25,7 @@ export {
   KanbanCardHeader,
   type KanbanCardProps,
 } from './kanban-card'
-export { Action, Handle, Remove } from './kanban-action'
+export { KanbanAction, KanbanHandle, KanbanRemove } from './kanban-action'
 export {
   KanbanDragOverlay,
   type KanbanDragOverlayProps,

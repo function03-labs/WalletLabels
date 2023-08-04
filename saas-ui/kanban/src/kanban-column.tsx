@@ -1,8 +1,6 @@
 import React from 'react'
 import { ButtonGroup, HTMLChakraProps, chakra } from '@chakra-ui/react'
 
-import { Handle, Remove } from './kanban-action'
-
 import { forwardRef } from '@chakra-ui/react'
 import { cx, dataAttr } from '@chakra-ui/utils'
 import { useKanbanContext } from './kanban-context'

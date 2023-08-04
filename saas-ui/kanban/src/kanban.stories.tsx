@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { UniqueIdentifier } from '@dnd-kit/core'
-
 import {
   KanbanCard,
   KanbanColumn,
@@ -16,7 +14,11 @@ import { Card, CardBody } from '@chakra-ui/react'
 import { KanbanColumnBody, KanbanColumnHeader } from './kanban-column'
 import { KanbanCardProps } from './kanban-card'
 import { useKanbanContext } from './kanban-context'
-import { KanbanItems } from './use-kanban-container'
+import {
+  KanbanItems,
+  OnCardDragEndHandler,
+  OnColumnDragEndHandler,
+} from './use-kanban-container'
 
 export default {
   title: 'Components/Data Display/Kanban',
@@ -45,7 +47,7 @@ function BoardColumn({
   ...props
 }: KanbanColumnProps & {
   disabled?: boolean
-  id: UniqueIdentifier
+  id: string | number
 }) {
   const { items } = useKanbanContext()
 
@@ -57,21 +59,6 @@ function BoardColumn({
       <KanbanColumnBody>{children}</KanbanColumnBody>
     </KanbanColumn>
   )
-}
-
-function getColor(id: UniqueIdentifier) {
-  switch (String(id)[0]) {
-    case 'A':
-      return '#7193f1'
-    case 'B':
-      return '#ffda6c'
-    case 'C':
-      return '#00bcd4'
-    case 'D':
-      return '#ef769f'
-  }
-
-  return undefined
 }
 
 function BoardCard({ id, ...rest }: Omit<KanbanCardProps, 'children'>) {
@@ -94,14 +81,27 @@ function KanbanBoard(props: Omit<KanbanProps, 'children' | 'items'>) {
     }
   }, [])
 
+  const onCardDragEnd: OnCardDragEndHandler = React.useCallback((args) => {
+    console.log(args)
+  }, [])
+
+  const onColumnDragEnd: OnColumnDragEndHandler = React.useCallback((args) => {
+    console.log(args)
+  }, [])
+
   return (
-    <Kanban items={items} height="100%">
+    <Kanban
+      defaultItems={items}
+      height="100%"
+      onCardDragEnd={onCardDragEnd}
+      onColumnDragEnd={onColumnDragEnd}
+    >
       {({ columns, items, isSortingColumn, addColumn, activeId }) => {
-        function renderSortableItemDragOverlay(id: UniqueIdentifier) {
+        function renderSortableItemDragOverlay(id: string | number) {
           return <BoardCard id={id} cursor="grabbing" />
         }
 
-        function renderColumnDragOverlay(columnId: UniqueIdentifier) {
+        function renderColumnDragOverlay(columnId: string | number) {
           return (
             <KanbanColumn id={columnId}>
               {items[columnId].map((item, index) => (
