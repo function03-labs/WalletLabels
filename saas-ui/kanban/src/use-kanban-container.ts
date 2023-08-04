@@ -19,7 +19,7 @@ import {
   DndContextProps,
 } from '@dnd-kit/core'
 import { arrayMove, SortingStrategy } from '@dnd-kit/sortable'
-import { createRange } from './utilities/createRange'
+import { coordinateGetter as _coordinateGetter } from './utilities/coordinate-getter'
 
 export type KanbanItems = Record<UniqueIdentifier, UniqueIdentifier[]>
 
@@ -38,18 +38,15 @@ export interface UseKanbanContainerProps {
 }
 
 export const useKanbanContainer = (props: UseKanbanContainerProps) => {
-  const { cancelDrop, coordinateGetter, items: initialItems, modifiers } = props
+  const {
+    cancelDrop,
+    coordinateGetter = _coordinateGetter,
+    items: initialItems,
+    modifiers,
+  } = props
 
-  // const [items, setItems] = useState<KanbanItems>(() => initialItems ?? {})
-  const [items, setItems] = useState<KanbanItems>(
-    () =>
-      initialItems ?? {
-        A: createRange(20, (index) => `A${index + 1}`),
-        B: createRange(20, (index) => `B${index + 1}`),
-        C: createRange(20, (index) => `C${index + 1}`),
-        D: createRange(20, (index) => `D${index + 1}`),
-      },
-  )
+  const [items, setItems] = useState<KanbanItems>(() => initialItems ?? {})
+
   const [columns, setColumns] = useState(
     Object.keys(items) as UniqueIdentifier[],
   )
