@@ -17,14 +17,24 @@ import {
 
 export interface KanbanProps
   extends UseKanbanContainerProps,
-    Omit<HTMLChakraProps<'div'>, 'children'> {
+    Omit<HTMLChakraProps<'div'>, 'children' | 'onChange'> {
   orientation?: 'horizontal' | 'vertical'
   children: MaybeRenderProp<ReturnType<typeof useKanbanContainer>>
   isSortable?: boolean
 }
 
 export const Kanban = forwardRef<KanbanProps, 'div'>((props, ref) => {
-  const { orientation, children, isSortable, items, ...rest } = props
+  const {
+    orientation,
+    children,
+    isSortable,
+    items,
+    defaultItems,
+    onChange,
+    onCardDragEnd,
+    onColumnDragEnd,
+    ...rest
+  } = props
 
   const context = useKanbanContainer(props)
 

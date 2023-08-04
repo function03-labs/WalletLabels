@@ -6,6 +6,7 @@ import {
   KanbanColumnHeader,
   KanbanColumnBody,
   KanbanDragOverlay,
+  KanbanProps,
 } from '@saas-ui-pro/kanban'
 import {
   ColumnDef,
@@ -26,8 +27,9 @@ import {
 } from '@chakra-ui/react'
 
 export interface DataBoardProps<Data = any>
-  extends HTMLChakraProps<'div'>,
-    Omit<TableOptions<Data>, 'getCoreRowModel'> {
+  extends Omit<HTMLChakraProps<'div'>, 'onChange'>,
+    Omit<TableOptions<Data>, 'getCoreRowModel'>,
+    Pick<KanbanProps, 'onChange' | 'onCardDragEnd' | 'onColumnDragEnd'> {
   instanceRef?: React.Ref<Table<Data>>
   data: Data[]
   columns: ColumnDef<Data>[]
@@ -100,7 +102,7 @@ export const DataBoard = forwardRef(
     }, [])
 
     return (
-      <Kanban ref={ref} items={items} {...rest}>
+      <Kanban ref={ref} defaultItems={items} {...rest}>
         {({ columns, items, activeId }) => {
           return (
             <>

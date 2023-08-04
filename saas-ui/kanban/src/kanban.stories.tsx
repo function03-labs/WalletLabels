@@ -1,16 +1,6 @@
 import React from 'react'
 
-import {
-  CancelDrop,
-  DragOverlay,
-  DropAnimation,
-  Modifiers,
-  UniqueIdentifier,
-  KeyboardCoordinateGetter,
-  defaultDropAnimationSideEffects,
-} from '@dnd-kit/core'
-
-import { SortingStrategy } from '@dnd-kit/sortable'
+import { UniqueIdentifier } from '@dnd-kit/core'
 
 import {
   KanbanCard,
@@ -21,8 +11,8 @@ import {
   KanbanDragOverlay,
 } from './'
 
-import { createRange } from './utilities/createRange'
-import { Card, CardBody, Portal } from '@chakra-ui/react'
+import { createRange } from './utilities/create-range'
+import { Card, CardBody } from '@chakra-ui/react'
 import { KanbanColumnBody, KanbanColumnHeader } from './kanban-column'
 import { KanbanCardProps } from './kanban-card'
 import { useKanbanContext } from './kanban-context'

@@ -20,6 +20,7 @@ import {
 } from '@dnd-kit/core'
 import { arrayMove, SortingStrategy } from '@dnd-kit/sortable'
 import { coordinateGetter as _coordinateGetter } from './utilities/coordinate-getter'
+import { useControllableState } from '@chakra-ui/react'
 
 export type KanbanItems = Record<UniqueIdentifier, UniqueIdentifier[]>
 
@@ -31,26 +32,60 @@ export interface UseKanbanContainerProps {
   cancelDrop?: CancelDrop
   columns?: number
   coordinateGetter?: KeyboardCoordinateGetter
-  items: KanbanItems
+  defaultItems?: KanbanItems
+  items?: KanbanItems
   strategy?: SortingStrategy
   modifiers?: Modifiers
   orientation?: 'horizontal' | 'vertical'
+  onChange?: (items: KanbanItems) => void
+  onCardDragEnd?: (args: {
+    items: KanbanItems
+    from: {
+      columnId: UniqueIdentifier
+      index: number
+    }
+    to: {
+      columnId: UniqueIdentifier
+      index: number
+    }
+  }) => void
+  onColumnDragEnd?: (args: {
+    items: KanbanItems
+    from: {
+      index: number
+    }
+    to: {
+      index: number
+    }
+  }) => void
 }
 
 export const useKanbanContainer = (props: UseKanbanContainerProps) => {
   const {
     cancelDrop,
     coordinateGetter = _coordinateGetter,
-    items: initialItems,
+    defaultItems,
+    items: itemsProp,
+    onChange,
     modifiers,
+    onCardDragEnd,
+    onColumnDragEnd,
   } = props
 
-  const [items, setItems] = useState<KanbanItems>(() => initialItems ?? {})
+  const [items, setItems] = useControllableState<KanbanItems>({
+    defaultValue: defaultItems,
+    value: itemsProp,
+    onChange,
+  })
 
   const [columns, setColumns] = useState(
     Object.keys(items) as UniqueIdentifier[],
   )
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
+  const initialPosition = useRef<{
+    columnId: UniqueIdentifier
+    index: number
+  } | null>(null)
   const lastOverId = useRef<UniqueIdentifier | null>(null)
   const recentlyMovedToNewColumn = useRef(false)
   const isSortingColumn = activeId ? columns.includes(activeId) : false
@@ -188,6 +223,10 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
         },
       },
       onDragStart: ({ active }) => {
+        initialPosition.current = {
+          columnId: findColumn(active.id) || '',
+          index: getIndex(active.id),
+        }
         setActiveId(active.id)
         setClonedItems(items)
       },
@@ -251,6 +290,16 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
             const activeIndex = columns.indexOf(active.id)
             const overIndex = columns.indexOf(over.id)
 
+            onColumnDragEnd?.({
+              items,
+              from: {
+                index: activeIndex,
+              },
+              to: {
+                index: overIndex,
+              },
+            })
+
             return arrayMove(columns, activeIndex, overIndex)
           })
         }
@@ -269,6 +318,7 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
           return
         }
 
+        // remove a card
         if (overId === TRASH_ID) {
           setItems((items) => ({
             ...items,
@@ -278,6 +328,7 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
           return
         }
 
+        // create a new column
         if (overId === PLACEHOLDER_ID) {
           const newColumnId = getNextColumnId()
 
@@ -302,18 +353,41 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
           const overIndex = items[overColumn].indexOf(overId)
 
           if (activeIndex !== overIndex) {
-            setItems((items) => ({
-              ...items,
-              [overColumn]: arrayMove(
-                items[overColumn],
-                activeIndex,
-                overIndex,
-              ),
-            }))
+            setItems((items) => {
+              const updatedItems = {
+                ...items,
+                [overColumn]: arrayMove(
+                  items[overColumn],
+                  activeIndex,
+                  overIndex,
+                ),
+              }
+
+              onCardDragEnd?.({
+                items: updatedItems,
+                from: initialPosition.current as any,
+                to: {
+                  columnId: overColumn,
+                  index: overIndex,
+                },
+              })
+
+              return updatedItems
+            })
+          } else if (initialPosition.current) {
+            onCardDragEnd?.({
+              items,
+              from: initialPosition.current as any,
+              to: {
+                columnId: overColumn,
+                index: overIndex,
+              },
+            })
           }
         }
 
         setActiveId(null)
+        initialPosition.current = null
       },
       cancelDrop,
       onDragCancel,

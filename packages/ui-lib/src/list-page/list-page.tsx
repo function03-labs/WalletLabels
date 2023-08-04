@@ -198,6 +198,9 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         data={data}
         renderHeader={renderBoardHeader}
         renderItem={renderBoardItem}
+        onCardDragEnd={(args) => {
+          console.log(args)
+        }}
         getRowId={getRowId}
         groupBy="status"
         state={state}
