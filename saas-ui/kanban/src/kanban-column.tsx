@@ -61,7 +61,7 @@ const useKanbanColumn = (props: KanbanColumnProps) => {
         transition,
         transform: CSS.Translate.toString(transform),
         ['data-dragging']: dataAttr(isDragging),
-        ['data-hover']: dataAttr(isOverColumn),
+        ['data-over']: dataAttr(isOverColumn),
       }),
       [isOverColumn],
     ),
@@ -104,7 +104,6 @@ export const KanbanColumn = forwardRef<KanbanColumnProps, 'div'>(
       borderRadius: '0.25rem',
       minWidth: '280px',
       minHeight: '1px',
-      _hover: 'rgba(0, 0, 0, 0.05)',
     }
 
     const context = useKanbanColumn(props)
