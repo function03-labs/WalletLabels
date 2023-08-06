@@ -15,8 +15,12 @@ import { socialIcons } from "../components/socialIcons"
 
 export async function getStaticProps() {
   try {
-    const apiUrl = "http://localhost:3000/api/query_socials" // The API endpoint you've set up
-    const response = await axios.get(apiUrl)
+    const apiUrl = "http://localhost:3000/api/query_socials?query=" // The API endpoint you've set up
+    const response = await axios.get(apiUrl, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
 
     // Check if the response status is OK (200)
     if (response.status === 200) {

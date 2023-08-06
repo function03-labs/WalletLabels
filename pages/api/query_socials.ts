@@ -12,6 +12,7 @@ interface Label {
   followers: number
   verified: boolean
   updated: string
+  pfp: string
 }
 
 interface Response {
@@ -79,7 +80,7 @@ export default async function handler(
         .find()
         .limit(limit)
         .toArray()
-      console.log(labels, db)
+      // console.log(labels, db)
     } else {
       const atlasSearchQuery = [
         {
@@ -112,6 +113,7 @@ export default async function handler(
         followers: label.followers,
         verified: label.verified,
         updated: label.updated,
+        pfp: label.pfp,
       }
     })
   } catch (error) {
