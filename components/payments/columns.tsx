@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowDown, ArrowUp, MoreHorizontal } from "lucide-react"
+import { ArrowDown, ArrowUp, MoreHorizontal, BadgeCheck } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -10,6 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { useEnsResolver } from "@/hooks/useEnsResolver"
+
 
 export interface Label {
   _id: string
@@ -30,22 +33,43 @@ export const columns: ColumnDef<Label>[] = [
     cell: ({ row }) => {
       const label = row.original
       return (
-        <div className="flex items-center">
+        <div className="flex items-center gap-1">
           {label.pfp && (
             <img
               src={label.pfp}
               alt={label.name}
-              className="h-8 w-8 rounded-full mr-2"
+              className="mr-2 h-8 w-8 rounded-full"
             />
           )}
           {label.name}
           {label.verified && (
-            <span className="ml-2 px-2 py-1 text-xs bg-blue-500 text-white rounded-full">
-              Verified
-            </span>
+            <BadgeCheck size={20} className="text-blue-500 
+            hover:scale-125" />
           )}
         </div>
       )
+    },
+  },
+  {
+    accessorKey: "address",
+    header: "Address",
+    cell: ({ row }) => {
+      const { ens } = row.original;
+      const { address, loading, hasError } = useEnsResolver(ens);
+
+      // If the data is loading, return a loading skeleton
+      if (loading && !hasError) {
+        return <div className="skeleton-loader">Loading...</div>;
+      }
+      if (hasError) {
+        return <div className="skeleton-loader">Error</div>;
+      }
+
+      // If the address is too long, truncate it
+      console.log(address, hasError);
+      const truncatedAddress = `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+
+      return <div title={address}>{truncatedAddress}</div>;
     },
   },
   {
@@ -59,38 +83,29 @@ export const columns: ColumnDef<Label>[] = [
       const label = row.original
       return (
         <div className="flex items-center">
-          {label.verified && (
-            <span className="mr-1 text-blue-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 inline-block"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </span>
-          )}
-          {label.handle}
+
+          <Link
+            href={`https://twitter.com/${label.handle}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            {`@${label.handle.toLowerCase()}`}
+          </Link>
         </div>
       )
     },
   },
   {
     accessorKey: "followers",
-    header: "Followers",
+    header: ({ column }) => <div className=" text-right">Followers</div>,
     cell: ({ row }) => {
       const followers = row.getValue("followers")
       const formattedFollowers = followers.toLocaleString() // Format followers with commas
       return <div className="text-right">{formattedFollowers}</div>
     },
   },
+
   {
     id: "actions",
     cell: ({ row }) => {
@@ -134,3 +149,4 @@ export const columns: ColumnDef<Label>[] = [
     },
   },
 ]
+

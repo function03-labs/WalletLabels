@@ -64,7 +64,7 @@
     "fuse.js": "^6.6.2",
     "hashcode": "^1.0.3",
     "lodash": "^4.17.21",
-    "lucide-react": "^0.105.0-alpha.4",
+    "lucide-react": "^0.263.1",
     "marked": "^4.2.12",
     "mongodb": "^5.1.0",
     "next": "^13.1.6",

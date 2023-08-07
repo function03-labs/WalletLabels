@@ -5,7 +5,7 @@ import Link from "next/link"
 import axios from "axios"
 import CountUp from "react-countup"
 import { FaTwitter } from "react-icons/fa"
-
+import { MdVerified } from "react-icons/md"
 import { siteConfig } from "@/config/site"
 import { Layout } from "@/components/layout"
 import Page, { getData } from "@/components/payments/page"
@@ -81,7 +81,7 @@ export default function SocialsPage({ data }) {
               Social Labels <br className="hidden sm:inline" />
             </h1>
             <div className="absolute bottom-[-15px] right-[-30px] text-blue-500   opacity-40 hover:animate-ping ">
-              <FaTwitter size={52} />
+              <MdVerified size={52} />
             </div>
           </div>
           <p className="max-w-[700px] text-center text-lg text-slate-700 dark:text-slate-400 sm:text-lg">
