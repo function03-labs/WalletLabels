@@ -10,9 +10,12 @@ import { siteConfig } from "@/config/site"
 import { Layout } from "@/components/layout"
 import Page, { getData } from "@/components/payments/page"
 import DemoPage from "@/components/payments/page"
-import { buttonVariants } from "@/components/ui/button"
 import { socialIcons } from "../components/socialIcons"
+import { fontMonoJetBrains } from "./_app"
+import { Chip } from "@nextui-org/react";
+import classnames from 'classnames';
 
+import { socialMediaProviders } from "@/components/socialMediaProviders"
 export async function getStaticProps() {
   try {
     const apiUrl = "http://localhost:3000/api/query_socials?query=" // The API endpoint you've set up
@@ -55,14 +58,15 @@ export async function getStaticProps() {
 }
 
 export default function SocialsPage({ data }) {
-  // const [data, setData] = React.useState([])
-  // React.useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await getData()
-  //     setData(response)
-  //   }
-  //   fetchData()
-  // }, [])
+  const [selectedProviders, setSelectedProviders] = React.useState([]);
+  const handleChipClick = (name) => {
+    if (selectedProviders.includes(name)) {
+      setSelectedProviders(prev => prev.filter(provider => provider !== name));
+    } else {
+      setSelectedProviders(prev => [...prev, name]);
+    }
+  };
+
 
   return (
     <Layout>
@@ -85,13 +89,48 @@ export default function SocialsPage({ data }) {
             </div>
           </div>
           <p className="max-w-[700px] text-center text-lg text-slate-700 dark:text-slate-400 sm:text-lg">
-            Map Ethereum addresses to their correlated social identities, making
+            Map {" "}
+            <CountUp
+              className="inline-block font-bold text-gray-900 underline decoration-blue-300 decoration-dashed underline-offset-4 dark:text-gray-100 dark:decoration-blue-500"
+
+              style={fontMonoJetBrains.style}
+              end={120000}
+              duration={2}
+              separator=","
+            />{"+ "}
+
+            Ethereum addresses to their correlated social identities, making
             it easy to track, follow and interact with your favorite accounts.
           </p>
           {socialIcons}
+          {/* Add select social media badges to pick from */}
+          <div className="flex gap-1 mt-10">
+            <div className=" block">Filter by platforms:</div>
+            <div className="flex gap-1">
+              {socialMediaProviders.map((provider) => (
+                <Chip
+                  key={provider.name}
+                  startContent={<provider.icon size={18} className="mx-1" />}
+                  className={` cursor-pointer duration-150 transition-all  hover:bg-gray-100 dark:hover:bg-gray-800
+                ${provider.textColor} 
+                ${selectedProviders.includes(provider.name) ? provider.textColor : ''}  
+                ${selectedProviders.includes(provider.name) ? provider.bgColor : ''}
+                `}
+                  // className={`duration-150 transition-all cursor-pointer ${provider.bgColor} ${provider.textColor} hover:${provider.hoverBgColor} hover:${provider.hoverTextColor} ${selectedProviders.includes(provider.name) ? provider.hoverBgColor : ''} ${selectedProviders.includes(provider.name) ? provider.hoverTextColor : ''}`}
+
+                  // variant="bordered"
+                  variant={selectedProviders.includes(provider.name) ? 'faded' : 'dot'}
+
+                  onClick={() => handleChipClick(provider.name)}
+                >
+                  {provider.name}
+                </Chip>
+              ))}              </div>
+
+          </div>
           <DemoPage data={data} />
         </div>
       </section>
-    </Layout>
+    </Layout >
   )
 }

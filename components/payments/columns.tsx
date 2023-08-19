@@ -1,5 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowDown, ArrowUp, MoreHorizontal, BadgeCheck } from "lucide-react"
+import Avatar from "boring-avatars";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -12,8 +13,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import { useEnsResolver } from "@/hooks/useEnsResolver"
+import { Inter } from "@next/font/google"
+import { fontMono, fontMonoJetBrains } from "@/pages/_app"
 
-
+const generateRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 export interface Label {
   _id: string
   id: string
@@ -59,17 +69,29 @@ export const columns: ColumnDef<Label>[] = [
 
       // If the data is loading, return a loading skeleton
       if (loading && !hasError) {
-        return <div className="skeleton-loader">Loading...</div>;
+        return <div className="skeleton-loader animate-pulse text-gray-400" style={fontMonoJetBrains.style}  >Loading...</div>;
       }
       if (hasError) {
-        return <div className="skeleton-loader">Error</div>;
+        return <div className="skeleton-loader text-red-400" style={fontMonoJetBrains.style} >Address Not Found..</div>;
       }
 
       // If the address is too long, truncate it
       console.log(address, hasError);
-      const truncatedAddress = `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+      const truncatedAddress = `${address.substring(0, 8)}...${address.substring(address.length - 4)}`;
 
-      return <div title={address}>{truncatedAddress}</div>;
+      return <Link href={
+        `https://etherscan.io/address/${address}`
+      } title={address} style={fontMonoJetBrains.style} className=" flex  gap-2 items-center
+      text-gray-500 
+      hover:underline
+       " >
+        <Avatar
+          size={20}
+          name={address}
+          variant="pixel"
+          colors={Array.from({ length: 5 }, () => generateRandomColor())}
+        />
+        {truncatedAddress}</Link >;
     },
   },
   {
@@ -105,7 +127,26 @@ export const columns: ColumnDef<Label>[] = [
       return <div className="text-right">{formattedFollowers}</div>
     },
   },
+  {
+    accessorKey: "netWorth",
+    header: () => <div className="text-right text-gray-600 font-bold">Net Worth</div>,
+    cell: ({ row }) => {
+      const netWorth = row.getValue("netWorth");
 
+      // Format net worth as a currency
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+      const formattedNetWorth = formatter.format(netWorth);
+
+      return (
+        <div className="text-right text-gray-700">
+          {formattedNetWorth}
+        </div>
+      );
+    },
+  },
   {
     id: "actions",
     cell: ({ row }) => {

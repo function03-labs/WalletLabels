@@ -14,11 +14,6 @@ interface IndexPageProps {
 export default async function IndexPage({ searchParams }: IndexPageProps) {
     const { page, per_page, sort, title, status, priority } = searchParams
 
-    console.log({
-        title,
-        status,
-        priority,
-    })
 
     // Number of items per page
     const limit = typeof per_page === "string" ? parseInt(per_page) : 10
