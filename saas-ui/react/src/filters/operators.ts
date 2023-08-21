@@ -47,7 +47,7 @@ export const defaultOperators: FilterOperators = [
   {
     id: 'contains',
     label: 'contains',
-    types: ['string'],
+    types: ['string', 'enum'],
     comparator(
       value: string | string[] | undefined,
       filterValue: string | undefined,
@@ -65,7 +65,7 @@ export const defaultOperators: FilterOperators = [
   {
     id: 'containsNot',
     label: 'does not contain',
-    types: ['string'],
+    types: ['string', 'enum'],
     comparator(
       value: string | string[] | undefined,
       filterValue: string | undefined,

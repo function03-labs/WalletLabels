@@ -12,7 +12,11 @@ interface FiltersContextValue {
   filters?: FilterItem[]
   operators?: FilterItem[]
   activeFilters?: Filter[]
-  enableFilter(filter: Filter): void
+  /**
+   * Enable a filter
+   * @returns the unique key of the filter
+   */
+  enableFilter(filter: Filter): Promise<string>
   disableFilter(key: string): void
   getFilter(id: string): FilterItem | undefined
   getOperators(type?: string): FilterOperators
@@ -102,6 +106,8 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
         activeFilterMap.set(key, filter)
 
         onChange?.(getActiveFilters())
+
+        return key
       }
 
       if (onBeforeEnableFilter) {
@@ -117,7 +123,7 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
         return _enable(result.key || key, result)
       }
 
-      _enable(key, {
+      return _enable(key, {
         ...filter,
         operator,
       })

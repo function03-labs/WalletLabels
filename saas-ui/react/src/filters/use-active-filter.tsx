@@ -6,12 +6,10 @@ import {
 } from '@chakra-ui/react'
 import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext } from '@chakra-ui/react-utils'
-import { formatDistanceToNowStrict, isAfter } from 'date-fns'
 
 import { FilterItem, FilterItems, FilterMenuProps } from './filter-menu'
 
 import { FilterOperatorId, FilterOperators } from './operators'
-import { format } from 'date-fns'
 
 export interface Filter {
   key?: string
@@ -41,7 +39,7 @@ export interface ActiveFilterValueOptions {
   onChange?(value: FilterValue): void
   defaultValue?: FilterValue
   placeholder?: string
-  format?(value: FilterValue): string
+  multiple?: boolean
 }
 
 export interface UseActiveFilterProps {
@@ -51,13 +49,15 @@ export interface UseActiveFilterProps {
   operator?: FilterOperatorId
   defaultOperator?: FilterOperatorId
   onChange?(filter: Filter): void
-  onOperatorChange?(id: FilterOperatorId): void
-  onValueChange?(id: FilterValue): void
+  onOperatorChange?(operator: FilterOperatorId): void
+  onValueChange?(value: FilterValue): void
 }
 
 export const useActiveFilter = (props: UseActiveFilterProps) => {
   const {
     id,
+    operator,
+    value,
     defaultValue,
     defaultOperator,
     onChange,
@@ -135,28 +135,12 @@ export const useFilterOperator = (props: UseFilterOperatorProps) => {
   }
 }
 
-const defaultFormatter = (value: FilterValue) => {
-  if (value instanceof Date) {
-    if (isAfter(value, new Date())) {
-      return format(value, 'PP')
-    }
-    return formatDistanceToNowStrict(value, { addSuffix: true })
-  }
-
-  return value?.toString()
-}
-
 export interface UseFilterValueProps extends ActiveFilterValueOptions {}
 
 export const useFilterValue = (props: UseFilterValueProps = {}) => {
   const filter = useActiveFilterContext()
 
-  const {
-    onChange: onChangeProp,
-    value: valueProp,
-    defaultValue,
-    format,
-  } = props
+  const { onChange: onChangeProp, value: valueProp, defaultValue } = props
 
   const [value, setValue] = useControllableState<FilterValue>({
     defaultValue: defaultValue || '',
@@ -173,17 +157,16 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
     [value, setValue],
   )
 
-  const formatter = format || defaultFormatter
-
-  const label = formatter(value)
-
   const getMenuProps = React.useCallback(
     (props: FilterMenuProps) => {
+      console.log(props)
       return {
+        value,
         items: props.items || [],
-        label: props.label || label,
+        label: props.label,
         placeholder: filter.label || props.placeholder,
-        icon: props?.icon,
+        icon: props.icon,
+        multiple: props.multiple,
         onSelect,
       }
     },
@@ -192,7 +175,6 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
 
   return {
     value,
-    label,
     getMenuProps,
   }
 }

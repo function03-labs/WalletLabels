@@ -8,11 +8,23 @@ export const FiltersAddButton = forwardRef<
   Omit<FilterMenuProps, 'items'>,
   'button'
 >((props, ref) => {
+  const { onClose: onCloseProp, ...rest } = props
   const { filters, enableFilter } = useFiltersContext()
 
-  const onSelect = (item: FilterItem) => {
+  const [currentKey, setCurrentKey] = React.useState<string | undefined>()
+
+  const onSelect = async (item: FilterItem) => {
     const { id, value } = item
-    enableFilter({ id, value })
+    // if the filter value changes while the menu is open, we update the filter instead.
+    const key = await enableFilter(
+      currentKey ? { key: currentKey, id, value } : { id, value },
+    )
+    setCurrentKey(key)
+  }
+
+  const onClose = () => {
+    setCurrentKey(undefined)
+    onCloseProp?.()
   }
 
   return (
@@ -21,7 +33,8 @@ export const FiltersAddButton = forwardRef<
       icon={<FilterIcon />}
       ref={ref}
       onSelect={onSelect}
-      {...props}
+      onClose={onClose}
+      {...rest}
     />
   )
 })

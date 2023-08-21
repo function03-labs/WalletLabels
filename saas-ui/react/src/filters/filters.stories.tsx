@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StoryFn, Meta } from '@storybook/react'
+import { StoryFn, StoryObj, Meta } from '@storybook/react'
 import {
   Button,
   Badge,
@@ -8,6 +8,7 @@ import {
   Box,
   Text,
   Tag,
+  HStack,
 } from '@chakra-ui/react'
 
 import { FiCircle, FiUser } from 'react-icons/fi'
@@ -27,12 +28,37 @@ import { NoFilteredResults } from './no-filtered-results'
 import { Filter } from './use-active-filter'
 import { FilterItem, FilterItems } from './filter-menu'
 
-export default {
-  title: 'Components/Filters/Filters',
-  decorators: [(Story: any) => <Story />],
-} as Meta
+const values = {
+  status: (context) => {
+    if (Array.isArray(context.value) && context.value?.length > 1) {
+      console.log(context.value)
+      return (
+        <>
+          <HStack>{context.value?.map(({ icon }) => icon)}</HStack>{' '}
+          <Text>{context.value.length} states</Text>
+        </>
+      )
+    }
+  },
+  lead: (context) => {
+    return 'lead'
+  },
+}
 
 const Template: StoryFn<FiltersProviderProps> = (args) => {
+  const renderLabel = (context) => {
+    if (context.id === 'lead') {
+      return 'Contact'
+    }
+
+    return context.label
+  }
+
+  const renderValue = (context) => {
+    console.log('context', context)
+    return values[context.id]?.(context) || context.value
+  }
+
   return (
     <FiltersProvider {...args}>
       <Stack alignItems="flex-start" width="400px">
@@ -40,11 +66,26 @@ const Template: StoryFn<FiltersProviderProps> = (args) => {
           <FiltersAddButton />
         </Box>
 
-        <ActiveFiltersList px="3" py="2" borderBottomWidth="1px" zIndex="2" />
+        <ActiveFiltersList
+          px="3"
+          py="2"
+          borderBottomWidth="1px"
+          zIndex="2"
+          renderLabel={renderLabel}
+          renderValue={renderValue}
+        />
       </Stack>
     </FiltersProvider>
   )
 }
+
+export default {
+  title: 'Components/Filters/Filters',
+  decorators: [(Story: any) => <Story />],
+  component: Template,
+} as Meta
+
+type Story = StoryObj<typeof Template>
 
 const StatusBadge = (props: BadgeProps) => (
   <Badge boxSize="8px" mx="2px" borderRadius="full" {...props} />
@@ -77,6 +118,59 @@ const filters: FilterItem[] = [
   },
 ]
 
+const getItems = async (query: string) => {
+  return new Promise<{ id: string; label: string; color: string }[]>(
+    (resolve) => {
+      setTimeout(() => {
+        resolve(
+          [
+            {
+              id: 'new',
+              label: 'New',
+              color: 'blue.400',
+            },
+            {
+              id: 'active',
+              label: 'Active',
+              color: 'green.400',
+            },
+            {
+              id: 'inactive',
+              label: 'Inactive',
+              color: 'gray.400',
+            },
+          ].filter((item) =>
+            item.label.toLowerCase().includes(query.toLowerCase()),
+          ),
+        )
+      }, 1000)
+    },
+  )
+}
+
+const asyncFilters: FilterItem[] = [
+  {
+    id: 'status',
+    label: 'Status',
+    icon: <FiCircle />,
+    items: async (query) => {
+      const items = await getItems(query)
+      return items.map((item) => ({
+        id: item.id,
+        label: item.label,
+        icon: <StatusBadge bg={item.color} />,
+      }))
+    },
+  },
+  {
+    id: 'lead',
+    label: 'Contact is lead',
+    type: 'boolean',
+    icon: <FiUser />,
+    value: true,
+  },
+]
+
 export const Basic = Template.bind({})
 Basic.args = {
   filters,
@@ -87,6 +181,52 @@ export const DefaultFilters = Template.bind({})
 DefaultFilters.args = {
   filters,
   defaultFilters: [{ id: 'status', operator: 'is', value: 'new' }],
+}
+
+export const AsyncItems = Template.bind({})
+AsyncItems.args = {
+  filters: asyncFilters,
+  onChange: (filters) => console.log(filters),
+}
+
+const multiFilters: FilterItem[] = [
+  {
+    id: 'status',
+    label: 'Status',
+    icon: <FiCircle />,
+    type: 'enum',
+    operators: ['contains', 'containsNot'],
+    defaultOperator: 'contains',
+    items: [
+      {
+        id: 'new',
+        label: 'New',
+        icon: <StatusBadge bg="blue.400" />,
+      },
+      {
+        id: 'active',
+        label: 'Active',
+        icon: <StatusBadge bg="green.400" />,
+      },
+    ],
+  },
+  {
+    id: 'lead',
+    label: 'Contact is lead',
+    type: 'boolean',
+    icon: <FiUser />,
+    value: true,
+  },
+]
+
+export const MultiSelect: Story = {
+  args: {
+    filters: multiFilters,
+    onChange: (filters) => console.log(filters),
+    renderValue: (filter) => {
+      return filter.value.toString()
+    },
+  },
 }
 
 interface ExampleData {
