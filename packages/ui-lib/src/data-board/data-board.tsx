@@ -12,6 +12,7 @@ import {
   ColumnDef,
   GroupingState,
   Row,
+  GroupingRow,
   Table,
   TableOptions,
   flexRender,
@@ -26,15 +27,15 @@ import {
   useControllableState,
 } from '@chakra-ui/react'
 
-export interface DataBoardProps<Data = any>
+export interface DataBoardProps<Data extends object>
   extends Omit<HTMLChakraProps<'div'>, 'onChange'>,
     Omit<TableOptions<Data>, 'getCoreRowModel'>,
     Pick<KanbanProps, 'onChange' | 'onCardDragEnd' | 'onColumnDragEnd'> {
   instanceRef?: React.Ref<Table<Data>>
   data: Data[]
   columns: ColumnDef<Data>[]
-  renderHeader?: (item: Row<Data>) => React.ReactNode
-  renderItem?: (item: Row<Data>) => React.ReactNode
+  renderHeader?: (item: GroupingRow) => React.ReactNode
+  renderCard?: (item: Row<Data>) => React.ReactNode
   groupBy?: string
   defaultGroupBy?: string
   onGroupChange?: (group: string) => void
@@ -53,15 +54,12 @@ export const DataBoard = forwardRef(
       defaultGroupBy,
       onGroupChange,
       renderHeader = () => null,
-      renderItem = () => null,
+      renderCard = () => null,
       getRowId,
       initialState,
       state,
       ...rest
     } = props
-
-    const _renderItem = React.useMemo(() => renderItem, [renderItem])
-    const _renderHeader = React.useMemo(() => renderHeader, [renderHeader])
 
     const [grouping, setGrouping] = useControllableState<GroupingState>({
       defaultValue: defaultGroupBy ? [defaultGroupBy] : [],
@@ -111,16 +109,18 @@ export const DataBoard = forwardRef(
                 return (
                   <KanbanColumn key={id} id={id}>
                     <KanbanColumnHeader>
-                      {flexRender(_renderHeader, row)}
+                      {flexRender(renderHeader, row)}
                     </KanbanColumnHeader>
                     <KanbanColumnBody>
                       {items[id].map((itemId) => {
                         const item = instance.getRowModel().rowsById[itemId]
-                        return item ? (
-                          <KanbanCard key={item.id} id={item.id}>
-                            {flexRender(_renderItem, item)}
-                          </KanbanCard>
-                        ) : null
+                        return (
+                          <BoardCard
+                            key={itemId}
+                            item={item}
+                            render={renderCard}
+                          />
+                        )
                       })}
                     </KanbanColumnBody>
                   </KanbanColumn>
@@ -129,7 +129,7 @@ export const DataBoard = forwardRef(
               <KanbanDragOverlay>
                 {activeId && (
                   <KanbanCard id={activeId}>
-                    {_renderItem(instance.getRowModel().rowsById[activeId])}
+                    {renderCard(instance.getRowModel().rowsById[activeId])}
                   </KanbanCard>
                 )}
               </KanbanDragOverlay>
@@ -144,3 +144,19 @@ export const DataBoard = forwardRef(
     ref?: React.ForwardedRef<HTMLDivElement>
   },
 ) => React.ReactElement) & { displayName?: string }
+
+interface BoardCardProps {
+  item: Row<any>
+  render: (item: Row<any>) => React.ReactNode
+}
+
+const BoardCard = React.memo(function BoardCard({
+  item,
+  render,
+}: BoardCardProps) {
+  return item ? (
+    <KanbanCard key={item.id} id={item.id}>
+      {flexRender(render, item)}
+    </KanbanCard>
+  ) : null
+})

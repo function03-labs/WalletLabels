@@ -36,7 +36,7 @@ import {
   getLocalTimeZone,
 } from '@saas-ui/date-picker'
 
-import { DataBoard, useModals } from '@ui/lib'
+import { DataBoard, DataBoardProps, useModals } from '@ui/lib'
 
 export interface ListPageProps<D extends object>
   extends PageProps,
@@ -58,8 +58,10 @@ export interface ListPageProps<D extends object>
   visibleColumns: string[]
   tabbar?: React.ReactNode
   view?: 'list' | 'board'
-  renderBoardHeader?: (item: Row<D>) => React.ReactNode
-  renderBoardItem?: (item: Row<D>) => React.ReactNode
+  board?: {
+    header: DataBoardProps<D>['renderHeader']
+    card: DataBoardProps<D>['renderCard']
+  }
 }
 
 /**
@@ -90,8 +92,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
       },
     },
     view,
-    renderBoardHeader,
-    renderBoardItem,
+    board,
     ...rest
   } = props
 
@@ -196,8 +197,8 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         height="100%"
         columns={columns}
         data={data}
-        renderHeader={renderBoardHeader}
-        renderItem={renderBoardItem}
+        renderHeader={board?.header}
+        renderCard={board?.card}
         onCardDragEnd={(args) => {
           console.log(args)
         }}

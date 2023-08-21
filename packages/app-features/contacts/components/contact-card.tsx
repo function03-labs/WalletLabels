@@ -1,3 +1,4 @@
+import React from 'react'
 import { Card, CardBody, HStack, Heading, Stack, Text } from '@chakra-ui/react'
 import { ContactTag } from './contact-tag'
 import { ContactType } from './contact-type'

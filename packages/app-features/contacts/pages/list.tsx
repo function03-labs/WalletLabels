@@ -40,9 +40,10 @@ import {
   useColumns,
   getDataGridFilter,
   Filter,
+  Row,
 } from '@saas-ui-pro/react'
 
-import { ListPage, InlineSearch, useModals } from '@ui/lib'
+import { ListPage, InlineSearch, useModals, ListPageProps } from '@ui/lib'
 
 import { Contact, createContact, getContacts } from '@api/client'
 
@@ -279,7 +280,13 @@ export function ContactsListPage() {
       <ContactTypes />
       <AddFilterButton />
       <Spacer />
-      <ToggleButtonGroup value={view} onChange={setView} size="sm" width="auto">
+      <ToggleButtonGroup
+        value={view}
+        onChange={setView}
+        type="radio"
+        size="sm"
+        width="auto"
+      >
         <ToggleButton value="list">
           <FiList />
         </ToggleButton>
@@ -377,21 +384,22 @@ export function ContactsListPage() {
     />
   )
 
-  const renderBoardHeader = React.useCallback((header: any) => {
-    return (
-      <HStack w="full" py="2" px="1">
-        <ContactStatus status={header.groupingValue} />
-        <Spacer />
-        <OverflowMenu size="sm">
-          <MenuItem>Hide</MenuItem>
-        </OverflowMenu>
-      </HStack>
-    )
-  }, [])
-
-  const renderBoardItem = React.useCallback((row: any) => {
-    return <ContactCard contact={row.original} />
-  }, [])
+  const board = React.useMemo(
+    () =>
+      ({
+        header: (header) => (
+          <HStack w="full" py="2" px="1">
+            <ContactStatus status={header.groupingValue as string} />
+            <Spacer />
+            <OverflowMenu size="sm">
+              <MenuItem>Hide</MenuItem>
+            </OverflowMenu>
+          </HStack>
+        ),
+        card: (row) => <ContactCard contact={row.original} />,
+      } as ListPageProps<Contact>['board']),
+    [],
+  )
 
   return (
     <ListPage<Contact>
@@ -408,8 +416,7 @@ export function ContactsListPage() {
       data={data?.contacts as Contact[]}
       isLoading={isLoading}
       view={view}
-      renderBoardHeader={renderBoardHeader}
-      renderBoardItem={renderBoardItem}
+      board={board}
     />
   )
 }
