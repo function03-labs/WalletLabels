@@ -8,8 +8,8 @@ import { FaTwitter } from "react-icons/fa"
 import { MdVerified } from "react-icons/md"
 import { siteConfig } from "@/config/site"
 import { Layout } from "@/components/layout"
-import Page, { getData } from "@/components/payments/page"
-import DemoPage from "@/components/payments/page"
+import Page, { getData } from "@/components/socials/page"
+import DemoPage from "@/components/socials/page"
 import { socialIcons } from "../components/socialIcons"
 import { fontMonoJetBrains } from "./_app"
 import { Chip } from "@nextui-org/react";
@@ -104,8 +104,8 @@ export default function SocialsPage({ data }) {
           </p>
           {socialIcons}
           {/* Add select social media badges to pick from */}
-          <div className="flex gap-1 mt-10">
-            <div className=" block">Filter by platforms:</div>
+          <div className="flex gap-1 mt-5">
+            {/* <div className=" block">Filter by platforms:</div> */}
             <div className="flex gap-1">
               {socialMediaProviders.map((provider) => (
                 <Chip

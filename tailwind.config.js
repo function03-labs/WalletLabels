@@ -19,6 +19,11 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'fade-right': 'linear-gradient(to right, white, transparent)',
+        'fade-left': 'linear-gradient(to left, white, transparent)',
+        'fade-left-dark': 'linear-gradient(to left, rgb(15 23 42 ), transparent)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

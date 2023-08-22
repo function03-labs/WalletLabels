@@ -31,7 +31,9 @@ export function MainNav({ items }: MainNavProps) {
           {items?.map(
             (item, index) =>
               item.href && (
-                <div>
+                <div
+                  key={index}
+                >
 
                   <Link
                     key={index}
