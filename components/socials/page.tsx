@@ -3,15 +3,6 @@ import { DataTable } from "./data-table";
 
 export async function getData(): Promise<Label[]> {
   return [];
-  // return [
-  //     {
-  //         id: "728ed52f",
-  //         amount: 100,
-  //         status: "pending",
-  //         email: "m@example.com",
-  //     },
-  //     // ...
-  // ]
 }
 
 export default function DemoPage({ data }: { data: Label[] }) {
