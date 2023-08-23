@@ -2,23 +2,24 @@
 
 import React from "react"
 import Link from "next/link"
+import { Chip } from "@nextui-org/react"
 import axios from "axios"
+import classnames from "classnames"
 import CountUp from "react-countup"
 import { FaTwitter } from "react-icons/fa"
 import { MdVerified } from "react-icons/md"
+
 import { siteConfig } from "@/config/site"
 import { Layout } from "@/components/layout"
+import { socialMediaProviders } from "@/components/socialMediaProviders"
 import Page, { getData } from "@/components/socials/page"
 import DemoPage from "@/components/socials/page"
 import { socialIcons } from "../components/socialIcons"
 import { fontMonoJetBrains } from "./_app"
-import { Chip } from "@nextui-org/react";
-import classnames from 'classnames';
 
-import { socialMediaProviders } from "@/components/socialMediaProviders"
 export async function getStaticProps() {
   try {
-    const apiUrl = "http://localhost:3000/api/query_socials?query=" // The API endpoint you've set up
+    const apiUrl = "https://walletlabels.xyz/api/query_socials?query=" // The API endpoint you've set up
     const response = await axios.get(apiUrl, {
       headers: {
         "Content-Type": "application/json",
@@ -58,15 +59,14 @@ export async function getStaticProps() {
 }
 
 export default function SocialsPage({ data }) {
-  const [selectedProviders, setSelectedProviders] = React.useState([]);
-  const handleChipClick = (name) => {
+  const [selectedProviders, setSelectedProviders] = React.useState([])
+  const handleChipClick = name => {
     if (selectedProviders.includes(name)) {
-      setSelectedProviders(prev => prev.filter(provider => provider !== name));
+      setSelectedProviders(prev => prev.filter(provider => provider !== name))
     } else {
-      setSelectedProviders(prev => [...prev, name]);
+      setSelectedProviders(prev => [...prev, name])
     }
-  };
-
+  }
 
   return (
     <Layout>
@@ -75,8 +75,7 @@ export default function SocialsPage({ data }) {
           <div className="hidden sm:flex sm:justify-center">
             <div
               className="relative rounded-full px-3 py-1 text-sm leading-6 text-green-600 ring-2 ring-green-400/20 hover:ring-green-400/30
-             dark:text-green-400 dark:ring-green-100/10 dark:hover:ring-green-100/20"
-            >
+             dark:text-green-400 dark:ring-green-100/10 dark:hover:ring-green-100/20">
               Recently Added
             </div>
           </div>
@@ -89,48 +88,57 @@ export default function SocialsPage({ data }) {
             </div>
           </div>
           <p className="max-w-[700px] text-center text-lg text-slate-700 dark:text-slate-400 sm:text-lg">
-            Map {" "}
+            Map{" "}
             <CountUp
               className="inline-block font-bold text-gray-900 underline decoration-blue-300 decoration-dashed underline-offset-4 dark:text-gray-100 dark:decoration-blue-500"
-
               style={fontMonoJetBrains.style}
               end={120000}
               duration={2}
               separator=","
-            />{"+ "}
-
-            Ethereum addresses to their correlated social identities, making
-            it easy to track, follow and interact with your favorite accounts.
+            />
+            {"+ "}
+            Ethereum addresses to their correlated social identities, making it
+            easy to track, follow and interact with your favorite accounts.
           </p>
           {socialIcons}
           {/* Add select social media badges to pick from */}
           <div className="flex gap-1 mt-10 socials-btn-wrp ">
-            <div className=" block custom-filter-platforms">Filter by platforms:</div>
+            <div className=" block custom-filter-platforms">
+              Filter by platforms:
+            </div>
             <div className="flex gap-1 custom-filter-platforms-icons">
-              {socialMediaProviders.map((provider) => (
+              {socialMediaProviders.map(provider => (
                 <Chip
                   key={provider.name}
                   startContent={<provider.icon size={18} className="mx-1" />}
                   className={` cursor-pointer duration-150 transition-all  hover:bg-gray-100 dark:hover:bg-gray-800
                 ${provider.textColor} 
-                ${selectedProviders.includes(provider.name) ? provider.textColor : ''}  
-                ${selectedProviders.includes(provider.name) ? provider.bgColor : ''}
+                ${
+                  selectedProviders.includes(provider.name)
+                    ? provider.textColor
+                    : ""
+                }  
+                ${
+                  selectedProviders.includes(provider.name)
+                    ? provider.bgColor
+                    : ""
+                }
                 `}
                   // className={`duration-150 transition-all cursor-pointer ${provider.bgColor} ${provider.textColor} hover:${provider.hoverBgColor} hover:${provider.hoverTextColor} ${selectedProviders.includes(provider.name) ? provider.hoverBgColor : ''} ${selectedProviders.includes(provider.name) ? provider.hoverTextColor : ''}`}
 
                   // variant="bordered"
-                  variant={selectedProviders.includes(provider.name) ? 'faded' : 'dot'}
-
-                  onClick={() => handleChipClick(provider.name)}
-                >
+                  variant={
+                    selectedProviders.includes(provider.name) ? "faded" : "dot"
+                  }
+                  onClick={() => handleChipClick(provider.name)}>
                   {provider.name}
                 </Chip>
-              ))}              </div>
-
+              ))}{" "}
+            </div>
           </div>
           <DemoPage data={data} />
         </div>
       </section>
-    </Layout >
+    </Layout>
   )
 }

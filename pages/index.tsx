@@ -16,8 +16,8 @@ import getHistory from "@/lib/getHistory"
 import { Layout } from "@/components/layout"
 import { buttonVariants } from "@/components/ui/button"
 import { connectToDatabase } from "../lib/mongodb"
-import { header } from "./header"
-import { Footer } from "./Footer"
+import Footer from "./Footer"
+import header from "./header"
 
 const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 
@@ -25,7 +25,7 @@ const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 export async function getStaticProps() {
   let db = await connectToDatabase()
   let labels = await db.db.collection("labels").find().limit(30).toArray()
-  labels = labels.map((label) => {
+  labels = labels.map(label => {
     return {
       address: label.address,
       address_name: label.address_name,
@@ -39,7 +39,7 @@ export async function getStaticProps() {
   let response = labels
 
   // drop
-  const addresses = response.map((item) => item.address)
+  const addresses = response.map(item => item.address)
 
   // get history
   const history = await getHistory(addresses)
@@ -67,7 +67,7 @@ export default function IndexPage(props) {
   const { data, isLoading, isError, error } = useLabels(searchInput, props)
 
   // const last_txs = props.data_txs ? props.data_txs : null
-  const handleSearch = (e) => {
+  const handleSearch = e => {
     e.preventDefault()
     //show value of input field
     setSearchInput(e.target.query.value)
@@ -91,7 +91,13 @@ export default function IndexPage(props) {
           </div> */}
           <div className="hidden sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
-              Announcing Social Labels. <a href="#" className="font-semibold text-blue-800 dark:text-white"><span className="absolute inset-0" aria-hidden="true"></span>Access now <span aria-hidden="true">&rarr;</span></a>
+              Announcing Social Labels.{" "}
+              <a
+                href="#"
+                className="font-semibold text-blue-800 dark:text-white">
+                <span className="absolute inset-0" aria-hidden="true"></span>
+                Access now <span aria-hidden="true">&rarr;</span>
+              </a>
             </div>
           </div>
 
@@ -120,16 +126,14 @@ export default function IndexPage(props) {
             href={siteConfig.links.docs}
             target="/docs"
             rel="noreferrer"
-            className={buttonVariants({ size: "lg" })}
-          >
+            className={buttonVariants({ size: "lg" })}>
             Documentation
           </Link>
           <Link
             target="_blank"
             rel="noreferrer"
             href={siteConfig.links.github}
-            className={buttonVariants({ variant: "outline", size: "lg" })}
-          >
+            className={buttonVariants({ variant: "outline", size: "lg" })}>
             GitHub
           </Link>
         </div>
@@ -176,5 +180,3 @@ export default function IndexPage(props) {
     </Layout>
   )
 }
-
-
