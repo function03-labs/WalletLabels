@@ -3,7 +3,6 @@ import { DataTable } from "./data-table";
 
 export async function getData(): Promise<Label[]> {
   return [];
-  // Fetch data from your API here.
   // return [
   //     {
   //         id: "728ed52f",
