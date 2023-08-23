@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 import { ColumnDef } from "@tanstack/react-table";
 import Avatar from "boring-avatars";
@@ -310,20 +311,19 @@ export const columns: ColumnDef<Label>[] = [
 
       return (
         <div className="text-right">
-          <Tooltip
-            title={linkedAddresses.join(", ")}
-            position="top"
-            trigger="mouseenter"
-            className="
-          text-gray-600
-          hover:text-gray-900
-          hover:underline                 dark:text-gray-300
-          dark:hover:text-gray-100
-
-          "
-          >
-            <span className="">{formattedLinkedAddresses.length} more.. </span>
-          </Tooltip>
+          <div>
+            <Tooltip
+              title={linkedAddresses.join(", ")}
+              position="top"
+              trigger="mouseenter"
+              className="
+      text-gray-600
+      hover:text-gray-900
+      hover:underline
+      dark:text-gray-300
+    "
+            ></Tooltip>
+          </div>
         </div>
       );
     },
@@ -335,7 +335,7 @@ export const columns: ColumnDef<Label>[] = [
       <div className="text-right font-bold text-gray-600">Net Worth</div>
     ),
     cell: ({ row }) => {
-      const netWorth = row.getValue("netWorth");
+      const netWorth = row.getValue("netWorth") as number;
 
       // Format net worth as a currency
       const formatter = new Intl.NumberFormat("en-US", {
