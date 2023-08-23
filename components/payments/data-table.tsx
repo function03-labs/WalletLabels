@@ -51,7 +51,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div>
+    <div className="responsive-social-table">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter names..."
@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({
         />
       </div>
       <div className="rounded-md border">
-        <Table>
+        <Table className="">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

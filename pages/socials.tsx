@@ -70,7 +70,7 @@ export default function SocialsPage({ data }) {
 
   return (
     <Layout>
-      <section className="container grid items-center gap-10 pt-12 pb-8 md:py-14">
+      <section className="container items-center gap-10 pt-12 pb-8 md:py-14">
         <div className="flex flex-col items-center gap-4">
           <div className="hidden sm:flex sm:justify-center">
             <div
@@ -104,9 +104,9 @@ export default function SocialsPage({ data }) {
           </p>
           {socialIcons}
           {/* Add select social media badges to pick from */}
-          <div className="flex gap-1 mt-10">
-            <div className=" block">Filter by platforms:</div>
-            <div className="flex gap-1">
+          <div className="flex gap-1 mt-10 socials-btn-wrp ">
+            <div className=" block custom-filter-platforms">Filter by platforms:</div>
+            <div className="flex gap-1 custom-filter-platforms-icons">
               {socialMediaProviders.map((provider) => (
                 <Chip
                   key={provider.name}

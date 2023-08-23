@@ -95,7 +95,7 @@ export default function IndexPage(props) {
             </div>
           </div>
 
-          <h1 className="text-center text-4xl font-semibold leading-tight sm:text-xl md:text-5xl lg:text-6xl">
+          <h1 className="text-center text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Wallet Labels <br className="hidden sm:inline" />
             for Popular Addresses
           </h1>
