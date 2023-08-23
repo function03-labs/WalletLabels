@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
+import { useState } from 'react';
 import { ColumnDef } from "@tanstack/react-table";
 import Avatar from "boring-avatars";
 import {
@@ -31,7 +32,7 @@ import { useEnsResolver } from "@/hooks/useEnsResolver";
 import { fontMono, fontMonoJetBrains } from "@/pages/_app";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
-import { FaReddit } from "react-icons/fa";
+import { FaCopy } from "react-icons/fa";
 
 const generateRandomColor = () => {
   const letters = "0123456789ABCDEF";
@@ -168,6 +169,7 @@ export const columns: ColumnDef<Label>[] = [
     cell: ({ row }) => {
       const { ens } = row.original;
       const { address, loading, hasError } = useEnsResolver(ens);
+      const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
       // If the data is loading, return a loading skeleton
       if (loading && !hasError) {
@@ -200,28 +202,56 @@ export const columns: ColumnDef<Label>[] = [
       console.log(address, hasError);
       const truncatedAddress = `${address.substring(
         0,
-        8
-      )}...${address.substring(address.length - 4)}`;
+        2
+      )}...${address.substring(address.length - 2)}`;
+
+      const handleCopyClick = async () => {
+        try {
+          await navigator.clipboard.writeText(address);
+          setIsTooltipOpen(true); // Open the tooltip
+          setTimeout(() => {
+            setIsTooltipOpen(false); // Close the tooltip after 2 seconds
+          }, 3000);
+        } catch (error) {
+          console.error('Error copying address:', error);
+        }
+      };
 
       return (
-        <Link
-          href={`https://etherscan.io/address/${address}`}
-          title={address}
-          style={fontMonoJetBrains.style}
-          className=" flex  items-center gap-2
-      text-gray-500 
-      hover:underline
-      dark:text-gray-400
-       "
-        >
-          <Avatar
-            size={20}
-            name={address}
-            variant="pixel"
-            colors={Array.from({ length: 5 }, () => generateRandomColor())}
-          />
-          {truncatedAddress}
-        </Link>
+        <span className="flex items-center gap-2 custom-span">
+          {isTooltipOpen &&
+            <Tooltip
+            title="Copied"
+            position="top"
+            trigger="click"
+            isOpen={isTooltipOpen}
+            className="
+              custom-tooltip text-gray-600 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-100
+              bg-white dark:bg-gray-800
+              rounded-md py-1 px-2
+              shadow-md
+              transition-opacity duration-200
+            "
+          >
+            Copied
+          </Tooltip>
+          }
+          <Link
+            href={`https://etherscan.io/address/${address}`}
+            title={address}
+            style={fontMonoJetBrains.style}
+            className="text-gray-500 hover:underline dark:text-gray-400 flex custom-avatar"
+          >
+            <Avatar
+              size={20}
+              name={address}
+              variant="pixel"
+              colors={Array.from({ length: 5 }, () => generateRandomColor())}
+            />
+            {truncatedAddress}
+          </Link>
+            <span className='custom-cursor'><FaCopy onClick={handleCopyClick} /></span>
+        </span>
       );
     },
   },
