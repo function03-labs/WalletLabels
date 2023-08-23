@@ -1,6 +1,7 @@
 import { FaTwitter, FaRedditAlien } from "react-icons/fa";
 import Lens from "./icons-social/lensIcon";
 import Farcaster from "./icons-social/farcasterIcon";
+import OpenSea from "./icons-social/openseaIcon";
 export const socialMediaProviders = [
     {
         name: "Twitter",
@@ -33,6 +34,14 @@ export const socialMediaProviders = [
         hoverBgColor: "hover:bg-purple-500",
         textColor: "text-purple-700",
         hoverTextColor: "hover:text-white",
+    },
+    {
+        name: "OpenSea",
+        icon: OpenSea,
+        bgColor: "bg-blue-100",
+        hoverBgColor: "bg-blue-500",
+        textColor: "text-blue-700",
+        hoverTextColor: "text-white",
     },
 
 
