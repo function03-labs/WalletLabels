@@ -10,6 +10,7 @@ import { FaTwitter } from "react-icons/fa"
 import { MdVerified } from "react-icons/md"
 
 import { siteConfig } from "@/config/site"
+import { connectToDatabase } from "@/lib/mongodb_social"
 import { Layout } from "@/components/layout"
 import { socialMediaProviders } from "@/components/socialMediaProviders"
 import Page, { getData } from "@/components/socials/page"
@@ -19,16 +20,23 @@ import { fontMonoJetBrains } from "./_app"
 
 export async function getStaticProps() {
   try {
-    const apiUrl = "https://walletlabels.xyz/api/query_socials?query=" // The API endpoint you've set up
-    const response = await axios.get(apiUrl, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    // const apiUrl = "https://walletlabels.xyz/api/query_socials?query=" // The API endpoint you've set up
+    // const response = await axios.get(apiUrl, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+
+    let db = await connectToDatabase()
+    let labels = await db.db
+      .collection("sociallabels_db1")
+      .find()
+      .limit(30)
+      .toArray()
 
     // Check if the response status is OK (200)
-    if (response.status === 200) {
-      const data = response.data.data // Assuming your API response has a "data" property
+    if (labels) {
+      const data = labels // Assuming your API response has a "data" property
 
       // Return the data as props along with revalidate property set to 24 hours (in seconds)
       return {
