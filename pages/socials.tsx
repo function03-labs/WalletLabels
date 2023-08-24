@@ -35,8 +35,10 @@ export async function getStaticProps() {
       .toArray()
 
     // Check if the response status is OK (200)
+    console.log(labels)
     if (labels) {
-      const data = labels // Assuming your API response has a "data" property
+      // do not take _id from mongodb
+      const data = labels.map(({ _id, id, ...rest }) => rest)
 
       // Return the data as props along with revalidate property set to 24 hours (in seconds)
       return {

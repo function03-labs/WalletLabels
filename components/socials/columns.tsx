@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
+
 import { ColumnDef } from "@tanstack/react-table";
 import Avatar from "boring-avatars";
 import {
@@ -13,6 +13,7 @@ import {
   PlusIcon,
   RedoDotIcon,
 } from "lucide-react";
+import { useState } from "react";
 import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 import Lens from "../icons-social/lensIcon";
@@ -213,29 +214,27 @@ export const columns: ColumnDef<Label>[] = [
             setIsTooltipOpen(false); // Close the tooltip after 2 seconds
           }, 3000);
         } catch (error) {
-          console.error('Error copying address:', error);
+          console.error("Error copying address:", error);
         }
       };
 
       return (
         <span className="flex items-center gap-2 custom-span">
-          {isTooltipOpen &&
+          {isTooltipOpen && (
             <Tooltip
-            title="Copied"
-            position="top"
-            trigger="click"
-            isOpen={isTooltipOpen}
-            className="
+              title="Copied"
+              position="top"
+              trigger="click"
+              open={isTooltipOpen}
+              className="
               custom-tooltip text-gray-600 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-100
               bg-white dark:bg-gray-800
               rounded-md py-1 px-2
               shadow-md
               transition-opacity duration-200
             "
-          >
-            Copied
-          </Tooltip>
-          }
+            ></Tooltip>
+          )}
           <Link
             href={`https://etherscan.io/address/${address}`}
             title={address}
@@ -250,7 +249,9 @@ export const columns: ColumnDef<Label>[] = [
             />
             {truncatedAddress}
           </Link>
-            <span className='custom-cursor'><FaCopy onClick={handleCopyClick} /></span>
+          <span className="custom-cursor">
+            <FaCopy onClick={handleCopyClick} />
+          </span>
         </span>
       );
     },
