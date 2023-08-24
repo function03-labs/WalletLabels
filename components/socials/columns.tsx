@@ -210,9 +210,9 @@ export const columns: ColumnDef<Label>[] = [
         try {
           await navigator.clipboard.writeText(address);
           setIsTooltipOpen(true); // Open the tooltip
-          setTimeout(() => {
-            setIsTooltipOpen(false); // Close the tooltip after 2 seconds
-          }, 3000);
+          // setTimeout(() => {
+          //   setIsTooltipOpen(false); // Close the tooltip after 2 seconds
+          // }, 3000);
         } catch (error) {
           console.error("Error copying address:", error);
         }
@@ -227,10 +227,10 @@ export const columns: ColumnDef<Label>[] = [
               trigger="click"
               open={isTooltipOpen}
               className="
-              custom-tooltip text-gray-600 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-100
+              custom-tooltip 
+              absolute top-[0px] right-5
+              text-gray-600 dark:text-gray-30
               bg-white dark:bg-gray-800
-              rounded-md py-1 px-2
-              shadow-md
               transition-opacity duration-200
             "
             ></Tooltip>
@@ -250,7 +250,7 @@ export const columns: ColumnDef<Label>[] = [
             {truncatedAddress}
           </Link>
           <span className="custom-cursor">
-            <FaCopy onClick={handleCopyClick} />
+            <FaCopy className="custom-facopy" onClick={handleCopyClick} />
           </span>
         </span>
       );

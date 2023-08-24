@@ -115,9 +115,11 @@
 
 .custom-tooltip {
   position: absolute;
-  bottom: 30px;
 }
 
 .custom-span {
   position: relative;
+}
+.custom-facopy {
+  color: #9CA3A3;
 }
