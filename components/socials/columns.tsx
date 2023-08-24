@@ -14,7 +14,7 @@ import {
   RedoDotIcon,
 } from "lucide-react";
 import { useState } from "react";
-import { Tooltip } from "react-tippy";
+import { Tooltip, withTooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 import Lens from "../icons-social/lensIcon";
 import OpenSea from "../icons-social/openseaIcon";
@@ -345,11 +345,6 @@ export const columns: ColumnDef<Label>[] = [
           <div>
             <Tooltip
               title={linkedAddresses.join(", ")}
-              html={
-                <span className="">
-                  {formattedLinkedAddresses.length} more..{" "}
-                </span>
-              }
               position="top"
               trigger="mouseenter"
               className="
@@ -359,6 +354,7 @@ export const columns: ColumnDef<Label>[] = [
       dark:text-gray-300
     "
             ></Tooltip>
+            <span className="">{formattedLinkedAddresses.length} more.. </span>
           </div>
         </div>
       );
