@@ -210,9 +210,9 @@ export const columns: ColumnDef<Label>[] = [
         try {
           await navigator.clipboard.writeText(address);
           setIsTooltipOpen(true); // Open the tooltip
-          // setTimeout(() => {
-          //   setIsTooltipOpen(false); // Close the tooltip after 2 seconds
-          // }, 3000);
+          setTimeout(() => {
+            setIsTooltipOpen(false); // Close the tooltip after 3 seconds
+          }, 3000);
         } catch (error) {
           console.error("Error copying address:", error);
         }
