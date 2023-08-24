@@ -219,7 +219,7 @@ export const columns: ColumnDef<Label>[] = [
       };
 
       return (
-        <span className="flex items-center gap-2 custom-span">
+        <span className="custom-span flex items-center gap-2">
           {isTooltipOpen && (
             <Tooltip
               title="Copied"
@@ -227,11 +227,11 @@ export const columns: ColumnDef<Label>[] = [
               trigger="click"
               open={isTooltipOpen}
               className="
-              custom-tooltip text-gray-600 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-100
-              bg-white dark:bg-gray-800
-              rounded-md py-1 px-2
-              shadow-md
-              transition-opacity duration-200
+              custom-tooltip rounded-md bg-white py-1 px-2 text-gray-600
+              shadow-md duration-200
+              transition-opacity hover:text-gray-900 hover:underline
+              dark:bg-gray-800
+              dark:text-gray-300 dark:hover:text-gray-100
             "
             ></Tooltip>
           )}
@@ -239,7 +239,7 @@ export const columns: ColumnDef<Label>[] = [
             href={`https://etherscan.io/address/${address}`}
             title={address}
             style={fontMonoJetBrains.style}
-            className="text-gray-500 hover:underline dark:text-gray-400 flex custom-avatar"
+            className="custom-avatar flex text-gray-500 hover:underline dark:text-gray-400"
           >
             <Avatar
               size={20}
@@ -345,6 +345,11 @@ export const columns: ColumnDef<Label>[] = [
           <div>
             <Tooltip
               title={linkedAddresses.join(", ")}
+              html={
+                <span className="">
+                  {formattedLinkedAddresses.length} more..{" "}
+                </span>
+              }
               position="top"
               trigger="mouseenter"
               className="
