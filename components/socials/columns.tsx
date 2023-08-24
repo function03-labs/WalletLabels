@@ -14,7 +14,7 @@ import {
   RedoDotIcon,
 } from "lucide-react";
 import { useState } from "react";
-import { Tooltip } from "react-tippy";
+import { Tooltip, withTooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 import Lens from "../icons-social/lensIcon";
 import OpenSea from "../icons-social/openseaIcon";
@@ -219,7 +219,7 @@ export const columns: ColumnDef<Label>[] = [
       };
 
       return (
-        <span className="flex items-center gap-2 custom-span">
+        <span className="custom-span flex items-center gap-2">
           {isTooltipOpen && (
             <Tooltip
               title="Copied"
@@ -227,7 +227,6 @@ export const columns: ColumnDef<Label>[] = [
               trigger="click"
               open={isTooltipOpen}
               className="
-              custom-tooltip 
               absolute top-[0px] right-5
               text-gray-600 dark:text-gray-30
               bg-white dark:bg-gray-800
@@ -239,7 +238,7 @@ export const columns: ColumnDef<Label>[] = [
             href={`https://etherscan.io/address/${address}`}
             title={address}
             style={fontMonoJetBrains.style}
-            className="text-gray-500 hover:underline dark:text-gray-400 flex custom-avatar"
+            className="custom-avatar flex text-gray-500 hover:underline dark:text-gray-400"
           >
             <Avatar
               size={20}
@@ -354,6 +353,7 @@ export const columns: ColumnDef<Label>[] = [
       dark:text-gray-300
     "
             ></Tooltip>
+            <span className="">{formattedLinkedAddresses.length} more.. </span>
           </div>
         </div>
       );
