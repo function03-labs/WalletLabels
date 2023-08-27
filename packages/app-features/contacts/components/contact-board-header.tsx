@@ -4,12 +4,13 @@ import { OverflowMenu } from '@saas-ui/react'
 import { ContactTag } from './contact-tag'
 import { ContactType } from './contact-type'
 import { TagIcon } from 'lucide-react'
+import { DataBoardHeaderProps } from '@ui/lib'
 
-export const ContactBoardHeader: React.FC<GroupingRow> = ({ header }) => {
-  const value = header.groupingValue as string
+export const ContactBoardHeader: React.FC<DataBoardHeaderProps> = (props) => {
+  const value = props.groupingValue as string
   let title
 
-  switch (header.groupingColumnId) {
+  switch (props.groupingColumnId) {
     case 'status':
       title = <ContactStatus status={value} />
       break

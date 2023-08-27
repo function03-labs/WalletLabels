@@ -404,7 +404,7 @@ export function ContactsListPage() {
   const board = React.useMemo(
     () =>
       ({
-        header: (header) => <ContactBoardHeader header={header} />,
+        header: (header) => <ContactBoardHeader {...header} />,
         card: (row) => <ContactCard contact={row.original} />,
         groupBy,
       } as ListPageProps<Contact>['board']),

@@ -27,6 +27,8 @@ import {
   useControllableState,
 } from '@chakra-ui/react'
 
+export type DataBoardHeaderProps = GroupingRow
+
 export interface DataBoardProps<Data extends object>
   extends Omit<HTMLChakraProps<'div'>, 'onChange'>,
     Omit<TableOptions<Data>, 'getCoreRowModel'>,
@@ -66,7 +68,7 @@ export const DataBoard = forwardRef(
       value: groupBy ? [groupBy] : [],
       onChange: (grouping) => onGroupChange?.(grouping[0]),
     })
-    console.log(groupBy)
+
     const instance = useReactTable({
       data: React.useMemo(() => data, []),
       columns: React.useMemo(() => columns, []),
@@ -99,12 +101,9 @@ export const DataBoard = forwardRef(
       return items
     }, [groupBy])
 
-    console.log(items)
-
     return (
       <Kanban ref={ref} items={items} {...rest}>
         {({ columns, items, activeId }) => {
-          console.log('cols', columns)
           return (
             <>
               {columns.map((id) => {
