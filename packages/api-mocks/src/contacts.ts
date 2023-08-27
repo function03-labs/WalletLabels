@@ -71,6 +71,25 @@ export const createContact = async (variables: {
   }
 }
 
+export const updateContact = async (
+  variables: { id: string } & Partial<Contact>,
+) => {
+  const { id, ...rest } = variables
+
+  const contact = mocks.getContact(id)
+
+  if (!contact) {
+    throw new Error('Contact not found')
+  }
+
+  return {
+    updateContact: mocks.updateContact({
+      ...contact,
+      ...rest,
+    }),
+  }
+}
+
 export const addComment = async (variables: {
   contactId: string
   comment: string

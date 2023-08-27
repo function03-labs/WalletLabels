@@ -62,6 +62,7 @@ export interface ListPageProps<D extends object>
     header: DataBoardProps<D>['renderHeader']
     card: DataBoardProps<D>['renderCard']
     groupBy: DataBoardProps<D>['groupBy']
+    onCardDragEnd: DataBoardProps<D>['onCardDragEnd']
   }
 }
 
@@ -200,9 +201,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         data={data}
         renderHeader={board?.header}
         renderCard={board?.card}
-        onCardDragEnd={(args) => {
-          console.log(args)
-        }}
+        onCardDragEnd={board?.onCardDragEnd}
         getRowId={getRowId}
         groupBy={board?.groupBy}
         initialState={{

@@ -7,6 +7,7 @@ import {
   KanbanColumnBody,
   KanbanDragOverlay,
   KanbanProps,
+  KanbanItems,
 } from '@saas-ui-pro/kanban'
 import {
   ColumnDef,
@@ -66,7 +67,9 @@ export const DataBoard = forwardRef(
     const [grouping, setGrouping] = useControllableState<GroupingState>({
       defaultValue: defaultGroupBy ? [defaultGroupBy] : [],
       value: groupBy ? [groupBy] : [],
-      onChange: (grouping) => onGroupChange?.(grouping[0]),
+      onChange: (grouping) => {
+        onGroupChange?.(grouping[0])
+      },
     })
 
     const instance = useReactTable({
@@ -91,8 +94,8 @@ export const DataBoard = forwardRef(
     // This exposes the useReactTable api through the instanceRef
     React.useImperativeHandle(instanceRef, () => instance, [instanceRef])
 
-    const items = React.useMemo(() => {
-      const items: Record<string, string[]> = {}
+    const mapItems = React.useCallback(() => {
+      const items: KanbanItems = {}
       instance.getRowModel().rows.forEach((row) => {
         if (row.getIsGrouped()) {
           items[row.id] = row.subRows.map((subRow) => subRow.id)
@@ -101,8 +104,14 @@ export const DataBoard = forwardRef(
       return items
     }, [groupBy])
 
+    React.useEffect(() => {
+      setItems(mapItems())
+    }, [groupBy])
+
+    const [items, setItems] = React.useState(mapItems())
+
     return (
-      <Kanban ref={ref} items={items} {...rest}>
+      <Kanban ref={ref} items={items} onChange={setItems} {...rest}>
         {({ columns, items, activeId }) => {
           return (
             <>

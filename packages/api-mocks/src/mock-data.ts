@@ -216,8 +216,11 @@ export const getContacts = (
   if (refresh || !contacts.length) {
     randUser({ length: 100 })
       .map((user) => mapContact(user))
-      .forEach((contact) => {
-        state.add(contact as Contact)
+      .forEach((contact, i) => {
+        state.add({
+          ...contact,
+          sortOrder: i,
+        })
       })
   }
 
@@ -236,6 +239,10 @@ export const getContacts = (
   return Object.values(state.data).filter((contact) =>
     types.includes(contact.type as string),
   )
+}
+
+export const updateContact = (contact: Contact) => {
+  return contactsStore.getState().update(contact.id, contact)
 }
 
 export const getOrganization = (slug?: string | null) => {

@@ -1,4 +1,4 @@
-import { HStack, Icon, MenuItem, Spacer, Tag } from '@chakra-ui/react'
+import { HStack, Icon, MenuItem, Spacer, Tag, Text } from '@chakra-ui/react'
 import { ContactStatus } from './contact-status'
 import { OverflowMenu } from '@saas-ui/react'
 import { ContactTag } from './contact-tag'
@@ -46,6 +46,7 @@ export const ContactBoardHeader: React.FC<DataBoardHeaderProps> = (props) => {
   return (
     <HStack w="full" py="2" px="1">
       {title}
+      <Text color="muted">{(props as any).leafRows?.length}</Text>
       <Spacer />
       <OverflowMenu size="sm">
         <MenuItem>Hide</MenuItem>
