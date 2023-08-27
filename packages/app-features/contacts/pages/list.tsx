@@ -57,6 +57,7 @@ import { filters, AddFilterButton } from '../components/contact-filters'
 import { ContactStatus } from '../components/contact-status'
 import { ContactType } from '../components/contact-type'
 import { ContactTag } from '../components/contact-tag'
+import { ContactBoardHeader } from '../components/contact-board-header'
 import { ContactCard } from '../components/contact-card'
 
 import { usePath } from '@app/features/core/hooks/use-path'
@@ -244,11 +245,23 @@ export function ContactsListPage() {
     </ToggleButtonGroup>
   )
 
-  const groupBy = (
-    <Select name="groupBy" value="status" size="xs">
+  const [groupBy, setGroupBy] = useLocalStorage(
+    'app.contacts.groupBy',
+    'status',
+  )
+
+  const groupBySelect = (
+    <Select
+      name="groupBy"
+      value={groupBy}
+      onChange={(value) => setGroupBy(value as string)}
+      size="xs"
+    >
       <SelectButton>Status</SelectButton>
       <SelectList>
         <SelectOption value="status">Status</SelectOption>
+        <SelectOption value="type">Type</SelectOption>
+        <SelectOption value="tags">Tag</SelectOption>
       </SelectList>
     </Select>
   )
@@ -304,7 +317,11 @@ export function ContactsListPage() {
         />
         <Portal>
           <MenuList maxW="260px">
-            <MenuProperty label="Group by" value={groupBy} />
+            {
+              /* not supported by DataGrid */ view === 'board' ? (
+                <MenuProperty label="Group by" value={groupBySelect} />
+              ) : null
+            }
             <MenuProperty
               label="Display properties"
               value={displayProperties}
@@ -387,18 +404,11 @@ export function ContactsListPage() {
   const board = React.useMemo(
     () =>
       ({
-        header: (header) => (
-          <HStack w="full" py="2" px="1">
-            <ContactStatus status={header.groupingValue as string} />
-            <Spacer />
-            <OverflowMenu size="sm">
-              <MenuItem>Hide</MenuItem>
-            </OverflowMenu>
-          </HStack>
-        ),
+        header: (header) => <ContactBoardHeader header={header} />,
         card: (row) => <ContactCard contact={row.original} />,
+        groupBy,
       } as ListPageProps<Contact>['board']),
-    [],
+    [groupBy],
   )
 
   return (

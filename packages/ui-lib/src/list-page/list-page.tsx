@@ -61,6 +61,7 @@ export interface ListPageProps<D extends object>
   board?: {
     header: DataBoardProps<D>['renderHeader']
     card: DataBoardProps<D>['renderCard']
+    groupBy: DataBoardProps<D>['groupBy']
   }
 }
 
@@ -203,7 +204,11 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
           console.log(args)
         }}
         getRowId={getRowId}
-        groupBy="status"
+        groupBy={board?.groupBy}
+        initialState={{
+          columnVisibility,
+          ...initialState,
+        }}
         state={state}
       />
     )

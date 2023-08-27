@@ -66,7 +66,7 @@ export const DataBoard = forwardRef(
       value: groupBy ? [groupBy] : [],
       onChange: (grouping) => onGroupChange?.(grouping[0]),
     })
-
+    console.log(groupBy)
     const instance = useReactTable({
       data: React.useMemo(() => data, []),
       columns: React.useMemo(() => columns, []),
@@ -97,11 +97,14 @@ export const DataBoard = forwardRef(
         }
       })
       return items
-    }, [])
+    }, [groupBy])
+
+    console.log(items)
 
     return (
-      <Kanban ref={ref} defaultItems={items} {...rest}>
+      <Kanban ref={ref} items={items} {...rest}>
         {({ columns, items, activeId }) => {
+          console.log('cols', columns)
           return (
             <>
               {columns.map((id) => {
@@ -112,7 +115,7 @@ export const DataBoard = forwardRef(
                       {flexRender(renderHeader, row)}
                     </KanbanColumnHeader>
                     <KanbanColumnBody>
-                      {items[id].map((itemId) => {
+                      {items[id]?.map((itemId) => {
                         const item = instance.getRowModel().rowsById[itemId]
                         return (
                           <BoardCard

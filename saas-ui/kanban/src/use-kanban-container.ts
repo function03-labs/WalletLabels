@@ -50,9 +50,7 @@ export type OnColumnDragEndHandler = (args: {
 }) => void
 
 export interface UseKanbanContainerProps {
-  adjustScale?: boolean
   cancelDrop?: CancelDrop
-  columns?: number
   coordinateGetter?: KeyboardCoordinateGetter
   defaultItems?: KanbanItems
   items?: KanbanItems
@@ -82,9 +80,14 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
     onChange,
   })
 
+  useEffect(() => {
+    setColumns(Object.keys(items) as UniqueIdentifier[])
+  }, [items])
+
   const [columns, setColumns] = useState(
     Object.keys(items) as UniqueIdentifier[],
   )
+
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
   const initialPosition = useRef<{
     columnId: UniqueIdentifier
