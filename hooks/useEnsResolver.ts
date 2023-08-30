@@ -13,13 +13,11 @@ export function useEnsResolver(ensName) {
         fetch(`https://ensdata.net/${ensName}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.error || !data.address) {
                     setError(true);
                     return;
                 }
-
-
                 setData(data.address);
                 setLoading(false);
             })

@@ -1,20 +1,10 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable @next/next/no-img-element */
-
+import React, { useState, useEffect } from 'react';
 import { ColumnDef } from "@tanstack/react-table";
 import Avatar from "boring-avatars";
 import {
-  ArrowDown,
-  ArrowUp,
-  BadgeCheck,
-  MoreHorizontal,
-  PlusCircle,
-  PlusCircleIcon,
-  PlusIcon,
-  RedoDotIcon,
+  MoreHorizontal
 } from "lucide-react";
-import { useState } from "react";
-import { Tooltip, withTooltip } from "react-tippy";
+import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 import Lens from "../icons-social/lensIcon";
 import OpenSea from "../icons-social/openseaIcon";
@@ -26,14 +16,59 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEnsResolver } from "@/hooks/useEnsResolver";
-import { fontMono, fontMonoJetBrains } from "@/pages/_app";
-import { Inter } from "@next/font/google";
+import { fontMonoJetBrains } from "@/pages/_app";
 import Link from "next/link";
 import { FaCopy } from "react-icons/fa";
+import axios from 'axios';
+
+
+// const API_KEY = process.env.COVALENT_API;
+let netWorth = 0;
+
+// Create an async function to fetch the data
+// const fetchData = async (network, address) => {
+//   try {
+//     const apiUrl =`https://api.covalenthq.com/v1/${network}/address/${address}/portfolio_v2/?&key=cqt_rQjR4tcwdrj7bGjCqGXxYXcjPptm`;
+//     const newurl = 'https://api.covalenthq.com/v1/eth-mainnet/address/0x4b7BAd6B57ec60Ee861C07AbFcB51d32E6d98395/portfolio_v2/?&key=cqt_rQjR4tcwdrj7bGjCqGXxYXcjPptm'
+//     const response = await axios.get(newurl);
+//     const allItems = response.data.data.items;
+//     if (allItems && allItems.length) {
+//       allItems.forEach(element => {
+//         if(element.holdings[0].close.quote != null && element.holdings[0].close.quote != 0){
+//           netWorth += element.holdings[0].close.quote;
+//         }
+//       });
+//       return netWorth;
+//     }
+//     // Process and use the fetched data here
+//     console.log('Fetched data:', netWorth);
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// };
+
+const fetchData = async (chainId: string, address: string) => {
+  const apiUrl = `https://api.covalenthq.com/v1/${chainId}/address/${address}/portfolio_v2/?&key=cqt_rQjR4tcwdrj7bGjCqGXxYXcjPptm`;
+  try {
+    netWorth = 0;
+    const response = await axios.get(apiUrl);
+    const allItems = response.data.data.items;
+    if (allItems && allItems.length) {
+      allItems.forEach(element => {
+        if(element.holdings[0].close.quote != null && element.holdings[0].close.quote != 0){
+          netWorth += element.holdings[0].close.quote;
+        }
+      });
+      return netWorth;
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
+};
 
 const generateRandomColor = () => {
   const letters = "0123456789ABCDEF";
@@ -84,7 +119,8 @@ export interface Label {
   labels: string[];
 }
 
-export const columns: ColumnDef<Label>[] = [
+export const columns: ColumnDef<Label>[] = 
+[
   {
     accessorKey: "name",
     header: "Name",
@@ -146,15 +182,8 @@ export const columns: ColumnDef<Label>[] = [
 
       return (
         <div className="relative">
-          {/* <div className="absolute top-0 bottom-0 left-0 w-6 bg-fade-right z-10"></div> */}
-          <div
-            className="absolute inset-y-0 right-0 z-10 w-6 bg-fade-left dark:bg-fade-left-dark
-          "
-          ></div>
-          <div
-            className="flex max-w-[10rem] overflow-x-scroll whitespace-nowrap scrollbar-hide 
-            "
-          >
+          <div className="absolute inset-y-0 right-0 z-10 w-6 bg-fade-left dark:bg-fade-left-dark"></div>
+          <div className="flex max-w-[10rem] overflow-x-scroll whitespace-nowrap scrollbar-hide">
             {labels.map((label, idx) => (
               <Badge key={idx} label={label} />
             ))}
@@ -172,33 +201,22 @@ export const columns: ColumnDef<Label>[] = [
       const { address, loading, hasError } = useEnsResolver(ens);
       const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
-      // If the data is loading, return a loading skeleton
+      // ... rest of the code ...
+
       if (loading && !hasError) {
         return (
-          <div
-            className="skeleton-loader animate-pulse text-gray-400
-        dark:text-gray-600
-
-        "
-            style={fontMonoJetBrains.style}
-          >
+          <div className="skeleton-loader animate-pulse text-gray-400 dark:text-gray-600">
             Loading...
           </div>
         );
       }
       if (hasError) {
         return (
-          <div
-            className="skeleton-loader text-red-400 
-        dark:text-red-600
-        "
-            style={fontMonoJetBrains.style}
-          >
+          <div className="skeleton-loader text-red-400 dark:text-red-600">
             Address Not Found..
           </div>
         );
       }
-
       // If the address is too long, truncate it
       console.log(address, hasError);
       const truncatedAddress = `${address.substring(
@@ -366,20 +384,25 @@ export const columns: ColumnDef<Label>[] = [
       <div className="text-right font-bold text-gray-600">Net Worth</div>
     ),
     cell: ({ row }) => {
-      const netWorth = row.getValue("netWorth") as number;
-
+      const { ens } = row.original;
+      const { address } = useEnsResolver(ens);
+      // State to hold the net worth data
+      const [netWorth, setNetWorth] = useState<number | 0>(0);
+      useEffect(() => {
+        fetchData('eth-mainnet', address)
+          .then((netWorth) => {
+            setNetWorth(netWorth);
+          });
+      }, [address]);
       // Format net worth as a currency
       const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       });
-      const formattedNetWorth = formatter.format(netWorth);
+      const formattedNetWorth = netWorth !== null ? formatter.format(netWorth) : "Loading...";
 
       return (
-        <div
-          className="text-right text-gray-700"
-          style={fontMonoJetBrains.style}
-        >
+        <div className="text-right text-gray-700" style={fontMonoJetBrains.style}>
           {formattedNetWorth}
         </div>
       );

@@ -1,32 +1,16 @@
-/* eslint-disable @next/next/no-img-element */
-
 import React from "react"
-import Link from "next/link"
 import { Chip } from "@nextui-org/react"
-import axios from "axios"
-import classnames from "classnames"
 import CountUp from "react-countup"
-import { FaTwitter } from "react-icons/fa"
 import { MdVerified } from "react-icons/md"
-
-import { siteConfig } from "@/config/site"
 import { connectToDatabase } from "@/lib/mongodb_social"
 import { Layout } from "@/components/layout"
 import { socialMediaProviders } from "@/components/socialMediaProviders"
-import Page, { getData } from "@/components/socials/page"
 import DemoPage from "@/components/socials/page"
 import { socialIcons } from "../components/socialIcons"
 import { fontMonoJetBrains } from "./_app"
 
 export async function getStaticProps() {
   try {
-    // const apiUrl = "https://walletlabels.xyz/api/query_socials?query=" // The API endpoint you've set up
-    // const response = await axios.get(apiUrl, {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-
     let db = await connectToDatabase()
     let labels = await db.db
       .collection("sociallabels_db1")
@@ -35,7 +19,6 @@ export async function getStaticProps() {
       .toArray()
 
     // Check if the response status is OK (200)
-    console.log(labels)
     if (labels) {
       // do not take _id from mongodb
       const data = labels.map(({ _id, id, ...rest }) => rest)
@@ -134,9 +117,6 @@ export default function SocialsPage({ data }) {
                     : ""
                 }
                 `}
-                  // className={`duration-150 transition-all cursor-pointer ${provider.bgColor} ${provider.textColor} hover:${provider.hoverBgColor} hover:${provider.hoverTextColor} ${selectedProviders.includes(provider.name) ? provider.hoverBgColor : ''} ${selectedProviders.includes(provider.name) ? provider.hoverTextColor : ''}`}
-
-                  // variant="bordered"
                   variant={
                     selectedProviders.includes(provider.name) ? "faded" : "dot"
                   }
