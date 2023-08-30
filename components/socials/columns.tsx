@@ -399,7 +399,7 @@ export const columns: ColumnDef<Label>[] =
         style: "currency",
         currency: "USD",
       });
-      const formattedNetWorth = netWorth !== null ? formatter.format(netWorth) : "Loading...";
+      const formattedNetWorth = netWorth !== null ? formatter.format(netWorth) : "$NaN";
 
       return (
         <div className="text-right text-gray-700" style={fontMonoJetBrains.style}>
