@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
 import { ColumnDef } from "@tanstack/react-table";
 import Avatar from "boring-avatars";
@@ -23,32 +24,11 @@ import { fontMonoJetBrains } from "@/pages/_app";
 import Link from "next/link";
 import { FaCopy } from "react-icons/fa";
 import axios from 'axios';
+import LinkedProfilesCell from './linkedProfiles';
 
 
 // const API_KEY = process.env.COVALENT_API;
 let netWorth = 0;
-
-// Create an async function to fetch the data
-// const fetchData = async (network, address) => {
-//   try {
-//     const apiUrl =`https://api.covalenthq.com/v1/${network}/address/${address}/portfolio_v2/?&key=cqt_rQjR4tcwdrj7bGjCqGXxYXcjPptm`;
-//     const newurl = 'https://api.covalenthq.com/v1/eth-mainnet/address/0x4b7BAd6B57ec60Ee861C07AbFcB51d32E6d98395/portfolio_v2/?&key=cqt_rQjR4tcwdrj7bGjCqGXxYXcjPptm'
-//     const response = await axios.get(newurl);
-//     const allItems = response.data.data.items;
-//     if (allItems && allItems.length) {
-//       allItems.forEach(element => {
-//         if(element.holdings[0].close.quote != null && element.holdings[0].close.quote != 0){
-//           netWorth += element.holdings[0].close.quote;
-//         }
-//       });
-//       return netWorth;
-//     }
-//     // Process and use the fetched data here
-//     console.log('Fetched data:', netWorth);
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//   }
-// };
 
 const fetchData = async (chainId: string, address: string) => {
   const apiUrl = `https://api.covalenthq.com/v1/${chainId}/address/${address}/portfolio_v2/?&key=cqt_rQjR4tcwdrj7bGjCqGXxYXcjPptm`;
@@ -245,10 +225,10 @@ export const columns: ColumnDef<Label>[] =
               trigger="click"
               open={isTooltipOpen}
               className="
-              absolute top-[0px] right-5
-              text-gray-600 dark:text-gray-30
-              bg-white dark:bg-gray-800
-              transition-opacity duration-200
+              dark:text-gray-30 absolute top-[0px]
+              right-5 bg-white
+              text-gray-600 duration-200
+              transition-opacity dark:bg-gray-800
             "
             ></Tooltip>
           )}
@@ -351,31 +331,7 @@ export const columns: ColumnDef<Label>[] =
   {
     accessorKey: "linkedAddresses",
     header: () => <div className="text-right">Linked Profiles</div>,
-    cell: ({ row }) => {
-      const linkedAddresses: Array<string> = row.getValue("linkedAddresses")
-        ? row.getValue("linkedAddresses")
-        : ["0x0000", "0x11111", "0x22222", "0x33333"];
-      const formattedLinkedAddresses = linkedAddresses.toLocaleString(); // Format followers with commas
-
-      return (
-        <div className="text-right">
-          <div>
-            <Tooltip
-              title={linkedAddresses.join(", ")}
-              position="top"
-              trigger="mouseenter"
-              className="
-      text-gray-600
-      hover:text-gray-900
-      hover:underline
-      dark:text-gray-300
-    "
-            ></Tooltip>
-            <span className="">{formattedLinkedAddresses.length} more.. </span>
-          </div>
-        </div>
-      );
-    },
+    cell: LinkedProfilesCell
   },
 
   {
@@ -389,10 +345,12 @@ export const columns: ColumnDef<Label>[] =
       // State to hold the net worth data
       const [netWorth, setNetWorth] = useState<number | 0>(0);
       useEffect(() => {
-        fetchData('eth-mainnet', address)
+        if(address && address !== null){
+          fetchData('eth-mainnet', address)
           .then((netWorth) => {
             setNetWorth(netWorth);
           });
+        }
       }, [address]);
       // Format net worth as a currency
       const formatter = new Intl.NumberFormat("en-US", {
