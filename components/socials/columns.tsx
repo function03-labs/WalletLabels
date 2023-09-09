@@ -8,6 +8,7 @@ import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 import Lens from "../icons-social/lensIcon";
 import OpenSea from "../icons-social/openseaIcon";
+import { Checkbox } from "../ui/checkbox";
 import { COLORS, stringToHash } from "./COLORS";
 import LinkedProfilesCell from "./linkedProfiles";
 import TransactionHistory from "./transactions";
@@ -103,6 +104,27 @@ export interface Label {
 
 export const columns: ColumnDef<Label>[] = [
   {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={table.getIsAllPageRowsSelected()}
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+        className="translate-y-[2px]"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+        className="translate-y-[2px]"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => {
@@ -197,7 +219,7 @@ export const columns: ColumnDef<Label>[] = [
       const truncatedAddress = `${address.substring(
         0,
         4
-      )}...${address.substring(address.length - 2)}`;
+      )}...${address.substring(address.length - 4)}`;
 
       const handleCopyClick = async () => {
         try {
@@ -325,11 +347,11 @@ export const columns: ColumnDef<Label>[] = [
   // },
   //add linked addresses
 
-  {
-    accessorKey: "linkedAddresses",
-    header: () => <div className="text-right">Linked Profiles</div>,
-    cell: LinkedProfilesCell,
-  },
+  // {
+  //   accessorKey: "linkedAddresses",
+  //   header: () => <div className="text-right">Linked Profiles</div>,
+  //   cell: LinkedProfilesCell,
+  // },
 
   {
     accessorKey: "netWorth",
@@ -343,13 +365,6 @@ export const columns: ColumnDef<Label>[] = [
       const [netWorth, setNetWorth] = useState<number | null>(0);
       const [isLoading, setIsLoading] = useState<boolean>(false);
 
-      //make get request to https://www.onceupon.gg/api/neighbors/0xb432005e1010492fa315b9737881e5E18925204c?page=1&per_page=10 and display
-      const res = fetch(
-        "http://127.0.0.1:3000/api/neighbors/0xb432005e1010492fa315b9737881e5E18925204c?page=1&per_page=10"
-      ).then((res) => res.json());
-      console.log(
-        res.then((data) => console.log(data)).catch((err) => console.log(err))
-      );
       useEffect(() => {
         if (address && address !== null) {
           setIsLoading(true);
