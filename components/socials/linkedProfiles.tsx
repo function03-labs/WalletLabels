@@ -34,7 +34,7 @@ const LinkedProfilesCell: React.FC<CellProps<Label>> = ({ row }) => {
   const [formattedLinkedAddresses, setFormattedLinkedAddresses] =
     useState<string>("");
 
-  const apiUrl = `http://localhost:3000/api/neighbors/${address}?page=${currentPage}&per_page=${addressesPerPage}`;
+  const apiUrl = `https://www.onceupon.gg/api/neighbors/${address}?page=${currentPage}&per_page=${addressesPerPage}`;
 
   const showTooltip = () => {
     setIsTooltipOpen(true);
