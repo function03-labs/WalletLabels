@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Tooltip } from "react-tippy";
 import { useEnsResolver } from "@/hooks/useEnsResolver";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Tooltip } from "react-tippy";
 
 interface CellProps<T> {
   row: {
@@ -11,16 +11,16 @@ interface CellProps<T> {
 }
 
 export interface Label {
-    _id: string;
-    id: string;
-    name: string;
-    ens: string;
-    handle: string;
-    followers: number;
-    verified: boolean;
-    updated: string;
-    pfp: string; // URL to the profile picture
-    labels: string[];
+  _id: string;
+  id: string;
+  name: string;
+  ens: string;
+  handle: string;
+  followers: number;
+  verified: boolean;
+  updated: string;
+  pfp: string; // URL to the profile picture
+  labels: string[];
 }
 
 const LinkedProfilesCell: React.FC<CellProps<Label>> = ({ row }) => {
@@ -31,9 +31,10 @@ const LinkedProfilesCell: React.FC<CellProps<Label>> = ({ row }) => {
   const [fetchedAddresses, setFetchedAddresses] = useState<string[]>([]);
   const [fetchedAddressesCount, setFetchedAddressesCount] = useState<number>();
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-  const [formattedLinkedAddresses, setFormattedLinkedAddresses] = useState<string>('');
+  const [formattedLinkedAddresses, setFormattedLinkedAddresses] =
+    useState<string>("");
 
-  const apiUrl = `https://www.onceupon.gg/api/neighbors/${address}?page=${currentPage}&per_page=${addressesPerPage}`;
+  const apiUrl = `http://localhost:3000/api/neighbors/${address}?page=${currentPage}&per_page=${addressesPerPage}`;
 
   const showTooltip = () => {
     setIsTooltipOpen(true);
@@ -48,15 +49,16 @@ const LinkedProfilesCell: React.FC<CellProps<Label>> = ({ row }) => {
       try {
         if (address && address !== null) {
           const response = await axios.get(apiUrl);
+          console.log("error is ", response);
           const data = response.data;
-          console.log(data.length)
-          setFetchedAddressesCount(data.length)
-          const formattedAddresses = data.map(item => item._id).join(', ');
+          console.log(data.length);
+          setFetchedAddressesCount(data.length);
+          const formattedAddresses = data.map((item) => item._id).join(", ");
           setFormattedLinkedAddresses(formattedAddresses);
           setFetchedAddresses(formattedAddresses);
         }
       } catch (error) {
-        console.error('Error fetching linked addresses:', error);
+        console.error("Error fetching linked addresses:", error);
       }
     }
 
@@ -65,7 +67,7 @@ const LinkedProfilesCell: React.FC<CellProps<Label>> = ({ row }) => {
 
   return (
     <div className="custom-cursor">
-      <span className='custom-span flex items-center gap-2'>
+      <span className="custom-span flex items-center gap-2">
         {fetchedAddressesCount ? (
           <span>
             <Tooltip
@@ -85,7 +87,6 @@ const LinkedProfilesCell: React.FC<CellProps<Label>> = ({ row }) => {
               {fetchedAddressesCount}
             </span>
           </span>
-         
         ) : (
           <span>0</span>
         )}

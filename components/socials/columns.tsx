@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState, useEffect } from 'react';
+
 import { ColumnDef } from "@tanstack/react-table";
 import Avatar from "boring-avatars";
-import {
-  MoreHorizontal
-} from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 import Lens from "../icons-social/lensIcon";
 import OpenSea from "../icons-social/openseaIcon";
 import { COLORS, stringToHash } from "./COLORS";
+import LinkedProfilesCell from "./linkedProfiles";
 import TransactionHistory from "./transactions";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,11 +21,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useEnsResolver } from "@/hooks/useEnsResolver";
 import { fontMonoJetBrains } from "@/pages/_app";
+import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { FaCopy } from "react-icons/fa";
-import axios from 'axios';
-import LinkedProfilesCell from './linkedProfiles';
-
 
 // const API_KEY = process.env.COVALENT_API;
 let netWorth = 0;
@@ -37,15 +36,18 @@ const fetchData = async (chainId: string, address: string) => {
     const response = await axios.get(apiUrl);
     const allItems = response.data.data.items;
     if (allItems && allItems.length) {
-      allItems.forEach(element => {
-        if(element.holdings[0].close.quote != null && element.holdings[0].close.quote != 0){
+      allItems.forEach((element) => {
+        if (
+          element.holdings[0].close.quote != null &&
+          element.holdings[0].close.quote != 0
+        ) {
           netWorth += element.holdings[0].close.quote;
         }
       });
       return netWorth;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     return null;
   }
 };
@@ -99,23 +101,16 @@ export interface Label {
   labels: string[];
 }
 
-export const columns: ColumnDef<Label>[] = 
-[
+export const columns: ColumnDef<Label>[] = [
   {
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => {
       const label = row.original;
       return (
-        <div className="flex items-center gap-1">
-          {label.pfp && (
-            <img
-              src={label.pfp}
-              alt={label.name}
-              className="mr-2 h-8 w-8 rounded-full"
-            />
-          )}
-          {label.name}
+        <div className="flex items-center gap-1 max-w-[16em] overflow-auto">
+          {label.pfp && ImagewFall(label)}
+          <div className="whitespace-nowrap text-ellipsis">{label.name}</div>
           {label.verified && (
             <div className="ml-1 flex gap-1">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-800 dark:bg-gray-700 dark:text-blue-400">
@@ -201,7 +196,7 @@ export const columns: ColumnDef<Label>[] =
       console.log(address, hasError);
       const truncatedAddress = `${address.substring(
         0,
-        2
+        4
       )}...${address.substring(address.length - 2)}`;
 
       const handleCopyClick = async () => {
@@ -226,7 +221,7 @@ export const columns: ColumnDef<Label>[] =
               open={isTooltipOpen}
               className="
               dark:text-gray-30 absolute top-[0px]
-              right-5 bg-white
+              right-2 bg-white
               text-gray-600 duration-200
               transition-opacity dark:bg-gray-800
             "
@@ -286,52 +281,54 @@ export const columns: ColumnDef<Label>[] =
       return <div className="text-right">{formattedFollowers}</div>;
     },
   },
-  {
-    accessorKey: "transactions",
-    header: () => (
-      <div
-        className="
-    text-right"
-      >
-        Transactions
-      </div>
-    ),
-    cell: ({ row }) => {
-      if (true) {
-        return (
-          <div className="flex animate-pulse items-center justify-center">
-            {/* Neutral state with 5 cells representing loading */}
-            {[...Array(5)].map((_, idx) => (
-              <div
-                key={idx}
-                className="mx-0.5 h-3.5 w-3.5 border-2 border-gray-300 bg-gray-200"
-              ></div>
-            ))}
-          </div>
-        );
-      }
-      const transactions = {
-        positive: 150,
-        negative: 12,
-        history: [
-          { type: "positive", info: "Incoming ETH", hash: "0x..." },
-          { type: "positive", info: "Minted Token", hash: "0x..." },
-          { type: "negative", info: "Outgoing ETH", hash: "0x..." },
-          { type: "negative", info: "Outgoing ETH", hash: "0x..." },
-          { type: "negative", info: "Outgoing ETH", hash: "0x..." },
-          // ... more transactions
-        ],
-      };
+  // {
+  //   // accessorKey: "transactions",
+  //   // header: () => (
+  //   //   <div
+  //   //     className="
+  //   // text-right"
+  //   //   >
+  //   //     Transactions
+  //   //   </div>
+  //   // ),
+  //   cell: ({ row }) => {
+  //     const { ens } = row.original;
+  //     const { address, loading, hasError } = useEnsResolver(ens);
+  //     if (true) {
+  //       return (
+  //         <div className="flex animate-pulse items-center justify-center">
+  //           {/* Neutral state with 5 cells representing loading */}
+  //           {[...Array(5)].map((_, idx) => (
+  //             <div
+  //               key={idx}
+  //               className="mx-0.5 h-3.5 w-3.5 border-2 border-gray-300 bg-gray-200"
+  //             ></div>
+  //           ))}
+  //         </div>
+  //       );
+  //     }
+  //     const transactions = {
+  //       positive: 150,
+  //       negative: 12,
+  //       history: [
+  //         { type: "positive", info: "Incoming ETH", hash: "0x..." },
+  //         { type: "positive", info: "Minted Token", hash: "0x..." },
+  //         { type: "negative", info: "Outgoing ETH", hash: "0x..." },
+  //         { type: "negative", info: "Outgoing ETH", hash: "0x..." },
+  //         { type: "negative", info: "Outgoing ETH", hash: "0x..." },
+  //         // ... more transactions
+  //       ],
+  //     };
 
-      return <TransactionHistory transactions={transactions} />;
-    },
-  },
+  //     return <TransactionHistory transactions={transactions} />;
+  //   },
+  // },
   //add linked addresses
 
   {
     accessorKey: "linkedAddresses",
     header: () => <div className="text-right">Linked Profiles</div>,
-    cell: LinkedProfilesCell
+    cell: LinkedProfilesCell,
   },
 
   {
@@ -343,25 +340,44 @@ export const columns: ColumnDef<Label>[] =
       const { ens } = row.original;
       const { address } = useEnsResolver(ens);
       // State to hold the net worth data
-      const [netWorth, setNetWorth] = useState<number | 0>(0);
+      const [netWorth, setNetWorth] = useState<number | null>(0);
+      const [isLoading, setIsLoading] = useState<boolean>(false);
+
+      //make get request to https://www.onceupon.gg/api/neighbors/0xb432005e1010492fa315b9737881e5E18925204c?page=1&per_page=10 and display
+      const res = fetch(
+        "http://127.0.0.1:3000/api/neighbors/0xb432005e1010492fa315b9737881e5E18925204c?page=1&per_page=10"
+      ).then((res) => res.json());
+      console.log(
+        res.then((data) => console.log(data)).catch((err) => console.log(err))
+      );
       useEffect(() => {
-        if(address && address !== null){
-          fetchData('eth-mainnet', address)
-          .then((netWorth) => {
+        if (address && address !== null) {
+          setIsLoading(true);
+          fetchData("eth-mainnet", address).then((netWorth) => {
             setNetWorth(netWorth);
+            setIsLoading(false);
           });
         }
       }, [address]);
-      // Format net worth as a currency
+
       const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       });
-      const formattedNetWorth = netWorth !== null ? formatter.format(netWorth) : "$NaN";
+
+      const formattedNetWorth =
+        netWorth !== null ? formatter.format(netWorth) : "$NaN";
 
       return (
-        <div className="text-right text-gray-700" style={fontMonoJetBrains.style}>
-          {formattedNetWorth}
+        <div
+          className="text-right text-gray-700"
+          style={fontMonoJetBrains.style}
+        >
+          {isLoading ? (
+            <span className="animate-pulse">{formattedNetWorth}</span>
+          ) : (
+            formattedNetWorth
+          )}
         </div>
       );
     },
@@ -409,3 +425,27 @@ export const columns: ColumnDef<Label>[] =
     },
   },
 ];
+function ImagewFall(label: Label): React.ReactNode {
+  const [imgSrc, setImgSrc] = useState(label.pfp);
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={label.name}
+      width={"32"}
+      height={"32"}
+      placeholder="blur"
+      blurDataURL={"/assets/placeholder.png"}
+      onLoad={() => setIsLoading(false)}
+      onError={(e) => {
+        setImgSrc("/assets/placeholder.png"); //fallback
+        //srcset
+      }}
+      // correct classname with variable
+      className={`mr-1 h-9 w-9 rounded-full ${
+        isLoading ? "animate-pulse" : ""
+      }`}
+    />
+  );
+}
