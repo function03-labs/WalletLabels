@@ -2,10 +2,11 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import Avatar from "boring-avatars";
-import { MoreHorizontal } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import { MoreHorizontal, X, XCircleIcon } from "lucide-react";
+import React, { useState, useEffect, startTransition } from "react";
 import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
+import { DataTableColumnHeader } from "../data-table/data-table-column-header";
 import Lens from "../icons-social/lensIcon";
 import OpenSea from "../icons-social/openseaIcon";
 import { Checkbox } from "../ui/checkbox";
@@ -18,10 +19,19 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEnsResolver } from "@/hooks/useEnsResolver";
 import { fontMonoJetBrains } from "@/pages/_app";
+import { sociallabels_db1 } from "@prisma/client";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -102,7 +112,7 @@ export interface Label {
   labels: string[];
 }
 
-export const columns: ColumnDef<Label>[] = [
+export const columns: ColumnDef<sociallabels_db1>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -154,14 +164,14 @@ export const columns: ColumnDef<Label>[] = [
                 </svg>
                 <span className="sr-only">Icon description</span>
               </span>
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+              {/* <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                 <Lens className="h-3 w-3" />
                 <span className="sr-only">Icon description</span>
               </span>
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                 <OpenSea className="h-6 w-6" />
                 <span className="sr-only">Icon description</span>
-              </span>
+              </span> */}
             </div>
           )}
         </div>
@@ -296,7 +306,17 @@ export const columns: ColumnDef<Label>[] = [
   // },
   {
     accessorKey: "followers",
-    header: ({ column }) => <div className=" text-right">Followers</div>,
+    header: ({ column }) => (
+      <div className="text-right !px-0">
+        {" "}
+        <DataTableColumnHeader
+          column={column}
+          title="Followers"
+          className="text-right"
+        />
+      </div>
+    ),
+
     cell: ({ row }) => {
       const followers = row.getValue("followers");
       const formattedFollowers = followers.toLocaleString(); // Format followers with commas
@@ -373,6 +393,10 @@ export const columns: ColumnDef<Label>[] = [
             setIsLoading(false);
           });
         }
+
+        return () => {
+          setNetWorth(0);
+        };
       }, [address]);
 
       const formatter = new Intl.NumberFormat("en-US", {
@@ -397,66 +421,73 @@ export const columns: ColumnDef<Label>[] = [
       );
     },
   },
+
   {
     id: "actions",
-    cell: ({ row }) => {
-      const label = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() =>
-                window.open(
-                  `https://etherscan.io/address/${label.id}`,
-                  "_blank"
-                )
-              }
-            >
-              Open on Etherscan
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(label.id)}
-            >
-              Copy Address
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() =>
-                window.open(`https://twitter.com/${label.handle}`, "_blank")
-              }
-            >
-              Open on Twitter
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ({ row }) => (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            aria-label="Open menu"
+            variant="ghost"
+            className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+          >
+            <DotsHorizontalIcon className="h-4 w-4" aria-hidden="true" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-[160px]">
+          <DropdownMenuItem
+            onClick={() =>
+              window.open(
+                `https://etherscan.io/address/${row.original.id}`,
+                "_blank"
+              )
+            }
+          >
+            Etherscan
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => navigator.clipboard.writeText(row.original.id)}
+          >
+            Copy Address
+          </DropdownMenuItem>{" "}
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onClick={() =>
+              window.open(
+                `https://twitter.com/${row.original.handle}`,
+                "_blank"
+              )
+            }
+          >
+            Twitter
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ),
   },
 ];
 function ImagewFall(label: Label): React.ReactNode {
-  const [imgSrc, setImgSrc] = useState(label.pfp);
+  const [imgSrc, setImgSrc] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   return (
     <Image
       src={imgSrc}
-      alt={label.name}
+      alt={label.pfp}
       width={"32"}
       height={"32"}
       placeholder="blur"
       blurDataURL={"/assets/placeholder.png"}
-      onLoad={() => setIsLoading(false)}
+      onLoad={() => {
+        setIsLoading(false);
+        setImgSrc(label.pfp);
+      }}
       onError={(e) => {
         setImgSrc("/assets/placeholder.png"); //fallback
         //srcset
       }}
+      key={label.pfp}
       // correct classname with variable
       className={`mr-1 h-9 w-9 rounded-full ${
         isLoading ? "animate-pulse" : ""

@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model sociallabels_db1 {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  ens       String
+  followers Int
+  handle    String
+  /// Multiple data types found: Int: 19.5%, BigInt: 80.5% out of 1000 sampled entries
+  id_       BigInt  @map("id")
+  name      String
+  pfp       String
+  ranking   Int
+  updated   String?
+  verified  Boolean
+}
