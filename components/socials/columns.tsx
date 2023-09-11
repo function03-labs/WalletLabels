@@ -467,8 +467,8 @@ export const columns: ColumnDef<sociallabels_db1>[] = [
     ),
   },
 ];
-function ImagewFall(label: Label): React.ReactNode {
-  const [imgSrc, setImgSrc] = useState();
+function ImagewFall(label: sociallabels_db1): React.ReactNode {
+  const [imgSrc, setImgSrc] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
 
   return (
