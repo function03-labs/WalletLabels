@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app"
-import { Inter as FontSans } from "@next/font/google"
-import { DM_Mono, JetBrains_Mono } from "@next/font/google"
+import { DM_Mono, Inter as FontSans, JetBrains_Mono } from "@next/font/google"
+import { NextUIProvider } from "@nextui-org/react"
+import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "next-themes"
-import { NextUIProvider } from "@nextui-org/react";
 
 import "@/styles/globals.css"
 // import "@/styles/swagger.css"
@@ -31,7 +31,6 @@ export const fontMonoJetBrains = JetBrains_Mono({
   display: "swap",
 })
 
-
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -44,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			}`}</style>
       <NextUIProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Component {...pageProps} />
+          <Component {...pageProps} /> <Analytics />
         </ThemeProvider>
       </NextUIProvider>
     </QueryClientProvider>
