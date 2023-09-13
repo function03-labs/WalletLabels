@@ -34,3 +34,6 @@ yarn-error.log*
 
 .contentlayer
 .env
+ens_resolver.log
+prisma/ens_resolver.log
+prisma/Untitled-1.ipynb
