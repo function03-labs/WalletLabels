@@ -1,5 +1,6 @@
 import * as React from "react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useRouter } from "next/router"
 import { useDebounce } from "@/hooks/use-debounce"
 import type {
   DataTableFilterableColumn,
@@ -110,7 +111,9 @@ export function DataTable<TData, TValue>({
       `${pathname}?${createQueryString({
         page: pageIndex + 1,
         per_page: pageSize,
-      })}`
+      })}`,
+      null,
+      { shallow: true }
     )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -131,7 +134,9 @@ export function DataTable<TData, TValue>({
         sort: sorting[0]?.id
           ? `${sorting[0]?.id}.${sorting[0]?.desc ? "desc" : "asc"}`
           : null,
-      })}`
+      })}`,
+      null,
+      { shallow: true }
     )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -160,7 +165,9 @@ export function DataTable<TData, TValue>({
           `${pathname}?${createQueryString({
             page: 1,
             [column.id]: typeof column.value === "string" ? column.value : null,
-          })}`
+          })}`,
+          null,
+          { shallow: true }
         )
       }
     }
@@ -174,7 +181,9 @@ export function DataTable<TData, TValue>({
           `${pathname}?${createQueryString({
             page: 1,
             [key]: null,
-          })}`
+          })}`,
+          null,
+          { shallow: true }
         )
       }
     }
@@ -188,7 +197,9 @@ export function DataTable<TData, TValue>({
           `${pathname}?${createQueryString({
             page: 1,
             [column.id]: column.value.join("."),
-          })}`
+          })}`,
+          null,
+          { shallow: true }
         )
       }
     }
@@ -202,7 +213,9 @@ export function DataTable<TData, TValue>({
           `${pathname}?${createQueryString({
             page: 1,
             [key]: null,
-          })}`
+          })}`,
+          null,
+          { shallow: true }
         )
       }
     }

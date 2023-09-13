@@ -67,8 +67,9 @@ export async function getServerSideProps({
   const { page, per_page, sort, name, status, priority } = searchParams
   console.log(searchParams)
 
-  // Number of items per page
-  const limit = typeof per_page === "string" ? parseInt(per_page) : 10
+  // Number of items per page (limited to a maximum of 40)
+  const limit =
+    typeof per_page === "string" ? Math.min(parseInt(per_page), 40) : 10
   // Number of items to skip
   const offset =
     typeof page === "string"
@@ -159,7 +160,6 @@ export async function getServerSideProps({
     },
   }
 }
-
 export default function SocialsPage({ data, pageCount }) {
   const [selectedProviders, setSelectedProviders] = React.useState([])
   const handleChipClick = name => {

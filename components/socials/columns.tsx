@@ -140,7 +140,7 @@ export const columns: ColumnDef<sociallabels_db1>[] = [
     cell: ({ row }) => {
       const label = row.original;
       return (
-        <div className="flex items-center gap-1 max-w-[16em] overflow-auto">
+        <div className="flex items-center gap-1 max-w-[16em] overflow-auto scrollbar-hide">
           {label.pfp && ImagewFall(label)}
           <div className="whitespace-nowrap text-ellipsis">{label.name}</div>
           {label.verified && (
@@ -188,7 +188,7 @@ export const columns: ColumnDef<sociallabels_db1>[] = [
         : ["trader", "nfts", "gamer", "artist", "trader", "nfts", "gamer"];
 
       return (
-        <div className="relative">
+        <div className="relative opacity-50 cursor-not-allowed">
           <div className="absolute inset-y-0 right-0 z-10 w-6 bg-fade-left dark:bg-fade-left-dark"></div>
           <div className="flex max-w-[10rem] overflow-x-scroll whitespace-nowrap scrollbar-hide">
             {labels.map((label, idx) => (
@@ -396,6 +396,7 @@ export const columns: ColumnDef<sociallabels_db1>[] = [
 
         return () => {
           setNetWorth(0);
+          setIsLoading(true);
         };
       }, [address]);
 
