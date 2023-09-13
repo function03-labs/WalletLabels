@@ -31,13 +31,13 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: "API",
-      href: "/api",
+      href: "/api-a",
       disabled: false,
     },
   ],
   links: {
     twitter: "#",
     github: "https://github.com/0xaaiden/WalletLabels",
-    docs: "/api",
+    docs: "/api-a",
   },
 }
