@@ -1,4 +1,5 @@
 import { NavItem } from "@/types/nav"
+import { tr } from "date-fns/locale"
 
 interface SiteConfig {
   name: string
@@ -8,27 +9,35 @@ interface SiteConfig {
     twitter: string
     github: string
     docs: string
+    style?: string
   }
+
 }
 
 export const siteConfig: SiteConfig = {
   name: "WalletLabels",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "WalletLabels is a free and open source service that allows you to search for wallet labels and add your own.",
   mainNav: [
     {
       title: "Home",
       href: "/",
     },
     {
-      title: "Documentation",
-      href: "/docs",
+      title: "Social Labels",
+      href: "/socials",
+      disabled: false,
+      new: true,
+    },
+    {
+      title: "API",
+      href: "/api",
       disabled: false,
     },
   ],
   links: {
     twitter: "#",
     github: "https://github.com/0xaaiden/WalletLabels",
-    docs: "/docs",
+    docs: "/api",
   },
 }

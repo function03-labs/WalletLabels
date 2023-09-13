@@ -1,5 +1,7 @@
 import type { AppProps } from "next/app"
-import { Inter as FontSans } from "@next/font/google"
+import { DM_Mono, Inter as FontSans, JetBrains_Mono } from "@next/font/google"
+import { NextUIProvider } from "@nextui-org/react"
+import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "next-themes"
 
 import "@/styles/globals.css"
@@ -15,6 +17,20 @@ const fontSans = FontSans({
   display: "swap",
 })
 
+export const fontMono = DM_Mono({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+})
+
+export const fontMonoJetBrains = JetBrains_Mono({
+  weight: "variable",
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+})
+
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -25,9 +41,11 @@ export default function App({ Component, pageProps }: AppProps) {
 					--font-sans: ${fontSans.style.fontFamily};
 				}
 			}`}</style>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <NextUIProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Component {...pageProps} /> <Analytics />
+        </ThemeProvider>
+      </NextUIProvider>
     </QueryClientProvider>
   )
 }

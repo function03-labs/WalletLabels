@@ -188,36 +188,6 @@
     --blue12: hsl(206, 98%, 95.8%);
   }
 
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  width: fit-content;
-  margin: 32px auto;
-  bottom: 16px;
-  color: var(--gray11);
-  font-size: 13px;
-  z-index: 3;
-  // position: absolute;
-  bottom: 0;
-
-  a {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--gray12);
-    font-weight: 500;
-    border-radius: 9999px;
-    padding: 4px;
-    margin: 0 -2px;
-    transition: background 150ms ease;
-
-    &:hover,
-    &:focus-visible {
-      background: var(--grayA4);
-      outline: 0;
-    }
-  }
-
   img {
     width: 20px;
     height: 20px;
