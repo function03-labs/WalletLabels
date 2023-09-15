@@ -8,10 +8,10 @@
   "dependencies": {
     "@ngneat/falso": "^2.27.0",
     "date-fns": "^2.30.0",
-    "slug": "^8.2.2",
-    "zustand": "^4.3.9"
+    "slug": "^8.2.3",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "@types/slug": "^5.0.3"
+    "@types/slug": "^5.0.4"
   }
 }

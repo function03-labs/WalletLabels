@@ -1,7 +1,6 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  name: 'tsup',
   target: 'node14',
   dts: {
     resolve: true,
@@ -9,9 +8,6 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   shims: true,
-  // esbuildOptions() {
-
-  // },
   external: [
     'react',
     '@chakra-ui/react',
@@ -20,6 +16,4 @@ export default defineConfig({
     'zustand',
   ],
   format: ['esm', 'cjs'],
-
-  treeshake: 'smallest',
 })

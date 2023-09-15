@@ -1,7 +1,6 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  name: 'tsup',
   target: 'node14',
   dts: {
     resolve: true,
@@ -19,6 +18,7 @@ export default defineConfig({
     '@saas-ui/react-utils',
   ],
   format: ['esm', 'cjs'],
-
-  treeshake: 'smallest',
+  banner: {
+    js: "'use client'",
+  },
 })
