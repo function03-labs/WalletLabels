@@ -1,4 +1,5 @@
 export type { UniqueIdentifier } from '@dnd-kit/core'
+export { KanbanProvider, useKanbanContext } from './kanban-context'
 export { Kanban, type KanbanProps } from './kanban-container'
 export {
   type KanbanItems,
