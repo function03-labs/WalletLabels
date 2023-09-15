@@ -14,14 +14,19 @@ import {
   Tooltip,
   HStack,
   Text,
+  Stack,
 } from '@chakra-ui/react'
-import { FiSliders, FiUser } from 'react-icons/fi'
+import { FiGrid, FiList, FiSliders, FiUser } from 'react-icons/fi'
 import {
   EmptyState,
   OverflowMenu,
   useHotkeysShortcut,
   useSnackbar,
   useLocalStorage,
+  Select,
+  SelectButton,
+  SelectList,
+  SelectOption,
 } from '@saas-ui/react'
 import {
   Command,
@@ -37,9 +42,9 @@ import {
   Filter,
 } from '@saas-ui-pro/react'
 
-import { ListPage, InlineSearch, useModals } from '@ui/lib'
+import { ListPage, InlineSearch, useModals, ListPageProps } from '@ui/lib'
 
-import { Contact, createContact, getContacts } from '@api/client'
+import { Contact, createContact, getContacts, updateContact } from '@api/client'
 
 import { format } from 'date-fns'
 import { CommandIcon, TagIcon } from 'lucide-react'
@@ -51,6 +56,9 @@ import { filters, AddFilterButton } from '../components/contact-filters'
 import { ContactStatus } from '../components/contact-status'
 import { ContactType } from '../components/contact-type'
 import { ContactTag } from '../components/contact-tag'
+import { ContactBoardHeader } from '../components/contact-board-header'
+import { ContactCard } from '../components/contact-card'
+
 import { usePath } from '@app/features/core/hooks/use-path'
 
 const DateCell = ({ date }: { date?: string }) => {
@@ -101,8 +109,12 @@ export function ContactsListPage() {
     queryFn: ({ queryKey }) => getContacts(queryKey[1]),
   })
 
-  const mutation = useMutation({
+  const createContactMutation = useMutation({
     mutationFn: createContact,
+  })
+
+  const updateContactMutation = useMutation({
+    mutationFn: updateContact,
   })
 
   const columns = useColumns<Contact>(
@@ -186,7 +198,7 @@ export function ContactsListPage() {
       },
       onSubmit: async (contact) => {
         try {
-          await mutation.mutateAsync({
+          await createContactMutation.mutateAsync({
             ...contact,
             type: query?.type?.toString() || 'lead',
           }),
@@ -236,6 +248,27 @@ export function ContactsListPage() {
     </ToggleButtonGroup>
   )
 
+  const [groupBy, setGroupBy] = useLocalStorage(
+    'app.contacts.groupBy',
+    'status',
+  )
+
+  const groupBySelect = (
+    <Select
+      name="groupBy"
+      value={groupBy}
+      onChange={(value) => setGroupBy(value as string)}
+      size="xs"
+    >
+      <SelectButton>Status</SelectButton>
+      <SelectList>
+        <SelectOption value="status">Status</SelectOption>
+        <SelectOption value="type">Type</SelectOption>
+        <SelectOption value="tags">Tag</SelectOption>
+      </SelectList>
+    </Select>
+  )
+
   const primaryAction = (
     <ToolbarButton
       label="Add person"
@@ -253,11 +286,30 @@ export function ContactsListPage() {
     />
   )
 
+  const [view, setView] = useLocalStorage<'list' | 'board'>(
+    'app.contacts.view',
+    'board',
+  )
+
   const toolbarItems = (
     <>
       <ContactTypes />
       <AddFilterButton />
       <Spacer />
+      <ToggleButtonGroup
+        value={view}
+        onChange={setView}
+        type="radio"
+        size="sm"
+        width="auto"
+      >
+        <ToggleButton value="list">
+          <FiList />
+        </ToggleButton>
+        <ToggleButton value="board">
+          <FiGrid />
+        </ToggleButton>
+      </ToggleButtonGroup>
       <Menu>
         <MenuButton
           as={ToolbarButton}
@@ -268,6 +320,11 @@ export function ContactsListPage() {
         />
         <Portal>
           <MenuList maxW="260px">
+            {
+              /* not supported by DataGrid */ view === 'board' ? (
+                <MenuProperty label="Group by" value={groupBySelect} />
+              ) : null
+            }
             <MenuProperty
               label="Display properties"
               value={displayProperties}
@@ -347,6 +404,56 @@ export function ContactsListPage() {
     />
   )
 
+  const board: ListPageProps<Contact>['board'] = {
+    header: (header) => <ContactBoardHeader {...header} />,
+    card: (row) => <ContactCard contact={row.original} />,
+    groupBy,
+    onCardDragEnd: ({ items, to }) => {
+      // This is a bare minimum example, you likely need more logic for updating the sort order and changing tags.
+      const [field, value] = (to.columnId as string).split(':')
+
+      // Get the contact data
+      const contact = data?.contacts.find(
+        ({ id }) => id === items[to.columnId][to.index],
+      )
+
+      if (!contact) {
+        throw new Error('Contact not found')
+      }
+
+      const prevId = items[to.columnId][to.index - 1]
+      let prevContact = data?.contacts.find(({ id }) => id === prevId)
+
+      const nextId = items[to.columnId][to.index + 1]
+      let nextContact = data?.contacts.find(({ id }) => id === nextId)
+
+      if (prevContact && !nextContact) {
+        // last in the column
+        nextContact =
+          data?.contacts[
+            data?.contacts.findIndex(({ id }) => id === prevId) + 1
+          ]
+      } else if (!prevContact && !nextContact) {
+        // first in the column
+        prevContact =
+          data?.contacts[
+            data?.contacts.findIndex(({ id }) => id === prevId) - 1
+          ]
+      }
+
+      const prevSortOrder = prevContact?.sortOrder || 0
+      const nextSortOrder = nextContact?.sortOrder || data?.contacts.length || 0
+
+      const sortOrder = (prevSortOrder + nextSortOrder) / 2 || to.index
+
+      updateContactMutation.mutateAsync({
+        id: contact.id,
+        [field]: value,
+        sortOrder,
+      })
+    },
+  }
+
   return (
     <ListPage<Contact>
       title="Contacts"
@@ -361,6 +468,8 @@ export function ContactsListPage() {
       visibleColumns={visibleColumns}
       data={data?.contacts as Contact[]}
       isLoading={isLoading}
+      view={view}
+      board={board}
     />
   )
 }
