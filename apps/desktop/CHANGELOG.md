@@ -1,5 +1,11 @@
 # electron-app
 
+## 0.15.2
+
+### Patch Changes
+
+- @app/features@15.0.2
+
 ## 0.15.1
 
 ### Patch Changes

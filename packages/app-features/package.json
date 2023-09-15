@@ -1,6 +1,6 @@
 {
   "name": "@app/features",
-  "version": "15.0.1",
+  "version": "15.0.2",
   "main": "src/index.ts",
   "type": "module",
   "dependencies": {

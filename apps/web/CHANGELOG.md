@@ -1,5 +1,12 @@
 # nextjs-app
 
+## 0.20.2
+
+### Patch Changes
+
+- @ui/lib@1.0.2
+- @app/features@15.0.2
+
 ## 0.20.1
 
 ### Patch Changes
