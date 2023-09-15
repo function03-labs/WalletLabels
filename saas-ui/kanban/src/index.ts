@@ -18,6 +18,8 @@ export {
   type KanbanColumnProps,
   KanbanColumnProvider,
   useKanbanColumnContext,
+  KanbanColumnDragHandle,
+  type KanbanColumnDragHandleProps,
 } from './kanban-column'
 export {
   KanbanCard,
@@ -26,7 +28,11 @@ export {
   KanbanCardHeader,
   type KanbanCardProps,
 } from './kanban-card'
-export { KanbanAction, KanbanHandle } from './kanban-action'
+export {
+  KanbanAction,
+  KanbanHandle,
+  type KanbanActionProps,
+} from './kanban-action'
 export {
   KanbanDragOverlay,
   type KanbanDragOverlayProps,
