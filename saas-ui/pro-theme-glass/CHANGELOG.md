@@ -1,5 +1,18 @@
 # @saas-ui/pro-theme-glass
 
+## 0.7.0
+
+### Minor Changes
+
+- 18c670f: Updated to Saas UI 2.2.0
+
+### Patch Changes
+
+- 18c670f: Added `use client` directive for improved RSC support
+- Updated dependencies [18c670f]
+- Updated dependencies [18c670f]
+  - @saas-ui-pro/react@0.25.0
+
 ## 0.6.4
 
 ### Patch Changes

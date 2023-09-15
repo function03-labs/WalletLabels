@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.19.2",
+  "version": "0.20.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,10 +19,10 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource-variable/inter": "^5.0.8",
-    "@saas-ui-pro/billing": "^0.11.0",
-    "@saas-ui-pro/feature-flags": "^0.12.2",
-    "@saas-ui-pro/onboarding": "^0.12.0",
-    "@saas-ui-pro/react": "^0.24.3",
+    "@saas-ui-pro/billing": "^0.11.1",
+    "@saas-ui-pro/feature-flags": "^0.13.0",
+    "@saas-ui-pro/onboarding": "^0.13.0",
+    "@saas-ui-pro/react": "^0.25.0",
     "@saas-ui/auth": "^2.0.7",
     "@saas-ui/date-picker": "^0.11.0",
     "@saas-ui/next-workspaces": "^0.3.0",

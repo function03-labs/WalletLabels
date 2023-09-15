@@ -1,5 +1,13 @@
 # @app/config
 
+## 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [18c670f]
+- Updated dependencies [18c670f]
+  - @saas-ui-pro/react@0.25.0
+
 ## 0.5.2
 
 ### Patch Changes
