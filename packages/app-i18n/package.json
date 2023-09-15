@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "intl-messageformat": "10.5.0",
-    "react-intl": "^6.4.4"
+    "intl-messageformat": "10.5.2",
+    "react-intl": "^6.4.6"
   },
   "peerDependencies": {
     "@saas-ui/auth": ">=2.0.0",

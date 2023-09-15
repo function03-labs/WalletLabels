@@ -8,5 +8,7 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   format: ['esm', 'cjs'],
-  treeshake: 'smallest',
+  banner: {
+    js: "'use client'",
+  },
 })

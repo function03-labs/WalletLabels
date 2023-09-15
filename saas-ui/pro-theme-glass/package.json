@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/theme-glass",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "description": "A Linear inspired Chakra UI theme for Saas UI Pro",
   "source": "src/index.ts",
   "exports": {
@@ -60,7 +60,7 @@
     "@chakra-ui/styled-system": "^2.9.1",
     "@chakra-ui/theme-tools": "^2.1.1",
     "@saas-ui-pro/react": "workspace:*",
-    "@saas-ui/theme-glass": "^0.4.0"
+    "@saas-ui/theme-glass": "^0.5.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.5.0",

@@ -1,17 +1,14 @@
+'use client'
+
 import * as React from 'react'
 
-import { runIfFn, __DEV__ } from '@chakra-ui/utils'
+import { runIfFn } from '@chakra-ui/utils'
 
-import { useHasFlags, useFeatures, useHasFeature } from './provider'
+import { useHasFeature } from './provider'
 
 import { Flags } from './types'
 
 export interface HasProps {
-  /**
-   * One or more flags to match.
-   * @deprecated Use `feature` instead.
-   */
-  flag?: string | string[]
   /**
    * One or more flags to match.
    */
@@ -46,7 +43,7 @@ export interface HasProps {
  * Conditionally render children based on one or more feature flag values.
  */
 export const Has: React.FC<HasProps> = (props) => {
-  const { children, flag, feature = flag, value, not, exact, fallback } = props
+  const { children, feature, value, not, exact, fallback } = props
 
   const ids = typeof feature === 'string' ? [feature] : feature
 
@@ -69,6 +66,4 @@ export const Has: React.FC<HasProps> = (props) => {
   return null
 }
 
-if (__DEV__) {
-  Has.displayName = 'Has'
-}
+Has.displayName = 'Has'
