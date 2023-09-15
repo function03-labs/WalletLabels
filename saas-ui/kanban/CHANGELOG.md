@@ -1,5 +1,11 @@
 # @saas-ui-pro/kanban
 
+## 0.3.0
+
+### Minor Changes
+
+- dfff511: Export kanban context provider
+
 ## 0.2.0
 
 ### Minor Changes

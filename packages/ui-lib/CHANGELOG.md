@@ -1,5 +1,12 @@
 # @ui/lib
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [dfff511]
+  - @saas-ui-pro/kanban@0.3.0
+
 ## 1.0.0
 
 ### Patch Changes

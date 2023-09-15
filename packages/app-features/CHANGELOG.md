@@ -1,5 +1,11 @@
 # @app/features
 
+## 15.0.1
+
+### Patch Changes
+
+- @ui/lib@1.0.1
+
 ## 15.0.0
 
 ### Minor Changes
