@@ -25,7 +25,7 @@ export {
   KanbanCardHeader,
   type KanbanCardProps,
 } from './kanban-card'
-export { KanbanAction, KanbanHandle, KanbanRemove } from './kanban-action'
+export { KanbanAction, KanbanHandle } from './kanban-action'
 export {
   KanbanDragOverlay,
   type KanbanDragOverlayProps,

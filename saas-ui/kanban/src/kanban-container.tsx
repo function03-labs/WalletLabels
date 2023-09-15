@@ -58,7 +58,7 @@ export const Kanban = forwardRef<KanbanProps, 'div'>((props, ref) => {
           className={cx('sui-kanban', rest.className)}
         >
           <SortableContext
-            disabled={!isSortable}
+            disabled={isSortable === false}
             items={columns}
             strategy={
               isVertical

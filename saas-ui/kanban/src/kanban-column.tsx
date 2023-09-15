@@ -1,5 +1,11 @@
 import React from 'react'
-import { ButtonGroup, HTMLChakraProps, chakra } from '@chakra-ui/react'
+import {
+  ButtonGroup,
+  ButtonProps,
+  HTMLChakraProps,
+  chakra,
+  useMergeRefs,
+} from '@chakra-ui/react'
 
 import { forwardRef } from '@chakra-ui/react'
 import { cx, dataAttr } from '@chakra-ui/utils'
@@ -14,6 +20,7 @@ import {
 } from '@dnd-kit/sortable'
 import { createContext } from '@chakra-ui/react-utils'
 import { animateLayoutChanges } from './utilities/animate-layout-changes'
+import { KanbanActionProps, KanbanHandle } from './kanban-action'
 
 export type KanbanColumnContext = ReturnType<typeof useKanbanColumn>
 
@@ -53,22 +60,22 @@ const useKanbanColumn = (props: KanbanColumnProps) => {
     id,
     orientation,
     items: columnItems,
+    columnRef: isDisabled ? undefined : setNodeRef,
     getColumnProps: React.useCallback(
       () => ({
-        ref: isDisabled ? undefined : setNodeRef,
         transition,
         transform: CSS.Translate.toString(transform),
         ['data-dragging']: dataAttr(isDragging),
         ['data-over']: dataAttr(isOverColumn),
       }),
-      [isOverColumn],
+      [transition, transform, isDragging, isOverColumn],
     ),
     getHandleProps: React.useCallback(
       () => ({
         ...attributes,
         ...listeners,
       }),
-      [],
+      [attributes, listeners],
     ),
   }
 }
@@ -110,7 +117,7 @@ export const KanbanColumn = forwardRef<KanbanColumnProps, 'div'>(
       <KanbanColumnProvider value={context}>
         <chakra.div
           {...rest}
-          ref={ref}
+          ref={useMergeRefs(ref, context.columnRef)}
           __css={columnStyles}
           style={
             {
@@ -121,6 +128,7 @@ export const KanbanColumn = forwardRef<KanbanColumnProps, 'div'>(
           onClick={onClick}
           tabIndex={onClick ? 0 : undefined}
           className={cx('sui-kanban__column', props.className)}
+          {...context.getColumnProps()}
         >
           {children}
         </chakra.div>
@@ -179,3 +187,17 @@ export const KanbanColumnHeader: React.FC<HTMLChakraProps<'header'>> = (
 }
 
 export const KanbanColumnActions = ButtonGroup
+
+export interface KanbanColumnDragHandleProps extends KanbanActionProps {}
+
+/**
+ *
+ */
+export const KanbanColumnDragHandle = forwardRef<
+  KanbanColumnDragHandleProps,
+  'button'
+>((props, ref) => {
+  const { getHandleProps } = useKanbanColumnContext()
+
+  return <KanbanHandle ref={ref} {...getHandleProps()} {...props} />
+})

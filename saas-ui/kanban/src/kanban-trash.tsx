@@ -2,6 +2,7 @@ import React from 'react'
 import { chakra, HTMLChakraProps } from '@chakra-ui/react'
 import { useKanbanContext } from './kanban-context'
 import { useDroppable } from '@dnd-kit/core'
+import { dataAttr } from '@chakra-ui/utils'
 
 export const KanbanTrash: React.FC<HTMLChakraProps<'div'>> = (props) => {
   const { activeId, columns } = useKanbanContext()
@@ -14,8 +15,8 @@ export const KanbanTrash: React.FC<HTMLChakraProps<'div'>> = (props) => {
   }
 
   return (
-    <chakra.div ref={setNodeRef} {...props}>
-      Drop here to delete
+    <chakra.div ref={setNodeRef} data-over={dataAttr(isOver)} {...props}>
+      {props.children}
     </chakra.div>
   )
 }

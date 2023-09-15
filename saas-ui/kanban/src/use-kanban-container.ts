@@ -24,8 +24,8 @@ import { useControllableState } from '@chakra-ui/react'
 
 export type KanbanItems = Record<UniqueIdentifier, UniqueIdentifier[]>
 
-const TRASH_ID = 'void'
-const PLACEHOLDER_ID = 'placeholder'
+export const TRASH_ID = 'void'
+export const PLACEHOLDER_ID = 'placeholder'
 
 export type OnCardDragEndHandler = (args: {
   items: KanbanItems
@@ -406,8 +406,8 @@ export const useKanbanContainer = (props: UseKanbanContainerProps) => {
     setColumns((columns) => columns.filter((id) => id !== columnId))
   }
 
-  function addColumn() {
-    const newColumnId = getNextColumnId()
+  function addColumn(id: string) {
+    const newColumnId = id || getNextColumnId()
 
     unstable_batchedUpdates(() => {
       setColumns((columns) => [...columns, newColumnId])
