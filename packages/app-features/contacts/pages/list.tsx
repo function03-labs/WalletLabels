@@ -273,7 +273,7 @@ export function ContactsListPage() {
     <ToolbarButton
       label="Add person"
       variant="solid"
-      size="md"
+      size="sm"
       colorScheme="primary"
       onClick={addPerson}
       tooltipProps={{
@@ -300,7 +300,7 @@ export function ContactsListPage() {
         value={view}
         onChange={setView}
         type="radio"
-        size="sm"
+        size="xs"
         width="auto"
       >
         <ToggleButton value="list">
@@ -315,7 +315,7 @@ export function ContactsListPage() {
           as={ToolbarButton}
           leftIcon={<FiSliders />}
           label="Display"
-          size="sm"
+          size="xs"
           variant="tertiary"
         />
         <Portal>

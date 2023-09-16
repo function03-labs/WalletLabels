@@ -32,36 +32,15 @@ const variantOutline = defineStyle((props) => {
 })
 
 const sizes = {
-  lg: defineStyle({
-    h: '10',
-    minW: '10',
-    fontSize: 'md',
-    px: '4',
-  }),
-  md: defineStyle({
-    h: '8',
-    minW: '8',
-    fontSize: 'sm',
-    px: '3',
-  }),
-  sm: defineStyle({
+  xs: defineStyle({
     h: '7',
     minW: '7',
-    fontSize: 'xs',
-    px: '2',
-  }),
-  xs: defineStyle({
-    h: '6',
-    minW: '6',
     fontSize: 'xs',
     px: '2',
   }),
 }
 
 export default {
-  defaultProps: {
-    size: 'md',
-  },
   variants: {
     ghost: variantGhost,
     outline: variantOutline,
