@@ -37,3 +37,4 @@ export {
   KanbanDragOverlay,
   type KanbanDragOverlayProps,
 } from './kanban-drag-overlay'
+export { KanbanTrash } from './kanban-trash'
