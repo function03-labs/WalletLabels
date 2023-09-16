@@ -1,5 +1,15 @@
 # @ui/lib
 
+## 2.0.0
+
+### Patch Changes
+
+- 701a004: Added new DataBoardProvider
+- 60e52e9: Fix StatusBadge and ContactType badge colors in lightmode
+- Updated dependencies [9710d8d]
+- Updated dependencies [f08939c]
+  - @saas-ui-pro/react@0.26.0
+
 ## 1.0.2
 
 ### Patch Changes

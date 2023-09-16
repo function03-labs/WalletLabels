@@ -1,5 +1,27 @@
 # @app/features
 
+## 16.0.0
+
+### Minor Changes
+
+- 9710d8d: Revert button size changes in theme
+- 701a004: Contact list kanban cards now support columns visiblity toggles
+
+### Patch Changes
+
+- f08939c: Update to Saas UI 2.2.1
+- 701a004: Added new DataBoardProvider
+- 701a004: Disabled hiding on name column
+- 60e52e9: Fix StatusBadge and ContactType badge colors in lightmode
+- Updated dependencies [9710d8d]
+- Updated dependencies [f08939c]
+- Updated dependencies [701a004]
+- Updated dependencies [60e52e9]
+  - @ui/theme@2.0.0
+  - @saas-ui-pro/react@0.26.0
+  - @ui/lib@2.0.0
+  - @app/config@2.0.0
+
 ## 15.0.2
 
 ### Patch Changes

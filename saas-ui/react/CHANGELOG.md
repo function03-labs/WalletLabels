@@ -1,5 +1,15 @@
 # @saas-ui-pro/react
 
+## 0.26.0
+
+### Minor Changes
+
+- 9710d8d: Revert button size changes in theme
+
+### Patch Changes
+
+- f08939c: Update to Saas UI 2.2.1
+
 ## 0.25.0
 
 ### Minor Changes
