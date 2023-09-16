@@ -12,7 +12,7 @@ export const ContactTag: React.FC<TagProps & { tag: string }> = (props) => {
 
   return (
     <Tag size="sm" colorScheme="gray" h="6" {...rest}>
-      <Badge bg={t.color} boxSize="2" rounded="full" me="1" />
+      <Badge bg={t.color} boxSize="2" rounded="full" me="2" />
       <Text>{t.label}</Text>
     </Tag>
   )

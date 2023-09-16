@@ -15,6 +15,7 @@ import {
   HStack,
   Text,
   Stack,
+  Avatar,
 } from '@chakra-ui/react'
 import { FiGrid, FiList, FiSliders, FiUser } from 'react-icons/fi'
 import {
@@ -27,6 +28,8 @@ import {
   SelectButton,
   SelectList,
   SelectOption,
+  PersonaAvatar,
+  Link,
 } from '@saas-ui/react'
 import {
   Command,
@@ -122,9 +125,19 @@ export function ContactsListPage() {
       helper.accessor('name', {
         header: 'Name',
         size: 300,
-        meta: {
-          href: ({ id }: any) => `${basePath}/contacts/view/${id}`,
-        },
+        enableHiding: false,
+        cell: (cell) => (
+          <HStack spacing="4">
+            <PersonaAvatar
+              name={cell.getValue()}
+              src={cell.row.original.avatar}
+              size="xs"
+            />
+            <Link href={`${basePath}/contacts/view/${cell.row.id}`}>
+              {cell.getValue()}
+            </Link>
+          </HStack>
+        ),
       }),
       helper.accessor('email', {
         header: 'Email',

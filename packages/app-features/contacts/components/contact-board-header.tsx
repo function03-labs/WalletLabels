@@ -18,12 +18,14 @@ export const ContactBoardHeader: React.FC<DataBoardHeaderProps> = (props) => {
       title = value ? (
         <ContactTag
           tag={value}
+          px="0"
           bg="transparent"
           _dark={{ bg: 'transparent', color: 'app-text' }}
         />
       ) : (
         <Tag
           size="sm"
+          px="0"
           bg="transparent"
           _dark={{ bg: 'transparent', color: 'app-text' }}
         >
@@ -36,6 +38,7 @@ export const ContactBoardHeader: React.FC<DataBoardHeaderProps> = (props) => {
       title = (
         <ContactType
           type={value}
+          px="0"
           bg="transparent"
           _dark={{ bg: 'transparent', color: 'app-text' }}
         />
@@ -44,11 +47,11 @@ export const ContactBoardHeader: React.FC<DataBoardHeaderProps> = (props) => {
   }
 
   return (
-    <HStack w="full" py="2" px="1">
+    <HStack w="full" py="2" px="0">
       {title}
       <Text color="muted">{(props as any).leafRows?.length}</Text>
       <Spacer />
-      <OverflowMenu size="sm">
+      <OverflowMenu size="xs">
         <MenuItem>Hide</MenuItem>
       </OverflowMenu>
     </HStack>

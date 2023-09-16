@@ -1,14 +1,31 @@
-import React from 'react'
 import { Card, CardBody, HStack, Heading, Stack, Text } from '@chakra-ui/react'
 import { ContactTag } from './contact-tag'
 import { ContactType } from './contact-type'
 
 import { Contact } from '@api/client'
-import { Link } from '@saas-ui/react'
+import { Link, PersonaAvatar } from '@saas-ui/react'
 import { usePath } from '@app/features/core/hooks/use-path'
+import { useDataBoardContext } from '@ui/lib'
+import { ContactStatus } from './contact-status'
 
 export const ContactCard = ({ contact }: { contact: Contact }) => {
   const path = usePath(`/contacts/view/${contact.id}`)
+
+  const grid = useDataBoardContext()
+
+  const state = grid.getState()
+  const columns = state.columnVisibility
+  const groupBy = state.grouping[0]
+
+  const renderColumn = (column: string, component: React.ReactNode) => {
+    if (columns[column] && groupBy != column) {
+      return component
+    }
+    return null
+  }
+
+  const tags = typeof contact.tags === 'string' ? [contact.tags] : contact.tags
+
   return (
     <Card
       as={Link}
@@ -27,16 +44,41 @@ export const ContactCard = ({ contact }: { contact: Contact }) => {
         WebkitUserDrag: 'none',
       }}
     >
-      <CardBody px="3" py="2" as={Stack}>
-        <Heading size="xs" fontWeight="medium">
-          {contact.name}
-        </Heading>
-        <Text color="muted">{contact.email}</Text>
+      <CardBody as={Stack} spacing="4" position="relative">
+        <PersonaAvatar
+          name={contact.name}
+          src={contact.avatar}
+          size="xs"
+          mt="2px"
+          position="absolute"
+          top="4"
+          right="4"
+        />
+        <Stack justifyContent="flex-start" spacing="2">
+          <Stack spacing="1">
+            <HStack>
+              {renderColumn(
+                'status',
+                <ContactStatus status={contact.status} hideLabel />,
+              )}
+              <Heading as="h4" size="2xs" fontWeight="medium">
+                {contact.name}
+              </Heading>
+            </HStack>
+            {renderColumn(
+              'email',
+              <Text color="muted" noOfLines={1}>
+                {contact.email}
+              </Text>,
+            )}
+          </Stack>
+        </Stack>
         <HStack>
-          <ContactType type={contact.type} size="sm" />
-          {contact.tags?.map((tag) => (
-            <ContactTag key={tag} tag={tag} size="sm" />
-          ))}
+          {renderColumn('type', <ContactType type={contact.type} size="sm" />)}
+          {renderColumn(
+            'tags',
+            tags?.map((tag) => <ContactTag key={tag} tag={tag} size="sm" />),
+          )}
         </HStack>
       </CardBody>
     </Card>
