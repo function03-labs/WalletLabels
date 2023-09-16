@@ -69,10 +69,10 @@
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^23.1.0",
     "@saas-ui-pro/onboarding": "workspace:*",
-    "@saas-ui/forms": "^2.1.0",
+    "@saas-ui/forms": "^2.1.1",
     "@saas-ui/react-utils": "^2.0.0",
     "@saas-ui/theme": "^2.1.0",
-    "@tanstack/react-table": "^8.9.10",
+    "@tanstack/react-table": "^8.9.11",
     "date-fns": "^2.30.0",
     "polished": "^4.2.2"
   },

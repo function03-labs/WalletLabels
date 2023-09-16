@@ -20,10 +20,10 @@
     "@saas-ui-pro/feature-flags": "^0.13.0",
     "@saas-ui-pro/onboarding": "^0.13.0",
     "@saas-ui-pro/react": "^0.25.0",
-    "@saas-ui/auth": "^2.0.7",
-    "@saas-ui/date-picker": "^0.11.0",
+    "@saas-ui/auth": "^2.0.8",
+    "@saas-ui/date-picker": "^0.11.1",
     "@saas-ui/next-workspaces": "^0.3.0",
-    "@saas-ui/react": "^2.2.0",
+    "@saas-ui/react": "^2.2.1",
     "@ui/theme": "workspace:*",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
@@ -31,7 +31,7 @@
     "next-transpile-modules": "^10.0.1"
   },
   "devDependencies": {
-    "@types/node": "^18.17.16",
+    "@types/node": "^18.17.17",
     "@types/react": "18.2.21",
     "electron": "^25.8.1",
     "electron-builder": "^24.6.4",
