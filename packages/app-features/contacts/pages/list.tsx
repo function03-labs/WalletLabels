@@ -258,9 +258,9 @@ export function ContactsListPage() {
       name="groupBy"
       value={groupBy}
       onChange={(value) => setGroupBy(value as string)}
-      size="sm"
+      size="xs"
     >
-      <SelectButton h="8">Status</SelectButton>
+      <SelectButton>Status</SelectButton>
       <SelectList>
         <SelectOption value="status">Status</SelectOption>
         <SelectOption value="type">Type</SelectOption>
