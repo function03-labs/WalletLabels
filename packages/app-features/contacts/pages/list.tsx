@@ -421,14 +421,19 @@ export function ContactsListPage() {
     header: (header) => <ContactBoardHeader {...header} />,
     card: (row) => <ContactCard contact={row.original} />,
     groupBy,
-    onCardDragEnd: ({ items, to }) => {
+    onCardDragEnd: ({ items, to, from }) => {
       // This is a bare minimum example, you likely need more logic for updating the sort order and changing tags.
-      const [field, value] = (to.columnId as string).split(':')
 
       // Get the contact data
       const contact = data?.contacts.find(
         ({ id }) => id === items[to.columnId][to.index],
       )
+
+      const [field, toValue] = (to.columnId as string).split(':') as [
+        keyof Contact,
+        string,
+      ]
+      const [, prevValue] = (from.columnId as string).split(':')
 
       if (!contact) {
         throw new Error('Contact not found')
@@ -458,6 +463,14 @@ export function ContactsListPage() {
       const nextSortOrder = nextContact?.sortOrder || data?.contacts.length || 0
 
       const sortOrder = (prevSortOrder + nextSortOrder) / 2 || to.index
+
+      let value: string | string[] = toValue
+      // if the field is an array, we replace the old value
+      if (Array.isArray(contact[field])) {
+        value = (value !== '' ? [value] : []).concat(
+          (contact[field] as string[]).filter((v) => v !== prevValue),
+        )
+      }
 
       updateContactMutation.mutateAsync({
         id: contact.id,
