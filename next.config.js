@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const withImages = require('next-images')
 const nextConfig = {
+  images: {
+    unoptimized: true,
+  },
   staticPageGenerationTimeout: 1000,
   reactStrictMode: false,
    async rewrites() {
