@@ -22,9 +22,6 @@ export default withWorkspaces({
   basePath: '../../',
 })(
   withSvgr({
-    experimental: {
-      appDir: true,
-    },
     optimizeFonts: true,
     reactStrictMode: false,
     distDir: isElectron ? '.nextron' : '.next',
