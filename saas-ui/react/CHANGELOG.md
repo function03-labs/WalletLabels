@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.26.1
+
+### Patch Changes
+
+- 944b91b: Improved default font definition in pro theme
+
 ## 0.26.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@app/features",
-  "version": "16.0.1",
+  "version": "16.1.0",
   "main": "src/index.ts",
   "type": "module",
   "dependencies": {
@@ -31,7 +31,7 @@
     "@saas-ui-pro/billing": "^0.11.1",
     "@saas-ui-pro/feature-flags": "^0.13.0",
     "@saas-ui-pro/onboarding": "^0.13.0",
-    "@saas-ui-pro/react": "^0.26.0",
+    "@saas-ui-pro/react": "^0.26.1",
     "@saas-ui/auth": ">=2",
     "@saas-ui/date-picker": ">=0.9.0",
     "@saas-ui/react": ">=2",

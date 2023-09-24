@@ -1,5 +1,17 @@
 # @ui/lib
 
+## 2.1.0
+
+### Minor Changes
+
+- 9574cc6: Added new DateRangePicker component
+- 9574cc6: Improved dashboard metrics design
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+  - @saas-ui-pro/react@0.26.1
+
 ## 2.0.1
 
 ### Patch Changes

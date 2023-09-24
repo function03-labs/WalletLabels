@@ -1,5 +1,23 @@
 # nextjs-app
 
+## 0.21.0
+
+### Minor Changes
+
+- f888c76: Updated to Next.js 13.5
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+- Updated dependencies [9574cc6]
+- Updated dependencies [9574cc6]
+- Updated dependencies [857c962]
+- Updated dependencies [a7fef23]
+  - @saas-ui-pro/react@0.26.1
+  - @app/features@16.1.0
+  - @ui/lib@2.1.0
+  - @api/client@0.3.5
+
 ## 0.20.4
 
 ### Patch Changes

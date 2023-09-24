@@ -1,5 +1,23 @@
 # @app/features
 
+## 16.1.0
+
+### Minor Changes
+
+- 9574cc6: Added new DateRangePicker component
+- 9574cc6: Improved dashboard metrics design
+- 857c962: Improved BillingCard design
+- a7fef23: Improved contact card design
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+- Updated dependencies [9574cc6]
+- Updated dependencies [9574cc6]
+  - @saas-ui-pro/react@0.26.1
+  - @ui/lib@2.1.0
+  - @api/client@0.3.5
+
 ## 16.0.1
 
 ### Patch Changes
