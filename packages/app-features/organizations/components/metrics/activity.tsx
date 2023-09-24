@@ -9,41 +9,7 @@ import {
   TimelineTrack,
 } from '@saas-ui/react'
 import { MetricsCard } from './metrics-card'
-
-import { subDays } from 'date-fns'
-
-const activites = [
-  {
-    name: 'Helmut Magomedov',
-    action: 'signed up',
-    date: new Date(),
-  },
-  {
-    name: 'Dariusz Thomas',
-    action: 'signed up',
-    date: subDays(new Date(), 1),
-  },
-  {
-    name: 'Christian Amadi',
-    action: 'upgraded to Pro',
-    date: subDays(new Date(), 1),
-  },
-  {
-    name: 'Kanchana Nowak',
-    action: 'signed up',
-    date: subDays(new Date(), 1),
-  },
-  {
-    name: 'Aisha Njuguna',
-    action: 'cancelled subscription',
-    date: subDays(new Date(), 2),
-  },
-  {
-    name: 'Tomiko Njeri',
-    action: 'signed up',
-    date: subDays(new Date(), 2),
-  },
-]
+import { ActivityData } from '@api/client'
 
 const ActivityDate: React.FC<{ date: Date }> = (props) => {
   return (
@@ -55,19 +21,19 @@ const ActivityDate: React.FC<{ date: Date }> = (props) => {
   )
 }
 
-export const Activity = () => {
+export const Activity = ({ data }: { data: ActivityData[] }) => {
   return (
     <MetricsCard title="Activity">
       <Timeline variant="outline">
-        {activites.map(({ name, action, date }, i) => (
+        {data.map(({ name, action, date }, i) => (
           <TimelineItem key={i}>
             <TimelineSeparator>
               <TimelineIcon />
-              {i < activites.length - 1 && <TimelineTrack />}
+              {i < data.length - 1 && <TimelineTrack />}
             </TimelineSeparator>
             <TimelineContent>
               <strong>{name}</strong> <span>{action}</span>.{' '}
-              <ActivityDate date={date} />
+              <ActivityDate date={new Date(date)} />
             </TimelineContent>
           </TimelineItem>
         ))}

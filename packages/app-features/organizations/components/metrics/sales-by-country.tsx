@@ -3,7 +3,6 @@ import { HStack, Progress, Text } from '@chakra-ui/react'
 import { useIntl } from 'react-intl'
 import { MetricsCard } from './metrics-card'
 
-// @todo get this from graphql
 interface Data {
   id: string
   country: string
@@ -16,33 +15,6 @@ const total = 43400
 const getPercentage = (value: number) => {
   return Math.round((100 / total) * value)
 }
-
-const data: Data[] = [
-  {
-    id: 'us',
-    country: 'US',
-    sales: 70,
-    total: 21700,
-  },
-  {
-    id: 'ca',
-    country: 'Canada',
-    sales: 40,
-    total: 13020,
-  },
-  {
-    id: 'nl',
-    country: 'Netherlands',
-    sales: 15,
-    total: 4990,
-  },
-  {
-    id: 'Germany',
-    country: 'Germany',
-    sales: 5,
-    total: 1500,
-  },
-]
 
 const SalesCell: DataGridCell<Data> = (cell) => {
   return (
@@ -97,7 +69,7 @@ const columns: ColumnDef<Data>[] = [
   },
 ]
 
-export const SalesByCountry = () => {
+export const SalesByCountry = ({ data }: any) => {
   return (
     <MetricsCard title="By country" noPadding>
       <DataGrid<Data> columns={columns} data={data} isSortable />

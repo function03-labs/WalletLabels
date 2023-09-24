@@ -1,4 +1,13 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import {
+  Card,
+  Grid,
+  GridItem,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react'
 
 import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 
@@ -14,25 +23,56 @@ import {
 import { IntroTour } from '../components/intro-tour'
 
 import { SalesByCountry } from '../components/metrics/sales-by-country'
-import { Today } from '../components/metrics/today'
-import { MRR } from '../components/metrics/mrr'
+import { RevenueChart } from '../components/metrics/revenue-chart'
 import { Activity } from '../components/metrics/activity'
 import { useQuery } from '@tanstack/react-query'
-import { getOrganization } from '@api/client'
+import { getDashboard } from '@api/client'
 import { useWorkspace } from '@app/features/core/hooks/use-workspace'
+import { Metric } from '../components/metrics/metric'
+import {
+  SegmentedControl,
+  DateRangePicker,
+  getRangeValue,
+  DateRangePresets,
+  DateRange,
+  getRangeDiff,
+} from '@ui/lib'
+import { useState } from 'react'
 
 export function DashboardPage() {
-  const slug = useWorkspace()
+  const workspace = useWorkspace()
+
+  const [range, setRange] = useState('30d')
+  const [dateRange, setDateRange] = useState(getRangeValue('30d'))
+  const onPresetChange = (preset: string) => {
+    if (preset !== 'custom') {
+      setDateRange(getRangeValue(preset as DateRangePresets))
+    }
+    setRange(preset)
+  }
+
+  const onRangeChange = (range: DateRange) => {
+    const diff = getRangeDiff(range)
+    if ([1, 3, 7, 30].includes(diff)) {
+      setRange(`${diff}`)
+    } else {
+      setRange('custom')
+    }
+
+    setDateRange(range)
+  }
 
   const { data, isLoading } = useQuery({
     queryKey: [
-      'Organization',
+      'Dashboard',
       {
-        slug,
+        workspace,
+        startDate: dateRange.start.toString(),
+        endDate: dateRange.end.toString(),
       },
     ] as const,
-    queryFn: ({ queryKey }) => getOrganization(queryKey[1]),
-    enabled: !!slug,
+    queryFn: ({ queryKey }) => getDashboard(queryKey[1]),
+    enabled: !!workspace,
   })
 
   const organization = data?.organization
@@ -41,7 +81,7 @@ export function DashboardPage() {
     return (
       <ErrorPage
         title="No organization found"
-        description={`We couldn't find a organization named ${slug}`}
+        description={`We couldn't find a organization named ${workspace}`}
       />
     )
   }
@@ -77,26 +117,83 @@ export function DashboardPage() {
     </Toolbar>
   )
 
+  const footer = (
+    <Toolbar justifyContent="flex-start" variant="tertiary" size="xs">
+      <SegmentedControl
+        segments={[
+          {
+            id: '1d',
+            label: '1d',
+          },
+          {
+            id: '3d',
+            label: '3d',
+          },
+          {
+            id: '7d',
+            label: '7d',
+          },
+          { id: '30d', label: '30d' },
+          { id: 'custom', label: 'Custom' },
+        ]}
+        value={range}
+        onChange={onPresetChange}
+      />
+      <DateRangePicker value={dateRange} onChange={onRangeChange} />
+    </Toolbar>
+  )
+
   return (
     <Page isLoading={isLoading}>
-      <PageHeader title={organization?.name} toolbar={toolbar} />
-      <PageBody pt="8">
+      <PageHeader
+        title={organization?.name}
+        toolbar={toolbar}
+        footer={footer}
+      />
+      <PageBody contentWidth="full">
         <IntroTour />
         <Grid
           templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
           gridAutoColumns="fr1"
           width="100%"
           gap="4"
-          p="4"
         >
-          <GridItem colSpan={{ base: 1, lg: 2 }}>
-            <Today />
-          </GridItem>
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
-            <MRR />
+            <Card>
+              <Tabs variant="unstyled" tabIndex={0}>
+                <TabList>
+                  {data?.charts.map((metric) => (
+                    <Tab
+                      key={metric.id}
+                      id={metric.id}
+                      display="flex"
+                      alignItems="stretch"
+                      justifyContent="stretch"
+                      flex="1"
+                      height="auto"
+                      textAlign="left"
+                      borderBottomWidth="1px"
+                      _selected={{
+                        borderBottomWidth: '2px',
+                        borderColor: 'primary.500',
+                      }}
+                    >
+                      <Metric {...metric} />
+                    </Tab>
+                  ))}
+                </TabList>
+                <TabPanels>
+                  {data?.charts.map((metric) => (
+                    <TabPanel key={metric.id} pt="8">
+                      <RevenueChart data={metric.data} />
+                    </TabPanel>
+                  ))}
+                </TabPanels>
+              </Tabs>
+            </Card>
           </GridItem>
-          <GridItem as={SalesByCountry} />
-          <GridItem as={Activity} />
+          <GridItem as={SalesByCountry} data={data?.sales} />
+          <GridItem as={Activity} data={data?.activity} />
         </Grid>
       </PageBody>
     </Page>

@@ -174,7 +174,9 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             <UserMenu />
           </SidebarSection>
         ) : (
-          <BillingStatus />
+          <SidebarSection>
+            <BillingStatus />
+          </SidebarSection>
         )}
 
         <SidebarOverlay />
