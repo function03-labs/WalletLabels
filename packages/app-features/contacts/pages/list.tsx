@@ -304,8 +304,20 @@ export function ContactsListPage() {
     'board',
   )
 
-  const toolbarItems = (
-    <>
+  const toolbar = (
+    <Toolbar size="sm">
+      <InlineSearch
+        placeholder="Search by name or email..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        onReset={() => setSearchQuery('')}
+      />
+      {primaryAction}
+    </Toolbar>
+  )
+
+  const tabbar = (
+    <Toolbar>
       <ContactTypes />
       <AddFilterButton />
       <Spacer />
@@ -346,22 +358,8 @@ export function ContactsListPage() {
           </MenuList>
         </Portal>
       </Menu>
-    </>
-  )
-
-  const toolbar = (
-    <Toolbar size="sm">
-      <InlineSearch
-        placeholder="Search by name or email..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        onReset={() => setSearchQuery('')}
-      />
-      {primaryAction}
     </Toolbar>
   )
-
-  const tabbar = <Toolbar>{toolbarItems}</Toolbar>
 
   const bulkActions = ({
     selections,

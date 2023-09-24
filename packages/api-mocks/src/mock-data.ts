@@ -42,15 +42,21 @@ const activitiesStore = createMockStore<ActivitiesStore>('activities')
 
 const mapContact = (user: RandUser, type?: string): Contact => {
   const { id, firstName, lastName, email } = user
+  const name = [firstName, lastName].join(' ')
   return {
     id,
     firstName,
     lastName,
-    name: [firstName, lastName].join(' '),
+    name,
     email,
     status: rand(['new', 'active', 'inactive']),
     type: type || rand(['lead', 'customer']),
     tags: rand([[], [rand(['developer', 'designer', 'partner', 'prospect'])]]),
+    avatar: `https://xsgames.co/randomusers/avatar.php?g=${rand([
+      'male',
+      'female',
+      'pixel',
+    ])}&name=${name}`,
     createdAt: randBetweenDate({
       from: new Date('01/01/2020'),
       to: new Date(),

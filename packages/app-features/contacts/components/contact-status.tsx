@@ -1,4 +1,4 @@
-import { HStack, Tag, Text } from '@chakra-ui/react'
+import { HStack, StackProps, Text } from '@chakra-ui/react'
 import { StatusBadge } from '@ui/lib'
 
 const contactStatus: Record<string, { label: string; color: string }> = {
@@ -16,16 +16,18 @@ const contactStatus: Record<string, { label: string; color: string }> = {
   },
 }
 
-export const ContactStatus: React.FC<{
+export interface ContactStatusProps extends StackProps {
   status: keyof typeof contactStatus
   hideLabel?: boolean
-  color?: string
-}> = (props) => {
-  const status = contactStatus[props.status] || contactStatus.new
+}
+
+export const ContactStatus: React.FC<ContactStatusProps> = (props) => {
+  const { status, hideLabel, ...rest } = props
+  const { color, label } = contactStatus[props.status] || contactStatus.new
   return (
-    <HStack display="inline-flex" color={props.color}>
-      <StatusBadge colorScheme={status.color} />
-      {!props.hideLabel && <Text>{status.label}</Text>}
+    <HStack display="inline-flex" {...rest}>
+      <StatusBadge colorScheme={color} />
+      {!props.hideLabel && <Text>{label}</Text>}
     </HStack>
   )
 }

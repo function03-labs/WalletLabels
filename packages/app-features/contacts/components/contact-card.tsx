@@ -1,4 +1,12 @@
-import { Card, CardBody, HStack, Heading, Stack, Text } from '@chakra-ui/react'
+import {
+  Card,
+  CardBody,
+  HStack,
+  Heading,
+  Stack,
+  Text,
+  Tooltip,
+} from '@chakra-ui/react'
 import { ContactTag } from './contact-tag'
 import { ContactType } from './contact-type'
 
@@ -45,22 +53,24 @@ export const ContactCard = ({ contact }: { contact: Contact }) => {
       }}
     >
       <CardBody as={Stack} spacing="4" position="relative">
-        <PersonaAvatar
-          name={contact.name}
-          src={contact.avatar}
-          size="xs"
-          mt="2px"
-          position="absolute"
-          top="4"
-          right="4"
-        />
         <Stack justifyContent="flex-start" spacing="2">
           <Stack spacing="1">
             <HStack>
               {renderColumn(
                 'status',
-                <ContactStatus status={contact.status} hideLabel />,
+                <ContactStatus
+                  status={contact.status}
+                  hideLabel
+                  position="absolute"
+                  top="4"
+                  right="4"
+                />,
               )}
+              <PersonaAvatar
+                name={contact.name}
+                src={contact.avatar}
+                size="2xs"
+              />
               <Heading as="h4" size="2xs" fontWeight="medium">
                 {contact.name}
               </Heading>
