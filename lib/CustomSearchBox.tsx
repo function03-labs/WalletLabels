@@ -121,7 +121,7 @@ export default function CustomHitsTags({
   }, [])
 
   return (
-    <div>
+    <div className="flex flex-wrap gap-x-1 gap-y-1">
       {uniqueHits
         //limit to top 8
         .slice(0, 8)

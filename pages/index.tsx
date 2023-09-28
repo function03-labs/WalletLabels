@@ -115,7 +115,7 @@ export default function IndexPage(props) {
           // key={currentIndex}
         >
           <Configure hitsPerPage={50} />
-          <section className="container grid items-center gap-10 pt-10 pb-8 md:py-20">
+          <section className="container grid items-center gap-10 pt-10 pb-8 md:py-17">
             <div className="flex flex-col items-center gap-6">
               {/* <div className="mt-24 sm:mt-32 lg:mt-16">
             <a href="#" className="inline-flex space-x-6">
@@ -209,7 +209,7 @@ export default function IndexPage(props) {
                       //     </Badge>
                       //   )}
                       // />
-                      <div className="flex flex-wrap gap-x-1 gap-y-1">
+                      <div>
                         {<CustomHitsTags setSearchInput={setSearchInput} />}
                       </div>
                     )}
