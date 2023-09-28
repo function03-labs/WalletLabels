@@ -7,8 +7,8 @@ import {
 } from "react-instantsearch"
 
 import { Badge } from "@/components/ui/badge"
-import { Grid } from "."
-import SearchComponent from "./searchBar"
+import { Grid } from "../pages"
+import SearchComponent from "../pages/searchBar"
 
 export function CustomSearchBox({
   initialQuery = "",
@@ -104,7 +104,7 @@ export function CustomHits() {
 
   return <Grid data={gridData} />
 }
-export function CustomHitsTags({
+export default function CustomHitsTags({
   setSearchInput,
 }: {
   setSearchInput: (value: string) => void
@@ -134,7 +134,7 @@ export function CustomHitsTags({
             // ignore ts error
             // @ts-ignore
             variant="none"
-            className="hover:text-foreground hover:border-green-300 ">
+            className="hover:border-green-300 hover:text-foreground ">
             {category.label}
           </Badge>
         ))}

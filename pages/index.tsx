@@ -36,8 +36,11 @@ import getHistory from "@/lib/getHistory"
 import { Layout } from "@/components/layout"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
+import CustomHitsTags, {
+  CustomHits,
+  CustomSearchBox,
+} from "../lib/CustomSearchBox"
 import { connectToDatabase } from "../lib/mongodb"
-import { CustomHits, CustomHitsTags, CustomSearchBox } from "./CustomSearchBox"
 import Footer from "./Footer"
 import header from "./header"
 
