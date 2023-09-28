@@ -161,7 +161,7 @@ export default function IndexPage(props) {
                 <br className="hidden sm:inline" />
                 favorite wallets and exchanges.
               </p>
-              <div className="mt-3 w-4/5 text-center">
+              <div className="mt-3 w-full sm:w-4/5 text-center">
                 {/* <SearchComponent
                   handleSearchLogin={handleSearch}
                   disabled={false}
