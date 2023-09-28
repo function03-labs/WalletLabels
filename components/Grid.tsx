@@ -26,7 +26,7 @@ import { hashCode } from "hashcode"
 // import theme from "@/components/theme"
 import { useTheme } from "next-themes"
 
-import findLastTx from "@/lib/findLastTx"
+// import findLastTx from "@/lib/findLastTx"
 import CryptoIcon from "@/lib/getCryptoIcon"
 import pick from "../lib/colorPicker"
 
@@ -87,7 +87,7 @@ function splitTags(str) {
 
   let tags = str.split(delimiters)
   // Remove empty strings and trim tags
-  tags = tags.filter((tag) => tag.trim() !== "").map((tag) => tag.trim())
+  tags = tags.filter(tag => tag.trim() !== "").map(tag => tag.trim())
   return tags
 }
 
@@ -96,7 +96,7 @@ export default function Grid(props) {
   const [theme, setTheme] = React.useState<Partial<Theme>>({})
   const { resolvedTheme } = useTheme()
   const customRenderers = useExtraCells()
-  const lastSeenData = React.useRef<any>({})
+  // const lastSeenData = React.useRef<any>({})
   // create a function that will take addresses in every, call the api, and update the cell in the data
 
   const getTagsFromLabels = (arg0: string) => {
@@ -104,7 +104,7 @@ export default function Grid(props) {
     // then return the tags
     const tags = splitTags(arg0)
 
-    return tags.map((tag) => {
+    return tags.map(tag => {
       return {
         tag: tag,
         color: pick(tag, Boolean(resolvedTheme === "dark")),
@@ -112,29 +112,29 @@ export default function Grid(props) {
     })
   }
 
-  const updateLastSeen = React.useCallback(() => {
-    // if props has last_txs then return
+  // const updateLastSeen = React.useCallback(() => {
+  //   // if props has last_txs then return
 
-    // for each row in the data, get row number and get address
-    props.data.forEach(async (row, i) => {
-      const address = row.address
-      // if the address is not in the lastSeenData, then call the api
-      if (!lastSeenData.current[address]) {
-        // call the api
-        findLastTx(address).then((res) => {
-          // update the lastSeenData
-          lastSeenData.current[address] = res
-          // update the cell in the data
-          ref.current?.updateCells([i].map((r) => ({ cell: [0, i] })))
-        })
-      }
-    })
-  }, [props.data])
+  //   // for each row in the data, get row number and get address
+  //   props.data.forEach(async (row, i) => {
+  //     const address = row.address
+  //     // if the address is not in the lastSeenData, then call the api
+  //     if (!lastSeenData.current[address]) {
+  //       // call the api
+  //       findLastTx(address).then((res) => {
+  //         // update the lastSeenData
+  //         lastSeenData.current[address] = res
+  //         // update the cell in the data
+  //         ref.current?.updateCells([i].map((r) => ({ cell: [0, i] })))
+  //       })
+  //     }
+  //   })
+  // }, [props.data])
 
-  React.useEffect(() => {
-    console.log("update last seen effect")
-    updateLastSeen()
-  }, [updateLastSeen])
+  // React.useEffect(() => {
+  //   console.log("update last seen effect")
+  //   updateLastSeen()
+  // }, [updateLastSeen])
   React.useEffect(() => {
     setTheme(resolvedTheme === "dark" ? darkTheme : {})
   }, [resolvedTheme])
@@ -184,12 +184,12 @@ export default function Grid(props) {
         grow: 1,
         group: "Extra",
       },
-      {
-        title: "Last Seen",
-        id: "lastSeen",
-        icon: GridColumnIcon.HeaderDate,
-        group: "Extra",
-      },
+      // {
+      //   title: "Last Seen",
+      //   id: "lastSeen",
+      //   icon: GridColumnIcon.HeaderDate,
+      //   group: "Extra",
+      // },
       {
         title: "Etherscan Lookup",
         id: "etherscan",
@@ -236,7 +236,7 @@ export default function Grid(props) {
         "label_subtype",
         "label",
         "tag",
-        "lastSeen",
+        // "lastSeen",
         "Etherscan",
       ]
       if (dataRow.balanceHistory) {
@@ -247,7 +247,7 @@ export default function Grid(props) {
           "label_subtype",
           "label",
           "tag",
-          "lastSeen",
+          // "lastSeen",
           "balanceHistory",
           "Etherscan",
         ]
@@ -320,14 +320,14 @@ export default function Grid(props) {
             kind: "tags-cell",
             possibleTags: getTagsFromLabels(dataRow[indexes[1]]),
             readonly: true,
-            tags: getTagsFromLabels(dataRow[indexes[1]]).map((t) => t.tag),
+            tags: getTagsFromLabels(dataRow[indexes[1]]).map(t => t.tag),
           },
         } as TagsCellType
       }
 
       if (indexes[col] === "balanceHistory") {
         const values: number[] = JSON.parse(dataRow[indexes[col]]).map(
-          (x) => x[1]
+          x => x[1]
         )
         return {
           kind: GridCellKind.Custom,
@@ -336,7 +336,7 @@ export default function Grid(props) {
           data: {
             kind: "sparkline-cell",
             values: values,
-            displayValues: values.map((x) => Math.round(x).toString()),
+            displayValues: values.map(x => Math.round(x).toString()),
             color: Math.max(...values) > 1 ? "#77c4c4" : "#D98466",
             yAxis: [
               Math.round(Math.min(...values)),
@@ -346,61 +346,61 @@ export default function Grid(props) {
         } as SparklineCellType
       }
 
-      if (indexes[col] === "lastSeen") {
-        // findLastTx(dataRow["address"], ref, row)
+      // if (indexes[col] === "lastSeen") {
+      //   // findLastTx(dataRow["address"], ref, row)
 
-        // check timestamp exists on datarow
-        if (
-          lastSeenData.current[dataRow["address"]] &&
-          lastSeenData.current[dataRow["address"]].timestamp !== undefined
-        ) {
-          const d: ButtonCellType = {
-            kind: GridCellKind.Custom,
-            cursor: "pointer",
-            allowOverlay: false,
-            copyData: "Button",
-            readonly: true,
-            data: {
-              kind: "button-cell",
-              backgroundColor: ["transparent", "bgHeaderHasFocus"],
-              color: ["textDark", "textDark"],
-              borderColor: "transparent",
-              borderRadius: 0,
-              title: formatDistance(
-                new Date(lastSeenData.current[dataRow["address"]].timestamp),
-                new Date(),
-                { addSuffix: true }
-              ),
+      //   // check timestamp exists on datarow
+      //   if (
+      //     lastSeenData.current[dataRow["address"]] &&
+      //     lastSeenData.current[dataRow["address"]].timestamp !== undefined
+      //   ) {
+      //     const d: ButtonCellType = {
+      //       kind: GridCellKind.Custom,
+      //       cursor: "pointer",
+      //       allowOverlay: false,
+      //       copyData: "Button",
+      //       readonly: true,
+      //       data: {
+      //         kind: "button-cell",
+      //         backgroundColor: ["transparent", "bgHeaderHasFocus"],
+      //         color: ["textDark", "textDark"],
+      //         borderColor: "transparent",
+      //         borderRadius: 0,
+      //         title: formatDistance(
+      //           new Date(lastSeenData.current[dataRow["address"]].timestamp),
+      //           new Date(),
+      //           { addSuffix: true }
+      //         ),
 
-              onClick: () => {
-                window.open(
-                  `https://etherscan.io/tx/${
-                    lastSeenData.current[dataRow["address"]].txHash
-                  }`,
-                  "_blank"
-                )
-              },
-            },
-            themeOverride: {
-              // add italic to the title
-              baseFontStyle: "italic 12px",
-            },
-          }
+      //         onClick: () => {
+      //           window.open(
+      //             `https://etherscan.io/tx/${
+      //               lastSeenData.current[dataRow["address"]].txHash
+      //             }`,
+      //             "_blank"
+      //           )
+      //         },
+      //       },
+      //       themeOverride: {
+      //         // add italic to the title
+      //         baseFontStyle: "italic 12px",
+      //       },
+      //     }
 
-          return d
-        }
+      //     return d
+      //   }
 
-        const d: SpinnerCellType = {
-          kind: GridCellKind.Custom,
-          allowOverlay: false,
-          copyData: "Spinner",
-          data: {
-            kind: "spinner-cell",
-          },
-          lastUpdated: Date.now(),
-        }
-        return d
-      }
+      //   const d: SpinnerCellType = {
+      //     kind: GridCellKind.Custom,
+      //     allowOverlay: false,
+      //     copyData: "Spinner",
+      //     data: {
+      //       kind: "spinner-cell",
+      //     },
+      //     lastUpdated: Date.now(),
+      //   }
+      //   return d
+      // }
 
       const d = dataRow[indexes[col]]
       return {
@@ -422,7 +422,7 @@ export default function Grid(props) {
   }, [])
 
   const getRowThemeOverride = React.useCallback<GetRowThemeCallback>(
-    (row) => {
+    row => {
       if (row !== hoverRow) return undefined
       if (resolvedTheme === "dark") {
         return {

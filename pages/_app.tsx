@@ -10,6 +10,7 @@ import "@glideapps/glide-data-grid/dist/index.css"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 import "@glideapps/glide-data-grid-cells/dist/index.css"
+import { ChakraProvider } from "@chakra-ui/react"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -43,7 +44,9 @@ export default function App({ Component, pageProps }: AppProps) {
 			}`}</style>
       <NextUIProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Component {...pageProps} /> <Analytics />
+          <ChakraProvider>
+            <Component {...pageProps} /> <Analytics />{" "}
+          </ChakraProvider>
         </ThemeProvider>
       </NextUIProvider>
     </QueryClientProvider>

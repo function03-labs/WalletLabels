@@ -7,11 +7,12 @@ export default async function handler(req, res) {
   } catch {
     return res.status(429).send("Too Many Requests")
   }
-
-  let db
+  let client, db
   //wrap db connection in try/catch
   try {
-    const { client, db } = await connectToDatabase()
+    const database = await connectToDatabase();
+    db = database.db; // assuming connectToDatabase returns an object with a db property
+
   } catch (error) {
     console.log(error)
     throw new Error("Unable to connect to database")
@@ -52,7 +53,10 @@ export default async function handler(req, res) {
   //if query is empty don't search
   let labels = null
   try {
-    if (query === "") {
+    console.log(query, "query", query === "")
+    if (query == "") {
+      console.log("yesss", await db.collection("labels").find().limit(10).toArray())
+
       labels = await db.collection("labels").find().limit(limit).toArray()
     } else {
       const atlasSearchQuery = [
@@ -79,6 +83,7 @@ export default async function handler(req, res) {
         .collection("labels")
         .aggregate(atlasSearchQuery)
         .toArray()
+      console.log(labels, "labels")
       // only keep "address_name", "label_type", "label_subtype", "address","label"
     }
     labels = labels.map((label) => {
