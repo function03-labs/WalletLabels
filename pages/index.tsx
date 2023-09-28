@@ -173,7 +173,7 @@ export default function IndexPage(props) {
                 />
                 <div className=" flex justify-between">
                   <Box className=" align-start text-sm text-muted-foreground  flex gap-2">
-                    <div className="  whitespace-nowrap">
+                    <div className="hidden sm:block  whitespace-nowrap">
                       Interesting finds:
                     </div>
                     {!initialSearch ? (
@@ -220,7 +220,7 @@ export default function IndexPage(props) {
                   </Box>
 
                   <Stats
-                    className="text-sm text-muted-foreground  whitespace-nowrap"
+                    className="hidden sm:block text-sm text-muted-foreground  whitespace-nowrap"
                     translationds={{
                       stats(nbHits, processingTimeMS) {
                         let hitCountPhrase
