@@ -1,3 +1,5 @@
+'use client'
+
 import { Card } from '@chakra-ui/react'
 import {
   StructuredList,

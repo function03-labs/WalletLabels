@@ -1,3 +1,5 @@
+'use client'
+
 import { Card, Divider, Heading, Switch, Text } from '@chakra-ui/react'
 import {
   StructuredList,

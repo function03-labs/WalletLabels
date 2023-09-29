@@ -14,6 +14,7 @@ import * as z from 'zod'
 import { OnboardingStep } from './onboarding-step'
 import { useMutation } from '@tanstack/react-query'
 import { createOrganization } from '@api/client'
+import { useSessionStorageValue } from '@react-hookz/web'
 
 const schema = z.object({
   name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
@@ -23,9 +24,10 @@ const schema = z.object({
 type FormInput = z.infer<typeof schema>
 
 export const CreateOrganizationStep = () => {
-  const router = useRouter()
   const stepper = useStepperContext()
   const snackbar = useSnackbar()
+
+  const workspace = useSessionStorageValue('getting-started.workspace')
 
   const formRef = useRef<UseFormReturn<FormInput>>(null)
 
@@ -44,11 +46,7 @@ export const CreateOrganizationStep = () => {
         try {
           const result = await mutateAsync({ name: data.name })
           if (result.createOrganization?.slug) {
-            await router.replace({
-              query: {
-                tenant: result.createOrganization.slug,
-              },
-            })
+            workspace.set(result.createOrganization.slug)
             stepper.nextStep()
           }
         } catch {

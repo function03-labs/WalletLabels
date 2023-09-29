@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 import { Container } from '@chakra-ui/react'
@@ -16,6 +18,7 @@ import {
 import { useRouter } from '@app/nextjs'
 import { getCurrentUser } from '@api/client'
 import { useQuery } from '@tanstack/react-query'
+import { useSessionStorageValue } from '@react-hookz/web'
 
 export const GettingStartedPage: React.FC = () => {
   const { data, isLoading } = useQuery({
@@ -44,9 +47,10 @@ export const GettingStartedPage: React.FC = () => {
 
 const OnboardingCompleted = () => {
   const router = useRouter()
+  const workspace = useSessionStorageValue('getting-started.workspace')
 
   React.useEffect(() => {
-    router.push(`/app/${router.query.tenant}`)
+    router.push(`/${workspace}`)
   }, [])
 
   return (

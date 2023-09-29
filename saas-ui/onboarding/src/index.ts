@@ -1,3 +1,5 @@
+'use client'
+
 export { Beacon, type BeaconProps } from './beacon'
 export {
   BenefitsModal,

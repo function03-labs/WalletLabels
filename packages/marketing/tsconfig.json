@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@app/config": ["../app-config"],
+      "@app/features/core/*": ["./core/*"],
+      "@app/nextjs": ["../app-nextjs/src"]
+    }
+  }
+}

@@ -17,10 +17,16 @@
     "baseUrl": "./",
     "paths": {
       "@app/features/*": ["../../packages/app-features/*"],
-      "@app/config": ["../../packages/app-config"]
+      "@app/config": ["../../packages/app-config"],
+      "marketing/*": ["../packages/marketing/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next.d.ts", "src"],
+  "include": ["next.d.ts", "src", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "cypress"]
 }

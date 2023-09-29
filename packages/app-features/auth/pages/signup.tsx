@@ -1,3 +1,5 @@
+'use client'
+
 import { Container, Stack } from '@chakra-ui/react'
 import { Link } from '@ui/lib'
 

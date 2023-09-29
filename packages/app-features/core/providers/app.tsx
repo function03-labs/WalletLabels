@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 import { QueryClientProvider } from '@tanstack/react-query'
@@ -17,15 +19,15 @@ import { appHotkeys, segments } from '@app/config'
 import { queryClient } from '../lib/react-query'
 import { Hotkeys } from '../components/hotkeys'
 import { AuthProvider } from './auth'
+import { Link } from '@app/nextjs'
 
 export interface AppProviderProps {
-  linkComponent?: React.ElementType<any>
   onError?: (error: Error, info: any) => void
   children: React.ReactNode
 }
 
 export const AppProvider: React.FC<AppProviderProps> = (props) => {
-  const { linkComponent, onError, children } = props
+  const { onError, children } = props
 
   const [showDevtools, setShowDevtools] = React.useState(false)
 
@@ -39,11 +41,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <IconContext.Provider value={{ className: 'react-icon', size: '1.1em' }}>
-        <SaasProvider
-          linkComponent={linkComponent}
-          onError={onError}
-          theme={theme}
-        >
+        <SaasProvider linkComponent={Link} onError={onError} theme={theme}>
           <AuthProvider>
             <FeaturesProvider value={segments}>
               <I18nProvider>

@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, IconButton, Stack, Text, useClipboard } from '@chakra-ui/react'
 import {
   StructuredList,

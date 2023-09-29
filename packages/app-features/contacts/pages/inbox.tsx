@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { FiInbox, FiFilter, FiTrash, FiClock, FiSliders } from 'react-icons/fi'
 import { EmptyState, useLocalStorage } from '@saas-ui/react'

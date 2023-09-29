@@ -1,7 +1,6 @@
 {
   "name": "@app/features",
   "version": "17.0.0",
-  "main": "src/index.ts",
   "type": "module",
   "dependencies": {
     "@api/client": "workspace:*",

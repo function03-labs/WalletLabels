@@ -8,15 +8,16 @@ import {
 import { inviteToOrganization } from '@api/client'
 import { OnboardingStep } from './onboarding-step'
 import * as z from 'zod'
-import { useParams } from '@app/nextjs'
 import { Button } from '@chakra-ui/react'
+import { useSessionStorageValue } from '@react-hookz/web'
 
 const schema = z.object({
   emails: z.string(),
 })
 
 export const InviteTeamMembersStep = () => {
-  const { tenant } = useParams()
+  const workspace = useSessionStorageValue<string>('getting-started.workspace')
+
   const stepper = useStepperContext()
   const snackbar = useSnackbar()
 
@@ -31,10 +32,10 @@ export const InviteTeamMembersStep = () => {
       description="Saas UI works better with your team."
       defaultValues={{ emails: '' }}
       onSubmit={async (data) => {
-        if (tenant && data.emails) {
+        if (workspace.value && data.emails) {
           try {
             await invite({
-              organizationId: tenant.toString(),
+              organizationId: workspace.value,
               emails: data.emails.split(/,\s?/),
             })
           } catch {

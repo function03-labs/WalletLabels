@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, SimpleGrid } from '@chakra-ui/react'
 import { PersonaAvatar, PropertyList, Property } from '@saas-ui/react'
 import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
