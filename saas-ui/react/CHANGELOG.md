@@ -1,5 +1,19 @@
 # @saas-ui-pro/react
 
+## 0.27.0
+
+### Minor Changes
+
+- e9b3b00: Removed ErrorBoundary component
+- e9b3b00: Removed useScript hook
+- e9b3b00: Removed Tenancy provider
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [6478142]
+  - @saas-ui-pro/onboarding@0.13.1
+
 ## 0.26.1
 
 ### Patch Changes

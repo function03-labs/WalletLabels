@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.8.1
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+
 ## 0.8.0
 
 ### Minor Changes

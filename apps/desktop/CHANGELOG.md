@@ -1,5 +1,19 @@
 # electron-app
 
+## 0.16.1
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @app/features@17.0.0
+  - @saas-ui-pro/onboarding@0.13.1
+  - @ui/theme@3.0.0
+
 ## 0.16.0
 
 ### Minor Changes

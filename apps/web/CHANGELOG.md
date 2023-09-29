@@ -1,5 +1,22 @@
 # nextjs-app
 
+## 0.21.1
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @app/features@17.0.0
+  - @app/nextjs@0.4.2
+  - @saas-ui-pro/onboarding@0.13.1
+  - @ui/theme@3.0.0
+  - @ui/lib@3.0.0
+  - @api/client@0.3.6
+
 ## 0.21.0
 
 ### Minor Changes

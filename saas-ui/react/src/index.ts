@@ -187,7 +187,6 @@ export {
   BenefitsModalMedia,
   type BenefitsModalMediaProps,
   type BenefitsModalProps,
-  MotionBox,
   Tour,
   type TourContextValue,
   TourDialog,

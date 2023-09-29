@@ -1,5 +1,11 @@
 # @saas-ui/onboarding
 
+## 0.13.1
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+
 ## 0.13.0
 
 ### Minor Changes
