@@ -1,1 +1,1 @@
-export * from './src/theme'
+export { theme } from './src/theme'
