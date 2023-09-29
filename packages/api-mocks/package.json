@@ -12,6 +12,6 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "@types/slug": "^5.0.4"
+    "@types/slug": "^5.0.5"
   }
 }

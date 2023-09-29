@@ -39,7 +39,7 @@
     "@chakra-ui/system": "^2.6.1",
     "@chakra-ui/theme-tools": "^2.1.1",
     "@chakra-ui/utils": "^2.0.15",
-    "@saas-ui/react-utils": "^2.0.0"
+    "@saas-ui/react-utils": "^2.0.1"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.1",
