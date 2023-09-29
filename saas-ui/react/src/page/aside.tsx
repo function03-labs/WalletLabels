@@ -11,9 +11,7 @@ import {
   createStylesContext,
 } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
-import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
-
-import { ErrorBoundary } from '../app/error-boundary'
+import { LoadingOverlay, LoadingSpinner, ErrorBoundary } from '@saas-ui/react'
 
 import { MotionBox } from '../transitions'
 
@@ -162,7 +160,7 @@ export const Aside: React.FC<AsideProps> = (props) => {
 
   return (
     <AsideContainer {...rest}>
-      <ErrorBoundary errorComponent={errorComponent}>{content}</ErrorBoundary>
+      <ErrorBoundary fallback={errorComponent}>{content}</ErrorBoundary>
     </AsideContainer>
   )
 }

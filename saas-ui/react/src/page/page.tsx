@@ -13,10 +13,8 @@ import {
 } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
 
-import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
-import { getChildOfType } from '@saas-ui/react-utils'
+import { LoadingOverlay, LoadingSpinner, ErrorBoundary } from '@saas-ui/react'
 
-import { ErrorBoundary } from '../app/error-boundary'
 import { ErrorPage } from './error-page'
 import { createContext } from '@chakra-ui/react-utils'
 
@@ -208,7 +206,7 @@ export const Page = forwardRef<PageProps, 'main'>((props, ref) => {
   } = props
 
   return (
-    <ErrorBoundary errorComponent={errorComponent}>
+    <ErrorBoundary fallback={errorComponent}>
       <PageContainer ref={ref} errorComponent={errorComponent} {...rest}>
         {children}
       </PageContainer>

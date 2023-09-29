@@ -18,6 +18,15 @@ if (isProd) {
     callback({ cancel: false, requestHeaders: details.requestHeaders })
   })
 
+  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': ["image-src '*'"], // @warning you should change this to only allow trusted URLs
+      },
+    })
+  })
+
   const mainWindow = createWindow('main', {
     titleBarStyle: 'hidden',
     titleBarOverlay: true,

@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { ErrorBoundary } from '@saas-ui-pro/react'
 import {
   Tour,
   TourDialog,
@@ -17,7 +16,7 @@ import {
   TourSpotlight,
 } from '@saas-ui-pro/onboarding'
 
-import { useLocalStorage } from '@saas-ui/react'
+import { useLocalStorage, ErrorBoundary } from '@saas-ui/react'
 import { ButtonGroup, Text, useBreakpointValue } from '@chakra-ui/react'
 import { SaasUIGlyph } from '@ui/lib/src/logo/saas-ui-glyph'
 
