@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { FaTelegram } from "react-icons/fa"
 
 import { siteConfig } from "@/config/site"
 import { Icons } from "@/components/icons"
@@ -14,17 +15,28 @@ export function SiteHeader() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
             <Link
-              href={siteConfig.links.github}
+              href="https://t.me/+YjWehy_NArsyZTc0"
               target="_blank"
-              rel="noreferrer"
-            >
+              rel="noreferrer">
               <div
                 className={buttonVariants({
                   size: "sm",
                   variant: "ghost",
                   className: "text-slate-700 dark:text-slate-400",
-                })}
-              >
+                })}>
+                <FaTelegram className="h-5 w-5" />
+              </div>
+            </Link>
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer">
+              <div
+                className={buttonVariants({
+                  size: "sm",
+                  variant: "ghost",
+                  className: "text-slate-700 dark:text-slate-400",
+                })}>
                 <Icons.gitHub className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </div>
