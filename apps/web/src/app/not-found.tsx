@@ -10,7 +10,7 @@ export default function NotFound() {
 
   return (
     <ErrorPage
-      title="Oh dear, maybe something broke"
+      title="Oh dear, couldn't find what you are looking for"
       description="Where do you want to go?"
       icon={FiFrown}
       h="$100vh"

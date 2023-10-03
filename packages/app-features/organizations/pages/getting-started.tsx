@@ -50,7 +50,7 @@ const OnboardingCompleted = () => {
   const workspace = useSessionStorageValue('getting-started.workspace')
 
   React.useEffect(() => {
-    router.push(`/${workspace}`)
+    router.push(`/${workspace.value}`)
   }, [])
 
   return (

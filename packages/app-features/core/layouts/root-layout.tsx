@@ -94,7 +94,6 @@ export const RootLayout: React.FC<AppLayoutProps> = ({
   const isPublicRoute = publicRoutes.indexOf(pathname) !== -1 || isPublic
 
   if (isPublicRoute) {
-    console.log('public')
     return <PublicLayout>{children}</PublicLayout>
   }
 
