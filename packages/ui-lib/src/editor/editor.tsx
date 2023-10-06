@@ -6,7 +6,12 @@ import {
   useMultiStyleConfig,
 } from '@chakra-ui/react'
 import { createField } from '@saas-ui/forms'
-import { useEditor, EditorContent, EditorContentProps } from '@tiptap/react'
+import {
+  useEditor,
+  EditorContent,
+  EditorContentProps,
+  Editor as TipTapEditor,
+} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 
@@ -17,7 +22,7 @@ export interface EditorProps
   defaultValue?: string
 }
 
-export const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
+export const Editor = React.forwardRef<TipTapEditor, EditorProps>(
   (props, ref) => {
     const { defaultValue, onChange, value, placeholder, ...rest } = props
 
@@ -36,7 +41,9 @@ export const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
         /* @ts-ignore */
         onChange?.(html || '')
       },
-    })
+    }) as TipTapEditor
+
+    React.useImperativeHandle(ref, () => editor)
 
     React.useEffect(() => {
       editor?.commands.setContent(value || '', false, {
@@ -63,7 +70,6 @@ export const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
 
     return (
       <chakra.div
-        ref={ref}
         as={EditorContent}
         editor={editor}
         {...rest}
@@ -76,7 +82,7 @@ export const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
 export const EditorField = createField<EditorProps>(
   forwardRef((props, ref) => {
     const { name, ...rest } = props
-    return <Editor ref={ref} {...rest} />
+    return <Editor {...rest} />
   }),
   { isControlled: true },
 )
