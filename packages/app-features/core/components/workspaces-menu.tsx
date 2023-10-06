@@ -13,7 +13,6 @@ import {
   MenuItem,
 } from '@chakra-ui/react'
 import { FiCheck } from 'react-icons/fi'
-import { useTenancy } from '@saas-ui-pro/react'
 
 import { useWorkspaces } from '../hooks/use-workspaces'
 import { useWorkspace } from '../hooks/use-workspace'
