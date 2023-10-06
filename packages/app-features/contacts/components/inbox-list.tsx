@@ -1,5 +1,5 @@
 import { usePath } from '@app/features/core/hooks/use-path'
-import { HStack, Text } from '@chakra-ui/react'
+import { Badge, BadgeProps, HStack, Text } from '@chakra-ui/react'
 import { useSplitPage } from '@saas-ui-pro/react'
 import {
   PersonaAvatar,
@@ -10,9 +10,21 @@ import {
   StructuredListItemProps,
   StructuredListProps,
 } from '@saas-ui/react'
-import { DateTimeSince } from '@ui/lib'
+import { DateTimeSince, StatusBadge } from '@ui/lib'
 import { useActivePath, useRouter } from '@app/nextjs'
 import { Notification } from '@api/client'
+
+const UnreadBadge: React.FC<BadgeProps> = (props) => {
+  return (
+    <Badge
+      boxSize="2"
+      borderRadius="full"
+      bg={`${props.colorScheme ?? 'primary'}.500`}
+      p="0"
+      {...props}
+    />
+  )
+}
 
 export interface InboxListProps extends StructuredListProps {
   items: any[]
@@ -51,12 +63,16 @@ const InboxListItem: React.FC<InboxListItemProps> = (props) => {
   return (
     <StructuredListItem p="0" {...rest}>
       <StructuredListButton
+        py="3"
         onClick={() => {
           push(path)
           onOpen()
         }}
         data-active={isActive === true ? '' : undefined}
       >
+        <StructuredListCell width="6" alignSelf="start">
+          {!item.readAt ? <UnreadBadge mt="-2px" /> : null}
+        </StructuredListCell>
         <StructuredListCell
           flex="1"
           color={color}
@@ -65,7 +81,7 @@ const InboxListItem: React.FC<InboxListItemProps> = (props) => {
           gap="2"
         >
           <HStack alignItems="center">
-            <Text fontWeight="bold" noOfLines={1} flex="1">
+            <Text noOfLines={1} flex="1">
               {item.contact.name}
             </Text>
             <DateTimeSince

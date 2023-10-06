@@ -179,6 +179,7 @@ export const getActivities = () => {
         },
         date: subDays(new Date(), 1).toISOString(),
         createdAt: subDays(new Date(), 1).toISOString(),
+        readAt: subDays(new Date(), 1).toISOString(),
       },
     ]
     activities.forEach((activity) => {

@@ -60,6 +60,7 @@ export type Activity = {
   date: string
   createdAt: string
   updatedAt?: string
+  readAt?: string
   user?: Partial<User>
 }
 

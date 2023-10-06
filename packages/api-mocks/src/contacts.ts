@@ -119,15 +119,9 @@ export const getNotifications = async () => {
     notifications: activities.map((activity) => {
       const contact = contacts[0]
       return {
-        id: activity.id,
-        type: activity.type,
         contactId: contact.id,
         contact: contacts[0],
-        data: activity.data,
-        userId: activity.id,
-        user: activity.user,
-        date: activity.date,
-        createdAt: activity.createdAt,
+        ...activity,
       } as Notification
     }),
   }

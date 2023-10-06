@@ -128,6 +128,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               href={usePath('inbox')}
               isActive={useActivePath('inbox', { end: false })}
               label="Inbox"
+              badge={2}
               icon={<FiInbox />}
               hotkey="navigation.inbox"
             />
@@ -190,10 +191,11 @@ interface AppSidebarlink extends NavItemProps {
   hotkey: string
   href: string
   label: string
+  badge?: React.ReactNode
 }
 
 const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
-  const { href, label, hotkey, ...rest } = props
+  const { href, label, hotkey, badge, ...rest } = props
   const { push } = useRouter()
   const isActive = useActivePath(href)
 
@@ -219,6 +221,12 @@ const AppSidebarLink: React.FC<AppSidebarlink> = (props) => {
       }}
     >
       {label}
+
+      {typeof badge !== 'undefined' ? (
+        <Badge borderRadius="sm" ms="auto" px="1.5" bg="none">
+          {badge}
+        </Badge>
+      ) : null}
     </NavItem>
   )
 }

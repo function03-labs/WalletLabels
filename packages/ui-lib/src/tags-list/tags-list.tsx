@@ -130,7 +130,7 @@ export const AddTag: React.FC<AddTagProps> = (props) => {
           color: 'chakra-body-text',
           borderColor: 'chakra-border-color',
         }}
-        leftIcon={<PlusIcon />}
+        leftIcon={<PlusIcon size="1.2em" />}
       >
         Add tag
       </MenuButton>
