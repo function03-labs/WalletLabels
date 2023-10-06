@@ -161,7 +161,7 @@ export function DashboardPage() {
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <Card>
               <Tabs variant="unstyled" tabIndex={0}>
-                <TabList>
+                <TabList overflow="hidden" borderTopRadius="md">
                   {data?.charts.map((metric) => (
                     <Tab
                       key={metric.id}
@@ -173,6 +173,12 @@ export function DashboardPage() {
                       height="auto"
                       textAlign="left"
                       borderBottomWidth="1px"
+                      _hover={{
+                        bg: 'whiteAlpha.100',
+                        _dark: {
+                          bg: 'whiteAlpha.100',
+                        },
+                      }}
                       _selected={{
                         borderBottomWidth: '2px',
                         borderColor: 'primary.500',
