@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { EditorField, StatusBadge, useModals } from '@ui/lib'
 
-import { Toolbar, ToolbarButton, MotionBox, Command } from '@saas-ui-pro/react'
+import { Toolbar, ToolbarButton, Command } from '@saas-ui-pro/react'
 import {
   FormLayout,
   Link,
@@ -37,7 +37,7 @@ import {
 } from '@saas-ui/react'
 import { User } from '@saas-ui/auth'
 import { FiPaperclip } from 'react-icons/fi'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { Form } from '@ui/lib'
 import * as z from 'zod'
@@ -111,7 +111,7 @@ const ActivityTimelineItem: React.FC<ActivityTimelineItem> = (props) => {
   const { id, icon, contentOffset = '1', children } = props
   return (
     <TimelineItem
-      as={MotionBox}
+      as={motion.div}
       id={id}
       minH="38px"
       overflow="hidden"
