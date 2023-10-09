@@ -7,7 +7,7 @@ import { RootLayout } from '@app/features/core/layouts/root-layout'
 export function Provider({ children }: { children: React.ReactNode }) {
   return (
     <AppProvider onError={(error, info) => console.error(error, info)}>
-      <RootLayout publicRoutes={['/']}>
+      <RootLayout publicRoutes={['/', '/login', '/signup']}>
         {/* <NProgressNextRouter router={router} /> */}
         {children}
       </RootLayout>
