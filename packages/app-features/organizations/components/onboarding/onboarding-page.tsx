@@ -27,7 +27,7 @@ export const OnboardingPage: React.FC<OnboardingPageProps> = (props) => {
 
   const nav = (
     <HStack>
-      {!hideBackButton && <BackButton as={Link} href="/app" />}
+      {!hideBackButton && <BackButton as={Link} href="/" />}
       <Menu>
         <MenuButton
           as={Button}

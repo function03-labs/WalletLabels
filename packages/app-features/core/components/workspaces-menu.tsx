@@ -13,7 +13,6 @@ import {
   MenuItem,
 } from '@chakra-ui/react'
 import { FiCheck } from 'react-icons/fi'
-import { useTenancy } from '@saas-ui-pro/react'
 
 import { useWorkspaces } from '../hooks/use-workspaces'
 import { useWorkspace } from '../hooks/use-workspace'
@@ -53,11 +52,7 @@ export const WorkspacesMenu: React.FC<TenantMenuProps> = (props) => {
   })()
 
   const setWorkspace = (workspace: string) => {
-    router.push({
-      query: {
-        workspace,
-      },
-    })
+    router.push(`/${workspace}`)
   }
 
   return (

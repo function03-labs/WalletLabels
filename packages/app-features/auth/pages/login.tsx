@@ -11,7 +11,7 @@ export const LoginPage = () => {
 
   if (isAuthenticated) {
     return (
-      <LoadingOverlay>
+      <LoadingOverlay variant="fullscreen">
         <LoadingSpinner />
       </LoadingOverlay>
     )
