@@ -75,7 +75,10 @@ export async function getStaticProps() {
   //get data from fetch
   //return data
   // add a balanceHistory property to each item in the data array
-  const data = response
+  const data = response.map((item, index) => {
+    item.balanceHistory = JSON.stringify(history[item["address"]])
+    return item
+  })
 
   return {
     props: {
