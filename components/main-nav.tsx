@@ -25,7 +25,7 @@ interface MainNavProps {
 export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10 items-center">
-      <Link href="/" className="items-center space-x-1.5 md:flex">
+      <Link href="/" className="items-center space-x-1.5 flex">
         <Logo className="h-6 w-6" />
 
         <span className="font-bold sm:inline-block">{siteConfig.name}</span>
