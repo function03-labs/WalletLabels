@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb"
 
-const MONGODB_URI = process.env.MONGODB_URI
-const MONGODB_DB = process.env.DB_NAME
+const MONGODB_URI = process.env.MONGODB_URI_NEW
+const MONGODB_DB = process.env.DB_NAME_NEW
 
 // check the MongoDB URI
 if (!MONGODB_URI) {

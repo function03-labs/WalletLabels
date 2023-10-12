@@ -1,4 +1,5 @@
 import * as React from "react"
+import Image from "next/image"
 import Link from "next/link"
 
 import { NavItem } from "@/types/nav"
@@ -14,6 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import logo from "../public/assets/logo.svg"
+import Logo from "./logo"
 
 interface MainNavProps {
   items?: NavItem[]
@@ -21,9 +24,10 @@ interface MainNavProps {
 
 export function MainNav({ items }: MainNavProps) {
   return (
-    <div className="flex gap-6 md:gap-10">
-      <Link href="/" className="items-center space-x-2 md:flex">
-        {/* <Icons.logo className="h-6 w-6" /> */}
+    <div className="flex gap-6 md:gap-10 items-center">
+      <Link href="/" className="items-center space-x-1.5 md:flex">
+        <Logo className="h-6 w-6" />
+
         <span className="font-bold sm:inline-block">{siteConfig.name}</span>
       </Link>
       {items?.length ? (
@@ -31,30 +35,23 @@ export function MainNav({ items }: MainNavProps) {
           {items?.map(
             (item, index) =>
               item.href && (
-                <div
-                  key={index}
-                >
-
+                <div key={index}>
                   <Link
                     key={index}
                     href={item.href}
                     className={cn(
                       "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm",
                       item.disabled && "cursor-not-allowed opacity-80"
-                    )}
-                  >
-
+                    )}>
                     {item.title}
                     {item.new && (
                       <span className="relative bottom-[7px] flex h-2 w-2">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500"></span>
                       </span>
-                    )
-                    }
+                    )}
                   </Link>
                 </div>
-
               )
           )}
         </nav>

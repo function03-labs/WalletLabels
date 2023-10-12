@@ -49,7 +49,11 @@ export const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 //feetch initial data from api
 export async function getStaticProps() {
   let db = await connectToDatabase()
-  let labels = await db.db.collection("labels").find().limit(30).toArray()
+  let labels = await db.db
+    .collection(process.env.CLC_NAME_WLBLS)
+    .find()
+    .limit(30)
+    .toArray()
   labels = labels.map(label => {
     return {
       address: label.address,
@@ -71,10 +75,7 @@ export async function getStaticProps() {
   //get data from fetch
   //return data
   // add a balanceHistory property to each item in the data array
-  const data = response.map((item, index) => {
-    item.balanceHistory = JSON.stringify(history[item["address"]])
-    return item
-  })
+  const data = response
 
   return {
     props: {
@@ -129,8 +130,8 @@ export default function IndexPage(props) {
             </a>
           </div> */}
               <div className="hidden sm:flex sm:justify-center">
-                <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
-                  Announcing Social Labels.{" "}
+                <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/30 hover:ring-gray-900/50 dark:text-gray-400 dark:ring-white/30 dark:hover:ring-white/50">
+                  Check out our new API endpoints.{" "}
                   <a
                     href="#"
                     className="font-semibold text-blue-800 dark:text-white">
@@ -157,7 +158,7 @@ export default function IndexPage(props) {
                   suffix="M "
                   className="text-xl font-semibold text-slate-700 dark:text-slate-400"
                 />
-                addresses labeled for you to easily identify your
+                addresses labeled for you to easily identify your{" "}
                 <br className="hidden sm:inline" />
                 favorite wallets and exchanges.
               </p>

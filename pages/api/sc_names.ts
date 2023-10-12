@@ -50,7 +50,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" })
   }
 
-  const clc_name = process.env.CLC_NAME_WLBLS
+  const clc_name = process.env.CLC_NAME_SC
 
   //if query is empty don't search
   let labels = null
