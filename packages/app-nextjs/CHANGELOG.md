@@ -1,5 +1,11 @@
 # @app/nextjs
 
+## 0.4.2
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+
 ## 0.4.1
 
 ### Patch Changes

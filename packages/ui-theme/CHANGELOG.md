@@ -1,5 +1,39 @@
 # @ui/theme
 
+## 3.0.0
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @saas-ui-pro/theme-glass@0.7.3
+
+## 2.0.0
+
+### Minor Changes
+
+- 9710d8d: Revert button size changes in theme
+
+### Patch Changes
+
+- Updated dependencies [9710d8d]
+- Updated dependencies [f08939c]
+  - @saas-ui-pro/react@0.26.0
+  - @saas-ui-pro/theme-glass@0.7.1
+
+## 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [18c670f]
+- Updated dependencies [18c670f]
+  - @saas-ui-pro/theme-glass@0.7.0
+  - @saas-ui-pro/react@0.25.0
+
 ## 0.6.2
 
 ### Patch Changes

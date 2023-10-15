@@ -1,7 +1,6 @@
-import { Button, Container, Stack, Text } from '@chakra-ui/react'
-import { Card, Property, PropertyList } from '@saas-ui/react'
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
+import { Card, Container } from '@chakra-ui/react'
+import { Property, PropertyList } from '@saas-ui/react'
+import { Meta } from '@storybook/react'
 import { FeaturesProvider, useFlag } from '..'
 
 import options from './config'

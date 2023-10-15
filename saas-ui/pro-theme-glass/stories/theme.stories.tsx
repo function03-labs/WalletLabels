@@ -45,6 +45,7 @@ import {
   CardHeader,
   CardFooter,
   Image,
+  Divider,
   useClipboard,
 } from '@chakra-ui/react'
 import {
@@ -59,7 +60,6 @@ import {
   // ListItemTertiary,
   // ListItemAction,
   SearchInput,
-  Divider,
   Link,
   useSnackbar,
 } from '@saas-ui/react'
@@ -450,7 +450,7 @@ const Profile = () => {
         <Property
           label="Status"
           value={
-            <Select value="Open" size="xs">
+            <Select name="status" value="Open" size="xs">
               <MenuItemOption value="Open">Open</MenuItemOption>
               <MenuItemOption value="Closed">Closed</MenuItemOption>
             </Select>

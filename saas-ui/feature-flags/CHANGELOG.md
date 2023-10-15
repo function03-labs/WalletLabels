@@ -1,5 +1,15 @@
 # @saas-ui/features
 
+## 0.13.0
+
+### Minor Changes
+
+- 18c670f: Removed deprecated flags prop from Has component
+
+### Patch Changes
+
+- 18c670f: Added `use client` directive for improved RSC support
+
 ## 0.12.2
 
 ### Patch Changes

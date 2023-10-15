@@ -1,0 +1,58 @@
+{
+  "name": "@saas-ui-pro/kanban",
+  "version": "0.3.3",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./src": {
+      "default": "./src/index.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.saas-ui.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saas-js/saas-ui-pro.git",
+    "directory": "saas-ui/onboarding"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --config tsup.config.ts",
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@chakra-ui/anatomy": "^2.2.1",
+    "@chakra-ui/react-utils": "^2.0.12",
+    "@chakra-ui/styled-system": "^2.9.1",
+    "@chakra-ui/system": "^2.6.1",
+    "@chakra-ui/theme-tools": "^2.1.1",
+    "@chakra-ui/utils": "^2.0.15",
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/sortable": "^7.0.2",
+    "@saas-ui/react-utils": "^2.0.1"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=2.1",
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
+    "@saas-ui/react": ">=2.0.0",
+    "framer-motion": ">=5.5.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "react-icons": "^4.11.0",
+    "tsup": "^6.7.0"
+  }
+}

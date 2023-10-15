@@ -23,7 +23,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { MenuInput, useSearchQuery } from '@saas-ui-pro/react'
-import { FiPlus } from 'react-icons/fi'
+import { PlusIcon } from 'lucide-react'
 
 export interface TagsListProps extends HTMLChakraProps<'div'> {
   children: React.ReactNode
@@ -130,7 +130,7 @@ export const AddTag: React.FC<AddTagProps> = (props) => {
           color: 'chakra-body-text',
           borderColor: 'chakra-border-color',
         }}
-        leftIcon={<FiPlus />}
+        leftIcon={<PlusIcon size="1.2em" />}
       >
         Add tag
       </MenuButton>

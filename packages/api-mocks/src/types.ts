@@ -47,6 +47,7 @@ export type Contact = {
   status: string
   type: string
   tags?: string[]
+  sortOrder?: number
   createdAt: string
   updatedAt?: string
 }
@@ -59,6 +60,7 @@ export type Activity = {
   date: string
   createdAt: string
   updatedAt?: string
+  readAt?: string
   user?: Partial<User>
 }
 

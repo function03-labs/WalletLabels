@@ -1,4 +1,4 @@
-import { Stack, Text, Progress } from '@chakra-ui/react'
+import { Stack, Text, Progress, Card, CardBody } from '@chakra-ui/react'
 import { usePath } from '@app/features/core/hooks/use-path'
 import { useBilling } from '@saas-ui-pro/billing'
 import { Has } from '@saas-ui-pro/feature-flags'
@@ -16,35 +16,55 @@ export const BillingStatus = () => {
     return null
   }
 
-  let progress
+  let progress = 0
   if (currentPlan.trialDays) {
     progress =
       100 -
       (100 / currentPlan.trialDays) * differenceInDays(trialEndsAt, new Date())
   }
 
+  let message
+  if (progress > 100) {
+    message = <Text flex="1">Your trial has ended</Text>
+  } else {
+    message = (
+      <Text flex="1">
+        Trial ends in{' '}
+        <strong>{formatDistanceStrict(new Date(), trialEndsAt)}</strong>
+      </Text>
+    )
+  }
+
   return (
-    <Stack spacing="4" borderTopWidth="1px" pt="4">
-      <Stack direction="row" px="4" alignItems="center">
-        <Text flex="1">
-          Trial ends in{' '}
-          <strong>{formatDistanceStrict(new Date(), trialEndsAt)}</strong>
-        </Text>
-        <Has feature="billing">
-          <LinkButton href={upgradePath} variant="solid" colorScheme="green">
-            Upgrade
-          </LinkButton>
-        </Has>
-      </Stack>
-      {progress !== undefined && (
-        <Progress
-          colorScheme="green"
-          bg="sidebar-on-muted"
-          size="xs"
-          borderRadius="0"
-          value={progress}
-        />
-      )}
-    </Stack>
+    <Card position="relative" overflow="hidden">
+      <CardBody>
+        <Stack direction="row" alignItems="center">
+          {message}
+          <Has feature="billing">
+            <LinkButton
+              href={upgradePath}
+              variant="solid"
+              colorScheme="green"
+              size="xs"
+            >
+              Upgrade
+            </LinkButton>
+          </Has>
+        </Stack>
+        {progress !== undefined && (
+          <Progress
+            position="absolute"
+            bottom="0"
+            right="0"
+            left="0"
+            colorScheme="green"
+            bg="sidebar-on-muted"
+            size="xs"
+            borderRadius="0"
+            value={progress}
+          />
+        )}
+      </CardBody>
+    </Card>
   )
 }

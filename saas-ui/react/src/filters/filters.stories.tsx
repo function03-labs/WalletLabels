@@ -419,3 +419,40 @@ export const WithDataGrid = () => {
     </FiltersProvider>
   )
 }
+
+export const WithAsyncFilters = () => {
+  const [items, setItems] = React.useState<FilterItem[]>(filters)
+  const [query, setQuery] = React.useState('')
+  const [isLoading, setLoading] = React.useState(false)
+
+  const onChange = (value: string) => {
+    setQuery(value)
+
+    // this simulates a fetch from the backend.
+    setLoading(true)
+    setTimeout(() => {
+      setItems(
+        filters.filter((filter) => {
+          return filter.id.match(value)
+        }),
+      )
+      setLoading(false)
+    }, 1000)
+  }
+
+  return (
+    <FiltersProvider filters={items}>
+      <Stack alignItems="flex-start" width="400px">
+        <Box px="3">
+          <FiltersAddButton
+            inputValue={query}
+            onInputChange={onChange}
+            buttonProps={{ isLoading }}
+          />
+        </Box>
+
+        <ActiveFiltersList px="3" py="2" borderBottomWidth="1px" zIndex="2" />
+      </Stack>
+    </FiltersProvider>
+  )
+}

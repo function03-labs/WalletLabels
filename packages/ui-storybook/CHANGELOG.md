@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.6.3
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+
 ## 0.6.2
 
 ### Patch Changes

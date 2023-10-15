@@ -1,3 +1,3 @@
-export * from './is-electron'
-export * from './platform'
-export * from './escape-reg-exp'
+export { isElectron } from './is-electron'
+export { platformSelect } from './platform'
+export { escapeRegExp } from './escape-reg-exp'

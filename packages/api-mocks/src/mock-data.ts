@@ -42,15 +42,21 @@ const activitiesStore = createMockStore<ActivitiesStore>('activities')
 
 const mapContact = (user: RandUser, type?: string): Contact => {
   const { id, firstName, lastName, email } = user
+  const name = [firstName, lastName].join(' ')
   return {
     id,
     firstName,
     lastName,
-    name: [firstName, lastName].join(' '),
+    name,
     email,
     status: rand(['new', 'active', 'inactive']),
     type: type || rand(['lead', 'customer']),
     tags: rand([[], [rand(['developer', 'designer', 'partner', 'prospect'])]]),
+    avatar: `https://xsgames.co/randomusers/avatar.php?g=${rand([
+      'male',
+      'female',
+      'pixel',
+    ])}&name=${name}`,
     createdAt: randBetweenDate({
       from: new Date('01/01/2020'),
       to: new Date(),
@@ -173,6 +179,7 @@ export const getActivities = () => {
         },
         date: subDays(new Date(), 1).toISOString(),
         createdAt: subDays(new Date(), 1).toISOString(),
+        readAt: subDays(new Date(), 1).toISOString(),
       },
     ]
     activities.forEach((activity) => {
@@ -216,8 +223,11 @@ export const getContacts = (
   if (refresh || !contacts.length) {
     randUser({ length: 100 })
       .map((user) => mapContact(user))
-      .forEach((contact) => {
-        state.add(contact as Contact)
+      .forEach((contact, i) => {
+        state.add({
+          ...contact,
+          sortOrder: i,
+        })
       })
   }
 
@@ -236,6 +246,10 @@ export const getContacts = (
   return Object.values(state.data).filter((contact) =>
     types.includes(contact.type as string),
   )
+}
+
+export const updateContact = (contact: Contact) => {
+  return contactsStore.getState().update(contact.id, contact)
 }
 
 export const getOrganization = (slug?: string | null) => {

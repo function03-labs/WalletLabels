@@ -1,1 +1,1 @@
-export * from './motion-box'
+export { MotionBox } from './motion-box'

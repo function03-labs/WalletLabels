@@ -38,12 +38,17 @@ export const RelativeTime: React.FC<RelativeTimeProps> = (props) => {
 }
 
 export interface DateTimeProps {
-  date: Date
+  date: Date | number | string
   style?: 'long' | 'short' | 'narrow'
 }
 
 export const DateTime: React.FC<DateTimeProps> = (props) => {
-  const { date, style = 'long' } = props
+  const { date: dateProp, style = 'long' } = props
+
+  let date = dateProp
+  if (typeof date === 'string' || typeof date === 'number') {
+    date = new Date(dateProp)
+  }
 
   const now = new Date()
 

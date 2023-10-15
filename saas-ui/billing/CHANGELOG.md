@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.11.1
+
+### Patch Changes
+
+- 18c670f: Added `use client` directive for improved RSC support
+
 ## 0.11.0
 
 ### Minor Changes

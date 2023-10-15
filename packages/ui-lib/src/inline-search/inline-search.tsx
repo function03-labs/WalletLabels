@@ -11,7 +11,7 @@ import {
 import { useHotkeys } from '@saas-ui/react'
 
 import { SearchInput, SearchInputProps } from '../search-input'
-import { FiX } from 'react-icons/fi'
+import { XIcon } from 'lucide-react'
 
 /**
  * InlineSearch input to be used in toolbars.
@@ -52,7 +52,7 @@ export const InlineSearch = forwardRef<SearchInputProps, 'input'>(
         size="xs"
         variant="ghost"
         aria-label="Reset search"
-        icon={<FiX />}
+        icon={<XIcon />}
       />
     ) : undefined
 

@@ -1,5 +1,99 @@
 # @app/features
 
+## 17.0.0
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @app/config@3.0.0
+  - @app/nextjs@0.4.2
+  - @saas-ui-pro/onboarding@0.13.1
+  - @ui/theme@3.0.0
+  - @ui/lib@3.0.0
+  - @api/client@0.3.6
+
+## 16.1.0
+
+### Minor Changes
+
+- 9574cc6: Added new DateRangePicker component
+- 9574cc6: Improved dashboard metrics design
+- 857c962: Improved BillingCard design
+- a7fef23: Improved contact card design
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+- Updated dependencies [9574cc6]
+- Updated dependencies [9574cc6]
+  - @saas-ui-pro/react@0.26.1
+  - @ui/lib@2.1.0
+  - @api/client@0.3.5
+
+## 16.0.1
+
+### Patch Changes
+
+- @ui/lib@2.0.1
+
+## 16.0.0
+
+### Minor Changes
+
+- 9710d8d: Revert button size changes in theme
+- 701a004: Contact list kanban cards now support columns visiblity toggles
+
+### Patch Changes
+
+- f08939c: Update to Saas UI 2.2.1
+- 701a004: Added new DataBoardProvider
+- 701a004: Disabled hiding on name column
+- 60e52e9: Fix StatusBadge and ContactType badge colors in lightmode
+- Updated dependencies [9710d8d]
+- Updated dependencies [f08939c]
+- Updated dependencies [701a004]
+- Updated dependencies [60e52e9]
+  - @ui/theme@2.0.0
+  - @saas-ui-pro/react@0.26.0
+  - @ui/lib@2.0.0
+  - @app/config@2.0.0
+
+## 15.0.2
+
+### Patch Changes
+
+- @ui/lib@1.0.2
+
+## 15.0.1
+
+### Patch Changes
+
+- @ui/lib@1.0.1
+
+## 15.0.0
+
+### Minor Changes
+
+- 18c670f: Updated to Saas UI 2.2.0
+
+### Patch Changes
+
+- Updated dependencies [18c670f]
+- Updated dependencies [18c670f]
+- Updated dependencies [18c670f]
+  - @saas-ui-pro/onboarding@0.13.0
+  - @saas-ui-pro/react@0.25.0
+  - @saas-ui-pro/feature-flags@0.13.0
+  - @saas-ui-pro/billing@0.11.1
+  - @ui/theme@1.0.0
+  - @ui/lib@1.0.0
+  - @app/config@1.0.0
+
 ## 14.1.2
 
 ### Patch Changes

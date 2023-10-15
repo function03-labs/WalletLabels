@@ -5,7 +5,7 @@ import {
   SearchInputProps,
 } from '@saas-ui/react'
 
-import { FiSearch, FiX } from 'react-icons/fi'
+import { SearchIcon, XIcon } from 'lucide-react'
 import { forwardRef } from '@chakra-ui/react'
 
 export type { SearchInputProps }
@@ -18,8 +18,8 @@ export const SearchInput = forwardRef<SearchInputProps, 'input'>(
     return (
       <BaseSearchInput
         ref={ref}
-        icon={<FiSearch />}
-        resetIcon={<FiX size="1.6em" />}
+        icon={<SearchIcon size="1.2em" />}
+        resetIcon={<XIcon size="1.6em" />}
         {...props}
       />
     )

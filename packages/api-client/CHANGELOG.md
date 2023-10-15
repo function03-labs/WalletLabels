@@ -1,5 +1,21 @@
 # @api/client
 
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies [6478142]
+  - @api/mocks@0.8.1
+
+## 0.3.5
+
+### Patch Changes
+
+- Updated dependencies [9574cc6]
+- Updated dependencies [9574cc6]
+- Updated dependencies [a7fef23]
+  - @api/mocks@0.8.0
+
 ## 0.3.4
 
 ### Patch Changes

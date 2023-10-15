@@ -1,5 +1,48 @@
 # @saas-ui-pro/react
 
+## 0.27.0
+
+### Minor Changes
+
+- e9b3b00: Removed ErrorBoundary component
+- e9b3b00: Removed useScript hook
+- e9b3b00: Removed Tenancy provider
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [6478142]
+  - @saas-ui-pro/onboarding@0.13.1
+
+## 0.26.1
+
+### Patch Changes
+
+- 944b91b: Improved default font definition in pro theme
+
+## 0.26.0
+
+### Minor Changes
+
+- 9710d8d: Revert button size changes in theme
+
+### Patch Changes
+
+- f08939c: Update to Saas UI 2.2.1
+
+## 0.25.0
+
+### Minor Changes
+
+- 18c670f: Updated to Saas UI 2.2.0
+
+### Patch Changes
+
+- 18c670f: Added `use client` directive for improved RSC support
+- Updated dependencies [18c670f]
+- Updated dependencies [18c670f]
+  - @saas-ui-pro/onboarding@0.13.0
+
 ## 0.24.3
 
 ### Patch Changes

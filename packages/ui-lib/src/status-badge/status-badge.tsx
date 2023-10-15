@@ -5,7 +5,7 @@ export const StatusBadge = (props: BadgeProps) => (
     boxSize="2"
     borderRadius="full"
     borderWidth="2px"
-    borderColor="currentColor"
+    borderColor={`${props.colorScheme ?? 'gray'}.500`}
     bg="transparent"
     p="0"
     {...props}

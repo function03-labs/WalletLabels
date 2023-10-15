@@ -1,6 +1,6 @@
 export const fonts = {
-  heading: 'InterVariable, sans-serif',
-  body: 'InterVariable, sans-serif',
+  heading: '"Inter Variable", InterVariable, Inter, sans-serif',
+  body: '"Inter Variable", InterVariable, Inter, sans-serif',
 }
 
 export const fontSizes = {

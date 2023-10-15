@@ -1,62 +1,71 @@
 import {
-  Box,
-  HStack,
   Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
-  StatArrow,
-  Icon,
+  Stack,
+  StackProps,
 } from '@chakra-ui/react'
+import { DeltaBadge } from '@ui/lib'
 
-import { Sparklines } from '@saas-ui/charts'
-import { FiTrendingUp, FiTrendingDown } from 'react-icons/fi'
-
-export interface MetricProps {
+export interface MetricProps extends StackProps {
+  /**
+   * The metric label
+   */
   label: string
+  /**
+   * The metric value
+   */
   value: string
+  /**
+   * Previous range value
+   */
+  previousValue: string
+  /**
+   * Change from previous value
+   */
   change?: number
-  data?: number[]
-  color?: string
+  /**
+   * Show increase as positive or negative
+   * @default true
+   */
+  isIncreasePositive?: boolean
 }
 
 export const Metric = (props: MetricProps) => {
-  const { label, value, change, data, color, ...rest } = props
+  const {
+    label,
+    value,
+    previousValue,
+    change = 0,
+    isIncreasePositive,
+    ...rest
+  } = props
+
+  const deltaType =
+    change === 0 ? 'neutral' : change > 0 ? 'increase' : 'decrease'
+
   return (
-    <HStack {...rest} position="relative">
+    <Stack {...rest} position="relative" px="4" py="4" width="full">
       <Stat>
-        <StatLabel>{label}</StatLabel>
-        <StatNumber>{value}</StatNumber>
-        {typeof change !== 'undefined' && (
-          <StatHelpText
-            margin="0"
-            display="flex"
-            gap="1"
-            alignItems="center"
-            color="muted"
-          >
-            {change > 0 ? (
-              <Icon as={FiTrendingUp} />
-            ) : (
-              <Icon as={FiTrendingDown} />
-            )}
-            {change}%
+        <StatLabel color="muted">{label}</StatLabel>
+        <StatNumber>
+          {value}{' '}
+          {change && (
+            <DeltaBadge
+              deltaType={deltaType}
+              isIncreasePositive={isIncreasePositive}
+            >
+              {change}%
+            </DeltaBadge>
+          )}
+        </StatNumber>
+        {typeof previousValue !== 'undefined' && (
+          <StatHelpText margin="0" color="muted">
+            vs. {previousValue} last period
           </StatHelpText>
         )}
       </Stat>
-      {data && (
-        <Box position="absolute" right="0" bottom="0">
-          <Sparklines
-            data={data}
-            height="32px"
-            width="100px"
-            strokeWidth={1}
-            color={color}
-            variant="gradient"
-            gradientOpacity={0.2}
-          />
-        </Box>
-      )}
-    </HStack>
+    </Stack>
   )
 }

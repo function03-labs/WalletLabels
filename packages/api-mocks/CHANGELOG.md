@@ -1,5 +1,19 @@
 # @api/mocks
 
+## 0.8.1
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+
+## 0.8.0
+
+### Minor Changes
+
+- 9574cc6: Added new DateRangePicker component
+- 9574cc6: Improved dashboard metrics design
+- a7fef23: Contact mocks now include a fake avatar thanks to https://xsgames.co/randomusers/
+
 ## 0.7.1
 
 ### Patch Changes

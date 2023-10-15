@@ -10,7 +10,7 @@ const isElectron = process.env.npm_package_name === 'electron-app'
  */
 const SaasUIProPlugin = () => {
   return new webpack.NormalModuleReplacementPlugin(
-    /@saas-ui-pro\/(react|billing|router|onboarding|feature-flags|pro\/theme|pro-.*)$/,
+    /@saas-ui-pro\/(react|billing|router|onboarding|feature-flags|kanban|pro\/theme|pro-.*)$/,
     (resource) => {
       resource.request = resource.request + '/src'
     },
@@ -22,9 +22,6 @@ export default withWorkspaces({
   basePath: '../../',
 })(
   withSvgr({
-    experimental: {
-      appDir: true,
-    },
     optimizeFonts: true,
     reactStrictMode: false,
     distDir: isElectron ? '.nextron' : '.next',

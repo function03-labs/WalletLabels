@@ -1,5 +1,69 @@
 # @ui/lib
 
+## 3.0.0
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @saas-ui-pro/kanban@0.3.3
+
+## 2.1.0
+
+### Minor Changes
+
+- 9574cc6: Added new DateRangePicker component
+- 9574cc6: Improved dashboard metrics design
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+  - @saas-ui-pro/react@0.26.1
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [e860b78]
+  - @saas-ui-pro/kanban@0.3.2
+
+## 2.0.0
+
+### Patch Changes
+
+- 701a004: Added new DataBoardProvider
+- 60e52e9: Fix StatusBadge and ContactType badge colors in lightmode
+- Updated dependencies [9710d8d]
+- Updated dependencies [f08939c]
+  - @saas-ui-pro/react@0.26.0
+
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [4a0bb5b]
+  - @saas-ui-pro/kanban@0.3.1
+
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [dfff511]
+  - @saas-ui-pro/kanban@0.3.0
+
+## 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [18c670f]
+- Updated dependencies [18c670f]
+  - @saas-ui-pro/kanban@0.2.0
+  - @saas-ui-pro/react@0.25.0
+
 ## 0.5.3
 
 ### Patch Changes
