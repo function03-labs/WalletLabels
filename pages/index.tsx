@@ -107,7 +107,7 @@ export default function IndexPage(props) {
     <Layout>
       {header()}
       <InstantSearch
-        indexName="books"
+        indexName="labels"
         searchClient={searchClient}
         insights={true}>
         <motion.div
