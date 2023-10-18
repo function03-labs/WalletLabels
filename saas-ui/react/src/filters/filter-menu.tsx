@@ -8,6 +8,7 @@ import {
   ButtonProps,
   MenuProps,
   MenuButton,
+  MenuListProps,
 } from '@chakra-ui/react'
 
 import { usePromise } from '@saas-ui/react'
@@ -62,6 +63,7 @@ export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
   command?: string
   onSelect?(item: FilterItem): void
   buttonProps?: ButtonProps
+  listProps?: MenuListProps
   inputValue?: string
   inputDefaultValue?: string
   onInputChange?(value: string, activeItemId?: string): void
@@ -76,6 +78,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       command,
       icon,
       buttonProps,
+      listProps,
       onSelect,
       isOpen: isOpenProp,
       defaultIsOpen,
@@ -198,6 +201,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
             overflow="auto"
             initialFocusRef={filterRef}
             hideCloseButton={true}
+            {...listProps}
           >
             {input} {filteredItems}
           </ResponsiveMenuList>
