@@ -16,7 +16,7 @@ import {
   FilterOperators,
   FilterOperatorId,
 } from '..'
-import { ActiveFilterProvider, useActiveFilter } from './'
+import { ActiveFilterProvider, FilterItems, useActiveFilter } from './'
 
 export default {
   title: 'Components/Filters/ActiveFilter',
@@ -37,7 +37,7 @@ const StatusBadge = (props: BadgeProps) => (
   <Badge boxSize="8px" mx="2px" borderRadius="full" {...props} />
 )
 
-const filters = [
+const filters: FilterItems = [
   {
     id: 'status',
     label: 'Status',
@@ -60,7 +60,7 @@ const filters = [
     label: 'Is lead',
     type: 'boolean',
     icon: <FiUser />,
-    value: true,
+    // value: true,
   },
 ]
 

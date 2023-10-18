@@ -54,6 +54,10 @@ import { useFiltersContext } from './provider'
 import { FilterOperatorId, FilterType } from './operators'
 import { defaultFormatter } from './active-filter.utils'
 
+export type FilterRenderFn = (
+  context: ActiveFilterContextValue,
+) => React.ReactNode
+
 const [StylesProvider, useStyles] = createStylesContext('SuiActiveFilter')
 
 export interface ActiveFilterProps
@@ -77,12 +81,12 @@ export interface ActiveFilterProps
    * @deprecated, use `renderLabel` instead
    */
   formatLabel?(label?: string): string
-  renderLabel?(filter: ActiveFilterContextValue): React.ReactElement
+  renderLabel?: FilterRenderFn
   /**
    * @deprecated, use `renderValue` instead
    */
   formatValue?(value: FilterValue): string
-  renderValue?(filter: ActiveFilterContextValue): React.ReactElement
+  renderValue?: FilterRenderFn
 }
 
 export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
@@ -101,10 +105,10 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
     onValueChange: onValueChangeProp,
     formatLabel,
     formatValue,
-    renderLabel = (filter) => {
+    renderLabel = () => {
       return formatLabel?.(label) || label
     },
-    renderValue = (filter) => {
+    renderValue = () => {
       return value ? formatValue?.(value) || defaultFormatter(value) : null
     },
     multiple,
@@ -229,10 +233,6 @@ export const ActiveFilterLabel: React.FC<ActiveFilterLabelProps> = (props) => {
 
 ActiveFilterLabel.displayName = 'ActiveFilterLabel'
 
-/**
- * ActiveFilterOperator
- */
-
 export interface ActiveFilterOperatorProps
   extends Omit<MenuProps, 'children'>,
     UseFilterOperatorProps {
@@ -309,9 +309,9 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
   }
 
   const { value, getMenuProps } = useFilterValue(props)
-  console.log('value', value)
+
   const { data: items } = useFilterItems(
-    value || 'default',
+    typeof value === 'string' ? value : 'default', // @todo check if this works correctly
     React.useMemo(() => props.items || [], [props.items]),
   )
 
@@ -394,8 +394,8 @@ export interface ActiveFiltersListProps
    * @deprecated Use `renderValue` instead
    */
   formatValue?(value: FilterValue): string
-  renderLabel?(filter: ActiveFilterContextValue): React.ReactElement
-  renderValue?(filter: ActiveFilterContextValue): React.ReactElement
+  renderLabel?: FilterRenderFn
+  renderValue?: FilterRenderFn
 }
 
 export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
@@ -426,9 +426,7 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
           return true
         })
 
-        const multiple =
-          filter?.type === 'enum' &&
-          (['contains', 'containsNot'] as any).includes(operator)
+        const multiple = !!filter?.multiple
 
         return (
           <WrapItem key={key}>

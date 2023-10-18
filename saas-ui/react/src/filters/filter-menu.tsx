@@ -66,13 +66,14 @@ export interface FilterItem {
   icon?: React.ReactElement
   type?: FilterType
   items?: FilterItems
-  isMulti?: boolean
-  value?: string | string[] | number | boolean | Date
+  multiple?: boolean
+  value?: string | string[] // | number | boolean | Date
   operators?: FilterOperatorId[]
   defaultOperator?: FilterOperatorId
 }
 
-export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
+export interface FilterMenuProps
+  extends Omit<MenuProps, 'children' | 'onChange'> {
   value?: string | string[]
   items: FilterItems
   icon?: React.ReactNode
@@ -80,7 +81,8 @@ export interface FilterMenuProps extends Omit<MenuProps, 'children'> {
   placeholder?: string
   command?: string
   multiple?: boolean
-  onSelect?(item: FilterItem | FilterItem[]): void
+  onSelect?(item: FilterItem | FilterItem[]): Promise<void>
+  onChange?(value?: string | string[]): void
   buttonProps?: ButtonProps
   inputValue?: string
   inputDefaultValue?: string
@@ -98,6 +100,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       buttonProps,
       onSelect,
       value: valueProp,
+      onChange: onChangeProp,
       isOpen: isOpenProp,
       defaultIsOpen,
       onOpen: onOpenProp,
@@ -114,6 +117,8 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     >({
       value: props.value,
       onChange: (value) => {
+        onChangeProp?.(value)
+
         if (!isOpen) {
           return
         }
@@ -145,6 +150,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     })
 
     const onCheck = (id: string, isChecked: boolean) => {
+      console.log('onCheck', id, isChecked)
       setValue((value) => {
         let values: string[] = []
         if (typeof value === 'string') {
@@ -158,7 +164,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
         } else if (!isChecked) {
           values = values.filter((value) => value !== id)
         }
-
+        console.log('values', values)
         return values
       })
     }
@@ -215,7 +221,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     ) : null
 
     const onItemClick = React.useCallback(
-      (item: FilterItem, close = true) => {
+      async (item: FilterItem, close = true) => {
         if (item.items?.length || typeof item.items === 'function') {
           setActiveItem(item)
           onReset()
@@ -227,7 +233,9 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
                 value: value || item.value || item.id,
               }
             : item
-          onSelect?.(filter)
+
+          await onSelect?.(filter)
+
           if (close) {
             onClose()
           }
@@ -245,15 +253,8 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       />
     )
 
-    const isMultiSelect = (type = 'string', operator = 'is') => {
-      return type === 'enum' && ['contains', 'containsNot'].includes(operator)
-    }
-
     const filteredItems = React.useMemo(() => {
-      const multi =
-        (!activeItem && multiple) ||
-        isMultiSelect(activeItem?.type, activeItem?.defaultOperator)
-
+      const isMulti = multiple || activeItem?.multiple
       return (
         results?.map((item) => {
           const {
@@ -264,12 +265,12 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
             value,
             operators,
             defaultOperator,
-            isMulti,
+            multiple,
             icon,
             ...itemProps
           } = item
 
-          const _icon = multi ? (
+          const _icon = isMulti ? (
             <HStack>
               <Checkbox
                 isChecked={isChecked(id)}

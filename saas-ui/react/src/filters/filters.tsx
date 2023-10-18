@@ -19,6 +19,7 @@ export const FiltersAddButton = forwardRef<
     const key = await enableFilter(
       currentKey ? { key: currentKey, id, value } : { id, value },
     )
+
     setCurrentKey(key)
   }
 

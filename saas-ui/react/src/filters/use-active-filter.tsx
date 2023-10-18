@@ -18,14 +18,16 @@ export interface Filter {
   operator?: FilterOperatorId
 }
 
-export type FilterValue = string | string[] | number | boolean | Date | null
+// export type FilterValue = string | string[] | number | boolean | Date | null
+export type FilterValue = string | string[]
 
 export interface ActiveFilterContextValue {
+  id: string
   label?: string
   operators?: FilterOperators
   operator?: FilterOperatorId
   value?: FilterValue
-  items?: FilterItem[]
+  items?: FilterItems
 }
 
 export const [ActiveFilterProvider, useActiveFilterContext] =
@@ -150,16 +152,15 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
     },
   })
 
-  const onSelect = React.useCallback(
-    (item: FilterItem) => {
-      setValue(item.value || item.id)
+  const onChange = React.useCallback(
+    async (value?: string | string[]) => {
+      setValue(value as FilterValue)
     },
     [value, setValue],
   )
 
   const getMenuProps = React.useCallback(
-    (props: FilterMenuProps) => {
-      console.log(props)
+    (props: FilterMenuProps): FilterMenuProps => {
       return {
         value,
         items: props.items || [],
@@ -167,10 +168,10 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
         placeholder: filter.label || props.placeholder,
         icon: props.icon,
         multiple: props.multiple,
-        onSelect,
+        onChange,
       }
     },
-    [filter, value, onSelect],
+    [filter, value, onChange],
   )
 
   return {
