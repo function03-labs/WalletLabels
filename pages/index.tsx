@@ -136,7 +136,7 @@ export default function IndexPage(props) {
                 <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/30 hover:ring-gray-900/50 dark:text-gray-400 dark:ring-white/30 dark:hover:ring-white/50">
                   Check out our new API endpoints.{" "}
                   <a
-                    href="https://api.walletlabels.com/"
+                    href="https://api.walletlabels.xyz/"
                     className="font-semibold text-blue-800 dark:text-white">
                     <span
                       className="absolute inset-0"
