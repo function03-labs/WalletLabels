@@ -1,7 +1,7 @@
 {
   "name": "@ui/storybook",
   "type": "module",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build:storybook": "storybook build"
@@ -16,7 +16,7 @@
     "@chakra-ui/system": "^2.6.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@saas-ui-pro/react": "^0.27.0",
+    "@saas-ui-pro/react": "^0.27.1",
     "@saas-ui/react": "^2.3.0",
     "@saas-ui/storybook-addon": "^1.1.1",
     "@storybook/addon-essentials": "^7.5.1",

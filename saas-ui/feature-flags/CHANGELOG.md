@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.13.1
+
+### Patch Changes
+
+- f815187: Updated dependencies
+
 ## 0.13.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@app/nextjs",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Next.js specific shared code",
   "private": true,
   "type": "module",

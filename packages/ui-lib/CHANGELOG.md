@@ -1,5 +1,18 @@
 # @ui/lib
 
+## 3.0.1
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- 4313f5e: Improved Editor component, editor instance is now accessible using ref
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [92ca126]
+- Updated dependencies [f815187]
+  - @saas-ui-pro/react@0.27.1
+  - @app/i18n@0.4.1
+
 ## 3.0.0
 
 ### Patch Changes

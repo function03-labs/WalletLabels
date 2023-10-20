@@ -1,5 +1,12 @@
 # @app/i18n
 
+## 0.4.1
+
+### Patch Changes
+
+- 92ca126: DateTime now accepts string and numbers in addition to Date
+- f815187: Updated dependencies
+
 ## 0.4.0
 
 ### Minor Changes

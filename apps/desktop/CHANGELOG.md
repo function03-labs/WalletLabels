@@ -1,5 +1,22 @@
 # electron-app
 
+## 0.16.2
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- Updated dependencies [c46d786]
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [c46d786]
+- Updated dependencies [e58b95e]
+- Updated dependencies [f815187]
+- Updated dependencies [e58b95e]
+  - @app/features@17.0.1
+  - @saas-ui-pro/react@0.27.1
+  - @saas-ui-pro/feature-flags@0.13.1
+  - @ui/theme@3.0.1
+
 ## 0.16.1
 
 ### Patch Changes

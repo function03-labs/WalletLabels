@@ -1,5 +1,15 @@
 # @app/config
 
+## 3.0.1
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [f815187]
+  - @saas-ui-pro/react@0.27.1
+
 ## 3.0.0
 
 ### Patch Changes
