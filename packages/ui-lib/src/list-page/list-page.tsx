@@ -193,23 +193,25 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     )
   } else if (view === 'board') {
     content = (
-      <DataBoard<D>
-        instanceRef={boardRef}
-        px="6"
-        height="100%"
-        columns={columns}
-        data={data}
-        renderHeader={board?.header}
-        renderCard={board?.card}
-        onCardDragEnd={board?.onCardDragEnd}
-        getRowId={getRowId}
-        groupBy={board?.groupBy}
-        initialState={{
-          columnVisibility,
-          ...initialState,
-        }}
-        state={state}
-      />
+      <Box height="100%" width="100%" bg="page-body-bg-subtle">
+        <DataBoard<D>
+          instanceRef={boardRef}
+          px="6"
+          height="100%"
+          columns={columns}
+          data={data}
+          renderHeader={board?.header}
+          renderCard={board?.card}
+          onCardDragEnd={board?.onCardDragEnd}
+          getRowId={getRowId}
+          groupBy={board?.groupBy}
+          initialState={{
+            columnVisibility,
+            ...initialState,
+          }}
+          state={state}
+        />
+      </Box>
     )
   } else {
     content = (

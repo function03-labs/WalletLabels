@@ -10,17 +10,17 @@
     "@app/nextjs": "workspace:*",
     "@react-hookz/web": "^23.1.0",
     "@saas-ui/charts": "^0.10.0",
-    "@saas-ui/date-picker": "^0.12.4",
-    "@saas-ui/forms": "^2.1.3",
-    "@tanstack/react-query": "^4.35.3",
-    "@tanstack/react-query-devtools": "4.35.3",
+    "@saas-ui/date-picker": "^0.12.5",
+    "@saas-ui/forms": "^2.2.0",
+    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query-devtools": "4.36.1",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
     "date-fns": "^2.30.0",
     "lucide-react": "^0.260.0",
     "react-icons": "^4.11.0",
     "slug": "^8.2.3",
-    "zod": "^3.22.2"
+    "zod": "^3.22.4"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",

@@ -46,7 +46,7 @@ function InboxViewPage(props: { item: Notification }) {
   return (
     <Page>
       <PageHeader toolbar={toolbar} />
-      <PageBody contentWidth="full">
+      <PageBody contentWidth="full" bg="page-body-bg-subtle">
         <Card h="100%">
           <ContactsViewPage id={props.item?.contactId} />
         </Card>

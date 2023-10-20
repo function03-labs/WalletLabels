@@ -150,7 +150,7 @@ export function DashboardPage() {
         toolbar={toolbar}
         footer={footer}
       />
-      <PageBody contentWidth="full">
+      <PageBody contentWidth="full" bg="page-body-bg-subtle">
         <IntroTour />
         <Grid
           templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
