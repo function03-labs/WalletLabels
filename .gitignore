@@ -28,7 +28,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-
+.api_keys   
 # turbo
 .turbo
 
@@ -37,3 +37,4 @@ yarn-error.log*
 ens_resolver.log
 prisma/ens_resolver.log
 prisma/Untitled-1.ipynb
+.vercel

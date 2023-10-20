@@ -18,12 +18,13 @@ const applyMiddleware = (middleware) => (request, response) =>
 const getRateLimitMiddlewares = ({
   limit = 8,
   windowMs = 60 * 1000,
-  delayAfter = Math.round(10 / 2),
+  delayAfter = Math.round(20 / 2),
   delayMs = 500,
 } = {}) => [
-  slowDown({ keyGenerator: getIP, windowMs, delayAfter, delayMs }),
-  rateLimit({ keyGenerator: getIP, windowMs, max: limit }),
-]
+    slowDown({ keyGenerator: getIP, windowMs, delayAfter, delayMs }),
+    rateLimit({ keyGenerator: getIP, windowMs, max: limit }),
+  ]
 
 const middlewares = getRateLimitMiddlewares({ limit: 8 }).map(applyMiddleware)
+export const middlewares_special = getRateLimitMiddlewares({ limit: 60 }).map(applyMiddleware)
 export default middlewares

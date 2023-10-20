@@ -45,8 +45,8 @@ import Footer from "./Footer"
 import header from "./header"
 
 export const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
-
 //feetch initial data from api
+
 export async function getStaticProps() {
   let db = await connectToDatabase()
   let labels = await db.db

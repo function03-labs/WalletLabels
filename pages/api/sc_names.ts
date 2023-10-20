@@ -1,12 +1,37 @@
 import middlewares from "@/lib/rateLimits"
 import { connectToDatabase } from "../../lib/mongodb"
-
+import { PostHog } from "posthog-node"
+const clientPH = new PostHog(
+  'phc_fm3aXnRPkxnjLP1sFZL6pMK09Ky2e82Ee5jf6QYrBuM',
+  { host: 'https://app.posthog.com' }
+)
 export default async function handler(req, res) {
-  try {
-    await Promise.all(middlewares.map((middleware) => middleware(req, res)))
-  } catch {
-    return res.status(429).send("Too Many Requests")
+  if (req.query["api-key"] in keys) {
+    try {
+      await Promise.all(middlewares_special.map((middleware) => middleware(req, res)))
+    } catch {
+      return res.status(429).send("Too Many Requests")
+    }
+  } else {
+    try {
+      await Promise.all(middlewares.map((middleware) => middleware(req, res)))
+    } catch {
+      return res.status(429).send("Too Many Requests")
+    }
   }
+  clientPH.capture({
+    distinctId: 'sc_names_call',
+    event: 'sc_names',
+    properties: {
+      method: req.method,
+      query: req.query,
+      api_key: req.query["api-key"] ? req.query["api-key"] : false,
+      userAgent: req.headers['user-agent'],
+      timestamp: new Date(),
+    }
+  })
+
+  clientPH.flush()
   let client, db
   //wrap db connection in try/catch
   try {

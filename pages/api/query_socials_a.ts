@@ -23,11 +23,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Response | { message: string }>
 ) {
-  try {
-    await Promise.all(middlewares.map((middleware) => middleware(req, res)))
-  } catch {
-    return res.status(429).send({ message: "Too Many Requests" })
-  }
+  // try {
+  //   await Promise.all(middlewares.map((middleware) => middleware(req, res)))
+  // } catch {
+  //   return res.status(429).send({ message: "Too Many Requests" })
+  // }
 
   let db
   //wrap db connection in try/catch
