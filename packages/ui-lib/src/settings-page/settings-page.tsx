@@ -1,5 +1,5 @@
 import { VStack, StackDivider, useBreakpointValue } from '@chakra-ui/react'
-import { usePath } from '@app/features/core/hooks/use-path'
+import { usePath } from '@app/features/common/hooks/use-path'
 
 import {
   BackButton,

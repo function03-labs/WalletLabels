@@ -1,0 +1,12 @@
+{
+  "name": "@api/server",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@db/drizzle": "workspace:*",
+    "@trpc/server": "^10.37.1",
+    "superjson": "^2.1.0",
+    "zod": "^3.22.4"
+  }
+}

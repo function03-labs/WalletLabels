@@ -4,6 +4,6 @@
   "main": "src/index.ts",
   "type": "module",
   "dependencies": {
-    "@api/mocks": "workspace:*"
+    "@api/demo-client": "workspace:*"
   }
 }

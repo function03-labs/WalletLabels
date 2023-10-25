@@ -6,7 +6,7 @@
   "sideEffects": false,
   "type": "module",
   "dependencies": {
-    "@app/i18n": "workspace:*",
+    "@common/i18n": "workspace:*",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
     "@dnd-kit/utilities": "^3.2.1",
