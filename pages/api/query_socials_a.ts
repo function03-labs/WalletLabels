@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next"
 
 import middlewares from "@/lib/rateLimits"
-import { connectToDatabase } from "../lib/mongodb_social"
+import { connectToDatabase } from "../../lib/mongodb_social"
 
 interface Label {
   _id: string

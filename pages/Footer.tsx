@@ -37,11 +37,11 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="hover:bg-slate-100 dark:hover:bg-slate-800">
-          <img
+          {/* <img
             src="https://pbs.twimg.com/profile_images/1626383708054757377/ejkm30BA_400x400.jpg"
             alt="Avatar of Aiden"
-          />
-          Aiden
+          /> */}
+          WalletLabs
         </a>
       </div>
     </footer>

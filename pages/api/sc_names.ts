@@ -1,6 +1,7 @@
-import middlewares from "@/lib/rateLimits"
+import middlewares, { middlewares_special } from "@/lib/rateLimits"
 import { connectToDatabase } from "../../lib/mongodb"
 import { PostHog } from "posthog-node"
+import keys from "@/api_keys"
 const clientPH = new PostHog(
   'phc_fm3aXnRPkxnjLP1sFZL6pMK09Ky2e82Ee5jf6QYrBuM',
   { host: 'https://app.posthog.com' }
