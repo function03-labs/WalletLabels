@@ -56,11 +56,11 @@ const filters: FilterItems = [
     ],
   },
   {
-    id: 'lead',
+    id: 'type',
     label: 'Is lead',
     type: 'boolean',
     icon: <FiUser />,
-    // value: true,
+    value: 'lead',
   },
 ]
 

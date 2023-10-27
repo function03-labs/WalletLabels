@@ -62,6 +62,9 @@ export const useFilterItems = (
 }
 
 export interface FilterItem {
+  /**
+   * The filter id
+   */
   id: string
   label?: string
   icon?: React.ReactElement
@@ -144,16 +147,17 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
           id = value
         }
 
-        const filter = results?.find((filter) => filter.id === id)
+        const filter = results?.find(
+          (filter) => filter.id === id || filter.value === id,
+        )
 
         if (filter) {
-          onItemClick(filter, false)
+          onSelect?.(filter)
         }
       },
     })
 
     const onCheck = (id: string, isChecked: boolean) => {
-      console.log('onCheck', id, isChecked)
       setValue((value) => {
         let values: string[] = []
         if (typeof value === 'string') {
@@ -167,7 +171,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
         } else if (!isChecked) {
           values = values.filter((value) => value !== id)
         }
-        console.log('values', values)
+
         return values
       })
     }
@@ -184,14 +188,17 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
         if (!isOpen) {
           setActiveItem(null)
-          setValue(undefined)
+
+          // if the value is empty we need to reset it
+          if (!props.value) {
+            setValue(undefined)
+          }
         }
 
         filterRef.current?.focus()
       },
       onClose() {
         onReset()
-
         onCloseProp?.()
       },
     })
@@ -230,14 +237,9 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
           onReset()
           filterRef.current?.focus()
         } else {
-          const filter = activeItem
-            ? {
-                ...activeItem,
-                value: value || item.value || item.id,
-              }
-            : item
-
-          await onSelect?.(filter)
+          const value = item.value || item.id
+          const isMulti = multiple || item.multiple || activeItem?.multiple
+          setValue(isMulti && typeof value === 'string' ? [value] : value)
 
           if (close) {
             onClose()
@@ -259,7 +261,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
     const filteredItems = React.useMemo(() => {
       const isMulti = multiple || activeItem?.multiple
       return (
-        results?.map((item) => {
+        results?.map((item, i) => {
           const {
             id,
             label,
@@ -287,7 +289,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
           return (
             <MenuFilterItem
-              key={id}
+              key={`${id}-${i}`}
               value={id}
               icon={_icon}
               {...itemProps}

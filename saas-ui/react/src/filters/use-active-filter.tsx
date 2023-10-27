@@ -10,6 +10,7 @@ import { createContext } from '@chakra-ui/react-utils'
 import { FilterItem, FilterItems, FilterMenuProps } from './filter-menu'
 
 import { FilterOperatorId, FilterOperators } from './operators'
+import { format, formatDistanceToNowStrict, isAfter } from 'date-fns'
 
 export interface Filter {
   key?: string
@@ -42,6 +43,7 @@ export interface ActiveFilterValueOptions {
   defaultValue?: FilterValue
   placeholder?: string
   multiple?: boolean
+  format?(value: FilterValue): string
 }
 
 export interface UseActiveFilterProps {
@@ -137,12 +139,28 @@ export const useFilterOperator = (props: UseFilterOperatorProps) => {
   }
 }
 
+const defaultFormatter = (value: FilterValue) => {
+  if (value instanceof Date) {
+    if (isAfter(value, new Date())) {
+      return format(value, 'PP')
+    }
+    return formatDistanceToNowStrict(value, { addSuffix: true })
+  }
+
+  return value?.toString()
+}
+
 export interface UseFilterValueProps extends ActiveFilterValueOptions {}
 
 export const useFilterValue = (props: UseFilterValueProps = {}) => {
   const filter = useActiveFilterContext()
 
-  const { onChange: onChangeProp, value: valueProp, defaultValue } = props
+  const {
+    onChange: onChangeProp,
+    value: valueProp,
+    defaultValue,
+    format,
+  } = props
 
   const [value, setValue] = useControllableState<FilterValue>({
     defaultValue: defaultValue || '',
@@ -159,12 +177,16 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
     [value, setValue],
   )
 
+  const formatter = format || defaultFormatter
+
+  const label = formatter(value)
+
   const getMenuProps = React.useCallback(
     (props: FilterMenuProps): FilterMenuProps => {
       return {
         value,
         items: props.items || [],
-        label: props.label,
+        label: props.label || label,
         placeholder: filter.label || props.placeholder,
         icon: props.icon,
         multiple: props.multiple,

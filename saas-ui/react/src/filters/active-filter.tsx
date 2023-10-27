@@ -108,7 +108,8 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
     renderLabel = () => {
       return formatLabel?.(label) || label
     },
-    renderValue = () => {
+    renderValue = (context) => {
+      const value = context.value
       return value ? formatValue?.(value) || defaultFormatter(value) : null
     },
     multiple,
@@ -120,7 +121,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
   const context: ActiveFilterContextValue = {
     ...filter,
     items,
-    value,
+    value: defaultValue || value,
     label,
   }
 
@@ -143,7 +144,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
           onChange={onValueChange}
           multiple={multiple}
         >
-          {renderValue(context)}
+          {renderValue?.(context)}
         </ActiveFilterValue>
         <ActiveFilterRemove onClick={onRemove} />
       </ActiveFilterContainer>
@@ -222,7 +223,7 @@ export const ActiveFilterLabel: React.FC<ActiveFilterLabelProps> = (props) => {
       className={cx('sui-active-filter__label', props.className)}
     >
       {_icon && (
-        <chakra.span marginEnd={iconSpacing} display="inline-block">
+        <chakra.span marginEnd={iconSpacing} display="inline-flex">
           {_icon}
         </chakra.span>
       )}
@@ -428,32 +429,33 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
 
         const multiple = !!filter?.multiple
 
+        const activeFilterProps: ActiveFilterProps = {
+          id,
+          value,
+          operator,
+          multiple,
+          icon: filter?.icon,
+          label: filter?.label,
+          placeholder: filter?.label,
+          defaultOperator: filter?.defaultOperator,
+          items: filter?.items,
+          operators,
+          type: filter?.type,
+          onValueChange: (value: FilterValue) => {
+            enableFilter({ key, ...activeFilter, value })
+          },
+          onOperatorChange: (operator: FilterOperatorId) => {
+            enableFilter({ key, ...activeFilter, operator })
+          },
+          onRemove: () => key && disableFilter(key),
+          formatValue,
+          renderLabel,
+          renderValue,
+        }
+
         return (
           <WrapItem key={key}>
-            <ActiveFilter
-              id={id}
-              size={size}
-              icon={filter?.icon}
-              label={filter?.label}
-              placeholder={filter?.label}
-              value={value}
-              defaultOperator={filter?.defaultOperator}
-              operator={operator}
-              items={filter?.items}
-              type={filter?.type}
-              operators={operators}
-              multiple={multiple}
-              onValueChange={(value) => {
-                enableFilter({ key, ...activeFilter, value })
-              }}
-              onOperatorChange={(operator) => {
-                enableFilter({ key, ...activeFilter, operator })
-              }}
-              onRemove={() => key && disableFilter(key)}
-              formatValue={formatValue}
-              renderLabel={renderLabel}
-              renderValue={renderValue}
-            />
+            <ActiveFilter {...activeFilterProps} />
           </WrapItem>
         )
       })}

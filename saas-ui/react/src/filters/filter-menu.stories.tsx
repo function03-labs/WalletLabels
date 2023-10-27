@@ -25,14 +25,20 @@ const StatusBadge = (props: BadgeProps) => (
 
 const filters: FilterItem[] = [
   {
-    id: 'new',
-    label: 'New',
-    icon: <StatusBadge bg="green.400" />,
+    id: 'status',
+    label: 'New users',
+    icon: <StatusBadge bg="blue.400" />,
+    value: 'new',
   },
   {
-    id: 'lead',
-    label: 'Is lead',
-    type: 'boolean',
+    id: 'status',
+    label: 'Active users',
+    icon: <StatusBadge bg="green.400" />,
+    value: 'active',
+  },
+  {
+    id: 'type',
+    label: 'Contact is lead',
     icon: <FiUser />,
     value: 'lead',
   },
@@ -58,17 +64,17 @@ const filtersNested: FilterItem[] = [
     ],
   },
   {
-    id: 'lead',
-    label: 'Is lead',
-    type: 'boolean',
+    id: 'type',
+    label: 'Contact is lead',
     icon: <FiUser />,
+    value: 'lead',
   },
 ]
 
 export const Basic = Template.bind({})
 Basic.args = {
   items: filters,
-  isOpen: true,
+  defaultIsOpen: true,
 }
 
 export const NestedFilters = Template.bind({})
@@ -76,19 +82,57 @@ NestedFilters.args = {
   items: filtersNested,
 }
 
+const filtersAsync: FilterItem[] = [
+  {
+    id: 'status',
+    label: 'Status',
+    type: 'enum',
+    icon: <FiCircle />,
+    items: async (query) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve([
+            {
+              id: 'new',
+              label: 'New',
+              icon: <StatusBadge bg="blue.400" />,
+            },
+            {
+              id: 'active',
+              label: 'Active',
+              icon: <StatusBadge bg="green.400" />,
+            },
+          ])
+        }, 1000)
+      })
+    },
+  },
+  {
+    id: 'lead',
+    label: 'Contact is lead',
+    icon: <FiUser />,
+    value: 'lead',
+  },
+]
+
 export const WithAsyncFilters = () => {
-  const [items, setItems] = React.useState<FilterItem[]>(filters)
+  const [items, setItems] = React.useState<FilterItem[]>(filtersAsync)
   const [query, setQuery] = React.useState('')
   const [isLoading, setLoading] = React.useState(false)
 
-  const onChange = (value: string) => {
+  const onChange = (value: string, activeItemId: string) => {
+    // only search root items
+    if (activeItemId) {
+      return
+    }
+
     setQuery(value)
 
     // this simulates a fetch from the backend.
     setLoading(true)
     setTimeout(() => {
       setItems(
-        filters.filter((filter) => {
+        filtersAsync.filter((filter) => {
           return filter.id.match(value)
         }),
       )
