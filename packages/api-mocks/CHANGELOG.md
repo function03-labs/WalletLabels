@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.8.2
+
+### Patch Changes
+
+- f815187: Updated dependencies
+
 ## 0.8.1
 
 ### Patch Changes

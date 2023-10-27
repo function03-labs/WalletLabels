@@ -1,5 +1,29 @@
 # @app/features
 
+## 17.0.1
+
+### Patch Changes
+
+- c46d786: SidebarNavLink now supports a badge prop
+- f815187: Added new page-body-bg-subtle design token
+- c46d786: Notifications on inbox now have clearer unread styles
+- e58b95e: inbox list now redirects to the first notification returned
+- f815187: Updated dependencies
+- e58b95e: Added hover styles to dashboard metric tabs
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [92ca126]
+- Updated dependencies [f815187]
+- Updated dependencies [4313f5e]
+  - @saas-ui-pro/react@0.27.1
+  - @app/i18n@0.4.1
+  - @saas-ui-pro/feature-flags@0.13.1
+  - @app/config@3.0.1
+  - @app/nextjs@0.4.3
+  - @ui/theme@3.0.1
+  - @ui/lib@3.0.1
+  - @api/client@0.3.7
+
 ## 17.0.0
 
 ### Patch Changes

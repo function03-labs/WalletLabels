@@ -1,5 +1,11 @@
 # @app/nextjs
 
+## 0.4.3
+
+### Patch Changes
+
+- f815187: Updated dependencies
+
 ## 0.4.2
 
 ### Patch Changes

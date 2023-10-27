@@ -1,5 +1,13 @@
 # @saas-ui-pro/react
 
+## 0.27.1
+
+### Patch Changes
+
+- f48e750: Added listProps prop to FilterMenu that accepts the internal MenuList component props
+- f815187: Added new page-body-bg-subtle design token
+- f815187: Updated dependencies
+
 ## 0.27.0
 
 ### Minor Changes

@@ -12,6 +12,7 @@ import {
   HStack,
   Checkbox,
   useControllableState,
+  MenuListProps,
 } from '@chakra-ui/react'
 
 import {
@@ -84,6 +85,7 @@ export interface FilterMenuProps
   onSelect?(item: FilterItem | FilterItem[]): Promise<void>
   onChange?(value?: string | string[]): void
   buttonProps?: ButtonProps
+  listProps?: MenuListProps
   inputValue?: string
   inputDefaultValue?: string
   onInputChange?(value: string, activeItemId?: string): void
@@ -98,6 +100,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       command,
       icon,
       buttonProps,
+      listProps,
       onSelect,
       value: valueProp,
       onChange: onChangeProp,
@@ -326,6 +329,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
             overflow="auto"
             initialFocusRef={filterRef}
             hideCloseButton={true}
+            {...listProps}
           >
             {input}
             {spinner}
