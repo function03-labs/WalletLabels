@@ -6,13 +6,7 @@ const nextConfig = {
   },
   staticPageGenerationTimeout: 1000,
   reactStrictMode: false,
-   async rewrites() {
-
-    return [
-      {source: "/api/:path*",
-      destination: `https://onceupon.gg/api/:path*`,}
-    ]
-  },
+ 
   //withImages(),
   images: {
     dangerouslyAllowSVG: true,
