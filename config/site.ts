@@ -31,7 +31,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: "API",
-      href: "https://api.walletlabels.xyz",
+      href: "https://docs.walletlabels.xyz",
       disabled: false,
     },
   ],
