@@ -9,17 +9,47 @@ import { Filter } from './use-active-filter'
 import { defaultOperators, FilterOperators, FilterType } from './operators'
 
 interface FiltersContextValue {
+  /**
+   * The list of filters
+   */
   filters?: FilterItem[]
+  /**
+   * The list of filter operators
+   */
   operators?: FilterItem[]
+  /**
+   * The list of active filters
+   */
   activeFilters?: Filter[]
   /**
    * Enable a filter
    * @returns the unique key of the filter
    */
   enableFilter(filter: Filter): Promise<string>
+  /**
+   * Disable a filter
+   */
   disableFilter(key: string): void
+  /**
+   * Get a filter by id
+   * @param id the filter id
+   * @returns the filter
+   */
   getFilter(id: string): FilterItem | undefined
+  /**
+   * Get a active filter by id
+   * @param id the filter id
+   * @returns the filter
+   */
+  getActiveFilter(id: string): Filter | undefined
+  /**
+   * Get operators by type
+   * @returns the list of operators
+   */
   getOperators(type?: string): FilterOperators
+  /**
+   * Reset all active filters
+   */
   reset(): void
 }
 
@@ -54,13 +84,20 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
     onBeforeEnableFilter,
   } = props
 
-  const [initialized, setInitialized] = React.useState(false)
+  const initializedRef = React.useRef(false)
 
   const activeFilterMap = useMap<string, Filter>([])
 
   const getFilter = React.useCallback(
     (id: string) => {
       return filters?.find((filter) => filter.id === id)
+    },
+    [filters],
+  )
+
+  const getActiveFilter = React.useCallback(
+    (id: string) => {
+      return activeFilterMap.get(id)
     },
     [filters],
   )
@@ -83,7 +120,6 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
 
   const _setFilter = React.useCallback((filter: Filter) => {
     const key = filter.key || `${filter.id}-${activeFilterMap.size}`
-
     const def = getFilter(filter.id)
 
     const operator = filter.operator || def?.defaultOperator || 'is'
@@ -97,7 +133,6 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   const enableFilter = React.useCallback(
     async (filter: Filter) => {
       const key = filter.key || `${filter.id}-${activeFilterMap.size}`
-
       const def = getFilter(filter.id)
 
       const operator = filter.operator || def?.defaultOperator || 'is'
@@ -148,11 +183,12 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   const activeFilters = getActiveFilters()
 
   React.useEffect(() => {
-    if (!initialized) {
+    if (!initializedRef.current) {
       defaultFilters?.forEach((filter) => {
-        enableFilter(filter)
+        console.log('enable', filter)
+        _setFilter(filter)
       })
-      setInitialized(true)
+      initializedRef.current = true
     }
   }, [defaultFilters, enableFilter])
 
@@ -169,6 +205,7 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
     enableFilter,
     disableFilter,
     getFilter,
+    getActiveFilter,
     getOperators,
     reset,
   }

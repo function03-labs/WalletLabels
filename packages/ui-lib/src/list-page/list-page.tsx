@@ -26,6 +26,7 @@ import {
   ResetFilters,
   PageHeaderProps,
   PageHeader,
+  useFiltersContext,
 } from '@saas-ui-pro/react'
 
 import { useDebouncedCallback } from '@react-hookz/web'
@@ -203,6 +204,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
           renderHeader={board?.header}
           renderCard={board?.card}
           onCardDragEnd={board?.onCardDragEnd}
+          noResults={NoFilteredResults}
           getRowId={getRowId}
           groupBy={board?.groupBy}
           initialState={{
@@ -249,11 +251,11 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   return (
     <FiltersProvider
       filters={filters}
-      activeFilters={defaultFilters} // Pass the default filters to active filters, so they are updated when the filters change.
       operators={operators}
       onChange={onFilter}
       onBeforeEnableFilter={onBeforeEnableFilter}
     >
+      <TrackDefaultFilters defaultFilters={defaultFilters} />
       <Page
         isLoading={isLoading}
         position="relative"
@@ -311,4 +313,22 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
       </Page>
     </FiltersProvider>
   )
+}
+
+/**
+ * We track default filters so we can dynamically change them when navigating, eg between tags in the sidebar.
+ */
+const TrackDefaultFilters: React.FC<{ defaultFilters?: Filter[] }> = ({
+  defaultFilters,
+}) => {
+  const { enableFilter, activeFilters } = useFiltersContext()
+
+  React.useEffect(() => {
+    defaultFilters?.forEach((filter) => {
+      const key = activeFilters?.find(({ id }) => id === filter.id)?.key
+      enableFilter(key ? { key, ...filter } : filter)
+    })
+  }, [defaultFilters])
+
+  return null
 }

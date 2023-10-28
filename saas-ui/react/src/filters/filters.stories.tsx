@@ -794,7 +794,7 @@ export const WithTextInput = () => {
       return new Promise((resolve, reject) => {
         const { key, id, value } = activeFilter
         const { type, label } = filter
-        console.log(activeFilter, filter)
+
         if (type === 'date' && value === 'custom') {
           return modals.open({
             title: label,
