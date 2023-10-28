@@ -2,10 +2,7 @@ import middlewares, { middlewares_special } from "@/lib/rateLimits"
 import { connectToDatabase } from "../../lib/mongodb"
 import keys from "@/api_keys"
 import { PostHog } from 'posthog-node'
-const clientPH = new PostHog(
-  'phc_fm3aXnRPkxnjLP1sFZL6pMK09Ky2e82Ee5jf6QYrBuM',
-  { host: 'https://app.posthog.com' }
-)
+
 export default async function handler(req, res) {
   let client, db
   //wrap db connection in try/catch
@@ -20,14 +17,14 @@ export default async function handler(req, res) {
 
 
   // Check for the 'search' query parameter instead of 'query'
-  if (req.query.search === undefined) {
+  if (req.query.searchtext === undefined) {
     return res.status(400).json({ message: "Bad request: 'search' parameter missing" });
   }
   let search, limit;
-  if (req.query.search === "" || req.query.search === undefined) {
+  if (req.query.searchtext === "" || req.query.searchtext === undefined) {
     search = "";
   } else {
-    search = req.query.search;  // Now using 'search' instead of 'query'
+    search = req.query.searchtext;  // Now using 'search' instead of 'query'
   }
 
 
