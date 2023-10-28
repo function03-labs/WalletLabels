@@ -1,5 +1,30 @@
 # @app/features
 
+## 18.0.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+- 7e3ee3d: Improved default filters behavior of ListPage
+
+### Patch Changes
+
+- Updated dependencies [98170e5]
+- Updated dependencies [696b4ac]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [7e3ee3d]
+  - @saas-ui-pro/feature-flags@0.14.0
+  - @app/config@4.0.0
+  - @app/nextjs@0.5.0
+  - @ui/lib@4.0.0
+  - @saas-ui-pro/react@0.28.0
+  - @ui/theme@4.0.0
+
 ## 17.0.1
 
 ### Patch Changes

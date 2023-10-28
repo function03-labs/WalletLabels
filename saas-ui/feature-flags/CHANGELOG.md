@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.14.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+
 ## 0.13.1
 
 ### Patch Changes
