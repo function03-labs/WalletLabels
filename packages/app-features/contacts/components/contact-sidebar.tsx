@@ -12,6 +12,7 @@ import {
   MenuItem,
   Stack,
   useDisclosure,
+  useBreakpointValue,
 } from '@chakra-ui/react'
 import { TagsList, TagsListItem, AddTag, TagColor } from '@ui/lib'
 import { ContactStatus } from './contact-status'
@@ -32,7 +33,15 @@ export const ContactSidebar: React.FC<ContactSidebarProps> = (props) => {
     <Aside
       defaultWidth={400}
       minWidth="200px"
-      maxWidth="500px"
+      maxWidth={{ base: '80%', lg: '500px' }}
+      position={{ base: 'absolute', lg: 'static' }}
+      top="0"
+      bottom="0"
+      right="0"
+      zIndex="overlay"
+      boxShadow="md"
+      bg="white"
+      _dark={{ bg: 'gray.800' }}
       borderLeftWidth="1px"
       isResizable
       size="lg"

@@ -166,7 +166,7 @@ export function DashboardPage() {
                     <Tab
                       key={metric.id}
                       id={metric.id}
-                      display="flex"
+                      display={{ base: 'none', lg: 'flex' }}
                       alignItems="stretch"
                       justifyContent="stretch"
                       flex="1"
@@ -182,6 +182,7 @@ export function DashboardPage() {
                       _selected={{
                         borderBottomWidth: '2px',
                         borderColor: 'primary.500',
+                        display: 'flex',
                       }}
                     >
                       <Metric {...metric} />
