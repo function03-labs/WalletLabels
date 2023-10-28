@@ -87,6 +87,7 @@
   },
   "devDependencies": {
     "@ngneat/falso": "^2.27.0",
+    "@saas-ui/date-picker": "^0.12.6",
     "react-icons": "^4.11.0",
     "tsup": "^6.7.0"
   }
