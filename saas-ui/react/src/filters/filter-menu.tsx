@@ -21,7 +21,7 @@ import {
   MenuInput,
   MenuFilterItem,
 } from '../menu'
-import { useSearchQuery } from '..'
+import { FilterValue, useSearchQuery } from '..'
 import { FilterOperatorId, FilterType } from './operators'
 
 export type FilterItems =
@@ -66,19 +66,51 @@ export interface FilterItem {
    * The filter id
    */
   id: string
+  /**
+   * The filter label
+   *
+   * e.g. "Contact is lead"
+   */
   label?: string
+  /**
+   * The active filter label
+   *
+   * e.g. "Contact"
+   */
+  activeLabel?: string
+  /**
+   * Icon displayed before the label
+   */
   icon?: React.ReactElement
+  /**
+   * The filter type
+   */
   type?: FilterType
+  /**
+   * The available
+   */
   items?: FilterItems
+  /**
+   * Enable multiple select if true
+   */
   multiple?: boolean
-  value?: string | string[] // | number | boolean | Date
+  /**
+   * The filter value
+   */
+  value?: string | string[] | number | boolean | Date
+  /**
+   * The available operators
+   */
   operators?: FilterOperatorId[]
+  /**
+   * The default operator
+   */
   defaultOperator?: FilterOperatorId
 }
 
 export interface FilterMenuProps
   extends Omit<MenuProps, 'children' | 'onChange'> {
-  value?: string | string[]
+  value?: FilterValue
   items: FilterItems
   icon?: React.ReactNode
   label?: React.ReactNode
@@ -86,7 +118,7 @@ export interface FilterMenuProps
   command?: string
   multiple?: boolean
   onSelect?(item: FilterItem | FilterItem[]): Promise<void>
-  onChange?(value?: string | string[]): void
+  onChange?(value?: FilterValue): void
   buttonProps?: ButtonProps
   listProps?: MenuListProps
   inputValue?: string
@@ -118,21 +150,19 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
       ...rest
     } = props
 
-    const [value, setValue] = useControllableState<
-      string | string[] | undefined
-    >({
+    const [value, setValue] = useControllableState<FilterValue | undefined>({
       value: props.value,
       onChange: (value) => {
         onChangeProp?.(value)
 
-        if (!isOpen) {
+        if (!isOpen || !value) {
           return
         }
 
         // if there is an activeItem we select the value
-        if (activeItem) {
+        if (activeItemRef.current) {
           onSelect?.({
-            ...activeItem,
+            ...activeItemRef.current,
             value,
           })
           return
@@ -205,7 +235,13 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
     const filterRef = React.useRef<HTMLInputElement>(null)
 
-    const [activeItem, setActiveItem] = React.useState<FilterItem | null>(null)
+    const [activeItem, _setActiveItem] = React.useState<FilterItem | null>(null)
+    const activeItemRef = React.useRef<FilterItem | null>(null)
+
+    const setActiveItem = (item: FilterItem | null) => {
+      activeItemRef.current = item || null
+      _setActiveItem(item)
+    }
 
     const [filterValue, setFilterValue] = React.useState(inputValue || '')
 
@@ -232,18 +268,28 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
 
     const onItemClick = React.useCallback(
       async (item: FilterItem, close = true) => {
-        if (item.items?.length || typeof item.items === 'function') {
+        const count = item.items?.length || 0
+        if (count > 1 || typeof item.items === 'function') {
           setActiveItem(item)
           onReset()
           filterRef.current?.focus()
+          return
+        } else if (count === 1) {
+          setActiveItem(item)
+          const value = item.items?.[0].value || item.items?.[0].id
+          setValue(value)
         } else {
           const value = item.value || item.id
           const isMulti = multiple || item.multiple || activeItem?.multiple
-          setValue(isMulti && typeof value === 'string' ? [value] : value)
+          setValue(
+            isMulti && typeof value === 'string' && !Array.isArray(value)
+              ? [value]
+              : value,
+          )
+        }
 
-          if (close) {
-            onClose()
-          }
+        if (close) {
+          onClose()
         }
       },
       [onReset, onClose, onSelect, activeItem, value],
@@ -265,6 +311,7 @@ export const FilterMenu = forwardRef<FilterMenuProps, 'button'>(
           const {
             id,
             label,
+            activeLabel,
             type,
             items,
             value,

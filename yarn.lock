@@ -6069,6 +6069,7 @@ __metadata:
     "@ngneat/falso": ^2.27.0
     "@react-hookz/web": ^23.1.0
     "@saas-ui-pro/onboarding": "workspace:*"
+    "@saas-ui/date-picker": ^0.12.6
     "@saas-ui/forms": ^2.2.1
     "@saas-ui/react-utils": ^2.0.1
     "@saas-ui/theme": ^2.1.1

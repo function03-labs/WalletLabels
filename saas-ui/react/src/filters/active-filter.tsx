@@ -24,7 +24,7 @@ import {
   createStylesContext,
 } from '@chakra-ui/react'
 
-import { cx } from '@chakra-ui/utils'
+import { cx, runIfFn } from '@chakra-ui/utils'
 
 import { MenuDialogListProps } from '@saas-ui/react'
 
@@ -53,6 +53,7 @@ import {
 import { useFiltersContext } from './provider'
 import { FilterOperatorId, FilterType } from './operators'
 import { defaultFormatter } from './active-filter.utils'
+import { MaybeRenderProp } from '@chakra-ui/react-utils'
 
 export type FilterRenderFn = (
   context: ActiveFilterContextValue,
@@ -77,14 +78,7 @@ export interface ActiveFilterProps
   onChange?(filter: Filter): void
   onOperatorChange?(id: FilterOperatorId): void
   onValueChange?(value: FilterValue): void
-  /**
-   * @deprecated, use `renderLabel` instead
-   */
   formatLabel?(label?: string): string
-  renderLabel?: FilterRenderFn
-  /**
-   * @deprecated, use `renderValue` instead
-   */
   formatValue?(value: FilterValue): string
   renderValue?: FilterRenderFn
 }
@@ -105,13 +99,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
     onValueChange: onValueChangeProp,
     formatLabel,
     formatValue,
-    renderLabel = () => {
-      return formatLabel?.(label) || label
-    },
-    renderValue = (context) => {
-      const value = context.value
-      return value ? formatValue?.(value) || defaultFormatter(value) : null
-    },
+    renderValue,
     multiple,
     ...containerProps
   } = props
@@ -129,7 +117,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
     <ActiveFilterProvider value={context}>
       <ActiveFilterContainer {...containerProps}>
         <ActiveFilterLabel icon={icon}>
-          {renderLabel?.(context)}
+          {formatLabel?.(label) || label}
         </ActiveFilterLabel>
         <ActiveFilterOperator
           items={operators}
@@ -143,6 +131,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
           defaultValue={defaultValue}
           onChange={onValueChange}
           multiple={multiple}
+          format={formatValue}
         >
           {renderValue?.(context)}
         </ActiveFilterValue>
@@ -295,7 +284,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
     onChange,
     value: valueProp,
     defaultValue,
-    items: itemsProp,
+    items,
     multiple,
     ...htmlProps
   } = props
@@ -309,20 +298,9 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
     ...styles.value,
   }
 
-  const { value, getMenuProps } = useFilterValue(props)
+  const { item, label, getMenuProps } = useFilterValue(props)
 
-  const { data: items } = useFilterItems(
-    typeof value === 'string' ? value : 'default', // @todo check if this works correctly
-    React.useMemo(() => props.items || [], [props.items]),
-  )
-
-  const item = items?.find(({ id }) => id === valueProp)
-
-  const { icon, ...menuProps } = getMenuProps({
-    label: children || item?.label,
-    items,
-    multiple,
-  })
+  const { icon, ...menuProps } = getMenuProps()
 
   if (menuProps.items?.length) {
     return (
@@ -339,7 +317,7 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
       __css={valueStyles}
       className={cx('sui-active-filter__value', props.className)}
     >
-      {children}
+      {children || label}
     </chakra.div>
   )
 }
@@ -373,14 +351,25 @@ export const ActiveFilterRemove: React.FC<ActiveFilterRemove> = (props) => {
 ActiveFilterRemove.displayName = 'ActiveFilterRemove'
 
 const ActiveFilterButton = forwardRef<ButtonProps, 'div'>((props, ref) => {
+  const styles = useStyles()
+
+  const buttonStyles = {
+    fontWeight: 'normal',
+    px: '2',
+    rounded: 'none',
+    ...styles.valueButton,
+  }
+
   return (
     <Button
       as="div"
       role="button"
       tabIndex={0}
       {...props}
-      fontWeight="normal"
-      px="2"
+      sx={{
+        ...buttonStyles,
+        ...props.sx,
+      }}
       ref={ref}
     />
   )
@@ -391,17 +380,12 @@ ActiveFilterButton.displayName = 'ActiveFilterButton'
 export interface ActiveFiltersListProps
   extends WrapProps,
     ThemingProps<'SuiActiveFiltersList'> {
-  /**
-   * @deprecated Use `renderValue` instead
-   */
   formatValue?(value: FilterValue): string
-  renderLabel?: FilterRenderFn
   renderValue?: FilterRenderFn
 }
 
 export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
-  const { formatValue, renderValue, renderLabel, children, size, ...rest } =
-    props
+  const { formatValue, renderValue, children, size, ...rest } = props
   const {
     activeFilters,
     getOperators,
@@ -435,7 +419,7 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
           operator,
           multiple,
           icon: filter?.icon,
-          label: filter?.label,
+          label: filter?.activeLabel || filter?.label,
           placeholder: filter?.label,
           defaultOperator: filter?.defaultOperator,
           items: filter?.items,
@@ -449,7 +433,6 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
           },
           onRemove: () => key && disableFilter(key),
           formatValue,
-          renderLabel,
           renderValue,
         }
 

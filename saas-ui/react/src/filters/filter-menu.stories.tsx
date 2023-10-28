@@ -39,6 +39,7 @@ const filters: FilterItem[] = [
   {
     id: 'type',
     label: 'Contact is lead',
+    activeLabel: 'Contact',
     icon: <FiUser />,
     value: 'lead',
   },
@@ -66,6 +67,7 @@ const filtersNested: FilterItem[] = [
   {
     id: 'type',
     label: 'Contact is lead',
+    activeLabel: 'Contact',
     icon: <FiUser />,
     value: 'lead',
   },
@@ -110,6 +112,7 @@ const filtersAsync: FilterItem[] = [
   {
     id: 'lead',
     label: 'Contact is lead',
+    activeLabel: 'Contact',
     icon: <FiUser />,
     value: 'lead',
   },

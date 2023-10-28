@@ -7,7 +7,12 @@ import {
 import { callAllHandlers } from '@chakra-ui/utils'
 import { createContext } from '@chakra-ui/react-utils'
 
-import { FilterItem, FilterItems, FilterMenuProps } from './filter-menu'
+import {
+  FilterItem,
+  FilterItems,
+  FilterMenuProps,
+  useFilterItems,
+} from './filter-menu'
 
 import { FilterOperatorId, FilterOperators } from './operators'
 import { format, formatDistanceToNowStrict, isAfter } from 'date-fns'
@@ -19,8 +24,8 @@ export interface Filter {
   operator?: FilterOperatorId
 }
 
-// export type FilterValue = string | string[] | number | boolean | Date | null
-export type FilterValue = string | string[]
+export type FilterValue = string | string[] | number | boolean | Date | null
+// export type FilterValue = string | string[]
 
 export interface ActiveFilterContextValue {
   id: string
@@ -44,6 +49,7 @@ export interface ActiveFilterValueOptions {
   placeholder?: string
   multiple?: boolean
   format?(value: FilterValue): string
+  children?: React.ReactNode
 }
 
 export interface UseActiveFilterProps {
@@ -160,6 +166,9 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
     value: valueProp,
     defaultValue,
     format,
+    items: itemsProp,
+    multiple,
+    children,
   } = props
 
   const [value, setValue] = useControllableState<FilterValue>({
@@ -170,6 +179,13 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
     },
   })
 
+  const { data: items } = useFilterItems(
+    typeof value === 'string' ? value : 'default', // @todo check if this works correctly
+    React.useMemo(() => props.items || [], [props.items]),
+  )
+
+  const item = items?.find(({ id }) => id === value)
+
   const onChange = React.useCallback(
     async (value?: string | string[]) => {
       setValue(value as FilterValue)
@@ -177,27 +193,24 @@ export const useFilterValue = (props: UseFilterValueProps = {}) => {
     [value, setValue],
   )
 
-  const formatter = format || defaultFormatter
+  const label = format?.(value) || item?.label || defaultFormatter(value)
 
-  const label = formatter(value)
-
-  const getMenuProps = React.useCallback(
-    (props: FilterMenuProps): FilterMenuProps => {
-      return {
-        value,
-        items: props.items || [],
-        label: props.label || label,
-        placeholder: filter.label || props.placeholder,
-        icon: props.icon,
-        multiple: props.multiple,
-        onChange,
-      }
-    },
-    [filter, value, onChange],
-  )
+  const getMenuProps = React.useCallback((): FilterMenuProps => {
+    return {
+      value,
+      items: itemsProp || [],
+      label: children || label,
+      placeholder: filter.label,
+      icon: item?.icon,
+      multiple,
+      onChange,
+    }
+  }, [filter, value, label, item, itemsProp, multiple, onChange])
 
   return {
+    item,
     value,
+    label,
     getMenuProps,
   }
 }

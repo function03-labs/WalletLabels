@@ -10,7 +10,7 @@ import {
   HStack,
 } from '@chakra-ui/react'
 
-import { FiShoppingBag, FiUser } from 'react-icons/fi'
+import { FiCalendar, FiFileText, FiShoppingBag, FiUser } from 'react-icons/fi'
 
 import { FiltersProvider, FiltersProviderProps } from './provider'
 import { FiltersAddButton } from './filters'
@@ -26,26 +26,42 @@ import { getDataGridFilter } from './use-data-grid-filter'
 import { NoFilteredResults } from './no-filtered-results'
 import { Filter } from './use-active-filter'
 import { FilterItem } from './filter-menu'
+import {
+  format,
+  formatDistanceToNowStrict,
+  startOfDay,
+  subDays,
+} from 'date-fns'
+import { ModalsProvider, useModals } from '@saas-ui/react'
+import {
+  DatePickerModal,
+  DateValue,
+  getLocalTimeZone,
+} from '@saas-ui/date-picker'
 
 const values: Record<string, FilterRenderFn> = {
   status: (context) => {
     if (Array.isArray(context.value) && Array.isArray(context.items)) {
+      const value = context.value
       if (context.value?.length > 1 || context.value?.length === 0) {
         let icons
-        if (context.items.length) {
+
+        const items = context.items.filter(
+          (item) => value?.includes(item.id) && item.icon,
+        )
+
+        if (items.length) {
           icons = (
             <HStack spacing="-2">
-              {context.items
-                .filter((item) => context.value?.includes(item.id) && item.icon)
-                .map(({ icon, id }) =>
-                  React.isValidElement(icon)
-                    ? React.cloneElement(icon, {
-                        key: id,
-                        outline: '1px solid white',
-                        _notFirst: { ms: '-4px' },
-                      } as any)
-                    : icon,
-                )}
+              {items.map(({ icon, id }) =>
+                React.isValidElement(icon)
+                  ? React.cloneElement(icon, {
+                      key: id,
+                      outline: '1px solid white',
+                      _notFirst: { ms: '-4px' },
+                    } as any)
+                  : icon,
+              )}
             </HStack>
           )
         }
@@ -58,7 +74,7 @@ const values: Record<string, FilterRenderFn> = {
         )
       }
 
-      const item = context.items?.find((item) => item.id === context.value?.[0])
+      const item = context.items?.find((item) => item.id === value?.[0])
       return item ? (
         <HStack>
           {item.icon}
@@ -75,14 +91,6 @@ const values: Record<string, FilterRenderFn> = {
   lead: () => {
     return 'lead'
   },
-}
-
-const renderLabel: FilterRenderFn = (context) => {
-  if (context.id === 'type') {
-    return 'Contact'
-  }
-
-  return context.label
 }
 
 const renderValue: FilterRenderFn = (context) => {
@@ -102,7 +110,6 @@ const Template: StoryFn<FiltersProviderProps> = (args) => {
           py="2"
           borderBottomWidth="1px"
           zIndex="2"
-          renderLabel={renderLabel}
           renderValue={renderValue}
         />
       </Stack>
@@ -112,7 +119,13 @@ const Template: StoryFn<FiltersProviderProps> = (args) => {
 
 export default {
   title: 'Components/Filters/Filters',
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <ModalsProvider>
+        <Story />
+      </ModalsProvider>
+    ),
+  ],
   component: Template,
 } as Meta
 
@@ -152,6 +165,7 @@ const filters: FilterItem[] = [
   {
     id: 'type',
     label: 'Contact is lead',
+    activeLabel: 'Contact',
     icon: <FiUser />,
     value: 'lead',
   },
@@ -204,6 +218,7 @@ const asyncFilters: FilterItem[] = [
   {
     id: 'type',
     label: 'Contact is lead',
+    activeLabel: 'Contact',
     icon: <FiUser />,
     value: 'lead',
   },
@@ -256,6 +271,7 @@ const multiFilters: FilterItem[] = [
   {
     id: 'type',
     label: 'Contact is lead',
+    activeLabel: 'Contact',
     icon: <FiUser />,
     value: 'lead',
   },
@@ -295,6 +311,7 @@ const data = [
     country: 'China',
     employees: 139,
     status: 'new',
+    createdAt: '2021-05-01T00:00:00.000Z',
   },
   {
     id: 2,
@@ -306,6 +323,7 @@ const data = [
     country: 'Sweden',
     employees: 234,
     status: 'new',
+    createdAt: '2022-05-01T00:00:00.000Z',
   },
   {
     id: 3,
@@ -317,6 +335,7 @@ const data = [
     country: 'Italy',
     employees: 32,
     status: 'new',
+    createdAt: '2022-11-01T00:00:00.000Z',
   },
   {
     id: 4,
@@ -328,6 +347,7 @@ const data = [
     country: 'China',
     employees: 1322,
     status: 'active',
+    createdAt: '2023-01-01T00:00:00.000Z',
   },
   {
     id: 5,
@@ -339,6 +359,7 @@ const data = [
     country: 'Peru',
     employees: 4,
     status: 'active',
+    createdAt: new Date().toISOString(),
   },
 ]
 
@@ -380,6 +401,7 @@ export const WithDataGrid = () => {
       {
         id: 'type',
         label: 'Contact is lead',
+        activeLabel: 'Contact',
         type: 'enum',
         operators: ['is', 'isNot'],
         icon: <FiUser />,
@@ -454,7 +476,7 @@ export const WithDataGrid = () => {
     >
       <Stack alignItems="flex-start" height="400px">
         <FiltersAddButton />
-        <ActiveFiltersList renderLabel={renderLabel} />
+        <ActiveFiltersList />
         <DataGrid<ExampleData>
           instanceRef={gridRef}
           columns={columns}
@@ -470,6 +492,382 @@ export const WithDataGrid = () => {
               },
             })),
           }}
+        />
+      </Stack>
+    </FiltersProvider>
+  )
+}
+
+const days = [1, 2, 3, 7, 14, 21, 31, 60]
+
+export const WithDatePicker = () => {
+  const gridRef = React.useRef<TableInstance<ExampleData>>(null)
+
+  const modals = useModals()
+
+  const filters = React.useMemo<FilterItem[]>(
+    () => [
+      {
+        id: 'status',
+        label: 'Status',
+        type: 'enum',
+        icon: <StatusBadge borderColor="currentColor" />,
+        items: [
+          {
+            id: 'new',
+            label: 'New',
+            icon: <StatusBadge borderColor="blue.400" />,
+          },
+          {
+            id: 'active',
+            label: 'Active',
+            icon: <StatusBadge borderColor="green.400" />,
+          },
+        ],
+      },
+      {
+        id: 'type',
+        label: 'Contact is lead',
+        activeLabel: 'Contact',
+        type: 'enum',
+        operators: ['is', 'isNot'],
+        icon: <FiUser />,
+        value: 'lead',
+      },
+      {
+        id: 'createdAt',
+        label: 'Created at',
+        icon: <FiCalendar />,
+        type: 'date',
+        operators: ['after', 'before'],
+        defaultOperator: 'after',
+        items: days
+          .map((day): FilterItem => {
+            const date = startOfDay(subDays(new Date(), day))
+            return {
+              id: `${day}days`,
+              label: formatDistanceToNowStrict(date, { addSuffix: true }),
+              value: date,
+            }
+          })
+          .concat([{ id: 'custom', label: 'Custom' }]),
+      },
+    ],
+    [],
+  )
+
+  const columns = useColumns<ExampleData>(() => {
+    return [
+      {
+        accessorKey: 'name',
+        header: 'Name',
+        size: 200,
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'type',
+        header: 'Type',
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'email',
+        header: 'Email',
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'company',
+        header: 'Company',
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'status',
+        header: 'Status',
+        cell: StatusCell,
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'createdAt',
+        header: 'Created',
+        cell: (cell: any) => <>{format(new Date(cell.getValue()), 'PP')}</>,
+        filterFn: getDataGridFilter('date'),
+      },
+      {
+        accessorKey: 'employees',
+        header: 'Employees',
+        meta: {
+          isNumeric: true,
+        },
+      },
+    ]
+  }, [])
+
+  const onFilter = React.useCallback((filters: Filter[]) => {
+    gridRef.current?.setColumnFilters(
+      filters.map((filter) => {
+        return {
+          id: filter.id,
+          value: {
+            value: filter.value,
+            operator: filter.operator,
+          },
+        }
+      }) as ColumnFiltersState,
+    )
+  }, [])
+
+  const onBeforeEnableFilter = React.useCallback(
+    (activeFilter: Filter, filter: FilterItem): Promise<Filter> => {
+      return new Promise((resolve, reject) => {
+        const { key, id, value } = activeFilter
+        const { type, label } = filter
+
+        if (type === 'date' && value === 'custom') {
+          return modals.open({
+            title: label,
+            date: new Date(),
+            onSubmit: (date: DateValue) => {
+              resolve({
+                key,
+                id,
+                value: date.toDate(getLocalTimeZone()),
+                operator: 'after',
+              })
+            },
+            onClose: () => reject(),
+            component: DatePickerModal,
+          })
+        }
+
+        resolve(activeFilter)
+      })
+    },
+    [],
+  )
+
+  return (
+    <FiltersProvider
+      filters={filters}
+      onChange={onFilter}
+      onBeforeEnableFilter={onBeforeEnableFilter}
+    >
+      <Stack height="400px">
+        <Box>
+          <FiltersAddButton />
+        </Box>
+        <ActiveFiltersList />
+        <DataGrid<ExampleData>
+          instanceRef={gridRef}
+          columns={columns}
+          data={data}
+          noResults={NoFilteredResults}
+        />
+      </Stack>
+    </FiltersProvider>
+  )
+}
+
+export const WithTextInput = () => {
+  const gridRef = React.useRef<TableInstance<ExampleData>>(null)
+
+  const modals = useModals()
+
+  const filters = React.useMemo<FilterItem[]>(
+    () => [
+      {
+        id: 'status',
+        label: 'Status',
+        type: 'enum',
+        icon: <StatusBadge borderColor="currentColor" />,
+        items: [
+          {
+            id: 'new',
+            label: 'New',
+            icon: <StatusBadge borderColor="blue.400" />,
+          },
+          {
+            id: 'active',
+            label: 'Active',
+            icon: <StatusBadge borderColor="green.400" />,
+          },
+        ],
+      },
+      {
+        id: 'type',
+        label: 'Contact is lead',
+        activeLabel: 'Contact',
+        type: 'enum',
+        operators: ['is', 'isNot'],
+        icon: <FiUser />,
+        value: 'lead',
+      },
+      {
+        id: 'createdAt',
+        label: 'Created at',
+        icon: <FiCalendar />,
+        type: 'date',
+        operators: ['after', 'before'],
+        defaultOperator: 'after',
+        items: days
+          .map((day): FilterItem => {
+            const date = startOfDay(subDays(new Date(), day))
+            return {
+              id: `${day}days`,
+              label: formatDistanceToNowStrict(date, { addSuffix: true }),
+              value: date,
+            }
+          })
+          .concat([{ id: 'custom', label: 'Custom' }]),
+      },
+      {
+        id: 'name',
+        label: 'Name',
+        icon: <FiFileText />,
+        type: 'string',
+        defaultOperator: 'contains',
+        items: [{ id: 'custom', label: 'Filter by name' }],
+      },
+    ],
+    [],
+  )
+
+  const columns = useColumns<ExampleData>(() => {
+    return [
+      {
+        accessorKey: 'name',
+        header: 'Name',
+        size: 200,
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'type',
+        header: 'Type',
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'email',
+        header: 'Email',
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'company',
+        header: 'Company',
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'status',
+        header: 'Status',
+        cell: StatusCell,
+        filterFn: getDataGridFilter('string'),
+      },
+      {
+        accessorKey: 'createdAt',
+        header: 'Created',
+        cell: (cell: any) => <>{format(new Date(cell.getValue()), 'PP')}</>,
+        filterFn: getDataGridFilter('date'),
+      },
+      {
+        accessorKey: 'employees',
+        header: 'Employees',
+        meta: {
+          isNumeric: true,
+        },
+      },
+    ]
+  }, [])
+
+  const onFilter = React.useCallback((filters: Filter[]) => {
+    gridRef.current?.setColumnFilters(
+      filters.map((filter) => {
+        return {
+          id: filter.id,
+          value: {
+            value: filter.value,
+            operator: filter.operator,
+          },
+        }
+      }) as ColumnFiltersState,
+    )
+  }, [])
+
+  const onBeforeEnableFilter = React.useCallback(
+    (activeFilter: Filter, filter: FilterItem): Promise<Filter> => {
+      return new Promise((resolve, reject) => {
+        const { key, id, value } = activeFilter
+        const { type, label } = filter
+        console.log(activeFilter, filter)
+        if (type === 'date' && value === 'custom') {
+          return modals.open({
+            title: label,
+            date: new Date(),
+            onSubmit: (date: DateValue) => {
+              resolve({
+                key,
+                id,
+                value: date.toDate(getLocalTimeZone()),
+                operator: 'after',
+              })
+            },
+            onClose: () => reject(),
+            component: DatePickerModal,
+          })
+        } else if (id === 'name' && value === 'custom') {
+          const modalId = modals.form({
+            title: 'Filter by name',
+            schema: {
+              value: {
+                type: 'string',
+              },
+            },
+            fields: {
+              value: {
+                label: 'Name',
+                autoFocus: true,
+              },
+              cancel: {
+                onClick: () => {
+                  modals.close(modalId)
+                  reject()
+                },
+              },
+              submit: {
+                children: 'Apply',
+              },
+            },
+            onSubmit: (data) => {
+              modals.close(modalId)
+              resolve({
+                key,
+                id,
+                value: data.value,
+                operator: 'contains',
+              })
+            },
+          })
+          return
+        }
+
+        resolve(activeFilter)
+      })
+    },
+    [],
+  )
+
+  return (
+    <FiltersProvider
+      filters={filters}
+      onChange={onFilter}
+      onBeforeEnableFilter={onBeforeEnableFilter}
+    >
+      <Stack height="400px">
+        <Box>
+          <FiltersAddButton />
+        </Box>
+        <ActiveFiltersList />
+        <DataGrid<ExampleData>
+          instanceRef={gridRef}
+          columns={columns}
+          data={data}
+          noResults={NoFilteredResults}
         />
       </Stack>
     </FiltersProvider>
