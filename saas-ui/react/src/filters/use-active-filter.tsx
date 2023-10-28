@@ -25,7 +25,6 @@ export interface Filter {
 }
 
 export type FilterValue = string | string[] | number | boolean | Date | null
-// export type FilterValue = string | string[]
 
 export interface ActiveFilterContextValue {
   id: string
