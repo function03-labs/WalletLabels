@@ -49,7 +49,7 @@ export const ContactBoardHeader: React.FC<DataBoardHeaderProps> = (props) => {
   return (
     <HStack w="full" py="2" px="0">
       {title}
-      <Text color="muted">{(props as any).leafRows?.length}</Text>
+      <Text color="muted">{(props as any).leafRows?.length ?? 0}</Text>
       <Spacer />
       <OverflowMenu size="xs">
         <MenuItem>Hide</MenuItem>

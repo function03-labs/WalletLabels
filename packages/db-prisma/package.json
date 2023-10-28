@@ -13,8 +13,8 @@
     "migrate:init": "prisma migrate dev --name init"
   },
   "dependencies": {
-    "@prisma/client": "5.4.2",
-    "prisma": "^5.4.2"
+    "@prisma/client": "5.5.2",
+    "prisma": "^5.5.2"
   },
   "sideEffects": false
 }

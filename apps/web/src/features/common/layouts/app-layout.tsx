@@ -4,7 +4,7 @@ import { Flex, FlexProps, Container } from '@chakra-ui/react'
 
 import { AppShell, AppShellProps, HotkeysListOptions } from '@saas-ui/react'
 import { Auth, AuthProps } from '@saas-ui/auth'
-import { useLocation } from '@app/nextjs'
+import { useLocation, useRouter } from '@app/nextjs'
 import { BillingProvider } from '@saas-ui-pro/billing'
 
 import { authType, authProviders, authPaths } from '@app/config'
@@ -25,6 +25,7 @@ import { PublicLayout } from './public-layout'
  * renders authentication screens when the user isn't authenticated.
  */
 export const Authenticated: React.FC<AuthProps> = ({ children, ...rest }) => {
+  const router = useRouter()
   const location = useLocation()
 
   const { isInitializing, isAuthenticated, billing } = useInitApp()
@@ -56,7 +57,7 @@ export const Authenticated: React.FC<AuthProps> = ({ children, ...rest }) => {
   return (
     <BillingProvider value={billing}>
       <AppLoader isLoading={isInitializing} />
-      {!isInitializing && children}
+      {router.isReady && !isInitializing && children}
     </BillingProvider>
   )
 }

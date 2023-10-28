@@ -11,7 +11,7 @@
   "dependencies": {
     "date-fns": "^2.30.0",
     "intl-messageformat": "10.5.4",
-    "react-intl": "^6.5.0"
+    "react-intl": "^6.5.1"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

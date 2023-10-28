@@ -97,9 +97,9 @@ export const AddFilterButton: React.FC<Omit<FilterMenuProps, 'items'>> = (
 
   const { enableFilter } = useFiltersContext()
 
-  const onSelect = (item: FilterItem) => {
+  const onSelect = async (item: FilterItem) => {
     const { id, value } = item
-    enableFilter({ id, operator: item.defaultOperator, value })
+    await enableFilter({ id, operator: item.defaultOperator, value })
   }
 
   return (

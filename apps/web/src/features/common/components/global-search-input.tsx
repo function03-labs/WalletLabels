@@ -46,6 +46,7 @@ export const GlobalSearchInput = forwardRef((props, ref) => {
           {searchCommand}
         </Command>
       }
+      {...props}
     />
   )
 })

@@ -1,7 +1,7 @@
 {
   "name": "saas-ui-storybook-pro",
   "private": true,
-  "version": "25.0.1",
+  "version": "26.0.0",
   "scripts": {
     "dev": "sb dev -p 6007",
     "build": "sb build"
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
-    "@fontsource-variable/inter": "^5.0.14",
+    "@fontsource-variable/inter": "^5.0.15",
     "@storybook/addon-a11y": "^7.5.1",
     "@storybook/addon-docs": "^7.5.1",
     "@storybook/addon-essentials": "^7.5.1",

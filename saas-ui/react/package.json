@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/react",
-  "version": "0.27.1",
+  "version": "0.28.0",
   "engines": {
     "node": ">=16 <=19"
   },
@@ -69,7 +69,7 @@
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^23.1.0",
     "@saas-ui-pro/onboarding": "workspace:*",
-    "@saas-ui/forms": "^2.2.0",
+    "@saas-ui/forms": "^2.2.1",
     "@saas-ui/react-utils": "^2.0.1",
     "@saas-ui/theme": "^2.1.1",
     "@tanstack/react-table": "^8.10.7",
@@ -87,6 +87,7 @@
   },
   "devDependencies": {
     "@ngneat/falso": "^2.27.0",
+    "@saas-ui/date-picker": "^0.12.6",
     "react-icons": "^4.11.0",
     "tsup": "^6.7.0"
   }
