@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@api/demo-client": ["../api-demo-client"]
+    }
+  },
+  "include": ["src/*.ts"],
+  "exclude": ["node_modules"]
+}

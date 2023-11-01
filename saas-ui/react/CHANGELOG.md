@@ -1,5 +1,28 @@
 # @saas-ui-pro/react
 
+## 0.28.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+- 34e36ae: Added multi select support to Filters
+- 34e36ae: Added new renderValue prop to Filters to allow for better customization
+
+### Patch Changes
+
+- 696b4ac: Improved support for async filter items
+- 34e36ae: Added async support to ActiveFilter items
+- 7e3ee3d: Added new getActiveFilter method to Filters context
+- 34e36ae: Added support for ISO date strings to Filters
+
+## 0.27.1
+
+### Patch Changes
+
+- f48e750: Added listProps prop to FilterMenu that accepts the internal MenuList component props
+- f815187: Added new page-body-bg-subtle design token
+- f815187: Updated dependencies
+
 ## 0.27.0
 
 ### Minor Changes

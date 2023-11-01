@@ -1,16 +1,12 @@
 'use client'
 
-import { NProgressNextRouter } from '@saas-ui/react'
-import { AppProvider } from '@app/features/core/providers/app'
-import { RootLayout } from '@app/features/core/layouts/root-layout'
+import { AppProvider } from '@app/features/common/providers/app'
+import { RootLayout } from '@app/features/common/layouts/root-layout'
 
 export function Provider({ children }: { children: React.ReactNode }) {
   return (
     <AppProvider onError={(error, info) => console.error(error, info)}>
-      <RootLayout publicRoutes={['/']}>
-        {/* <NProgressNextRouter router={router} /> */}
-        {children}
-      </RootLayout>
+      <RootLayout publicRoutes={['/']}>{children}</RootLayout>
     </AppProvider>
   )
 }

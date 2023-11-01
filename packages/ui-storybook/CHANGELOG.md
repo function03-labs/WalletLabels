@@ -1,5 +1,17 @@
 # @ui/core
 
+## 0.7.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+
+## 0.6.4
+
+### Patch Changes
+
+- f815187: Updated dependencies
+
 ## 0.6.3
 
 ### Patch Changes

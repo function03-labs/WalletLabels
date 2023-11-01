@@ -1,0 +1,17 @@
+{
+  "name": "@common/mocks",
+  "version": "0.8.2",
+  "description": "Mocking libary",
+  "private": true,
+  "main": "src/index.ts",
+  "type": "module",
+  "dependencies": {
+    "@ngneat/falso": "^2.27.0",
+    "date-fns": "^2.30.0",
+    "slug": "^8.2.3",
+    "zustand": "^4.4.4"
+  },
+  "devDependencies": {
+    "@types/slug": "^5.0.6"
+  }
+}

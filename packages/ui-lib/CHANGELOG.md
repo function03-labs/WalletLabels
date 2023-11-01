@@ -1,5 +1,37 @@
 # @ui/lib
 
+## 4.0.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+- 7e3ee3d: Added hideEmptyColumns prop to DataBoard
+- 7e3ee3d: Added noResults prop to DataBoard
+
+### Patch Changes
+
+- Updated dependencies [98170e5]
+- Updated dependencies [696b4ac]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [34e36ae]
+  - @saas-ui-pro/react@0.28.0
+
+## 3.0.1
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- 4313f5e: Improved Editor component, editor instance is now accessible using ref
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [92ca126]
+- Updated dependencies [f815187]
+  - @saas-ui-pro/react@0.27.1
+  - @app/i18n@0.4.1
+
 ## 3.0.0
 
 ### Patch Changes

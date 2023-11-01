@@ -2,7 +2,7 @@ import {
   DateTime as FormatDateTime,
   RelativeTime as FormatRelativeTime,
   useIntl,
-} from '@app/i18n'
+} from '@common/i18n'
 import { Box, BoxProps, Tooltip } from '@chakra-ui/react'
 import { useLocalStorage } from '@saas-ui/react'
 

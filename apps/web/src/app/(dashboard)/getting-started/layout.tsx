@@ -1,4 +1,4 @@
-import { FullscreenLayout } from '@app/features/core/layouts/fullscreen-layout'
+import { FullscreenLayout } from '@app/features/common/layouts/fullscreen-layout'
 
 export default function GettingStartedLayout({
   children,

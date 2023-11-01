@@ -1,5 +1,32 @@
 # saas-ui-storybook
 
+## 26.0.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+
+### Patch Changes
+
+- Updated dependencies [98170e5]
+- Updated dependencies [696b4ac]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [34e36ae]
+  - @saas-ui-pro/react@0.28.0
+
+## 25.0.1
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [f815187]
+  - @saas-ui-pro/react@0.27.1
+
 ## 25.0.0
 
 ### Patch Changes
