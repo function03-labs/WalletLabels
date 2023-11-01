@@ -30,7 +30,7 @@
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
     "framer-motion": "^10.16.4",
-    "next": "^14.0.0",
+    "next": "^14.0.1",
     "next-svgr": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
