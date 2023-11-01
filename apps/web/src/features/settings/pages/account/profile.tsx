@@ -39,7 +39,7 @@ import { getCurrentUser, updateUser, User } from '@api/client'
 
 function ProfileDetails({ user }: { user: User }) {
   const snackbar = useSnackbar()
-  const { isLoading, mutateAsync } = useMutation({
+  const { isPending, mutateAsync } = useMutation({
     mutationFn: updateUser,
   })
 
@@ -84,7 +84,7 @@ function ProfileDetails({ user }: { user: User }) {
                   <Button
                     colorScheme="primary"
                     type="submit"
-                    isLoading={isLoading}
+                    isLoading={isPending}
                   >
                     Save
                   </Button>
