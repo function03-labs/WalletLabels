@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Meta } from '@storybook/react'
+
 import {
   closestCenter,
   defaultDropAnimationSideEffects,
@@ -10,23 +10,11 @@ import {
   UniqueIdentifier,
 } from '@dnd-kit/core'
 import { arrayMove, SortableContext, useSortable } from '@dnd-kit/sortable'
-import { Badge, Box, Heading, HStack, Text } from '@chakra-ui/react'
+import { Badge, Box, Text } from '@chakra-ui/react'
+
+import { GripVerticalIcon } from 'lucide-react'
 
 import {
-  HomeIcon,
-  UsersIcon,
-  SettingsIcon,
-  HelpCircleIcon,
-  GripVerticalIcon,
-  ContactIcon,
-  HeartHandshakeIcon,
-  LightbulbIcon,
-  ListChecksIcon,
-} from 'lucide-react'
-
-import {
-  AppShell,
-  PersonaAvatar,
   Sidebar,
   NavGroup,
   NavItem,
@@ -34,13 +22,7 @@ import {
   NavGroupProps,
   NavItemProps,
 } from '@saas-ui/react'
-import { Logo } from '../logo'
 import { CSS } from '@dnd-kit/utilities'
-
-export default {
-  title: 'Templates/Layout/Sidebar',
-  decorators: [(Story) => <Story />],
-} as Meta
 
 const tags = [
   {
@@ -68,103 +50,46 @@ const tags = [
   },
 ]
 
-export const SidebarLayout = () => {
+export const SortableNavGroupItems = () => {
   const [sortedTags, setTags] = React.useState(tags)
   return (
-    <AppShell
-      variant="static"
-      height="680px"
-      sidebar={
-        <HStack spacing="0" alignItems="stretch">
-          <Sidebar
-            variant="compact"
-            bg="gray.50"
-            _dark={{ bg: 'gray.800' }}
-            borderWidth="0"
-            spacing="3"
-          >
-            <SidebarSection alignItems="center">
-              <Logo
-                width="24px"
-                color="black"
-                _dark={{ color: 'white' }}
-                mb="1"
-              />
-            </SidebarSection>
-            <SidebarSection flex="1">
-              <NavItem icon={<HomeIcon size="1.2em" />}>Home</NavItem>
-              <NavItem icon={<UsersIcon size="1.2em" />} isActive>
-                Users
-              </NavItem>
-              <NavItem icon={<SettingsIcon size="1.2em" />}>Settings</NavItem>
-            </SidebarSection>
-            <SidebarSection alignItems="center">
-              <PersonaAvatar src="/showcase-avatar.jpg" size="xs" />
-            </SidebarSection>
-          </Sidebar>
-          <Sidebar>
-            <SidebarSection direction="row" mt="2" px="4">
-              <Heading size="sm" fontWeight="semibold">
-                Contacts
-              </Heading>
-            </SidebarSection>
-            <SidebarSection flex="1" overflowY="auto">
-              <NavGroup>
-                <NavItem icon={<UsersIcon />} isActive>
-                  Overview
-                </NavItem>
-                <NavItem icon={<ListChecksIcon />}>Tasks</NavItem>
-                <NavItem icon={<LightbulbIcon />}>Insights</NavItem>
-              </NavGroup>
-
-              <NavGroup title="Teams" isCollapsible>
-                <NavItem icon={<ContactIcon />}>Sales</NavItem>
-                <NavItem icon={<HeartHandshakeIcon />}>Support</NavItem>
-              </NavGroup>
-
-              <SortableNavGroup
-                title="Tags"
-                isCollapsible
-                items={sortedTags}
-                onSorted={setTags}
+    <Sidebar>
+      <SidebarSection flex="1" overflowY="auto">
+        <SortableNavGroup
+          title="Tags"
+          isCollapsible
+          items={sortedTags}
+          onSorted={setTags}
+        >
+          {sortedTags.map((tag) => (
+            <SortableNavItem
+              key={tag.id}
+              id={tag.id}
+              my="0"
+              icon={
+                <Badge
+                  bg={tag.color || 'transparent'}
+                  boxSize="2"
+                  borderRadius="full"
+                  variant={tag.color ? 'solid' : 'outline'}
+                />
+              }
+            >
+              <Text>{tag.name}</Text>
+              <Badge
+                opacity="0.6"
+                borderRadius="full"
+                bg="none"
+                ms="auto"
+                fontWeight="medium"
               >
-                {sortedTags.map((tag) => (
-                  <SortableNavItem
-                    key={tag.id}
-                    id={tag.id}
-                    my="0"
-                    icon={
-                      <Badge
-                        bg={tag.color || 'transparent'}
-                        boxSize="2"
-                        borderRadius="full"
-                        variant={tag.color ? 'solid' : 'outline'}
-                      />
-                    }
-                  >
-                    <Text>{tag.name}</Text>
-                    <Badge
-                      opacity="0.6"
-                      borderRadius="full"
-                      bg="none"
-                      ms="auto"
-                      fontWeight="medium"
-                    >
-                      {tag.count}
-                    </Badge>
-                  </SortableNavItem>
-                ))}
-              </SortableNavGroup>
-            </SidebarSection>
-            <SidebarSection>
-              <NavItem icon={<HelpCircleIcon />}>Help &amp; Support</NavItem>
-            </SidebarSection>
-          </Sidebar>
-        </HStack>
-      }
-    >
-      <Box />
-    </AppShell>
+                {tag.count}
+              </Badge>
+            </SortableNavItem>
+          ))}
+        </SortableNavGroup>
+      </SidebarSection>
+    </Sidebar>
   )
 }
 
@@ -174,7 +99,8 @@ interface SortableNavGroupProps
   items: any[]
   onSorted?: (fn: (items: any[]) => any[]) => void
 }
-const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
+
+export const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
   const {
     children,
     onDragStart,
