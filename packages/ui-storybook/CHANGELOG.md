@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.8.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
 ## 0.7.0
 
 ### Minor Changes
