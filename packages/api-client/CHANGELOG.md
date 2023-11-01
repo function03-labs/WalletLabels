@@ -1,5 +1,12 @@
 # @api/client
 
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies [2f35301]
+  - @api/mocks@0.9.0
+
 ## 0.3.7
 
 ### Patch Changes

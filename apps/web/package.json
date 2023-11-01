@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -28,12 +28,12 @@
     "@saas-ui/date-picker": "^0.12.6",
     "@saas-ui/next-workspaces": "^0.3.0",
     "@saas-ui/react": "^2.3.1",
-    "@tanstack/react-query": "^4.36.1",
-    "@tanstack/react-query-devtools": "^4.36.1",
+    "@tanstack/react-query": "^5.4.3",
+    "@tanstack/react-query-devtools": "^5.4.3",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
     "framer-motion": "^10.16.4",
-    "next": "^14.0.0",
+    "next": "^14.0.1",
     "next-svgr": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
