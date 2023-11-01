@@ -268,9 +268,10 @@ const AppSidebarTags = ({ user }: { user: User }) => {
 
   const { data } = useQuery({
     queryKey: ['GetTags'],
-    queryFn: () => getTags(),
-    onSuccess(data) {
+    queryFn: async () => {
+      const data = await getTags()
       setTags(getSortedTags(data?.tags || []))
+      return data
     },
   })
 

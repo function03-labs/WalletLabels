@@ -21,7 +21,7 @@ interface OrganizationDetailsProps {
 
 function OrganizationDetails({ organization }: OrganizationDetailsProps) {
   const snackbar = useSnackbar()
-  const { isLoading, mutateAsync } = useMutation({
+  const { isPending, mutateAsync } = useMutation({
     mutationFn: updateOrganization,
   })
 
@@ -58,7 +58,7 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
                 variant="solid"
                 colorScheme="primary"
                 type="submit"
-                isLoading={isLoading}
+                isLoading={isPending}
               >
                 Save
               </Button>

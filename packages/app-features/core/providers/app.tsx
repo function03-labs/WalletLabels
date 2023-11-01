@@ -55,7 +55,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
           </AuthProvider>
         </SaasProvider>
       </IconContext.Provider>
-      {showDevtools && <ReactQueryDevtools position="bottom-right" />}
+      {showDevtools && <ReactQueryDevtools position="right" />}
     </QueryClientProvider>
   )
 }
