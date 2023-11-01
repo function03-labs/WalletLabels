@@ -33,7 +33,7 @@ import {
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { getNotifications, Notification } from '@api/client'
-import { useRouter } from '@app/nextjs'
+import { useParams, useRouter } from '@app/nextjs'
 
 /**
  * This is a simple wrapper around the ContactsViewPage with an inbox specific toolbar
@@ -63,6 +63,7 @@ export interface InboxListPageProps {
 
 export function InboxListPage(props: InboxListPageProps) {
   const router = useRouter()
+  const params = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['Notifications'],
     queryFn: () => getNotifications(),
@@ -80,13 +81,11 @@ export function InboxListPage(props: InboxListPageProps) {
   const [width, setWidth] = useLocalStorage('app.inbox-list.width', 280)
 
   React.useEffect(() => {
-    if (router.isReady && !router.query.id && !isLoading && !isMobile) {
+    if (!params.id && !isLoading && !isMobile) {
       const firstItem = data?.notifications[0]
       if (firstItem) {
         // redirect to the first inbox notification if it's available.
-        router.replace({
-          pathname: `/app/${router.query.workspace}/inbox/${firstItem.id}`,
-        })
+        router.replace(`/${params.workspace}/inbox/${firstItem.id}`)
       }
     }
   }, [router, data, isLoading, isMobile])
