@@ -8,8 +8,8 @@ import { BillingStatus } from '@saas-ui-pro/billing'
 import { plans } from '@app/config'
 
 import { useFeatures } from '@saas-ui-pro/feature-flags'
-import { useQuery } from '@tanstack/react-query'
-import { getCurrentUser, getOrganization, getSubscription } from '@api/client'
+import { useQueries } from '@tanstack/react-query'
+import { getCurrentUser, getOrganization } from '@api/client'
 import { useWorkspace } from './use-workspace'
 
 /**
@@ -31,38 +31,34 @@ export const useInitApp = () => {
   const features = useFeatures()
 
   /**
-   * Load current user and tenant data
+   * Load current user and tenant data serially
    */
-  const { data: { currentUser } = {}, isFetched: currentUserIsFetched } =
-    useQuery({
-      queryKey: ['CurrentUser'],
-      queryFn: getCurrentUser,
-      enabled: isAuthenticated,
-    })
+  const [
+    { data: userData, isFetched: currentUserIsFetched },
+    { data: orgData, isFetched: organizationIsFetched },
+  ] = useQueries({
+    queries: [
+      {
+        queryKey: ['CurrentUser'],
+        queryFn: getCurrentUser,
+        enabled: isAuthenticated,
+      },
+      {
+        queryKey: [
+          'Organization',
+          {
+            slug,
+          },
+        ] as const,
+        queryFn: () => getOrganization({ slug }),
+        enabled: isAuthenticated && !!slug,
+      },
+    ],
+  })
 
-  const { data: { organization } = {}, isFetched: organizationIsFetched } =
-    useQuery({
-      queryKey: [
-        'Organization',
-        {
-          slug,
-        },
-      ] as const,
-      queryFn: ({ queryKey }) => getOrganization(queryKey[1]),
-      enabled: isAuthenticated && !!slug,
-    })
-
-  const { data: { subscription } = {}, isFetched: subscriptionIsFetched } =
-    useQuery({
-      queryKey: [
-        'Subscription',
-        {
-          slug,
-        },
-      ] as const,
-      queryFn: ({ queryKey }) => getSubscription(queryKey[1]),
-      enabled: isAuthenticated && !!slug,
-    })
+  const currentUser = userData?.currentUser
+  const organization = orgData?.organization
+  const subscription = organization?.subscription
 
   const billing = React.useMemo(() => {
     return {
@@ -74,6 +70,9 @@ export const useInitApp = () => {
     }
   }, [subscription])
 
+  /**
+   * Identify the user in the feature flags context
+   */
   React.useEffect(() => {
     if (currentUser && organization && subscription) {
       const member = organization.members.find(
@@ -92,10 +91,7 @@ export const useInitApp = () => {
     isInitializing:
       isLoading ||
       isLoggingIn ||
-      (isAuthenticated &&
-        !currentUserIsFetched &&
-        !subscriptionIsFetched &&
-        !organizationIsFetched),
+      (isAuthenticated && !currentUserIsFetched && !organizationIsFetched),
     isAuthenticated,
     billing,
   }

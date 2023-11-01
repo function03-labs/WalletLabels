@@ -53,7 +53,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = (props) => {
   if (isMobile) {
     return (
       <Menu>
-        <MenuButton as={Button} variant="tertiary" size={size}>
+        <MenuButton as={Button} variant="tertiary" size="xs">
           {activeSegment.label}
         </MenuButton>
         <Portal>

@@ -9,6 +9,7 @@ import {
   useMultiStyleConfig,
   SystemStyleObject,
   createStylesContext,
+  useBreakpointValue,
 } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
 import { LoadingOverlay, LoadingSpinner, ErrorBoundary } from '@saas-ui/react'
@@ -98,6 +99,8 @@ export const AsideContainer: React.FC<AsideContainerProps> = (props) => {
     SystemStyleObject
   >
 
+  const isMobile = useBreakpointValue({ base: true, lg: false })
+
   const resize = useResize({
     defaultWidth,
     isResizable,
@@ -117,10 +120,10 @@ export const AsideContainer: React.FC<AsideContainerProps> = (props) => {
         animate={isOpen ? 'enter' : 'exit'}
         variants={{
           enter: {
-            marginRight: 0,
+            ...(isMobile ? { right: '-100%' } : { marginRight: 0 }),
             transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
           },
-          exit: { marginRight: -resize.width },
+          exit: isMobile ? { right: 0 } : { marginRight: -resize.width },
         }}
         __css={{
           ...styles.container,

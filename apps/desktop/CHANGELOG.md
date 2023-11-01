@@ -1,5 +1,15 @@
 # electron-app
 
+## 0.18.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
+### Patch Changes
+
+- @app/features@18.0.1
+
 ## 0.17.0
 
 ### Minor Changes

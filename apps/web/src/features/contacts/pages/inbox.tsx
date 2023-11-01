@@ -68,7 +68,7 @@ export function InboxListPage(props: InboxListPageProps) {
 
   const isMobile = useBreakpointValue(
     { base: true, lg: false },
-    { fallback: 'lg' },
+    { fallback: 'base' },
   )
 
   const { isOpen, onOpen, onClose } = useDisclosure({
@@ -78,7 +78,7 @@ export function InboxListPage(props: InboxListPageProps) {
   const [width, setWidth] = useLocalStorage('app.inbox-list.width', 280)
 
   React.useEffect(() => {
-    if (router.isReady && !router.query.id && !isLoading) {
+    if (router.isReady && !router.query.id && !isLoading && !isMobile) {
       const firstItem = data?.notifications[0]
       if (firstItem) {
         // redirect to the first inbox notification if it's available.
@@ -87,7 +87,7 @@ export function InboxListPage(props: InboxListPageProps) {
         })
       }
     }
-  }, [router, data, isLoading])
+  }, [router, data, isLoading, isMobile])
 
   React.useEffect(() => {
     if (props.id) {

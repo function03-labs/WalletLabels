@@ -1,5 +1,11 @@
 # @ui/lib
 
+## 4.1.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
 ## 4.0.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # nextjs-app
 
+## 0.23.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
+### Patch Changes
+
+- Updated dependencies [2f35301]
+  - @ui/lib@4.1.0
+  - @api/client@0.3.8
+  - @app/features@18.0.1
+
 ## 0.22.0
 
 ### Minor Changes

@@ -11,6 +11,7 @@ import {
   TabPanels,
   Tabs,
   useDisclosure,
+  useBreakpointValue,
 } from '@chakra-ui/react'
 import { ErrorBoundary, LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
 import { FiSidebar } from 'react-icons/fi'
@@ -48,9 +49,17 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
     enabled: !!id,
   })
 
+  const isMobile = useBreakpointValue({ base: true, lg: false })
+
   const sidebar = useDisclosure({
     defaultIsOpen: true,
   })
+
+  React.useEffect(() => {
+    if (isMobile) {
+      sidebar.onClose()
+    }
+  }, [isMobile])
 
   const breadcrumbs = (
     <Breadcrumbs
@@ -98,7 +107,7 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
             </TabList>
             <TabPanels
               py="8"
-              px="20"
+              px="0"
               overflowY="auto"
               maxW="container.xl"
               margin="0 auto"

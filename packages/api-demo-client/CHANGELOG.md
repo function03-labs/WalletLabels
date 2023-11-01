@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.9.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
 ## 0.8.2
 
 ### Patch Changes
