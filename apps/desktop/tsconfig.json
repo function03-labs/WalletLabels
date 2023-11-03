@@ -16,7 +16,7 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@app/features/*": ["../../packages/app-features/*"],
+      "@app/features/*": ["../web/src/features/*"],
       "@app/config": ["../../packages/app-config/src"],
       "@ui/lib": ["../../packages/ui-lib/src"]
     }

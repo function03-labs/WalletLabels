@@ -5,8 +5,8 @@ import Link, { LinkProps } from 'next/link'
 import '@fontsource-variable/inter'
 
 import { NProgressNextRouter } from '@saas-ui/react'
-import { AppProvider } from '@app/features/core/providers/app'
-import { AppLayout } from '@app/features/core/layouts/app-layout'
+import { AppProvider } from '@app/features/common'
+import { AppLayout } from '@app/features/common'
 import Head from 'next/head'
 
 const NextLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
