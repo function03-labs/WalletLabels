@@ -36,7 +36,7 @@ Saas UI Pro comes with 2 example apps, Next.js, Electron.
 
 You can start the apps from their subfolder in `apps/`, or from the project root using one of these commands:
 
-```
+```bash
 yarn dev:web
 
 yarn dev:desktop
