@@ -52,25 +52,26 @@ More [about authentication](https://beta.saas-ui.dev/docs/pro/authentication).
 
 Saas UI Pro makes use of workspaces and uses the following folder structure.
 
-| Path                         | Description                                                                       |
-| ---------------------------- | --------------------------------------------------------------------------------- |
-| `saas-ui`                    | All Saas UI Pro packages and components live in here.                             |
-| `apps`                       | Example apps are in this folder.                                                  |
-| `apps/web`                   | Next.js frontend app.                                                             |
-| `apps/desktop`               | Nextron (Electron + Next.js) desktop app.                                         |
-| `packages`                   | This contains all shared application code, as well as your own custom packages.   |
-| `packages/api-client`        | The API client used to fetch data (re-exports api-mocks by default).              |
-| `packages/api-mocks`         | Mocked API responses.                                                             |
-| `packages/app-config`        | Contains all client side configuration files.                                     |
-| `packages/app-nextjs`        | Next.js specific utility functions and hooks.                                     |
-| `packages/app`               | This contains all application code that is shared between the example apps.       |
-| `packages/app-features/core` | The app's core functionality, for example layouts, that is shared across modules. |
-| `packages/app-features/*`    | All feature specific code is grouped within individual modules.                   |
-| `packages/db-prisma`         | Prisma client and schema.                                                         |
-| `packages/ui-lib`            | This is your shared UI library, and included all custom pre-built components      |
-| `packages/ui-storybook`      | Your storybook.                                                                   |
-| `packages/ui-theme`          | Your custom Chakra UI theme. This extends the Saas UI Pro theme by default.       |
-| `tooling/test-utils`         | Helper functions for testing.                                                     |
+| Path                           | Description                                                                          |
+| ------------------------------ | ------------------------------------------------------------------------------------ |
+| `saas-ui`                      | All Saas UI Pro packages and components live in here.                                |
+| `apps`                         | Example apps are in this folder.                                                     |
+| `apps/web`                     | Next.js frontend app.                                                                |
+| `apps/web/src/features/common` | The app's common functionality, for example layouts, that is shared across features. |
+| `apps/web/src/features/*`      | Domain specific code is grouped within individual features.                          |
+| `apps/desktop`                 | Nextron (Electron + Next.js) desktop app.                                            |
+| `packages`                     | This contains all shared application code, as well as your own custom packages.      |
+| `packages/api-client`          | The API client used to fetch data (re-exports demo-client by default).               |
+| `packages/api-demo-client`     | Demo client that returns mocked data for the demo application                        |
+| `packages/common-mocks`        | Mocked data used for the demo, and for testing purposes.                             |
+| `packages/common-i18n`         | I18n helpers, using React Intl                                                       |
+| `packages/app-config`          | Contains all client side configuration files.                                        |
+| `packages/app-nextjs`          | Next.js specific utility functions and hooks.                                        |
+| `packages/db-prisma`           | Prisma client and schema.                                                            |
+| `packages/ui-lib`              | This is your shared UI library, and included all custom pre-built components         |
+| `packages/ui-storybook`        | Your storybook.                                                                      |
+| `packages/ui-theme`            | Your custom Chakra UI theme. This extends the Saas UI Pro theme by default.          |
+| `tooling/test-utils`           | Helper functions for testing.                                                        |
 
 ### Package naming
 
@@ -79,14 +80,14 @@ API related code lives in `api` prefixed packages.
 
 ### Features
 
-Application code is grouped by feature, this means that all related assets, like components, hook, pages are grouped in a single feature folder. This setup will help to keep the code base maintainable as it (and your team) grows. It will make it easier to add/remove new features and prevent any unwanted side effects when refactoring or removing functinality, due to too much interdependencies.
+Application code is grouped by feature, this means that all related assets, like components, hook, pages are grouped in a single feature folder. This setup will help to keep the code base maintainable as it (and your team) grows. It will make it easier to add/remove new features and prevent any unwanted side effects when refactoring or removing functionality, due to too much interdependencies.
 
 A few rules to make sure the codebase stays maintainable.
 
-- Core (or common) functionality is located in the `core` feature, other features can import from core.
-- A feature cannot import functionality from other features, except the `core` feature.
+- Shared functionality is located in the `common` feature, other features can import from here.
+- Treat features as standalone packages, only import from the top-level barrel (index.ts) file. Eg `import { BillingStatus } from '@app/features/billing`.
 - If a component is used in multiple features and doesn't depend on external state (like data fetching), consider adding it to the ui library, otherwise add it to the core feature.
-- Keep components clean, eg if there is complex business logic, like useQuery or useMutation hooks, move them into a separate file in `hooks/`
+- Keep components clean, eg if there is complex business logic, like useQuery or useMutation hooks, move them into a separate hook in `hooks/`
 
 ## License
 
