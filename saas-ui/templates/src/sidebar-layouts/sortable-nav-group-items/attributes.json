@@ -1,6 +1,6 @@
 {
   "title": "Sortable NavGroup Items",
-  "category": "sidebar-layouts",
+  "version": "1.0.0",
   "canvas": {
     "center": true
   }

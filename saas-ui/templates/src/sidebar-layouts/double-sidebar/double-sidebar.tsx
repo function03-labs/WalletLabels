@@ -34,7 +34,7 @@ import {
   NavGroupProps,
   NavItemProps,
 } from '@saas-ui/react'
-import { Logo } from '../logo'
+import { Logo } from '../../logo'
 import { CSS } from '@dnd-kit/utilities'
 
 const tags = [
