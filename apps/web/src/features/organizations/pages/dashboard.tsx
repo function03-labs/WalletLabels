@@ -64,7 +64,7 @@ export function DashboardPage() {
 
   const { data, isLoading } = useQuery({
     queryKey: [
-      'Dashboard',
+      'dashboard',
       {
         workspace,
         startDate: dateRange.start.toString(),
