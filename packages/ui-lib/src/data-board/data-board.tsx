@@ -180,13 +180,7 @@ export const DataBoard = forwardRef(
     return (
       <DataGridProvider instance={instance}>
         <DataBoardProvider value={instance}>
-          <Kanban
-            ref={ref}
-            items={items}
-            onChange={setItems}
-            {...rest}
-            w="full"
-          >
+          <Kanban ref={ref} items={items} onChange={setItems} {...rest}>
             {noResults || board}
           </Kanban>
         </DataBoardProvider>

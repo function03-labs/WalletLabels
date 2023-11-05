@@ -5703,7 +5703,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@saas-ui-pro/kanban@workspace:*, @saas-ui-pro/kanban@workspace:saas-ui/kanban":
+"@saas-ui-pro/kanban@^0.3.3, @saas-ui-pro/kanban@workspace:saas-ui/kanban":
   version: 0.0.0-use.local
   resolution: "@saas-ui-pro/kanban@workspace:saas-ui/kanban"
   dependencies:
@@ -8743,7 +8743,7 @@ __metadata:
     "@hookform/resolvers": ^3.3.2
     "@internationalized/date": ^3.5.0
     "@react-hookz/web": ^23.1.0
-    "@saas-ui-pro/kanban": "workspace:*"
+    "@saas-ui-pro/kanban": ^0.3.3
     "@saas-ui/date-picker": ^0.12.6
     "@saas-ui/forms": ^2.2.1
     "@storybook/react": ^7.5.2
