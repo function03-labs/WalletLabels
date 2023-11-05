@@ -120,10 +120,10 @@ export const AsideContainer: React.FC<AsideContainerProps> = (props) => {
         animate={isOpen ? 'enter' : 'exit'}
         variants={{
           enter: {
-            ...(isMobile ? { right: '-100%' } : { marginRight: 0 }),
+            ...(isMobile ? { x: '0' } : { marginRight: 0 }),
             transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
           },
-          exit: isMobile ? { right: 0 } : { marginRight: -resize.width },
+          exit: isMobile ? { x: resize.width } : { marginRight: -resize.width },
         }}
         __css={{
           ...styles.container,

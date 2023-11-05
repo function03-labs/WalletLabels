@@ -68,7 +68,7 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
   let heading
   if (title || description) {
     heading = (
-      <chakra.div __css={styles.heading}>
+      <chakra.div className="sui-page__header-title" __css={styles.heading}>
         {typeof title === 'string' ? <PageTitle>{title}</PageTitle> : title}
         {typeof description === 'string' ? (
           <PageDescription>{description}</PageDescription>
@@ -81,7 +81,14 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
   let _footer
   if (footer) {
-    _footer = <chakra.div __css={styles.headerFooter}>{footer}</chakra.div>
+    _footer = (
+      <chakra.div
+        className="sui-page__header-footer"
+        __css={styles.headerFooter}
+      >
+        {footer}
+      </chakra.div>
+    )
   }
 
   return (
@@ -90,7 +97,7 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
       {...rest}
       className={cx('sui-page__header', props.className)}
     >
-      <chakra.div __css={styles.header}>
+      <chakra.div __css={styles.header} className="sui-page__header-content">
         {nav}
         {heading}
         {toolbar}
