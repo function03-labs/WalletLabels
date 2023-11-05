@@ -13,7 +13,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@internationalized/date": "^3.5.0",
     "@react-hookz/web": "^23.1.0",
-    "@saas-ui-pro/kanban": "workspace:*",
+    "@saas-ui-pro/kanban": "^0.3.3",
     "@saas-ui/date-picker": "^0.12.6",
     "@saas-ui/forms": "^2.2.1",
     "@tanstack/react-table": "^8.10.7",
