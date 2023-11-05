@@ -12,7 +12,6 @@ import {
   MenuItem,
   Stack,
   useDisclosure,
-  useBreakpointValue,
 } from '@chakra-ui/react'
 import { TagsList, TagsListItem, AddTag, TagColor } from '@ui/lib'
 import { ContactStatus } from './contact-status'
@@ -38,7 +37,7 @@ export const ContactSidebar: React.FC<ContactSidebarProps> = (props) => {
       top="0"
       bottom="0"
       right="0"
-      zIndex="overlay"
+      zIndex="docked"
       boxShadow="md"
       bg="white"
       _dark={{ bg: 'gray.800' }}
