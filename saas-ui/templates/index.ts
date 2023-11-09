@@ -9,3 +9,10 @@ export { SortableNavGroupItems } from './src/sidebar-layouts/sortable-nav-group-
  */
 export { Notifications } from './src/settings/notifications/notifications'
 export { Members } from './src/settings/members/members'
+export { Integrations } from './src/settings/integrations/integrations'
+
+/**
+ * Files
+ */
+export { FileCards } from './src/files/file-cards/file-cards'
+export { FilesList } from './src/files/files-list/files-list'

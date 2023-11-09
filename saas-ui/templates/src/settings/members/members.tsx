@@ -77,7 +77,7 @@ export const Members = () => {
             </StructuredListIcon>
             <StructuredListCell flex="1" px="4">
               <Heading size="sm">{member.name || member.email}</Heading>
-              <Text color="muted" size="sm">
+              <Text color="muted" fontSize="sm">
                 {member.name ? member.email : null}
               </Text>
             </StructuredListCell>
