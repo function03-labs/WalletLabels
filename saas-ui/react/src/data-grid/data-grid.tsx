@@ -274,7 +274,19 @@ export const DataGrid = React.forwardRef(
     const scrollRef = React.useRef<HTMLDivElement>(null)
     const rowVirtualizer = useVirtualizer({
       getScrollElement: () => scrollRef.current,
-      estimateSize: () => 53,
+      estimateSize: () => {
+        switch (size) {
+          case 'xl':
+            return 69
+          case 'lg':
+            return 61
+          case 'sm':
+            return 45
+          case 'md':
+          default:
+            return 53
+        }
+      },
       count: rows.length,
       overscan: 10,
       ...virtualizerProps,
