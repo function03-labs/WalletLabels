@@ -96,7 +96,7 @@ const sizes = {
 export const tabsStyles = defineMultiStyleConfig({
   defaultProps: {
     colorScheme: 'gray',
-    size: 'xs',
+    size: 'sm',
   },
   variants: {
     segments: variantSegments,

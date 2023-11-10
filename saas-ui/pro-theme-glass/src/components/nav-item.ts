@@ -1,6 +1,8 @@
 import { anatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
 
+import { sizes as buttonSizes } from './button'
+
 const parts = anatomy('nav-item').parts(
   'item',
   'link',
@@ -13,31 +15,31 @@ const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const sizes = {
-  xs: definePartsStyle(({ theme }) => {
+  xs: definePartsStyle(() => {
     return {
-      link: theme.components.Button.sizes?.xs,
+      link: buttonSizes?.xs,
     }
   }),
-  sm: definePartsStyle(({ theme }) => {
+  sm: definePartsStyle(() => {
     return {
-      link: theme.components.Button.sizes?.sm,
+      link: buttonSizes?.sm,
     }
   }),
-  md: definePartsStyle(({ theme }) => {
+  md: definePartsStyle(() => {
     return {
-      link: theme.components.Button.sizes?.md,
+      link: buttonSizes?.md,
     }
   }),
-  lg: definePartsStyle(({ theme }) => {
+  lg: definePartsStyle(() => {
     return {
-      link: theme.components.Button.sizes?.lg,
+      link: buttonSizes?.lg,
     }
   }),
 }
 
 export const navItemStyles = defineMultiStyleConfig({
   defaultProps: {
-    size: 'md',
+    size: 'sm',
   },
   sizes,
 })

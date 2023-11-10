@@ -125,7 +125,7 @@ export function ContactsViewPage({ id, isEmbedded }: ContactsViewPageProps) {
             minH="0"
             display="flex"
             flexDirection="column"
-            size="md"
+            size="sm"
           >
             <TabList borderBottomWidth="1px" px="3" pt="2">
               <Tab borderTopRadius="md">Activity</Tab>

@@ -51,6 +51,11 @@ export const ContactTypes = () => {
   }
 
   return (
-    <SegmentedControl segments={segments} value={value} onChange={setType} />
+    <SegmentedControl
+      segments={segments}
+      value={value}
+      onChange={setType}
+      size="xs"
+    />
   )
 }
