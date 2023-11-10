@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -22,7 +22,7 @@
     "@saas-ui-pro/billing": "^0.11.1",
     "@saas-ui-pro/feature-flags": "^0.14.0",
     "@saas-ui-pro/onboarding": "^0.13.1",
-    "@saas-ui-pro/react": "^0.28.0",
+    "@saas-ui-pro/react": "^0.29.0",
     "@saas-ui/auth": "^2.0.12",
     "@saas-ui/charts": "^0.10.0",
     "@saas-ui/date-picker": "^0.12.6",

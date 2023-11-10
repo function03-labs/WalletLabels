@@ -1,5 +1,25 @@
 # nextjs-app
 
+## 0.24.0
+
+### Minor Changes
+
+- 689f329: Moved all feature code into the main web app in order to simplify the setup
+
+### Patch Changes
+
+- Updated dependencies [4463b27]
+- Updated dependencies [753bce1]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [dfe98f4]
+  - @common/i18n@0.5.0
+  - @saas-ui-pro/react@0.29.0
+  - @api/client@0.4.0
+  - @ui/lib@5.0.0
+  - @ui/theme@5.0.0
+
 ## 0.23.0
 
 ### Minor Changes

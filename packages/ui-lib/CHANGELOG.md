@@ -1,5 +1,17 @@
 # @ui/lib
 
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [4463b27]
+- Updated dependencies [753bce1]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [dfe98f4]
+  - @common/i18n@0.5.0
+  - @saas-ui-pro/react@0.29.0
+
 ## 4.1.0
 
 ### Minor Changes
