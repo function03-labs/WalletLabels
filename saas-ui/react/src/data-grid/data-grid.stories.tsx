@@ -496,7 +496,7 @@ export const WithRemoteFilters = {
 export const WithStickyHeaders = {
   render: () => {
     return (
-      <AppShell variant="fullscreen" position="fixed" top="0">
+      <AppShell height="400px" top="0">
         <DataGrid<ExampleData>
           sx={{
             '& thead tr': {
