@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.29.1
+
+### Patch Changes
+
+- e02f941: Fixed issue with incorrect react-virtual dependency
+
 ## 0.29.0
 
 ### Minor Changes
