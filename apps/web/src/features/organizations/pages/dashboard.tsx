@@ -161,15 +161,19 @@ export function DashboardPage() {
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <Card>
               <Tabs variant="unstyled" tabIndex={0}>
-                <TabList overflow="hidden" borderTopRadius="md">
+                <TabList
+                  overflow="hidden"
+                  borderTopRadius="md"
+                  display="flex"
+                  flexWrap="wrap"
+                >
                   {data?.charts.map((metric) => (
                     <Tab
                       key={metric.id}
                       id={metric.id}
-                      display={{ base: 'none', lg: 'flex' }}
                       alignItems="stretch"
                       justifyContent="stretch"
-                      flex="1"
+                      flex={{ base: '0 0 50%', lg: '1 0 auto' }}
                       height="auto"
                       textAlign="left"
                       borderBottomWidth="1px"
