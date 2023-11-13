@@ -1,5 +1,14 @@
 # @ui/lib
 
+## 5.0.1
+
+### Patch Changes
+
+- 7167961: Added xs size to SegmentControl
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @saas-ui-pro/react@0.29.2
+
 ## 5.0.0
 
 ### Patch Changes

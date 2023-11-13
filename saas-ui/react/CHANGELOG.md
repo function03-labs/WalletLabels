@@ -1,5 +1,12 @@
 # @saas-ui-pro/react
 
+## 0.29.2
+
+### Patch Changes
+
+- 7167961: Fixed height inconsistencies in buttons and tabs
+- 822939e: Removed engines field from package.json
+
 ## 0.29.1
 
 ### Patch Changes

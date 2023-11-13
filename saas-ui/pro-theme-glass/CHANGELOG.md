@@ -1,5 +1,17 @@
 # @saas-ui/pro-theme-glass
 
+## 0.8.0
+
+### Minor Changes
+
+- 7167961: Improved pro theme compatibility
+
+### Patch Changes
+
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @saas-ui-pro/react@0.29.2
+
 ## 0.7.7
 
 ### Patch Changes

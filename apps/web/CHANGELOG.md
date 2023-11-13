@@ -1,5 +1,17 @@
 # nextjs-app
 
+## 0.24.1
+
+### Patch Changes
+
+- 1a42bf1: Improved dashboard chart sizing on small screens
+- Updated dependencies [7167961]
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @ui/lib@5.0.1
+  - @saas-ui-pro/react@0.29.2
+  - @ui/theme@5.0.1
+
 ## 0.24.0
 
 ### Minor Changes
