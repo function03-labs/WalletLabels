@@ -1,9 +1,6 @@
 {
   "name": "@saas-ui-pro/react",
   "version": "0.29.1",
-  "engines": {
-    "node": ">=16 <=19"
-  },
   "exports": {
     ".": {
       "require": "./dist/index.js",
