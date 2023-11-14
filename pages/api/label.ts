@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     } else {
       // Adjust the MongoDB query to search by 'address'
       const queryAtlas = {
-        address: { $regex: address, $options: 'i' }
+        address: address,
       };
 
       const projection = {
@@ -60,7 +60,10 @@ export default async function handler(req, res) {
         label: 1,
       };
 
-      const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).limit(limit);
+      const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
+        { locale: 'en', strength: 1 }
+      )
+        .limit(limit);
       labels = await cursor.toArray();
     }
 
