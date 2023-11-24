@@ -31,9 +31,10 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         // The following parameters are directly passed to Typesense's search API endpoint.
         //  So you can pass any parameters supported by the search endpoint below.
         //  queryBy is required.
-        query_by: 'label,label_subtype, address, address_name',
-        num_typos: 1,
-        typo_tokens_threshold: 1,
+        query_by: 'address, address_name',
+        // num_typos: 1,
+        // typo_tokens_threshold: 1,
+        limit_hits: 50,
         // groupBy: "categories",
         // groupLimit: 1
         // pinnedHits: "23:2"
