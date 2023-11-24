@@ -14,8 +14,8 @@ export function assembleTypesenseServerConfig() {
                 protocol: process.env.NEXT_PUBLIC_TYPESENSE_PROTOCOL,
             },
         ],
-        numRetries: 8,
-        connectionTimeoutSeconds: 1
+        numRetries: 3,
+        connectionTimeoutSeconds: 4
     };
 
 
