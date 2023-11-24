@@ -57,20 +57,20 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "^2.2.1",
+    "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/clickable": "^2.1.0",
     "@chakra-ui/react-utils": "^2.0.12",
-    "@chakra-ui/styled-system": "^2.9.1",
-    "@chakra-ui/system": "^2.6.1",
-    "@chakra-ui/theme-tools": "^2.1.1",
+    "@chakra-ui/styled-system": "^2.9.2",
+    "@chakra-ui/system": "^2.6.2",
+    "@chakra-ui/theme-tools": "^2.1.2",
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^23.1.0",
     "@saas-ui-pro/onboarding": "workspace:*",
-    "@saas-ui/forms": "^2.2.1",
+    "@saas-ui/forms": "^2.3.1",
     "@saas-ui/react-utils": "^2.0.1",
-    "@saas-ui/theme": "^2.1.1",
+    "@saas-ui/theme": "^2.2.1",
     "@tanstack/react-table": "^8.10.7",
-    "@tanstack/react-virtual": "^3.0.0-beta.68",
+    "@tanstack/react-virtual": "^3.0.0-alpha.0",
     "date-fns": "^2.30.0",
     "polished": "^4.2.2"
   },
@@ -85,8 +85,8 @@
   },
   "devDependencies": {
     "@ngneat/falso": "^2.27.0",
-    "@saas-ui/date-picker": "^0.12.6",
-    "react-icons": "^4.11.0",
+    "@saas-ui/date-picker": "^0.12.8",
+    "react-icons": "^4.12.0",
     "tsup": "^6.7.0"
   }
 }

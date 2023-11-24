@@ -9,7 +9,7 @@
     "@ngneat/falso": "^2.27.0",
     "date-fns": "^2.30.0",
     "slug": "^8.2.3",
-    "zustand": "^4.4.5"
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@types/slug": "^5.0.6"

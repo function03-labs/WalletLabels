@@ -56,9 +56,9 @@
     "url": "https://storybook.saas-ui.pro"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "^2.2.1",
-    "@chakra-ui/styled-system": "^2.9.1",
-    "@chakra-ui/theme-tools": "^2.1.1",
+    "@chakra-ui/anatomy": "^2.2.2",
+    "@chakra-ui/styled-system": "^2.9.2",
+    "@chakra-ui/theme-tools": "^2.1.2",
     "@saas-ui-pro/react": "workspace:*",
     "@saas-ui/theme-glass": "^0.5.1"
   },
@@ -73,7 +73,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "react-icons": "^4.11.0",
+    "react-icons": "^4.12.0",
     "tsup": "^6.7.0"
   }
 }
