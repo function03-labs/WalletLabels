@@ -1,5 +1,13 @@
 # @saas-ui-pro/react
 
+## 0.29.3
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/onboarding@0.13.2
+
 ## 0.29.2
 
 ### Patch Changes

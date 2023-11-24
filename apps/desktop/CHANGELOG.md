@@ -1,5 +1,16 @@
 # electron-app
 
+## 0.18.3
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/feature-flags@0.14.1
+  - @saas-ui-pro/onboarding@0.13.2
+  - @ui/theme@5.0.2
+  - @saas-ui-pro/react@0.29.3
+
 ## 0.18.2
 
 ### Patch Changes

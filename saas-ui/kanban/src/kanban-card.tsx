@@ -94,28 +94,22 @@ export const KanbanCard = React.memo(
     const { cardRef, getCardProps } = useKanbanCard(props)
 
     const styles: SystemStyleObject = {
-      container: {
-        display: 'flex',
-        alignItems: 'stretch',
-        justifyContent: 'stretch',
-        transform:
-          'translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1))',
-        transformOrigin: '0 0',
-        touchAction: 'manipulation',
-        mb: 2,
-        ['&[data-dragging]']: {
-          opacity: 0,
-        },
-      },
-      item: {
-        w: 'full',
-        height: '100px',
+      display: 'flex',
+      alignItems: 'stretch',
+      justifyContent: 'stretch',
+      transform:
+        'translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1))',
+      transformOrigin: '0 0',
+      touchAction: 'manipulation',
+      mb: 2,
+      ['&[data-dragging]']: {
+        opacity: 0,
       },
     }
 
     return (
       <chakra.li
-        __css={styles.container}
+        __css={styles}
         ref={useMergeRefs(ref, cardRef)}
         {...getCardProps(props)}
         data-id={id}

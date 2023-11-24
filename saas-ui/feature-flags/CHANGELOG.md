@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.14.1
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+
 ## 0.14.0
 
 ### Minor Changes

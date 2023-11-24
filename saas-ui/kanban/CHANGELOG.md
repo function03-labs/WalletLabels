@@ -1,5 +1,11 @@
 # @saas-ui-pro/kanban
 
+## 0.3.4
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+
 ## 0.3.3
 
 ### Patch Changes
