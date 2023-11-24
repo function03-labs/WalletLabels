@@ -17,7 +17,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@saas-ui-pro/react": "^0.29.0",
-    "@saas-ui/react": "^2.4.1",
+    "@saas-ui/react": "^2.4.2",
     "@saas-ui/storybook-addon": "^2.0.0",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
