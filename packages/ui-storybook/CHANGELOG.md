@@ -1,5 +1,29 @@
 # @ui/core
 
+## 0.8.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
+## 0.7.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+
+## 0.6.4
+
+### Patch Changes
+
+- f815187: Updated dependencies
+
+## 0.6.3
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+
 ## 0.6.2
 
 ### Patch Changes

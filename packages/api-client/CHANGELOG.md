@@ -1,5 +1,46 @@
 # @api/client
 
+## 0.4.0
+
+### Minor Changes
+
+- 689f329: Moved the api client services and mocks into separate packages
+
+### Patch Changes
+
+- Updated dependencies [689f329]
+  - @api/demo-client@0.9.0
+
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies [2f35301]
+  - @api/mocks@0.9.0
+
+## 0.3.7
+
+### Patch Changes
+
+- Updated dependencies [f815187]
+  - @api/mocks@0.8.2
+
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies [6478142]
+  - @api/mocks@0.8.1
+
+## 0.3.5
+
+### Patch Changes
+
+- Updated dependencies [9574cc6]
+- Updated dependencies [9574cc6]
+- Updated dependencies [a7fef23]
+  - @api/mocks@0.8.0
+
 ## 0.3.4
 
 ### Patch Changes

@@ -22,7 +22,7 @@ export const ConfirmPasswordField: React.FC<ConfirmPasswordProps> = (props) => {
 
   return (
     <Field
-      {...rest}
+      {...(rest as any)}
       name={name}
       type="password"
       rules={{ validate: validatePassword }}

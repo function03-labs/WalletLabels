@@ -67,7 +67,7 @@ const sizes = {
   xs: definePartsStyle({
     tab: {
       fontSize: 'xs',
-      h: 6,
+      h: 7,
       py: 0,
       px: 2,
     },
@@ -75,14 +75,14 @@ const sizes = {
   sm: definePartsStyle({
     tab: {
       fontSize: 'sm',
-      h: 7,
+      h: 8,
       py: 0,
       px: 2,
     },
   }),
   md: definePartsStyle({
     tab: {
-      h: 8,
+      h: 9,
       py: 0,
       px: 4,
     },

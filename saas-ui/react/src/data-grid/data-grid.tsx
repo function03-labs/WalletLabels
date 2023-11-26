@@ -46,6 +46,7 @@ import {
 } from '@chakra-ui/react'
 
 import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
+import { VirtualizerOptions, useVirtualizer } from '@tanstack/react-virtual'
 
 import { ChevronUpIcon, ChevronDownIcon } from '../icons'
 
@@ -181,6 +182,14 @@ export interface DataGridProps<Data extends object>
    * DataGrid children
    */
   children?: React.ReactNode
+  /**
+   * Callback fired when the grid is scrolled.
+   */
+  onScroll?: React.UIEventHandler<HTMLDivElement>
+  /**
+   * React Virtual props
+   */
+  virtualizerProps?: VirtualizerOptions<HTMLDivElement, HTMLTableRowElement>
 }
 
 export const DataGrid = React.forwardRef(
@@ -203,6 +212,7 @@ export const DataGrid = React.forwardRef(
       onSortChange,
       onRowClick,
       onResetFilters,
+      onScroll,
       noResults: NoResultsComponent = NoResults,
       pageCount,
       colorScheme,
@@ -210,6 +220,7 @@ export const DataGrid = React.forwardRef(
       variant,
       className,
       sx,
+      virtualizerProps,
       children,
       ...rest
     } = props
@@ -260,6 +271,30 @@ export const DataGrid = React.forwardRef(
     const state = instance.getState()
     const rows = instance.getRowModel().rows
 
+    const scrollRef = React.useRef<HTMLDivElement>(null)
+    const rowVirtualizer = useVirtualizer({
+      getScrollElement: () => scrollRef.current,
+      estimateSize: () => {
+        switch (size) {
+          case 'xl':
+            return 69
+          case 'lg':
+            return 61
+          case 'sm':
+            return 45
+          case 'md':
+          default:
+            return 53
+        }
+      },
+      count: rows.length,
+      overscan: 10,
+      ...virtualizerProps,
+    })
+
+    const virtualRows = rowVirtualizer.getVirtualItems()
+    const totalSize = rowVirtualizer.getTotalSize()
+
     React.useEffect(() => {
       onSelectedRowsChange?.(Object.keys(state.rowSelection))
     }, [onSelectedRowsChange, state.rowSelection, instance])
@@ -275,6 +310,12 @@ export const DataGrid = React.forwardRef(
       ...styles.inner,
       ...(noResults ? { display: 'flex', alignItems: 'center' } : {}),
     }
+
+    const paddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0
+    const paddingBottom =
+      virtualRows.length > 0
+        ? totalSize - (virtualRows?.[virtualRows.length - 1]?.end || 0)
+        : 0
 
     const table = (
       <Table
@@ -300,13 +341,22 @@ export const DataGrid = React.forwardRef(
           ))}
         </Thead>
         <Tbody>
-          {rows.map((row) => {
+          {paddingTop > 0 && (
+            <tr>
+              <td style={{ height: `${paddingTop}px` }} />
+            </tr>
+          )}
+          {virtualRows.map((virtualRow) => {
+            const row = rows[virtualRow.index]
+
             const onClick = (e: React.MouseEvent) => onRowClick?.(row, e)
 
             return (
               <Tr
-                key={row.id}
+                ref={rowVirtualizer.measureElement}
+                key={virtualRow.index}
                 onClick={onClick}
+                data-index={virtualRow.index}
                 data-selected={dataAttr(row.getIsSelected())}
                 data-hover={dataAttr(isHoverable)}
               >
@@ -330,6 +380,11 @@ export const DataGrid = React.forwardRef(
               </Tr>
             )
           })}
+          {paddingBottom > 0 && (
+            <tr>
+              <td style={{ height: `${paddingBottom}px` }} />
+            </tr>
+          )}
         </Tbody>
       </Table>
     )
@@ -345,7 +400,12 @@ export const DataGrid = React.forwardRef(
           className={cx('sui-data-grid', className)}
           __css={styles.container}
         >
-          <chakra.div className="saas-data-grid__inner" __css={innerStyles}>
+          <chakra.div
+            ref={scrollRef}
+            className="saas-data-grid__inner"
+            __css={innerStyles}
+            onScroll={onScroll}
+          >
             {noResults || table}
           </chakra.div>
           {children}

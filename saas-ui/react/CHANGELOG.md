@@ -1,5 +1,79 @@
 # @saas-ui-pro/react
 
+## 0.29.3
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/onboarding@0.13.2
+
+## 0.29.2
+
+### Patch Changes
+
+- 7167961: Fixed height inconsistencies in buttons and tabs
+- 822939e: Removed engines field from package.json
+
+## 0.29.1
+
+### Patch Changes
+
+- e02f941: Fixed issue with incorrect react-virtual dependency
+
+## 0.29.0
+
+### Minor Changes
+
+- dfe98f4: Improved performance of large datasets in DataGrid with virtualized rows
+
+### Patch Changes
+
+- 753bce1: Fixed issue where Aside animation was calculated incorrectly on mobile
+
+## 0.28.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+- 34e36ae: Added multi select support to Filters
+- 34e36ae: Added new renderValue prop to Filters to allow for better customization
+
+### Patch Changes
+
+- 696b4ac: Improved support for async filter items
+- 34e36ae: Added async support to ActiveFilter items
+- 7e3ee3d: Added new getActiveFilter method to Filters context
+- 34e36ae: Added support for ISO date strings to Filters
+
+## 0.27.1
+
+### Patch Changes
+
+- f48e750: Added listProps prop to FilterMenu that accepts the internal MenuList component props
+- f815187: Added new page-body-bg-subtle design token
+- f815187: Updated dependencies
+
+## 0.27.0
+
+### Minor Changes
+
+- e9b3b00: Removed ErrorBoundary component
+- e9b3b00: Removed useScript hook
+- e9b3b00: Removed Tenancy provider
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [6478142]
+  - @saas-ui-pro/onboarding@0.13.1
+
+## 0.26.1
+
+### Patch Changes
+
+- 944b91b: Improved default font definition in pro theme
+
 ## 0.26.0
 
 ### Minor Changes

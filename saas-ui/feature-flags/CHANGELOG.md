@@ -1,5 +1,23 @@
 # @saas-ui/features
 
+## 0.14.1
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+
+## 0.14.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+
+## 0.13.1
+
+### Patch Changes
+
+- f815187: Updated dependencies
+
 ## 0.13.0
 
 ### Minor Changes

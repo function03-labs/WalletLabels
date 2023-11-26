@@ -1,5 +1,113 @@
 # electron-app
 
+## 0.18.3
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/feature-flags@0.14.1
+  - @saas-ui-pro/onboarding@0.13.2
+  - @ui/theme@5.0.2
+  - @saas-ui-pro/react@0.29.3
+
+## 0.18.2
+
+### Patch Changes
+
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @saas-ui-pro/react@0.29.2
+  - @ui/theme@5.0.1
+
+## 0.18.1
+
+### Patch Changes
+
+- Updated dependencies [753bce1]
+- Updated dependencies [dfe98f4]
+  - @saas-ui-pro/react@0.29.0
+  - @ui/theme@5.0.0
+
+## 0.18.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
+### Patch Changes
+
+- @app/features@18.0.1
+
+## 0.17.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+- 98170e5: Updated to Next 14
+
+### Patch Changes
+
+- Updated dependencies [98170e5]
+- Updated dependencies [696b4ac]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [34e36ae]
+  - @app/features@18.0.0
+  - @saas-ui-pro/feature-flags@0.14.0
+  - @saas-ui-pro/react@0.28.0
+  - @ui/theme@4.0.0
+
+## 0.16.2
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- Updated dependencies [c46d786]
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [c46d786]
+- Updated dependencies [e58b95e]
+- Updated dependencies [f815187]
+- Updated dependencies [e58b95e]
+  - @app/features@17.0.1
+  - @saas-ui-pro/react@0.27.1
+  - @saas-ui-pro/feature-flags@0.13.1
+  - @ui/theme@3.0.1
+
+## 0.16.1
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @app/features@17.0.0
+  - @saas-ui-pro/onboarding@0.13.1
+  - @ui/theme@3.0.0
+
+## 0.16.0
+
+### Minor Changes
+
+- f888c76: Updated to Next.js 13.5
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+- Updated dependencies [9574cc6]
+- Updated dependencies [9574cc6]
+- Updated dependencies [857c962]
+- Updated dependencies [a7fef23]
+  - @saas-ui-pro/react@0.26.1
+  - @app/features@16.1.0
+
 ## 0.15.4
 
 ### Patch Changes

@@ -8,6 +8,7 @@ import {
   KanbanDragOverlay,
   KanbanProps,
   KanbanItems,
+  UseKanbanContainerReturn,
 } from '@saas-ui-pro/kanban'
 import {
   ColumnDef,
@@ -28,6 +29,7 @@ import {
   useControllableState,
 } from '@chakra-ui/react'
 import { createContext } from '@chakra-ui/react-utils'
+import { DataGridProvider, NoResults } from '@saas-ui-pro/react'
 
 export const [DataBoardProvider, useDataBoardContext] =
   createContext<Table<any>>()
@@ -46,6 +48,15 @@ export interface DataBoardProps<Data extends object>
   groupBy?: string
   defaultGroupBy?: string
   onGroupChange?: (group: string) => void
+  /**
+   * Callback fired when clear filters is clicked.
+   */
+  onResetFilters?: () => void
+  /**
+   * No results component
+   */
+  noResults?: React.FC<any>
+  hideEmptyColumns?: boolean
 }
 
 export const DataBoard = forwardRef(
@@ -62,9 +73,12 @@ export const DataBoard = forwardRef(
       onGroupChange,
       renderHeader = () => null,
       renderCard = () => null,
+      onResetFilters,
+      noResults: NoResultsComponent = NoResults,
       getRowId,
-      initialState,
-      state,
+      initialState: initialStateProp,
+      state: stateProp,
+      hideEmptyColumns,
       ...rest
     } = props
 
@@ -84,19 +98,25 @@ export const DataBoard = forwardRef(
       getCoreRowModel: getCoreRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
       getRowId,
-      initialState: React.useMemo(() => initialState, []),
+      initialState: React.useMemo(() => initialStateProp, []),
       state: React.useMemo(
         () => ({
-          ...state,
+          ...stateProp,
           grouping,
         }),
-        [state],
+        [stateProp],
       ),
       ...rest,
     })
 
     // This exposes the useReactTable api through the instanceRef
     React.useImperativeHandle(instanceRef, () => instance, [instanceRef])
+
+    const state = instance.getState()
+
+    const rows = instance.getRowModel().rows
+    const noResults = (state.columnFilters?.length || state.globalFilter) &&
+      !rows.length && <NoResultsComponent onReset={onResetFilters} />
 
     const mapItems = React.useCallback(() => {
       const items: KanbanItems = {}
@@ -114,46 +134,57 @@ export const DataBoard = forwardRef(
 
     const [items, setItems] = React.useState(mapItems())
 
-    return (
-      <DataBoardProvider value={instance}>
-        <Kanban ref={ref} items={items} onChange={setItems} {...rest}>
-          {({ columns, items, activeId }) => {
+    const board = ({ columns, items, activeId }: UseKanbanContainerReturn) => {
+      return (
+        <>
+          {columns.map((id) => {
+            const row = instance.getRowModel().rowsById[id]
+
+            if (!row && hideEmptyColumns) {
+              return null
+            }
+
+            // fallback when this column is empty
+            const [groupingColumnId, groupingValue] = String(id).split(':')
+
             return (
-              <>
-                {columns.map((id) => {
-                  const row = instance.getRowModel().rowsById[id]
-                  return (
-                    <KanbanColumn key={id} id={id} width="320px" px="4">
-                      <KanbanColumnHeader>
-                        {flexRender(renderHeader, row)}
-                      </KanbanColumnHeader>
-                      <KanbanColumnBody>
-                        {items[id]?.map((itemId) => {
-                          const item = instance.getRowModel().rowsById[itemId]
-                          return (
-                            <BoardCard
-                              key={itemId}
-                              item={item}
-                              render={renderCard}
-                            />
-                          )
-                        })}
-                      </KanbanColumnBody>
-                    </KanbanColumn>
-                  )
-                })}
-                <KanbanDragOverlay>
-                  {activeId && (
-                    <KanbanCard id={activeId}>
-                      {renderCard(instance.getRowModel().rowsById[activeId])}
-                    </KanbanCard>
+              <KanbanColumn key={id} id={id} width="320px" px="4">
+                <KanbanColumnHeader>
+                  {flexRender(
+                    renderHeader,
+                    row || { id, groupingValue, groupingColumnId },
                   )}
-                </KanbanDragOverlay>
-              </>
+                </KanbanColumnHeader>
+                <KanbanColumnBody>
+                  {items[id]?.map((itemId) => {
+                    const item = instance.getRowModel().rowsById[itemId]
+                    return (
+                      <BoardCard key={itemId} item={item} render={renderCard} />
+                    )
+                  })}
+                </KanbanColumnBody>
+              </KanbanColumn>
             )
-          }}
-        </Kanban>
-      </DataBoardProvider>
+          })}
+          <KanbanDragOverlay>
+            {activeId && (
+              <KanbanCard id={activeId}>
+                {renderCard(instance.getRowModel().rowsById[activeId])}
+              </KanbanCard>
+            )}
+          </KanbanDragOverlay>
+        </>
+      )
+    }
+
+    return (
+      <DataGridProvider instance={instance}>
+        <DataBoardProvider value={instance}>
+          <Kanban ref={ref} items={items} onChange={setItems} {...rest}>
+            {noResults || board}
+          </Kanban>
+        </DataBoardProvider>
+      </DataGridProvider>
     )
   },
 ) as (<Data extends object>(

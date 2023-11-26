@@ -1,0 +1,18 @@
+{
+  "name": "@api/demo-client",
+  "version": "0.9.0",
+  "description": "Demo api client that uses mock data",
+  "private": true,
+  "main": "src/index.ts",
+  "type": "module",
+  "dependencies": {
+    "@common/mocks": "workspace:*",
+    "@ngneat/falso": "^2.27.0",
+    "date-fns": "^2.30.0",
+    "slug": "^8.2.3",
+    "zustand": "^4.4.6"
+  },
+  "devDependencies": {
+    "@types/slug": "^5.0.6"
+  }
+}

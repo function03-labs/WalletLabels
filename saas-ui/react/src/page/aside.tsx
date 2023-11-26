@@ -9,11 +9,10 @@ import {
   useMultiStyleConfig,
   SystemStyleObject,
   createStylesContext,
+  useBreakpointValue,
 } from '@chakra-ui/react'
 import { cx } from '@chakra-ui/utils'
-import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
-
-import { ErrorBoundary } from '../app/error-boundary'
+import { LoadingOverlay, LoadingSpinner, ErrorBoundary } from '@saas-ui/react'
 
 import { MotionBox } from '../transitions'
 
@@ -100,6 +99,8 @@ export const AsideContainer: React.FC<AsideContainerProps> = (props) => {
     SystemStyleObject
   >
 
+  const isMobile = useBreakpointValue({ base: true, lg: false })
+
   const resize = useResize({
     defaultWidth,
     isResizable,
@@ -119,10 +120,10 @@ export const AsideContainer: React.FC<AsideContainerProps> = (props) => {
         animate={isOpen ? 'enter' : 'exit'}
         variants={{
           enter: {
-            marginRight: 0,
+            ...(isMobile ? { x: '0' } : { marginRight: 0 }),
             transition: { type: 'spring', duration: 0.6, bounce: 0.15 },
           },
-          exit: { marginRight: -resize.width },
+          exit: isMobile ? { x: resize.width } : { marginRight: -resize.width },
         }}
         __css={{
           ...styles.container,
@@ -162,7 +163,7 @@ export const Aside: React.FC<AsideProps> = (props) => {
 
   return (
     <AsideContainer {...rest}>
-      <ErrorBoundary errorComponent={errorComponent}>{content}</ErrorBoundary>
+      <ErrorBoundary fallback={errorComponent}>{content}</ErrorBoundary>
     </AsideContainer>
   )
 }

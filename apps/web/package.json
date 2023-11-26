@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.20.4",
+  "version": "0.24.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,33 +12,36 @@
   },
   "dependencies": {
     "@api/client": "workspace:*",
-    "@app/features": "workspace:*",
     "@app/nextjs": "workspace:*",
-    "@chakra-ui/react": "^2.8.1",
-    "@chakra-ui/system": "^2.6.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/system": "^2.6.2",
+    "@common/i18n": "workspace:*",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@fontsource-variable/inter": "^5.0.8",
+    "@fontsource-variable/inter": "^5.0.15",
     "@saas-ui-pro/billing": "^0.11.1",
-    "@saas-ui-pro/feature-flags": "^0.13.0",
-    "@saas-ui-pro/onboarding": "^0.13.0",
-    "@saas-ui-pro/react": "^0.26.0",
-    "@saas-ui/auth": "^2.0.8",
-    "@saas-ui/date-picker": "^0.11.1",
+    "@saas-ui-pro/feature-flags": "^0.14.1",
+    "@saas-ui-pro/onboarding": "^0.13.2",
+    "@saas-ui-pro/react": "^0.29.3",
+    "@saas-ui/auth": "^2.2.2",
+    "@saas-ui/charts": "^0.10.0",
+    "@saas-ui/date-picker": "^0.12.9",
     "@saas-ui/next-workspaces": "^0.3.0",
-    "@saas-ui/react": "^2.2.1",
+    "@saas-ui/react": "^2.4.2",
+    "@tanstack/react-query": "^5.8.6",
+    "@tanstack/react-query-devtools": "^5.8.6",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
-    "framer-motion": "^10.16.4",
-    "next": "^13.4.19",
+    "framer-motion": "^10.16.5",
+    "next": "^14.0.3",
     "next-svgr": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.4.19",
+    "@next/eslint-plugin-next": "^14.0.3",
     "@svgr/webpack": "^5.5.0",
-    "webpack": "^5.88.2"
+    "webpack": "^5.89.0"
   },
   "msw": {
     "workerDirectory": "public"

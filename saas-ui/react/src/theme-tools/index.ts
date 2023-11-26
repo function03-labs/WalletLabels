@@ -1,1 +1,5 @@
-export * from './with-theme-colors'
+export {
+  type ThemeColors,
+  type ThemeColorsOptions,
+  withThemeColors,
+} from './with-theme-colors'

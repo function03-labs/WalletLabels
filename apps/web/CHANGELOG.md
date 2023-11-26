@@ -1,5 +1,144 @@
 # nextjs-app
 
+## 0.24.2
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/feature-flags@0.14.1
+  - @saas-ui-pro/onboarding@0.13.2
+  - @ui/theme@5.0.2
+  - @ui/lib@5.0.2
+  - @saas-ui-pro/react@0.29.3
+
+## 0.24.1
+
+### Patch Changes
+
+- 1a42bf1: Improved dashboard chart sizing on small screens
+- Updated dependencies [7167961]
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @ui/lib@5.0.1
+  - @saas-ui-pro/react@0.29.2
+  - @ui/theme@5.0.1
+
+## 0.24.0
+
+### Minor Changes
+
+- 689f329: Moved all feature code into the main web app in order to simplify the setup
+
+### Patch Changes
+
+- Updated dependencies [4463b27]
+- Updated dependencies [753bce1]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [dfe98f4]
+  - @common/i18n@0.5.0
+  - @saas-ui-pro/react@0.29.0
+  - @api/client@0.4.0
+  - @ui/lib@5.0.0
+  - @ui/theme@5.0.0
+
+## 0.23.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
+### Patch Changes
+
+- Updated dependencies [2f35301]
+  - @ui/lib@4.1.0
+  - @api/client@0.3.8
+  - @app/features@18.0.1
+
+## 0.22.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+- 98170e5: Updated to Next 14
+
+### Patch Changes
+
+- Updated dependencies [98170e5]
+- Updated dependencies [696b4ac]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [7e3ee3d]
+  - @app/features@18.0.0
+  - @saas-ui-pro/feature-flags@0.14.0
+  - @app/nextjs@0.5.0
+  - @ui/lib@4.0.0
+  - @saas-ui-pro/react@0.28.0
+  - @ui/theme@4.0.0
+
+## 0.21.2
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- Updated dependencies [c46d786]
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [c46d786]
+- Updated dependencies [e58b95e]
+- Updated dependencies [f815187]
+- Updated dependencies [e58b95e]
+- Updated dependencies [4313f5e]
+  - @app/features@17.0.1
+  - @saas-ui-pro/react@0.27.1
+  - @saas-ui-pro/feature-flags@0.13.1
+  - @app/nextjs@0.4.3
+  - @ui/theme@3.0.1
+  - @ui/lib@3.0.1
+  - @api/client@0.3.7
+
+## 0.21.1
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @app/features@17.0.0
+  - @app/nextjs@0.4.2
+  - @saas-ui-pro/onboarding@0.13.1
+  - @ui/theme@3.0.0
+  - @ui/lib@3.0.0
+  - @api/client@0.3.6
+
+## 0.21.0
+
+### Minor Changes
+
+- f888c76: Updated to Next.js 13.5
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+- Updated dependencies [9574cc6]
+- Updated dependencies [9574cc6]
+- Updated dependencies [857c962]
+- Updated dependencies [a7fef23]
+  - @saas-ui-pro/react@0.26.1
+  - @app/features@16.1.0
+  - @ui/lib@2.1.0
+  - @api/client@0.3.5
+
 ## 0.20.4
 
 ### Patch Changes

@@ -104,10 +104,13 @@ export const defaultOperators: FilterOperators = [
     types: ['date', 'datetime'],
     comparator(
       value: Date | string | number | undefined,
-      filterValue: Date | number,
+      filterValue: Date | string | number,
     ) {
       if (typeof value === 'string') {
         value = parseISO(value)
+      }
+      if (typeof filterValue === 'string') {
+        filterValue = parseISO(filterValue)
       }
       return !!value && isBefore(value, filterValue)
     },
@@ -118,10 +121,13 @@ export const defaultOperators: FilterOperators = [
     types: ['date', 'datetime'],
     comparator(
       value: Date | string | number | undefined,
-      filterValue: Date | number,
+      filterValue: Date | string | number,
     ) {
       if (typeof value === 'string') {
         value = parseISO(value)
+      }
+      if (typeof filterValue === 'string') {
+        filterValue = parseISO(filterValue)
       }
       return !!value && isAfter(value, filterValue)
     },

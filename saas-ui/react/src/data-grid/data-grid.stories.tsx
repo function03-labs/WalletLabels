@@ -1,7 +1,14 @@
 import * as React from 'react'
 import { Meta } from '@storybook/react'
 
-import { ButtonGroup, Container, Stack, Button, Box } from '@chakra-ui/react'
+import {
+  ButtonGroup,
+  Container,
+  Stack,
+  Button,
+  Box,
+  MenuItem,
+} from '@chakra-ui/react'
 
 import {
   rand,
@@ -26,7 +33,7 @@ import {
   PaginationState,
 } from '../data-grid'
 
-import { AppShell, MenuItem, OverflowMenu } from '@saas-ui/react'
+import { AppShell, OverflowMenu } from '@saas-ui/react'
 
 export default {
   title: 'Components/Data Display/DataGrid',
@@ -489,7 +496,7 @@ export const WithRemoteFilters = {
 export const WithStickyHeaders = {
   render: () => {
     return (
-      <AppShell variant="fullscreen" position="fixed" top="0">
+      <AppShell height="400px" top="0">
         <DataGrid<ExampleData>
           sx={{
             '& thead tr': {

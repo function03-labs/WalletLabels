@@ -1,5 +1,23 @@
 # @app/nextjs
 
+## 0.5.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+
+## 0.4.3
+
+### Patch Changes
+
+- f815187: Updated dependencies
+
+## 0.4.2
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+
 ## 0.4.1
 
 ### Patch Changes

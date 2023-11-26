@@ -9,7 +9,7 @@ const { defineMultiStyleConfig, definePartsStyle } =
 export const toolbarStyles = defineMultiStyleConfig({
   defaultProps: {
     variant: 'secondary',
-    size: 'sm',
+    size: 'md',
   },
   baseStyle: definePartsStyle({
     container: {

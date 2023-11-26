@@ -1,3 +1,1 @@
-export * from './use-search-query'
-export * from './use-script'
-export * from './use-steps'
+export { type UseSearchQueryOptions, useSearchQuery } from './use-search-query'

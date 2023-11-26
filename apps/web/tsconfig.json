@@ -16,8 +16,9 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@app/features/*": ["../../packages/app-features/*"],
-      "@app/config": ["../../packages/app-config"]
+      "@app/config": ["../../packages/app-config"],
+      "@app/features/*": ["./src/features/*"],
+      "@app/nextjs": ["../../packages/app-nextjs/src"]
     },
     "incremental": true
   },

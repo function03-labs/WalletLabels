@@ -1,5 +1,97 @@
 # @ui/lib
 
+## 5.0.2
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/kanban@0.3.4
+  - @saas-ui-pro/react@0.29.3
+
+## 5.0.1
+
+### Patch Changes
+
+- 7167961: Added xs size to SegmentControl
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @saas-ui-pro/react@0.29.2
+
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [4463b27]
+- Updated dependencies [753bce1]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [dfe98f4]
+  - @common/i18n@0.5.0
+  - @saas-ui-pro/react@0.29.0
+
+## 4.1.0
+
+### Minor Changes
+
+- 2f35301: Updated to React Query v5
+
+## 4.0.0
+
+### Minor Changes
+
+- 98170e5: Updated to Saas UI 2.3.1
+- 7e3ee3d: Added hideEmptyColumns prop to DataBoard
+- 7e3ee3d: Added noResults prop to DataBoard
+
+### Patch Changes
+
+- Updated dependencies [98170e5]
+- Updated dependencies [696b4ac]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [34e36ae]
+- Updated dependencies [7e3ee3d]
+- Updated dependencies [34e36ae]
+  - @saas-ui-pro/react@0.28.0
+
+## 3.0.1
+
+### Patch Changes
+
+- f815187: Updated dependencies
+- 4313f5e: Improved Editor component, editor instance is now accessible using ref
+- Updated dependencies [f48e750]
+- Updated dependencies [f815187]
+- Updated dependencies [92ca126]
+- Updated dependencies [f815187]
+  - @saas-ui-pro/react@0.27.1
+  - @app/i18n@0.4.1
+
+## 3.0.0
+
+### Patch Changes
+
+- 6478142: Updated to @saas-ui/react@2.2.3
+- Updated dependencies [e9b3b00]
+- Updated dependencies [e9b3b00]
+- Updated dependencies [6478142]
+- Updated dependencies [e9b3b00]
+  - @saas-ui-pro/react@0.27.0
+  - @saas-ui-pro/kanban@0.3.3
+
+## 2.1.0
+
+### Minor Changes
+
+- 9574cc6: Added new DateRangePicker component
+- 9574cc6: Improved dashboard metrics design
+
+### Patch Changes
+
+- Updated dependencies [944b91b]
+  - @saas-ui-pro/react@0.26.1
+
 ## 2.0.1
 
 ### Patch Changes
