@@ -76,10 +76,15 @@ const SubNav: React.FC<SubNavProps> = (props) => {
         '--logo-opacity': isScrolling ? '1' : '0',
         '--menu-gap': isScrolling ? '0' : '-36px',
       }}
-      bg="white"
-      _dark={{ bg: 'gray.900' }}
     >
-      <HStack mt={-offset} spacing="0" px="6" flex="1">
+      <HStack
+        mt={-offset}
+        spacing="0"
+        px="6"
+        flex="1"
+        bg="white"
+        _dark={{ bg: 'gray.900' }}
+      >
         <Box
           opacity="var(--logo-opacity)"
           transform="translate3d(0, var(--logo-position), 0)"
@@ -163,7 +168,6 @@ export const NavbarTabs = () => {
       variant="static"
       overflowY="auto"
       height="480px"
-      bg=""
       navbar={
         <>
           <Navbar>
