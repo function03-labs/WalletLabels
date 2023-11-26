@@ -5,6 +5,12 @@ export { DoubleSidebar } from './src/sidebar-layouts/double-sidebar/double-sideb
 export { SortableNavGroupItems } from './src/sidebar-layouts/sortable-nav-group-items/sortable-nav-group-items'
 
 /**
+ * Stacked layouts
+ */
+export { NavbarTabs } from './src/stacked-layouts/navbar-tabs/navbar-tabs'
+export { NavbarBranded } from './src/stacked-layouts/navbar-branded/navbar-branded'
+
+/**
  * Settings
  */
 export { Notifications } from './src/settings/notifications/notifications'
