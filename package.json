@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start",
@@ -82,6 +83,7 @@
     "mongodb": "^5.1.0",
     "next": "^13.3.0",
     "next-images": "^1.8.5",
+    "next-sitemap": "^4.2.3",
     "next-swagger-doc": "^0.3.6",
     "next-themes": "^0.2.1",
     "planetscale": "^2.1.0",

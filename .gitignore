@@ -38,3 +38,4 @@ ens_resolver.log
 prisma/ens_resolver.log
 prisma/Untitled-1.ipynb
 .vercel
+.env*.local
