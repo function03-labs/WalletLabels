@@ -1,7 +1,5 @@
 import middlewares, { middlewares_special } from "@/lib/rateLimits"
-import { connectToDatabase } from "../../lib/mongodb"
-import { PostHog } from "posthog-node"
-import keys from "@/api_keys"
+import { connectToDatabase } from "../../../lib/mongodb"
 
 export default async function handler(req, res) {
   // Database connection setup
