@@ -15,7 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import logo from "../public/assets/logo.svg"
 import Logo from "./logo"
 
 interface MainNavProps {

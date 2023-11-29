@@ -16,7 +16,7 @@ export function SiteHeader() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
             <Link
-              href="https://t.me/+4f1hgfZSRV1iYjA0"
+              href="https://t.me/+yDF9bnv2R7RkNWZk"
               target="_blank"
               rel="noreferrer">
               <div
@@ -58,7 +58,7 @@ export function SiteHeader() {
                 <span className="sr-only">Twitter</span>
               </div> 
             </Link> */}
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </nav>
         </div>
       </div>
