@@ -77,18 +77,11 @@ const SubNav: React.FC<SubNavProps> = (props) => {
         '--menu-gap': isScrolling ? '0' : '-36px',
       }}
     >
-      <HStack
-        mt={-offset}
-        spacing="0"
-        px="6"
-        flex="1"
-        bg="white"
-        _dark={{ bg: 'gray.900' }}
-      >
+      <HStack mt={-offset} spacing="0" px="6" flex="1" bg="app-background">
         <Box
           opacity="var(--logo-opacity)"
           transform="translate3d(0, var(--logo-position), 0)"
-          transition="transform 0.2s ease-out, opacity 0.3s"
+          transition="transform 0.2s ease-out, opacity 0.2s"
         >
           <SaasUIIcon height="24px" />
         </Box>
@@ -168,6 +161,7 @@ export const NavbarTabs = () => {
       variant="static"
       overflowY="auto"
       height="480px"
+      bg="app-background"
       navbar={
         <>
           <Navbar>

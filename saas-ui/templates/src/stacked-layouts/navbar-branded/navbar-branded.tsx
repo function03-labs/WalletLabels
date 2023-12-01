@@ -58,6 +58,12 @@ export const NavbarBranded = () => {
                 isRound
                 aria-label="Notifications"
                 size="xs"
+                _hover={{
+                  bgColor: 'sidebar-on-muted',
+                }}
+                _active={{
+                  bgColor: 'sidebar-on-subtle',
+                }}
               >
                 <BellIcon size="1.2em" />
               </IconButton>
@@ -71,7 +77,7 @@ export const NavbarBranded = () => {
                   presence="online"
                 />
               </MenuButton>
-              <MenuList>
+              <MenuList color="chakra-body-text">
                 <MenuGroup title="beatriz@saas-ui.dev">
                   <MenuItem>Profile</MenuItem>
                   <MenuItem>Settings</MenuItem>

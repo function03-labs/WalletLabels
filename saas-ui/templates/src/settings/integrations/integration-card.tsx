@@ -15,6 +15,8 @@ import {
 } from '@chakra-ui/react'
 import { FiExternalLink, FiLink } from 'react-icons/fi'
 
+import { IconBadge } from '@saas-ui/react'
+
 export type IntegrationCardProps = {
   name: string
   type: string
@@ -29,9 +31,13 @@ export const IntegrationCard: React.FC<IntegrationCardProps> = (props) => {
     <Card>
       <CardHeader>
         <HStack spacing="2" alignItems="flex-start">
-          <Flex rounded="md" bg="black" p="2">
-            <Icon as={props.icon} color="white" />
-          </Flex>
+          <IconBadge
+            icon={<Icon as={props.icon} color="white" />}
+            bg="black"
+            variant="solid"
+            size="md"
+          />
+
           <VStack alignItems="flex-start" spacing="0" lineHeight="1.2">
             <Heading size="sm" fontWeight="medium">
               {props.name}

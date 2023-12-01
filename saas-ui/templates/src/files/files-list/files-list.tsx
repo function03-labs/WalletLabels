@@ -82,8 +82,8 @@ export const FilesList = () => {
       </CardHeader>
       <CardBody p="0">
         <StructuredList pb="0">
-          {files.map((file) => (
-            <FilesListItem {...file} />
+          {files.map((file, i) => (
+            <FilesListItem key={i} {...file} />
           ))}
           <StructuredListItem
             bg="gray.100"

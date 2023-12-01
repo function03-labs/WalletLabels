@@ -26,7 +26,7 @@ export const Integrations = () => {
   return (
     <SimpleGrid columns={2} spacing="4">
       {integrations.map((integration) => (
-        <IntegrationCard {...integration} />
+        <IntegrationCard key={integration.name} {...integration} />
       ))}
     </SimpleGrid>
   )

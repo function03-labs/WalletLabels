@@ -119,8 +119,8 @@ const files: FileCardProps[] = [
 export const FileCards = () => {
   return (
     <SimpleGrid columns={3} spacing="4">
-      {files.map((file) => (
-        <FileCard {...file} />
+      {files.map((file, i) => (
+        <FileCard key={`${file.name}_${i}`} {...file} />
       ))}
     </SimpleGrid>
   )

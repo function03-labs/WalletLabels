@@ -5,6 +5,7 @@ import {
   Box,
   Heading,
   HStack,
+  IconButton,
   Menu,
   MenuButton,
   MenuDivider,
@@ -66,7 +67,8 @@ export const DoubleSidebar = () => {
   return (
     <AppShell
       variant="static"
-      height="680px"
+      height="600px"
+      bg="app-background"
       sidebar={
         <HStack spacing="0" alignItems="stretch">
           <Sidebar
@@ -112,7 +114,7 @@ export const DoubleSidebar = () => {
                 Contacts
               </Heading>
             </SidebarSection>
-            <SidebarSection flex="1" overflowY="auto">
+            <SidebarSection flex="1" overflowY="auto" pb="8">
               <NavGroup>
                 <NavItem icon={<UsersIcon />} isActive>
                   Overview
@@ -153,9 +155,18 @@ export const DoubleSidebar = () => {
                   </NavItem>
                 ))}
               </NavGroup>
-            </SidebarSection>
-            <SidebarSection>
-              <NavItem icon={<HelpCircleIcon />}>Help &amp; Support</NavItem>
+              <IconButton
+                aria-label="Help &amp; Support"
+                isRound
+                position="absolute"
+                bottom="2"
+                variant="outline"
+                size="xs"
+                bg="app-background"
+                zIndex="overlay"
+              >
+                <span>?</span>
+              </IconButton>
             </SidebarSection>
           </Sidebar>
         </HStack>

@@ -63,7 +63,8 @@ export const SortableNavGroupItems = () => {
   return (
     <AppShell
       variant="static"
-      height="680px"
+      height="600px"
+      bg="app-background"
       sidebar={
         <Sidebar>
           <SidebarSection>
