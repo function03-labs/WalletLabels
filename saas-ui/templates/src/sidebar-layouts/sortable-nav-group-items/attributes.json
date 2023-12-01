@@ -1,7 +1,4 @@
 {
-  "title": "Sortable NavGroup Items",
-  "version": "1.0.0",
-  "canvas": {
-    "center": true
-  }
+  "title": "Sortable NavGroup",
+  "version": "1.0.0"
 }
