@@ -63,10 +63,59 @@ const variantSegments = definePartsStyle((props) => {
   }
 })
 
+const variantSegmentsSolid = definePartsStyle((props) => {
+  const { theme } = props
+
+  return {
+    tablist: {
+      display: 'inline-flex',
+
+      rounded: 'lg',
+      alignItems: 'center',
+      bg: 'gray.100',
+      _dark: {
+        bg: '',
+      },
+    },
+    tab: {
+      ...theme.components.Button.baseStyle,
+      ...theme.components.Button.variants.ghost(props),
+      color: 'muted',
+      borderWidth: '1px',
+      borderColor: 'transparent',
+      rounded: 'md',
+      fontWeight: 'normal',
+      _dark: {
+        borderColor: 'whiteAlpha.300',
+        _hover: {},
+      },
+      _hover: {
+        color: 'black',
+        _dark: {
+          color: 'white',
+        },
+      },
+      _selected: {
+        ...theme.components.Button.variants.solid(props),
+        bg: 'white',
+        boxShadow: 'sm',
+        borderColor: 'default-border-color',
+        _dark: {
+          color: 'white',
+          bg: 'black',
+        },
+        zIndex: 1,
+        _hover: {},
+        _active: {},
+      },
+    },
+  }
+})
+
 const sizes = {
   xs: definePartsStyle({
     tab: {
-      fontSize: 'xs',
+      fontSize: 'sm',
       h: 7,
       py: 0,
       px: 2,
@@ -103,6 +152,7 @@ export default {
   },
   variants: {
     segments: variantSegments,
+    'segments-solid': variantSegmentsSolid,
   },
   sizes,
 }

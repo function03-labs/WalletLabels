@@ -10,10 +10,11 @@ export default {
       },
     },
     icon: {
-      color: 'sidebar-muted',
-      '.saas-nav-item [data-active] &, .saas-nav-item:not([data-active]):hover &':
+      color: 'sidebar-text',
+      opacity: 0.5,
+      '.sui-nav-item [data-active] &, .sui-nav-item:not([data-active]):hover &':
         {
-          color: 'sidebar-text',
+          opacity: 1,
         },
     },
   },

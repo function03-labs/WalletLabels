@@ -5,6 +5,7 @@ export { DoubleSidebar } from './src/sidebar-layouts/double-sidebar/double-sideb
 export { SortableNavGroupItems } from './src/sidebar-layouts/sortable-nav-group-items/sortable-nav-group-items'
 export { SidebarWithNavbar } from './src/sidebar-layouts/sidebar-with-navbar/sidebar-with-navbar'
 export { RecessedSidebar } from './src/sidebar-layouts/recessed-sidebar/recessed-sidebar'
+export { RecessedSidebarContrast } from './src/sidebar-layouts/recessed-sidebar-contrast/recessed-sidebar-contrast'
 
 /**
  * Stacked layouts
