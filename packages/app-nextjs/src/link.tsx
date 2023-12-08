@@ -1,8 +1,3 @@
 'use client'
 
-import React from 'react'
-import NextLink, { LinkProps } from 'next/link'
-
-export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  (props, ref) => <NextLink ref={ref} {...props} />,
-)
+export { Link, type LinkProps } from '@chakra-ui/next-js'

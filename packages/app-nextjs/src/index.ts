@@ -7,4 +7,5 @@ export {
   useParams,
   useRouter,
 } from './app-router/router'
-export { Link } from './link'
+
+export { Link, type LinkProps } from './link'

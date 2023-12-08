@@ -4,17 +4,17 @@ import * as React from 'react'
 
 import { Container } from '@chakra-ui/react'
 import { Auth, AuthProps } from '@saas-ui/auth'
-import { usePathname } from '@app/nextjs'
+import { usePathname, Link } from '@app/nextjs'
 import { BillingProvider } from '@saas-ui-pro/billing'
 
 import { authType, authProviders, authPaths } from '@app/config'
 
-import { useInitApp } from '../hooks/use-init-app'
-
-import { Logo, AppLoader, Link } from '@ui/lib'
+import { Logo, AppLoader } from '@ui/lib'
 
 import { AuthLayout } from './auth-layout'
 import { PublicLayout } from './public-layout'
+
+import { useInitApp } from '../hooks/use-init-app'
 
 /**
  * Wrapper component for Authenticated pages.

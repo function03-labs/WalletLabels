@@ -71,6 +71,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@app/nextjs@workspace:packages/app-nextjs"
   dependencies:
+    "@chakra-ui/next-js": ^2.2.0
     next: ^14.0.4
   peerDependencies:
     next: ">=13"
@@ -2273,6 +2274,20 @@ __metadata:
     react: ">=18"
     react-dom: ">=18"
   checksum: 2f2e3965199a3fa8f867f2fcb6c125763ac5c982b15f29cf1e462e2e49b5466a675b5a41f24fcf0ba40c25bf70fc401cee600ddb7642d250469a15df3352924e
+  languageName: node
+  linkType: hard
+
+"@chakra-ui/next-js@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@chakra-ui/next-js@npm:2.2.0"
+  dependencies:
+    "@emotion/cache": ^11.11.0
+  peerDependencies:
+    "@chakra-ui/react": ">=2.4.0"
+    "@emotion/react": ">=11"
+    next: ">=13"
+    react: ">=18"
+  checksum: cad9e0ca7decfd301794161d95cc889ea9ada350129c7d8ad11f4015e9b88be3e831fc265e0593feae422318875685519aaca4376583b56dadedc8e1af9e0a3e
   languageName: node
   linkType: hard
 

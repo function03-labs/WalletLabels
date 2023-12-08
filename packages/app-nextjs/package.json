@@ -5,6 +5,9 @@
   "private": true,
   "type": "module",
   "main": "src/index.ts",
+  "dependencies": {
+    "@chakra-ui/next-js": "^2.2.0"
+  },
   "peerDependencies": {
     "next": ">=13",
     "react": ">=16.8.0",

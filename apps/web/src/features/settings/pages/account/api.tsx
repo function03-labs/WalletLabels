@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, IconButton, Stack, Text, useClipboard } from '@chakra-ui/react'
+import { Button, IconButton, Text, useClipboard } from '@chakra-ui/react'
 import {
   StructuredList,
   StructuredListCell,
@@ -12,8 +12,8 @@ import {
   SectionHeader,
   SectionDescription,
 } from '@saas-ui-pro/react'
-
-import { SettingsPage, Link } from '@ui/lib'
+import { Link } from '@app/nextjs'
+import { SettingsPage } from '@ui/lib'
 import { SettingsCard } from '@app/features/settings/components/settings-card'
 import { FiCopy, FiCheck, FiX } from 'react-icons/fi'
 

@@ -1,20 +1,13 @@
-import {
-  Card,
-  CardBody,
-  HStack,
-  Heading,
-  Stack,
-  Text,
-  Tooltip,
-} from '@chakra-ui/react'
+import { Card, CardBody, HStack, Heading, Stack, Text } from '@chakra-ui/react'
 import { ContactTag } from './contact-tag'
 import { ContactType } from './contact-type'
 
 import { Contact } from '@api/client'
-import { Link, PersonaAvatar } from '@saas-ui/react'
+import { PersonaAvatar } from '@saas-ui/react'
 import { usePath } from '@app/features/common/hooks/use-path'
 import { useDataBoardContext } from '@ui/lib'
 import { ContactStatus } from './contact-status'
+import { Link } from '@app/nextjs'
 
 export const ContactCard = ({ contact }: { contact: Contact }) => {
   const path = usePath(`/contacts/view/${contact.id}`)
@@ -37,6 +30,9 @@ export const ContactCard = ({ contact }: { contact: Contact }) => {
   return (
     <Card
       as={Link}
+      prefetch={
+        false
+      } /* This is a performance optimization to make sure Next.js doesn't start prefetching 100s of contacts */
       href={path}
       position="relative"
       w="full"
