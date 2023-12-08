@@ -41,12 +41,21 @@ import {
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { getNotifications, Notification } from '@api/client'
-import { useParams, useRouter } from '@app/nextjs'
+import { useRouter } from '@app/nextjs'
+
+interface InboxParams {
+  workspace: string
+  id?: string
+}
 
 /**
  * This is a simple wrapper around the ContactsViewPage with an inbox specific toolbar
  */
-function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
+function InboxViewPage(props: {
+  item: Notification
+  params: Required<InboxParams>
+  onBack?: () => void
+}) {
   const toolbar = (
     <Toolbar variant="tertiary">
       <ToolbarButton
@@ -66,7 +75,7 @@ function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
       <PageHeader toolbar={toolbar} />
       <PageBody contentWidth="full" bg="page-body-bg-subtle">
         <Card h="100%">
-          <ContactsViewPage id={props.item?.contactId} isEmbedded />
+          <ContactsViewPage params={props.params} isEmbedded />
         </Card>
       </PageBody>
     </Page>
@@ -74,10 +83,7 @@ function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
 }
 
 export interface InboxListPageProps {
-  params: {
-    workspace?: string
-    id?: string
-  }
+  params: InboxParams
 }
 
 export function InboxListPage({ params }: InboxListPageProps) {
@@ -190,7 +196,14 @@ export function InboxListPage({ params }: InboxListPageProps) {
   if (params.id) {
     const item = data?.notifications?.find((item) => item.id === params.id)
     content = item ? (
-      <InboxViewPage item={item} onBack={() => onClose()} />
+      <InboxViewPage
+        item={item}
+        params={{
+          workspace: params.workspace,
+          id: params.id,
+        }}
+        onBack={() => onClose()}
+      />
     ) : (
       <EmptyState
         title="Notification not found"
