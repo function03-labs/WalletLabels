@@ -11,6 +11,6 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "next": "^14.0.3"
+    "next": "^14.0.4"
   }
 }
