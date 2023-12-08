@@ -109,40 +109,40 @@ const variantTertiary = defineStyle({
   },
 })
 
-const sizes = {
+export const sizes = {
   lg: defineStyle({
-    h: '8',
+    h: '12',
+    minW: '12',
+    fontSize: 'lg',
+    px: '6',
+    borderRadius: 'md',
+  }),
+  md: defineStyle({
+    h: '10',
     minW: '10',
     fontSize: 'md',
     px: '4',
-    rounded: '6',
+    borderRadius: 'sm',
   }),
-  md: defineStyle({
-    h: '7',
+  sm: defineStyle({
+    h: '8',
     minW: '8',
     fontSize: 'sm',
     px: '3',
-    rounded: '4',
-  }),
-  sm: defineStyle({
-    h: '6',
-    minW: '6',
-    fontSize: 'sm',
-    px: '2',
-    rounded: '3',
+    borderRadius: 'sm',
   }),
   xs: defineStyle({
-    h: '5',
-    minW: '4',
+    h: '6',
+    minW: '6',
     fontSize: 'xs',
-    px: '1',
-    rounded: '3',
+    px: '2',
+    borderRadius: 'sm',
   }),
 }
 
 export const buttonStyles = defineStyleConfig({
   defaultProps: {
-    size: 'md',
+    size: 'sm',
     variant: 'secondary',
   },
   variants: {

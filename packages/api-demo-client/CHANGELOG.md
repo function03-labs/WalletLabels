@@ -4,6 +4,17 @@
 
 ### Minor Changes
 
+- 689f329: Moved the api client services and mocks into separate packages
+
+### Patch Changes
+
+- Updated dependencies [689f329]
+  - @common/mocks@0.10.0
+
+## 0.9.0
+
+### Minor Changes
+
 - 2f35301: Updated to React Query v5
 
 ## 0.8.2

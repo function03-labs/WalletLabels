@@ -41,24 +41,36 @@ import {
 } from '@api/client'
 
 interface ContactsViewPageProps {
+  /**
+   * The contact id
+   */
   id: string
+  /**
+   * Whether the page is embedded in another page, eg the inbox
+   */
+  isEmbedded?: boolean
 }
 
-export function ContactsViewPage({ id }: ContactsViewPageProps) {
+export function ContactsViewPage({ id, isEmbedded }: ContactsViewPageProps) {
   const { data, isLoading, error } = useQuery({
     queryKey: ['Contact', id],
     queryFn: () => getContact({ id }),
     enabled: !!id,
   })
 
-  const isMobile = useBreakpointValue({ base: true, lg: false })
+  const isMobile = useBreakpointValue(
+    { base: true, lg: false },
+    {
+      fallback: undefined,
+    },
+  )
 
   const sidebar = useDisclosure({
     defaultIsOpen: true,
   })
 
   React.useEffect(() => {
-    if (isMobile) {
+    if (isMobile === true) {
       sidebar.onClose()
     }
   }, [isMobile])
@@ -85,7 +97,20 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
 
   return (
     <Page isLoading={isLoading}>
-      <PageHeader title={breadcrumbs} toolbar={toolbar} />
+      <PageHeader
+        title={breadcrumbs}
+        toolbar={toolbar}
+        sx={
+          isEmbedded
+            ? {
+                // @todo improve this in the Page theme.
+                '& > .sui-page__header-content': {
+                  ps: '4',
+                },
+              }
+            : {}
+        }
+      />
       <PageBody contentWidth="full" p="0">
         <HStack
           alignItems="stretch"
@@ -102,13 +127,12 @@ export function ContactsViewPage({ id }: ContactsViewPageProps) {
             minH="0"
             display="flex"
             flexDirection="column"
-            size="md"
+            size="sm"
           >
             <TabList borderBottomWidth="1px" px="3" pt="2">
               <Tab borderTopRadius="md">Activity</Tab>
             </TabList>
             <TabPanels
-              py="8"
               px="0"
               overflowY="auto"
               maxW="container.xl"
@@ -166,9 +190,6 @@ const ActivitiesPanel: React.FC<{ contactId: string }> = ({ contactId }) => {
         </LoadingOverlay>
       ) : (
         <>
-          <Heading size="md" mb="8">
-            Activity
-          </Heading>
           <ActivityTimeline
             activities={(data?.activities || []) as Activities}
             currentUser={currentUser}

@@ -1,7 +1,13 @@
 'use client'
 
 import * as React from 'react'
-import { FiInbox, FiFilter, FiTrash, FiClock, FiSliders } from 'react-icons/fi'
+import {
+  FiInbox,
+  FiChevronLeft,
+  FiTrash,
+  FiClock,
+  FiSliders,
+} from 'react-icons/fi'
 import { EmptyState, useLocalStorage } from '@saas-ui/react'
 import {
   MenuProperty,
@@ -21,12 +27,14 @@ import { ContactsViewPage } from './view'
 import { InboxList } from '../components/inbox-list'
 
 import {
+  Box,
   Card,
   Divider,
   Menu,
   MenuButton,
   MenuList,
   Portal,
+  Spacer,
   Switch,
   useBreakpointValue,
   useDisclosure,
@@ -38,9 +46,17 @@ import { useParams, useRouter } from '@app/nextjs'
 /**
  * This is a simple wrapper around the ContactsViewPage with an inbox specific toolbar
  */
-function InboxViewPage(props: { item: Notification }) {
+function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
   const toolbar = (
     <Toolbar variant="tertiary">
+      <ToolbarButton
+        display={{ base: 'inline-flex', lg: 'none' }}
+        label="All notifications"
+        onClick={props.onBack}
+        icon={<FiChevronLeft size="1.2em" />}
+        variant="ghost"
+      />
+      <Spacer />
       <ToolbarButton leftIcon={<FiTrash />} label="Delete notification" />
       <ToolbarButton leftIcon={<FiClock />} label="Snooze" />
     </Toolbar>
@@ -50,7 +66,7 @@ function InboxViewPage(props: { item: Notification }) {
       <PageHeader toolbar={toolbar} />
       <PageBody contentWidth="full" bg="page-body-bg-subtle">
         <Card h="100%">
-          <ContactsViewPage id={props.item?.contactId} />
+          <ContactsViewPage id={props.item?.contactId} isEmbedded />
         </Card>
       </PageBody>
     </Page>
@@ -99,6 +115,8 @@ export function InboxListPage(props: InboxListPageProps) {
   }, [props.id, isMobile])
 
   const [visibleProps, setVisibleProps] = React.useState<string[]>([])
+
+  const notificationCount = data?.notifications?.length || 0
 
   const displayProperties = (
     <ToggleButtonGroup
@@ -165,29 +183,20 @@ export function InboxListPage(props: InboxListPageProps) {
     />
   )
 
-  let content
-
+  let content = <Box />
   if (props.id) {
     const item = data?.notifications?.find((item) => item.id === props.id)
     content = item ? (
-      <InboxViewPage item={item} />
+      <InboxViewPage item={item} onBack={() => onClose()} />
     ) : (
       <EmptyState
         title="Notification not found"
         description={`There is no notification with id ${props.id}.`}
       />
     )
-  } else {
+  } else if (!notificationCount) {
     content = emptyState
   }
-
-  const pageProps = isMobile
-    ? {}
-    : {
-        borderRightWidth: '1px',
-        minWidth: '280px',
-        maxWidth: '640px',
-      }
 
   return (
     <SplitPage isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
@@ -197,16 +206,16 @@ export function InboxListPage(props: InboxListPageProps) {
         isResizable={!isMobile}
       >
         <Page
+          borderRightWidth={{ base: 0, lg: '1px' }}
           minWidth="280px"
-          maxW="640px"
+          maxW={{ base: '100%', lg: '640px' }}
           position="relative"
-          flex="none"
           isLoading={isLoading}
-          {...pageProps}
+          flex={{ base: '1', lg: 'unset' }}
         >
           <PageHeader title="Inbox" toolbar={toolbar} />
           <PageBody p="0">
-            {!data?.notifications?.length && isMobile ? (
+            {!notificationCount && isMobile ? (
               emptyState
             ) : (
               <InboxList items={data?.notifications || []} />

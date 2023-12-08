@@ -66,7 +66,7 @@ export function DashboardPage() {
 
   const { data, isLoading } = useQuery({
     queryKey: [
-      'Dashboard',
+      'dashboard',
       {
         workspace,
         startDate: dateRange.start.toString(),
@@ -122,6 +122,7 @@ export function DashboardPage() {
   const footer = (
     <Toolbar justifyContent="flex-start" variant="tertiary" size="xs">
       <SegmentedControl
+        size="xs"
         segments={[
           {
             id: '1d',
@@ -163,15 +164,19 @@ export function DashboardPage() {
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <Card>
               <Tabs variant="unstyled" tabIndex={0}>
-                <TabList overflow="hidden" borderTopRadius="md">
+                <TabList
+                  overflow="hidden"
+                  borderTopRadius="md"
+                  display="flex"
+                  flexWrap="wrap"
+                >
                   {data?.charts.map((metric) => (
                     <Tab
                       key={metric.id}
                       id={metric.id}
-                      display={{ base: 'none', lg: 'flex' }}
                       alignItems="stretch"
                       justifyContent="stretch"
-                      flex="1"
+                      flex={{ base: '0 0 50%', lg: '1 0 auto' }}
                       height="auto"
                       textAlign="left"
                       borderBottomWidth="1px"

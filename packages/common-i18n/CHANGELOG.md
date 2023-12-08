@@ -1,5 +1,16 @@
 # @app/i18n
 
+## 0.5.0
+
+### Minor Changes
+
+- 689f329: Removed auth dependency in i18n provider in favor of a locale prop
+- 689f329: Renamed app-i18n to common-i18n
+
+### Patch Changes
+
+- 4463b27: Ignore missing translation error on production
+
 ## 0.4.1
 
 ### Patch Changes

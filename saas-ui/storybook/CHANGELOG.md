@@ -1,5 +1,36 @@
 # saas-ui-storybook
 
+## 27.0.3
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/react@0.29.3
+
+## 27.0.2
+
+### Patch Changes
+
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @saas-ui-pro/react@0.29.2
+
+## 27.0.1
+
+### Patch Changes
+
+- Updated dependencies [e02f941]
+  - @saas-ui-pro/react@0.29.1
+
+## 27.0.0
+
+### Patch Changes
+
+- Updated dependencies [753bce1]
+- Updated dependencies [dfe98f4]
+  - @saas-ui-pro/react@0.29.0
+
 ## 26.0.0
 
 ### Minor Changes

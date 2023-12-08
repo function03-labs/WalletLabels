@@ -1,5 +1,49 @@
 # nextjs-app
 
+## 0.24.2
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/feature-flags@0.14.1
+  - @saas-ui-pro/onboarding@0.13.2
+  - @ui/theme@5.0.2
+  - @ui/lib@5.0.2
+  - @saas-ui-pro/react@0.29.3
+
+## 0.24.1
+
+### Patch Changes
+
+- 1a42bf1: Improved dashboard chart sizing on small screens
+- Updated dependencies [7167961]
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @ui/lib@5.0.1
+  - @saas-ui-pro/react@0.29.2
+  - @ui/theme@5.0.1
+
+## 0.24.0
+
+### Minor Changes
+
+- 689f329: Moved all feature code into the main web app in order to simplify the setup
+
+### Patch Changes
+
+- Updated dependencies [4463b27]
+- Updated dependencies [753bce1]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [dfe98f4]
+  - @common/i18n@0.5.0
+  - @saas-ui-pro/react@0.29.0
+  - @api/client@0.4.0
+  - @ui/lib@5.0.0
+  - @ui/theme@5.0.0
+
 ## 0.23.0
 
 ### Minor Changes

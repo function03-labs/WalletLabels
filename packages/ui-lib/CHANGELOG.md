@@ -1,5 +1,35 @@
 # @ui/lib
 
+## 5.0.2
+
+### Patch Changes
+
+- 65693a6: Updated to Saas UI v2.4
+- Updated dependencies [65693a6]
+  - @saas-ui-pro/kanban@0.3.4
+  - @saas-ui-pro/react@0.29.3
+
+## 5.0.1
+
+### Patch Changes
+
+- 7167961: Added xs size to SegmentControl
+- Updated dependencies [7167961]
+- Updated dependencies [822939e]
+  - @saas-ui-pro/react@0.29.2
+
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [4463b27]
+- Updated dependencies [753bce1]
+- Updated dependencies [689f329]
+- Updated dependencies [689f329]
+- Updated dependencies [dfe98f4]
+  - @common/i18n@0.5.0
+  - @saas-ui-pro/react@0.29.0
+
 ## 4.1.0
 
 ### Minor Changes
