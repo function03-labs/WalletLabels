@@ -200,7 +200,7 @@ export function InboxListPage({ params }: InboxListPageProps) {
         item={item}
         params={{
           workspace: params.workspace,
-          id: params.id,
+          id: item.contactId,
         }}
         onBack={() => onClose()}
       />
