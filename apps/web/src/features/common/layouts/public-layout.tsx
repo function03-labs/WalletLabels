@@ -1,3 +1,5 @@
+'use client'
+
 import { AppShell, AppShellProps } from '@saas-ui/react'
 
 /**
@@ -7,5 +9,9 @@ export const PublicLayout: React.FC<AppShellProps> = ({
   children,
   ...rest
 }) => {
-  return <AppShell {...rest}>{children}</AppShell>
+  return (
+    <AppShell h="$100vh" {...rest}>
+      {children}
+    </AppShell>
+  )
 }

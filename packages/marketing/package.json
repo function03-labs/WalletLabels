@@ -1,0 +1,29 @@
+{
+  "name": "marketing",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    "./pages/*": "./pages/*"
+  },
+  "dependencies": {
+    "@app/config": "workspace:*",
+    "@app/nextjs": "workspace:*",
+    "@common/i18n": "workspace:*",
+    "@ui/lib": "workspace:*",
+    "@ui/theme": "workspace:*",
+    "lucide-react": "^0.260.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=2.0.0",
+    "@chakra-ui/system": ">=2.1.0",
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0",
+    "@saas-ui-pro/react": ">=0.27.0",
+    "@saas-ui/auth": ">=2",
+    "@saas-ui/date-picker": ">=0.9.0",
+    "@saas-ui/react": ">=2",
+    "framer-motion": ">=6",
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}

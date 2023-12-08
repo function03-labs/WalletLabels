@@ -5,12 +5,15 @@
   "private": true,
   "type": "module",
   "main": "src/index.ts",
+  "dependencies": {
+    "@chakra-ui/next-js": "^2.2.0"
+  },
   "peerDependencies": {
     "next": ">=13",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "next": "^14.0.3"
+    "next": "^14.0.4"
   }
 }

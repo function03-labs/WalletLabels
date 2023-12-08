@@ -17,19 +17,19 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@saas-ui-pro/react": "^0.29.0",
-    "@saas-ui/react": "^2.4.2",
+    "@saas-ui/react": "^2.4.4",
     "@saas-ui/storybook-addon": "^2.0.0",
-    "@storybook/addon-essentials": "^7.5.3",
-    "@storybook/addon-links": "^7.5.3",
-    "@storybook/addons": "^7.5.3",
-    "@storybook/react": "^7.5.3",
-    "@storybook/react-vite": "7.5.3",
+    "@storybook/addon-essentials": "^7.6.4",
+    "@storybook/addon-links": "^7.6.4",
+    "@storybook/addons": "^7.6.4",
+    "@storybook/react": "^7.6.4",
+    "@storybook/react-vite": "7.6.4",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-is": "^18.2.0",
-    "vite": "^4.5.0"
+    "vite": "^4.5.1"
   }
 }

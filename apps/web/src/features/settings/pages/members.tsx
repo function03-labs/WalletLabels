@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { useSnackbar } from '@saas-ui/react'
 import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'

@@ -1,3 +1,5 @@
+'use client'
+
 import { useBilling } from '@saas-ui-pro/billing'
 
 import { SettingsPage } from '@ui/lib'

@@ -15,7 +15,7 @@ export const useWorkspaces = () => {
       slug: organization.slug,
       label: organization.name || organization.id,
       logo: organization.logo || undefined,
-      href: `/app/${organization.slug}`,
+      href: `/${organization.slug}`,
     })) || []
   )
 }

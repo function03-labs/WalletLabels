@@ -1,3 +1,5 @@
+'use client'
+
 import { z } from 'zod'
 import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 

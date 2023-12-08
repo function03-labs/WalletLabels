@@ -12,7 +12,14 @@ export const LinkButton = React.forwardRef(
     const { href } = props
 
     if (href) {
-      return <Button as={Link} {...props} ref={ref} />
+      return (
+        <Button
+          as={Link}
+          _hover={{ textDecoration: 'none' }}
+          {...props}
+          ref={ref}
+        />
+      )
     }
 
     return <Button ref={ref} {...props} />

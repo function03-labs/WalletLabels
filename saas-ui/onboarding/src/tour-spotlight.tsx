@@ -16,8 +16,8 @@ export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
   (props, ref) => {
     const {
       motionPreset,
-      spacing,
-      closeOnClick,
+      spacing = 4,
+      closeOnClick = true,
       hideOverlay,
       onClick,
       ...rest
@@ -56,8 +56,3 @@ export const TourSpotlight: React.FC<TourSpotlightProps> = React.forwardRef(
 )
 
 TourSpotlight.displayName = 'TourSpotlight'
-
-TourSpotlight.defaultProps = {
-  spacing: 4,
-  closeOnClick: true,
-}

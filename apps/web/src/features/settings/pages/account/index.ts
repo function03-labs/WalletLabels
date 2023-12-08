@@ -1,4 +1,6 @@
-export * from './api'
-export * from './profile'
-export * from './notifications'
-export * from './security'
+'use client'
+
+export { AccountApiPage } from './api'
+export { AccountProfilePage } from './profile'
+export { AccountNotificationsPage } from './notifications'
+export { AccountSecurityPage } from './security'

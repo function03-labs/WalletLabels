@@ -1,3 +1,5 @@
+'use client'
+
 import { z } from 'zod'
 import { getOrganization, Organization, updateOrganization } from '@api/client'
 import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
