@@ -3,7 +3,7 @@ import { AccountProfilePage } from '@app/features/settings'
 
 const { Page, metadata } = createPage({
   title: 'Account Settings',
-  renderComponent: () => null,
+  renderComponent: () => <AccountProfilePage />,
 })
 
 export { metadata }

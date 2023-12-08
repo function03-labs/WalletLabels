@@ -20,7 +20,7 @@
     "@saas-ui-pro/onboarding": "^0.13.2",
     "@saas-ui-pro/react": "^0.29.3",
     "@saas-ui/auth": "^2.3.1",
-    "@saas-ui/date-picker": "^0.12.11",
+    "@saas-ui/date-picker": "^0.12.12",
     "@saas-ui/next-workspaces": "^0.3.0",
     "@saas-ui/react": "^2.4.4",
     "@ui/theme": "workspace:*",

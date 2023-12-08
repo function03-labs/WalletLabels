@@ -6,6 +6,7 @@ import { ColorModeScript } from '@chakra-ui/react'
 
 import { LemonSqueezyScript } from '../lib/lemonsqueezy'
 import { Provider } from './provider'
+import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
   title: {
@@ -16,7 +17,6 @@ export const metadata: Metadata = {
     icon: '/favicons/favicon-32x32.png',
     apple: '/favicons/apple-touch-icon.png',
   },
-  manifest: '/favicons/manifest.json',
 }
 
 export default async function AppRootLayout({
@@ -24,13 +24,16 @@ export default async function AppRootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const colorMode = 'system'
+  const cookieStore = cookies()
+
+  const colorMode = (cookieStore.get('chakra-ui-color-mode')?.value ??
+    'dark') as 'light' | 'dark'
 
   return (
-    <html>
-      <body>
+    <html data-theme={colorMode} style={{ colorScheme: colorMode }}>
+      <body className={`chakra-ui-${colorMode}`}>
         <LemonSqueezyScript />
-        <ColorModeScript initialColorMode={colorMode} />
+        <ColorModeScript initialColorMode={colorMode} type="cookie" />
         <Provider>{children}</Provider>
       </body>
     </html>
