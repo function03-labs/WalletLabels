@@ -74,12 +74,15 @@ function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
 }
 
 export interface InboxListPageProps {
-  id?: string
+  params: {
+    workspace?: string
+    id?: string
+  }
 }
 
-export function InboxListPage(props: InboxListPageProps) {
+export function InboxListPage({ params }: InboxListPageProps) {
   const router = useRouter()
-  const params = useParams()
+
   const { data, isLoading } = useQuery({
     queryKey: ['Notifications'],
     queryFn: () => getNotifications(),
@@ -91,7 +94,7 @@ export function InboxListPage(props: InboxListPageProps) {
   )
 
   const { isOpen, onOpen, onClose } = useDisclosure({
-    defaultIsOpen: !!props.id,
+    defaultIsOpen: !!params.id,
   })
 
   const [width, setWidth] = useLocalStorage('app.inbox-list.width', 280)
@@ -107,12 +110,12 @@ export function InboxListPage(props: InboxListPageProps) {
   }, [router, data, isLoading, isMobile])
 
   React.useEffect(() => {
-    if (props.id) {
+    if (params.id) {
       onOpen()
     }
     // the isMobile dep is needed so that the SplitPage
     // will open again when the screen size changes to lg
-  }, [props.id, isMobile])
+  }, [params.id, isMobile])
 
   const [visibleProps, setVisibleProps] = React.useState<string[]>([])
 
@@ -184,14 +187,14 @@ export function InboxListPage(props: InboxListPageProps) {
   )
 
   let content = <Box />
-  if (props.id) {
-    const item = data?.notifications?.find((item) => item.id === props.id)
+  if (params.id) {
+    const item = data?.notifications?.find((item) => item.id === params.id)
     content = item ? (
       <InboxViewPage item={item} onBack={() => onClose()} />
     ) : (
       <EmptyState
         title="Notification not found"
-        description={`There is no notification with id ${props.id}.`}
+        description={`There is no notification with id ${params.id}.`}
       />
     )
   } else if (!notificationCount) {
