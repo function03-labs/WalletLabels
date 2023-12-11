@@ -2,29 +2,31 @@ import * as React from 'react'
 
 import {
   Badge,
-  Box,
+  ColorModeProvider,
+  DarkMode,
   Heading,
   HStack,
-  IconButton,
   Menu,
   MenuButton,
   MenuDivider,
   MenuGroup,
   MenuItem,
   MenuList,
+  Portal,
   Text,
+  useColorMode,
 } from '@chakra-ui/react'
 
 import {
-  HomeIcon,
-  UsersIcon,
-  SettingsIcon,
-  HelpCircleIcon,
-  ContactIcon,
-  HeartHandshakeIcon,
-  LightbulbIcon,
-  ListChecksIcon,
-} from 'lucide-react'
+  LuHome,
+  LuUsers,
+  LuSettings,
+  LuContact,
+  LuHeartHandshake,
+  LuLightbulb,
+  LuListChecks,
+  LuHelpCircle,
+} from 'react-icons/lu'
 
 import {
   AppShell,
@@ -34,8 +36,8 @@ import {
   NavItem,
   SidebarSection,
 } from '@saas-ui/react'
-import { Logo } from '../../logo'
-import { Page, PageHeader, PageTitle } from '@saas-ui-pro/react'
+import { SaasUIIcon } from '@saas-ui/assets'
+import { Page, PageBody, PageHeader } from '@saas-ui-pro/react'
 
 const tags = [
   {
@@ -63,52 +65,88 @@ const tags = [
   },
 ]
 
-export const DoubleSidebar = () => {
+interface DoubleSidebarProps {}
+
+export const DoubleSidebar: React.FC<DoubleSidebarProps> = (props) => {
+  const { colorMode } = useColorMode()
+
+  // Override the tooltip theme back to the active color mode, instead of darkmode.
+  const tooltipProps: any = {
+    ['data-theme']: colorMode,
+  }
+
   return (
     <AppShell
       variant="static"
       height="600px"
-      bg="app-background"
       sidebar={
-        <HStack spacing="0" alignItems="stretch">
-          <Sidebar
-            variant="compact"
-            bg="gray.50"
-            _dark={{ bg: 'gray.800' }}
-            borderWidth="0"
-            spacing="3"
-          >
-            <SidebarSection alignItems="center" mb="2">
-              <Logo width="24px" color="black" _dark={{ color: 'white' }} />
-            </SidebarSection>
-            <SidebarSection flex="1">
-              <NavItem icon={<HomeIcon size="1.2em" />}>Home</NavItem>
-              <NavItem icon={<UsersIcon size="1.2em" />} isActive>
-                Contacts
-              </NavItem>
-              <NavItem icon={<SettingsIcon size="1.2em" />}>Settings</NavItem>
-            </SidebarSection>
-            <SidebarSection alignItems="center">
-              <Menu>
-                <MenuButton>
-                  <PersonaAvatar
-                    name="Beatriz Oliveira"
-                    src="/showcase-avatar.jpg"
-                    size="xs"
-                    presence="online"
-                  />
-                </MenuButton>
-                <MenuList>
-                  <MenuGroup title="beatriz@saas-ui.dev">
-                    <MenuItem>Account</MenuItem>
-                    <MenuDivider />
-                    <MenuItem>Log out</MenuItem>
-                  </MenuGroup>
-                </MenuList>
-              </Menu>
-            </SidebarSection>
-          </Sidebar>
-          <Sidebar>
+        <HStack spacing="0" alignItems="stretch" bg="primary.900">
+          <DarkMode>
+            <Sidebar
+              variant="compact"
+              bg="primary.800"
+              borderWidth="0"
+              spacing="3"
+              _dark={{
+                bg: 'primary.900',
+              }}
+            >
+              <SidebarSection alignItems="center" mb="2">
+                <SaasUIIcon width="24px" color="currentColor" />
+              </SidebarSection>
+              <SidebarSection flex="1">
+                <NavItem
+                  icon={<LuHome size="1.2em" />}
+                  tooltipProps={tooltipProps}
+                >
+                  Home
+                </NavItem>
+                <NavItem
+                  icon={<LuUsers size="1.2em" />}
+                  tooltipProps={tooltipProps}
+                  isActive
+                >
+                  Contacts
+                </NavItem>
+                <NavItem
+                  icon={<LuSettings size="1.2em" />}
+                  tooltipProps={tooltipProps}
+                >
+                  Settings
+                </NavItem>
+              </SidebarSection>
+              <SidebarSection gap="2">
+                <NavItem
+                  icon={<LuHelpCircle size="1.2em" />}
+                  tooltipProps={tooltipProps}
+                >
+                  Help &amp; Support
+                </NavItem>
+                <Menu>
+                  <MenuButton>
+                    <PersonaAvatar
+                      name="Beatriz Oliveira"
+                      src="/showcase-avatar.jpg"
+                      size="xs"
+                      presence="online"
+                    />
+                  </MenuButton>
+                  <ColorModeProvider>
+                    <Portal>
+                      <MenuList>
+                        <MenuGroup title="beatriz@saas-ui.dev">
+                          <MenuItem>Account</MenuItem>
+                          <MenuDivider />
+                          <MenuItem>Log out</MenuItem>
+                        </MenuGroup>
+                      </MenuList>
+                    </Portal>
+                  </ColorModeProvider>
+                </Menu>
+              </SidebarSection>
+            </Sidebar>
+          </DarkMode>
+          <Sidebar borderTopLeftRadius="md">
             <SidebarSection direction="row" mt="2" px="4" mb="2">
               <Heading size="sm" fontWeight="semibold">
                 Contacts
@@ -116,16 +154,16 @@ export const DoubleSidebar = () => {
             </SidebarSection>
             <SidebarSection flex="1" overflowY="auto" pb="8">
               <NavGroup>
-                <NavItem icon={<UsersIcon />} isActive>
+                <NavItem icon={<LuUsers />} isActive>
                   Overview
                 </NavItem>
-                <NavItem icon={<ListChecksIcon />}>Tasks</NavItem>
-                <NavItem icon={<LightbulbIcon />}>Insights</NavItem>
+                <NavItem icon={<LuListChecks />}>Tasks</NavItem>
+                <NavItem icon={<LuLightbulb />}>Insights</NavItem>
               </NavGroup>
 
               <NavGroup title="Teams" isCollapsible>
-                <NavItem icon={<ContactIcon />}>Sales</NavItem>
-                <NavItem icon={<HeartHandshakeIcon />}>Support</NavItem>
+                <NavItem icon={<LuContact />}>Sales</NavItem>
+                <NavItem icon={<LuHeartHandshake />}>Support</NavItem>
               </NavGroup>
 
               <NavGroup title="Tags" isCollapsible>
@@ -155,25 +193,14 @@ export const DoubleSidebar = () => {
                   </NavItem>
                 ))}
               </NavGroup>
-              <IconButton
-                aria-label="Help &amp; Support"
-                isRound
-                position="absolute"
-                bottom="2"
-                variant="outline"
-                size="xs"
-                bg="app-background"
-                zIndex="overlay"
-              >
-                <span>?</span>
-              </IconButton>
             </SidebarSection>
           </Sidebar>
         </HStack>
       }
     >
       <Page>
-        <PageHeader title="Overview"></PageHeader>
+        <PageHeader title="Overview" />
+        <PageBody></PageBody>
       </Page>
     </AppShell>
   )

@@ -69,7 +69,6 @@ const variantSegmentsSolid = definePartsStyle((props) => {
   return {
     tablist: {
       display: 'inline-flex',
-
       rounded: 'lg',
       alignItems: 'center',
       bg: 'gray.100',

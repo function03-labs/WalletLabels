@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
+import { ChakraTheme, extendTheme } from '@chakra-ui/react'
 import { theme as baseTheme } from '@saas-ui/react'
 
 import { components } from './components'
@@ -14,4 +14,4 @@ export const theme = extendTheme(
     ...typography,
   },
   baseTheme,
-)
+) as ChakraTheme

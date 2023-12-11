@@ -25,3 +25,8 @@ export { Integrations } from './src/settings/integrations/integrations'
  */
 export { FileCards } from './src/files/file-cards/file-cards'
 export { FilesList } from './src/files/files-list/files-list'
+
+/**
+ * Drawers
+ */
+export { AddContactDrawer } from './src/drawers/add-contact-drawer/add-contact-drawer'

@@ -10,11 +10,10 @@ export default {
       },
     },
     icon: {
-      color: 'sidebar-text',
-      opacity: 0.5,
+      color: 'sidebar-muted',
       '.sui-nav-item [data-active] &, .sui-nav-item:not([data-active]):hover &':
         {
-          opacity: 1,
+          color: 'sidebar-text',
         },
     },
   },
