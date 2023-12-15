@@ -73,7 +73,7 @@ const variantSegmentsSolid = definePartsStyle((props) => {
       alignItems: 'center',
       bg: 'gray.100',
       _dark: {
-        bg: '',
+        bg: 'whiteAlpha.100',
       },
     },
     tab: {
@@ -84,10 +84,6 @@ const variantSegmentsSolid = definePartsStyle((props) => {
       borderColor: 'transparent',
       rounded: 'md',
       fontWeight: 'normal',
-      _dark: {
-        borderColor: 'whiteAlpha.300',
-        _hover: {},
-      },
       _hover: {
         color: 'black',
         _dark: {
@@ -101,7 +97,7 @@ const variantSegmentsSolid = definePartsStyle((props) => {
         borderColor: 'default-border-color',
         _dark: {
           color: 'white',
-          bg: 'black',
+          bg: 'gray.900',
         },
         zIndex: 1,
         _hover: {},

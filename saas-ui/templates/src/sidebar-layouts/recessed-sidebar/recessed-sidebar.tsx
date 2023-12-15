@@ -110,8 +110,9 @@ export const RecessedSidebar = () => {
                 as={Button}
                 leftIcon={
                   <Avatar
-                    icon={<SaasUIIcon width="14px" color="white" />}
-                    bg="primary.500"
+                    icon={<SaasUIIcon width="14px" color="currentColor" />}
+                    bg="neutral"
+                    color="neutral-fg"
                     size="sm"
                   />
                 }
@@ -211,14 +212,13 @@ export const RecessedSidebar = () => {
               <ToolbarButton
                 label="Add person"
                 icon={<PlusIcon size="1.2em" />}
-                variant="solid"
-                colorScheme="neutral"
+                variant="primary"
                 rounded="full"
               />
             </Toolbar>
           }
           footer={
-            <Tabs mx="-4">
+            <Tabs mx="-4" colorScheme="primary">
               <TabList px="4" borderBottomWidth="1px">
                 <Tab>All</Tab>
                 <Tab>Leads</Tab>

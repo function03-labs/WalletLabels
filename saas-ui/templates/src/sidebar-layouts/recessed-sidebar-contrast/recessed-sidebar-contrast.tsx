@@ -78,7 +78,7 @@ const favourites = [
 export const RecessedSidebarContrast = () => {
   const { colorMode } = useColorMode()
 
-  const Wrapper = colorMode === 'light' ? DarkMode : Box
+  const Wrapper = colorMode === 'light' ? DarkMode : React.Fragment
 
   return (
     <AppShell
