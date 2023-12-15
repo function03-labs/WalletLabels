@@ -121,19 +121,29 @@ export const RecessedSidebarContrast = () => {
             </SidebarSection>
             <SidebarSection flex="1" overflowY="auto" pb="8">
               <NavGroup isCollapsible={false}>
-                <NavItem icon={<Icon as={RiInbox2Fill} boxSize="1.2em" />}>
+                <NavItem
+                  href="#"
+                  icon={<Icon as={RiInbox2Fill} boxSize="1.2em" />}
+                >
                   Inbox
                 </NavItem>
                 <NavItem
+                  href="#"
                   icon={<Icon as={RiTaskFill} boxSize="1.2em" />}
                   isActive
                 >
                   My tasks
                 </NavItem>
-                <NavItem icon={<Icon as={RiFolder4Fill} boxSize="1.2em" />}>
+                <NavItem
+                  href="#"
+                  icon={<Icon as={RiFolder4Fill} boxSize="1.2em" />}
+                >
                   Views
                 </NavItem>
-                <NavItem icon={<Icon as={RiLightbulbFill} boxSize="1.2em" />}>
+                <NavItem
+                  href="#"
+                  icon={<Icon as={RiLightbulbFill} boxSize="1.2em" />}
+                >
                   Insights
                 </NavItem>
               </NavGroup>

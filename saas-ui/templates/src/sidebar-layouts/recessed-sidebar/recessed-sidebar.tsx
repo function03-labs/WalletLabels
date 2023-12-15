@@ -134,13 +134,18 @@ export const RecessedSidebar = () => {
           </SidebarSection>
           <SidebarSection flex="1" overflowY="auto" pb="8">
             <NavGroup isCollapsible={false}>
-              <NavItem icon={<UsersIcon />} isActive variant="left-accent">
+              <NavItem
+                href="#"
+                icon={<UsersIcon />}
+                isActive
+                variant="left-accent"
+              >
                 Contacts
               </NavItem>
-              <NavItem icon={<ListChecksIcon />} variant="left-accent">
+              <NavItem href="#" icon={<ListChecksIcon />} variant="left-accent">
                 Tasks
               </NavItem>
-              <NavItem icon={<LightbulbIcon />} variant="left-accent">
+              <NavItem href="#" icon={<LightbulbIcon />} variant="left-accent">
                 Insights
               </NavItem>
             </NavGroup>
@@ -149,7 +154,6 @@ export const RecessedSidebar = () => {
               {tags.map((tag) => (
                 <NavItem
                   key={tag.id}
-                  id={tag.id}
                   my="0"
                   variant="left-accent"
                   icon={

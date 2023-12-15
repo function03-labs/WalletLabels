@@ -124,7 +124,12 @@ export const SidebarWithNavbar = () => {
               </Menu>
             </NavbarItem>
             <NavbarItem flex="1">
-              <SearchInput size="sm" variant="plain" />
+              <SearchInput
+                size="sm"
+                variant="plain"
+                bg="gray.100"
+                _dark={{ bg: 'whiteAlpha.100' }}
+              />
             </NavbarItem>
           </NavbarContent>
           <NavbarContent as="div" justifyContent="end" spacing="3">
@@ -230,23 +235,31 @@ export const SidebarWithNavbar = () => {
           <SidebarToggleButton />
           <SidebarSection flex="1" overflowY="auto" pb="8">
             <NavGroup>
-              <NavItem icon={<UsersIcon />} isActive>
+              <NavItem href="#" icon={<UsersIcon />} isActive>
                 Overview
               </NavItem>
-              <NavItem icon={<ListChecksIcon />}>Tasks</NavItem>
-              <NavItem icon={<LightbulbIcon />}>Insights</NavItem>
+              <NavItem href="#" icon={<ListChecksIcon />}>
+                Tasks
+              </NavItem>
+              <NavItem href="#" icon={<LightbulbIcon />}>
+                Insights
+              </NavItem>
             </NavGroup>
 
             <NavGroup title="Teams" isCollapsible>
-              <NavItem icon={<ContactIcon />}>Sales</NavItem>
-              <NavItem icon={<HeartHandshakeIcon />}>Support</NavItem>
+              <NavItem href="#" icon={<ContactIcon />}>
+                Sales
+              </NavItem>
+              <NavItem href="#" icon={<HeartHandshakeIcon />}>
+                Support
+              </NavItem>
             </NavGroup>
 
             <NavGroup title="Tags" isCollapsible>
               {tags.map((tag) => (
                 <NavItem
                   key={tag.id}
-                  id={tag.id}
+                  href="#"
                   my="0"
                   icon={
                     <Badge

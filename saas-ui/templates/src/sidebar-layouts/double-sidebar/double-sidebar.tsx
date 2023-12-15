@@ -96,12 +96,14 @@ export const DoubleSidebar: React.FC<DoubleSidebarProps> = (props) => {
               </SidebarSection>
               <SidebarSection flex="1">
                 <NavItem
+                  href="#"
                   icon={<LuHome size="1.2em" />}
                   tooltipProps={tooltipProps}
                 >
                   Home
                 </NavItem>
                 <NavItem
+                  href="#"
                   icon={<LuUsers size="1.2em" />}
                   tooltipProps={tooltipProps}
                   isActive
@@ -109,6 +111,7 @@ export const DoubleSidebar: React.FC<DoubleSidebarProps> = (props) => {
                   Contacts
                 </NavItem>
                 <NavItem
+                  href="#"
                   icon={<LuSettings size="1.2em" />}
                   tooltipProps={tooltipProps}
                 >
@@ -154,16 +157,24 @@ export const DoubleSidebar: React.FC<DoubleSidebarProps> = (props) => {
             </SidebarSection>
             <SidebarSection flex="1" overflowY="auto" pb="8">
               <NavGroup>
-                <NavItem icon={<LuUsers />} isActive>
+                <NavItem href="#" icon={<LuUsers />} isActive>
                   Overview
                 </NavItem>
-                <NavItem icon={<LuListChecks />}>Tasks</NavItem>
-                <NavItem icon={<LuLightbulb />}>Insights</NavItem>
+                <NavItem href="#" icon={<LuListChecks />}>
+                  Tasks
+                </NavItem>
+                <NavItem href="#" icon={<LuLightbulb />}>
+                  Insights
+                </NavItem>
               </NavGroup>
 
               <NavGroup title="Teams" isCollapsible>
-                <NavItem icon={<LuContact />}>Sales</NavItem>
-                <NavItem icon={<LuHeartHandshake />}>Support</NavItem>
+                <NavItem href="#" icon={<LuContact />}>
+                  Sales
+                </NavItem>
+                <NavItem href="#" icon={<LuHeartHandshake />}>
+                  Support
+                </NavItem>
               </NavGroup>
 
               <NavGroup title="Tags" isCollapsible>

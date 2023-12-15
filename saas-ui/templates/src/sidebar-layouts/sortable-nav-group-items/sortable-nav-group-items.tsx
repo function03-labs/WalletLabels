@@ -72,11 +72,15 @@ export const SortableNavGroupItems = () => {
           </SidebarSection>
           <SidebarSection flex="1" overflowY="auto">
             <NavGroup>
-              <NavItem icon={<HomeIcon size="1.2em" />}>Home</NavItem>
-              <NavItem icon={<UsersIcon size="1.2em" />} isActive>
+              <NavItem href="#" icon={<HomeIcon size="1.2em" />}>
+                Home
+              </NavItem>
+              <NavItem href="#" icon={<UsersIcon size="1.2em" />} isActive>
                 Contacts
               </NavItem>
-              <NavItem icon={<SettingsIcon size="1.2em" />}>Settings</NavItem>
+              <NavItem href="#" icon={<SettingsIcon size="1.2em" />}>
+                Settings
+              </NavItem>
             </NavGroup>
             <SortableNavGroup
               title="Tags"
@@ -88,6 +92,7 @@ export const SortableNavGroupItems = () => {
                 <SortableNavItem
                   key={tag.id}
                   id={tag.id}
+                  href="#"
                   my="0"
                   icon={
                     <Badge
