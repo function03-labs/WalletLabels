@@ -11,7 +11,7 @@ export default {
     },
     icon: {
       color: 'sidebar-muted',
-      '.saas-nav-item [data-active] &, .saas-nav-item:not([data-active]):hover &':
+      '.sui-nav-item [data-active] &, .sui-nav-item:not([data-active]):hover &':
         {
           color: 'sidebar-text',
         },

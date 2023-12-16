@@ -86,7 +86,7 @@ const createColorScheme = (
               ),
               'sidebar-muted': transparentizeToken(
                 tokens['sidebar-text'],
-                0.4,
+                0.7,
                 theme,
               ),
               'sidebar-on-muted': transparentizeToken(

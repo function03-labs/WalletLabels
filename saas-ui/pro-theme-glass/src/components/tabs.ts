@@ -11,6 +11,7 @@ const variantSegments = definePartsStyle((props) => {
     tablist: {
       display: 'flex',
       bg: 'gray.100',
+      h: '100px',
       rounded: 4,
       _dark: {
         bg: 'whiteAlpha.50',
@@ -51,6 +52,19 @@ const variantSegments = definePartsStyle((props) => {
       _hover: {
         borderColor: 'transparent',
       },
+      _selected: {
+        ...theme.components.Button.variants.secondary(props),
+        color: 'currentColor',
+      },
+    },
+  }
+})
+
+const variantSegmentsSolid = definePartsStyle((props) => {
+  const { theme } = props
+
+  return {
+    tab: {
       _selected: {
         ...theme.components.Button.variants.secondary(props),
       },
@@ -100,6 +114,7 @@ export const tabsStyles = defineMultiStyleConfig({
   },
   variants: {
     segments: variantSegments,
+    'segments-solid': variantSegmentsSolid,
   },
   sizes,
 })

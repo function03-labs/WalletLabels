@@ -1,0 +1,9 @@
+{
+  "title": "Add contact",
+  "description": "A drawer form component to add a contact",
+  "version": "1.0.0",
+  "canvas": {
+    "center": true,
+    "height": "800px"
+  }
+}

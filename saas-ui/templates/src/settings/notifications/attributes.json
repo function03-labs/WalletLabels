@@ -1,0 +1,8 @@
+{
+  "title": "Notifications card",
+  "public": true,
+  "version": "1.0.0",
+  "canvas": {
+    "center": true
+  }
+}

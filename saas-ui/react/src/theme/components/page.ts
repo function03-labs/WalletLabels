@@ -25,12 +25,10 @@ const baseStyle: PartsStyleFunction<typeof parts> = (props) => {
       justifyContent: 'stretch',
       px: 4,
       minH: 14,
-      borderBottomWidth: '1px',
     },
     headerFooter: {
       py: 2,
       px: 4,
-      borderBottomWidth: '1px',
     },
     title: {
       fontWeight: 'semibold',
@@ -57,9 +55,25 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
   return {
     header: {
       ps: 4,
+      borderBottomWidth: '1px',
+    },
+    headerFooter: {
+      borderBottomWidth: '1px',
     },
     title: {
       me: 4,
+    },
+  }
+}
+
+const variantPlain: PartsStyleFunction<typeof parts> = (props) => {
+  return {
+    header: {
+      ps: 4,
+    },
+    title: {
+      me: 4,
+      fontSize: 'xl',
     },
   }
 }
@@ -147,5 +161,6 @@ export default {
     'default-sidebar': variantDefaultSidebar,
     hero: variantHero,
     settings: variantSettings,
+    plain: variantPlain,
   },
 }

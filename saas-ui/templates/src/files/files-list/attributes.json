@@ -1,0 +1,8 @@
+{
+  "title": "Files list",
+  "version": "1.0.0",
+  "canvas": {
+    "center": true,
+    "maxWidth": "480px"
+  }
+}

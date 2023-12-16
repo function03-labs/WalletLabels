@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Meta } from '@storybook/react'
+
 import {
   closestCenter,
   defaultDropAnimationSideEffects,
@@ -10,37 +10,27 @@ import {
   UniqueIdentifier,
 } from '@dnd-kit/core'
 import { arrayMove, SortableContext, useSortable } from '@dnd-kit/sortable'
-import { Badge, Box, Heading, HStack, Text } from '@chakra-ui/react'
+import { Badge, Box, Text } from '@chakra-ui/react'
 
 import {
-  HomeIcon,
-  UsersIcon,
-  SettingsIcon,
-  HelpCircleIcon,
   GripVerticalIcon,
-  ContactIcon,
-  HeartHandshakeIcon,
-  LightbulbIcon,
-  ListChecksIcon,
+  HomeIcon,
+  SettingsIcon,
+  UsersIcon,
 } from 'lucide-react'
 
 import {
-  AppShell,
-  PersonaAvatar,
   Sidebar,
   NavGroup,
   NavItem,
   SidebarSection,
   NavGroupProps,
   NavItemProps,
+  AppShell,
 } from '@saas-ui/react'
-import { Logo } from '../logo'
 import { CSS } from '@dnd-kit/utilities'
-
-export default {
-  title: 'Templates/Layout/Sidebar',
-  decorators: [(Story) => <Story />],
-} as Meta
+import { Page, PageBody, PageHeader } from '@saas-ui-pro/react'
+import { SaasUILogo } from '@saas-ui/assets'
 
 const tags = [
   {
@@ -68,102 +58,72 @@ const tags = [
   },
 ]
 
-export const SidebarLayout = () => {
+export const SortableNavGroupItems = () => {
   const [sortedTags, setTags] = React.useState(tags)
   return (
     <AppShell
       variant="static"
-      height="680px"
+      height="600px"
+      bg="app-background"
       sidebar={
-        <HStack spacing="0" alignItems="stretch">
-          <Sidebar
-            variant="compact"
-            bg="gray.50"
-            _dark={{ bg: 'gray.800' }}
-            borderWidth="0"
-            spacing="3"
-          >
-            <SidebarSection alignItems="center">
-              <Logo
-                width="24px"
-                color="black"
-                _dark={{ color: 'white' }}
-                mb="1"
-              />
-            </SidebarSection>
-            <SidebarSection flex="1">
-              <NavItem icon={<HomeIcon size="1.2em" />}>Home</NavItem>
-              <NavItem icon={<UsersIcon size="1.2em" />} isActive>
-                Users
+        <Sidebar>
+          <SidebarSection>
+            <SaasUILogo width="100px" />
+          </SidebarSection>
+          <SidebarSection flex="1" overflowY="auto">
+            <NavGroup>
+              <NavItem href="#" icon={<HomeIcon size="1.2em" />}>
+                Home
               </NavItem>
-              <NavItem icon={<SettingsIcon size="1.2em" />}>Settings</NavItem>
-            </SidebarSection>
-            <SidebarSection alignItems="center">
-              <PersonaAvatar src="/showcase-avatar.jpg" size="xs" />
-            </SidebarSection>
-          </Sidebar>
-          <Sidebar>
-            <SidebarSection direction="row" mt="2" px="4">
-              <Heading size="sm" fontWeight="semibold">
+              <NavItem href="#" icon={<UsersIcon size="1.2em" />} isActive>
                 Contacts
-              </Heading>
-            </SidebarSection>
-            <SidebarSection flex="1" overflowY="auto">
-              <NavGroup>
-                <NavItem icon={<UsersIcon />} isActive>
-                  Overview
-                </NavItem>
-                <NavItem icon={<ListChecksIcon />}>Tasks</NavItem>
-                <NavItem icon={<LightbulbIcon />}>Insights</NavItem>
-              </NavGroup>
-
-              <NavGroup title="Teams" isCollapsible>
-                <NavItem icon={<ContactIcon />}>Sales</NavItem>
-                <NavItem icon={<HeartHandshakeIcon />}>Support</NavItem>
-              </NavGroup>
-
-              <SortableNavGroup
-                title="Tags"
-                isCollapsible
-                items={sortedTags}
-                onSorted={setTags}
-              >
-                {sortedTags.map((tag) => (
-                  <SortableNavItem
-                    key={tag.id}
-                    id={tag.id}
-                    my="0"
-                    icon={
-                      <Badge
-                        bg={tag.color || 'transparent'}
-                        boxSize="2"
-                        borderRadius="full"
-                        variant={tag.color ? 'solid' : 'outline'}
-                      />
-                    }
-                  >
-                    <Text>{tag.name}</Text>
+              </NavItem>
+              <NavItem href="#" icon={<SettingsIcon size="1.2em" />}>
+                Settings
+              </NavItem>
+            </NavGroup>
+            <SortableNavGroup
+              title="Tags"
+              isCollapsible
+              items={sortedTags}
+              onSorted={setTags}
+            >
+              {sortedTags.map((tag) => (
+                <SortableNavItem
+                  key={tag.id}
+                  id={tag.id}
+                  href="#"
+                  my="0"
+                  icon={
                     <Badge
-                      opacity="0.6"
+                      bg={tag.color || 'gray.500'}
+                      boxSize="2"
                       borderRadius="full"
-                      bg="none"
-                      ms="auto"
-                      fontWeight="medium"
-                    >
-                      {tag.count}
-                    </Badge>
-                  </SortableNavItem>
-                ))}
-              </SortableNavGroup>
-            </SidebarSection>
-            <SidebarSection>
-              <NavItem icon={<HelpCircleIcon />}>Help &amp; Support</NavItem>
-            </SidebarSection>
-          </Sidebar>
-        </HStack>
+                      variant="solid"
+                    />
+                  }
+                >
+                  <Text>{tag.name}</Text>
+                  <Badge
+                    opacity="0.6"
+                    borderRadius="full"
+                    bg="none"
+                    ms="auto"
+                    fontWeight="medium"
+                  >
+                    {tag.count}
+                  </Badge>
+                </SortableNavItem>
+              ))}
+            </SortableNavGroup>
+          </SidebarSection>
+        </Sidebar>
       }
     >
-      <Box />
+      <Page>
+        <PageHeader title=""></PageHeader>
+        <PageBody></PageBody>
+      </Page>
     </AppShell>
   )
 }
@@ -174,7 +134,8 @@ interface SortableNavGroupProps
   items: any[]
   onSorted?: (fn: (items: any[]) => any[]) => void
 }
-const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
+
+export const SortableNavGroup: React.FC<SortableNavGroupProps> = (props) => {
   const {
     children,
     onDragStart,
