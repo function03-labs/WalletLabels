@@ -103,7 +103,6 @@ export const RecessedSidebar = () => {
       _dark={{ bg: 'gray.900' }}
       sidebar={
         <Sidebar bg="gray.50" _dark={{ bg: 'gray.900' }} borderRightWidth="0">
-          <SidebarToggleButton />
           <SidebarSection pt="3">
             <Menu>
               <MenuButton
@@ -196,16 +195,21 @@ export const RecessedSidebar = () => {
       <Page
         variant="plain"
         mt="4"
-        boxShadow="0 0 6px 0 rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+        boxShadow="0 0 6px 0 rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
         borderTopLeftRadius="md"
         bg="white"
-        zIndex="1"
+        zIndex={{ base: undefined, lg: 'base' }}
         _dark={{
           bg: 'black',
         }}
       >
         <PageHeader
           title="Contacts"
+          nav={
+            <Box w={{ base: '9', lg: '0' }}>
+              <SidebarToggleButton top="7" left="3" />
+            </Box>
+          }
           toolbar={
             <Toolbar>
               <ToolbarButton

@@ -20,20 +20,22 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Text,
+  useBreakpointValue,
 } from '@chakra-ui/react'
 
 import {
-  HomeIcon,
-  UsersIcon,
-  SettingsIcon,
-  HelpCircleIcon,
-  ContactIcon,
-  HeartHandshakeIcon,
-  LightbulbIcon,
-  ListChecksIcon,
-  ChevronsUpDownIcon,
-  BellIcon,
-} from 'lucide-react'
+  LuHome,
+  LuUsers,
+  LuSettings,
+  LuHelpCircle,
+  LuContact,
+  LuHeartHandshake,
+  LuLightbulb,
+  LuListChecks,
+  LuChevronsUpDown,
+  LuBell,
+  LuPlus,
+} from 'react-icons/lu'
 
 import {
   AppShell,
@@ -82,7 +84,51 @@ const tags = [
   },
 ]
 
+const OrganizationMenu = () => {
+  return (
+    <Menu>
+      <MenuButton
+        as={Button}
+        leftIcon={
+          <IconBadge
+            icon={<SaasUIIcon width="16px" color="white" />}
+            variant="solid"
+            bg="black"
+            boxSize="7"
+          />
+        }
+        rightIcon={<LuChevronsUpDown size="1em" />}
+        variant="ghost"
+        textAlign="left"
+        w="full"
+        h="10"
+        px="2"
+      >
+        Acme Corp
+      </MenuButton>
+      <MenuList>
+        <MenuItem
+          icon={
+            <IconBadge
+              icon={<SaasUIIcon width="12px" color="white" />}
+              variant="solid"
+              bg="black"
+              boxSize="6"
+            />
+          }
+        >
+          Acme Corp
+        </MenuItem>
+        <MenuDivider />
+        <MenuItem>Create workspace</MenuItem>
+      </MenuList>
+    </Menu>
+  )
+}
+
 export const SidebarWithNavbar = () => {
+  const isMobile = useBreakpointValue({ base: true, lg: false })
+
   return (
     <AppShell
       variant="static"
@@ -95,34 +141,11 @@ export const SidebarWithNavbar = () => {
           alignItems="start"
         >
           <NavbarContent as={Box} spacing="6" ms={{ base: 10, lg: 0 }}>
-            <NavbarItem width="254px" ms="-3">
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  leftIcon={
-                    <IconBadge
-                      icon={<SaasUIIcon width="16px" color="white" />}
-                      variant="solid"
-                      bg="black"
-                      boxSize="7"
-                    />
-                  }
-                  rightIcon={<ChevronsUpDownIcon size="1em" />}
-                  variant="ghost"
-                  textAlign="left"
-                  w="full"
-                  h="10"
-                  px="2"
-                >
-                  Acme Corp
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>Acme Corp</MenuItem>
-                  <MenuDivider />
-                  <MenuItem>Create workspace</MenuItem>
-                </MenuList>
-              </Menu>
-            </NavbarItem>
+            {!isMobile && (
+              <NavbarItem width="254px" ms="-3">
+                <OrganizationMenu />
+              </NavbarItem>
+            )}
             <NavbarItem flex="1">
               <SearchInput
                 size="sm"
@@ -132,9 +155,13 @@ export const SidebarWithNavbar = () => {
               />
             </NavbarItem>
           </NavbarContent>
-          <NavbarContent as="div" justifyContent="end" spacing="3">
+          <NavbarContent
+            as="div"
+            justifyContent="end"
+            spacing={{ base: 1, lg: 3 }}
+          >
             <NavbarItem>
-              <AvatarGroup size="sm" max={2}>
+              <AvatarGroup size={{ base: 'xs', lg: 'sm' }} max={2}>
                 <PersonaAvatar src="/showcase-avatar.jpg" name="Beatriz" />
                 <PersonaAvatar name="Eelco" />
                 <PersonaAvatar name="Tomasz" />
@@ -151,7 +178,7 @@ export const SidebarWithNavbar = () => {
                     position="relative"
                     px="2"
                   >
-                    <BellIcon size="1.2em" />
+                    <LuBell size="1.2em" />
                     <Badge
                       position="absolute"
                       top="4px"
@@ -209,7 +236,7 @@ export const SidebarWithNavbar = () => {
               <Menu>
                 <MenuButton
                   as={IconButton}
-                  icon={<SettingsIcon size="1.2em" />}
+                  icon={<LuSettings size="1.2em" />}
                   isRound
                   variant="ghost"
                 />
@@ -225,7 +252,13 @@ export const SidebarWithNavbar = () => {
               </Menu>
             </NavbarItem>
             <NavbarItem>
-              <Button variant="primary">Create</Button>
+              {isMobile ? (
+                <IconButton aria-label="Create" variant="primary" isRound>
+                  <LuPlus />
+                </IconButton>
+              ) : (
+                <Button variant="primary">Create</Button>
+              )}
             </NavbarItem>
           </NavbarContent>
         </Navbar>
@@ -233,24 +266,29 @@ export const SidebarWithNavbar = () => {
       sidebar={
         <Sidebar bg="gray.50" _dark={{ bg: 'gray.800' }}>
           <SidebarToggleButton />
+          {isMobile && (
+            <SidebarSection position="absolute" top="2" right="0" width="240px">
+              <OrganizationMenu />
+            </SidebarSection>
+          )}
           <SidebarSection flex="1" overflowY="auto" pb="8">
             <NavGroup>
-              <NavItem href="#" icon={<UsersIcon />} isActive>
+              <NavItem href="#" icon={<LuUsers />} isActive>
                 Overview
               </NavItem>
-              <NavItem href="#" icon={<ListChecksIcon />}>
+              <NavItem href="#" icon={<LuListChecks />}>
                 Tasks
               </NavItem>
-              <NavItem href="#" icon={<LightbulbIcon />}>
+              <NavItem href="#" icon={<LuLightbulb />}>
                 Insights
               </NavItem>
             </NavGroup>
 
             <NavGroup title="Teams" isCollapsible>
-              <NavItem href="#" icon={<ContactIcon />}>
+              <NavItem href="#" icon={<LuContact />}>
                 Sales
               </NavItem>
-              <NavItem href="#" icon={<HeartHandshakeIcon />}>
+              <NavItem href="#" icon={<LuHeartHandshake />}>
                 Support
               </NavItem>
             </NavGroup>

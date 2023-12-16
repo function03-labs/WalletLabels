@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {
   Badge,
+  Box,
   ColorModeProvider,
   DarkMode,
   Heading,
@@ -35,6 +36,7 @@ import {
   NavGroup,
   NavItem,
   SidebarSection,
+  SidebarToggleButton,
 } from '@saas-ui/react'
 import { SaasUIIcon } from '@saas-ui/assets'
 import { Page, PageBody, PageHeader } from '@saas-ui-pro/react'
@@ -91,8 +93,15 @@ export const DoubleSidebar: React.FC<DoubleSidebarProps> = (props) => {
                 bg: 'primary.900',
               }}
             >
-              <SidebarSection alignItems="center" mb="2">
-                <SaasUIIcon width="24px" color="currentColor" />
+              <SidebarSection alignItems="center" mb="2" height="24px">
+                <SidebarToggleButton
+                  zIndex="1401"
+                  display={{ base: 'flex', lg: 'none' }}
+                  left={3}
+                />
+                <Box display={{ base: 'none', lg: 'block' }}>
+                  <SaasUIIcon height="24px" color="currentColor" />
+                </Box>
               </SidebarSection>
               <SidebarSection flex="1">
                 <NavItem

@@ -89,7 +89,6 @@ export const RecessedSidebarContrast = () => {
       sidebar={
         <Wrapper>
           <Sidebar bg="black" _dark={{ bg: 'black' }} borderRightWidth="0">
-            <SidebarToggleButton />
             <SidebarSection pt="3">
               <Menu>
                 <MenuButton
@@ -187,10 +186,26 @@ export const RecessedSidebarContrast = () => {
         boxShadow="0 0 6px 0 rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06)"
         borderTopLeftRadius="md"
         bg="app-background"
-        zIndex="1"
+        zIndex={{ base: undefined, lg: 'base' }}
       >
         <PageHeader
           title="My tasks"
+          nav={
+            <Box w={{ base: '9', lg: '0' }}>
+              <SidebarToggleButton
+                top="7"
+                left="3"
+                sx={{
+                  '&[data-state=open]': {
+                    color: 'white',
+                    _hover: {
+                      bg: 'whiteAlpha.200',
+                    },
+                  },
+                }}
+              />
+            </Box>
+          }
           toolbar={
             <Toolbar>
               <ToolbarButton
