@@ -11,8 +11,6 @@ import {
   Divider,
   Text,
   useDisclosure,
-  useColorModeValue,
-  Box,
   ModalHeader,
   ModalCloseButton,
   Heading,
@@ -23,6 +21,8 @@ import {
   PersonaDetails,
   PersonaLabel,
   PersonaSecondaryLabel,
+  StructuredList,
+  StructuredListItem,
 } from '@saas-ui/react'
 import { SearchInput } from '@saas-ui/react'
 
@@ -84,25 +84,27 @@ export const UserSelectionModal: React.FC<UserSelectorProps> = (props) => {
       <ModalOverlay />
       <ModalContent pt={2}>
         <ModalHeader>
-          <ModalCloseButton />
-          <Heading fontSize="lg" fontWeight={'medium'}>
-            {props.title || 'Select Users'}
-          </Heading>
-          <Text fontSize="sm" fontWeight="normal" color={'gray.500'} mb={2}>
-            {props.description ||
-              'Select users to add or remove them from the project'}
-          </Text>
-          <SearchInput
-            placeholder={props.searchPlaceholder || 'Search...'}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onReset={() => setSearchTerm('')}
-          />
+          <Stack align="left" justify="space-between" dir="column">
+            <ModalCloseButton />
+            <Heading fontSize="lg" fontWeight={'medium'}>
+              {props.title || 'Select Users'}
+            </Heading>
+            <Text fontSize="sm" fontWeight="normal" color={'gray.500'} mb={2}>
+              {props.description ||
+                'Select users to add or remove them from the project'}
+            </Text>
+            <SearchInput
+              placeholder={props.searchPlaceholder || 'Search...'}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onReset={() => setSearchTerm('')}
+            />
+          </Stack>
         </ModalHeader>
         <Divider />
 
-        <Stack overflowY="hidden" maxHeight="700px" gap={0}>
+        <StructuredList overflowY="hidden" maxHeight="700px" gap={0} pt={0}>
           {filteredUsers.map((user) => (
-            <Box
+            <StructuredListItem
               key={user.email}
               bg={
                 selectedUsers.includes(user.email) ? 'gray.50' : 'transparent'
@@ -112,6 +114,7 @@ export const UserSelectionModal: React.FC<UserSelectorProps> = (props) => {
                   ? 'gray.300'
                   : 'transparent',
               }}
+              py={0}
             >
               <ModalBody>
                 <Stack direction="row" justify="space-between">
@@ -123,9 +126,9 @@ export const UserSelectionModal: React.FC<UserSelectorProps> = (props) => {
                   />
                 </Stack>
               </ModalBody>
-            </Box>
+            </StructuredListItem>
           ))}
-        </Stack>
+        </StructuredList>
 
         <Divider />
         <ModalFooter>
