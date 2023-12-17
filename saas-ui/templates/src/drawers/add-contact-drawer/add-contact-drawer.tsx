@@ -36,7 +36,7 @@ export const AddContactDrawer: React.FC<AddUserAddUserDrawerProps> = (
     defaultIsOpen: true,
   })
 
-  const onSubmit = () => {}
+  const onSubmit = () => { }
 
   return (
     <>
