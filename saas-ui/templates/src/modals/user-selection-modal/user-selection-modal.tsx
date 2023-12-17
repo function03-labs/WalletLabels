@@ -10,6 +10,7 @@ import {
   Stack,
   Divider,
   Text,
+  useDisclosure,
   useColorModeValue,
   Box,
   Flex,
@@ -115,11 +116,46 @@ export const UserSelectionModal: React.FC<UserSelectorProps> = (props) => {
           <Button variant="ghost" mr={3} onClick={onClose}>
             Close
           </Button>
-          <Button colorScheme="purple" variant="solid" onClick={() => props.callback && props.callback(users.filter(user => selectedUsers.includes(user.email)))}>
-            Save
+          <Button colorScheme="purple" variant="primary" onClick={() => props.callback && props.callback(users.filter(user => selectedUsers.includes(user.email)))}>
+            Add users
           </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
   );
 };
+
+
+export const UserSelectionModalPreview = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const mockUsers: User[] = [
+    { id: 1, name: 'Horace Torp', email: 'Esta.Gibson@gmail.com', presence: 'busy' },
+    { id: 2, name: 'Louis Bosco', email: 'Trenton1@yahoo.com', presence: 'online' },
+    { id: 3, name: 'Cory Bauch', email: 'Beau_Corwin27@hotmail.com', presence: 'offline' },
+    { id: 4, name: 'Dr. Tyrone Parker', email: 'Johann_Schaden47@gmail.com', presence: 'busy' },
+    { id: 5, name: 'Ora Ryan', email: 'Bernadine91@hotmail.com', presence: 'online' },
+    { id: 6, name: 'Martin Koss IV', email: 'Hardy_Swanaiwski@yahoo.com', presence: 'busy' },
+    { id: 7, name: 'Christian Dach', email: 'Emily.Adams@yahoo.com', presence: 'away' },
+    { id: 8, name: 'Angel Pfeffer', email: 'Horacio_McLaughlin@yahoo.com', presence: 'dnd' },
+    { id: 9, name: 'Kathryn DuBuque', email: 'Manuel22@yahoo.com', presence: 'offline' },
+  ];
+
+  return (
+    <>
+      <button onClick={onOpen}>Open Modal</button>
+      <UserSelectionModal
+        users={mockUsers}
+        isOpen={isOpen}
+        onClose={onClose}
+        title='Select Users'
+        description='Select users to add or remove them from the project'
+        callback={(users) => {
+          const message = `You selected ${users.length} users: ${users.map((user) => user.name).join(', ')}`;
+          alert(message);
+          onClose();
+        }}
+      />
+    </>
+  );
+}
