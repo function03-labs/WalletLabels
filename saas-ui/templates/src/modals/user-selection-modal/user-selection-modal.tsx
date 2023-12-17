@@ -215,7 +215,9 @@ export const UserSelectionModalPreview = () => {
 
   return (
     <>
-      <button onClick={onOpen}>Open Modal</button>
+      <Button onClick={onOpen} variant="primary" colorScheme="purple">
+        Open Modal
+      </Button>
       <UserSelectionModal
         users={mockUsers}
         isOpen={isOpen}
