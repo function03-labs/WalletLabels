@@ -18,10 +18,16 @@
     "paths": {
       "@app/config": ["../../packages/app-config"],
       "@app/features/*": ["./src/features/*"],
-      "@app/nextjs": ["../../packages/app-nextjs/src"]
+      "@app/nextjs": ["../../packages/app-nextjs/src"],
+      "marketing/*": ["../packages/marketing/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next.d.ts", "src"],
+  "include": ["next.d.ts", "src", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "cypress"]
 }

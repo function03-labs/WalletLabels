@@ -52,11 +52,7 @@ export const WorkspacesMenu: React.FC<TenantMenuProps> = (props) => {
   })()
 
   const setWorkspace = (workspace: string) => {
-    router.push({
-      query: {
-        workspace,
-      },
-    })
+    router.push(`/${workspace}`)
   }
 
   return (

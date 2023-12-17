@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 import { useRouter } from '@app/nextjs'
@@ -18,11 +20,11 @@ export const HomePage: React.FC = () => {
 
   React.useEffect(() => {
     if (workspace) {
-      router.push(`/app/${workspace}`)
+      router.push(`/${workspace}`)
     } else if (!isLoading && data?.currentUser?.organizations?.[0]) {
-      router.push(`/app/${data.currentUser.organizations[0].slug}`)
+      router.push(`/${data.currentUser.organizations[0].slug}`)
     } else if (!isLoading) {
-      router.push('/app/getting-started')
+      router.push('/getting-started')
     }
   }, [router, isLoading, data, workspace])
 

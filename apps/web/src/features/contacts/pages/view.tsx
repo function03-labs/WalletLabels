@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 import {
@@ -39,21 +41,24 @@ import {
 } from '@api/client'
 
 interface ContactsViewPageProps {
-  /**
-   * The contact id
-   */
-  id: string
+  params: {
+    workspace: string
+    id: string
+  }
   /**
    * Whether the page is embedded in another page, eg the inbox
    */
   isEmbedded?: boolean
 }
 
-export function ContactsViewPage({ id, isEmbedded }: ContactsViewPageProps) {
+export function ContactsViewPage({
+  params,
+  isEmbedded,
+}: ContactsViewPageProps) {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['Contact', id],
-    queryFn: () => getContact({ id }),
-    enabled: !!id,
+    queryKey: ['Contact', params.id],
+    queryFn: () => getContact({ id: params.id }),
+    enabled: !!params.id,
   })
 
   const isMobile = useBreakpointValue(
@@ -139,7 +144,7 @@ export function ContactsViewPage({ id, isEmbedded }: ContactsViewPageProps) {
             >
               <TabPanel>
                 <ErrorBoundary>
-                  <ActivitiesPanel contactId={id} />
+                  <ActivitiesPanel contactId={params.id} />
                 </ErrorBoundary>
               </TabPanel>
             </TabPanels>

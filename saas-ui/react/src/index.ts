@@ -1,3 +1,5 @@
+'use client'
+
 export {
   BulkActions,
   type BulkActionsProps,
@@ -228,3 +230,4 @@ export {
   useTourDialogContext,
   useTourSpotlight,
 } from '@saas-ui-pro/onboarding'
+export { MotionBox } from './transitions'

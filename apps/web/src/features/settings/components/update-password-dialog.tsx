@@ -32,10 +32,11 @@ export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
   onSuccess = () => null,
   onError = () => null,
   onValidationError,
-  submitLabel,
-  newLabel,
-  label,
-  confirmLabel,
+  title = 'Update your password',
+  submitLabel = 'Update your password',
+  label = 'Current password',
+  newLabel = 'New password',
+  confirmLabel = 'Confirm password',
   helpText,
   children,
   ...formProps
@@ -69,12 +70,4 @@ export const UpdatePasswordDialog: React.FC<UpdatePasswordFormProps> = ({
       </FormLayout>
     </FormDialog>
   )
-}
-
-UpdatePasswordDialog.defaultProps = {
-  title: 'Update your password',
-  submitLabel: 'Update your password',
-  label: 'Current password',
-  newLabel: 'New password',
-  confirmLabel: 'Confirm password',
 }

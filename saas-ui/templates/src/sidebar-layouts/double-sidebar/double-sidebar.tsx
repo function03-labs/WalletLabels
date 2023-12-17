@@ -67,9 +67,7 @@ const tags = [
   },
 ]
 
-interface DoubleSidebarProps {}
-
-export const DoubleSidebar: React.FC<DoubleSidebarProps> = (props) => {
+export const DoubleSidebar: React.FC = () => {
   const { colorMode } = useColorMode()
 
   // Override the tooltip theme back to the active color mode, instead of darkmode.

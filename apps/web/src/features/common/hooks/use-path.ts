@@ -9,7 +9,7 @@ import { useWorkspace } from './use-workspace'
 export const usePath = (path = '/') => {
   const workspace = useWorkspace()
   return React.useMemo(
-    () => `/app/${workspace}/${path}`.replace(/\/\//, '/').replace(/\/$/, ''),
+    () => `/${workspace}/${path}`.replace(/\/\//, '/').replace(/\/$/, ''),
     [path, workspace],
   )
 }

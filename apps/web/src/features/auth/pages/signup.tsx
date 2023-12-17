@@ -1,5 +1,7 @@
+'use client'
+
 import { Container, Stack } from '@chakra-ui/react'
-import { Link } from '@ui/lib'
+import { Link } from '@app/nextjs'
 
 import { SignupView, useAuth } from '@saas-ui/auth'
 import { LoadingOverlay, LoadingSpinner } from '@saas-ui/react'
@@ -9,7 +11,7 @@ export const SignupPage = () => {
 
   if (isAuthenticated) {
     return (
-      <LoadingOverlay>
+      <LoadingOverlay variant="fullscreen">
         <LoadingSpinner />
       </LoadingOverlay>
     )

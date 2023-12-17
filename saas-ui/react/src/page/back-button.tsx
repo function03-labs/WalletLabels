@@ -9,7 +9,7 @@ export interface BackButtonProps extends Omit<IconButtonProps, 'aria-label'> {
 
 export const BackButton = forwardRef<BackButtonProps, 'button'>(
   (props, ref) => {
-    const { href, ...rest } = props
+    const { href, variant = 'ghost', mr = 2, ...rest } = props
     const icon = rest.icon || <ArrowLeftIcon />
 
     let as
@@ -19,18 +19,15 @@ export const BackButton = forwardRef<BackButtonProps, 'button'>(
 
     return (
       <IconButton
+        ref={ref}
         aria-label="back"
         href={href}
         as={as}
         icon={icon}
-        ref={ref}
+        variant={variant}
+        mr={mr}
         {...rest}
       />
     )
   },
 )
-
-BackButton.defaultProps = {
-  variant: 'ghost',
-  mr: 2,
-}

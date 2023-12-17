@@ -78,7 +78,7 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
         onChange={onChange}
         alignSelf="stretch"
       >
-        <Card mb="6" animation={animation(0.2)}>
+        <Card mb="6" animation={animation(0.2)} zIndex="2">
           <CardBody p="6">{children}</CardBody>
         </Card>
 

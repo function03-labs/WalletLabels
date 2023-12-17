@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import {
   FiInbox,
@@ -41,10 +43,19 @@ import { useQuery } from '@tanstack/react-query'
 import { getNotifications, Notification } from '@api/client'
 import { useRouter } from '@app/nextjs'
 
+interface InboxParams {
+  workspace: string
+  id?: string
+}
+
 /**
  * This is a simple wrapper around the ContactsViewPage with an inbox specific toolbar
  */
-function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
+function InboxViewPage(props: {
+  item: Notification
+  params: Required<InboxParams>
+  onBack?: () => void
+}) {
   const toolbar = (
     <Toolbar variant="tertiary">
       <ToolbarButton
@@ -64,7 +75,7 @@ function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
       <PageHeader toolbar={toolbar} />
       <PageBody contentWidth="full" bg="page-body-bg-subtle">
         <Card h="100%">
-          <ContactsViewPage id={props.item?.contactId} isEmbedded />
+          <ContactsViewPage params={props.params} isEmbedded />
         </Card>
       </PageBody>
     </Page>
@@ -72,11 +83,12 @@ function InboxViewPage(props: { item: Notification; onBack?: () => void }) {
 }
 
 export interface InboxListPageProps {
-  id?: string
+  params: InboxParams
 }
 
-export function InboxListPage(props: InboxListPageProps) {
+export function InboxListPage({ params }: InboxListPageProps) {
   const router = useRouter()
+
   const { data, isLoading } = useQuery({
     queryKey: ['Notifications'],
     queryFn: () => getNotifications(),
@@ -88,30 +100,28 @@ export function InboxListPage(props: InboxListPageProps) {
   )
 
   const { isOpen, onOpen, onClose } = useDisclosure({
-    defaultIsOpen: !!props.id,
+    defaultIsOpen: !!params.id,
   })
 
   const [width, setWidth] = useLocalStorage('app.inbox-list.width', 280)
 
   React.useEffect(() => {
-    if (router.isReady && !router.query.id && !isLoading && !isMobile) {
+    if (!params.id && !isLoading && !isMobile) {
       const firstItem = data?.notifications[0]
       if (firstItem) {
         // redirect to the first inbox notification if it's available.
-        router.replace({
-          pathname: `/app/${router.query.workspace}/inbox/${firstItem.id}`,
-        })
+        router.replace(`/${params.workspace}/inbox/${firstItem.id}`)
       }
     }
   }, [router, data, isLoading, isMobile])
 
   React.useEffect(() => {
-    if (props.id) {
+    if (params.id) {
       onOpen()
     }
     // the isMobile dep is needed so that the SplitPage
     // will open again when the screen size changes to lg
-  }, [props.id, isMobile])
+  }, [params.id, isMobile])
 
   const [visibleProps, setVisibleProps] = React.useState<string[]>([])
 
@@ -183,14 +193,21 @@ export function InboxListPage(props: InboxListPageProps) {
   )
 
   let content = <Box />
-  if (props.id) {
-    const item = data?.notifications?.find((item) => item.id === props.id)
+  if (params.id) {
+    const item = data?.notifications?.find((item) => item.id === params.id)
     content = item ? (
-      <InboxViewPage item={item} onBack={() => onClose()} />
+      <InboxViewPage
+        item={item}
+        params={{
+          workspace: params.workspace,
+          id: item.contactId,
+        }}
+        onBack={() => onClose()}
+      />
     ) : (
       <EmptyState
         title="Notification not found"
-        description={`There is no notification with id ${props.id}.`}
+        description={`There is no notification with id ${params.id}.`}
       />
     )
   } else if (!notificationCount) {
