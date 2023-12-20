@@ -75,6 +75,8 @@ export function DashboardPage() {
     ] as const,
     queryFn: ({ queryKey }) => getDashboard(queryKey[1]),
     enabled: !!workspace,
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
   })
 
   const organization = data?.organization
@@ -153,13 +155,15 @@ export function DashboardPage() {
         toolbar={toolbar}
         footer={footer}
       />
-      <PageBody contentWidth="full" bg="page-body-bg-subtle">
+      <PageBody contentWidth="container.2xl" bg="page-body-bg-subtle">
         <IntroTour />
         <Grid
           templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
           gridAutoColumns="fr1"
           width="100%"
           gap="4"
+          pt="4"
+          pb="8"
         >
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <Card>

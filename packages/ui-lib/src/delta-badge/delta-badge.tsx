@@ -32,7 +32,6 @@ export const DeltaBadge: React.FC<
 
   return (
     <Badge
-      {...rest}
       colorScheme={getDeltaColor(deltaType, isIncreasePositive)}
       variant="subtle"
       display="inline-flex"
@@ -40,6 +39,7 @@ export const DeltaBadge: React.FC<
       gap="1"
       rounded="full"
       px="2"
+      {...rest}
     >
       {getDeltaIcon(deltaType)}
       {props.children}
