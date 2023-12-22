@@ -127,7 +127,7 @@ const sales = [
     total: Math.floor(Math.random() * 10000),
   },
   {
-    id: 'gb',
+    id: 'uk',
     country: 'United Kingdom',
     sales: Math.floor(Math.random() * 100),
     total: Math.floor(Math.random() * 10000),
@@ -136,61 +136,78 @@ const sales = [
 
 import { subDays } from 'date-fns'
 
-const activity = [
+const activity: ActivityData[] = [
   {
-    name: 'Helmut Magomedov',
+    contact: {
+      name: 'Helmut Magomedov',
+      avatar: 'https://i.pravatar.cc/100?u=helmut',
+    },
     action: 'signed up',
     date: new Date().toString(),
   },
   {
-    name: 'Dariusz Thomas',
+    contact: {
+      name: 'Dariusz Thomas',
+      avatar: 'https://i.pravatar.cc/100?u=dariusz',
+    },
     action: 'signed up',
     date: subDays(new Date(), 1).toString(),
   },
   {
-    name: 'Christian Amadi',
+    contact: {
+      name: 'Christian Amadi',
+      avatar: 'https://i.pravatar.cc/100?u=christian',
+    },
     action: 'upgraded to Pro',
     date: subDays(new Date(), 1).toString(),
   },
   {
-    name: 'Kanchana Nowak',
+    contact: {
+      name: 'Kanchana Nowak',
+      avatar: 'https://i.pravatar.cc/100?u=kanchana',
+    },
     action: 'signed up',
     date: subDays(new Date(), 1).toString(),
   },
   {
-    name: 'Aisha Njuguna',
+    contact: {
+      name: 'Aisha Njuguna',
+      avatar: 'https://i.pravatar.cc/100?u=aisha',
+    },
     action: 'cancelled subscription',
     date: subDays(new Date(), 2).toString(),
   },
   {
-    name: 'Tomiko Njeri',
+    contact: {
+      name: 'Tomiko Njeri',
+      avatar: 'https://i.pravatar.cc/100?u=tomiko',
+    },
     action: 'signed up',
     date: subDays(new Date(), 2).toString(),
   },
   {
-    name: 'John Doe',
+    contact: {
+      name: 'John Doe',
+      avatar: 'https://i.pravatar.cc/100?u=john',
+    },
     action: 'upgraded to Pro',
     date: subDays(new Date(), 3).toString(),
   },
   {
-    name: 'Jane Smith',
+    contact: {
+      name: 'Jane Smith',
+      avatar: 'https://i.pravatar.cc/100?u=jane',
+    },
     action: 'cancelled subscription',
     date: subDays(new Date(), 4).toString(),
-  },
-  {
-    name: 'Bob Johnson',
-    action: 'signed up',
-    date: subDays(new Date(), 5).toString(),
-  },
-  {
-    name: 'Alice Lee',
-    action: 'upgraded to Pro',
-    date: subDays(new Date(), 6).toString(),
   },
 ]
 
 export interface ActivityData {
-  name: string
+  contact: {
+    name: string
+    avatar?: string
+  }
   action: string
   date: string
 }

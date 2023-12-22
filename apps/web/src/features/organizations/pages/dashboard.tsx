@@ -122,7 +122,7 @@ export function DashboardPage() {
   )
 
   const footer = (
-    <Toolbar justifyContent="flex-start" variant="tertiary" size="xs">
+    <Toolbar justifyContent="flex-start" variant="secondary" size="xs">
       <SegmentedControl
         size="xs"
         segments={[

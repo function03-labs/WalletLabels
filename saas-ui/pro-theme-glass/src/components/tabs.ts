@@ -11,7 +11,6 @@ const variantSegments = definePartsStyle((props) => {
     tablist: {
       display: 'flex',
       bg: 'gray.100',
-      h: '100px',
       rounded: 4,
       _dark: {
         bg: 'whiteAlpha.50',

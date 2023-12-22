@@ -1,6 +1,7 @@
 import { DateTime, RelativeTime } from '@common/i18n'
 import { Text, Tooltip } from '@chakra-ui/react'
 import {
+  PersonaAvatar,
   Timeline,
   TimelineContent,
   TimelineIcon,
@@ -25,14 +26,23 @@ export const Activity = ({ data }: { data: ActivityData[] }) => {
   return (
     <MetricsCard title="Activity">
       <Timeline variant="outline">
-        {data.map(({ name, action, date }, i) => (
+        {data.map(({ contact, action, date }, i) => (
           <TimelineItem key={i}>
             <TimelineSeparator>
-              <TimelineIcon />
+              <TimelineIcon>
+                <PersonaAvatar
+                  src={contact.avatar}
+                  size="2xs"
+                  name={contact.name}
+                />
+              </TimelineIcon>
               {i < data.length - 1 && <TimelineTrack />}
             </TimelineSeparator>
-            <TimelineContent>
-              <strong>{name}</strong> <span>{action}</span>.{' '}
+            <TimelineContent color="muted" pt="1.5">
+              <Text as="span" fontWeight="medium" color="chakra-body-text">
+                {contact.name}
+              </Text>{' '}
+              <span>{action}</span> <span>·</span>{' '}
               <ActivityDate date={new Date(date)} />
             </TimelineContent>
           </TimelineItem>

@@ -4,6 +4,7 @@ import Form from './form'
 import Kbd from './kbd'
 import Tabs from './tabs'
 import Tag from './tag'
+import Tooltip from './tooltip'
 import Stepper from './stepper'
 
 // Saas UI Components
@@ -49,6 +50,7 @@ export const components = {
   Kbd,
   Tabs,
   Tag,
+  Tooltip,
   Stepper,
   ...Form,
 }

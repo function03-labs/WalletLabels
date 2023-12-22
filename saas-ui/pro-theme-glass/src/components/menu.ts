@@ -6,7 +6,7 @@ const { defineMultiStyleConfig, definePartsStyle } =
 
 const baseStyle = definePartsStyle({
   list: {
-    '& .saas-menu-list__filter': {
+    '& .sui-menu-list__filter': {
       mb: 1,
     },
   },

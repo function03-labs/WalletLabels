@@ -23,6 +23,9 @@ export const GlobalSearchInput = forwardRef((props, ref) => {
         _hover: {
           borderColor: 'sidebar-on',
         },
+        _focus: {
+          borderColor: 'sidebar-on',
+        },
         '::placeholder': {
           color: 'sidebar-muted',
         },
@@ -30,6 +33,9 @@ export const GlobalSearchInput = forwardRef((props, ref) => {
           bg: 'sidebar-background',
           borderColor: 'sidebar-border-color',
           _hover: {
+            borderColor: 'sidebar-on',
+          },
+          _focus: {
             borderColor: 'sidebar-on',
           },
         },

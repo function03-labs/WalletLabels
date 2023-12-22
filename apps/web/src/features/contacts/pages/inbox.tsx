@@ -57,7 +57,7 @@ function InboxViewPage(props: {
   onBack?: () => void
 }) {
   const toolbar = (
-    <Toolbar variant="tertiary">
+    <Toolbar variant="secondary">
       <ToolbarButton
         display={{ base: 'inline-flex', lg: 'none' }}
         label="All notifications"
@@ -73,11 +73,7 @@ function InboxViewPage(props: {
   return (
     <Page>
       <PageHeader toolbar={toolbar} />
-      <PageBody contentWidth="full" bg="page-body-bg-subtle">
-        <Card h="100%">
-          <ContactsViewPage params={props.params} isEmbedded />
-        </Card>
-      </PageBody>
+      <ContactsViewPage params={props.params} isEmbedded />
     </Page>
   )
 }
@@ -161,7 +157,8 @@ export function InboxListPage({ params }: InboxListPageProps) {
           as={ToolbarButton}
           leftIcon={<FiSliders />}
           label="Display"
-          variant="tertiary"
+          variant="secondary"
+          size="sm"
         />
         <Portal>
           <MenuList maxW="260px">

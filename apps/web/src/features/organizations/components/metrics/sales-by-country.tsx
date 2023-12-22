@@ -71,7 +71,7 @@ const columns: ColumnDef<Data>[] = [
 
 export const SalesByCountry = ({ data }: any) => {
   return (
-    <MetricsCard title="By country" noPadding>
+    <MetricsCard title="Top countries" noPadding>
       <DataGrid<Data> columns={columns} data={data} isSortable />
     </MetricsCard>
   )

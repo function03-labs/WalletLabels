@@ -294,7 +294,11 @@ const ActivityTimelineComment: React.FC<ActivityTimelineCommentProps> = (
 }
 
 const commentSchema = z.object({
-  comment: z.string().nonempty(),
+  comment: z
+    .string({
+      required_error: 'Please add a comment',
+    })
+    .min(1, 'Please add a comment'),
 })
 
 interface Comment {
@@ -337,6 +341,7 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
 
               formRef.current?.reset()
             }}
+            mode="onSubmit"
           >
             <FormLayout>
               <EditorField
@@ -344,6 +349,10 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
                 border="0"
                 padding="0"
                 placeholder="Write your comment..."
+                bg="transparent"
+                _dark={{
+                  bg: 'transparent',
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && e.metaKey) {
                     submitRef.current?.click()

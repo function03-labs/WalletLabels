@@ -60,6 +60,7 @@
     "@chakra-ui/styled-system": "^2.9.2",
     "@chakra-ui/theme-tools": "^2.1.2",
     "@saas-ui-pro/react": "workspace:*",
+    "@saas-ui/theme": "^2.2.3",
     "@saas-ui/theme-glass": "^0.5.1"
   },
   "peerDependencies": {
