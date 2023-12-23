@@ -69,5 +69,9 @@ export const authService = {
   onLoadUser: async () => {
     return getSession()
   },
-  onGetToken: async () => getSession()?.id,
+  onGetToken: async () => {
+    console.log('getToken', getSession()?.id)
+
+    return getSession()?.id
+  },
 }

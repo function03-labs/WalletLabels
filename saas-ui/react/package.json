@@ -66,9 +66,9 @@
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^23.1.0",
     "@saas-ui-pro/onboarding": "workspace:*",
-    "@saas-ui/forms": "^2.3.4",
+    "@saas-ui/forms": "^2.3.5",
     "@saas-ui/react-utils": "^2.0.1",
-    "@saas-ui/theme": "^2.2.3",
+    "@saas-ui/theme": "^2.3.0",
     "@tanstack/react-table": "^8.11.2",
     "@tanstack/react-virtual": "^3.0.1",
     "date-fns": "^3.0.6",
@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@ngneat/falso": "^2.27.0",
-    "@saas-ui/date-picker": "^0.12.12",
+    "@saas-ui/date-picker": "^0.12.13",
     "react-icons": "^4.12.0",
     "tsup": "^6.7.0"
   }

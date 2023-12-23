@@ -17,7 +17,7 @@ import { useWorkspace } from './use-workspace'
  * Like user data, billing subscription, feature flags, etc.
  **/
 export const useInitApp = () => {
-  const { isLoading, isAuthenticated, isLoggingIn } = useAuth()
+  const { isLoading, isAuthenticated, user, isLoggingIn } = useAuth()
 
   /**
    * Get the workspace (organization slug), from the query params
@@ -31,7 +31,7 @@ export const useInitApp = () => {
   const features = useFeatures()
 
   /**
-   * Load current user and tenant data serially
+   * Load current user and organization (workspace) data serially
    */
   const [
     { data: userData, isFetched: currentUserIsFetched },
@@ -91,7 +91,7 @@ export const useInitApp = () => {
     isInitializing:
       isLoading ||
       isLoggingIn ||
-      (isAuthenticated && !currentUserIsFetched && !organizationIsFetched),
+      (isAuthenticated && (!currentUserIsFetched || !organizationIsFetched)),
     isAuthenticated,
     billing,
   }
