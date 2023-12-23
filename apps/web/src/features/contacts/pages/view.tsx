@@ -136,13 +136,12 @@ export function ContactsViewPage({
               <Tab borderTopRadius="md">Activity</Tab>
             </TabList>
             <TabPanels
-              px="0"
               overflowY="auto"
               maxW="container.xl"
               margin="0 auto"
               flex="1"
             >
-              <TabPanel>
+              <TabPanel px="8">
                 <ErrorBoundary>
                   <ActivitiesPanel contactId={params.id} />
                 </ErrorBoundary>

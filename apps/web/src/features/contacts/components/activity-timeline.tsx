@@ -108,23 +108,26 @@ interface ActivityTimelineItem {
 }
 
 const ActivityTimelineItem: React.FC<ActivityTimelineItem> = (props) => {
-  const { id, icon, contentOffset = '1', children } = props
+  const { id, icon, contentOffset = '0', children } = props
   return (
     <TimelineItem
       as={motion.div}
       id={id}
-      minH="38px"
       overflow="hidden"
       initial={{ opacity: 0, height: 0, minHeight: 0 }}
       animate={{ opacity: 1, height: 'auto' }}
       exit={{ opacity: 0, height: 0, minHeight: 0 }}
       role="group"
+      sx={{
+        '&:first-of-type .sui-timeline__track:first-of-type': { opacity: 0 },
+      }}
     >
       <TimelineSeparator>
+        <TimelineTrack flex="0" />
         <TimelineIcon>{icon}</TimelineIcon>
         <TimelineTrack />
       </TimelineSeparator>
-      <TimelineContent ps="4" pt={contentOffset}>
+      <TimelineContent ps="4" pt={contentOffset} gridColumnEnd={4}>
         {children}
       </TimelineContent>
     </TimelineItem>
@@ -181,7 +184,6 @@ const ActivityTimelineAction: React.FC<ActivityAction> = (props) => {
   return (
     <ActivityTimelineItem
       id={`action-${id}`}
-      contentOffset="2"
       icon={
         <PersonaAvatar
           src={user.avatar}
@@ -244,7 +246,7 @@ const ActivityTimelineComment: React.FC<ActivityTimelineCommentProps> = (
   return (
     <ActivityTimelineItem
       id={`comment-${id}`}
-      contentOffset="0"
+      contentOffset="2"
       icon={
         <PersonaAvatar
           src={user.avatar}
@@ -322,6 +324,7 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
   return (
     <TimelineItem>
       <TimelineSeparator>
+        <TimelineTrack flex="0" />
         <TimelineIcon>
           <PersonaAvatar
             src={user.avatar}
@@ -331,7 +334,7 @@ const ActivityTimelineAddComment: React.FC<ActivityTimelineAddCommentProps> = (
           />
         </TimelineIcon>
       </TimelineSeparator>
-      <TimelineContent ps="4" pt="0">
+      <TimelineContent ps="4" pt="1" w="full">
         <Card py="3" px="4">
           <Form
             schema={commentSchema}
