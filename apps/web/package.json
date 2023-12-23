@@ -28,19 +28,19 @@
     "@saas-ui/date-picker": "^0.12.12",
     "@saas-ui/next-workspaces": "^0.3.0",
     "@saas-ui/react": "^2.4.4",
-    "@tanstack/react-query": "^5.12.2",
-    "@tanstack/react-query-devtools": "^5.13.3",
+    "@tanstack/react-query": "^5.14.2",
+    "@tanstack/react-query-devtools": "^5.14.5",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
     "cookies-next": "^4.1.0",
-    "framer-motion": "^10.16.5",
+    "framer-motion": "^10.16.16",
     "next": "^14.0.4",
     "next-svgr": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14.0.3",
+    "@next/eslint-plugin-next": "^14.0.4",
     "@svgr/webpack": "^5.5.0",
     "webpack": "^5.89.0"
   },

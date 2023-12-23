@@ -69,9 +69,9 @@
     "@saas-ui/forms": "^2.3.4",
     "@saas-ui/react-utils": "^2.0.1",
     "@saas-ui/theme": "^2.2.3",
-    "@tanstack/react-table": "^8.10.7",
+    "@tanstack/react-table": "^8.11.2",
     "@tanstack/react-virtual": "^3.0.1",
-    "date-fns": "^2.30.0",
+    "date-fns": "^3.0.6",
     "polished": "^4.2.2"
   },
   "peerDependencies": {
