@@ -275,7 +275,7 @@ export function ContactsListPage() {
     >
       <SelectButton>Status</SelectButton>
       <Portal>
-        <SelectList>
+        <SelectList zIndex="dropdown">
           <SelectOption value="status">Status</SelectOption>
           <SelectOption value="type">Type</SelectOption>
           <SelectOption value="tags">Tag</SelectOption>
@@ -343,20 +343,19 @@ export function ContactsListPage() {
           size="xs"
           variant="secondary"
         />
-        <Portal>
-          <MenuList maxW="260px">
-            {
-              /* not supported by DataGrid */ view === 'board' ? (
-                <MenuProperty label="Group by" value={groupBySelect} />
-              ) : null
-            }
-            <MenuProperty
-              label="Display properties"
-              value={displayProperties}
-              orientation="vertical"
-            />
-          </MenuList>
-        </Portal>
+
+        <MenuList maxW="260px" zIndex="dropdown">
+          {
+            /* not supported by DataGrid */ view === 'board' ? (
+              <MenuProperty label="Group by" value={groupBySelect} />
+            ) : null
+          }
+          <MenuProperty
+            label="Display properties"
+            value={displayProperties}
+            orientation="vertical"
+          />
+        </MenuList>
       </Menu>
     </Toolbar>
   )
