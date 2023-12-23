@@ -35,7 +35,7 @@ const variantSecondary = defineStyle((props) => {
   const { colorScheme: c, theme } = props
   return {
     ...theme.components.Button.variants.outline(props),
-    bg: 'trasparent',
+    bg: 'transparent',
     _checked: {
       bg: `${c}.100`,
       _dark: {
