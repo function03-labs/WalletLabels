@@ -1,5 +1,11 @@
 # @saas-ui/billing
 
+## 0.11.2
+
+### Patch Changes
+
+- 20ec901: Added use client directives
+
 ## 0.11.1
 
 ### Patch Changes

@@ -1,5 +1,39 @@
 # nextjs-app
 
+## 0.25.0
+
+### Minor Changes
+
+- 232b598: Improved inbox page composition
+- 221c314: Updated to Saas UI 2.5.0
+- 4b7bb9c: Fixed flickering on page load when color mode is loaded
+
+### Patch Changes
+
+- 221c314: Fixed issue where log in screen would briefly render on first load.
+- 38db292: Fixed z-index issue on onboarding steps
+- 6e7142d: Fixed zIndex issue with Display dropdown in inbox list
+- 183fdb7: Updated to Saas UI 2.4.4
+- 183fdb7: Updated to Next 14.0.4
+- Updated dependencies [232b598]
+- Updated dependencies [183fdb7]
+- Updated dependencies [7d899a1]
+- Updated dependencies [20ec901]
+- Updated dependencies [232b598]
+- Updated dependencies [183fdb7]
+- Updated dependencies [183fdb7]
+- Updated dependencies [20ec901]
+- Updated dependencies [8a98a8e]
+- Updated dependencies [4b7bb9c]
+- Updated dependencies [221c314]
+  - @saas-ui-pro/react@0.30.0
+  - @saas-ui-pro/feature-flags@0.14.2
+  - @ui/lib@6.0.0
+  - @saas-ui-pro/onboarding@0.13.3
+  - @saas-ui-pro/billing@0.11.2
+  - @app/nextjs@0.5.1
+  - @ui/theme@6.0.0
+
 ## 0.24.2
 
 ### Patch Changes

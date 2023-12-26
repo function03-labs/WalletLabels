@@ -1,7 +1,7 @@
 {
   "name": "@saas-ui-pro/kanban-core",
   "description": "Unstyled kanban core components for React",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "exports": {
     ".": {
       "require": "./dist/index.js",

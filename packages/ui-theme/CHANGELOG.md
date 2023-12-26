@@ -1,5 +1,26 @@
 # @ui/theme
 
+## 6.0.0
+
+### Minor Changes
+
+- 221c314: Updated to Saas UI 2.5.0
+
+### Patch Changes
+
+- Updated dependencies [232b598]
+- Updated dependencies [20ec901]
+- Updated dependencies [232b598]
+- Updated dependencies [232b598]
+- Updated dependencies [183fdb7]
+- Updated dependencies [20ec901]
+- Updated dependencies [232b598]
+- Updated dependencies [8a98a8e]
+- Updated dependencies [4b7bb9c]
+- Updated dependencies [221c314]
+  - @saas-ui-pro/react@0.30.0
+  - @saas-ui-pro/theme-glass@0.9.0
+
 ## 5.0.2
 
 ### Patch Changes
