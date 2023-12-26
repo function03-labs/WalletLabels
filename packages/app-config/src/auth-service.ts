@@ -70,8 +70,6 @@ export const authService = {
     return getSession()
   },
   onGetToken: async () => {
-    console.log('getToken', getSession()?.id)
-
     return getSession()?.id
   },
 }

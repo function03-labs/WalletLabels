@@ -1,198 +1,56 @@
 import React from 'react'
-import {
-  ButtonGroup,
-  ButtonProps,
-  HTMLChakraProps,
-  chakra,
-  useMergeRefs,
-} from '@chakra-ui/react'
+import { ButtonGroup, HTMLChakraProps, forwardRef } from '@chakra-ui/react'
 
-import { forwardRef } from '@chakra-ui/react'
-import { cx, dataAttr } from '@chakra-ui/utils'
-import { useKanbanContext } from './kanban-context'
-import { UniqueIdentifier } from '@dnd-kit/core'
-import { CSS } from '@dnd-kit/utilities'
-import {
-  SortableContext,
-  horizontalListSortingStrategy,
-  useSortable,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
-import { createContext } from '@chakra-ui/react-utils'
-import { animateLayoutChanges } from './utilities/animate-layout-changes'
 import { KanbanActionProps, KanbanHandle } from './kanban-action'
 
-export type KanbanColumnContext = ReturnType<typeof useKanbanColumn>
+import {
+  KanbanColumn as KanbanColumnCore,
+  type KanbanColumnProps as KanbanColumnCoreProps,
+  KanbanColumnHeader as KanbanColumnHeaderCore,
+  KanbanColumnBody as KanbanColumnBodyCore,
+  useKanbanColumnContext,
+} from '@saas-ui-pro/kanban-core'
+import { factory } from './utilities/factory'
 
-export const [KanbanColumnProvider, useKanbanColumnContext] =
-  createContext<KanbanColumnContext>()
-
-const useKanbanColumn = (props: KanbanColumnProps) => {
-  const { id, orientation, isDisabled } = props
-  const { items } = useKanbanContext()
-
-  const columnItems = items[id] ?? []
-
-  const {
-    active,
-    attributes,
-    isDragging,
-    listeners,
-    over,
-    setNodeRef,
-    transition,
-    transform,
-  } = useSortable({
-    id,
-    data: {
-      type: 'Column',
-      children: columnItems,
-    },
-    animateLayoutChanges,
-  })
-
-  const isOverColumn = over
-    ? (id === over.id && active?.data.current?.type !== 'Column') ||
-      columnItems.includes(over.id)
-    : false
-
-  return {
-    id,
-    orientation,
-    items: columnItems,
-    columnRef: isDisabled ? undefined : setNodeRef,
-    getColumnProps: React.useCallback(
-      () => ({
-        transition,
-        transform: CSS.Translate.toString(transform),
-        ['data-dragging']: dataAttr(isDragging),
-        ['data-over']: dataAttr(isOverColumn),
-      }),
-      [transition, transform, isDragging, isOverColumn],
-    ),
-    getHandleProps: React.useCallback(
-      () => ({
-        ...attributes,
-        ...listeners,
-      }),
-      [attributes, listeners],
-    ),
-  }
-}
-
-export interface KanbanColumnProps extends Omit<HTMLChakraProps<'div'>, 'id'> {
-  id: UniqueIdentifier
-  isDisabled?: boolean
+export interface KanbanColumnProps
+  extends Omit<KanbanColumnCoreProps, 'color'>,
+    Omit<HTMLChakraProps<'div'>, 'id'> {
   children: React.ReactNode
-  columns?: number
-  orientation?: 'horizontal' | 'vertical'
 }
 
-export const KanbanColumn = forwardRef<KanbanColumnProps, 'div'>(
-  (props, ref) => {
-    const {
-      id,
-      children,
-      columns = 1,
-      orientation,
-      onClick,
-      style,
-      isDisabled,
-      ...rest
-    } = props
-
-    const columnStyles = {
-      display: 'flex',
-      flexDirection: orientation === 'horizontal' ? 'row' : 'column',
-      flex: 1,
-      padding: '0.5rem',
-      borderRadius: '0.25rem',
-      minWidth: '280px',
-      minHeight: '1px',
-    }
-
-    const context = useKanbanColumn(props)
-
-    return (
-      <KanbanColumnProvider value={context}>
-        <chakra.div
-          {...rest}
-          ref={useMergeRefs(ref, context.columnRef)}
-          __css={columnStyles}
-          style={
-            {
-              ...style,
-              '--columns': columns,
-            } as React.CSSProperties
-          }
-          onClick={onClick}
-          tabIndex={onClick ? 0 : undefined}
-          className={cx('sui-kanban__column', props.className)}
-          {...context.getColumnProps()}
-        >
-          {children}
-        </chakra.div>
-      </KanbanColumnProvider>
-    )
+export const KanbanColumn = factory<KanbanColumnProps, typeof KanbanColumnCore>(
+  KanbanColumnCore,
+  {
+    display: 'flex',
+    flex: 1,
+    padding: '0.5rem',
+    borderRadius: '0.25rem',
+    minWidth: '280px',
+    minHeight: '1px',
+    flexDirection: 'column',
+    _horizontal: {
+      flexDirection: 'row',
+    },
   },
 )
 
-export const KanbanColumnBody: React.FC<HTMLChakraProps<'div'>> = (props) => {
-  const { children, ...rest } = props
-  const { orientation, items } = useKanbanColumnContext()
+export const KanbanColumnBody = factory<
+  HTMLChakraProps<'ul'>,
+  typeof KanbanColumnBodyCore
+>(KanbanColumnBodyCore)
 
-  const isVertical = orientation !== 'horizontal'
-
-  const bodyStyles = {
-    flex: 1,
-    ...(isVertical ? { overflowX: 'auto' } : { overflowY: 'auto' }),
-  }
-
-  const strategy = isVertical
-    ? verticalListSortingStrategy
-    : horizontalListSortingStrategy
-
-  return (
-    <chakra.ul
-      {...rest}
-      className={cx('sui-kanban__column-body', props.className)}
-      __css={bodyStyles}
-    >
-      <SortableContext
-        disabled={!items?.length}
-        items={items}
-        strategy={strategy}
-      >
-        {children}
-      </SortableContext>
-    </chakra.ul>
-  )
-}
-
-export const KanbanColumnHeader: React.FC<HTMLChakraProps<'header'>> = (
-  props,
-) => {
-  const { children, ...rest } = props
-  const styles = {
-    header: {
-      display: 'flex',
-      justifyContent: 'space-between',
-    },
-  }
-  return (
-    <chakra.header __css={styles.header} {...rest}>
-      {children}
-    </chakra.header>
-  )
-}
+export const KanbanColumnHeader = factory<
+  HTMLChakraProps<'div'>,
+  typeof KanbanColumnHeaderCore
+>(KanbanColumnHeaderCore, {
+  display: 'flex',
+  justifyContent: 'space-between',
+})
 
 export const KanbanColumnActions = ButtonGroup
 
 export interface KanbanColumnDragHandleProps extends KanbanActionProps {}
 
-/**
- *
- */
 export const KanbanColumnDragHandle = forwardRef<
   KanbanColumnDragHandleProps,
   'button'

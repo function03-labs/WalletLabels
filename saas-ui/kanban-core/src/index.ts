@@ -1,14 +1,27 @@
+export type { UniqueIdentifier } from '@dnd-kit/core'
+export { KanbanProvider, useKanbanContext } from './kanban-context'
 export { Kanban, type KanbanProps } from './kanban-container'
+export {
+  type KanbanItems,
+  type UseKanbanContainerProps,
+  type UseKanbanContainerReturn,
+  type OnCardDragEndHandler,
+  type OnColumnDragEndHandler,
+  useKanbanContainer,
+} from './use-kanban-container'
 export {
   KanbanColumn,
   KanbanColumnActions,
   KanbanColumnBody,
+  type KanbanColumnContext,
   KanbanColumnHeader,
   type KanbanColumnProps,
+  KanbanColumnProvider,
+  useKanbanColumnContext,
   KanbanColumnDragHandle,
   type KanbanColumnDragHandleProps,
 } from './kanban-column'
-export { KanbanCard, type KanbanCardProps } from './kanban-card'
+export { KanbanItem, type KanbanItemProps } from './kanban-item'
 export {
   KanbanAction,
   KanbanHandle,
@@ -19,18 +32,3 @@ export {
   type KanbanDragOverlayProps,
 } from './kanban-drag-overlay'
 export { KanbanTrash } from './kanban-trash'
-
-export {
-  type UniqueIdentifier,
-  KanbanProvider,
-  useKanbanContext,
-  type KanbanItems,
-  type UseKanbanContainerProps,
-  type UseKanbanContainerReturn,
-  type OnCardDragEndHandler,
-  type OnColumnDragEndHandler,
-  useKanbanContainer,
-  type KanbanColumnContext,
-  KanbanColumnProvider,
-  useKanbanColumnContext,
-} from '@saas-ui-pro/kanban-core'

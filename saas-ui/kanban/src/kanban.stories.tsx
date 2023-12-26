@@ -10,18 +10,20 @@ import {
 
 import { createRange } from './utilities/create-range'
 import { Button, Card, CardBody, Spacer } from '@chakra-ui/react'
+
+import {
+  useKanbanContext,
+  KanbanItems,
+  OnCardDragEndHandler,
+  OnColumnDragEndHandler,
+} from '@saas-ui-pro/kanban-core'
+
 import {
   KanbanColumnBody,
   KanbanColumnDragHandle,
   KanbanColumnHeader,
 } from './kanban-column'
 import { KanbanCardProps } from './kanban-card'
-import { useKanbanContext } from './kanban-context'
-import {
-  KanbanItems,
-  OnCardDragEndHandler,
-  OnColumnDragEndHandler,
-} from './use-kanban-container'
 import { KanbanTrash } from './kanban-trash'
 
 export default {
@@ -151,7 +153,7 @@ function DraggableBoardColumn({
 
   return (
     <KanbanColumn id={id} {...props}>
-      <KanbanColumnHeader>
+      <KanbanColumnHeader alignItems="center" pb="2">
         {columns[id]?.title} ({items[id]?.length})
         <Spacer />
         <KanbanColumnDragHandle />
