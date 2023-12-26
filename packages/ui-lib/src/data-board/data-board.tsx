@@ -200,13 +200,19 @@ interface BoardCardProps {
   render: (item: Row<any>) => React.ReactNode
 }
 
-const BoardCard = React.memo(function BoardCard({
-  item,
-  render,
-}: BoardCardProps) {
-  return item ? (
-    <KanbanCard key={item.id} id={item.id}>
-      {flexRender(render, item)}
-    </KanbanCard>
-  ) : null
-})
+const BoardCard = React.memo(
+  function BoardCard({ item, render }: BoardCardProps) {
+    return item ? (
+      <KanbanCard key={item.id} id={item.id}>
+        {flexRender(render, item)}
+      </KanbanCard>
+    ) : null
+  },
+  (prevProps, nextProps) => {
+    // Only re-render if the item data has changed.
+    if (prevProps.item.original !== nextProps.item.original) {
+      return false
+    }
+    return true
+  },
+)
