@@ -184,6 +184,7 @@ export function DashboardPage() {
                       height="auto"
                       textAlign="left"
                       borderBottomWidth="1px"
+                      borderRightWidth="1px"
                       _hover={{
                         bg: 'whiteAlpha.100',
                         _dark: {
@@ -192,8 +193,11 @@ export function DashboardPage() {
                       }}
                       _selected={{
                         borderBottomWidth: '2px',
-                        borderColor: 'primary.500',
+                        borderBottomColor: 'primary.500',
                         display: 'flex',
+                      }}
+                      _last={{
+                        borderRightWidth: '0',
                       }}
                     >
                       <Metric {...metric} />

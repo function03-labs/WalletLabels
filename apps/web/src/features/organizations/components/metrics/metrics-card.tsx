@@ -18,7 +18,7 @@ export const MetricsCard: React.FC<MetricsCard> = (props) => {
     <Card {...rest}>
       {title && (
         <CardHeader>
-          <Heading size="sm" fontWeight="medium">
+          <Heading as="h3" size="sm" fontWeight="medium">
             {title}
           </Heading>
         </CardHeader>

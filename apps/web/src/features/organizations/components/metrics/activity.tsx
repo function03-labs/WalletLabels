@@ -29,6 +29,7 @@ export const Activity = ({ data }: { data: ActivityData[] }) => {
         {data.map(({ contact, action, date }, i) => (
           <TimelineItem key={i}>
             <TimelineSeparator>
+              {i > 0 && <TimelineTrack />}
               <TimelineIcon>
                 <PersonaAvatar
                   src={contact.avatar}
@@ -38,7 +39,7 @@ export const Activity = ({ data }: { data: ActivityData[] }) => {
               </TimelineIcon>
               {i < data.length - 1 && <TimelineTrack />}
             </TimelineSeparator>
-            <TimelineContent color="muted" pt="1.5">
+            <TimelineContent color="muted">
               <Text as="span" fontWeight="medium" color="chakra-body-text">
                 {contact.name}
               </Text>{' '}
