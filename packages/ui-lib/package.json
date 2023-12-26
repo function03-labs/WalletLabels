@@ -15,7 +15,7 @@
     "@react-hookz/web": "^23.1.0",
     "@saas-ui-pro/kanban": "^0.3.4",
     "@saas-ui/assets": "^1.0.0",
-    "@saas-ui/date-picker": "^0.12.14",
+    "@saas-ui/date-picker": "^0.12.15",
     "@saas-ui/forms": "^2.3.6",
     "@tanstack/react-table": "^8.11.2",
     "@tiptap/core": "^2.1.13",
