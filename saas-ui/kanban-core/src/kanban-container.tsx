@@ -1,7 +1,5 @@
-import React from 'react'
-import { HTMLChakraProps, chakra, forwardRef } from '@chakra-ui/react'
-import { cx, runIfFn } from '@chakra-ui/utils'
-import { MaybeRenderProp } from '@chakra-ui/react-utils'
+import React, { forwardRef } from 'react'
+import { HTMLPulseProps, pulse } from './utilities/factory'
 
 import { DndContext } from '@dnd-kit/core'
 import {
@@ -14,18 +12,21 @@ import {
   horizontalListSortingStrategy,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
+import { MaybeRenderProp } from './types'
+import { cx } from './utilities/cx'
+import { runIfFn } from './utilities/run-if-fn'
 
 export interface KanbanProps
   extends UseKanbanContainerProps,
-    Omit<HTMLChakraProps<'div'>, 'children' | 'onChange'> {
+    Omit<HTMLPulseProps<'div'>, 'children' | 'onChange'> {
   orientation?: 'horizontal' | 'vertical'
   children: MaybeRenderProp<ReturnType<typeof useKanbanContainer>>
   isSortable?: boolean
 }
 
-export const Kanban = forwardRef<KanbanProps, 'div'>((props, ref) => {
+export const Kanban = forwardRef<HTMLDivElement, KanbanProps>((props, ref) => {
   const {
-    orientation,
+    orientation = 'horizontal',
     children,
     isSortable,
     items,
@@ -42,19 +43,13 @@ export const Kanban = forwardRef<KanbanProps, 'div'>((props, ref) => {
 
   const isVertical = orientation === 'vertical'
 
-  const containerStyles = {
-    display: 'inline-grid',
-    boxSizing: 'border-box',
-    gridAutoFlow: isVertical ? 'row' : 'column',
-  }
-
   return (
     <KanbanProvider value={context}>
       <DndContext {...getDndContextProps()}>
-        <chakra.div
+        <pulse.div
           ref={ref}
-          __css={containerStyles}
           {...rest}
+          data-orientation={orientation}
           className={cx('sui-kanban', rest.className)}
         >
           <SortableContext
@@ -68,7 +63,7 @@ export const Kanban = forwardRef<KanbanProps, 'div'>((props, ref) => {
           >
             {runIfFn(children, context)}
           </SortableContext>
-        </chakra.div>
+        </pulse.div>
       </DndContext>
     </KanbanProvider>
   )

@@ -6192,19 +6192,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@saas-ui-pro/kanban-core@workspace:*, @saas-ui-pro/kanban-core@workspace:saas-ui/kanban-core":
+  version: 0.0.0-use.local
+  resolution: "@saas-ui-pro/kanban-core@workspace:saas-ui/kanban-core"
+  dependencies:
+    "@dnd-kit/core": ^6.1.0
+    "@dnd-kit/sortable": ^7.0.2
+    "@dnd-kit/utilities": ^3.2.2
+    "@zag-js/core": ^0.31.1
+    react-icons: ^4.12.0
+    tsup: ^6.7.0
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  languageName: unknown
+  linkType: soft
+
 "@saas-ui-pro/kanban@^0.3.4, @saas-ui-pro/kanban@workspace:saas-ui/kanban":
   version: 0.0.0-use.local
   resolution: "@saas-ui-pro/kanban@workspace:saas-ui/kanban"
   dependencies:
-    "@chakra-ui/anatomy": ^2.2.2
-    "@chakra-ui/react-utils": ^2.0.12
-    "@chakra-ui/styled-system": ^2.9.2
-    "@chakra-ui/system": ^2.6.2
-    "@chakra-ui/theme-tools": ^2.1.2
-    "@chakra-ui/utils": ^2.0.15
-    "@dnd-kit/core": ^6.1.0
-    "@dnd-kit/sortable": ^7.0.2
-    "@saas-ui/react-utils": ^2.0.1
+    "@saas-ui-pro/kanban-core": "workspace:*"
     react-icons: ^4.12.0
     tsup: ^6.7.0
   peerDependencies:
@@ -9479,6 +9487,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@zag-js/core@npm:^0.31.1":
+  version: 0.31.1
+  resolution: "@zag-js/core@npm:0.31.1"
+  dependencies:
+    "@zag-js/store": 0.31.1
+    klona: 2.0.6
+  checksum: 4ac01005a96eb08109039df0e416466e78aa7741d6e37375f64d2648309d5f8131c0fc76e509124a58145b39de067840eae1c786e8ab45425b4f83961332b24c
+  languageName: node
+  linkType: hard
+
 "@zag-js/dom-query@npm:0.16.0":
   version: 0.16.0
   resolution: "@zag-js/dom-query@npm:0.16.0"
@@ -9552,6 +9570,15 @@ __metadata:
   dependencies:
     proxy-compare: 2.5.1
   checksum: cb57f248bafeaa55f9c53287eabc7596cc8cbf23612086f0349507c48a14f79eb4c647dcf38365318f417b6bd017ad1786d3b241c7166ffc7eafa142d9deea1e
+  languageName: node
+  linkType: hard
+
+"@zag-js/store@npm:0.31.1":
+  version: 0.31.1
+  resolution: "@zag-js/store@npm:0.31.1"
+  dependencies:
+    proxy-compare: 2.5.1
+  checksum: 79e30b9ebabe559070b66a1869cdbd6e3c815435a9f6148719d46656d0f5c7c8980b2728da3a8dfb9eb4a6c2258ae06b3afad445e5681c38fb76b006150b9c41
   languageName: node
   linkType: hard
 

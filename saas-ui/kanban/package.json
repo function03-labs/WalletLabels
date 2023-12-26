@@ -32,14 +32,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@chakra-ui/anatomy": "^2.2.2",
-    "@chakra-ui/react-utils": "^2.0.12",
-    "@chakra-ui/styled-system": "^2.9.2",
-    "@chakra-ui/system": "^2.6.2",
-    "@chakra-ui/theme-tools": "^2.1.2",
-    "@chakra-ui/utils": "^2.0.15",
-    "@saas-ui-pro/kanban-core": "workspace:*",
-    "@saas-ui/react-utils": "^2.0.1"
+    "@saas-ui-pro/kanban-core": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.1",

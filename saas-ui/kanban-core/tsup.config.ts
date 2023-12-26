@@ -1,22 +1,14 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  target: 'node14',
+  target: 'node18',
   dts: {
     resolve: true,
   },
   clean: true,
+  minify: true,
   sourcemap: true,
-  external: [
-    'react',
-    '@chakra-ui/anatomy',
-    '@chakra-ui/react',
-    '@chakra-ui/system',
-    '@chakra-ui/utils',
-    '@chakra-ui/react-utils',
-    '@chakra-ui/theme-tools',
-    '@saas-ui/react-utils',
-  ],
+  external: ['react'],
   format: ['esm', 'cjs'],
   banner: {
     js: "'use client'",

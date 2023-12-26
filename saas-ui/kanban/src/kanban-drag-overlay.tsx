@@ -1,23 +1,12 @@
 import { Portal, PortalProps } from '@chakra-ui/react'
-import {
-  DragOverlay,
-  DragOverlayProps,
-  DropAnimation,
-  defaultDropAnimationSideEffects,
-} from '@dnd-kit/core'
 
-const dropAnimation: DropAnimation = {
-  sideEffects: defaultDropAnimationSideEffects({
-    styles: {
-      active: {
-        opacity: '0.5',
-      },
-    },
-  }),
-}
+import {
+  KanbanDragOverlay as KanbanDragOverlayCore,
+  type KanbanDragOverlayProps as KanbanDragOverlayCoreProps,
+} from '@saas-ui-pro/kanban-core'
 
 export interface KanbanDragOverlayProps
-  extends DragOverlayProps,
+  extends KanbanDragOverlayCoreProps,
     Omit<PortalProps, 'children'> {}
 
 export const KanbanDragOverlay: React.FC<KanbanDragOverlayProps> = (props) => {
@@ -25,7 +14,7 @@ export const KanbanDragOverlay: React.FC<KanbanDragOverlayProps> = (props) => {
     children,
     containerRef,
     appendToParentPortal,
-    dropAnimation: dropAnimationProp,
+    dropAnimation,
     ...rest
   } = props
   return (
@@ -33,9 +22,9 @@ export const KanbanDragOverlay: React.FC<KanbanDragOverlayProps> = (props) => {
       containerRef={containerRef}
       appendToParentPortal={appendToParentPortal}
     >
-      <DragOverlay {...rest} dropAnimation={dropAnimationProp ?? dropAnimation}>
+      <KanbanDragOverlayCore {...rest} dropAnimation={dropAnimation}>
         {children}
-      </DragOverlay>
+      </KanbanDragOverlayCore>
     </Portal>
   )
 }

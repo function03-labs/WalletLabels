@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { HTMLArkProps, ark } from '@ark-ui/react'
+import { HTMLPulseProps, pulse } from './utilities/factory'
 
 import { useKanbanContext } from './kanban-context'
 import { UniqueIdentifier } from '@dnd-kit/core'
@@ -22,7 +22,7 @@ const KanbanColumnContext = React.createContext<KanbanColumnContext | null>(
   null,
 )
 
-const useKanbanColumnContext = () => {
+export const useKanbanColumnContext = () => {
   const context = React.useContext(KanbanColumnContext)
 
   if (!context) {
@@ -35,7 +35,7 @@ const useKanbanColumnContext = () => {
 export const KanbanColumnProvider = KanbanColumnContext.Provider
 
 const useKanbanColumn = (props: KanbanColumnProps) => {
-  const { id, orientation, isDisabled } = props
+  const { id, orientation = 'vertical', isDisabled, columns = 1, style } = props
   const { items } = useKanbanContext()
 
   const columnItems = items[id] ?? []
@@ -70,8 +70,12 @@ const useKanbanColumn = (props: KanbanColumnProps) => {
     columnRef: isDisabled ? null : setNodeRef,
     getColumnProps: React.useCallback(
       () => ({
-        transition,
-        transform: CSS.Translate.toString(transform),
+        style: {
+          ...style,
+          '--columns': columns,
+          transition,
+          transform: CSS.Translate.toString(transform),
+        } as React.CSSProperties,
         ['data-orientation']: orientation,
         ['data-dragging']: dataAttr(isDragging),
         ['data-over']: dataAttr(isOverColumn),
@@ -88,7 +92,7 @@ const useKanbanColumn = (props: KanbanColumnProps) => {
   }
 }
 
-export interface KanbanColumnProps extends Omit<HTMLArkProps<'div'>, 'id'> {
+export interface KanbanColumnProps extends Omit<HTMLPulseProps<'div'>, 'id'> {
   id: UniqueIdentifier
   isDisabled?: boolean
   children: React.ReactNode
@@ -98,43 +102,31 @@ export interface KanbanColumnProps extends Omit<HTMLArkProps<'div'>, 'id'> {
 
 export const KanbanColumn = forwardRef<HTMLDivElement, KanbanColumnProps>(
   (props, ref) => {
-    const {
-      id,
-      children,
-      columns = 1,
-      orientation = 'horizontal',
-      onClick,
-      style,
-      isDisabled,
-      ...rest
-    } = props
+    const { id, children, onClick, isDisabled, ...rest } = props
 
     const context = useKanbanColumn(props)
 
     return (
       <KanbanColumnProvider value={context}>
-        <ark.div
+        <pulse.div
           {...rest}
           ref={useMergeRefs(ref, context.columnRef as any)}
-          style={
-            {
-              ...style,
-              '--columns': columns,
-            } as React.CSSProperties
-          }
           onClick={onClick}
           tabIndex={onClick ? 0 : undefined}
           className={cx('sui-kanban__column', props.className)}
           {...context.getColumnProps()}
         >
           {children}
-        </ark.div>
+        </pulse.div>
       </KanbanColumnProvider>
     )
   },
 )
 
-export const KanbanColumnBody: React.FC<HTMLArkProps<'ul'>> = (props) => {
+export const KanbanColumnBody = forwardRef<
+  HTMLUListElement,
+  HTMLPulseProps<'ul'>
+>((props, ref) => {
   const { children, ...rest } = props
   const { orientation, items } = useKanbanColumnContext()
 
@@ -145,8 +137,9 @@ export const KanbanColumnBody: React.FC<HTMLArkProps<'ul'>> = (props) => {
     : horizontalListSortingStrategy
 
   return (
-    <ark.ul
+    <pulse.ul
       {...rest}
+      ref={ref}
       className={cx('sui-kanban__column-body', props.className)}
     >
       <SortableContext
@@ -156,37 +149,41 @@ export const KanbanColumnBody: React.FC<HTMLArkProps<'ul'>> = (props) => {
       >
         {children}
       </SortableContext>
-    </ark.ul>
+    </pulse.ul>
   )
-}
+})
 
 export const KanbanColumnHeader = forwardRef<
   HTMLDivElement,
-  HTMLArkProps<'header'>
+  HTMLPulseProps<'header'>
 >((props, ref) => {
   const { children, ...rest } = props
 
   return (
-    <ark.header ref={ref} {...rest}>
+    <pulse.header
+      ref={ref}
+      {...rest}
+      className={cx('sui-kanban__column-header', props.className)}
+    >
       {children}
-    </ark.header>
+    </pulse.header>
   )
 })
 
 export const KanbanColumnActions = forwardRef<
   HTMLDivElement,
-  HTMLArkProps<'div'>
+  HTMLPulseProps<'div'>
 >((props, ref) => {
   const { children, ...rest } = props
 
   return (
-    <ark.div
+    <pulse.div
       ref={ref}
       {...rest}
       className={cx('sui-kanban__column-actions', props.className)}
     >
       {children}
-    </ark.div>
+    </pulse.div>
   )
 })
 

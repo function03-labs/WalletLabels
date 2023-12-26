@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react'
 
-import { ark, HTMLArkProps } from '@ark-ui/react'
+import { pulse, HTMLPulseProps } from './utilities/factory'
 
-export interface KanbanActionProps extends HTMLArkProps<'button'> {}
+export interface KanbanActionProps extends HTMLPulseProps<'button'> {}
 
 export const KanbanAction = forwardRef<HTMLButtonElement, KanbanActionProps>(
   (props, ref) => {
-    return <ark.button ref={ref} {...props} tabIndex={0} />
+    return <pulse.button ref={ref} {...props} tabIndex={0} />
   },
 )
 

@@ -1,4 +1,3 @@
-import { Portal, PortalProps } from '@chakra-ui/react'
 import {
   DragOverlay,
   DragOverlayProps,
@@ -16,26 +15,13 @@ const dropAnimation: DropAnimation = {
   }),
 }
 
-export interface KanbanDragOverlayProps
-  extends DragOverlayProps,
-    Omit<PortalProps, 'children'> {}
+export interface KanbanDragOverlayProps extends DragOverlayProps {}
 
 export const KanbanDragOverlay: React.FC<KanbanDragOverlayProps> = (props) => {
-  const {
-    children,
-    containerRef,
-    appendToParentPortal,
-    dropAnimation: dropAnimationProp,
-    ...rest
-  } = props
+  const { children, dropAnimation: dropAnimationProp, ...rest } = props
   return (
-    <Portal
-      containerRef={containerRef}
-      appendToParentPortal={appendToParentPortal}
-    >
-      <DragOverlay {...rest} dropAnimation={dropAnimationProp ?? dropAnimation}>
-        {children}
-      </DragOverlay>
-    </Portal>
+    <DragOverlay {...rest} dropAnimation={dropAnimationProp ?? dropAnimation}>
+      {children}
+    </DragOverlay>
   )
 }

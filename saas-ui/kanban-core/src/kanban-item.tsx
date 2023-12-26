@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import type { UniqueIdentifier } from '@dnd-kit/core'
-
-import { ark, HTMLArkProps } from '@ark-ui/react'
 import { useSortable } from '@dnd-kit/sortable'
-import { dataAttr } from '@chakra-ui/utils'
+
 import { useKanbanContext } from './kanban-context'
+import { pulse, HTMLPulseProps } from './utilities/factory'
+import { cx } from './utilities/cx'
+import { dataAttr } from './utilities/data-attr'
 
 const useMountStatus = () => {
   const [isMounted, setIsMounted] = React.useState(false)
@@ -18,8 +19,8 @@ const useMountStatus = () => {
   return isMounted
 }
 
-const useKanbanCard = (
-  props: KanbanCardProps,
+const useKanbanItem = (
+  props: KanbanItemProps,
   ref: React.ForwardedRef<HTMLLIElement> | null,
 ) => {
   const { id, isDisabled } = props
@@ -50,8 +51,8 @@ const useKanbanCard = (
     handle,
     setHandle,
     setNodeRef: isDisabled ? undefined : setNodeRef,
-    getCardProps: React.useCallback(
-      (props: KanbanCardProps) => ({
+    getItemProps: React.useCallback(
+      (props: KanbanItemProps) => ({
         ref: (node: HTMLLIElement) => {
           setNodeRef(node)
 
@@ -61,8 +62,9 @@ const useKanbanCard = (
             ref.current = node
           }
         },
-        transition,
+
         style: {
+          transition,
           '--translate-x': transform
             ? `${Math.round(transform.x)}px`
             : undefined,
@@ -87,37 +89,28 @@ const useKanbanCard = (
   }
 }
 
-export interface KanbanCardProps extends Omit<HTMLArkProps<'li'>, 'id'> {
+export interface KanbanItemProps extends Omit<HTMLPulseProps<'li'>, 'id'> {
   id: UniqueIdentifier
   isDisabled?: boolean
   asChild?: boolean
   children: React.ReactNode
 }
 
-export const KanbanCard = React.memo(
-  React.forwardRef<HTMLLIElement, KanbanCardProps>((props, ref) => {
+export const KanbanItem = React.memo(
+  React.forwardRef<HTMLLIElement, KanbanItemProps>((props, ref) => {
     const { id, children, isDisabled, asChild, ...rest } = props
 
-    const { setNodeRef, getCardProps } = useKanbanCard(props, ref)
-
-    // const styles: SystemStyleObject = {
-    //   display: 'flex',
-    //   alignItems: 'stretch',
-    //   justifyContent: 'stretch',
-    //   transform:
-    //     'translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1))',
-    //   transformOrigin: '0 0',
-    //   touchAction: 'manipulation',
-    //   mb: 2,
-    //   ['&[data-dragging]']: {
-    //     opacity: 0,
-    //   },
-    // }
+    const { getItemProps } = useKanbanItem(props, ref)
 
     return (
-      <ark.li {...getCardProps(props)} data-id={id} {...rest}>
+      <pulse.li
+        {...getItemProps(props)}
+        data-id={id}
+        {...rest}
+        className={cx('sui-kanban__item', rest.className)}
+      >
         {children}
-      </ark.li>
+      </pulse.li>
     )
   }),
 )

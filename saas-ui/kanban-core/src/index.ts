@@ -1,5 +1,3 @@
-'use client'
-
 export type { UniqueIdentifier } from '@dnd-kit/core'
 export { KanbanProvider, useKanbanContext } from './kanban-context'
 export { Kanban, type KanbanProps } from './kanban-container'
@@ -23,13 +21,7 @@ export {
   KanbanColumnDragHandle,
   type KanbanColumnDragHandleProps,
 } from './kanban-column'
-export {
-  KanbanCard,
-  KanbanCardBody,
-  KanbanCardFooter,
-  KanbanCardHeader,
-  type KanbanCardProps,
-} from './kanban-card'
+export { KanbanItem, type KanbanItemProps } from './kanban-item'
 export {
   KanbanAction,
   KanbanHandle,
