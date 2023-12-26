@@ -161,7 +161,7 @@ export function DashboardPage() {
           templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
           gridAutoColumns="fr1"
           width="100%"
-          gap="4"
+          gap={{ base: 4, lg: 8 }}
           pt="4"
           pb="8"
         >
