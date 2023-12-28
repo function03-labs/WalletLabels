@@ -474,6 +474,7 @@ function ImagewFall(label: sociallabels_db1): React.ReactNode {
 
   return (
     <Image
+      unoptimized
       src={imgSrc}
       alt={label.pfp}
       width={"32"}
