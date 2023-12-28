@@ -9,6 +9,7 @@ const nextConfig = {
  
   //withImages(),
   images: {
+    unoptimized: true,
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
