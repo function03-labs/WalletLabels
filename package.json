@@ -62,5 +62,5 @@
     "react-element-to-jsx-string": "^15.0.0",
     "intl-messageformat": "10.3.5"
   },
-  "packageManager": "yarn@3.3.0"
+  "packageManager": "yarn@4.0.2"
 }
