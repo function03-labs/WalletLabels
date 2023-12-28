@@ -155,15 +155,17 @@ export function DashboardPage() {
         toolbar={toolbar}
         footer={footer}
       />
-      <PageBody contentWidth="container.2xl" bg="page-body-bg-subtle">
+      <PageBody
+        contentWidth="container.2xl"
+        bg="page-body-bg-subtle"
+        py={{ base: 4, xl: 8 }}
+      >
         <IntroTour />
         <Grid
           templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
           gridAutoColumns="fr1"
           width="100%"
-          gap={{ base: 4, lg: 8 }}
-          pt="4"
-          pb="8"
+          gap={{ base: 4, xl: 8 }}
         >
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <Card>
