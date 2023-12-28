@@ -1,5 +1,11 @@
 # @saas-ui-pro/kanban
 
+## 0.4.1
+
+### Patch Changes
+
+- a44bce4: Fixed column scrolling
+
 ## 0.4.0
 
 ### Minor Changes
