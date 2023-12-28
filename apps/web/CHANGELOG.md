@@ -1,5 +1,11 @@
 # nextjs-app
 
+## 0.25.1
+
+### Patch Changes
+
+- b2e03b0: Improved spacing of dashboard cards
+
 ## 0.25.0
 
 ### Minor Changes
