@@ -29,6 +29,7 @@ import {
   FormLabel,
   Avatar,
   Tooltip,
+  ButtonGroup,
 } from '@chakra-ui/react'
 
 import { FormLayout, useSnackbar } from '@saas-ui/react'
@@ -81,13 +82,17 @@ function ProfileDetails({ user }: { user: User }) {
                   <Field name="firstName" label="First name" />
                   <Field name="lastName" label="Last name" />
                   <Field name="email" label="Email" />
-                  <Button
-                    colorScheme="primary"
-                    type="submit"
-                    isLoading={isPending}
-                  >
-                    Save
-                  </Button>
+                  <Field name="select" type="select" label="Select" />
+                  <Field name="textarea" type="textarea" label="Textarea" />
+                  <ButtonGroup>
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      isLoading={isPending}
+                    >
+                      Save
+                    </Button>
+                  </ButtonGroup>
                 </FormLayout>
               </CardBody>
             )}
