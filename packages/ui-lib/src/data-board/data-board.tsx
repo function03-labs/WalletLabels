@@ -24,6 +24,7 @@ import {
   getFilteredRowModel,
   getGroupedRowModel,
   useReactTable,
+  RowData,
 } from '@tanstack/react-table'
 import {
   HTMLChakraProps,
@@ -95,6 +96,7 @@ export const DataBoard = forwardRef(
     const instance = useReactTable({
       data: React.useMemo(() => data, []),
       columns: React.useMemo(() => columns, []),
+      groupedColumnMode: false,
       onGroupingChange: setGrouping,
       getGroupedRowModel: getGroupedRowModel(),
       getCoreRowModel: getCoreRowModel(),
@@ -117,24 +119,28 @@ export const DataBoard = forwardRef(
     const state = instance.getState()
 
     const rows = instance.getRowModel().rows
+
     const noResults = (state.columnFilters?.length || state.globalFilter) &&
       !rows.length && <NoResultsComponent onReset={onResetFilters} />
 
     const mapItems = React.useCallback(() => {
-      const items: KanbanItems = {}
+      const items: KanbanItems = groupBy
+        ? getColumns(instance.getPreFilteredRowModel().rows, groupBy)
+        : {}
+
       instance.getRowModel().rows.forEach((row) => {
         if (row.getIsGrouped()) {
           items[row.id] = row.subRows.map((subRow) => subRow.id)
         }
       })
       return items
-    }, [groupBy])
+    }, [groupBy, rows])
 
     React.useEffect(() => {
       setItems(mapItems())
-    }, [groupBy])
+    }, [groupBy, rows])
 
-    const [items, setItems] = React.useState(mapItems())
+    const [items, setItems] = React.useState<KanbanItems>({})
 
     const board = ({ columns, items, activeId }: UseKanbanContainerReturn) => {
       return (
@@ -216,3 +222,14 @@ const BoardCard = React.memo(
     return true
   },
 )
+
+function getColumns<TData extends RowData>(
+  rows: Row<TData>[],
+  groupBy: string,
+) {
+  return rows.reduce<Record<string, any>>((columns, row) => {
+    const resKey = `${groupBy}:${row.getGroupingValue(groupBy)}`
+    columns[resKey] = []
+    return columns
+  }, {})
+}

@@ -38,6 +38,7 @@ import {
 } from '@saas-ui/date-picker'
 
 import { DataBoard, DataBoardProps, useModals } from '@ui/lib'
+import { ColumnFilter, TableState } from '@tanstack/react-table'
 
 export interface ListPageProps<D extends object>
   extends PageProps,
@@ -102,10 +103,6 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   const gridRef = React.useRef<TableInstance<D>>(null)
   const boardRef = React.useRef<TableInstance<D>>(null)
 
-  const getTableInstance = () => {
-    return view === 'board' ? boardRef.current : gridRef.current
-  }
-
   const [selections, setSelections] = React.useState<string[]>([])
 
   const _onSelectedRowsChange = React.useCallback((rows: string[]) => {
@@ -113,7 +110,10 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     setSelections(rows)
   }, [])
 
-  const [globalFilter, setGlobalFilter] = React.useState<string | undefined>()
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  )
+  const [globalFilter, setGlobalFilter] = React.useState('')
 
   const onRowClick = (row: Row<D>, e: React.MouseEvent) => {
     // Find the first A and trigger a click.
@@ -122,7 +122,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   }
 
   const onFilter = React.useCallback((filters: Filter[]) => {
-    getTableInstance()?.setColumnFilters(
+    setColumnFilters(
       filters.map((filter) => {
         return {
           id: filter.id,
@@ -138,7 +138,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
   const onSearch = useDebouncedCallback(setGlobalFilter, [], 100)
 
   React.useEffect(() => {
-    onSearch(searchQuery)
+    onSearch(searchQuery || '')
   }, [searchQuery])
 
   const modals = useModals()
@@ -177,8 +177,10 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
     visibleColumns,
   })
 
-  const state = {
+  // Shared state between grid and board views.
+  const state: Partial<TableState> = {
     columnVisibility,
+    columnFilters,
     globalFilter,
   }
 
@@ -227,6 +229,7 @@ export const ListPage = <D extends object>(props: ListPageProps<D>) => {
         onSelectedRowsChange={_onSelectedRowsChange}
         onRowClick={onRowClick}
         onSortChange={onSortChange}
+        onColumnFiltersChange={setColumnFilters}
         noResults={NoFilteredResults}
         manualSorting={!!onSortChange}
         getRowId={getRowId}
