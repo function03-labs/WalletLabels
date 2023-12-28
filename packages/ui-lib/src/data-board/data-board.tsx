@@ -210,7 +210,7 @@ const BoardCard = React.memo(
   },
   (prevProps, nextProps) => {
     // Only re-render if the item data has changed.
-    if (prevProps.item.original !== nextProps.item.original) {
+    if (prevProps.item?.original !== nextProps.item?.original) {
       return false
     }
     return true
