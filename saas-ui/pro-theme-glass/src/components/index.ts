@@ -9,6 +9,7 @@ import { tabsStyles } from './tabs'
 import { tagStyles } from './tag'
 import { tooltipStyles } from './tooltip'
 import { structuredListStyles } from './structured-list'
+import { selectStyles } from './select'
 import Form from './form'
 
 export const components = {
@@ -23,5 +24,6 @@ export const components = {
   SuiNavItem: navItemStyles,
   SuiNavGroup: navGroupStyles,
   SuiStructuredList: structuredListStyles,
+  SuiSelect: selectStyles,
   ...Form,
 }

@@ -50,10 +50,15 @@ const variantSegments = definePartsStyle((props) => {
       _last: { rounded: 4 },
       _hover: {
         borderColor: 'transparent',
+        bg: 'transparent',
       },
       _selected: {
-        ...theme.components.Button.variants.secondary(props),
+        ...theme.components.Button.variants.secondary(props)._selected,
+        bg: 'white',
         color: 'currentColor',
+        _dark: {
+          bg: 'gray.700',
+        },
       },
     },
   }

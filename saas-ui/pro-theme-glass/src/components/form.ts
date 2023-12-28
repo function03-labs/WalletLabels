@@ -122,6 +122,10 @@ export default {
     variants: {
       outline: defineStyle((props) => variantOutline(props).field),
     },
+    sizes: {
+      sm: sizes.sm.field,
+      md: sizes.md.field,
+    },
   },
   Select: Input,
 }
