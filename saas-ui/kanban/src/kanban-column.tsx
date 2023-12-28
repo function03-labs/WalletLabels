@@ -37,7 +37,15 @@ export const KanbanColumn = factory<KanbanColumnProps, typeof KanbanColumnCore>(
 export const KanbanColumnBody = factory<
   HTMLChakraProps<'ul'>,
   typeof KanbanColumnBodyCore
->(KanbanColumnBodyCore)
+>(KanbanColumnBodyCore, {
+  flex: 1,
+  '[data-orientation="horizontal"] > &': {
+    overflowY: 'auto',
+  },
+  '[data-orientation="vertical"] > &': {
+    overflowX: 'auto',
+  },
+})
 
 export const KanbanColumnHeader = factory<
   HTMLChakraProps<'div'>,
