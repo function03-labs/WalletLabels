@@ -159,6 +159,7 @@ export function DashboardPage() {
         contentWidth="container.2xl"
         bg="page-body-bg-subtle"
         py={{ base: 4, xl: 8 }}
+        px={{ base: 4, xl: 8 }}
       >
         <IntroTour />
         <Grid
