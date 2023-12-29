@@ -89,9 +89,7 @@ export const useInitApp = () => {
 
   return {
     isInitializing:
-      isLoading ||
-      isLoggingIn ||
-      (isAuthenticated && (!currentUserIsFetched || !organizationIsFetched)),
+      isLoading || isLoggingIn || (isAuthenticated && !currentUserIsFetched),
     isAuthenticated,
     billing,
   }
