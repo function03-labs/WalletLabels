@@ -1,8 +1,8 @@
 import { Row } from '@tanstack/react-table'
 
+import { DataGridColumnMeta } from './data-grid'
+
 declare module '@tanstack/table-core' {
-  interface ColumnMeta {
-    isNumeric?: boolean
-    href?: (row: Row) => string
-  }
+  interface ColumnMeta<TData, TValue>
+    extends DataGridColumnMeta<TData, TValue> {}
 }

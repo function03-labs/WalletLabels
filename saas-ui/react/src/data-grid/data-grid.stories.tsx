@@ -8,17 +8,10 @@ import {
   Button,
   Box,
   MenuItem,
+  IconButton,
 } from '@chakra-ui/react'
 
-import {
-  rand,
-  randEmail,
-  randFullName,
-  randUser,
-  randNumber,
-  randBetweenDate,
-  User,
-} from '@ngneat/falso'
+import { rand, randUser } from '@ngneat/falso'
 
 import { DataGridPagination } from './data-grid-pagination'
 import {
@@ -33,7 +26,12 @@ import {
   PaginationState,
 } from '../data-grid'
 
-import { AppShell, OverflowMenu } from '@saas-ui/react'
+import {
+  AppShell,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  OverflowMenu,
+} from '@saas-ui/react'
 
 export default {
   title: 'Components/Data Display/DataGrid',
@@ -553,6 +551,92 @@ export const WithCustomCheckbox = {
         }}
         enableRowSelection={(row) => {
           return row.original.status !== 'inactive'
+        }}
+      />
+    )
+  },
+}
+
+const withSubRows = data.map((row) => {
+  return {
+    ...row,
+    subRows: [
+      {
+        ...row,
+        id: `${row.id}-1`,
+      },
+      {
+        ...row,
+        id: `${row.id}-2`,
+      },
+    ],
+  }
+})
+
+export const WithSubRows = {
+  render: () => {
+    return (
+      <DataGrid<ExampleData>
+        columns={columns}
+        data={withSubRows}
+        isSortable
+        isExpandable
+        initialState={{
+          pagination: {
+            pageSize: 100,
+          },
+          expanded: {
+            0: true,
+          },
+        }}
+      />
+    )
+  },
+}
+
+const columnsWithExpander: ColumnDef<ExampleData>[] = [
+  {
+    id: 'expand',
+    header: '',
+    size: 1,
+    enableSorting: false,
+    meta: {
+      cellProps: {
+        px: 2,
+        textOverflow: 'initial',
+      },
+    },
+    cell: ({ row }) => {
+      return row.getCanExpand() ? (
+        <IconButton
+          size="xs"
+          isRound
+          variant="ghost"
+          fontSize="1.2em"
+          aria-label={row.getIsExpanded() ? 'Collapse row' : 'Expand row'}
+          icon={row.getIsExpanded() ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          onClick={row.getToggleExpandedHandler()}
+        />
+      ) : null
+    },
+  },
+  ...columns,
+]
+
+export const WithCustomExpander = {
+  render: () => {
+    return (
+      <DataGrid<ExampleData>
+        columns={columnsWithExpander}
+        data={withSubRows}
+        isSortable
+        initialState={{
+          pagination: {
+            pageSize: 100,
+          },
+          expanded: {
+            0: true,
+          },
         }}
       />
     )
