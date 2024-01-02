@@ -35,3 +35,4 @@ export { AddContactDrawer } from './src/drawers/add-contact-drawer/add-contact-d
  * Modals
  */
 export { SelectUsersModal } from './src/modals/select-users-modal/select-users-modal'
+export { TagsModal } from './src/modals/tags-modal/tags-modal'
