@@ -1,5 +1,12 @@
 # @saas-ui/onboarding
 
+## 0.13.3
+
+### Patch Changes
+
+- 20ec901: Added use client directives
+- 4b7bb9c: Removed deprecated defaultProps
+
 ## 0.13.2
 
 ### Patch Changes

@@ -19,8 +19,9 @@ import {
   DndContextProps,
 } from '@dnd-kit/core'
 import { arrayMove, SortingStrategy } from '@dnd-kit/sortable'
+
 import { coordinateGetter as _coordinateGetter } from './utilities/coordinate-getter'
-import { useControllableState } from '@chakra-ui/react'
+import { useControllableState } from './hooks/use-controllable-state'
 
 export type KanbanItems = Record<UniqueIdentifier, UniqueIdentifier[]>
 

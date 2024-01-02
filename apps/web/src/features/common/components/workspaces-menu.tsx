@@ -67,6 +67,7 @@ export const WorkspacesMenu: React.FC<TenantMenuProps> = (props) => {
         }
         className="tenant-menu"
         variant="ghost"
+        ps="1"
         _hover={{
           bg: 'sidebar-on-muted',
         }}

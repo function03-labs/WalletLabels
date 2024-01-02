@@ -1,4 +1,4 @@
-export const toolbarStyles = {
+export const toolbarTheme = {
   defaultProps: {
     variant: 'secondary',
     size: 'sm',

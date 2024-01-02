@@ -168,9 +168,7 @@ export function ContactsListPage() {
         header: 'Tags',
         cell: (cell) => (
           <HStack>
-            {cell.getValue()?.map((tag) => (
-              <ContactTag key={tag} tag={tag} />
-            ))}
+            {cell.getValue()?.map((tag) => <ContactTag key={tag} tag={tag} />)}
           </HStack>
         ),
         filterFn: getDataGridFilter('string'),
@@ -276,20 +274,20 @@ export function ContactsListPage() {
       size="xs"
     >
       <SelectButton>Status</SelectButton>
-      <SelectList>
-        <SelectOption value="status">Status</SelectOption>
-        <SelectOption value="type">Type</SelectOption>
-        <SelectOption value="tags">Tag</SelectOption>
-      </SelectList>
+      <Portal>
+        <SelectList zIndex="dropdown">
+          <SelectOption value="status">Status</SelectOption>
+          <SelectOption value="type">Type</SelectOption>
+          <SelectOption value="tags">Tag</SelectOption>
+        </SelectList>
+      </Portal>
     </Select>
   )
 
   const primaryAction = (
     <ToolbarButton
       label="Add person"
-      variant="solid"
-      size="sm"
-      colorScheme="primary"
+      variant="primary"
       onClick={addPerson}
       tooltipProps={{
         label: (
@@ -343,22 +341,21 @@ export function ContactsListPage() {
           leftIcon={<FiSliders />}
           label="Display"
           size="xs"
-          variant="tertiary"
+          variant="secondary"
         />
-        <Portal>
-          <MenuList maxW="260px">
-            {
-              /* not supported by DataGrid */ view === 'board' ? (
-                <MenuProperty label="Group by" value={groupBySelect} />
-              ) : null
-            }
-            <MenuProperty
-              label="Display properties"
-              value={displayProperties}
-              orientation="vertical"
-            />
-          </MenuList>
-        </Portal>
+
+        <MenuList maxW="260px" zIndex="dropdown">
+          {
+            /* not supported by DataGrid */ view === 'board' ? (
+              <MenuProperty label="Group by" value={groupBySelect} />
+            ) : null
+          }
+          <MenuProperty
+            label="Display properties"
+            value={displayProperties}
+            orientation="vertical"
+          />
+        </MenuList>
       </Menu>
     </Toolbar>
   )

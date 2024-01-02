@@ -1,5 +1,30 @@
 # electron-app
 
+## 0.19.0
+
+### Minor Changes
+
+- 221c314: Updated to Saas UI 2.5.0
+
+### Patch Changes
+
+- 183fdb7: Updated to Saas UI 2.4.4
+- 183fdb7: Updated to Next 14.0.4
+- Updated dependencies [232b598]
+- Updated dependencies [183fdb7]
+- Updated dependencies [20ec901]
+- Updated dependencies [232b598]
+- Updated dependencies [183fdb7]
+- Updated dependencies [20ec901]
+- Updated dependencies [8a98a8e]
+- Updated dependencies [4b7bb9c]
+- Updated dependencies [221c314]
+  - @saas-ui-pro/react@0.30.0
+  - @saas-ui-pro/feature-flags@0.14.2
+  - @saas-ui-pro/onboarding@0.13.3
+  - @saas-ui-pro/billing@0.11.2
+  - @ui/theme@6.0.0
+
 ## 0.18.3
 
 ### Patch Changes

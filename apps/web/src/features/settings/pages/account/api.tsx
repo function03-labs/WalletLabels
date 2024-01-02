@@ -53,14 +53,16 @@ function PersonalAccessTokens() {
         title="Personal access tokens"
         description={
           <SectionDescription>
-            <Text>Use personal access tokens to access the API.</Text>
-            <Link href="#">Read documentation</Link>
+            <Text>
+              Use personal access tokens to access the API.{' '}
+              <Link href="#">Read documentation</Link>
+            </Text>
           </SectionDescription>
         }
       />
       <SectionBody>
         <SettingsCard
-          footer={<Button colorScheme="primary">Create new token</Button>}
+          footer={<Button variant="primary">Create new token</Button>}
         >
           <StructuredList variant="settings" p="0">
             <AccessToken token="12345" onRemove={onRemove} />

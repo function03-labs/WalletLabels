@@ -31,6 +31,20 @@ const variantOutline = defineStyle((props) => {
   }
 })
 
+const variantSecondary = defineStyle((props) => {
+  const { colorScheme: c, theme } = props
+  return {
+    ...theme.components.Button.variants.outline(props),
+    bg: 'transparent',
+    _checked: {
+      bg: `${c}.100`,
+      _dark: {
+        bg: transparentize(`${c}.200`, 0.12)(theme),
+      },
+    },
+  }
+})
+
 const sizes = {
   xs: defineStyle({
     h: '7',
@@ -44,6 +58,7 @@ export default {
   variants: {
     ghost: variantGhost,
     outline: variantOutline,
+    secondary: variantSecondary,
   },
   sizes,
 }

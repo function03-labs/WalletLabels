@@ -66,6 +66,21 @@ const variantDefault: PartsStyleFunction<typeof parts> = (props) => {
   }
 }
 
+const variantDefaultSidebar: PartsStyleFunction<typeof parts> = (props) => {
+  return {
+    header: {
+      ps: { base: 14, lg: 4 },
+      borderBottomWidth: '1px',
+    },
+    headerFooter: {
+      borderBottomWidth: '1px',
+    },
+    title: {
+      me: 4,
+    },
+  }
+}
+
 const variantPlain: PartsStyleFunction<typeof parts> = (props) => {
   return {
     header: {
@@ -74,17 +89,6 @@ const variantPlain: PartsStyleFunction<typeof parts> = (props) => {
     title: {
       me: 4,
       fontSize: 'xl',
-    },
-  }
-}
-
-const variantDefaultSidebar: PartsStyleFunction<typeof parts> = (props) => {
-  return {
-    header: {
-      ps: { base: 14, lg: 4 },
-    },
-    title: {
-      me: 4,
     },
   }
 }

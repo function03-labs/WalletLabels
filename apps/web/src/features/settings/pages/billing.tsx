@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 
-import { Card, CardBody, Stack, Text } from '@chakra-ui/react'
+import { ButtonGroup, Card, CardBody, Stack, Text } from '@chakra-ui/react'
 
 import { Field, FormLayout, SubmitButton } from '@saas-ui/react'
 import { LinkButton, SettingsPage, Form } from '@ui/lib'
@@ -80,7 +80,9 @@ function BillingEmail() {
                   label="Email address"
                   type="email"
                 />
-                <SubmitButton>Update</SubmitButton>
+                <ButtonGroup>
+                  <SubmitButton>Update</SubmitButton>
+                </ButtonGroup>
               </FormLayout>
             </Form>
           </CardBody>

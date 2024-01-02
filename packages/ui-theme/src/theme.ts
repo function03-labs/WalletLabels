@@ -18,5 +18,6 @@ export const theme = extendTheme(
    * Uncomment this to use any of the built-in color schemes.
    */
   // withThemeColors(colorScheme),
+  // glassTheme,
   baseTheme,
 )

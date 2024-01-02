@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Card, CardBody, HStack, Heading, Stack, Text } from '@chakra-ui/react'
 import { ContactTag } from './contact-tag'
 import { ContactType } from './contact-type'
@@ -18,12 +20,15 @@ export const ContactCard = ({ contact }: { contact: Contact }) => {
   const columns = state.columnVisibility
   const groupBy = state.grouping[0]
 
-  const renderColumn = (column: string, component: React.ReactNode) => {
-    if (columns[column] && groupBy != column) {
-      return component
-    }
-    return null
-  }
+  const renderColumn = React.useCallback(
+    (column: string, component: React.ReactNode) => {
+      if (columns[column] && groupBy != column) {
+        return component
+      }
+      return null
+    },
+    [columns],
+  )
 
   const tags = typeof contact.tags === 'string' ? [contact.tags] : contact.tags
 

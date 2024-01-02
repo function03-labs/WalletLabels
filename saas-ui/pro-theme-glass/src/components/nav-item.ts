@@ -22,7 +22,10 @@ const sizes = {
   }),
   sm: definePartsStyle(() => {
     return {
-      link: buttonSizes?.sm,
+      link: {
+        ...buttonSizes?.sm,
+        borderRadius: 'base',
+      },
     }
   }),
   md: definePartsStyle(() => {
@@ -42,4 +45,20 @@ export const navItemStyles = defineMultiStyleConfig({
     size: 'sm',
   },
   sizes,
+  variants: {
+    neutral: definePartsStyle(() => {
+      const _active = {
+        bg: 'blackAlpha.200',
+        _dark: {
+          bg: `whiteAlpha.200`,
+        },
+      }
+      return {
+        link: {
+          _active,
+          ['&[aria-current=page]']: _active,
+        },
+      }
+    }),
+  },
 })
