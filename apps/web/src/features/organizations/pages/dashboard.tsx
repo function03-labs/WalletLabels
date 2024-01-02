@@ -75,6 +75,8 @@ export function DashboardPage() {
     ] as const,
     queryFn: ({ queryKey }) => getDashboard(queryKey[1]),
     enabled: !!workspace,
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
   })
 
   const organization = data?.organization
@@ -120,7 +122,7 @@ export function DashboardPage() {
   )
 
   const footer = (
-    <Toolbar justifyContent="flex-start" variant="tertiary" size="xs">
+    <Toolbar justifyContent="flex-start" variant="secondary" size="xs">
       <SegmentedControl
         size="xs"
         segments={[
@@ -153,13 +155,18 @@ export function DashboardPage() {
         toolbar={toolbar}
         footer={footer}
       />
-      <PageBody contentWidth="full" bg="page-body-bg-subtle">
+      <PageBody
+        contentWidth="container.2xl"
+        bg="page-body-bg-subtle"
+        py={{ base: 4, xl: 8 }}
+        px={{ base: 4, xl: 8 }}
+      >
         <IntroTour />
         <Grid
           templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
           gridAutoColumns="fr1"
           width="100%"
-          gap="4"
+          gap={{ base: 4, xl: 8 }}
         >
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <Card>
@@ -180,6 +187,7 @@ export function DashboardPage() {
                       height="auto"
                       textAlign="left"
                       borderBottomWidth="1px"
+                      borderRightWidth="1px"
                       _hover={{
                         bg: 'whiteAlpha.100',
                         _dark: {
@@ -188,8 +196,11 @@ export function DashboardPage() {
                       }}
                       _selected={{
                         borderBottomWidth: '2px',
-                        borderColor: 'primary.500',
+                        borderBottomColor: 'primary.500',
                         display: 'flex',
+                      }}
+                      _last={{
+                        borderRightWidth: '0',
                       }}
                     >
                       <Metric {...metric} />

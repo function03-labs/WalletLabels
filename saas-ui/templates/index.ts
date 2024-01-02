@@ -30,3 +30,8 @@ export { FilesList } from './src/files/files-list/files-list'
  * Drawers
  */
 export { AddContactDrawer } from './src/drawers/add-contact-drawer/add-contact-drawer'
+
+/**
+ * Modals
+ */
+export { SelectUsersModal } from './src/modals/select-users-modal/select-users-modal'

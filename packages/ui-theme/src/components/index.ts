@@ -1,9 +1,9 @@
-import { cardStyles } from './card'
-import { pageStyles } from './page'
-import { toolbarStyles } from './toolbar'
+import { cardTheme } from './card'
+import { pageTheme } from './page'
+import { toolbarTheme } from './toolbar'
 
 export const components = {
-  Card: cardStyles,
-  SuiToolbar: toolbarStyles,
-  SuiPage: pageStyles,
+  Card: cardTheme,
+  SuiToolbar: toolbarTheme,
+  SuiPage: pageTheme,
 }

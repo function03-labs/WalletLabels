@@ -1,5 +1,11 @@
 # @app/nextjs
 
+## 0.5.1
+
+### Patch Changes
+
+- 183fdb7: Updated to Next 14.0.4
+
 ## 0.5.0
 
 ### Minor Changes

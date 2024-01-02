@@ -1,5 +1,24 @@
 # @saas-ui-pro/react
 
+## 0.30.0
+
+### Minor Changes
+
+- 232b598: BREAKING: Updated secondary button variant to outline
+- 221c314: Updated to Saas UI 2.5.0
+
+### Patch Changes
+
+- 232b598: Improved tooltip theme
+- 20ec901: Added use client directives
+- 183fdb7: Updated to Saas UI 2.4.4
+- 20ec901: Exported MotionBox component
+- 8a98a8e: Fixed default-sidebar page variant missing borders
+- 4b7bb9c: Removed deprecated defaultProps
+- Updated dependencies [20ec901]
+- Updated dependencies [4b7bb9c]
+  - @saas-ui-pro/onboarding@0.13.3
+
 ## 0.29.3
 
 ### Patch Changes

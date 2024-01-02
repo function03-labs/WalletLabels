@@ -30,6 +30,10 @@ const variantOutline = definePartsStyle((props) => {
         borderColor: getColor(theme, ec),
         boxShadow: 'none',
       },
+      _focus: {
+        borderColor: getColor(theme, fc),
+        boxShadow: 'none',
+      },
       _focusVisible: {
         zIndex: 1,
         borderColor: getColor(theme, fc),
@@ -43,6 +47,9 @@ const variantOutline = definePartsStyle((props) => {
         },
         _invalid: {
           borderColor: getColor(theme, ec),
+        },
+        _focus: {
+          borderColor: getColor(theme, fc),
         },
         _focusVisible: {
           borderColor: getColor(theme, fc),
@@ -114,6 +121,10 @@ export default {
     defaultProps: Input.defaultProps,
     variants: {
       outline: defineStyle((props) => variantOutline(props).field),
+    },
+    sizes: {
+      sm: sizes.sm.field,
+      md: sizes.md.field,
     },
   },
   Select: Input,

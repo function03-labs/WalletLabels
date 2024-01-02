@@ -109,7 +109,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             </>
           )}
         </SidebarSection>
-        <Box px={4}>
+        <Box px={3}>
           {isCondensed ? (
             <IconButton icon={<FiSearch />} aria-label="Search" />
           ) : (

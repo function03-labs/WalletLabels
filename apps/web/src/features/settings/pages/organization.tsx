@@ -2,7 +2,13 @@
 
 import { z } from 'zod'
 import { getOrganization, Organization, updateOrganization } from '@api/client'
-import { Button, Card, CardBody, CardFooter } from '@chakra-ui/react'
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardFooter,
+} from '@chakra-ui/react'
 import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 import { FormLayout, useSnackbar } from '@saas-ui/react'
 import { Form, SettingsPage } from '@ui/lib'
@@ -53,18 +59,18 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
               <FormLayout>
                 <Field name="name" label="Organization name" />
                 <Field name="email" label="Email address" />
+                <ButtonGroup>
+                  <Button
+                    variant="solid"
+                    colorScheme="primary"
+                    type="submit"
+                    isLoading={isPending}
+                  >
+                    Save
+                  </Button>
+                </ButtonGroup>
               </FormLayout>
             </CardBody>
-            <CardFooter>
-              <Button
-                variant="solid"
-                colorScheme="primary"
-                type="submit"
-                isLoading={isPending}
-              >
-                Save
-              </Button>
-            </CardFooter>
           </>
         )}
       </Form>

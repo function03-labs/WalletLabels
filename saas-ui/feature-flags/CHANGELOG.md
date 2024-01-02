@@ -1,5 +1,11 @@
 # @saas-ui/features
 
+## 0.14.2
+
+### Patch Changes
+
+- 183fdb7: Bumped zustand
+
 ## 0.14.1
 
 ### Patch Changes

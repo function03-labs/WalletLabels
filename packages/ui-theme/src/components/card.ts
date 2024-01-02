@@ -14,7 +14,7 @@ const variantShadow = definePartsStyle(() => ({
   },
 }))
 
-export const cardStyles = defineMultiStyleConfig({
+export const cardTheme = defineMultiStyleConfig({
   variants: {
     elevated: variantShadow,
     shadow: variantShadow,

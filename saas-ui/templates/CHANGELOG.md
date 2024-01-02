@@ -1,5 +1,11 @@
 # saas-ui-templates
 
+## 0.4.0
+
+### Minor Changes
+
+- 221c314: Updated to Saas UI 2.5.0
+
 ## 0.3.1
 
 ### Patch Changes

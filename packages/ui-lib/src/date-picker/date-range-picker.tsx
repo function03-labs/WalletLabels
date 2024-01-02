@@ -13,6 +13,7 @@ import {
 } from '@saas-ui/date-picker'
 import { Button, useControllableState } from '@chakra-ui/react'
 import { useIntl } from 'react-intl'
+import { CalendarIcon } from 'lucide-react'
 
 export type DateRange = { start: CalendarDate; end: CalendarDate }
 export type DateRangePresets = '1d' | '3d' | '7d' | '30d'
@@ -65,7 +66,9 @@ export const DateRangePicker: React.FC<DatePickerProps> = (props) => {
   return (
     <DateRangePickerBase {...rest} value={value} onChange={onChange}>
       <DatePickerTrigger>
-        <Button>{formatRange(value, locale, timeZone)}</Button>
+        <Button leftIcon={<CalendarIcon size="1.1em" />}>
+          {formatRange(value, locale, timeZone)}
+        </Button>
       </DatePickerTrigger>
       <DatePickerDialog>
         <DateRangePickerCalendar />

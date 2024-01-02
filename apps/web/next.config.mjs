@@ -10,7 +10,7 @@ const isElectron = process.env.npm_package_name === 'electron-app'
  */
 const SaasUIProPlugin = () => {
   return new webpack.NormalModuleReplacementPlugin(
-    /@saas-ui-pro\/(react|billing|router|onboarding|feature-flags|kanban|pro\/theme|pro-.*|theme-.*)$/,
+    /@saas-ui-pro\/(react|billing|router|onboarding|feature-flags|kanban|kanban-.*|pro\/theme|pro-.*|theme-.*)$/,
     (resource) => {
       resource.request = resource.request + '/src'
     },

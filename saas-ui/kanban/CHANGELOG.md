@@ -1,5 +1,23 @@
 # @saas-ui-pro/kanban
 
+## 0.4.1
+
+### Patch Changes
+
+- a44bce4: Fixed column scrolling
+
+## 0.4.0
+
+### Minor Changes
+
+- 724ad08: Moved kanban core functionality into separate unstyled package
+
+### Patch Changes
+
+- 20ec901: Added use client directives
+- Updated dependencies [724ad08]
+  - @saas-ui-pro/kanban-core@0.2.0
+
 ## 0.3.4
 
 ### Patch Changes

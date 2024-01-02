@@ -1,5 +1,11 @@
 # @ui/core
 
+## 0.9.0
+
+### Minor Changes
+
+- 221c314: Updated to Saas UI 2.5.0
+
 ## 0.8.0
 
 ### Minor Changes

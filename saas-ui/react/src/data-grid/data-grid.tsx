@@ -25,6 +25,7 @@ import {
   createColumnHelper,
   ColumnHelper,
   RowData,
+  getExpandedRowModel,
 } from '@tanstack/react-table'
 
 import {
@@ -41,11 +42,13 @@ import {
   useMultiStyleConfig,
   ThemingProps,
   SystemStyleObject,
-  CSSObject,
   CheckboxProps,
+  TableColumnHeaderProps,
+  TableCellProps,
+  IconButton,
 } from '@chakra-ui/react'
 
-import { cx, __DEV__, dataAttr } from '@chakra-ui/utils'
+import { cx, dataAttr } from '@chakra-ui/utils'
 import { VirtualizerOptions, useVirtualizer } from '@tanstack/react-virtual'
 
 import { ChevronUpIcon, ChevronDownIcon } from '../icons'
@@ -65,6 +68,18 @@ export type {
   FilterFn,
   SortingFn,
   OnChangeFn,
+}
+
+export interface DataGridColumnMeta<TData, TValue> {
+  href?: (row: Row<TData>) => string
+  isNumeric?: boolean
+  headerProps?: TableColumnHeaderProps
+  cellProps?: TableCellProps
+}
+
+declare module '@tanstack/react-table' {
+  interface ColumnMeta<TData, TValue>
+    extends DataGridColumnMeta<TData, TValue> {}
 }
 
 interface DataGridContextValue<Data extends object>
@@ -145,6 +160,10 @@ export interface DataGridProps<Data extends object>
    */
   isHoverable?: boolean
   /**
+   * Enable expandable rows
+   */
+  isExpandable?: boolean
+  /**
    * Triggers whenever the row selection changes.
    * @params rows The selected row id'
    */
@@ -177,7 +196,7 @@ export interface DataGridProps<Data extends object>
   /**
    * Grid styles
    */
-  sx?: CSSObject
+  sx?: SystemStyleObject
   /**
    * DataGrid children
    */
@@ -202,12 +221,13 @@ export const DataGrid = React.forwardRef(
       columns,
       data,
       initialState,
-      getSubRows,
+      getSubRows = (row: any) => row.subRows,
       defaultColumn,
       getRowId,
       isSortable,
       isSelectable,
       isHoverable,
+      isExpandable,
       onSelectedRowsChange,
       onSortChange,
       onRowClick,
@@ -237,19 +257,24 @@ export const DataGrid = React.forwardRef(
       columns: React.useMemo(() => {
         const selectionColumn =
           columns?.[0]?.id === 'selection' ? columns[0] : undefined
-        return getSelectionColumn<Data>(isSelectable, selectionColumn).concat(
-          columns
-            ?.filter(({ id }) => id !== 'selection')
-            .map((column: any) => {
-              if (!column.accessorKey) {
-                column.accessorKey = column.id
-              }
-              if (!column.cell) {
-                column.cell = DefaultDataGridCell
-              }
-              return column
-            }),
-        )
+
+        const expanderColumn = columns.find(({ id }) => id === 'expand')
+
+        return getSelectionColumn<Data>(isSelectable, selectionColumn)
+          .concat(getExpanderColumn(isExpandable, expanderColumn))
+          .concat(
+            columns
+              ?.filter(({ id }) => id !== 'selection')
+              .map((column: any) => {
+                if (!column.accessorKey) {
+                  column.accessorKey = column.id
+                }
+                if (!column.cell) {
+                  column.cell = DefaultDataGridCell
+                }
+                return column
+              }),
+          )
       }, [columns]),
       data,
       initialState: React.useMemo(() => initialState, []),
@@ -262,6 +287,7 @@ export const DataGrid = React.forwardRef(
       getSortedRowModel: getSortedRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
+      getExpandedRowModel: getExpandedRowModel(),
       ...rest,
     })
 
@@ -359,16 +385,18 @@ export const DataGrid = React.forwardRef(
                 data-index={virtualRow.index}
                 data-selected={dataAttr(row.getIsSelected())}
                 data-hover={dataAttr(isHoverable)}
+                data-depth={isExpandable ? row.depth : undefined}
               >
                 {row.getVisibleCells().map((cell) => {
-                  const meta = (cell.column.columnDef.meta || {}) as any
+                  const meta = cell.column.columnDef.meta
                   return (
                     <Td
                       key={cell.id}
-                      isNumeric={meta.isNumeric}
+                      isNumeric={meta?.isNumeric}
                       overflow="hidden"
                       textOverflow="ellipsis"
                       whiteSpace="nowrap"
+                      {...meta?.cellProps}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -419,9 +447,7 @@ export const DataGrid = React.forwardRef(
   },
 ) => React.ReactElement) & { displayName?: string }
 
-if (__DEV__) {
-  DataGrid.displayName = 'DataGrid'
-}
+DataGrid.displayName = 'DataGrid'
 
 export interface DataGridSortProps<Data extends object, TValue> {
   header: Header<Data, TValue>
@@ -456,9 +482,7 @@ export const DataGridSort = <Data extends object, TValue>(
   )
 }
 
-if (__DEV__) {
-  DataGridSort.displayName = 'DataGridSort'
-}
+DataGridSort.displayName = 'DataGridSort'
 
 export interface DataGridHeaderProps<Data extends object, TValue> {
   header: Header<Data, TValue>
@@ -488,18 +512,19 @@ export const DataGridHeader = <Data extends object, TValue>(
       textTransform="none"
       width={size && `${size}px`}
       isNumeric={meta.isNumeric}
+      {...meta.headerProps}
       {...headerProps}
       {...rest}
     >
       {flexRender(header.column.columnDef.header, header.getContext())}
-      {isSortable && <DataGridSort header={header} />}
+      {isSortable && header.column.getIsSorted() && (
+        <DataGridSort header={header} />
+      )}
     </Th>
   )
 }
 
-if (__DEV__) {
-  DataGridHeader.displayName = 'DataGridHeader'
-}
+DataGridHeader.displayName = 'DataGridHeader'
 
 const getResult = <Data extends object>(
   fn: (row: Data) => string,
@@ -527,9 +552,7 @@ export const DefaultDataGridCell = <Data extends object, TValue>(
   return getValue() || null
 }
 
-if (__DEV__) {
-  DefaultDataGridCell.displayName = 'DefaultDataTableCell'
-}
+DefaultDataGridCell.displayName = 'DefaultDataTableCell'
 
 export const DataGridCheckbox = forwardRef<CheckboxProps, 'input'>(
   (props, ref) => {
@@ -558,6 +581,7 @@ const getSelectionColumn = <Data extends object>(
           id: 'selection',
           size: 1,
           enableHiding: false,
+          enableSorting: false,
           header: ({ table, column }) => (
             <DataGridCheckbox
               isChecked={table.getIsAllRowsSelected()}
@@ -579,6 +603,69 @@ const getSelectionColumn = <Data extends object>(
               aria-label={row.getIsSelected() ? 'Deselect row' : 'Select row'}
             />
           ),
+          ...columnDef,
+        } as ColumnDef<Data>,
+      ]
+    : []
+}
+
+const getExpanderColumn = <Data extends object>(
+  enabled?: boolean,
+  columnDef?: ColumnDef<Data>,
+) => {
+  return enabled
+    ? [
+        {
+          id: 'expand',
+          header: ({ table }) => {
+            return (
+              <IconButton
+                size="xs"
+                isRound
+                variant="ghost"
+                fontSize="1.2em"
+                aria-label={
+                  table.getIsAllRowsExpanded()
+                    ? 'Collapse all rows'
+                    : 'Expand all rows'
+                }
+                icon={
+                  table.getIsAllRowsExpanded() ? (
+                    <ChevronDownIcon />
+                  ) : (
+                    <ChevronUpIcon />
+                  )
+                }
+                onClick={table.getToggleAllRowsExpandedHandler()}
+              />
+            )
+          },
+          size: 38,
+          enableSorting: false,
+          meta: {
+            headerProps: {
+              px: 2,
+            },
+            cellProps: {
+              px: 2,
+              textOverflow: 'initial',
+            },
+          },
+          cell: ({ row }) => {
+            return row.getCanExpand() ? (
+              <IconButton
+                size="xs"
+                isRound
+                variant="ghost"
+                fontSize="1.2em"
+                aria-label={row.getIsExpanded() ? 'Collapse row' : 'Expand row'}
+                icon={
+                  row.getIsExpanded() ? <ChevronDownIcon /> : <ChevronUpIcon />
+                }
+                onClick={row.getToggleExpandedHandler()}
+              />
+            ) : null
+          },
           ...columnDef,
         } as ColumnDef<Data>,
       ]
@@ -629,9 +716,12 @@ export const useColumnVisibility = <Data extends object>(
     getVisibleColumns(visibleColumns),
   )
 
-  React.useEffect(() => {
-    setColumnVisibility(getVisibleColumns(visibleColumns))
-  }, deps || [visibleColumns])
+  React.useEffect(
+    () => {
+      setColumnVisibility(getVisibleColumns(visibleColumns))
+    },
+    deps || [visibleColumns],
+  )
 
   return columnVisibility
 }
