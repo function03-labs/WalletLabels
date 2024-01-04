@@ -1,5 +1,13 @@
 # @saas-ui-pro/react
 
+## 0.31.1
+
+### Patch Changes
+
+- 6166336: Improved DataGrid sub row expander spacing
+- 6166336: Added tableLayout prop to DataGrid
+- 6166336: Improved DataGrid aria labels
+
 ## 0.31.0
 
 ### Minor Changes
