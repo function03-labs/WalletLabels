@@ -1,5 +1,13 @@
 # @ui/lib
 
+## 7.0.0
+
+### Patch Changes
+
+- d09f7d3: Fixed issue where filters would not be applied when switching between grid and board view
+- Updated dependencies [f635f74]
+  - @saas-ui-pro/react@0.31.0
+
 ## 6.0.0
 
 ### Minor Changes

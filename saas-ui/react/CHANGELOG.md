@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.31.0
+
+### Minor Changes
+
+- f635f74: Added expandable subRows support to DataGrid
+
 ## 0.30.0
 
 ### Minor Changes
