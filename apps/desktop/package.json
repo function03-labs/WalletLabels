@@ -2,7 +2,7 @@
   "private": true,
   "name": "desktop",
   "description": "Saas UI Electron Example",
-  "version": "0.19.0",
+  "version": "0.19.1",
   "author": "Eelco Wiersma <eelco@appule.nl>",
   "main": "app/background.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "@saas-ui-pro/billing": "^0.11.2",
     "@saas-ui-pro/feature-flags": "^0.14.2",
     "@saas-ui-pro/onboarding": "^0.13.3",
-    "@saas-ui-pro/react": "^0.30.0",
+    "@saas-ui-pro/react": "^0.31.0",
     "@saas-ui/auth": "^2.4.2",
     "@saas-ui/date-picker": "^0.12.15",
     "@saas-ui/next-workspaces": "^0.3.0",
