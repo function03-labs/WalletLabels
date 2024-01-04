@@ -46,9 +46,7 @@ const baseStyle: PartsStyleObject<typeof parts> = {
   },
   th: {
     fontFamily: 'heading',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 'wider',
+    fontWeight: 'medium',
     textAlign: 'start',
   },
   td: {

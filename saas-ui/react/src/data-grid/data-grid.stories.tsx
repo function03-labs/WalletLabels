@@ -123,6 +123,7 @@ const makeData = (length = 1000) => {
   }).map((user) => {
     return {
       ...user,
+      phone: user.phone.split(',')[0],
       status: rand(['new', 'active', 'inactive']),
     }
   })
@@ -587,6 +588,52 @@ export const WithSubRows = {
           },
           expanded: {
             0: true,
+          },
+        }}
+      />
+    )
+  },
+}
+
+const withDeepSubRows = data.map((row, i) => {
+  return {
+    ...row,
+    subRows: [
+      {
+        ...data[i + 1],
+        id: `${row.id}-1`,
+        subRows: [
+          {
+            ...data[i + 2],
+            id: `${row.id}-1-1`,
+            subRows: [
+              {
+                ...data[i + 3],
+                id: `${row.id}-1-1-1`,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  }
+})
+
+export const WithDeepSubRows = {
+  render: () => {
+    return (
+      <DataGrid<ExampleData>
+        tableLayout="auto"
+        columns={columns}
+        data={withDeepSubRows}
+        isSortable
+        isExpandable
+        initialState={{
+          pagination: {
+            pageSize: 100,
+          },
+          columnVisibility: {
+            phone: false,
           },
         }}
       />
