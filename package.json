@@ -23,7 +23,7 @@
     "saas-ui:build": "turbo run build --scope='@saas-ui-pro/*' --concurrency=5 --no-deps --continue",
     "saas-ui:storybook": "yarn workspace saas-ui-storybook-pro dev",
     "saas-ui:publish": "yarn workspaces foreach -W --from '@saas-ui-pro/*' npm publish && yarn changeset tag",
-    "saas-ui:publish:next": "yarn workspaces foreach -Rpt --from '@saas-ui-pro/*' npm publish --tag next && yarn changeset tag"
+    "saas-ui:publish:next": "yarn workspaces foreach -W --from '@saas-ui-pro/*' npm publish --tag next && yarn changeset tag"
   },
   "workspaces": [
     "saas-ui/*",
