@@ -4,33 +4,44 @@ export {
   PageContainer,
   PageDescription,
   PageHeader,
-  type PageHeaderProps,
-  type PageOptions,
-  type PageProps,
   PageTitle,
 } from './page'
-export { ErrorPage, type ErrorPageProps } from './error-page'
-export { BackButton, type BackButtonProps } from './back-button'
+export type {
+  PageHeaderProps,
+  PageOptions,
+  PageProps,
+  PageBodyProps,
+} from './page'
+
+export { ErrorPage } from './error-page'
+export type { ErrorPageProps } from './error-page'
+
+export { BackButton } from './back-button'
+export type { BackButtonProps } from './back-button'
+
 export {
   Section,
   SectionBody,
-  type SectionBodyProps,
   SectionContainer,
   SectionDescription,
   SectionHeader,
-  type SectionHeaderProps,
-  type SectionProps,
   SectionTitle,
   useSectionStyles,
 } from './section'
-export { SplitPage, type SplitPageProps, useSplitPage } from './split-page'
+export type {
+  SectionBodyProps,
+  SectionHeaderProps,
+  SectionProps,
+} from './section'
+
+export { SplitPage, useSplitPage } from './split-page'
+export type { SplitPageProps } from './split-page'
+
 export {
   Aside,
   AsideBody,
   AsideContainer,
-  type AsideContainerProps,
   AsideHeader,
-  type AsideOptions,
-  type AsideProps,
   AsideTitle,
 } from './aside'
+export type { AsideContainerProps, AsideOptions, AsideProps } from './aside'

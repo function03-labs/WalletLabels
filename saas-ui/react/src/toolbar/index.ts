@@ -1,12 +1,14 @@
 export {
   Toolbar,
   ToolbarButton,
-  type ToolbarButtonProps,
   ToolbarDivider,
   ToolbarGroup,
-  type ToolbarProps,
   ToolbarToggleButton,
-  type ToolbarToggleButtonProps,
   ToolbarToggleGroup,
-  type ToolbarToggleGroupProps,
+} from './toolbar'
+export type {
+  ToolbarButtonProps,
+  ToolbarProps,
+  ToolbarToggleButtonProps,
+  ToolbarToggleGroupProps,
 } from './toolbar'

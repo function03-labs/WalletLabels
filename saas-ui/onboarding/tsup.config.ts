@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  target: 'node14',
+  target: 'es2021',
   dts: {
     resolve: true,
   },

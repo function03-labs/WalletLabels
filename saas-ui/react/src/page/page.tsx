@@ -109,7 +109,7 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
 PageHeader.displayName = 'PageHeader'
 
-interface PageBodyProps extends HTMLChakraProps<'div'> {
+export interface PageBodyProps extends HTMLChakraProps<'div'> {
   contentWidth?: SystemProps['maxW']
   contentProps?: HTMLChakraProps<'div'>
 }

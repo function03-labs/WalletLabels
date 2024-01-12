@@ -1,14 +1,17 @@
 export { ResizeHandle } from './resize-handle'
-export {
-  type Dimensions,
-  type ResizeHandler,
-  type ResizeOptions,
-  ResizeProvider,
-  type ResizeProviderContext,
-  type UseResizeProps,
-  type UseResizeReturn,
-  useResize,
-  useResizeContext,
+
+export { ResizeProvider, useResize, useResizeContext } from './use-resize'
+export type {
+  Dimensions,
+  ResizeHandler,
+  ResizeOptions,
+  ResizeProviderContext,
+  UseResizeProps,
+  UseResizeReturn,
 } from './use-resize'
-export { ResizeBox, type ResizeBoxProps } from './resize-box'
-export { Resizer, type ResizerProps } from './resizer'
+
+export { ResizeBox } from './resize-box'
+export type { ResizeBoxProps } from './resize-box'
+
+export { Resizer } from './resizer'
+export type { ResizerProps } from './resizer'

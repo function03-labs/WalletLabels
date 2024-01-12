@@ -1,5 +1,2 @@
-export {
-  BulkActions,
-  type BulkActionsProps,
-  type BulkActionsSelections,
-} from './bulk-actions'
+export { BulkActions } from './bulk-actions'
+export type { BulkActionsProps, BulkActionsSelections } from './bulk-actions'

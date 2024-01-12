@@ -1,12 +1,14 @@
-export { Has, type HasProps } from './flags'
+export { Has } from './flags'
+export type { HasProps } from './flags'
+
 export {
-  type FeaturesOptions,
   FeaturesProvider,
-  type FeaturesProviderProps,
   useFeatures,
   useFlag,
   useFlags,
   useHasFeature,
 } from './provider'
+export type { FeaturesOptions, FeaturesProviderProps } from './provider'
 
-export { store as featuresStore, type FeaturesStore } from './store'
+export { store as featuresStore } from './store'
+export type { FeaturesStore } from './store'

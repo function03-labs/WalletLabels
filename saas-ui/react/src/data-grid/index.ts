@@ -1,34 +1,37 @@
 export {
-  type ColumnDef,
-  type ColumnFiltersState,
   DataGrid,
-  type DataGridCell,
   DataGridCheckbox,
   DataGridHeader,
-  type DataGridHeaderProps,
-  type DataGridProps,
   DataGridProvider,
-  type DataGridProviderProps,
   DataGridSort,
-  type DataGridSortProps,
   DefaultDataGridCell,
-  type FilterFn,
-  type OnChangeFn,
-  type PaginationState,
-  type Row,
-  type RowSelectionState,
-  type SortingFn,
-  type SortingState,
-  type TableInstance,
-  type UseColumnVisibilityProps,
   useColumnVisibility,
   useColumns,
   useDataGridContext,
 } from './data-grid'
-export {
-  DataGridPagination,
-  type DataGridPaginationProps,
-} from './data-grid-pagination'
-export { NoResults, type NoResultsProps } from './no-results'
+export type {
+  ColumnDef,
+  ColumnFiltersState,
+  DataGridCell,
+  DataGridHeaderProps,
+  DataGridProps,
+  DataGridProviderProps,
+  DataGridSortProps,
+  FilterFn,
+  OnChangeFn,
+  PaginationState,
+  Row,
+  RowSelectionState,
+  SortingFn,
+  SortingState,
+  TableInstance,
+  UseColumnVisibilityProps,
+} from './data-grid'
+
+export { DataGridPagination } from './data-grid-pagination'
+export type { DataGridPaginationProps } from './data-grid-pagination'
+
+export { NoResults } from './no-results'
+export type { NoResultsProps } from './no-results'
 
 export { createColumnHelper } from '@tanstack/react-table'

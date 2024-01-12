@@ -3,6 +3,8 @@ export {
   RadioButtonGroupField,
   ToggleButton,
   ToggleButtonGroup,
-  type ToggleButtonGroupProps,
-  type ToggleButtonProps,
+} from './toggle-button-group'
+export type {
+  ToggleButtonGroupProps,
+  ToggleButtonProps,
 } from './toggle-button-group'

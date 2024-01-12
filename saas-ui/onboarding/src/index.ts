@@ -1,68 +1,68 @@
-'use client'
+export { Beacon } from './beacon'
+export type { BeaconProps } from './beacon'
 
-export { Beacon, type BeaconProps } from './beacon'
 export {
   BenefitsModal,
   BenefitsModalActions,
   BenefitsModalBody,
   BenefitsModalCloseButton,
   BenefitsModalContainer,
-  type BenefitsModalContainerProps,
   BenefitsModalFooter,
   BenefitsModalHeader,
   BenefitsModalMedia,
-  type BenefitsModalMediaProps,
-  type BenefitsModalProps,
 } from './benefits-modal'
+export type {
+  BenefitsModalContainerProps,
+  BenefitsModalMediaProps,
+  BenefitsModalProps,
+} from './benefits-modal'
+
 export {
   TourDialog,
   TourDialogActions,
-  type TourDialogActionsProps,
   TourDialogAnchor,
   TourDialogArrow,
   TourDialogBody,
   TourDialogCloseButton,
   TourDialogContainer,
-  type TourDialogContainerProps,
   TourDialogFooter,
   TourDialogHeader,
   TourDialogPrimaryAction,
-  type TourDialogProps,
   TourDialogSecondaryAction,
   TourDialogTarget,
   TourDialogTrigger,
 } from './tour-dialog'
-export {
-  Tour,
-  TourDismissButton,
-  TourNextButton,
-  TourPrevButton,
-  type TourProps,
-} from './tour'
+export type {
+  TourDialogActionsProps,
+  TourDialogContainerProps,
+  TourDialogProps,
+} from './tour-dialog'
+
+export { Tour, TourDismissButton, TourNextButton, TourPrevButton } from './tour'
+export type { TourProps } from './tour'
+
 export { TourSpotlight } from './tour-spotlight'
+
+export { useTourBeacon } from './use-tour-beacon'
+export type { UseTourBeaconProps, UseTourBeaconReturn } from './use-tour-beacon'
+
 export {
-  type UseTourBeaconProps,
-  type UseTourBeaconReturn,
-  useTourBeacon,
-} from './use-tour-beacon'
-export {
-  type TourDialogContext,
   TourDialogContextProvider,
-  type TourDialogOptions,
   useTourDialog,
   useTourDialogContext,
 } from './use-tour-dialog'
-export {
-  type TourSpotlightOptions,
-  type TourSpotlightProps,
-  useTourSpotlight,
+export type { TourDialogContext, TourDialogOptions } from './use-tour-dialog'
+
+export { useTourSpotlight } from './use-tour-spotlight'
+export type {
+  TourSpotlightOptions,
+  TourSpotlightProps,
 } from './use-tour-spotlight'
-export {
-  type TourContextValue,
-  type TourOptions,
-  TourProvider,
-  type TourStep,
-  type UseTourProps,
-  useTour,
-  useTourContext,
+
+export { TourProvider, useTour, useTourContext } from './use-tour'
+export type {
+  TourContextValue,
+  TourOptions,
+  TourStep,
+  UseTourProps,
 } from './use-tour'
