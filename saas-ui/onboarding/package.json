@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/onboarding",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "exports": {
     ".": {
       "require": "./dist/index.js",

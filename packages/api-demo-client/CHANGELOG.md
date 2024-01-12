@@ -1,5 +1,15 @@
 # @api/mocks
 
+## 0.9.1
+
+### Patch Changes
+
+- aec2974: Updated dependencies
+- 6b32323: Updated dependencies
+- Updated dependencies [aec2974]
+- Updated dependencies [6b32323]
+  - @common/mocks@0.10.1
+
 ## 0.9.0
 
 ### Minor Changes

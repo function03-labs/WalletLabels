@@ -1,5 +1,17 @@
 # marketing
 
+## 2.0.1
+
+### Patch Changes
+
+- 6b32323: Updated dependencies
+- Updated dependencies [aec2974]
+- Updated dependencies [6b32323]
+  - @common/i18n@0.5.1
+  - @app/config@7.0.1
+  - @ui/lib@7.0.1
+  - @saas-ui-pro/react@0.31.2
+
 ## 2.0.0
 
 ### Patch Changes

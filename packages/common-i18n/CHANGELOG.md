@@ -1,5 +1,12 @@
 # @app/i18n
 
+## 0.5.1
+
+### Patch Changes
+
+- aec2974: Updated dependencies
+- 6b32323: Updated dependencies
+
 ## 0.5.0
 
 ### Minor Changes
