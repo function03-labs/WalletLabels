@@ -167,6 +167,7 @@ export function DashboardPage() {
           gridAutoColumns="fr1"
           width="100%"
           gap={{ base: 4, xl: 8 }}
+          pb="8"
         >
           <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
             <Card>

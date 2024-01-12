@@ -33,7 +33,7 @@
     "directory": "saas-ui/pro"
   },
   "dependencies": {
-    "date-fns": "^3.1.0"
+    "date-fns": "^3.2.0"
   },
   "peerDependencies": {
     "react": ">=18"

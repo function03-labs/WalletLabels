@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { LineChart } from '@saas-ui/charts'
+import { AreaChart } from '@saas-ui/charts'
 
 import { format } from 'date-fns'
 
@@ -14,32 +14,28 @@ export const RevenueChart = ({ data = [] }: { data: MetricData[] }) => {
     () =>
       data?.map(({ timestamp, value }) => {
         return {
-          xv: format(timestamp, 'd/L'),
-          x: timestamp,
-          y: value,
-          yv: intl.formatNumber(value, {
-            currency: 'EUR',
-            style: 'currency',
-          }),
+          date: format(timestamp, 'd/L'),
+          Revenue: value,
         }
       }),
     [data],
   )
 
   return (
-    <LineChart
+    <AreaChart
       data={parsedData}
-      name="Revenue"
+      categories={['Revenue']}
       strokeWidth="2"
       variant="gradient"
-      gradientOpacity={0.2}
-      tickFormatter={(value: number) =>
+      valueFormatter={(value: number) =>
         intl.formatNumber(value, {
           currency: 'EUR',
           style: 'currency',
           maximumFractionDigits: 0,
         })
       }
+      yAxisWidth={60}
+      showLegend={false}
       height="300px"
     />
   )
