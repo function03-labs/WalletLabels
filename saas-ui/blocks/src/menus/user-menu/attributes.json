@@ -1,0 +1,10 @@
+{
+  "title": "User menu",
+  "description": "A dropdown menu with actions and options for the logged in user.",
+  "version": "1.0.0",
+  "canvas": {
+    "center": true,
+    "height": "480px",
+    "public": true
+  }
+}

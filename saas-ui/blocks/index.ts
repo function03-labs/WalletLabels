@@ -36,3 +36,15 @@ export { AddContactDrawer } from './src/drawers/add-contact-drawer/add-contact-d
  */
 export { SelectUsersModal } from './src/modals/select-users-modal/select-users-modal'
 export { TagsModal } from './src/modals/tags-modal/tags-modal'
+
+/**
+ * Menu's
+ */
+export { RolesMenu } from './src/menus/roles-menu/roles-menu'
+export { OrganizationMenu } from './src/menus/organization-menu/organization-menu'
+export { UserMenu } from './src/menus/user-menu/user-menu'
+
+/**
+ * KPI Cards
+ */
+export { MetricCardWithButton } from './src/kpi-cards/metric-card-with-button/metric-card-with-button'

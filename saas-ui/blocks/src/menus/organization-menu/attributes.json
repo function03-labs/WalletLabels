@@ -1,0 +1,10 @@
+{
+  "title": "Organization menu",
+  "description": "A dropdown menu with a list of organizations and navigation links",
+  "version": "1.0.0",
+  "canvas": {
+    "center": true,
+    "height": "480px",
+    "public": true
+  }
+}

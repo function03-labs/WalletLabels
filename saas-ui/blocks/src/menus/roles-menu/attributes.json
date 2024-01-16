@@ -1,0 +1,9 @@
+{
+  "title": "Roles menu",
+  "description": "An user roles selection menu with label and description.",
+  "version": "1.0.0",
+  "canvas": {
+    "center": true,
+    "public": true
+  }
+}
