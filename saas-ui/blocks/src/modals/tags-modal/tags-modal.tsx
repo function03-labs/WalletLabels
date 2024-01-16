@@ -96,7 +96,7 @@ const TagListItem: React.FC<TagListItemProps> = (props) => {
       })
 
       setEdit(false)
-    } catch (e) {
+    } catch (e: any) {
       setError(e.message)
       console.error(e)
     } finally {
@@ -263,7 +263,7 @@ const TagListAddItem: React.FC<TagListAddItemProps> = (props) => {
       await onSaveProp?.(values)
 
       disclosure.onClose()
-    } catch (e) {
+    } catch (e: any) {
       setError(e.message)
       console.error(e)
     } finally {
@@ -398,6 +398,8 @@ export const TagsModal = () => {
 
       <ManageTagsModal
         {...disclosure}
+        // Remove blockScrollOnMount in your implementation
+        blockScrollOnMount={false}
         items={items}
         onSave={async (item) => {
           setItems((items) => {

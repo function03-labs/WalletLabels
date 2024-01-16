@@ -269,6 +269,8 @@ export const SelectUsersModal = () => {
         Open Modal
       </Button>
       <SelectListModal
+        // Remove blockScrollOnMount in your implementation
+        blockScrollOnMount={false}
         items={users}
         renderItem={(user) => (
           <UserPersona

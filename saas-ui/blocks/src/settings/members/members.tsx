@@ -2,10 +2,14 @@ import {
   Box,
   Button,
   ButtonGroup,
+  IconButton,
   Card,
   CardHeader,
   HStack,
   Heading,
+  Menu,
+  MenuButton,
+  MenuList,
   MenuItem,
   Spacer,
   Stack,
@@ -13,7 +17,6 @@ import {
   Text,
 } from '@chakra-ui/react'
 import {
-  OverflowMenu,
   PersonaAvatar,
   SearchInput,
   StructuredList,
@@ -21,6 +24,7 @@ import {
   StructuredListIcon,
   StructuredListItem,
 } from '@saas-ui/react'
+import { FiMoreVertical } from 'react-icons/fi'
 
 const members = [
   {
@@ -87,11 +91,18 @@ export const Members = () => {
               </HStack>
             </StructuredListCell>
             <StructuredListCell>
-              <Box>
-                <OverflowMenu>
+              <Menu>
+                <MenuButton
+                  as={IconButton}
+                  icon={<FiMoreVertical />}
+                  variant="ghost"
+                  size="sm"
+                  aria-label="More"
+                />
+                <MenuList>
                   <MenuItem>Remove</MenuItem>
-                </OverflowMenu>
-              </Box>
+                </MenuList>
+              </Menu>
             </StructuredListCell>
           </StructuredListItem>
         ))}
