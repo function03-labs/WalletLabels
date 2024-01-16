@@ -1,6 +1,6 @@
 {
   "name": "@db/prisma",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "exports": {
     ".": {
       "require": "./generated/index.js",
@@ -13,8 +13,8 @@
     "migrate:init": "prisma migrate dev --name init"
   },
   "dependencies": {
-    "@prisma/client": "5.7.1",
-    "prisma": "^5.7.1"
+    "@prisma/client": "5.8.0",
+    "prisma": "^5.8.0"
   },
   "sideEffects": false
 }

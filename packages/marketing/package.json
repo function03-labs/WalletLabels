@@ -1,6 +1,6 @@
 {
   "name": "marketing",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "exports": {
     "./pages/*": "./pages/*"
@@ -11,14 +11,14 @@
     "@common/i18n": "workspace:*",
     "@ui/lib": "workspace:*",
     "@ui/theme": "workspace:*",
-    "lucide-react": "^0.300.0"
+    "lucide-react": "^0.309.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
     "@chakra-ui/system": ">=2.1.0",
     "@emotion/react": ">=11.0.0",
     "@emotion/styled": ">=11.0.0",
-    "@saas-ui-pro/react": ">=0.31.0",
+    "@saas-ui-pro/react": ">=0.31.2",
     "@saas-ui/auth": ">=2",
     "@saas-ui/date-picker": ">=0.9.0",
     "@saas-ui/react": ">=2",

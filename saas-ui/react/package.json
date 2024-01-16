@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/react",
-  "version": "0.31.1",
+  "version": "0.31.2",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -66,12 +66,12 @@
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^23.1.0",
     "@saas-ui-pro/onboarding": "workspace:*",
-    "@saas-ui/forms": "^2.3.7",
+    "@saas-ui/forms": "^2.3.8",
     "@saas-ui/react-utils": "^2.0.1",
     "@saas-ui/theme": "^2.3.1",
-    "@tanstack/react-table": "^8.11.3",
+    "@tanstack/react-table": "^8.11.6",
     "@tanstack/react-virtual": "^3.0.1",
-    "date-fns": "^3.1.0",
+    "date-fns": "^3.2.0",
     "polished": "^4.2.2"
   },
   "peerDependencies": {
@@ -85,8 +85,8 @@
   },
   "devDependencies": {
     "@ngneat/falso": "^2.27.0",
-    "@saas-ui/date-picker": "^0.12.16",
-    "react-icons": "^4.12.0",
+    "@saas-ui/date-picker": "^0.12.17",
+    "react-icons": "^5.0.1",
     "tsup": "^6.7.0"
   }
 }

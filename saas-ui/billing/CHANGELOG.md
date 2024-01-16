@@ -1,5 +1,12 @@
 # @saas-ui/billing
 
+## 0.11.3
+
+### Patch Changes
+
+- aec2974: Updated dependencies
+- 6b32323: Updated dependencies
+
 ## 0.11.2
 
 ### Patch Changes

@@ -1,13 +1,13 @@
 {
   "name": "@common/mocks",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "API client mocks",
   "private": true,
   "main": "src/index.ts",
   "type": "module",
   "dependencies": {
     "@ngneat/falso": "^2.27.0",
-    "date-fns": "^3.1.0",
+    "date-fns": "^3.2.0",
     "slug": "^8.2.3",
     "zustand": "^4.4.7"
   },

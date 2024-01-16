@@ -1,5 +1,17 @@
 # electron-app
 
+## 0.19.2
+
+### Patch Changes
+
+- aec2974: Updated dependencies
+- 6b32323: Updated dependencies
+- Updated dependencies [aec2974]
+- Updated dependencies [6b32323]
+  - @saas-ui-pro/billing@0.11.3
+  - @saas-ui-pro/react@0.31.2
+  - @saas-ui-pro/onboarding@0.13.4
+
 ## 0.19.1
 
 ### Patch Changes

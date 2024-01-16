@@ -1,5 +1,12 @@
 # @ui/core
 
+## 0.9.1
+
+### Patch Changes
+
+- aec2974: Updated dependencies
+- 6b32323: Updated dependencies
+
 ## 0.9.0
 
 ### Minor Changes

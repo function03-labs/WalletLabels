@@ -1,7 +1,7 @@
 {
   "name": "@common/i18n",
   "main": "src/index",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
     "extract": "formatjs extract",
@@ -9,7 +9,7 @@
     "extract-compile": "formatjs extract '../**/src/**/*.ts*' --out-file temp.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]' && formatjs compile 'temp.json' --out-file lang/en.json && rm temp.json"
   },
   "dependencies": {
-    "date-fns": "^3.1.0",
+    "date-fns": "^3.2.0",
     "intl-messageformat": "10.5.8",
     "react-intl": "^6.5.5"
   },

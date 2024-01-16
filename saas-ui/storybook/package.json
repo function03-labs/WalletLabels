@@ -1,7 +1,7 @@
 {
   "name": "saas-ui-storybook-pro",
   "private": true,
-  "version": "29.0.1",
+  "version": "29.0.2",
   "scripts": {
     "dev": "sb dev -p 6007",
     "build": "sb build"
@@ -18,22 +18,22 @@
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@fontsource-variable/inter": "^5.0.16",
-    "@storybook/addon-a11y": "^7.6.7",
-    "@storybook/addon-docs": "^7.6.7",
-    "@storybook/addon-essentials": "^7.6.7",
-    "@storybook/addon-storysource": "^7.6.7",
-    "@storybook/builder-webpack5": "^7.6.7",
-    "@storybook/cli": "^7.6.7",
+    "@storybook/addon-a11y": "^7.6.8",
+    "@storybook/addon-docs": "^7.6.8",
+    "@storybook/addon-essentials": "^7.6.8",
+    "@storybook/addon-storysource": "^7.6.8",
+    "@storybook/builder-webpack5": "^7.6.8",
+    "@storybook/cli": "^7.6.8",
     "@storybook/mdx2-csf": "^1.1.0",
-    "@storybook/react": "^7.6.7",
-    "@storybook/react-vite": "^7.6.7",
+    "@storybook/react": "^7.6.8",
+    "@storybook/react-vite": "^7.6.8",
     "chromatic": "^7.6.0",
-    "framer-motion": "^10.17.9",
-    "lucide-react": "^0.300.0",
+    "framer-motion": "^10.18.0",
+    "lucide-react": "^0.309.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "require-from-string": "^2.0.2",
-    "vite": "^4.5.1"
+    "vite": "^5.0.11"
   }
 }

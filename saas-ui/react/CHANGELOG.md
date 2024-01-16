@@ -1,5 +1,14 @@
 # @saas-ui-pro/react
 
+## 0.31.2
+
+### Patch Changes
+
+- aec2974: Updated dependencies
+- 6b32323: Updated dependencies
+- Updated dependencies [6b32323]
+  - @saas-ui-pro/onboarding@0.13.4
+
 ## 0.31.1
 
 ### Patch Changes
