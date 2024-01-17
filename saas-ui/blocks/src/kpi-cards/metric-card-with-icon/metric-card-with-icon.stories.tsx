@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Meta } from '@storybook/react'
 
 export default {
-  title: 'Templates/KPI Cards/MetricCardWithButton',
+  title: 'Templates/KPI Cards/MetricCardWithIcon',
   decorators: [(Story) => <Story />],
 } as Meta
 
-export { MetricCardWithButton } from './metric-card-with-button'
+export { MetricCardWithIcon } from './metric-card-with-icon'
