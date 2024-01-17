@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Button, ButtonProps } from '@chakra-ui/react'
+import { Button, ButtonProps, LinkProps } from '@chakra-ui/react'
 import { useLink } from '@saas-ui/react'
 
-export interface LinkButtonProps extends ButtonProps {
-  href?: string | object
-}
+export interface LinkButtonProps
+  extends Pick<LinkProps, 'href' | 'target' | 'rel'>,
+    ButtonProps {}
 
 export const LinkButton = React.forwardRef(
   (props: LinkButtonProps, ref: React.ForwardedRef<any>) => {

@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 
-import { Container } from '@chakra-ui/react'
+import { Center, Container } from '@chakra-ui/react'
 import {
   LoadingOverlay,
   LoadingSpinner,
@@ -19,6 +19,8 @@ import { useRouter } from '@app/nextjs'
 import { getCurrentUser } from '@api/client'
 import { useQuery } from '@tanstack/react-query'
 import { useSessionStorageValue } from '@react-hookz/web'
+import { SubscribeStep } from '../components/onboarding/subscribe'
+import { AppearanceStep } from '../components/onboarding/appearance'
 
 export const GettingStartedPage: React.FC = () => {
   const { data, isLoading } = useQuery({
@@ -28,18 +30,27 @@ export const GettingStartedPage: React.FC = () => {
 
   return (
     <OnboardingPage isLoading={isLoading}>
-      <Container py="40" maxW={['full', null, '480px']}>
-        <Steps variant="dots" flexDirection="column-reverse">
-          <StepsItem title="Create organization">
-            <CreateOrganizationStep />
-          </StepsItem>
-          <StepsItem title="Invite team members">
-            <InviteTeamMembersStep />
-          </StepsItem>
-          <StepsCompleted>
-            <OnboardingCompleted />
-          </StepsCompleted>
-        </Steps>
+      <Container maxW="container.md">
+        <Center minH="$100vh">
+          <Steps variant="dots" flexDirection="column-reverse" width="full">
+            <StepsItem title="Create organization">
+              <CreateOrganizationStep />
+            </StepsItem>
+            <StepsItem title="Choose your style">
+              <AppearanceStep />
+            </StepsItem>
+            <StepsItem title="Invite team members">
+              <InviteTeamMembersStep />
+            </StepsItem>
+            <StepsItem title="Subscribe to updates">
+              <SubscribeStep />
+            </StepsItem>
+
+            <StepsCompleted>
+              <OnboardingCompleted />
+            </StepsCompleted>
+          </Steps>
+        </Center>
       </Container>
     </OnboardingPage>
   )

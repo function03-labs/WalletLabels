@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   keyframes,
+  SystemProps,
   Text,
 } from '@chakra-ui/react'
 import {
@@ -29,6 +30,7 @@ export interface OnboardingStepProps<
   onChange?: WatchObserver<TFieldValues>
   onSubmit: SubmitHandler<TFieldValues>
   submitLabel: string
+  maxW?: SystemProps['maxW']
   children: React.ReactNode
   formRef?: React.RefObject<UseFormReturn<TFieldValues>>
 }
@@ -59,6 +61,7 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
     onSubmit,
     submitLabel,
     formRef,
+    maxW = { base: '100%', md: '80%' },
     children,
   } = props
   return (
@@ -74,17 +77,25 @@ export const OnboardingStep = <TFieldValues extends FieldValues = FieldValues>(
         schema={schema}
         formRef={formRef}
         defaultValues={defaultValues}
+        mode="onTouched"
         onSubmit={onSubmit}
         onChange={onChange}
         alignSelf="stretch"
       >
-        <Card mb="6" animation={animation(0.2)} zIndex="2">
+        <Card
+          mb="6"
+          animation={animation(0.2)}
+          zIndex="2"
+          mx="auto"
+          maxW={maxW}
+        >
           <CardBody p="6">{children}</CardBody>
         </Card>
 
         <SubmitButton
           size="md"
           width="80%"
+          maxW="320px"
           margin="0 10%"
           animation={animation(0.3)}
         >

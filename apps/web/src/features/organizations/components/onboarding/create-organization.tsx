@@ -17,7 +17,12 @@ import { createOrganization } from '@api/client'
 import { useSessionStorageValue } from '@react-hookz/web'
 
 const schema = z.object({
-  name: z.string().min(2, 'Too short').max(25, 'Too long').describe('Name'),
+  name: z
+    .string()
+    .min(1, 'Please enter your organization name.')
+    .min(2, 'Please choose a name with at least 3 characters.')
+    .max(50, 'The organization name should be no longer than 50 characters.')
+    .describe('Name'),
   slug: z.string(),
 })
 
@@ -40,7 +45,7 @@ export const CreateOrganizationStep = () => {
       schema={schema}
       formRef={formRef}
       title="Create a new organization"
-      description="Saas UI is multi-tenant and supports organization workspaces with multiple teams."
+      description="Saas UI is multi-tenant and supports workspaces with multiple teams."
       defaultValues={{ name: '', slug: '' }}
       onSubmit={async (data) => {
         try {
@@ -50,7 +55,7 @@ export const CreateOrganizationStep = () => {
             stepper.nextStep()
           }
         } catch {
-          snackbar.error('Failed to create organization')
+          snackbar.error('Failed to create your organization.')
         }
       }}
       submitLabel="Create organization"
@@ -61,6 +66,7 @@ export const CreateOrganizationStep = () => {
           label="Organization name"
           autoFocus
           rules={{ required: true }}
+          data-1p-ignore
           onChange={(e: FormEvent<HTMLInputElement>) => {
             const value = e.currentTarget.value
             formRef.current?.setValue('name', value)
@@ -72,7 +78,12 @@ export const CreateOrganizationStep = () => {
           label="Organization URL"
           paddingLeft="140px"
           leftAddon={
-            <InputLeftElement bg="transparent" width="auto" ps="3">
+            <InputLeftElement
+              bg="transparent"
+              width="auto"
+              ps="3"
+              pointerEvents="none"
+            >
               <Text color="muted">https://saas-ui.dev/</Text>
             </InputLeftElement>
           }
