@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Meta } from '@storybook/react'
 
 export default {
-  title: 'Templates/KPI Cards/MetricCardWithIcon',
+  title: 'Blocks/KPI Cards/MetricCardWithIcon',
   decorators: [(Story) => <Story />],
 } as Meta
 

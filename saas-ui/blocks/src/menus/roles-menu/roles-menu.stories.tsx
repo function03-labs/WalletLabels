@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Meta } from '@storybook/react'
 
 export default {
-  title: 'Templates/Menus/RolesMenu',
+  title: 'Blocks/Menus/RolesMenu',
   decorators: [(Story) => <Story />],
 } as Meta
 
