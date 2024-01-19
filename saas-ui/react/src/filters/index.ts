@@ -8,6 +8,7 @@ export {
   ActiveFilterOperator,
   ActiveFilterRemove,
   ActiveFilterValue,
+  ActiveFilterValueInput,
   ActiveFiltersList,
   ResetFilters,
 } from './active-filter'
@@ -15,6 +16,7 @@ export type {
   ActiveFilterContainerProps,
   ActiveFilterLabelProps,
   ActiveFilterOperatorProps,
+  ActiveFilterRemoveProps,
   ActiveFilterProps,
   ActiveFilterValueProps,
   ActiveFiltersListProps,

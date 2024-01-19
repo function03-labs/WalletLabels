@@ -349,9 +349,11 @@ export const ActiveFilterValue: React.FC<ActiveFilterValueProps> = (props) => {
 
 ActiveFilterValue.displayName = 'ActiveFilterValue'
 
-export interface ActiveFilterRemove extends HTMLChakraProps<'button'> {}
+export interface ActiveFilterRemoveProps extends HTMLChakraProps<'button'> {}
 
-export const ActiveFilterRemove: React.FC<ActiveFilterRemove> = (props) => {
+export const ActiveFilterRemove: React.FC<ActiveFilterRemoveProps> = (
+  props,
+) => {
   const styles = useStyles()
 
   const removeStyles = {

@@ -46,6 +46,7 @@ export {
   ActiveFilterProvider,
   ActiveFilterRemove,
   ActiveFilterValue,
+  ActiveFilterValueInput,
   ActiveFiltersList,
   FilterMenu,
   FiltersAddButton,
@@ -61,12 +62,15 @@ export {
   useFilterValue,
   useFilters,
   useFiltersContext,
+  createOperators,
+  defaultOperators,
 } from './filters'
 export type {
   ActiveFilterContainerProps,
   ActiveFilterContextValue,
   ActiveFilterLabelProps,
   ActiveFilterOperatorProps,
+  ActiveFilterRemoveProps,
   ActiveFilterProps,
   ActiveFilterValueOptions,
   ActiveFilterValueProps,
