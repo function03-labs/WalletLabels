@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.31.4
+
+### Patch Changes
+
+- 07f35c2: Export missing filter components and types
+
 ## 0.31.3
 
 ### Patch Changes
