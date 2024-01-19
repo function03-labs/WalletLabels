@@ -26,6 +26,7 @@ import {
   StructuredListCell,
   StructuredListItem,
   SearchInput,
+  useSnackbar,
 } from '@saas-ui/react'
 
 export interface SelectListModalItem {
@@ -99,7 +100,7 @@ export const SelectListModal = <
       <ModalOverlay />
       <ModalContent>
         <ModalHeader borderBottomWidth="1px">
-          <Stack align="left" justify="space-between" dir="column">
+          <Stack align="left" justify="space-between" dir="column" spacing="1">
             <ModalCloseButton />
             <Heading fontSize="lg" fontWeight="medium">
               {props.title}
@@ -202,6 +203,7 @@ const UserPersona: React.FC<UserPersonaProps> = (props) => {
 }
 
 export const SelectUsersModal = () => {
+  const snackbar = useSnackbar()
   const { isOpen, onOpen, onClose } = useDisclosure({
     defaultIsOpen: true,
   })
@@ -269,8 +271,6 @@ export const SelectUsersModal = () => {
         Open Modal
       </Button>
       <SelectListModal
-        // Remove blockScrollOnMount in your implementation
-        blockScrollOnMount={false}
         items={users}
         renderItem={(user) => (
           <UserPersona
@@ -292,10 +292,12 @@ export const SelectUsersModal = () => {
         title="Select users"
         description="Add or remove users from the project"
         onSubmit={(items) => {
-          const message = `You selected ${items.length} users.`
-          alert(message)
+          snackbar.info(`You selected ${items.length} users.`)
           onClose()
         }}
+        // These properties are only required for demo purposes
+        blockScrollOnMount={false}
+        trapFocus={false}
       />
     </>
   )

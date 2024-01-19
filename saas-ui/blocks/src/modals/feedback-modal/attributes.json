@@ -1,0 +1,9 @@
+{
+  "title": "Feedback modal",
+  "description": "A modal dialog for collecting feedback from users.",
+  "version": "1.0.0",
+  "canvas": {
+    "center": true,
+    "height": "540px"
+  }
+}

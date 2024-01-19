@@ -398,8 +398,6 @@ export const TagsModal = () => {
 
       <ManageTagsModal
         {...disclosure}
-        // Remove blockScrollOnMount in your implementation
-        blockScrollOnMount={false}
         items={items}
         onSave={async (item) => {
           setItems((items) => {
@@ -426,6 +424,9 @@ export const TagsModal = () => {
             return [...items]
           })
         }}
+        // These properties are only required for demo purposes
+        blockScrollOnMount={false}
+        trapFocus={false}
       />
     </>
   )
@@ -469,7 +470,7 @@ export const ManageTagsModal = (props: SelectListModalProps) => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader borderBottomWidth="1px">
-          <Stack align="left" justify="space-between" dir="column">
+          <Stack align="left" justify="space-between" dir="column" spacing="1">
             <ModalCloseButton />
             <Heading fontSize="lg" fontWeight="medium">
               Manage tags

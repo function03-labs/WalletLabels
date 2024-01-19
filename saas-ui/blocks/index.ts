@@ -36,6 +36,7 @@ export { AddContactDrawer } from './src/drawers/add-contact-drawer/add-contact-d
  */
 export { SelectUsersModal } from './src/modals/select-users-modal/select-users-modal'
 export { TagsModal } from './src/modals/tags-modal/tags-modal'
+export { default as FeedbackModal } from './src/modals/feedback-modal/feedback-modal'
 
 /**
  * Menu's
