@@ -90,3 +90,14 @@ export const updateOrganization = async (variables: {
     updateOrganization: data,
   }
 }
+
+export const subscribeToNewsletter = async (data: {
+  workspace: string
+  newsletter: boolean
+}) => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, 200)
+  })
+}
