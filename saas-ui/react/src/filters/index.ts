@@ -47,4 +47,10 @@ export type { NoFilteredResultsProps } from './no-filtered-results'
 
 export { FiltersAddButton } from './filters'
 
-export type { FilterOperators, FilterOperatorId, FilterType } from './operators'
+export { createOperators, defaultOperators } from './operators'
+export type {
+  FilterOperators,
+  FilterOperatorId,
+  FilterType,
+  FilterOperator,
+} from './operators'

@@ -8,13 +8,28 @@ import {
   Text,
   Tag,
   HStack,
+  Input,
 } from '@chakra-ui/react'
 
-import { FiCalendar, FiFileText, FiShoppingBag, FiUser } from 'react-icons/fi'
+import {
+  FiCalendar,
+  FiFileText,
+  FiHeart,
+  FiShoppingBag,
+  FiUser,
+} from 'react-icons/fi'
 
-import { FiltersProvider, FiltersProviderProps } from './provider'
+import {
+  FiltersProvider,
+  FiltersProviderProps,
+  useFiltersContext,
+} from './provider'
 import { FiltersAddButton } from './filters'
-import { ActiveFiltersList, FilterRenderFn } from './active-filter'
+import {
+  ActiveFilterValueInput,
+  ActiveFiltersList,
+  FilterRenderFn,
+} from './active-filter'
 import {
   DataGrid,
   DataGridCell,
@@ -24,8 +39,13 @@ import {
 } from '../data-grid'
 import { getDataGridFilter } from './use-data-grid-filter'
 import { NoFilteredResults } from './no-filtered-results'
-import { Filter } from './use-active-filter'
-import { FilterItem } from './filter-menu'
+import {
+  ActiveFilterContextValue,
+  Filter,
+  useActiveFilter,
+  useActiveFilterContext,
+} from './use-active-filter'
+import { FilterItem, FilterItems } from './filter-menu'
 import {
   format,
   formatDistanceToNowStrict,
@@ -38,6 +58,7 @@ import {
   DateValue,
   getLocalTimeZone,
 } from '@saas-ui/date-picker'
+import { FilterOperators, createOperators, defaultOperators } from './operators'
 
 const values: Record<string, FilterRenderFn> = {
   status: (context) => {
@@ -914,4 +935,71 @@ export const WithAsyncFilters = () => {
       </Stack>
     </FiltersProvider>
   )
+}
+
+const customOperators = createOperators([
+  ...defaultOperators,
+  {
+    id: 'lte',
+    label: '<=',
+    types: ['number'],
+    comparator(value: number | undefined, filterValue: number) {
+      return value !== undefined && value <= filterValue
+    },
+  },
+  {
+    id: 'gte',
+    label: '>=',
+    types: ['number'],
+    comparator(value: number | undefined, filterValue: number) {
+      return value !== undefined && value >= filterValue
+    },
+  },
+])
+
+export const CustomOperators = () => {
+  const filters = React.useMemo<FilterItem[]>(
+    () => [
+      {
+        id: 'likes',
+        label: 'Likes',
+        icon: <FiHeart />,
+        type: 'number',
+        defaultOperator: 'moreThan',
+      },
+    ],
+    [],
+  )
+
+  const renderValue: FilterRenderFn = React.useCallback((context) => {
+    if (context.id === 'likes') {
+      return <ActiveFilterValueInput />
+    }
+    return context.value?.toLocaleString()
+  }, [])
+
+  return (
+    <FiltersProvider filters={filters} operators={customOperators}>
+      <Stack alignItems="flex-start">
+        <Box px="3">
+          <FiltersAddButton />
+        </Box>
+
+        <ActiveFiltersList
+          px="3"
+          py="2"
+          borderBottomWidth="1px"
+          zIndex="2"
+          renderValue={renderValue}
+        />
+
+        <LogFilters />
+      </Stack>
+    </FiltersProvider>
+  )
+}
+
+const LogFilters = () => {
+  const filters = useFiltersContext()
+  return <pre>{JSON.stringify(filters.activeFilters, undefined, 2)}</pre>
 }

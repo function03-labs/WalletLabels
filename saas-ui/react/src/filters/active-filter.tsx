@@ -22,6 +22,8 @@ import {
   ThemingProps,
   SystemStyleObject,
   createStylesContext,
+  Input,
+  InputProps,
 } from '@chakra-ui/react'
 
 import { cx, runIfFn } from '@chakra-ui/utils'
@@ -48,6 +50,7 @@ import {
   ActiveFilterProvider,
   ActiveFilterValueOptions,
   UseFilterOperatorProps,
+  useActiveFilterContext,
 } from './use-active-filter'
 
 import { useFiltersContext } from './provider'
@@ -111,6 +114,7 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
     items,
     value: defaultValue || value,
     label,
+    onValueChange,
   }
 
   return (
@@ -142,6 +146,27 @@ export const ActiveFilter: React.FC<ActiveFilterProps> = (props) => {
 }
 
 ActiveFilter.displayName = 'ActiveFilter'
+
+export const ActiveFilterValueInput: React.FC<InputProps> = (props) => {
+  const { value, onValueChange } = useActiveFilterContext()
+
+  return (
+    <Input
+      type="text"
+      value={value?.toString()}
+      size="sm"
+      autoFocus
+      variant="plain"
+      width="80px"
+      px="0"
+      placeholder="Enter a value..."
+      onChange={(e) => {
+        onValueChange?.(e.target.value)
+      }}
+      {...props}
+    />
+  )
+}
 
 export interface ActiveFilterContainerProps
   extends Omit<ButtonGroupProps, 'size' | 'variant' | 'colorScheme'>,
@@ -415,6 +440,7 @@ export const ActiveFiltersList: React.FC<ActiveFiltersListProps> = (props) => {
 
         const activeFilterProps: ActiveFilterProps = {
           id,
+          key,
           value,
           operator,
           multiple,

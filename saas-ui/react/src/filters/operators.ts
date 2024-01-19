@@ -11,13 +11,19 @@ export type FilterOperatorId =
   | 'moreThan'
   | 'between'
 
-export type FilterOperator = {
-  id: FilterOperatorId
+export type FilterOperator<
+  Operator extends string = FilterOperatorId,
+  Type extends string = FilterType,
+> = {
+  id: Operator
   label: string
-  types: FilterType[]
-  comparator(value: unknown, filterValue: unknown): boolean | undefined
+  types: Type[]
+  comparator(value: unknown, filterValue: unknown): boolean
 }
-export type FilterOperators = FilterOperator[]
+export type FilterOperators<
+  Operator extends string = FilterOperatorId,
+  Type extends string = FilterType,
+> = FilterOperator<Operator, Type>[]
 
 export type FilterType =
   | 'enum'
@@ -56,9 +62,8 @@ export const defaultOperators: FilterOperators = [
         return value.some((v) => v.toLowerCase() === filterValue?.toLowerCase())
       }
 
-      return (
-        !!filterValue &&
-        value?.toLowerCase().includes(filterValue.toLowerCase())
+      return !!(
+        filterValue && value?.toLowerCase().includes(filterValue.toLowerCase())
       )
     },
   },
@@ -133,3 +138,9 @@ export const defaultOperators: FilterOperators = [
     },
   },
 ]
+
+export const createOperators = <Operator extends string, Type extends string>(
+  operators: FilterOperators<Operator, Type>,
+) => {
+  return operators
+}

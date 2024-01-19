@@ -257,10 +257,11 @@ export const DataGrid = React.forwardRef(
     const theme = useTheme()
     const styleConfig = theme.components?.SuiDataGrid
 
-    const styles = useMultiStyleConfig('SuiDataGrid', props) as Record<
-      string,
-      SystemStyleObject
-    >
+    const styles = useMultiStyleConfig('SuiDataGrid', {
+      size,
+      variant,
+      colorScheme,
+    })
 
     const instance = useReactTable<Data>({
       columns: React.useMemo(() => {

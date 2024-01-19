@@ -6,9 +6,17 @@ import { useMap } from '@react-hookz/web'
 
 import { FilterItem } from './filter-menu'
 import { Filter } from './use-active-filter'
-import { defaultOperators, FilterOperators, FilterType } from './operators'
+import {
+  defaultOperators,
+  FilterOperatorId,
+  FilterOperators,
+  FilterType,
+} from './operators'
 
-interface FiltersContextValue {
+interface FiltersContextValue<
+  Operator extends string = FilterOperatorId,
+  Type extends string = FilterType,
+> {
   /**
    * The list of filters
    */
@@ -46,25 +54,29 @@ interface FiltersContextValue {
    * Get operators by type
    * @returns the list of operators
    */
-  getOperators(type?: string): FilterOperators
+  getOperators(type?: string): FilterOperators<Operator, Type>
   /**
    * Reset all active filters
    */
   reset(): void
 }
 
-const [FiltersContextProvider, useFiltersContext] =
-  createContext<FiltersContextValue>({
-    name: 'FiltersContext',
-  })
+const [FiltersContextProvider, useFiltersContext] = createContext<
+  FiltersContextValue<any, any>
+>({
+  name: 'FiltersContext',
+})
 
 export { useFiltersContext }
 
-export interface FiltersProviderProps {
+export interface FiltersProviderProps<
+  Operator extends string = FilterOperatorId,
+  Type extends string = FilterType,
+> {
   filters?: FilterItem[]
   activeFilters?: Filter[]
   defaultFilters?: Filter[]
-  operators?: FilterOperators
+  operators?: FilterOperators<Operator, Type>
   onChange?(activeFilters: Filter[]): void
   onBeforeEnableFilter?(
     filter: Filter,
@@ -73,7 +85,12 @@ export interface FiltersProviderProps {
   children: React.ReactNode
 }
 
-export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
+export const FiltersProvider = <
+  Operator extends string = FilterOperatorId,
+  Type extends string = FilterType,
+>(
+  props: FiltersProviderProps<Operator, Type>,
+) => {
   const {
     children,
     filters,
@@ -112,8 +129,8 @@ export const FiltersProvider: React.FC<FiltersProviderProps> = (props) => {
   )
 
   const getOperators = React.useCallback(
-    (type: FilterType = 'string') => {
-      return operators.filter(({ types }) => types.includes(type))
+    (type = 'string') => {
+      return operators.filter(({ types }) => types.includes(type as any))
     },
     [operators],
   )
