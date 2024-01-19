@@ -1,5 +1,15 @@
 # @saas-ui-pro/react
 
+## 0.31.3
+
+### Patch Changes
+
+- a9e2324: Improved filter operator types
+- a9e2324: Added ActiveFilterValueInput to allow custom user input for filters
+- a9e2324: Fixed issue where large amounts of data would slow down initial DataGrid rendering
+- a9e2324: Improved how custom filter operators can be defined
+- 29ad065: Added support for custom icons in DataGrid
+
 ## 0.31.2
 
 ### Patch Changes

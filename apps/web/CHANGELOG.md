@@ -1,5 +1,24 @@
 # nextjs-app
 
+## 0.26.0
+
+### Minor Changes
+
+- 8a5ecae: Added new appearance and subscribe to updates steps to onboarding
+
+### Patch Changes
+
+- 8a5ecae: Improved slug field on create organization onboarding step to focus the input when clicking https://....
+- Updated dependencies [a9e2324]
+- Updated dependencies [a9e2324]
+- Updated dependencies [a9e2324]
+- Updated dependencies [a9e2324]
+- Updated dependencies [8a5ecae]
+- Updated dependencies [29ad065]
+  - @saas-ui-pro/react@0.31.3
+  - @ui/lib@7.1.0
+  - @api/client@0.4.2
+
 ## 0.25.3
 
 ### Patch Changes

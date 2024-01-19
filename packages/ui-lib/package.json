@@ -1,6 +1,6 @@
 {
   "name": "@ui/lib",
-  "version": "7.0.1",
+  "version": "7.1.0",
   "private": true,
   "main": "index.ts",
   "sideEffects": false,
@@ -42,7 +42,7 @@
     "@chakra-ui/react": ">=2.5.0",
     "@emotion/react": ">=11.0.0",
     "@emotion/styled": ">=11.0.0",
-    "@saas-ui-pro/react": ">=0.31.2",
+    "@saas-ui-pro/react": ">=0.31.3",
     "@saas-ui/react": ">=2.0.0",
     "framer-motion": ">=5.5.0",
     "react": ">=18",

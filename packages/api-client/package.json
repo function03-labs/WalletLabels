@@ -1,6 +1,6 @@
 {
   "name": "@api/client",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "src/index.ts",
   "type": "module",
   "dependencies": {

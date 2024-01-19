@@ -1,6 +1,6 @@
 {
   "name": "@api/demo-client",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Demo api client that uses mock data",
   "private": true,
   "main": "src/index.ts",

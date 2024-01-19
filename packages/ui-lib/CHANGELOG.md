@@ -1,5 +1,20 @@
 # @ui/lib
 
+## 7.1.0
+
+### Minor Changes
+
+- 8a5ecae: Added new appearance and subscribe to updates steps to onboarding
+
+### Patch Changes
+
+- Updated dependencies [a9e2324]
+- Updated dependencies [a9e2324]
+- Updated dependencies [a9e2324]
+- Updated dependencies [a9e2324]
+- Updated dependencies [29ad065]
+  - @saas-ui-pro/react@0.31.3
+
 ## 7.0.1
 
 ### Patch Changes

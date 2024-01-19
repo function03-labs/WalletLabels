@@ -1,5 +1,11 @@
 # @api/mocks
 
+## 0.10.0
+
+### Minor Changes
+
+- 8a5ecae: Added new appearance and subscribe to updates steps to onboarding
+
 ## 0.9.1
 
 ### Patch Changes

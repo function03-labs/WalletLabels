@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/react",
-  "version": "0.31.2",
+  "version": "0.31.3",
   "exports": {
     ".": {
       "require": "./dist/index.js",
