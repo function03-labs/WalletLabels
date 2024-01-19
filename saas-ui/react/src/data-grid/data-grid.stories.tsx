@@ -33,6 +33,13 @@ import {
   OverflowMenu,
 } from '@saas-ui/react'
 
+import {
+  RiAddFill,
+  RiArrowDownFill,
+  RiArrowUpFill,
+  RiSubtractFill,
+} from 'react-icons/ri'
+
 export default {
   title: 'Components/Data Display/DataGrid',
   component: DataGrid,
@@ -684,6 +691,25 @@ export const WithCustomExpander = {
           expanded: {
             0: true,
           },
+        }}
+      />
+    )
+  },
+}
+
+export const WithCustomIcons = {
+  render: () => {
+    return (
+      <DataGrid<ExampleData>
+        columns={columns}
+        data={withSubRows}
+        isSortable
+        isExpandable
+        icons={{
+          sortAscending: <RiArrowUpFill />,
+          sortDescending: <RiArrowDownFill />,
+          rowExpanded: <RiSubtractFill />,
+          rowCollapsed: <RiAddFill />,
         }}
       />
     )

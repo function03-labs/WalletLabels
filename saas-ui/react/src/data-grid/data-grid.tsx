@@ -88,6 +88,7 @@ declare module '@tanstack/react-table' {
 interface DataGridContextValue<Data extends object>
   extends Pick<DataGridProps<Data>, 'colorScheme' | 'variant' | 'size'> {
   instance: TableInstance<Data>
+  icons?: DataGridIcons
   state: TableState
 }
 
@@ -95,16 +96,32 @@ const DataGridContext = React.createContext<DataGridContextValue<any> | null>(
   null,
 )
 
+export const useDataGridIcons = () => {
+  const { icons } = useDataGridContext()
+
+  return icons
+}
+
 export interface DataGridProviderProps<Data extends object>
   extends Pick<DataGridProps<Data>, 'colorScheme' | 'variant' | 'size'> {
   instance: TableInstance<Data>
+  icons?: DataGridIcons
   children: React.ReactNode
 }
 
 export const DataGridProvider = <Data extends object>(
   props: DataGridProviderProps<Data>,
 ) => {
-  const { instance, children, colorScheme, variant, size } = props
+  const {
+    instance,
+    children,
+    colorScheme,
+    variant,
+    size,
+    icons: iconsProp,
+  } = props
+
+  const icons = React.useMemo(() => iconsProp, [])
 
   const context: DataGridContextValue<Data> = {
     state: instance.getState(),
@@ -112,6 +129,7 @@ export const DataGridProvider = <Data extends object>(
     colorScheme,
     variant,
     size,
+    icons,
   }
 
   return (
@@ -119,6 +137,13 @@ export const DataGridProvider = <Data extends object>(
       {children}
     </DataGridContext.Provider>
   )
+}
+
+export interface DataGridIcons {
+  sortAscending?: React.ReactElement
+  sortDescending?: React.ReactElement
+  rowExpanded?: React.ReactElement
+  rowCollapsed?: React.ReactElement
 }
 
 export const useDataGridContext = <Data extends object>() => {
@@ -217,6 +242,11 @@ export interface DataGridProps<Data extends object>
    * @default fixed
    */
   tableLayout?: 'auto' | 'fixed'
+  /**
+   * Custom icons
+   * This prop is memoized and will not update after initial render.
+   */
+  icons?: DataGridIcons
 }
 
 export const DataGrid = React.forwardRef(
@@ -250,6 +280,7 @@ export const DataGrid = React.forwardRef(
       sx,
       virtualizerProps,
       tableLayout = 'fixed',
+      icons,
       children,
       ...rest
     } = props
@@ -447,6 +478,7 @@ export const DataGrid = React.forwardRef(
         colorScheme={colorScheme}
         variant={variant}
         size={size}
+        icons={icons}
       >
         <chakra.div
           className={cx('sui-data-grid', className)}
@@ -489,6 +521,11 @@ export const DataGridSort = <Data extends object, TValue>(
     ms: 2,
   }
 
+  const icons = useDataGridIcons()
+
+  const sortDescendingIcon = icons?.sortDescending ?? <ChevronDownIcon />
+  const sortAscendingIcon = icons?.sortAscending ?? <ChevronUpIcon />
+  console.log(sortDescendingIcon)
   if (header.id === 'selection') {
     return null
   }
@@ -506,15 +543,11 @@ export const DataGridSort = <Data extends object, TValue>(
       __css={sorterStyles}
       {...rest}
     >
-      {sorted ? (
-        sorted === 'desc' ? (
-          <ChevronDownIcon />
-        ) : (
-          <ChevronUpIcon />
-        )
-      ) : (
-        ''
-      )}
+      {sorted
+        ? sorted === 'desc'
+          ? sortDescendingIcon
+          : sortAscendingIcon
+        : ''}
     </chakra.button>
   )
 }
@@ -665,9 +698,14 @@ const DataGridExpander = forwardRef<DataGridExpanderProps, 'button'>(
     const { isExpanded, onToggle, ...rest } = props
     const { instance } = useDataGridContext()
 
+    const icons = useDataGridIcons()
+
     if (!instance.getCanSomeRowsExpand()) {
       return null
     }
+
+    const expandedIcon = icons?.rowExpanded ?? <ChevronDownIcon />
+    const collapsedIcon = icons?.rowCollapsed ?? <ChevronUpIcon />
 
     return (
       <IconButton
@@ -677,7 +715,7 @@ const DataGridExpander = forwardRef<DataGridExpanderProps, 'button'>(
         fontSize="1.2em"
         {...rest}
         aria-label={isExpanded ? 'Collapse all rows' : 'Expand all rows'}
-        icon={isExpanded ? <ChevronDownIcon /> : <ChevronUpIcon />}
+        icon={isExpanded ? expandedIcon : collapsedIcon}
         onClick={onToggle}
       />
     )
