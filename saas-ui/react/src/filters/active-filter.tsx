@@ -159,6 +159,8 @@ export const ActiveFilterValueInput: React.FC<InputProps> = (props) => {
       variant="plain"
       width="80px"
       px="0"
+      bg="none"
+      borderRadius="0"
       placeholder="Enter a value..."
       onChange={(e) => {
         onValueChange?.(e.target.value)
