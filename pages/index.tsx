@@ -13,11 +13,13 @@ import CountUp from "react-countup"
 import {
   ClearRefinements,
   Configure,
+  DynamicWidgets,
   HierarchicalMenu,
   Highlight,
   Hits,
   HitsPerPage,
   InstantSearch,
+  Menu,
   Pagination,
   // RatingMenu,
   RefinementList,
@@ -92,6 +94,8 @@ export async function getStaticProps() {
 
 export default function IndexPage(props) {
   const { theme } = useTheme()
+  const [isFilterVisible, setIsFilterVisible] = useState(true)
+
   const [searchInput, setSearchInput] = useState("")
   // const { data, isLoading, isError, error } = useLabels(searchInput, props)
   const [initialSearch, setinitialSearch] = useState(false)
@@ -102,14 +106,41 @@ export default function IndexPage(props) {
     //show value of input field
     setSearchInput(e.target.query.value)
   }
+  const toggleFilterVisibility = () => {
+    setIsFilterVisible(!isFilterVisible)
+  }
 
+  const OldSearchBar = (
+    <div className="flex w-full  items-end  justify-between">
+      <div className="w-full sm:w-auto">
+        <div className=" relative mt-2 rounded-md shadow-sm dark:bg-zinc-900">
+          <div className="pointer-events-none absolute inset-y-0 left-0  flex items-center pl-3">
+            <Search
+              className="h-5 w-5 text-gray-400 dark:text-gray-400"
+              aria-hidden="true"
+            />
+          </div>
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              name="price"
+              id="query"
+              // submit when press enter
+              className="text-md mr-10	block	w-full truncate rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-300 dark:bg-zinc-900 dark:text-slate-400 dark:ring-gray-800 sm:text-sm sm:leading-6"
+              placeholder="Search by address or name.."
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  )
   return (
     <Layout>
       {header()}
       <InstantSearch
         indexName="labels"
         searchClient={searchClient}
-        insights={true}>
+        insights={false}>
         <motion.div
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -119,7 +150,7 @@ export default function IndexPage(props) {
           // key={currentIndex}
         >
           <Configure hitsPerPage={50} />
-          <section className="container grid items-center gap-10 pt-10 pb-8 md:py-17">
+          <section className="md:py-17 container grid items-center gap-10 pt-10 pb-8">
             <div className="flex flex-col items-center gap-6">
               {/* <div className="mt-24 sm:mt-32 lg:mt-16">
             <a href="#" className="inline-flex space-x-6">
@@ -165,7 +196,7 @@ export default function IndexPage(props) {
                 <br className="hidden sm:inline" />
                 favorite wallets and exchanges.
               </p>
-              <div className="mt-3 w-full sm:w-4/5 text-center">
+              <div className="mt-3 w-full text-center sm:w-4/5">
                 {/* <SearchComponent
                   handleSearchLogin={handleSearch}
                   disabled={false}
@@ -176,12 +207,12 @@ export default function IndexPage(props) {
                   setinitialSearch={setinitialSearch}
                 />
                 <div className=" flex justify-between">
-                  <Box className=" align-start text-sm text-muted-foreground  flex gap-2">
-                    <div className="hidden sm:block  whitespace-nowrap">
+                  <Box className=" align-start flex gap-2  text-sm text-muted-foreground">
+                    <div className="hidden whitespace-nowrap  sm:block">
                       Interesting finds:
                     </div>
                     {!initialSearch ? (
-                      <div className="flex flex-wrap gap-x-1 gap-y-1">
+                      <div className="flex flex-wrap gap-1">
                         {badgeCategories.map(category => (
                           <Badge
                             key={category.label}
@@ -191,7 +222,7 @@ export default function IndexPage(props) {
                             }}
                             // @ts-ignore
                             variant="none"
-                            className="hover:text-foreground hover:border-green-300 ">
+                            className="hover:border-green-300 hover:text-foreground ">
                             {category.emoji + " " + category.label}
                           </Badge>
                         ))}
@@ -224,8 +255,8 @@ export default function IndexPage(props) {
                   </Box>
 
                   <Stats
-                    className="hidden sm:block text-sm text-muted-foreground  whitespace-nowrap"
-                    translationds={{
+                    className="hidden whitespace-nowrap text-sm text-muted-foreground  sm:block"
+                    translations={{
                       stats(nbHits, processingTimeMS) {
                         let hitCountPhrase
                         setnbHits(hitCountPhrase)
@@ -256,58 +287,99 @@ export default function IndexPage(props) {
           </section>
         </motion.div>
         <div className="mx-2 mb-24 flex flex-col items-center gap-2 md:mx-8">
-          {/* align normal  tailwind */}{" "}
-          <div className="flex w-full  items-end  justify-between">
-            <div className="w-full sm:w-auto">
-              {/*  width 100% if mobile device only tailwind */}
-              <div className=" relative mt-2 rounded-md shadow-sm dark:bg-zinc-900">
-                {/* <div className="pointer-events-none absolute inset-y-0 left-0  flex items-center pl-3">
-                  <Search
-                    className="h-5 w-5 text-gray-400 dark:text-gray-400"
-                    aria-hidden="true"
-                  />
+          {/* {OldSearchBar} */}
+          <div
+            className="
+        flex
+        w-full auto-cols-auto
+        ">
+            {/* add vertical navbar */}
+
+            <div
+              className={` w-1/4
+                ${isFilterVisible ? "block mr-4" : "opacity-0 !w-0 h-0"}
+                transition-opacity
+                duration-200
+               `}>
+              <div
+                className="
+              flex
+              flex-col
+              justify-between
+              
+            ">
+                <div className="mt-2">
+                  <div className="mr-4">
+                    <h5 className="">Filter by Activity</h5>
+
+                    <RefinementList
+                      className="mt-3"
+                      attribute="label_type"
+                      limit={10}
+                      showMore={true}
+                      showMoreLimit={20}
+                      placeholder="Search by activity"
+                      searchablePlaceholder="Search by activity"
+                      searchable={true}
+                      onClick={() => setinitialSearch(true)}
+                      transformItems={items =>
+                        items.sort((a, b) => (a.count < b.count ? 1 : -1))
+                      }
+                    />
+                    <h5 className="mt-5">Contract Type</h5>
+                    <HierarchicalMenu
+                      onClick={() => setinitialSearch(true)}
+                      className="mt-3"
+                      attributes={["label_subtype"]}
+                      // defaultRefinement={["label_type"]}
+                      transformItems={items =>
+                        items.sort((a, b) => (a.count < b.count ? 1 : -1))
+                      }
+                    />
+                    <div className="mt-1">&nbsp;</div>
+                  </div>
                 </div>
-                <form onSubmit={handleSearch}>
-                  <input
-                    type="text"
-                    name="price"
-                    id="query"
-                    // submit when press enter
-                    className="text-md mr-10	block	w-full truncate rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-300 dark:bg-zinc-900 dark:text-slate-400 dark:ring-gray-800 sm:text-sm sm:leading-6"
-                    placeholder="Search by address or name.."
-                  />
-                </form> */}
               </div>
             </div>
-            <div>
-              <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
-                {/* Number of entries: {data ? data.length : "Loading"} */}
-                {/* Number of entries: {nbHits} */}
-              </p>
-              <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
-                <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-slate-100 bg-slate-100 px-1.5 font-mono text-[10px] font-medium text-slate-600 opacity-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-                  <span className="text-xs">⌘</span>F
-                </kbd>
-                to search the table
-              </p>
+
+            <div className=" flex w-full flex-col transition-all">
+              <div className="justify-between items-center w-full hidden sm:flex">
+                <button
+                  className="rounded-md p-1.5 mb-0.5 text-gray-600
+                    focus:outline-none focus:ring-2 focus:ring-gray-300 dark:text-gray-200 w-auto"
+                  onClick={toggleFilterVisibility}
+                  aria-label="Open sidebar">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6H20M4 12H20M4 18H11"></path>
+                  </svg>
+                </button>
+                <div>
+                  <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
+                    {/* Number of entries: {data ? data.length : "Loading"} */}
+                    {/* Number of entries: {nbHits} */}
+                  </p>
+                  <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
+                    <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-slate-100 bg-slate-100 px-1.5 font-mono text-[10px] font-medium text-slate-600 opacity-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
+                      <span className="text-xs">⌘</span>F
+                    </kbd>
+                    to search the table
+                  </p>
+                </div>
+              </div>
+              {initialSearch ? (
+                <CustomHits />
+              ) : props.data ? (
+                <Grid data={props.data} />
+              ) : (
+                "Loading..."
+              )}
             </div>
           </div>
-          {/* {isLoading ? (
-            "Loading"
-          ) : initialSearch ? (
-            <CustomHits />
-          ) : data ? (
-            <Grid data={data} />
-          ) : (
-            "loading"
-          )} */}
-          {initialSearch ? (
-            <CustomHits />
-          ) : props.data ? (
-            <Grid data={props.data} />
-          ) : (
-            "Loading..."
-          )}
         </div>
       </InstantSearch>
 

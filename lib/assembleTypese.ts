@@ -35,7 +35,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
         // num_typos: 1,
         // typo_tokens_threshold: 1,
         limit_hits: 50,
-        // groupBy: "categories",
+        facet_by: "label_type",
         // groupLimit: 1
         // pinnedHits: "23:2"
     },
