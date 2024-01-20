@@ -255,8 +255,8 @@ export default function IndexPage(props) {
                   </Box>
 
                   <Stats
-                    className="hidden whitespace-nowrap text-sm text-muted-foreground  sm:block"
-                    translations={{
+                    className="hidden sm:block text-sm text-muted-foreground  whitespace-nowrap"
+                    translationds={{
                       stats(nbHits, processingTimeMS) {
                         let hitCountPhrase
                         setnbHits(hitCountPhrase)
