@@ -1,5 +1,12 @@
 # @saas-ui/features
 
+## 0.14.3
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- f528477: Updated to Saas UI 2.5.5
+
 ## 0.14.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @saas-ui-pro/react
 
+## 0.31.5
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- 691af0f: Remove background and border radius from ActiveFilterInput
+- f528477: Updated to Saas UI 2.5.5
+
 ## 0.31.4
 
 ### Patch Changes

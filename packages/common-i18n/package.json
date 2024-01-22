@@ -1,7 +1,7 @@
 {
   "name": "@common/i18n",
   "main": "src/index",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "scripts": {
     "extract": "formatjs extract",

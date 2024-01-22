@@ -1,5 +1,13 @@
 # @saas-ui-pro/kanban
 
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies [f528477]
+- Updated dependencies [f528477]
+  - @saas-ui-pro/kanban-core@0.2.2
+
 ## 0.4.2
 
 ### Patch Changes

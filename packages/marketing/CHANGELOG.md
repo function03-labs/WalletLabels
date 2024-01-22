@@ -1,5 +1,21 @@
 # marketing
 
+## 2.0.3
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- f528477: Updated to Saas UI 2.5.5
+- Updated dependencies [f528477]
+- Updated dependencies [691af0f]
+- Updated dependencies [f528477]
+  - @common/i18n@0.5.2
+  - @app/config@7.0.2
+  - @app/nextjs@0.5.2
+  - @ui/theme@7.0.1
+  - @ui/lib@7.1.1
+  - @saas-ui-pro/react@0.31.5
+
 ## 2.0.2
 
 ### Patch Changes

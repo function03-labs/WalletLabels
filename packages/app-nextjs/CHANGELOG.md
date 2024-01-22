@@ -1,5 +1,12 @@
 # @app/nextjs
 
+## 0.5.2
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- f528477: Updated to Saas UI 2.5.5
+
 ## 0.5.1
 
 ### Patch Changes

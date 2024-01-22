@@ -1,6 +1,6 @@
 {
   "name": "@db/prisma",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "exports": {
     ".": {
       "require": "./generated/index.js",

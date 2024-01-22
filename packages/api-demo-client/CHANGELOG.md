@@ -1,5 +1,15 @@
 # @api/mocks
 
+## 0.10.1
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- f528477: Updated to Saas UI 2.5.5
+- Updated dependencies [f528477]
+- Updated dependencies [f528477]
+  - @common/mocks@0.10.2
+
 ## 0.10.0
 
 ### Minor Changes

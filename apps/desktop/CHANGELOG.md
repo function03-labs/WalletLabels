@@ -1,5 +1,20 @@
 # electron-app
 
+## 0.19.3
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- f528477: Updated to Saas UI 2.5.5
+- f528477: Updated to Next.js 14.1
+- Updated dependencies [f528477]
+- Updated dependencies [691af0f]
+- Updated dependencies [f528477]
+  - @saas-ui-pro/feature-flags@0.14.3
+  - @ui/theme@7.0.1
+  - @saas-ui-pro/billing@0.11.4
+  - @saas-ui-pro/react@0.31.5
+
 ## 0.19.2
 
 ### Patch Changes

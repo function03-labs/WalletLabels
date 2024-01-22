@@ -1,5 +1,16 @@
 # saas-ui-storybook
 
+## 29.0.5
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- f528477: Updated to Saas UI 2.5.5
+- Updated dependencies [f528477]
+- Updated dependencies [691af0f]
+- Updated dependencies [f528477]
+  - @saas-ui-pro/react@0.31.5
+
 ## 29.0.4
 
 ### Patch Changes

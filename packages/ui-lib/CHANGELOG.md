@@ -1,5 +1,18 @@
 # @ui/lib
 
+## 7.1.1
+
+### Patch Changes
+
+- f528477: Updated dependencies
+- f528477: Updated to Saas UI 2.5.5
+- Updated dependencies [f528477]
+- Updated dependencies [691af0f]
+- Updated dependencies [f528477]
+  - @common/i18n@0.5.2
+  - @saas-ui-pro/react@0.31.5
+  - @saas-ui-pro/kanban@0.4.3
+
 ## 7.1.0
 
 ### Minor Changes
