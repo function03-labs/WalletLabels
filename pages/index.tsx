@@ -94,7 +94,7 @@ export async function getStaticProps() {
 
 export default function IndexPage(props) {
   const { theme } = useTheme()
-  const [isFilterVisible, setIsFilterVisible] = useState(true)
+  const [isFilterVisible, setIsFilterVisible] = useState(false)
 
   const [searchInput, setSearchInput] = useState("")
   // const { data, isLoading, isError, error } = useLabels(searchInput, props)
