@@ -66,12 +66,12 @@
     "@chakra-ui/utils": "^2.0.15",
     "@react-hookz/web": "^23.1.0",
     "@saas-ui-pro/onboarding": "workspace:*",
-    "@saas-ui/forms": "^2.3.8",
+    "@saas-ui/forms": "^2.3.9",
     "@saas-ui/react-utils": "^2.0.1",
-    "@saas-ui/theme": "^2.3.1",
-    "@tanstack/react-table": "^8.11.6",
-    "@tanstack/react-virtual": "^3.0.1",
-    "date-fns": "^3.2.0",
+    "@saas-ui/theme": "^2.3.2",
+    "@tanstack/react-table": "^8.11.7",
+    "@tanstack/react-virtual": "^3.0.2",
+    "date-fns": "^3.3.1",
     "polished": "^4.2.2"
   },
   "peerDependencies": {
@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@ngneat/falso": "^2.27.0",
-    "@saas-ui/date-picker": "^0.12.17",
+    "@saas-ui/date-picker": "^0.12.18",
     "react-icons": "^5.0.1",
     "tsup": "^6.7.0"
   }
