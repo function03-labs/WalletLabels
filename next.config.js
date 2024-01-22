@@ -26,15 +26,7 @@ const nextConfig = {
 
       }
     ],
-    
-
-    
   },
-
-
-
-
-
   experimental: {
     fontLoaders: [
       {
@@ -47,4 +39,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-
