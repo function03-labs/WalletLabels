@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://walletlabels.xyz
-
-# Sitemaps
-Sitemap: https://walletlabels.xyz/sitemap.xml
