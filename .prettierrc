@@ -1,6 +1,6 @@
 {
-    "endpoint": "lf",
-    "printWidth": 80,
-    "tabWidth": 2,
-    "trailingComma": "es5"
+  "endpoint": "lf",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "trailingComma": "es5"
 }

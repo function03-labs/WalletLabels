@@ -12,6 +12,7 @@
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "format": "prettier --write .",
+    "fix": "eslint . --ext ts --ext tsx --ext js --ext jsx --fix",
     "test-all": "pnpm run check-types && npm run check-format && npm run check-lint"
   },
   "dependencies": {
@@ -33,6 +34,7 @@
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-tailwindcss": "^3.14.0",
     "postcss": "^8",
     "prettier": "^3.2.4",
     "tailwindcss": "^3.3.0",
