@@ -4,7 +4,7 @@ import { NextUIProvider } from "@nextui-org/react"
 import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "next-themes"
 
-import "@/styles/globals.css"
+import "@/styles/globals.scss"
 // import "@/styles/swagger.css"
 import "@glideapps/glide-data-grid/dist/index.css"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
@@ -43,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				}
 			}`}</style>
       <NextUIProvider>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light">
           <ChakraProvider>
             <Component {...pageProps} /> <Analytics />{" "}
           </ChakraProvider>
