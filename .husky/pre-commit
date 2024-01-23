@@ -3,21 +3,21 @@
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
-npm run check-format ||
+pnpm run check-format ||
 (
     echo '🤢 Bad formatting.
             Prettier Check Failed. Run "pnpm run format", add changes and try commit again.';
     false;
 )
 
-npm run check-lint ||
+pnpm run check-lint ||
 (
         echo '😤 ESLint Check Failed. 
                 ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
         false; 
 )
 
-npm run check-types ||
+pnpm run check-types ||
 (
     echo '🤡 Failed to check types.
             Are you seriously trying to write that? Make the changes required above.'
@@ -26,7 +26,7 @@ npm run check-types ||
 
 echo '🏗️ Trying to build now.'
 
-npm run build ||
+pnpm run build ||
 (
     echo '❌👷 Build failed.
             Next build failed: View the errors above to see why. 
