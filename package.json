@@ -16,11 +16,16 @@
     "test-all": "pnpm run check-types && npm run check-format && npm run check-lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@nextui-org/react": "^2.2.9",
+    "@tanstack/react-query": "^5.17.19",
+    "@vercel/analytics": "^1.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "husky": "^8.0.3",
     "lucide-react": "^0.314.0",
     "next": "14.1.0",
+    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1",
