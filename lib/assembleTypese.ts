@@ -1,5 +1,5 @@
 // ignore ts error all file 
-// @ts-nocheck
+//@ts-nocheck
 
 
 import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
