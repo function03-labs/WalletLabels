@@ -17,6 +17,7 @@
   "dependencies": {
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "husky": "^8.0.3",
     "lucide-react": "^0.314.0",
     "next": "14.1.0",
     "react": "^18",
