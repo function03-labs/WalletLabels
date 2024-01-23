@@ -11,6 +11,9 @@ dependencies:
   "@nextui-org/react":
     specifier: ^2.2.9
     version: 2.2.9(@types/react@18.2.48)(framer-motion@11.0.2)(react-dom@18.2.0)(react@18.2.0)(tailwind-variants@0.1.20)(tailwindcss@3.4.1)
+  "@prisma/client":
+    specifier: ^5.8.1
+    version: 5.8.1(prisma@5.8.1)
   "@tanstack/react-query":
     specifier: ^5.17.19
     version: 5.17.19(react@18.2.0)
@@ -79,6 +82,9 @@ devDependencies:
   prettier:
     specifier: ^3.2.4
     version: 3.2.4
+  prisma:
+    specifier: ^5.8.1
+    version: 5.8.1
   tailwindcss:
     specifier: ^3.3.0
     version: 3.4.1
@@ -3564,6 +3570,64 @@ packages:
         integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==,
       }
     dev: false
+
+  /@prisma/client@5.8.1(prisma@5.8.1):
+    resolution:
+      {
+        integrity: sha512-xQtMPfbIwLlbm0VVIVQY2yqQVOxPwRQhvIp7Z3m2900g1bu/zRHKhYZJQWELqmjl6d8YwBy0K2NvMqh47v1ubw==,
+      }
+    engines: { node: ">=16.13" }
+    requiresBuild: true
+    peerDependencies:
+      prisma: "*"
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      prisma: 5.8.1
+    dev: false
+
+  /@prisma/debug@5.8.1:
+    resolution:
+      {
+        integrity: sha512-tjuw7eA0Us3T42jx9AmAgL58rzwzpFGYc3R7Y4Ip75EBYrKMBA1YihuWMcBC92ILmjlQ/u3p8VxcIE0hr+fZfg==,
+      }
+
+  /@prisma/engines-version@5.8.1-1.78caf6feeaed953168c64e15a249c3e9a033ebe2:
+    resolution:
+      {
+        integrity: sha512-f5C3JM3l9yhGr3cr4FMqWloFaSCpNpMi58Om22rjD2DOz3owci2mFdFXMgnAGazFPKrCbbEhcxdsRfspEYRoFQ==,
+      }
+
+  /@prisma/engines@5.8.1:
+    resolution:
+      {
+        integrity: sha512-TJgYLRrZr56uhqcXO4GmP5be+zjCIHtLDK20Cnfg+o9d905hsN065QOL+3Z0zQAy6YD31Ol4u2kzSfRmbJv/uA==,
+      }
+    requiresBuild: true
+    dependencies:
+      "@prisma/debug": 5.8.1
+      "@prisma/engines-version": 5.8.1-1.78caf6feeaed953168c64e15a249c3e9a033ebe2
+      "@prisma/fetch-engine": 5.8.1
+      "@prisma/get-platform": 5.8.1
+
+  /@prisma/fetch-engine@5.8.1:
+    resolution:
+      {
+        integrity: sha512-+bgjjoSFa6uYEbAPlklfoVSStOEfcpheOjoBoNsNNSQdSzcwE2nM4Q0prun0+P8/0sCHo18JZ9xqa8gObvgOUw==,
+      }
+    dependencies:
+      "@prisma/debug": 5.8.1
+      "@prisma/engines-version": 5.8.1-1.78caf6feeaed953168c64e15a249c3e9a033ebe2
+      "@prisma/get-platform": 5.8.1
+
+  /@prisma/get-platform@5.8.1:
+    resolution:
+      {
+        integrity: sha512-wnA+6HTFcY+tkykMokix9GiAkaauPC5W/gg0O5JB0J8tCTNWrqpnQ7AsaGRfkYUbeOIioh6woDjQrGTTRf1Zag==,
+      }
+    dependencies:
+      "@prisma/debug": 5.8.1
 
   /@react-aria/breadcrumbs@3.5.9(react@18.2.0):
     resolution:
@@ -7740,6 +7804,17 @@ packages:
     engines: { node: ">=14" }
     hasBin: true
     dev: true
+
+  /prisma@5.8.1:
+    resolution:
+      {
+        integrity: sha512-N6CpjzECnUHZ5beeYpDzkt2rYpEdAeqXX2dweu6BoQaeYkNZrC/WJHM+5MO/uidFHTak8QhkPKBWck1o/4MD4A==,
+      }
+    engines: { node: ">=16.13" }
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      "@prisma/engines": 5.8.1
 
   /prop-types@15.8.1:
     resolution:

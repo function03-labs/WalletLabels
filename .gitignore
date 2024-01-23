@@ -6,6 +6,9 @@ node_modules
 # testing
 coverage
 
+# build
+tsconfig.tsbuildinfo
+
 # next.js
 .next/
 out/
@@ -22,6 +25,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -31,10 +35,9 @@ yarn-error.log*
 # turbo
 .turbo
 
-.contentlayer
-.env
-ens_resolver.log
+# prisma
+prisma/.env
+prisma/.env.development
+prisma/.env.test
+prisma/.env.production
 prisma/ens_resolver.log
-prisma/Untitled-1.ipynb
-.vercel
-.env*.local
