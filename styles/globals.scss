@@ -315,7 +315,15 @@
   
   
   }
-
+  .dropdown-menu-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge, and Firefox on elements with class .dropdown-menu-scrollbar */
+  .dropdown-menu-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 
 .btn { display: inline-block; padding: 6px 12px; text-align: center; vertical-align: middle; }
 .btn-primary { background-color: #007bff; border-color: #007bff; color: #fff; }

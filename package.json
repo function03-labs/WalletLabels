@@ -53,7 +53,7 @@
     "@radix-ui/react-toast": "^1.1.2",
     "@radix-ui/react-toggle": "^1.0.1",
     "@radix-ui/react-toggle-group": "^1.0.1",
-    "@radix-ui/react-tooltip": "^1.0.3",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@stoplight/elements": "^7.7.13",
     "@swc/helpers": "^0.5.1",
     "@tailwindcss/forms": "^0.5.3",
