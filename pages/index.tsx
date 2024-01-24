@@ -11,23 +11,19 @@ import { ChevronRightIcon, Search } from "lucide-react"
 import { useTheme } from "next-themes"
 import CountUp from "react-countup"
 import {
-  ClearRefinements,
   Configure,
-  DynamicWidgets,
-  HierarchicalMenu,
-  Highlight,
-  Hits,
-  HitsPerPage,
   InstantSearch,
-  Menu,
-  Pagination,
   // RatingMenu,
   RefinementList,
-  SearchBox,
-  SortBy,
   Stats,
-  ToggleRefinement,
 } from "react-instantsearch"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+
 
 import { badgeCategories } from "@/config/badge_categories"
 // imprt color mode from config
@@ -45,6 +41,7 @@ import CustomHitsTags, {
 import { connectToDatabase } from "../lib/mongodb"
 import Footer from "./Footer"
 import header from "./header"
+import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 
 export const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
 //feetch initial data from api
@@ -94,7 +91,7 @@ export async function getStaticProps() {
 
 export default function IndexPage(props) {
   const { theme } = useTheme()
-  const [isFilterVisible, setIsFilterVisible] = useState(true)
+  const [isFilterVisible, setIsFilterVisible] = useState(false)
 
   const [searchInput, setSearchInput] = useState("")
   // const { data, isLoading, isError, error } = useLabels(searchInput, props)
@@ -107,8 +104,25 @@ export default function IndexPage(props) {
     setSearchInput(e.target.query.value)
   }
   const toggleFilterVisibility = () => {
-    setIsFilterVisible(!isFilterVisible)
-  }
+    setIsFilterVisible(prevState => !prevState); // Toggle the state
+  };
+  // Mock data, replace with your actual data
+  const activities = [
+    { label_type: 'Activity 1', count: 10 },
+    { label_type: 'Activity 2', count: 20 },
+    // ... other activities
+  ];
+
+  const contractTypes = [
+    { label_subtype: 'Contract Type 1', count: 5 },
+    { label_subtype: 'Contract Type 2', count: 8 },
+    // ... other contract types
+  ];
+
+  // Function to sort items based on count
+  const transformAndSortItems = (items, attribute) => {
+    return items.sort((a, b) => (a[attribute] < b[attribute] ? 1 : -1));
+  };
 
   const OldSearchBar = (
     <div className="flex w-full  items-end  justify-between">
@@ -147,7 +161,7 @@ export default function IndexPage(props) {
           exit={{ y: -10, opacity: 0 }}
           transition={{ ease: "easeOut", duration: 0.53 }}
           className="z-30 "
-          // key={currentIndex}
+        // key={currentIndex}
         >
           <Configure hitsPerPage={50} />
           <section className="md:py-17 container grid items-center gap-10 pt-10 pb-8">
@@ -255,7 +269,7 @@ export default function IndexPage(props) {
                   </Box>
 
                   <Stats
-                    className="hidden sm:block text-sm text-muted-foreground  whitespace-nowrap"
+                    className="hidden whitespace-nowrap text-sm text-muted-foreground  sm:block"
                     translationds={{
                       stats(nbHits, processingTimeMS) {
                         let hitCountPhrase
@@ -286,91 +300,134 @@ export default function IndexPage(props) {
             </div>
           </section>
         </motion.div>
-        <div className="mx-2 mb-24 flex flex-col items-center gap-2 md:mx-8">
+        <div className="relative mx-2 mb-24 flex flex-col items-center  md:mx-8 ">
+          <div className="hidden w-full items-center justify-between sm:flex">
+            <div>
+              <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
+                {/* Number of entries: {data ? data.length : "Loading"} */}
+                {/* Number of entries: {nbHits} */}
+              </p>
+              <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
+                <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-slate-100 bg-slate-100 px-1.5 font-mono text-[10px] font-medium text-slate-600 opacity-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
+                  <span className="text-xs">⌘</span>F
+                </kbd>
+                to search the table
+              </p>
+            </div>
+            <button
+              className="mb-0.5 flex items-center justify-center gap-2 rounded-md p-1.5 text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:text-gray-200"
+              onClick={toggleFilterVisibility}
+              aria-label="Open sidebar">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6H20M4 12H20M4 18H11"></path>
+              </svg>
+              Filter
+            </button>
+          </div>
           {/* {OldSearchBar} */}
-          <div
-            className="
-        flex
-        w-full auto-cols-auto
-        ">
+          <div className="flex w-full auto-cols-auto flex-col">
             {/* add vertical navbar */}
-
             <div
-              className={` w-1/4
-                ${isFilterVisible ? "block mr-4" : "opacity-0 !w-0 h-0"}
-                transition-opacity
-                duration-200
-               `}>
-              <div
-                className="
-              flex
-              flex-col
-              justify-between
-              
-            ">
-                <div className="mt-2">
-                  <div className="mr-4">
-                    <h5 className="">Filter by Activity</h5>
+              className={` 
+        ${isFilterVisible ? " block" : "hidden"}
+         m-2 w-auto  
+        min-w-[16rem]
+        overflow-hidden duration-200 
+        transition-opacity
+        
+      `}
+            >
+              <div className=" m-2 flex flex-row items-center ">
+                <div className=" mr-4 flex flex-col">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="inline-flex h-8 cursor-pointer items-center justify-center rounded-md border-0 bg-gray-200 px-4 text-xs font-semibold leading-5 text-black"
+                        onClick={() => setinitialSearch(true)}
+                      >Activity</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      className="fixed left-0 top-0 z-50 mt-1 w-auto min-w-max origin-top-left rounded-md bg-white shadow-lg"
+                      style={{
+                        transform: 'translate3d(-35px, 0px, 0px)'
+                      }}
+                    >                      <RefinementList
+                        className="mt-3"
+                        attribute="label_type"
+                        searchable={true}
+                        limit={20}
+                        searchablePlaceholder="Search by activity"
+                        onClick={() => setinitialSearch(true)}
+                        transformItems={items => items.sort((a, b) => a.count < b.count ? 1 : -1)}
+                        classNames={{
+                          checkbox: 'hidden',
+                          list: 'max-h-60 overflow-auto w-59 dropdown-menu-scrollbar  ',
+                          item: 'mb-2 text-left pl-2  hover:bg-gray-200 rounded-md', // Align text to the left
+                          selectedItem: 'font-bold bg-gray-200 rounded-md ',
+                          label: 'text-xl',
+                          count: 'invisible',
+                          searchBox: ' w-full rounded-md border border-input bg-background  text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+                        }}
+                      />
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
 
-                    <RefinementList
-                      className="mt-3"
-                      attribute="label_type"
-                      limit={10}
-                      showMore={true}
-                      showMoreLimit={20}
-                      placeholder="Search by activity"
-                      searchablePlaceholder="Search by activity"
-                      searchable={true}
-                      onClick={() => setinitialSearch(true)}
-                      transformItems={items =>
-                        items.sort((a, b) => (a.count < b.count ? 1 : -1))
-                      }
-                    />
-                    <h5 className="mt-5">Contract Type</h5>
-                    <HierarchicalMenu
-                      onClick={() => setinitialSearch(true)}
-                      className="mt-3"
-                      attributes={["label_subtype"]}
-                      // defaultRefinement={["label_type"]}
-                      transformItems={items =>
-                        items.sort((a, b) => (a.count < b.count ? 1 : -1))
-                      }
-                    />
-                    <div className="mt-1">&nbsp;</div>
-                  </div>
+
+                <div className="flex flex-col">
+
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="inline-flex h-8 cursor-pointer items-center justify-center rounded-md border-0 bg-gray-200 px-4 text-xs font-semibold leading-5 text-black"
+                        onClick={() => setinitialSearch(true)}
+                      >
+                        Contract Type
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      className="mt-1 w-auto min-w-max rounded-md bg-white p-2 shadow-lg duration-300 transition-opacity"
+                      style={{
+                        transform: 'translate3d(47px, 0px, 0px)'
+                      }}
+                    >
+                      <RefinementList
+                        className="mt-3"
+                        attribute="label_subtype"
+                        searchable={true}
+                        limit={20}
+                        searchablePlaceholder="Search by type"
+                        onClick={() => setinitialSearch(true)}
+                        transformItems={items => items.sort((a, b) => a.count < b.count ? 1 : -1)}
+                        classNames={{
+                          checkbox: 'hidden',
+                          list: 'max-h-60 overflow-auto w-59 dropdown-menu-scrollbar  ',
+                          item: 'mb-2 text-left pl-2  hover:bg-gray-200 rounded-md', // Align text to the left
+                          selectedItem: 'font-bold bg-gray-200 rounded-md ',
+                          label: 'text-xl',
+                          count: 'invisible',
+                          searchBox: ' w-full rounded-md border border-input bg-background  text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+                        }}
+                      />
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
                 </div>
               </div>
+
+
+
             </div>
 
             <div className=" flex w-full flex-col transition-all">
-              <div className="justify-between items-center w-full hidden sm:flex">
-                <button
-                  className="rounded-md p-1.5 mb-0.5 text-gray-600
-                    focus:outline-none focus:ring-2 focus:ring-gray-300 dark:text-gray-200 w-auto"
-                  onClick={toggleFilterVisibility}
-                  aria-label="Open sidebar">
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6H20M4 12H20M4 18H11"></path>
-                  </svg>
-                </button>
-                <div>
-                  <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
-                    {/* Number of entries: {data ? data.length : "Loading"} */}
-                    {/* Number of entries: {nbHits} */}
-                  </p>
-                  <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
-                    <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-slate-100 bg-slate-100 px-1.5 font-mono text-[10px] font-medium text-slate-600 opacity-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-                      <span className="text-xs">⌘</span>F
-                    </kbd>
-                    to search the table
-                  </p>
-                </div>
-              </div>
+
               {initialSearch ? (
                 <CustomHits />
               ) : props.data ? (
