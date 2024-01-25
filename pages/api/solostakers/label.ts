@@ -63,7 +63,7 @@ async function fetchLabels(
     .limit(limit)
 
   const labels = await cursor.toArray()
-  return labels.map((label: Label) => ({
+  return labels.map((label: any) => ({
     address: label.address,
     address_name: label.address_name,
     label_type: label.label_type,
