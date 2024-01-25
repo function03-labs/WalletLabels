@@ -73,10 +73,34 @@ export type {
 }
 
 export interface DataGridColumnMeta<TData, TValue> {
-  href?: (row: Row<TData>) => string
+  /**
+   * Will render a link with the href value in the cell.
+   */
+  href?: (row: TData) => string
+  /**
+   * Enables numeric cell styles.
+   */
   isNumeric?: boolean
+  /**
+   * Enables text overflow.
+   * @default true
+   */
+  isTruncated?: boolean
+  /**
+   * Will fill up the remaining space in the row when enabled.
+   */
+  autoSize?: boolean
+  /**
+   * Custom header props
+   */
   headerProps?: TableColumnHeaderProps
+  /**
+   * Custom cell props
+   */
   cellProps?: TableCellProps
+  /**
+   * Custom expander props
+   */
   expanderProps?: DataGridExpanderProps
 }
 
@@ -235,13 +259,25 @@ export interface DataGridProps<Data extends object>
   onScroll?: React.UIEventHandler<HTMLDivElement>
   /**
    * React Virtual props
+   * @deprecated Use rowVirtualizerOptions instead
    */
   virtualizerProps?: VirtualizerOptions<HTMLDivElement, HTMLTableRowElement>
   /**
-   * CSS table-layout property
-   * @default fixed
+   * React Virtual options for the column virtualizer
+   * @see https://tanstack.com/virtual/v3/docs/adapters/react-virtual
    */
-  tableLayout?: 'auto' | 'fixed'
+  columnVirtualizerOptions?: VirtualizerOptions<
+    HTMLDivElement,
+    HTMLTableRowElement
+  >
+  /**
+   * React Virtual options for the row virtualizer
+   * @see https://tanstack.com/virtual/v3/docs/adapters/react-virtual
+   */
+  rowVirtualizerOptions?: VirtualizerOptions<
+    HTMLDivElement,
+    HTMLTableRowElement
+  >
   /**
    * Custom icons
    * This prop is memoized and will not update after initial render.
@@ -279,7 +315,8 @@ export const DataGrid = React.forwardRef(
       className,
       sx,
       virtualizerProps,
-      tableLayout = 'fixed',
+      columnVirtualizerOptions,
+      rowVirtualizerOptions = virtualizerProps,
       icons,
       children,
       ...rest
@@ -337,8 +374,19 @@ export const DataGrid = React.forwardRef(
 
     const state = instance.getState()
     const rows = instance.getRowModel().rows
+    const visibleColumns = instance.getVisibleLeafColumns()
 
     const scrollRef = React.useRef<HTMLDivElement>(null)
+
+    const columnVirtualizer = useVirtualizer({
+      count: visibleColumns.length,
+      estimateSize: (index) => visibleColumns[index].getSize(),
+      getScrollElement: () => scrollRef.current,
+      horizontal: true,
+      overscan: 3,
+      ...columnVirtualizerOptions,
+    })
+
     const rowVirtualizer = useVirtualizer({
       getScrollElement: () => scrollRef.current,
       estimateSize: () => {
@@ -356,9 +404,10 @@ export const DataGrid = React.forwardRef(
       },
       count: rows.length,
       overscan: 10,
-      ...virtualizerProps,
+      ...rowVirtualizerOptions,
     })
 
+    const virtualColumns = columnVirtualizer.getVirtualItems()
     const virtualRows = rowVirtualizer.getVirtualItems()
     const totalSize = rowVirtualizer.getTotalSize()
 
@@ -378,11 +427,33 @@ export const DataGrid = React.forwardRef(
       ...(noResults ? { display: 'flex', alignItems: 'center' } : {}),
     }
 
-    const paddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0
-    const paddingBottom =
+    let virtualPaddingLeft: number | undefined
+    let virtualPaddingRight: number | undefined
+
+    if (columnVirtualizer && virtualColumns?.length) {
+      virtualPaddingLeft = virtualColumns[0]?.start ?? 0
+      virtualPaddingRight =
+        columnVirtualizer.getTotalSize() -
+        (virtualColumns[virtualColumns.length - 1]?.end ?? 0)
+    }
+
+    const virtualPaddingTop =
+      virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0
+    const virtualPaddingBottom =
       virtualRows.length > 0
         ? totalSize - (virtualRows?.[virtualRows.length - 1]?.end || 0)
         : 0
+
+    const columnSizeVars = React.useMemo(() => {
+      const headers = instance.getFlatHeaders()
+      const colSizes: { [key: string]: number } = {}
+      for (let i = 0; i < headers.length; i++) {
+        const header = headers[i]!
+        colSizes[`--header-${header.id}-size`] = header.getSize()
+        colSizes[`--col-${header.column.id}-size`] = header.column.getSize()
+      }
+      return colSizes
+    }, [state.columnSizingInfo])
 
     const table = (
       <Table
@@ -392,32 +463,42 @@ export const DataGrid = React.forwardRef(
         colorScheme={colorScheme}
         size={size}
         variant={variant}
-        sx={{
-          tableLayout: tableLayout,
-          ...sx,
+        sx={sx}
+        style={{
+          ...columnSizeVars,
         }}
       >
         <Thead>
           {instance.getHeaderGroups().map((headerGroup) => (
             <Tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <DataGridHeader
-                  key={header.id}
-                  header={header}
-                  isSortable={isSortable}
-                />
-              ))}
+              {virtualPaddingLeft ? (
+                <th style={{ display: 'flex', width: virtualPaddingLeft }} />
+              ) : null}
+              {virtualColumns.map((vc) => {
+                const header = headerGroup.headers[vc.index]
+                return (
+                  <DataGridHeader
+                    key={header.id}
+                    header={header}
+                    isSortable={isSortable}
+                  />
+                )
+              })}
+              {virtualPaddingRight ? (
+                <th style={{ display: 'flex', width: virtualPaddingRight }} />
+              ) : null}
             </Tr>
           ))}
         </Thead>
         <Tbody>
-          {paddingTop > 0 && (
+          {virtualPaddingTop > 0 && (
             <tr>
-              <td style={{ height: `${paddingTop}px` }} />
+              <td style={{ height: `${virtualPaddingTop}px` }} />
             </tr>
           )}
           {virtualRows.map((virtualRow) => {
             const row = rows[virtualRow.index]
+            const visibleCells = row.getVisibleCells()
 
             const onClick = (e: React.MouseEvent) => onRowClick?.(row, e)
 
@@ -442,16 +523,22 @@ export const DataGrid = React.forwardRef(
                   '--data-grid-row-depth': String(row.depth),
                 }}
               >
-                {row.getVisibleCells().map((cell) => {
-                  const meta = cell.column.columnDef.meta
+                {virtualPaddingLeft ? (
+                  <td style={{ display: 'flex', width: virtualPaddingLeft }} />
+                ) : null}
+                {virtualColumns.map((vc) => {
+                  const cell = visibleCells[vc.index]
+                  const { autoSize, cellProps, isNumeric } =
+                    cell.column.columnDef.meta ?? {}
+
                   return (
                     <Td
                       key={cell.id}
-                      isNumeric={meta?.isNumeric}
-                      overflow="hidden"
-                      textOverflow="ellipsis"
-                      whiteSpace="nowrap"
-                      {...meta?.cellProps}
+                      isNumeric={isNumeric}
+                      flex={autoSize ? 1 : undefined}
+                      width={`calc(var(--col-${cell.column.id}-size) * 1px)`}
+                      minWidth={`max(var(--col-${cell.column.id}-size) * 1px, 40px)`}
+                      {...cellProps}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -460,12 +547,16 @@ export const DataGrid = React.forwardRef(
                     </Td>
                   )
                 })}
+                {virtualPaddingRight ? (
+                  //fake empty column to the right for virtualization scroll padding
+                  <td style={{ display: 'flex', width: virtualPaddingRight }} />
+                ) : null}
               </Tr>
             )
           })}
-          {paddingBottom > 0 && (
+          {virtualPaddingBottom > 0 && (
             <tr>
-              <td style={{ height: `${paddingBottom}px` }} />
+              <td style={{ height: `${virtualPaddingBottom}px` }} />
             </tr>
           )}
         </Tbody>
@@ -525,7 +616,7 @@ export const DataGridSort = <Data extends object, TValue>(
 
   const sortDescendingIcon = icons?.sortDescending ?? <ChevronDownIcon />
   const sortAscendingIcon = icons?.sortAscending ?? <ChevronUpIcon />
-  console.log(sortDescendingIcon)
+
   if (header.id === 'selection') {
     return null
   }
@@ -581,13 +672,15 @@ export const DataGridHeader = <Data extends object, TValue>(
   }
 
   const meta = (header.column.columnDef.meta || {}) as any
-  const size = header.column.columnDef.size
+
   return (
     <Th
       colSpan={header.colSpan}
       textTransform="none"
-      width={size && `${size}px`}
       isNumeric={meta.isNumeric}
+      flex={meta.autoSize ? 1 : undefined}
+      width={`calc(var(--header-${header.id}-size) * 1px)`}
+      minWidth={`max(var(--col-${header.id}-size) * 1px, 40px)`}
       {...meta.headerProps}
       {...headerProps}
       {...rest}
@@ -619,12 +712,31 @@ export const DefaultDataGridCell = <Data extends object, TValue>(
 ) => {
   const { column, row, getValue } = props
 
-  const meta = (column.columnDef.meta || {}) as any
+  const meta = column.columnDef.meta || {}
 
   let content = getValue<React.ReactNode>()
+
   if (meta.href) {
     const href = getResult(meta.href, row.original)
     content = <Link href={href}>{content}</Link>
+  }
+
+  if (typeof content === 'string') {
+    content = (
+      <chakra.span
+        sx={
+          meta.isTruncated !== false
+            ? {
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }
+            : {}
+        }
+      >
+        {content}
+      </chakra.span>
+    )
   }
 
   return content

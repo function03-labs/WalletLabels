@@ -11,7 +11,7 @@ import {
   IconButton,
 } from '@chakra-ui/react'
 
-import { rand, randUser } from '@ngneat/falso'
+import { rand, randUser, randFirstName } from '@ngneat/falso'
 
 import { DataGridPagination } from './data-grid-pagination'
 import {
@@ -43,9 +43,12 @@ import {
 export default {
   title: 'Components/Data Display/DataGrid',
   component: DataGrid,
+  parameters: {
+    layout: 'fullscreen',
+  },
   decorators: [
     (Story: any) => (
-      <Container mb="40px" maxW="container.xl">
+      <Container mb="40px" maxW="container.xl" height="$100vh">
         <Story />
       </Container>
     ),
@@ -97,10 +100,16 @@ const columns: ColumnDef<ExampleData>[] = [
   {
     accessorKey: 'firstName',
     header: 'Name',
+    meta: {
+      autoSize: true,
+    },
   },
   {
     accessorKey: 'phone',
     header: 'Phone',
+    meta: {
+      isNumeric: true,
+    },
   },
   {
     accessorKey: 'email',
@@ -119,7 +128,7 @@ const columns: ColumnDef<ExampleData>[] = [
     accessorKey: 'action',
     header: '',
     cell: ActionCell,
-    size: 10,
+    size: 60,
     enableSorting: false,
   },
 ]
@@ -239,17 +248,20 @@ export const Numeric = {
     columns,
     data,
     initialState: {
-      columnVisibility: { phone: false },
+      columnVisibility: { phone: true },
     },
   },
 }
 
-const withLinks = (columns.concat() as any).map((column: any) => {
-  if (column.accessorKey === 'username') {
+const withLinks = columns.concat().map((column) => {
+  if (!('accessorKey' in column)) {
+    return column
+  }
+  if (column.accessorKey === 'firstName') {
     return Object.assign({}, column, {
       meta: {
-        href: (row: any) => {
-          return `/customers/${row.id}`
+        href: (data: ExampleData) => {
+          return `/customers/${data.id}`
         },
         ...column.meta,
       },
@@ -499,17 +511,13 @@ export const WithRemoteFilters = {
   },
 }
 
-export const WithStickyHeaders = {
+export const CustomStickyHeaders = {
   render: () => {
     return (
       <AppShell height="400px" top="0">
         <DataGrid<ExampleData>
           sx={{
-            '& thead tr': {
-              position: 'sticky',
-              top: 0,
-              zIndex: 1,
-              bg: 'app-background',
+            '& thead': {
               boxShadow: 'sm',
             },
           }}
@@ -630,7 +638,6 @@ export const WithDeepSubRows = {
   render: () => {
     return (
       <DataGrid<ExampleData>
-        tableLayout="auto"
         columns={columns}
         data={withDeepSubRows}
         isSortable
@@ -710,6 +717,47 @@ export const WithCustomIcons = {
           sortDescending: <RiArrowDownFill />,
           rowExpanded: <RiSubtractFill />,
           rowCollapsed: <RiAddFill />,
+        }}
+      />
+    )
+  },
+}
+
+const makeColumns = (num: number) =>
+  [...Array(num)].map((_, i) => {
+    return {
+      accessorKey: i.toString(),
+      header: 'Column ' + i.toString(),
+      size: Math.floor(Math.random() * 150) + 100,
+    }
+  })
+
+const makeVirtualizedData = (num: number, columns: ColumnDef<any>[]) =>
+  [...Array(num)].map(() => ({
+    ...Object.fromEntries(
+      columns.map((col) => [
+        'accessorKey' in col ? col.accessorKey : col.id,
+        randFirstName(),
+      ]),
+    ),
+  }))
+
+type Person = ReturnType<typeof makeData>[0]
+
+export const WithLargeDataSet = {
+  render: () => {
+    const columns = React.useMemo(() => makeColumns(1_000), [])
+
+    const [data] = React.useState(makeVirtualizedData(1_000, columns))
+
+    return (
+      <DataGrid<Person>
+        columns={columns}
+        data={data}
+        initialState={{
+          pagination: {
+            pageSize: -1,
+          },
         }}
       />
     )

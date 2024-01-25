@@ -32,6 +32,7 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     flex: 1,
     height: '100%',
     maxWidth: '100%',
+    position: 'relative',
   },
   inner: {
     flex: 1,
@@ -39,17 +40,34 @@ const baseStyle: PartsStyleObject<typeof parts> = {
     overflow: 'auto',
   },
   table: {
+    display: 'grid',
     fontVariantNumeric: 'lining-nums tabular-nums',
     borderCollapse: 'collapse',
     tableLayout: 'fixed',
-    width: 'full',
+  },
+  thead: {
+    display: 'grid',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    bg: 'app-background',
+  },
+  tbody: {
+    display: 'grid',
   },
   th: {
-    fontFamily: 'heading',
+    display: 'flex',
+    alignItems: 'center',
     fontWeight: 'medium',
     textAlign: 'start',
   },
+  tr: {
+    display: 'flex',
+    width: 'full',
+  },
   td: {
+    display: 'flex',
+    alignItems: 'center',
     textAlign: 'start',
     a: {
       _hover: {
@@ -174,37 +192,37 @@ const variants = {
 const sizes: Record<string, PartsStyleObject<typeof parts>> = {
   sm: {
     th: {
-      px: '4',
+      px: '3',
       py: '2',
       lineHeight: '4',
       fontSize: 'xs',
     },
     td: {
-      px: '4',
+      px: '3',
       py: '2',
       fontSize: 'sm',
       lineHeight: '4',
     },
     caption: {
-      px: '4',
+      px: '3',
       py: '2',
       fontSize: 'xs',
     },
   },
   md: {
     th: {
-      px: '6',
+      px: '4',
       py: '3',
       lineHeight: '4',
       fontSize: 'xs',
     },
     td: {
-      px: '6',
+      px: '4',
       py: '3',
       lineHeight: '4',
     },
     caption: {
-      px: '6',
+      px: '4',
       py: '2',
       fontSize: 'sm',
     },
