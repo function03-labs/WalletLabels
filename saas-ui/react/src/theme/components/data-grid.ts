@@ -22,6 +22,7 @@ const parts = anatomy('data-grid').parts(
 const numericStyles: SystemStyleObject = {
   '&[data-is-numeric=true]': {
     textAlign: 'end',
+    justifyContent: 'end',
   },
 }
 
@@ -47,10 +48,12 @@ const baseStyle: PartsStyleObject<typeof parts> = {
   },
   thead: {
     display: 'grid',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    bg: 'app-background',
+    '&[data-sticky]': {
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      bg: 'chakra-body-bg',
+    },
   },
   tbody: {
     display: 'grid',

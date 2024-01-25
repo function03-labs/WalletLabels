@@ -30,6 +30,7 @@ import {
   AppShell,
   ChevronDownIcon,
   ChevronUpIcon,
+  EmptyState,
   OverflowMenu,
 } from '@saas-ui/react'
 
@@ -100,9 +101,6 @@ const columns: ColumnDef<ExampleData>[] = [
   {
     accessorKey: 'firstName',
     header: 'Name',
-    meta: {
-      autoSize: true,
-    },
   },
   {
     accessorKey: 'phone',
@@ -128,7 +126,7 @@ const columns: ColumnDef<ExampleData>[] = [
     accessorKey: 'action',
     header: '',
     cell: ActionCell,
-    size: 60,
+    size: 50,
     enableSorting: false,
   },
 ]
@@ -204,6 +202,21 @@ export const ColorScheme = {
     initialState,
     isSelectable: true,
     colorScheme: 'cyan',
+  },
+}
+
+export const Empty = {
+  render: Template,
+  args: {
+    columns,
+    data: [],
+    initialState,
+    emptyState: () => (
+      <EmptyState
+        title="No data"
+        description="There is no data to be displayed."
+      />
+    ),
   },
 }
 

@@ -87,10 +87,6 @@ export interface DataGridColumnMeta<TData, TValue> {
    */
   isTruncated?: boolean
   /**
-   * Will fill up the remaining space in the row when enabled.
-   */
-  autoSize?: boolean
-  /**
    * Custom header props
    */
   headerProps?: TableColumnHeaderProps
@@ -238,7 +234,11 @@ export interface DataGridProps<Data extends object>
    */
   pageCount?: number
   /**
-   * No results component
+   * Empty state component, rendered when there is no data and no filters enabled.
+   */
+  emptyState?: React.FC<any>
+  /**
+   * No results component, rendered when filters are enabled and there are no results.
    */
   noResults?: React.FC<any>
   /**
@@ -249,6 +249,11 @@ export interface DataGridProps<Data extends object>
    * Grid styles
    */
   sx?: SystemStyleObject
+  /**
+   * Set to false to disable sticky headers
+   * @default true
+   */
+  stickyHeader?: boolean
   /**
    * DataGrid children
    */
@@ -269,7 +274,7 @@ export interface DataGridProps<Data extends object>
   columnVirtualizerOptions?: VirtualizerOptions<
     HTMLDivElement,
     HTMLTableRowElement
-  >
+  > & { enabled?: boolean }
   /**
    * React Virtual options for the row virtualizer
    * @see https://tanstack.com/virtual/v3/docs/adapters/react-virtual
@@ -277,7 +282,7 @@ export interface DataGridProps<Data extends object>
   rowVirtualizerOptions?: VirtualizerOptions<
     HTMLDivElement,
     HTMLTableRowElement
-  >
+  > & { enabled?: boolean }
   /**
    * Custom icons
    * This prop is memoized and will not update after initial render.
@@ -307,11 +312,13 @@ export const DataGrid = React.forwardRef(
       onRowClick,
       onResetFilters,
       onScroll,
+      emptyState: EmptyStateComponent = NoResults,
       noResults: NoResultsComponent = NoResults,
       pageCount,
       colorScheme,
       size,
       variant,
+      stickyHeader = true,
       className,
       sx,
       virtualizerProps,
@@ -419,8 +426,13 @@ export const DataGrid = React.forwardRef(
       onSortChange?.(state.sorting)
     }, [onSortChange, state.sorting])
 
-    const noResults = (state.columnFilters.length || state.globalFilter) &&
-      !rows.length && <NoResultsComponent onReset={onResetFilters} />
+    const noResults =
+      !rows.length &&
+      (state.columnFilters.length || state.globalFilter ? (
+        <NoResultsComponent onReset={onResetFilters} />
+      ) : (
+        <EmptyStateComponent />
+      ))
 
     const innerStyles = {
       ...styles.inner,
@@ -468,7 +480,7 @@ export const DataGrid = React.forwardRef(
           ...columnSizeVars,
         }}
       >
-        <Thead>
+        <Thead data-sticky={dataAttr(stickyHeader)}>
           {instance.getHeaderGroups().map((headerGroup) => (
             <Tr key={headerGroup.id}>
               {virtualPaddingLeft ? (
@@ -528,14 +540,14 @@ export const DataGrid = React.forwardRef(
                 ) : null}
                 {virtualColumns.map((vc) => {
                   const cell = visibleCells[vc.index]
-                  const { autoSize, cellProps, isNumeric } =
+                  const { cellProps, isNumeric } =
                     cell.column.columnDef.meta ?? {}
 
                   return (
                     <Td
                       key={cell.id}
                       isNumeric={isNumeric}
-                      flex={autoSize ? 1 : undefined}
+                      flex={`var(--col-${cell.column.id}-size) 0 auto`}
                       width={`calc(var(--col-${cell.column.id}-size) * 1px)`}
                       minWidth={`max(var(--col-${cell.column.id}-size) * 1px, 40px)`}
                       {...cellProps}
@@ -548,7 +560,6 @@ export const DataGrid = React.forwardRef(
                   )
                 })}
                 {virtualPaddingRight ? (
-                  //fake empty column to the right for virtualization scroll padding
                   <td style={{ display: 'flex', width: virtualPaddingRight }} />
                 ) : null}
               </Tr>
@@ -678,7 +689,7 @@ export const DataGridHeader = <Data extends object, TValue>(
       colSpan={header.colSpan}
       textTransform="none"
       isNumeric={meta.isNumeric}
-      flex={meta.autoSize ? 1 : undefined}
+      flex={`var(--col-${header.id}-size) 0 auto`}
       width={`calc(var(--header-${header.id}-size) * 1px)`}
       minWidth={`max(var(--col-${header.id}-size) * 1px, 40px)`}
       {...meta.headerProps}

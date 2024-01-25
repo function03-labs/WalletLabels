@@ -186,7 +186,7 @@ export function ContactsListPage() {
         id: 'action',
         header: '',
         cell: ActionCell,
-        size: 100,
+        size: 60,
         enableGlobalFilter: false,
         enableHiding: false,
         enableSorting: false,
