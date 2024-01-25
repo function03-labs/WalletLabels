@@ -756,7 +756,7 @@ export const WithLargeDataSet = {
         data={data}
         initialState={{
           pagination: {
-            pageSize: -1,
+            pageSize: -1, // render allow rows.
           },
         }}
       />
