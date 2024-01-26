@@ -68,6 +68,8 @@ export default async function handler(req, res) {
             )
                 .limit(limit);
             labels = await cursor.toArray();
+
+            console.log("solana label address :" + address.toString);
         } else if (!!label) {
             // Adjust the MongoDB query to search by 'label'
             const queryAtlas = {
@@ -87,7 +89,8 @@ export default async function handler(req, res) {
             )
                 .limit(limit);
             labels = await cursor.toArray();
-            console.log(labels);
+
+            console.log("solana label query :" + label.toString);
         }
 
         labels = labels.map((lbl) => ({

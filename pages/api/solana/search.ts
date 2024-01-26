@@ -77,9 +77,8 @@ const getSolana = async ({
                 }
             })
         }
-
+        console.log("solana search query :" + query.toString)
         const result = await db.collection(clc_name).aggregate(pipeline).toArray()
-        console.log(result)
         return { solana_wallets: result }
     } catch (error) {
         return { error }
