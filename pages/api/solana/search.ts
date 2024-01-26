@@ -1,12 +1,9 @@
-import { Collection, Db, Document } from 'mongodb'
+import { Db } from 'mongodb'
 import { connectToDatabase } from "../../../lib/mongodb"
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-
 let db: Db;
-
-let solana_wallets: Collection<Document>
-
+const clc_name = process.env.CLC_NAME_WLBLS_SOLANA;
 
 export default async function handler(
     req: NextApiRequest,
@@ -20,12 +17,13 @@ export default async function handler(
     const skip =
         typeof req.query.skip === 'string' ? Number(req.query.skip) : 0;
     const limit =
-        typeof req.query.limit === 'string' ? Math.min(Number(req.query.limit), 100) : 20;
+        typeof req.query.limit === 'string' ? Math.max(Math.min(Number(req.query.limit), 100), 20) : 20;
 
     const search =
         typeof req.query.search === 'string' ? req.query.search : undefined;
 
     const { solana_wallets } = await getSolana({ skip, limit, query: search })
+    console.log(solana_wallets);
     labels = solana_wallets.map((lbl) => ({
         address: lbl.address,
         address_name: lbl.address_name,
@@ -33,6 +31,7 @@ export default async function handler(
         label_subtype: lbl.label_subtype,
         label: lbl.label,
     }));
+
 
     const response = {
         data: labels,
@@ -51,14 +50,13 @@ const getSolana = async ({
     limit: number
 }) => {
     try {
-        if (!solana_wallets) await init()
+        if (!db) await init()
 
         const pipeline: PipelineStage[] = [{ $skip: skip }, { $limit: limit }]
-
         if (query) {
             pipeline.unshift({
                 $search: {
-                    index: 'search',
+                    index: 'dynamic',
                     text: {
                         query,
                         fuzzy: {
@@ -74,8 +72,8 @@ const getSolana = async ({
             })
         }
 
-        const result = await solana_wallets.aggregate(pipeline).toArray()
-
+        const result = await db.collection(clc_name).aggregate(pipeline).toArray()
+        console.log(result)
         return { solana_wallets: result }
     } catch (error) {
         return { error }
@@ -91,6 +89,7 @@ async function init() {
         console.log(error);
         throw new Error("Unable to connect to database");
     }
+    return db;
 }
 
 
