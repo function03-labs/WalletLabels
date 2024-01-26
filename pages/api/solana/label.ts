@@ -52,15 +52,15 @@ export default async function handler(req, res) {
         } else if (!!address) {
             // Adjust the MongoDB query to search by 'address'
             const queryAtlas = {
-                address: address,
+                ADDRESS: address,
             };
 
             const projection = {
-                address_name: 1,
-                label_type: 1,
-                label_subtype: 1,
-                address: 1,
-                label: 1,
+                ADDRESS_NAME: 1,
+                LABEL_TYPE: 1,
+                LABEL_SUBTYPE: 1,
+                ADDRESS: 1,
+                LABEL: 1,
             };
 
             const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
@@ -71,15 +71,15 @@ export default async function handler(req, res) {
         } else if (!!label) {
             // Adjust the MongoDB query to search by 'label'
             const queryAtlas = {
-                label: label,
+                LABEL: label,
             };
 
             const projection = {
-                address_name: 1,
-                label_type: 1,
-                label_subtype: 1,
-                address: 1,
-                label: 1,
+                ADDRESS_NAME: 1,
+                LABEL_TYPE: 1,
+                LABEL_SUBTYPE: 1,
+                ADDRESS: 1,
+                LABEL: 1,
             };
 
             const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
@@ -87,14 +87,15 @@ export default async function handler(req, res) {
             )
                 .limit(limit);
             labels = await cursor.toArray();
+            console.log(labels);
         }
 
         labels = labels.map((lbl) => ({
-            address: lbl.address,
-            address_name: lbl.address_name,
-            label_type: lbl.label_type,
-            label_subtype: lbl.label_subtype,
-            label: lbl.label,
+            ADDRESS: lbl.ADDRESS,
+            ADDRESS_NAME: lbl.ADDRESS_NAME,
+            LABEL_TYPE: lbl.LABEL_TYPE,
+            LABEL_SUBTYPE: lbl.LABEL_SUBTYPE,
+            LABEL: lbl.LABEL,
         }));
 
     } catch (error) {

@@ -22,27 +22,28 @@ export default async function handler(
     const search =
         typeof req.query.search === 'string' ? req.query.search : undefined;
 
-    const { solana_wallets } = await getSolana({ skip, limit, query: search })
+    const { solana_wallets } = await getSolana({ skip, limit, query: search });
     try {
         labels = solana_wallets.map((lbl) => ({
-            address: lbl.address,
-            address_name: lbl.address_name,
-            label_type: lbl.label_type,
-            label_subtype: lbl.label_subtype,
-            label: lbl.label,
+            address: lbl.ADDRESS,
+            address_name: lbl.ADDRESS_NAME,
+            label_type: lbl.LABEL_TYPE,
+            label_subtype: lbl.LABEL_SUBTYPE,
+            label: lbl.LABEL,
         }));
-    } catch (error) {
-        console.log(error);
-        res.status(405).json({ message: "error in loading labels. Please try again later " });
-    }
+        const response = {
+            data: labels,
+        };
+
+        res.status(200).json(response);
+    } catch (error) { console.log(error); res.status(500); throw new Error("Unable to connect to database"); };
 
 
 
-    const response = {
-        data: labels,
-    };
 
-    res.status(200).json(response);
+
+
+
 }
 //decoupled async search query
 const getSolana = async ({
