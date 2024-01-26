@@ -23,14 +23,19 @@ export default async function handler(
         typeof req.query.search === 'string' ? req.query.search : undefined;
 
     const { solana_wallets } = await getSolana({ skip, limit, query: search })
-    console.log(solana_wallets);
-    labels = solana_wallets.map((lbl) => ({
-        address: lbl.address,
-        address_name: lbl.address_name,
-        label_type: lbl.label_type,
-        label_subtype: lbl.label_subtype,
-        label: lbl.label,
-    }));
+    try {
+        labels = solana_wallets.map((lbl) => ({
+            address: lbl.address,
+            address_name: lbl.address_name,
+            label_type: lbl.label_type,
+            label_subtype: lbl.label_subtype,
+            label: lbl.label,
+        }));
+    } catch (error) {
+        console.log(error);
+        res.status(405).json({ message: "error in loading labels. Please try again later " });
+    }
+
 
 
     const response = {
