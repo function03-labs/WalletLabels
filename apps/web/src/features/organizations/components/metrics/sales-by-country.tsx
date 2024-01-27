@@ -48,9 +48,6 @@ const columns: ColumnDef<Data>[] = [
   {
     id: 'country',
     header: 'Country',
-    meta: {
-      autoSize: true,
-    },
   },
   {
     id: 'sales',
@@ -59,7 +56,7 @@ const columns: ColumnDef<Data>[] = [
     meta: {
       isNumeric: true,
     },
-    size: 140,
+    size: 100,
   },
   {
     id: 'total',
@@ -68,7 +65,7 @@ const columns: ColumnDef<Data>[] = [
     meta: {
       isNumeric: true,
     },
-    size: 120,
+    size: 100,
   },
 ]
 
