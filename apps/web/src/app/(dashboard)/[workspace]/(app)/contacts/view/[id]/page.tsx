@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { ContactsViewPage } from '@app/features/contacts'
+import { ContactsViewPage } from '@app/features/contacts/pages/view'
 
 const { Page, metadata } = createPage({
   title: 'Contact',

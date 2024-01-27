@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { AccountSecurityPage } from '@app/features/settings'
+import { AccountSecurityPage } from '@app/features/settings/pages/account/security'
 
 const { Page, metadata } = createPage({
   title: 'Security',

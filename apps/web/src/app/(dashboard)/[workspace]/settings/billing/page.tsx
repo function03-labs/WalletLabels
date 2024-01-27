@@ -1,5 +1,5 @@
 import { createPage } from '@app/nextjs'
-import { BillingPage } from '@app/features/settings'
+import { BillingPage } from '@app/features/settings/pages/billing'
 
 const { Page, metadata } = createPage({
   title: 'Billing',

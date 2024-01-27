@@ -1,6 +1,6 @@
 import { createPage } from '@app/nextjs'
 
-import { InboxListPage } from '@app/features/contacts'
+import { InboxListPage } from '@app/features/contacts/pages/inbox'
 
 const { Page, metadata } = createPage({
   title: 'Inbox',

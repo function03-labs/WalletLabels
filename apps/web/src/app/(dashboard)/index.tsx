@@ -1,6 +1,6 @@
 'use client'
 
-import { HomePage } from '@app/features/organizations'
+import { HomePage } from '@app/features/organizations/pages/home'
 import { HomePage as MarketingHomePage } from 'marketing/pages/home'
 
 import { useAuth } from '@saas-ui/auth'
