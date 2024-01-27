@@ -18,7 +18,7 @@ const getPercentage = (value: number) => {
 
 const SalesCell: DataGridCell<Data> = (cell) => {
   return (
-    <HStack justifyContent="space-between">
+    <HStack justifyContent="space-between" flex="1">
       <Progress
         value={getPercentage(cell.row.getValue('total'))}
         size="xs"
@@ -65,14 +65,19 @@ const columns: ColumnDef<Data>[] = [
     meta: {
       isNumeric: true,
     },
-    size: 80,
+    size: 100,
   },
 ]
 
-export const SalesByCountry = ({ data }: any) => {
+export const SalesByCountry = ({ data = [] }: { data: Data[] }) => {
   return (
     <MetricsCard title="Top countries" noPadding>
-      <DataGrid<Data> columns={columns} data={data} isSortable />
+      <DataGrid<Data>
+        columns={columns}
+        data={data}
+        isSortable
+        stickyHeader={false}
+      />
     </MetricsCard>
   )
 }
