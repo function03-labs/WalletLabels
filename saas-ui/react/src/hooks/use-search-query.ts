@@ -1,3 +1,5 @@
+'use client'
+
 import { useControllableState } from '@chakra-ui/react'
 import * as React from 'react'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallbackRef, useControllableState } from '@chakra-ui/react'
 import { isObject } from '@chakra-ui/utils'
 import { useCallback } from 'react'
@@ -77,8 +79,8 @@ export function useToggleGroup<
       const isChecked = isInputEvent(eventOrValue)
         ? eventOrValue.target.checked
         : isCheckbox
-        ? !value.includes(eventOrValue)
-        : value !== eventOrValue
+          ? !value.includes(eventOrValue)
+          : value !== eventOrValue
 
       const selectedValue = isInputEvent(eventOrValue)
         ? eventOrValue.target.value

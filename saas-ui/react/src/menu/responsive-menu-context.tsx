@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext } from '@chakra-ui/react-utils'
 
 export interface ResponsiveMenuContextValue {

@@ -1,3 +1,5 @@
+'use client'
+
 import { Link } from '@saas-ui/react'
 import { IconButton, IconButtonProps, forwardRef } from '@chakra-ui/react'
 import { ArrowLeftIcon } from './icons'

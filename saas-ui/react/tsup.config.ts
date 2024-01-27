@@ -16,7 +16,4 @@ export default defineConfig({
     '@chakra-ui/utils',
   ],
   format: ['esm', 'cjs'],
-  banner: {
-    js: "'use client'",
-  },
 })

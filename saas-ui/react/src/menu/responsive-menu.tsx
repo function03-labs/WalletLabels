@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 import { Menu, MenuProps, MenuList, useBreakpointValue } from '@chakra-ui/react'

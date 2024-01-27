@@ -1,3 +1,5 @@
+'use client'
+
 import { SystemStyleObject } from '@chakra-ui/react'
 import {
   PropertyList,

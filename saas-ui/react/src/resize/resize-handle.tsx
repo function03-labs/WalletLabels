@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { cx } from '@chakra-ui/utils'
 import { chakra, HTMLChakraProps } from '@chakra-ui/react'

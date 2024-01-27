@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { ResizeProvider, useResize, UseResizeProps } from './use-resize'
 
