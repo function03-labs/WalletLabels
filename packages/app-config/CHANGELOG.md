@@ -1,5 +1,15 @@
 # @app/config
 
+## 8.0.0
+
+### Patch Changes
+
+- Updated dependencies [44427f1]
+- Updated dependencies [df135e4]
+- Updated dependencies [df135e4]
+- Updated dependencies [df135e4]
+  - @saas-ui-pro/react@0.32.0
+
 ## 7.0.2
 
 ### Patch Changes

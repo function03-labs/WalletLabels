@@ -1,5 +1,18 @@
 # marketing
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [44427f1]
+- Updated dependencies [df135e4]
+- Updated dependencies [df135e4]
+- Updated dependencies [df135e4]
+  - @saas-ui-pro/react@0.32.0
+  - @app/config@8.0.0
+  - @ui/lib@8.0.0
+  - @ui/theme@8.0.0
+
 ## 2.0.3
 
 ### Patch Changes

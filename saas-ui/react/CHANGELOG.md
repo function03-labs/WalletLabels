@@ -1,5 +1,17 @@
 # @saas-ui-pro/react
 
+## 0.32.0
+
+### Minor Changes
+
+- df135e4: DataGrid header is now sticky by default, use stickHeader={false} to disable.
+- df135e4: Added column virtualization support to DataGrid
+- df135e4: Deprecated virtualizerProps of DataGrid, use rowVirtualizerOptions instead
+
+### Patch Changes
+
+- 44427f1: Removed use client directive from platformSelect util
+
 ## 0.31.5
 
 ### Patch Changes

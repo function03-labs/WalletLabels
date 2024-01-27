@@ -1,5 +1,21 @@
 # nextjs-app
 
+## 0.27.0
+
+### Minor Changes
+
+- 0f676a3: Removed all barrel (index.ts) files from features to optimize production bundle
+
+### Patch Changes
+
+- Updated dependencies [44427f1]
+- Updated dependencies [df135e4]
+- Updated dependencies [df135e4]
+- Updated dependencies [df135e4]
+  - @saas-ui-pro/react@0.32.0
+  - @ui/lib@8.0.0
+  - @ui/theme@8.0.0
+
 ## 0.26.1
 
 ### Patch Changes
