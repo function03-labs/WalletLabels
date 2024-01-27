@@ -19,6 +19,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource-variable/inter": "^5.0.16",
+    "@next/bundle-analyzer": "^14.1.0",
     "@saas-ui-pro/billing": "^0.11.4",
     "@saas-ui-pro/feature-flags": "^0.14.3",
     "@saas-ui-pro/onboarding": "^0.13.4",
