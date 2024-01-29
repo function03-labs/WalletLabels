@@ -63,9 +63,9 @@ export default async function handler(req, res) {
                 LABEL: 1,
             };
 
-            const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
-                { locale: 'en', strength: 1 }
-            )
+            const cursor = await db.collection(clc_name).find(queryAtlas, { projection },).collation(
+                { locale: 'en', strength: 2, maxVariable: "punct" }
+            ).hint("ADDRESS_1")
                 .limit(limit);
             labels = await cursor.toArray();
 
@@ -85,8 +85,8 @@ export default async function handler(req, res) {
             };
 
             const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
-                { locale: 'en', strength: 1 }
-            )
+                { locale: 'en', strength: 2 }
+            ).hint("LABEL_1")
                 .limit(limit);
             labels = await cursor.toArray();
 
