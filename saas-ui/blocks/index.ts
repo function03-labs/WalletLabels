@@ -51,3 +51,8 @@ export { UserMenu } from './src/menus/user-menu/user-menu'
 export { MetricCardSimple } from './src/kpi-cards/metric-card-simple/metric-card-simple'
 export { MetricCardWithIcon } from './src/kpi-cards/metric-card-with-icon/metric-card-with-icon'
 export { MetricCardWithButton } from './src/kpi-cards/metric-card-with-button/metric-card-with-button'
+
+/**
+ * Communication
+ */
+export { ChatDetails } from './src/communication/chat-details/chat-details'
