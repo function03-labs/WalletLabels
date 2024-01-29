@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.32.1
+
+### Patch Changes
+
+- 13bb616: Added back use client banner config in build
+
 ## 0.32.0
 
 ### Minor Changes
