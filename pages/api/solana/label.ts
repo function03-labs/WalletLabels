@@ -4,7 +4,7 @@ import { connectToDatabase } from "../../../lib/mongodb"
 export default async function handler(req, res) {
     // Database connection setup
     let db;
-    let address, limit, label;
+    let address, limit;
     try {
         const database = await connectToDatabase();
         db = database.db;
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     // Validate 'address' query parameter
     if (req.query.address === undefined && req.query.label === undefined) {
-        return res.status(400).json({ message: "Bad request: 'address'/'label' parameter missing" });
+        return res.status(400).json({ message: "Bad request: 'address' parameter missing" });
     }
 
     if (req.query.address === "" || req.query.address === undefined) {
@@ -23,13 +23,8 @@ export default async function handler(req, res) {
     } else {
         address = req.query.address;
     }
-    if (req.query.label === "" || req.query.label === undefined) {
-        label = "";
-    } else {
-        label = req.query.label;
-    }
 
-    if (req.query.limit === "" || req.query.limit === undefined) {
+    if (req.query.limit === "" || req.query.limit === undefined || Number.isNaN(req.query.limit)) {
         limit = 20;
     } else {
         limit = Number(req.query.limit);
@@ -47,8 +42,9 @@ export default async function handler(req, res) {
     let labels = null;
 
     try {
-        if (address === "" && label === "") {
-            labels = await db.collection(clc_name).find().limit(limit).toArray();
+        if (address === "") {
+            res.status(200).json({ data: [] });
+            return;
         } else if (!!address) {
             // Adjust the MongoDB query to search by 'address'
             const queryAtlas = {
@@ -68,29 +64,6 @@ export default async function handler(req, res) {
             ).hint("ADDRESS_1")
                 .limit(limit);
             labels = await cursor.toArray();
-
-            console.log("solana label address :" + address.toString);
-        } else if (!!label) {
-            // Adjust the MongoDB query to search by 'label'
-            const queryAtlas = {
-                LABEL: label,
-            };
-
-            const projection = {
-                ADDRESS_NAME: 1,
-                LABEL_TYPE: 1,
-                LABEL_SUBTYPE: 1,
-                ADDRESS: 1,
-                LABEL: 1,
-            };
-
-            const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
-                { locale: 'en', strength: 2 }
-            ).hint("LABEL_1")
-                .limit(limit);
-            labels = await cursor.toArray();
-
-            console.log("solana label query :" + label.toString);
         }
 
         labels = labels.map((lbl) => ({

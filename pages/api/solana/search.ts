@@ -17,12 +17,13 @@ export default async function handler(
     const skip =
         typeof req.query.skip === 'string' ? Number(req.query.skip) : 0;
     const limit =
-        typeof req.query.limit === 'string' ? Math.max(Math.min(Number(req.query.limit), 100), 20) : 20;
+        typeof req.query.limit === 'string' && !Number.isNaN(req.query.limit) ? Math.max(Math.min(Number(req.query.limit), 100), 1) : 20;
 
-    const search =
-        typeof req.query.search === 'string' ? req.query.search : undefined;
+    const searchtext =
+        typeof req.query.searchtext === 'string' ? req.query.searchtext : undefined;
 
-    const { solana_wallets } = await getSolana({ skip, limit, query: search });
+    const { solana_wallets } = await getSolana({ skip, limit, query: searchtext });
+    console.log("Searched element : " + searchtext);
     try {
         labels = solana_wallets.map((lbl) => ({
             address: lbl.ADDRESS,
@@ -36,7 +37,7 @@ export default async function handler(
         };
 
         res.status(200).json(response);
-    } catch (error) { console.log(error); res.status(500); throw new Error("Unable to connect to database"); };
+    } catch (error) { console.log(error); res.status(500); throw new Error("Bad request: 'searchtext' parameter missing"); };
 
 
 
@@ -77,7 +78,6 @@ const getSolana = async ({
                 }
             })
         }
-        console.log("solana search query :" + query.toString)
         const result = await db.collection(clc_name).aggregate(pipeline).toArray()
         return { solana_wallets: result }
     } catch (error) {

@@ -28,15 +28,15 @@ export default async function handler(req, res) {
   }
 
 
-  if (req.query.limit === "" || req.query.limit === undefined) {
+  if (req.query.limit === "" || req.query.limit === undefined || Number.isNaN(req.query.limit)) {
     limit = 20
   } else {
     limit = Number(req.query.limit)
   }
 
   // max limit is 100
-  if (limit > 1000) {
-    limit = 1000
+  if (limit > 100) {
+    limit = 100
   }
 
   // limit to only GET method or throw error
