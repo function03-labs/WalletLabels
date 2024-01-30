@@ -1,5 +1,11 @@
 # @saas-ui-pro/react
 
+## 0.32.2
+
+### Patch Changes
+
+- 8626c72: Fixed issue where SplitPage would fail server side builds
+
 ## 0.32.1
 
 ### Patch Changes

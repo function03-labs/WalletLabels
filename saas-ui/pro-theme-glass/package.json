@@ -1,6 +1,6 @@
 {
   "name": "@saas-ui-pro/theme-glass",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "description": "A Linear inspired Chakra UI theme for Saas UI Pro",
   "source": "src/index.ts",
   "exports": {
