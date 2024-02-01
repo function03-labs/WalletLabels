@@ -25,7 +25,7 @@ export const SubscribeStep = () => {
   })
 
   return (
-    <OnboardingStep
+    <OnboardingStep<FormInput>
       schema={schema}
       title="Subscribe to updates"
       description="Saas UI is updated regularly. These are the best ways to stay up to date."

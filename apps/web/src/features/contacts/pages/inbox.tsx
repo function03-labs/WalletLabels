@@ -28,7 +28,6 @@ import { InboxList } from '../components/inbox-list'
 
 import {
   Box,
-  Card,
   Divider,
   Menu,
   MenuButton,

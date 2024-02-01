@@ -23,11 +23,11 @@ export interface ContactStatusProps extends StackProps {
 
 export const ContactStatus: React.FC<ContactStatusProps> = (props) => {
   const { status, hideLabel, ...rest } = props
-  const { color, label } = contactStatus[props.status] || contactStatus.new
+  const { color, label } = contactStatus[status] || contactStatus.new
   return (
     <HStack display="inline-flex" {...rest}>
       <StatusBadge colorScheme={color} />
-      {!props.hideLabel && <Text>{label}</Text>}
+      {!hideLabel && <Text>{label}</Text>}
     </HStack>
   )
 }

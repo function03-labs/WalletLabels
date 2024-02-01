@@ -1,7 +1,5 @@
-import type { CompletePrivateRouteInfo } from 'next/dist/shared/lib/router/router'
 import type { Router } from 'next/dist/client/router'
-import type { NextComponentType, NextPage, NextPageContext } from 'next'
-import { AppInitialProps, AppPropsType } from 'next/dist/shared/lib/utils'
+import { AppInitialProps } from 'next/dist/shared/lib/utils'
 import { ComponentType } from 'react'
 
 declare module 'next/app' {

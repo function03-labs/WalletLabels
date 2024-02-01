@@ -77,7 +77,7 @@ export const PricingTable: React.FC<PricingTableProps> = (props) => {
     periods = defaultPeriods,
     ...rest
   } = props
-  const [period, setPeriod] = React.useState('monthly')
+  const [period, setPeriod] = React.useState(defaultPeriod)
 
   const plans = React.useMemo(() => {
     return allPlans.filter((plan) => plan.period === period)

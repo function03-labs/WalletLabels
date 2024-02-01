@@ -45,7 +45,7 @@ export const IntroTour = () => {
     },
   ]
 
-  const onDismiss = (index: number) => {
+  const onDismiss = () => {
     setTour(true)
   }
 

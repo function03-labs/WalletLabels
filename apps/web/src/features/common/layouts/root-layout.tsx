@@ -69,11 +69,6 @@ interface AppLayoutProps {
    */
   isPublic?: boolean
   /**
-   * The layout to render.
-   * Can be a component or build-in layout key `settings` | `fullscreen`
-   */
-  layout?: React.ReactNode
-  /**
    * The sidebar component.
    */
   sidebar?: React.ReactElement
@@ -86,8 +81,6 @@ export const RootLayout: React.FC<AppLayoutProps> = ({
   children,
   publicRoutes = [],
   isPublic,
-  layout,
-  ...rest
 }) => {
   const pathname = usePathname()
 

@@ -10,7 +10,7 @@ import {
   StructuredListItemProps,
   StructuredListProps,
 } from '@saas-ui/react'
-import { DateTimeSince, StatusBadge } from '@ui/lib'
+import { DateTimeSince } from '@ui/lib'
 import { useActivePath, useRouter } from '@app/nextjs'
 import { Notification } from '@api/client'
 

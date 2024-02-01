@@ -13,11 +13,8 @@ import {
   MenuButton,
   MenuList,
   Portal,
-  Tooltip,
   HStack,
   Text,
-  Stack,
-  Avatar,
 } from '@chakra-ui/react'
 import { FiGrid, FiList, FiSliders, FiUser } from 'react-icons/fi'
 import {
@@ -38,7 +35,6 @@ import {
   Toolbar,
   ToolbarButton,
   DataGridCell,
-  BulkActionsSelections,
   MenuProperty,
   ToggleButtonGroup,
   ToggleButton,
@@ -52,9 +48,10 @@ import { ListPage, InlineSearch, useModals, ListPageProps } from '@ui/lib'
 import { Contact, createContact, getContacts, updateContact } from '@api/client'
 
 import { format } from 'date-fns'
-import { CommandIcon, TagIcon } from 'lucide-react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useParams } from '@app/nextjs'
+
+import { usePath } from '@app/features/common/hooks/use-path'
 
 import { ContactTypes } from '../components/contact-types'
 import { filters, AddFilterButton } from '../components/contact-filters'
@@ -63,8 +60,7 @@ import { ContactType } from '../components/contact-type'
 import { ContactTag } from '../components/contact-tag'
 import { ContactBoardHeader } from '../components/contact-board-header'
 import { ContactCard } from '../components/contact-card'
-
-import { usePath } from '@app/features/common/hooks/use-path'
+import { bulkActions } from '../components/contact-bulk-actions'
 
 const DateCell = ({ date }: { date?: string }) => {
   return <>{date ? format(new Date(date), 'PP') : null}</>
@@ -358,37 +354,6 @@ export function ContactsListPage() {
         </MenuList>
       </Menu>
     </Toolbar>
-  )
-
-  const bulkActions = ({
-    selections,
-  }: {
-    selections: BulkActionsSelections
-  }) => (
-    <>
-      <Tooltip
-        placement="top"
-        label={
-          <>
-            Add tags <Command>⇧ T</Command>
-          </>
-        }
-      >
-        <Button colorScheme="gray" leftIcon={<TagIcon size="1em" />}>
-          Add tags
-        </Button>
-      </Tooltip>
-      <Tooltip
-        placement="top"
-        label={
-          <>
-            Command <Command>⇧ K</Command>
-          </>
-        }
-      >
-        <Button leftIcon={<CommandIcon size="1em" />}>Command</Button>
-      </Tooltip>
-    </>
   )
 
   let defaultFilters: Filter[] = []

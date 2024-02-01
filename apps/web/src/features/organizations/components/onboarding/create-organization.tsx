@@ -8,7 +8,6 @@ import {
   useSnackbar,
   useStepperContext,
 } from '@saas-ui/react'
-import { useRouter } from '@app/nextjs'
 import * as z from 'zod'
 
 import { OnboardingStep } from './onboarding-step'

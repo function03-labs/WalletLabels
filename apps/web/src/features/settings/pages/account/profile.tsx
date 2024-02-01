@@ -59,8 +59,7 @@ function ProfileDetails({ user }: { user: User }) {
               lastName: user?.lastName,
               email: user?.email,
             }}
-            onSubmit={(data: any) => {
-              // @todo fix types
+            onSubmit={(data) => {
               mutateAsync({
                 id: user.id,
                 firstName: data.firstName,
@@ -73,17 +72,13 @@ function ProfileDetails({ user }: { user: User }) {
               )
             }}
           >
-            {(
-              { Field }: any, // @todo fix types
-            ) => (
+            {({ Field }) => (
               <CardBody>
                 <FormLayout>
                   <ProfileAvatar user={user} />
                   <Field name="firstName" label="First name" />
                   <Field name="lastName" label="Last name" />
                   <Field name="email" label="Email" />
-                  <Field name="select" type="select" label="Select" />
-                  <Field name="textarea" type="textarea" label="Textarea" />
                   <ButtonGroup>
                     <Button
                       variant="primary"
@@ -103,9 +98,7 @@ function ProfileDetails({ user }: { user: User }) {
   )
 }
 
-function ProfileAvatar({ user }: any) {
-  const snackbar = useSnackbar()
-
+function ProfileAvatar({ user }: { user: User }) {
   const [previewUrl, setPreviewUrl] = useState<string | undefined>()
   const ref = useRef<HTMLInputElement>()
 

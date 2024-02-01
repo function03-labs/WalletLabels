@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import slug from 'slug'
 import * as mocks from '@common/mocks'
 import { addDays } from 'date-fns'
@@ -89,6 +90,14 @@ export const updateOrganization = async (variables: {
   return {
     updateOrganization: data,
   }
+}
+
+export const updateMemberRoles = async (variables: {
+  userId: string
+  organizationId: string
+  roles: string[]
+}) => {
+  return { updateMemberRoles: true }
 }
 
 export const subscribeToNewsletter = async (data: {

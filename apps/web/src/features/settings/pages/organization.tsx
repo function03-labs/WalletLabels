@@ -2,13 +2,7 @@
 
 import { z } from 'zod'
 import { getOrganization, Organization, updateOrganization } from '@api/client'
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardFooter,
-} from '@chakra-ui/react'
+import { Button, ButtonGroup, Card, CardBody } from '@chakra-ui/react'
 import { Section, SectionBody, SectionHeader } from '@saas-ui-pro/react'
 import { FormLayout, useSnackbar } from '@saas-ui/react'
 import { Form, SettingsPage } from '@ui/lib'
@@ -92,7 +86,7 @@ function OrganizationDetails({ organization }: OrganizationDetailsProps) {
 export function OrganizationSettingsPage() {
   const slug = useWorkspace()
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['Organization', slug],
     queryFn: () => getOrganization({ slug }),
   })

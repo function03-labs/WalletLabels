@@ -113,13 +113,11 @@ function BillingInvoices() {
 export function BillingPage() {
   const slug = useWorkspace()
 
-  const { data, isLoading, error } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: ['Organization', slug],
     queryFn: () => getOrganization({ slug }),
     enabled: !!slug,
   })
-
-  const organization = data?.organization
 
   return (
     <SettingsPage

@@ -81,7 +81,7 @@ export const WorkspacesMenu: React.FC<TenantMenuProps> = (props) => {
         {/* Wrap the menu in a portal so that the color scheme tokens get applied correctly.  */}
         <MenuList zIndex={['modal', null, 'dropdown']}>
           <MenuGroup title={title}>
-            {workspaces.map(({ id, slug, label, logo, ...props }) => {
+            {workspaces.map(({ slug, label, logo, ...props }) => {
               return (
                 <MenuItem
                   key={slug}

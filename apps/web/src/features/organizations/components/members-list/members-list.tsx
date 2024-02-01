@@ -60,10 +60,6 @@ const Roles = ({ roles }: { roles?: string | string[] }) => {
   )
 }
 
-interface ChangeRoleFields {
-  roles: string[]
-}
-
 interface MemberListItemProps<M> {
   member: M
   onRemove(member: M): void

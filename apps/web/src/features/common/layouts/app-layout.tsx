@@ -1,17 +1,14 @@
 'use client'
 
-import { AppShell, AppShellProps, HotkeysListOptions } from '@saas-ui/react'
+import { AppShell, AppShellProps } from '@saas-ui/react'
 
-export interface AppLayoutProps extends AppShellProps {
-  hotkeys?: HotkeysListOptions
-}
+export interface AppLayoutProps extends AppShellProps {}
 
 /**
  * Base layout for app pages.
  */
 export const AppLayout: React.FC<AppLayoutProps> = ({
   children,
-  hotkeys,
   sidebar,
   ...rest
 }) => {

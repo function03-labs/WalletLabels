@@ -177,7 +177,7 @@ const ActivityUser: React.FC<TextProps & { user: Partial<User> }> = (props) => {
 }
 
 const ActivityTimelineAction: React.FC<ActivityAction> = (props) => {
-  const { id, user, data, date } = props
+  const { id, user, date } = props
 
   const status = user.status === 'active' ? 'online' : user.status
 

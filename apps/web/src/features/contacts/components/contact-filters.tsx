@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { FiCircle, FiFilter, FiCalendar, FiTag } from 'react-icons/fi'
+import { FiFilter, FiCalendar, FiTag } from 'react-icons/fi'
 
-import { Badge, useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 
 import {
   FilterItem,

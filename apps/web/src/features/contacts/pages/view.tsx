@@ -3,8 +3,6 @@
 import * as React from 'react'
 
 import {
-  Box,
-  Heading,
   HStack,
   Spacer,
   Tab,
@@ -55,7 +53,7 @@ export function ContactsViewPage({
   params,
   isEmbedded,
 }: ContactsViewPageProps) {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['Contact', params.id],
     queryFn: () => getContact({ id: params.id }),
     enabled: !!params.id,
@@ -159,7 +157,7 @@ export function ContactsViewPage({
 const ActivitiesPanel: React.FC<{ contactId: string }> = ({ contactId }) => {
   const currentUser = useCurrentUser()
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['ContactActivities', contactId],
     queryFn: () => getContactActivities({ id: contactId }),
   })
@@ -168,7 +166,7 @@ const ActivitiesPanel: React.FC<{ contactId: string }> = ({ contactId }) => {
 
   const addMutation = useMutation({
     mutationFn: addComment,
-    onSettled: (data) => {
+    onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: ['ContactActivities', contactId],
       })

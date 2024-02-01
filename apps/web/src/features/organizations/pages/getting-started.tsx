@@ -23,7 +23,7 @@ import { SubscribeStep } from '../components/onboarding/subscribe'
 import { AppearanceStep } from '../components/onboarding/appearance'
 
 export const GettingStartedPage: React.FC = () => {
-  const { data, isLoading } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: ['CurrentUser'],
     queryFn: () => getCurrentUser(),
   })

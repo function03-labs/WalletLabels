@@ -15,6 +15,7 @@ import {
   getOrganization,
   inviteToOrganization,
   removeUserFromOrganization,
+  updateMemberRoles,
 } from '@api/client'
 
 export function MembersSettingsPage() {
@@ -52,6 +53,10 @@ export function MembersSettingsPage() {
 
   const removeUser = useMutation({
     mutationFn: removeUserFromOrganization,
+  })
+
+  const updateRoles = useMutation({
+    mutationFn: updateMemberRoles,
   })
 
   const onInvite = async ({ emails, role }: InviteData) => {
@@ -119,7 +124,13 @@ export function MembersSettingsPage() {
   }
 
   const onUpdateRoles = async (member: Member, roles: string[]) => {
-    return null
+    if (!organization) return
+
+    return updateRoles.mutateAsync({
+      userId: member.id,
+      organizationId: organization.id,
+      roles,
+    })
   }
 
   return (

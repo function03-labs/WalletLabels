@@ -27,7 +27,7 @@ function AccessToken({ token, onRemove }: any) {
   return (
     <StructuredListItem onClick={onCopy}>
       <StructuredListCell flex="1">
-        <Text size="sm">{token}</Text>
+        <Text size="sm">{value}</Text>
       </StructuredListCell>
       <StructuredListCell px="4">
         {hasCopied ? <FiCheck /> : <FiCopy />}
