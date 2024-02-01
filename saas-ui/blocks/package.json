@@ -9,13 +9,12 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@saas-ui-pro/react": "^0.32.0",
+    "@saas-ui/file-upload": "^0.2.2",
     "@saas-ui/react": "^2.5.5",
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.314.0",
+    "nanoid": "^5.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "@saas-ui/file-upload": "^0.2.2"
   }
 }
