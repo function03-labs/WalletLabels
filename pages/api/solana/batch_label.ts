@@ -1,9 +1,9 @@
 import { Db } from 'mongodb'
-import { connectToDatabase } from "../../lib/mongodb"
+import { connectToDatabase } from "../../../lib/mongodb"
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 let db: Db;
-const clc_name = process.env.CLC_NAME_WLBLS;
+const clc_name = process.env.CLC_NAME_WLBLS_SOLANA;
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<ResponseData>
@@ -15,10 +15,11 @@ export default async function handler(
     }
     let labels: Label[] | null = null;
     try {
+
         // asserts if addresses is empty
         if (isSanitized(req)) {
             // extracts the data from the query
-            const adr_list: string[] = extractAddress(req.query.addresses)
+            const adr_list: string[] = extractAddress(req.query.addresses);
             if (countLabels(adr_list) > 100) return res.status(403).json({ message: "Maximum address limit exceeded" });
             // validate formatting
             adr_list.forEach((address) => {
@@ -36,7 +37,7 @@ export default async function handler(
 
             res.status(200).json(response);
 
-        } else return res.status(403).json({ message: "Pass eth/sol argument" })
+        } else return res.status(403).json({ message: "Pass addresses argument" })
     } catch (error) { console.log(error); throw new Error("error") }
 
 
@@ -56,16 +57,16 @@ const getWallet = async ({
 }) => {
     try {
         if (!db) await init()
-        const queryAtlas = { "address": { "$in": query } };
+        const queryAtlas = { "ADDRESS": { "$in": query } };
         const projection =
         {
-            address_name: 1,
-            label_type: 1,
-            label_subtype: 1,
-            address: 1,
-            label: 1,
-        }
-        const collation = { locale: 'en', strength: 1 };
+            ADDRESS_NAME: 1,
+            LABEL_TYPE: 1,
+            LABEL_SUBTYPE: 1,
+            ADDRESS: 1,
+            LABEL: 1,
+        };
+        const collation = { locale: 'en', strength: 2, maxVariable: "punct" }
         const index = "address_1";
         const cursor = await db.collection(clc_name)
             .find(queryAtlas, { projection })
@@ -74,12 +75,11 @@ const getWallet = async ({
             .limit(limit);
         const labels = await cursor.toArray();
         const result = labels.map((label) => ({
-            address: label.address,
-            address_name: label.address_name,
-            label_type: label.label_type,
-            label_subtype: label.label_subtype,
-            label: label.label,
-            score: label.score,
+            address: label.ADDRESS,
+            address_name: label.ADDRESS_NAME,
+            label_type: label.LABEL_TYPE,
+            label_subtype: label.LABEL_SUBTYPE,
+            label: label.LABEL,
         }));
         return { batch_result: result }
     } catch (error) {
@@ -106,7 +106,7 @@ function isSanitized(res: NextApiRequest): Boolean {
         return typeof (res.query.addresses) === "string" && res.query.addresses != ""
     } catch (error) {
         console.log(error);
-        throw new Error("Unable to assess query blockchain type")
+        throw new Error("addresses parameter required")
     }
 };
 
@@ -123,7 +123,7 @@ function extractAddress(addressArray: string | string[]): string[] {
 //detects if addresses are valid
 function isAddressFormatted(adr: string): boolean {
 
-    return (adr.length === 42 && adr.startsWith("0x"));
+    return (adr.length <= 44 || adr.length >= 32);
 
 };
 
