@@ -19,6 +19,8 @@ import {
   FiHelpCircle,
   FiUsers,
   FiSearch,
+  FiKey,
+  FiCodesandbox,
 } from 'react-icons/fi'
 
 import {
@@ -90,11 +92,11 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
       )}
     >
       <Sidebar variant={variant} colorScheme={colorScheme} {...props}>
-        <SidebarToggleButton />
         <ElectronNav />
         <SidebarSection direction="row">
           <WorkspacesMenu title="Organizations">
             <MenuDivider />
+
             <MenuItem as={Link} href={usePath('settings/organization')}>
               Organization settings
             </MenuItem>
@@ -125,28 +127,35 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               hotkey="navigation.dashboard"
             />
             <AppSidebarLink
-              href={usePath('inbox')}
-              isActive={useActivePath('inbox', { end: false })}
-              label="Inbox"
+              href={usePath('api')}
+              isActive={useActivePath('api', { end: false })}
+              label="API Keys"
               badge={2}
-              icon={<FiInbox />}
+              icon={<FiKey />}
               hotkey="navigation.inbox"
             />
             <AppSidebarLink
-              href={usePath('contacts')}
-              isActive={useActivePath('contacts', { end: false })}
-              label="Contacts"
-              icon={<FiUsers />}
+              href={usePath('Explore')}
+              isActive={useActivePath('explore', { end: false })}
+              label="Explore"
+              icon={<FiSearch />}
+              hotkey="navigation.contacts"
+            />
+            <AppSidebarLink
+              href={'https://docs.walletlabels.xyz'}
+              isActive={false}
+              label="Documentation"
+              icon={<FiCodesandbox />}
               hotkey="navigation.contacts"
             />
           </NavGroup>
 
-          {!isCondensed && user && <AppSidebarTags user={user} />}
+          {/* {!isCondensed && user && <AppSidebarTags user={user} />} */}
 
           <Spacer />
 
           <NavGroup>
-            <NavItem
+            {/* <NavItem
               onClick={() =>
                 modals.open(InviteDialog, {
                   title: 'Invite people',
@@ -159,7 +168,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               icon={<FiPlus />}
             >
               Invite people
-            </NavItem>
+            </NavItem> */}
             <NavItem
               onClick={() => help.open()}
               color="sidebar-muted"
@@ -169,7 +178,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             </NavItem>
           </NavGroup>
         </SidebarSection>
-
+        {/* 
         {isCondensed ? (
           <SidebarSection>
             <UserMenu />
@@ -178,7 +187,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           <SidebarSection>
             <BillingStatus />
           </SidebarSection>
-        )}
+        )} */}
 
         <SidebarOverlay />
         <ResizeHandle />

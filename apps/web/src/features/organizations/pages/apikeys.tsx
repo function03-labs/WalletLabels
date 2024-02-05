@@ -40,8 +40,10 @@ import {
   getRangeDiff,
 } from '@ui/lib'
 import { useState } from 'react'
+import { DataAPI } from '../components/apikeys/table'
+import { MembersList } from '../components/members-list'
 
-export function DashboardPage() {
+export function ApiKeysPage() {
   const workspace = useWorkspace()
 
   const [range, setRange] = useState('30d')
@@ -130,7 +132,7 @@ export function DashboardPage() {
       >
         {/* <IntroTour /> */}
         <Grid
-          templateColumns={['repeat(1, 1fr)', null, null, 'repeat(2, 1fr)']}
+          templateColumns={['repeat(1, 1fr)', null, null, 'repeat(1, 1fr)']}
           gridAutoColumns="fr1"
           width="100%"
           gap={{ base: 4, xl: 8 }}
@@ -185,8 +187,8 @@ export function DashboardPage() {
               </Tabs>
             </Card>
           </GridItem> */}
-          <GridItem as={IndexedChains} data={data?.walletLabels} />
-          <GridItem as={Activity} data={data?.activity} />
+          {/* <GridItem as={IndexedChains} data={data?.walletLabels} /> */}
+          <GridItem as={DataAPI} data={data?.activity} />
         </Grid>
       </PageBody>
     </Page>

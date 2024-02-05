@@ -7,7 +7,7 @@ import { ColorModeScript } from '@chakra-ui/react'
 import { LemonSqueezyScript } from '../lib/lemonsqueezy'
 import { Provider } from './provider'
 import { cookies } from 'next/headers'
-
+import '../styles/globals.css'
 export const metadata: Metadata = {
   title: {
     template: '%s | Saas UI',

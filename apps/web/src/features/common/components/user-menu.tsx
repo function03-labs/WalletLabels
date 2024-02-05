@@ -82,11 +82,6 @@ export const UserMenu = () => {
             </Has>
           </MenuGroup>
           <MenuDivider />
-          <MenuItem>Changelog</MenuItem>
-          <MenuItem command={helpCommand} onClick={() => help.open()}>
-            Help
-          </MenuItem>
-          <MenuItem>Feedback</MenuItem>
           <MenuItem
             onClick={(e: React.MouseEvent) => {
               e.preventDefault()

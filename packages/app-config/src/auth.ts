@@ -5,7 +5,7 @@ import { FaGoogle, FaGithub } from 'react-icons/fa'
 /**
  * The authentication type, magiclink or password
  */
-export const authType = 'password'
+export const authType = 'magiclink'
 
 /**
  * Available OAuth providers for single sign on.

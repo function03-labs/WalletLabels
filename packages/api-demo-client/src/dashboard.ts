@@ -3,58 +3,19 @@ import { getOrganization } from './organizations'
 
 export interface GetDashboardVariables {
   workspace: string
-  startDate: string
-  endDate: string
+
 }
 
 export const getDashboard = async (variables: GetDashboardVariables) => {
-  const { workspace, startDate, endDate } = variables
+  const { workspace } = variables
 
   return {
     organization: (await getOrganization({ slug: workspace })).organization,
-    charts: metrics.map((metric) => {
-      return {
-        ...metric,
-        data: createData({
-          startDate,
-          endDate,
-        }),
-      }
-    }),
-    sales,
+    walletLabels,
     activity,
   }
 }
 
-const createData = ({
-  startDate,
-  endDate,
-}: {
-  startDate: string
-  endDate: string
-}) => {
-  const days = eachDayOfInterval({
-    start: new Date(startDate),
-    end: new Date(endDate),
-  })
-
-  const growthRate = 1.02
-
-  const values = []
-
-  for (let i = 0; i < days.length; i++) {
-    const dailyGrowth = Math.random() * 0.3 + 0.7
-
-    const value = 2000 * Math.pow(growthRate, i) * dailyGrowth
-
-    values.push({
-      timestamp: days[i].getTime(),
-      value: value,
-    })
-  }
-
-  return values
-}
 
 export interface MetricData {
   timestamp: number
@@ -93,50 +54,40 @@ const metrics = [
   },
 ]
 
-const sales = [
+const walletLabels = [
   {
-    id: 'us',
-    country: 'US',
-    sales: Math.floor(Math.random() * 500),
-    total: Math.floor(Math.random() * 50000),
+    id: 'eth',
+    chain: 'Ethereum',
+    activeWallets: Math.floor(Math.random() * 500),
+    labels: Math.floor(Math.random() * (40000000 - 1000000 + 1)) + 1000000,
   },
   {
-    id: 'in',
-    country: 'India',
-    sales: Math.floor(Math.random() * 400),
-    total: Math.floor(Math.random() * 40000),
+    id: 'op',
+    chain: 'Optimism',
+    activeWallets: Math.floor(Math.random() * 400),
+    labels: Math.floor(Math.random() * (40000000 - 1000000 + 1)) + 1000000,
   },
   {
-    id: 'br',
-    country: 'Brazil',
-    sales: Math.floor(Math.random() * 300),
-    total: Math.floor(Math.random() * 30000),
+    id: 'arb',
+    chain: 'Arbitrum',
+    activeWallets: Math.floor(Math.random() * 300),
+    labels: Math.floor(Math.random() * (40000000 - 1000000 + 1)) + 1000000,
   },
   {
-    id: 'nl',
-    country: 'Netherlands',
-    sales: Math.floor(Math.random() * 250),
-    total: Math.floor(Math.random() * 25000),
+    id: 'poly',
+    chain: 'Polygon',
+    activeWallets: Math.floor(Math.random() * 250),
+    labels: Math.floor(Math.random() * (40000000 - 1000000 + 1)) + 1000000,
   },
   {
-    id: 'de',
-    country: 'Germany',
-    sales: Math.floor(Math.random() * 200),
-    total: Math.floor(Math.random() * 20000),
-  },
-  {
-    id: 'fr',
-    country: 'France',
-    sales: Math.floor(Math.random() * 100),
-    total: Math.floor(Math.random() * 10000),
-  },
-  {
-    id: 'uk',
-    country: 'United Kingdom',
-    sales: Math.floor(Math.random() * 100),
-    total: Math.floor(Math.random() * 10000),
-  },
+    id: 'sol',
+    chain: 'Solana',
+    activeWallets: Math.floor(Math.random() * 200),
+    labels: Math.floor(Math.random() * (40000000 - 1000000 + 1)) + 1000000,
+  }
 ]
+
+
 
 import { subDays } from 'date-fns'
 
