@@ -35,73 +35,58 @@ import {
   Avatar,
 } from '@chakra-ui/react'
 
+interface ApiKey {
+  id: number;
+  name: string;
+  key: string;
+  dateCreated: string;
+}
+interface APIListItemProps {
+  apiKey: ApiKey;
+}
+
+
+
 export const DataAPI = ({ data }: { data: ActivityData[] }) => {
+  const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
   const apiDialog = useDisclosure()
+
+  const generateApiKey = async (name: string) => {
+    try {
+      const response = await fetch('/api/apiKeys/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name }),
+      });
+
+      if (!response.ok) {
+        console.error('Failed to generate API key. Status:', response.status);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const newKey: ApiKey = {
+        id: data.apiKeyDetails.id,
+        name: data.apiKeyDetails.name,
+        key: data.apiKeyDetails.value,
+        dateCreated: data.apiKeyDetails.createdDate, 
+      };
+
+      setApiKeys((prevKeys) => [...prevKeys, newKey]);
+      console.log(newKey)
+      return newKey; 
+    } catch (error) {
+      console.error('Error generating API key:', error);
+      //TODO: Handle UI when Generation Fails
+      throw error; 
+    }
+  };
   const onSubmit = async (data) => {
+    const apiKey= await generateApiKey(data.name);
     apiDialog.onClose()
   }
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Date',
-        accessor: 'date',
-      },
-      {
-        Header: 'User',
-        accessor: 'user',
-      },
-      {
-        Header: 'Action',
-        accessor: 'action',
-      },
-      {
-        Header: 'Resource',
-        accessor: 'resource',
-      },
-    ],
-    [],
-  )
-  const dataTable = React.useMemo(
-    () => [
-      {
-        date: '2021-08-01',
-        user: 'John Doe',
-        action: 'Created',
-        resource: 'API Key',
-      },
-      {
-        date: '2021-08-01',
-        user: 'John Doe',
-        action: 'Created',
-        resource: 'API Key',
-      },
-    ],
-    [],
-  )
-
-  const results = [
-    {
-      id: 1,
-      name: 'API Key 1',
-      key: '1234567890abcdef',
-      dateCreated: '2022-01-01',
-    },
-    {
-      id: 2,
-      name: 'API Key 2',
-      key: 'abcdef1234567890',
-      dateCreated: '2022-01-02',
-    },
-    {
-      id: 3,
-      name: 'API Key 3',
-      key: 'fedcba0987654321',
-      dateCreated: '2022-01-03',
-    },
-    // Add more API keys as needed
-  ]
-
   return (
     <Card>
       <CardHeader
@@ -130,21 +115,25 @@ export const DataAPI = ({ data }: { data: ActivityData[] }) => {
           Generate
         </Button>
       </CardHeader>
-      {results?.length ? (
+      {
+      apiKeys.length > 0 ? (
+
         <StructuredList py="0">
-          {results.map((apikey, i) => (
-            <APIListItem<M> key={i} member={apikey} />
-          ))}
-        </StructuredList>
+        {apiKeys.map((apiKey,i) => (
+        <APIListItem key={i} apiKey={apiKey} />
+      ))}
+      </StructuredList>
       ) : (
-        <EmptyState title={'No API Keys found'} size="sm" p="4" />
-      )}
+        <Text p="4">No API Keys found</Text>
+      )
+      }
       <ApiCreateDialog apiProps={apiDialog} onSubmit={onSubmit} />
     </Card>
   )
 }
 
-const APIListItem = ({ member }: { member: any }) => {
+const APIListItem: React.FC<APIListItemProps> = ({ apiKey }) => {
+  console.log('API LIST',apiKey)
   return (
     <StructuredListItem
       py="4"
@@ -153,7 +142,7 @@ const APIListItem = ({ member }: { member: any }) => {
       className="flex justify-between"
     >
       <StructuredListCell px="4">
-        <Text size="sm">{'member.name' || 'member.email'}</Text>
+        <Text size="sm">{apiKey.name}:{apiKey.key}</Text>
       </StructuredListCell>
       {/* Add Structure Cell to display chains stacked avatar */}
       <StructuredListCell>
@@ -206,14 +195,14 @@ const ApiCreateDialog = ({ apiProps, onSubmit }: any) => {
       title="Generate an API Key"
       {...apiProps}
       defaultValues={{
-        title: '',
+        name: '',
         description: '',
       }}
-      onSubmit={apiProps.onSubmit}
+      onSubmit={onSubmit}
     >
       <FormLayout>
         <Field
-          name="title"
+          name="name"
           label="API Name"
           rules={{ required: 'API Name is required' }}
           placeholder="Enter a name for the API Key"
