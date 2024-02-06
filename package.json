@@ -62,5 +62,9 @@
     "react-element-to-jsx-string": "^15.0.0",
     "intl-messageformat": "10.3.5"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.0.2",
+  "dependencies": {
+    "@aws-sdk/client-api-gateway": "^3.507.0",
+    "aws-api-gateway-client": "^0.3.7"
+  }
 }

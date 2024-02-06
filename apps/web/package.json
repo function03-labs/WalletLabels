@@ -48,13 +48,12 @@
     "tailwindcss": "^3.4.1",
     "webpack": "^5.89.0"
   },
-  "postcss" : {
+  "postcss": {
     "plugins": {
       "tailwindcss": {},
       "autoprefixer": {}
     }
   },
-
   "msw": {
     "workerDirectory": "public"
   }
