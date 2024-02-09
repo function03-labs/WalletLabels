@@ -55,7 +55,7 @@ export default async function handler(
     query = req.query.query as string
   }
 
-  if (req.query.limit === "" || req.query.limit === undefined) {
+  if (req.query.limit === "" || req.query.limit === undefined || Number.isNaN(req.query.limit)) {
     limit = 40
   } else {
     limit = Number(req.query.limit)
