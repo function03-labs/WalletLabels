@@ -35,8 +35,8 @@ export default async function handler(req, res) {
   }
 
   // max limit is 100
-  if (limit > 1000) {
-    limit = 1000
+  if (limit > 100) {
+    limit = 100
   }
 
   // limit to only GET method or throw error
