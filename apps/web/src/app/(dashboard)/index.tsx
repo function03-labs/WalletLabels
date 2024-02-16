@@ -7,7 +7,15 @@ import { useAuth } from '@saas-ui/auth'
 import { Center, Spinner } from '@chakra-ui/react'
 
 export const IndexPage = () => {
-  const { isAuthenticated, isLoggingIn } = useAuth()
+  const { isAuthenticated, isLoggingIn, ...rest } = useAuth()
+  console.log(
+    'isAuthenticated',
+    isAuthenticated,
+    'isLoggingIn',
+    isLoggingIn,
+    'rest',
+    rest,
+  )
 
   if (isLoggingIn) {
     return (

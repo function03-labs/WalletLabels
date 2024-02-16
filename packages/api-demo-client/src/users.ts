@@ -2,9 +2,13 @@ import * as mocks from '@common/mocks'
 import { getOrganizations } from './organizations'
 
 export const getCurrentUser = async () => {
+  const { user } = useAuth()
+  const { fetchOrgs } = useFetchOrgs()
+  console.log("inside current user", user)
+
   return {
     currentUser: {
-      ...(await mocks.getCurrentUser()),
+      ...(await user),
       ...(await getOrganizations()),
     },
   }
@@ -28,3 +32,7 @@ export const updateUser = async (variables: {
     },
   }
 }
+function useAuth(): { user: any } {
+  throw new Error('Function not implemented.')
+}
+

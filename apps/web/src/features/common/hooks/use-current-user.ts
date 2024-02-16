@@ -1,10 +1,31 @@
 import { useQuery } from '@tanstack/react-query'
-import { getCurrentUser } from '@api/client'
+import { useAuth } from '@saas-ui/auth'
+import { useFetchOrgs } from './use-fetch-orgs'
 
 export const useCurrentUser = () => {
-  const { data } = useQuery({
-    queryKey: ['CurrentUser'],
-    queryFn: getCurrentUser,
+  const { user, isAuthenticated } = useAuth()
+  const { fetchOrgs } = useFetchOrgs()
+
+  const getOrgs = async () => {
+    if (!user || !isAuthenticated) {
+      return []
+    }
+    return fetchOrgs({ userEmail: user.email })
+  }
+
+  const { data: orgs, isLoading } = useQuery({
+    queryKey: ['orgs', user?.email],
+    queryFn: getOrgs,
+    enabled: !!user && isAuthenticated, // Only run query if user is authenticated
   })
-  return data?.currentUser
+
+  const dataOrgs = orgs?.map((org: any) => org.name) ?? []
+
+  return {
+    data: {
+      ...user,
+      organizations: dataOrgs,
+    },
+    isLoading,
+  }
 }

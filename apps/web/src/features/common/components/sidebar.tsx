@@ -107,7 +107,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           {!isCondensed && (
             <>
               <Spacer />
-              <UserMenu />
+              {/* <UserMenu /> */}
             </>
           )}
         </SidebarSection>
@@ -121,21 +121,22 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
         <SidebarSection overflowY="auto" flex="1">
           <NavGroup>
             <AppSidebarLink
-              href={usePath()}
+              // href={usePath()}
               label="Dashboard"
+              isActive={false}
               icon={<FiHome />}
               hotkey="navigation.dashboard"
             />
             <AppSidebarLink
-              href={usePath('api')}
-              isActive={useActivePath('api', { end: false })}
+              href={usePath('apikeys')}
+              isActive={useActivePath('', { end: false })}
               label="API Keys"
               badge={2}
               icon={<FiKey />}
               hotkey="navigation.inbox"
             />
             <AppSidebarLink
-              href={usePath('Explore')}
+              // href={usePath('explore')}
               isActive={useActivePath('explore', { end: false })}
               label="Explore"
               icon={<FiSearch />}

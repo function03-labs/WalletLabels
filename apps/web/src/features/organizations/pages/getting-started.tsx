@@ -21,6 +21,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSessionStorageValue } from '@react-hookz/web'
 import { SubscribeStep } from '../components/onboarding/subscribe'
 import { AppearanceStep } from '../components/onboarding/appearance'
+import { useRegisterOrg } from '@app/features/common/hooks/use-register-org'
 
 export const GettingStartedPage: React.FC = () => {
   const { isLoading } = useQuery({
@@ -59,9 +60,13 @@ export const GettingStartedPage: React.FC = () => {
 const OnboardingCompleted = () => {
   const router = useRouter()
   const workspace = useSessionStorageValue('getting-started.workspace')
+  const { registerOrg } = useRegisterOrg()
 
   React.useEffect(() => {
-    router.push(`/${workspace.value}`)
+    registerOrg(workspace.value).then((data) => {
+      console.log('registered', data)
+      router.push(`/${workspace.value}`)
+    })
   }, [])
 
   return (

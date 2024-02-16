@@ -1,5 +1,7 @@
 import { I18nProvider as BaseI18nProvider } from '@common/i18n'
 import { useCurrentUser } from '../hooks/use-current-user'
+// import { getCurrentUser } from '../hooks/use-current-user'
+// import { useCurrentUser } from '@saas-ui/auth'
 
 /**
  * This provider gets the configured locale from the current user

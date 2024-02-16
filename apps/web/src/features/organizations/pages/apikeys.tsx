@@ -39,12 +39,27 @@ import {
   DateRange,
   getRangeDiff,
 } from '@ui/lib'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DataAPI } from '../components/apikeys/table'
 import { MembersList } from '../components/members-list'
+import { supabase } from '../../../../../../packages/app-config/src'
 
 export function ApiKeysPage() {
   const workspace = useWorkspace()
+  // console.log(users)
+  const fetchCountries = async () => {
+    const { data, error } = await supabase.from('countries').select('*')
+    if (error) throw error
+    return data
+  }
+  const { data: data2 } = useQuery({
+    queryKey: ['countries'] as const,
+    queryFn: fetchCountries,
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
+  })
+
+  console.log(data2)
 
   const [range, setRange] = useState('30d')
   const [dateRange, setDateRange] = useState(getRangeValue('30d'))

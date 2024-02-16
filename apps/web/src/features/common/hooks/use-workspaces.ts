@@ -10,12 +10,12 @@ export const useWorkspaces = () => {
   const currentUser = useCurrentUser()
 
   return (
-    currentUser?.organizations?.map((organization) => ({
-      id: organization.id,
-      slug: organization.slug,
-      label: organization.name || organization.id,
+    currentUser?.data?.organizations?.map((organization) => ({
+      id: organization,
+      slug: organization,
+      label: organization,
       logo: organization.logo || undefined,
-      href: `/${organization.slug}`,
+      href: `/${organization}`,
     })) || []
   )
 }
