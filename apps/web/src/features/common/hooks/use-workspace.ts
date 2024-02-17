@@ -12,7 +12,6 @@ import { useLocalStorage } from '@saas-ui/react'
 export const useWorkspace = () => {
   const params = useParams()
   const workspace = params.workspace?.toString() || ''
-  console.log('workspace', workspace)
 
   const [activeWorkspace, setWorkspace] = useLocalStorage(
     'app.workspace',

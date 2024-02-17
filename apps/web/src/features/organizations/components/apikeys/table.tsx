@@ -1,13 +1,5 @@
 import {
-  SearchInput,
   DataTable,
-  EmptyState,
-  StructuredList,
-  OverflowMenu,
-  PersonaAvatar,
-  StructuredListCell,
-  StructuredListIcon,
-  StructuredListItem,
   FormDialog,
   FormLayout,
   Field,
@@ -19,8 +11,7 @@ import {
 } from '@saas-ui/react'
 import { FiAlertTriangle } from 'react-icons/fi';
 
-import { Search2Icon } from '@chakra-ui/icons'
-import { FiCircle, FiClipboard } from 'react-icons/fi'
+
 import { ActivityData } from '@api/client'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
@@ -58,7 +49,7 @@ import {
   EditablePreview,
 } from '@chakra-ui/react'
 import { EditIcon, DeleteIcon, CopyIcon } from '@chakra-ui/icons'
-
+import { getCurrentUser } from '@api/client'
 
 interface ApiKey {
   id: string;
@@ -70,6 +61,9 @@ interface ApiKey {
 interface APIListItemProps {
   apiKey: ApiKey;
 }
+
+const currentUser = getCurrentUser();
+console.log(currentUser);
 
 const formatDate = (date: Date) => {
 
@@ -104,7 +98,7 @@ function EditableControls() {
 
 
 
-export const DataAPI = ({ data }: { data: ActivityData[] }) => {
+export const DataAPI = ( organization ) => {
   // const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
   const [showCopyKeyDialog, setShowCopyKeyDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
@@ -221,14 +215,14 @@ export const DataAPI = ({ data }: { data: ActivityData[] }) => {
     },
   ], [editingRowId]);
 
-  const generateApiKey = async (name: string) => {
+  const generateApiKey = async (name: string, orgId: string) => {
     try {
       const response = await fetch('/api/apiKeys/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify({ name, orgId }),
       });
 
       if (!response.ok) {
@@ -243,6 +237,7 @@ export const DataAPI = ({ data }: { data: ActivityData[] }) => {
         name: data.apiKeyDetails.name,
         key: data.apiKeyDetails.value,
         dateCreated: data.apiKeyDetails.createdDate,
+        chains: []
       };
       setGeneratedKey(newKey);
       setApiKeys((prevKeys) => [...prevKeys, newKey]);
@@ -255,7 +250,7 @@ export const DataAPI = ({ data }: { data: ActivityData[] }) => {
 
   };
   const onSubmit = async (data) => {
-    await generateApiKey(data.name);
+    await generateApiKey(data.name,organization);
     apiDialog.onClose()
   }
   const onCloseErrorAlert = () => {
@@ -267,6 +262,8 @@ export const DataAPI = ({ data }: { data: ActivityData[] }) => {
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const buttonBgColor = 'purple.500';
   const hoverBgColor = 'purple.600';
+
+
 
   return (
     <Box bg={bgColor} p={5} rounded="md" shadow="base" borderColor={borderColor} borderWidth="1px">

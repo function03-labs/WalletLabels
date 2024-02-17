@@ -46,40 +46,6 @@ import { supabase } from '../../../../../../packages/app-config/src'
 
 export function ApiKeysPage() {
   const workspace = useWorkspace()
-  // console.log(users)
-  const fetchCountries = async () => {
-    const { data, error } = await supabase.from('countries').select('*')
-    if (error) throw error
-    return data
-  }
-  const { data: data2 } = useQuery({
-    queryKey: ['countries'] as const,
-    queryFn: fetchCountries,
-    refetchOnWindowFocus: false,
-    refetchInterval: false,
-  })
-
-  console.log(data2)
-
-  const [range, setRange] = useState('30d')
-  const [dateRange, setDateRange] = useState(getRangeValue('30d'))
-  const onPresetChange = (preset: string) => {
-    if (preset !== 'custom') {
-      setDateRange(getRangeValue(preset as DateRangePresets))
-    }
-    setRange(preset)
-  }
-
-  const onRangeChange = (range: DateRange) => {
-    const diff = getRangeDiff(range)
-    if ([1, 3, 7, 30].includes(diff)) {
-      setRange(`${diff}`)
-    } else {
-      setRange('custom')
-    }
-
-    setDateRange(range)
-  }
 
   const { data, isLoading } = useQuery({
     queryKey: [
@@ -94,7 +60,9 @@ export function ApiKeysPage() {
     refetchInterval: false,
   })
 
+
   const organization = data?.organization
+  console.log(organization)
 
   if (!isLoading && !organization) {
     return (
@@ -153,57 +121,7 @@ export function ApiKeysPage() {
           gap={{ base: 4, xl: 8 }}
           pb="8"
         >
-          {/* <GridItem colSpan={{ base: 1, lg: 2 }} maxW="100vw">
-            <Card>
-              <Tabs variant="unstyled" tabIndex={0}>
-                <TabList
-                  overflow="hidden"
-                  borderTopRadius="md"
-                  display="flex"
-                  flexWrap="wrap"
-                >
-                  {data?.charts.map((metric) => (
-                    <Tab
-                      key={metric.id}
-                      id={metric.id}
-                      alignItems="stretch"
-                      justifyContent="stretch"
-                      flex={{ base: '0 0 50%', lg: '1 0 auto' }}
-                      height="auto"
-                      textAlign="left"
-                      borderBottomWidth="1px"
-                      borderRightWidth="1px"
-                      _hover={{
-                        bg: 'whiteAlpha.100',
-                        _dark: {
-                          bg: 'whiteAlpha.100',
-                        },
-                      }}
-                      _selected={{
-                        borderBottomWidth: '2px',
-                        borderBottomColor: 'primary.500',
-                        display: 'flex',
-                      }}
-                      _last={{
-                        borderRightWidth: '0',
-                      }}
-                    >
-                      <Metric {...metric} />
-                    </Tab>
-                  ))}
-                </TabList>
-                <TabPanels>
-                  {data?.charts.map((metric) => (
-                    <TabPanel key={metric.id} pt="8">
-                      <RevenueChart data={metric.data} />
-                    </TabPanel>
-                  ))}
-                </TabPanels>
-              </Tabs>
-            </Card>
-          </GridItem> */}
-          {/* <GridItem as={IndexedChains} data={data?.walletLabels} /> */}
-          <GridItem as={DataAPI} data={data?.activity} />
+          <GridItem as={DataAPI} data={organization} />
         </Grid>
       </PageBody>
     </Page>

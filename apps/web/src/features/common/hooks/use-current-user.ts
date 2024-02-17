@@ -10,7 +10,9 @@ export const useCurrentUser = () => {
     if (!user || !isAuthenticated) {
       return []
     }
-    return fetchOrgs({ userEmail: user.email })
+    if (user.id) {
+      return fetchOrgs({ userId: user.id })
+    }
   }
 
   const { data: orgs, isLoading } = useQuery({
