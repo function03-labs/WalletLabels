@@ -5,16 +5,19 @@ import {
   DeleteApiKeyCommand,
   CreateUsagePlanKeyCommand,
   DeleteUsagePlanKeyCommand,
+  APIGatewayClientConfig,
 } from "@aws-sdk/client-api-gateway";
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const client = new APIGatewayClient({
-region: process.env.AWS_REGION,
-credentials: {
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-},
-});
+
+const config = {
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+} as APIGatewayClientConfig;
+const client = new APIGatewayClient(config);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 const {
@@ -23,10 +26,41 @@ const {
 } = req;
 
 switch (method) {
+  case 'PATCH': 
+  try {
+    const { newName } = req.body; 
+    if (!newName) {
+      return res.status(400).json({ message: "New name is required" });
+    }
+
+    const updateApiKeyCommand = new UpdateApiKeyCommand({
+      apiKey: apiKeyId as string,
+      patchOperations: [
+        {
+          op: 'replace',
+          path: '/name',
+          value: newName,
+        },
+      ],
+    });
+
+    const updateResponse = await client.send(updateApiKeyCommand);
+    console.log(updateResponse);
+    res.status(200).json({ message: "API key name updated successfully", details: updateResponse });
+  } catch (error: any) {
+    if (error.name === 'NotFoundException') {
+      res.status(404).json({ message: "API Key not found", error: error.message });
+    } else {
+      console.error("Error updating API key name:", error);
+      res.status(500).json({ message: "Failed to update API key name", error: error.message });
+    }
+  }
+  break;
   case 'GET':
     try {
       const getApiKeyCommand = new GetApiKeyCommand({ apiKey: apiKeyId as string, includeValue: true });
       const apiKeyDetails = await client.send(getApiKeyCommand);
+      // apiKeyDetails.value = randomizeMiddle(apiKeyDetails.value); // return randomized API key value
       res.status(200).json(apiKeyDetails);
     } catch (error: any) {
       if (error.name === 'NotFoundException') {
@@ -89,7 +123,7 @@ switch (method) {
     break;
 
   default:
-    res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
+    res.setHeader('Allow', ['GET', 'PUT', 'DELETE', 'PATCH']);
     res.status(405).end(`Method ${method} Not Allowed`);
 }
 }

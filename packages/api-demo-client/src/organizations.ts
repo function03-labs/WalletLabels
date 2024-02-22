@@ -1,42 +1,62 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import slug from 'slug'
 import * as mocks from '@common/mocks'
 import { addDays } from 'date-fns'
+import { supabase } from '@app/config'
+import { useAuth } from '@saas-ui/auth'
+import { useFetchOrgs } from '../../../apps/web/src/features/common/hooks/use-fetch-orgs';
+import { useQuery } from '@tanstack/react-query'
 
-export const getOrganization = async (variables: { slug?: string | null }) => {
+
+
+export const getOrganization = async (variables: { slug?: string | null, user?: any }) => {
+  const { slug, user } = variables
+  const { data, error } = await supabase
+    .from('organizations')
+    .select('*')
+    .contains('user_ids', [user?.id]); // Adjusted to search in 'user_ids' array
+
+  if (error) {
+    throw error;
+  }
+
+  const matchedOrg = data?.find(org => org.name === slug);
+
+
   return {
-    organization: {
-      ...mocks.getOrganization(variables.slug),
-      members: [
-        {
-          id: '1',
-          user: mocks.getCurrentUser(),
-          roles: ['owner', 'admin'],
-        },
-        mocks.getOrganizationMember(),
-      ],
-    },
+
+    organization: matchedOrg?? null,
   }
 }
 
-export const getOrganizations = async () => {
-  return { organizations: mocks.getOrganizations() }
+export const getOrganizations = async (variables: {  user?: any }) => {
+  const { user } = variables
+  const { data, error } = await supabase
+    .from('organizations')
+    .select('*')
+    .contains('user_ids', [user?.id]); // Adjusted to search in 'user_ids' array
+
+  if (error) {
+    throw error;
+  }
+
+  return { organizations: data ?? [] }
 }
 
-export const inviteToOrganization = async (variables: {
-  emails: string[]
-  organizationId: string
-  role?: string
-}) => {
-  return { inviteToOrganization: true }
-}
+// export const inviteToOrganization = async (variables: {
+//   emails: string[]
+//   organizationId: string
+//   role?: string
+// }) => {
+//   return { inviteToOrganization: true }
+// }
 
-export const removeUserFromOrganization = async (variables: {
-  userId: string
-  organizationId: string
-}) => {
-  return { removeUserFromOrganization: true }
-}
+// export const removeUserFromOrganization = async (variables: {
+//   userId: string
+//   organizationId: string
+// }) => {
+//   return { removeUserFromOrganization: true }
+// }
 
 export const createOrganization = async (variables: {
   name: string
@@ -92,21 +112,21 @@ export const updateOrganization = async (variables: {
   }
 }
 
-export const updateMemberRoles = async (variables: {
-  userId: string
-  organizationId: string
-  roles: string[]
-}) => {
-  return { updateMemberRoles: true }
-}
+// export const updateMemberRoles = async (variables: {
+//   userId: string
+//   organizationId: string
+//   roles: string[]
+// }) => {
+//   return { updateMemberRoles: true }
+// }
 
-export const subscribeToNewsletter = async (data: {
-  workspace: string
-  newsletter: boolean
-}) => {
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve()
-    }, 200)
-  })
-}
+// export const subscribeToNewsletter = async (data: {
+//   workspace: string
+//   newsletter: boolean
+// }) => {
+//   return new Promise<void>((resolve) => {
+//     setTimeout(() => {
+//       resolve()
+//     }, 200)
+//   })
+// }

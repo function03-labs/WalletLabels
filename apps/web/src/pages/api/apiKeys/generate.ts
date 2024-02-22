@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   // Destructure the validated body to extract all fields
-  const { usagePlanId = "5qsdg9", name, description, customerId, tags } = parsedBody;
+  const { usagePlanId = "5qsdg9", name, description, customerId, tags, orgId } = parsedBody;
 
   const config = {
     region: process.env.AWS_REGION,
@@ -92,7 +92,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { data: org } = await supabase
       .from('organizations')
       .select()
-      .eq('id', req.user.orgId)
+      .eq('id', orgId)
+
 
     // Associate API Key with Usage Plan
     const createUsagePlanKeyCommand = new CreateUsagePlanKeyCommand({

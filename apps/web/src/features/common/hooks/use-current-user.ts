@@ -20,9 +20,8 @@ export const useCurrentUser = () => {
     queryFn: getOrgs,
     enabled: !!user && isAuthenticated, // Only run query if user is authenticated
   })
-
   const dataOrgs = orgs?.map((org: any) => org.name) ?? []
-
+  
   return {
     data: {
       ...user,

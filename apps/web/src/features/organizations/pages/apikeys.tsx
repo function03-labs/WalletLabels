@@ -1,14 +1,8 @@
 'use client'
 
 import {
-  Card,
   Grid,
   GridItem,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
 } from '@chakra-ui/react'
 
 import { FaTelegram, FaGithub, FaTwitter } from 'react-icons/fa'
@@ -22,29 +16,17 @@ import {
   PageHeader,
 } from '@saas-ui-pro/react'
 
-import { IntroTour } from '../components/intro-tour'
-
-import { IndexedChains } from '../components/metrics/indexed-chains'
-import { RevenueChart } from '../components/metrics/revenue-chart'
-import { Activity } from '../components/metrics/activity'
 import { useQuery } from '@tanstack/react-query'
 import { getDashboard } from '@api/client'
 import { useWorkspace } from '@app/features/common/hooks/use-workspace'
-import { Metric } from '../components/metrics/metric'
-import {
-  SegmentedControl,
-  DateRangePicker,
-  getRangeValue,
-  DateRangePresets,
-  DateRange,
-  getRangeDiff,
-} from '@ui/lib'
 import { useEffect, useState } from 'react'
 import { DataAPI } from '../components/apikeys/table'
 import { MembersList } from '../components/members-list'
 import { supabase } from '../../../../../../packages/app-config/src'
+import { useCurrentUser } from '@app/features/common/hooks/use-current-user'
 
 export function ApiKeysPage() {
+  const { data: user } = useCurrentUser() // Destructure to get data and isLoading
   const workspace = useWorkspace()
 
   const { data, isLoading } = useQuery({
@@ -52,6 +34,7 @@ export function ApiKeysPage() {
       'dashboard',
       {
         workspace,
+        user,
       },
     ] as const,
     queryFn: ({ queryKey }) => getDashboard(queryKey[1]),
@@ -59,10 +42,9 @@ export function ApiKeysPage() {
     refetchOnWindowFocus: false,
     refetchInterval: false,
   })
+  const organization = data?.organization ;
 
 
-  const organization = data?.organization
-  console.log(organization)
 
   if (!isLoading && !organization) {
     return (
@@ -121,7 +103,7 @@ export function ApiKeysPage() {
           gap={{ base: 4, xl: 8 }}
           pb="8"
         >
-          <GridItem as={DataAPI} data={organization} />
+          <GridItem><DataAPI organization={organization} /></GridItem>
         </Grid>
       </PageBody>
     </Page>
