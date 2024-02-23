@@ -13,7 +13,7 @@ import CountUp from "react-countup"
 import {
   ClearRefinements,
   Configure,
-  DynamicWidgets,
+  DynamicWidgets,"
   HierarchicalMenu,
   Highlight,
   Hits,
@@ -138,7 +138,7 @@ export default function IndexPage(props) {
     <Layout>
       {header()}
       <InstantSearch
-        indexName="labels"
+        indexName="labels2"
         searchClient={searchClient}
         insights={false}>
         <motion.div
