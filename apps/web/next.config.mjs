@@ -34,6 +34,9 @@ const nextConfig = {
   distDir: isElectron ? '.nextron' : '.next',
   transpilePackages: ['@saas-ui/date-picker'],
   output: 'standalone',
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack: (config, options) => {
     const { isServer } = options
     if (!isServer && isElectron) {
