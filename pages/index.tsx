@@ -13,7 +13,7 @@ import CountUp from "react-countup"
 import {
   ClearRefinements,
   Configure,
-  DynamicWidgets,"
+  DynamicWidgets,
   HierarchicalMenu,
   Highlight,
   Hits,
