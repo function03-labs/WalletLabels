@@ -101,6 +101,7 @@ export default function IndexPage(props) {
   const [initialSearch, setinitialSearch] = useState(false)
   const [nbHits, setnbHits] = useState(0)
   // const last_txs = props.data_txs ? props.data_txs :  null
+  
   const handleSearch = e => {
     e.preventDefault()
     //show value of input field
@@ -138,7 +139,7 @@ export default function IndexPage(props) {
     <Layout>
       {header()}
       <InstantSearch
-        indexName="labels"
+        indexName="labels_v2"
         searchClient={searchClient}
         insights={false}>
         <motion.div
@@ -185,9 +186,9 @@ export default function IndexPage(props) {
                 More than
                 <CountUp
                   start={0}
-                  end={7.5}
+                  end={72}
                   duration={3}
-                  decimals={1}
+                  decimals={0}
                   prefix=" "
                   suffix="M "
                   className="text-xl font-semibold text-slate-700 dark:text-slate-400"

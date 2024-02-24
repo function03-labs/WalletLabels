@@ -15,7 +15,7 @@ export function assembleTypesenseServerConfig() {
             },
         ],
         numRetries: 3,
-        connectionTimeoutSeconds: 4
+        connectionTimeoutSeconds: 10
     };
 
 
