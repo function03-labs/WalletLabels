@@ -7,10 +7,9 @@ import {
   Web3Address,
   ColumnDef,
   CheckIcon,
-  CloseIcon
+  CloseIcon,
 } from '@saas-ui/react'
-import { FiAlertTriangle } from 'react-icons/fi';
-
+import { FiAlertTriangle } from 'react-icons/fi'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 
@@ -51,23 +50,22 @@ import {
 import { EditIcon, DeleteIcon, CopyIcon } from '@chakra-ui/icons'
 
 interface ApiKey {
-  id: string;
-  name: string;
-  key: string;
-  createdDate: string;
-  chains: string[]; // Adding chains for demonstration
+  id: string
+  name: string
+  key: string
+  createdDate: string
+  chains: string[] // Adding chains for demonstration
 }
 interface APIListItemProps {
-  apiKey: ApiKey;
+  apiKey: ApiKey
 }
 
 const formatDate = (date: Date) => {
+  const month = date.toLocaleString('default', { month: 'short' })
+  const day = date.getDate()
+  const year = date.getFullYear()
 
-  const month = date.toLocaleString('default', { month: 'short' });
-  const day = date.getDate();
-  const year = date.getFullYear();
-
-  return `${month} ${day}, ${year}`;
+  return `${month} ${day}, ${year}`
 }
 function EditableControls() {
   const {
@@ -75,117 +73,115 @@ function EditableControls() {
     getSubmitButtonProps,
     getCancelButtonProps,
     getEditButtonProps,
-  } = useEditableControls();
+  } = useEditableControls()
 
   return isEditing ? (
     <ButtonGroup ml={3} maxW={10} justifyContent="center" size="xs">
-      <IconButton bg='green' icon={<CheckIcon />} {...getSubmitButtonProps()} />
-      <IconButton  icon={<CloseIcon />} {...getCancelButtonProps()} />
+      <IconButton bg="green" icon={<CheckIcon />} {...getSubmitButtonProps()} />
+      <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
     </ButtonGroup>
   ) : (
     <></>
-  );
+  )
 }
 
-export const DataAPI = ({
-  organization,
-}: {
-  organization: any
-}) => {
+export const DataAPI = ({ organization }: { organization: any }) => {
   console.log(organization)
-  const apiKeysIds= organization?.api_keys?? []
-  const orgId = organization?.id?? ''
+  const apiKeysIds = organization?.api_keys ?? []
+  const orgId = organization?.id ?? ''
 
-  const [showCopyKeyDialog, setShowCopyKeyDialog] = useState(false);
-  const [showErrorDialog, setShowErrorDialog] = useState(false);
-  const [editingRowId, setEditingRowId] = useState('');
-  const [generatedKey, setGeneratedKey] = useState<ApiKey | null>(null);
-  const [deletedKey, setDeletedKey] = useState<ApiKey | null>(null);
-  const [apiKeyError, setApiKeyError] = useState('');
-  const [apiKeys, setApiKeys] = React.useState<ApiKey[]>([]);
-  const [loadComplete, setLoadComplete] = useState(false); // New state to track load completion
+  const [showCopyKeyDialog, setShowCopyKeyDialog] = useState(false)
+  const [showErrorDialog, setShowErrorDialog] = useState(false)
+  const [editingRowId, setEditingRowId] = useState('')
+  const [generatedKey, setGeneratedKey] = useState<ApiKey | null>(null)
+  const [deletedKey, setDeletedKey] = useState<ApiKey | null>(null)
+  const [apiKeyError, setApiKeyError] = useState('')
+  const [apiKeys, setApiKeys] = React.useState<ApiKey[]>([])
+  const [loadComplete, setLoadComplete] = useState(false) // New state to track load completion
 
   useEffect(() => {
     const updateLocalApiKeys = () => {
-      let updatedApiKeys = [...apiKeys]; // Create a shallow copy of the apiKeys to manipulate
-  
+      let updatedApiKeys = [...apiKeys] // Create a shallow copy of the apiKeys to manipulate
+
       // If a key is generated, add it to the apiKeys array
       if (generatedKey) {
-        console.log('Adding generated key to local apiKeys:', generatedKey);
-        updatedApiKeys = [...updatedApiKeys, generatedKey];
+        console.log('Adding generated key to local apiKeys:', generatedKey)
+        updatedApiKeys = [...updatedApiKeys, generatedKey]
       }
-  
+
       // If a key is deleted, remove it from the apiKeys array
       if (deletedKey) {
-        console.log('Removing deleted key from local apiKeys:', deletedKey);
-        setDeletedKey(null);
-        updatedApiKeys = updatedApiKeys.filter(key => key.id !== deletedKey.id);
-  
+        console.log('Removing deleted key from local apiKeys:', deletedKey)
+        setDeletedKey(null)
+        updatedApiKeys = updatedApiKeys.filter(
+          (key) => key.id !== deletedKey.id,
+        )
       }
-  
+
       // Update the apiKeys state with the new array
-      console.log('Updated local apiKeys:', updatedApiKeys);
-      setApiKeys(updatedApiKeys);
-  
+      console.log('Updated local apiKeys:', updatedApiKeys)
+      setApiKeys(updatedApiKeys)
+
       // Assuming updateApiKeys sends the updated list to a server or external store
-      const apiKeysIds = updatedApiKeys.map(key => key.id);
-      console.log('Updating apiKeys on server:', apiKeysIds);
-      updateApiKeys(orgId, apiKeysIds);
-    };
-  
+      const apiKeysIds = updatedApiKeys.map((key) => key.id)
+      console.log('Updating apiKeys on server:', apiKeysIds)
+      updateApiKeys(orgId, apiKeysIds)
+    }
+
     // Check if there's a change that requires an update
     if (generatedKey || deletedKey) {
-      updateLocalApiKeys();
+      updateLocalApiKeys()
     }
-  }, [generatedKey, deletedKey]);
+  }, [generatedKey, deletedKey])
   const loadAndSetApiKeys = async () => {
     console.log(apiKeysIds)
     for (const apiKeyId of apiKeysIds) {
-      console.log('Loading API key:', apiKeyId);
+      console.log('Loading API key:', apiKeyId)
       try {
-        const apiKey: ApiKey = await getApiKey(apiKeyId);
-        setApiKeys(prev => [...prev, apiKey]);
+        const apiKey: ApiKey = await getApiKey(apiKeyId)
+        setApiKeys((prev) => [...prev, apiKey])
       } catch (error) {
-        console.error(`Error loading API key ${apiKeyId}:`, error);
-        setApiKeyError(`Error loading API key ${apiKeyId}: ${(error as Error).message}`);
+        console.error(`Error loading API key ${apiKeyId}:`, error)
+        setApiKeyError(
+          `Error loading API key ${apiKeyId}: ${(error as Error).message}`,
+        )
       }
     }
-    setLoadComplete(true); 
-  };
+    setLoadComplete(true)
+  }
   useEffect(() => {
-    loadAndSetApiKeys();
-  }, []);
+    loadAndSetApiKeys()
+  }, [])
 
-
-  const apiDialog = useDisclosure();
+  const apiDialog = useDisclosure()
   const deleteApiKeyFromServer = async (apiKeyId: string): Promise<void> => {
     const response = await fetch(`/api/apiKeys/${apiKeyId}`, {
       method: 'DELETE',
-    });
-  
+    })
+
     if (!response.ok) {
-      const errorBody = await response.text();
-      throw new Error(`Failed to delete API key: ${errorBody}`);
+      const errorBody = await response.text()
+      throw new Error(`Failed to delete API key: ${errorBody}`)
     }
-    console.log('Deleted API key from server:', apiKeyId);
-  };
-  
+    console.log('Deleted API key from server:', apiKeyId)
+  }
+
   const removeKeyFromState = (apiKeyId: string): void => {
-    const deletedKey = apiKeys.find((key) => key.id === apiKeyId);
+    const deletedKey = apiKeys.find((key) => key.id === apiKeyId)
     if (!deletedKey) {
-      console.warn(`API key not found in state: ${apiKeyId}`);
-      return;
+      console.warn(`API key not found in state: ${apiKeyId}`)
+      return
     }
-    setDeletedKey(deletedKey);
-  };
-  
+    setDeletedKey(deletedKey)
+  }
+
   const handleDeleteApiKey = async (apiKeyId: string) => {
     try {
-      await deleteApiKeyFromServer(apiKeyId);
-      removeKeyFromState(apiKeyId);
+      await deleteApiKeyFromServer(apiKeyId)
+      removeKeyFromState(apiKeyId)
     } catch (error) {
-      console.error('Error deleting API key:', error);
-      setShowErrorDialog(true);
+      console.error('Error deleting API key:', error)
+      setShowErrorDialog(true)
     }
   };
   const CustomEditableCell = ({
@@ -234,22 +230,22 @@ export const DataAPI = ({
   const handleUpdateName = async (apiKeyId, newName, onSuccess) => {
     try {
       const response = await fetch(`/api/apiKeys/${apiKeyId}`, {
-        method: 'PATCH', 
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ newName }), 
-      });
-  
+        body: JSON.stringify({ newName }),
+      })
+
       if (!response.ok) {
-        throw new Error('Failed to update API key name');
+        throw new Error('Failed to update API key name')
       }
-  
-      const updatedKey = await response.json();
-      console.log('API key name updated successfully:', updatedKey);
-      onSuccess(apiKeyId, newName);
-      } catch (error) {
-      console.error('Error updating API key name:', error);
+
+      const updatedKey = await response.json()
+      console.log('API key name updated successfully:', updatedKey)
+      onSuccess(apiKeyId, newName)
+    } catch (error) {
+      console.error('Error updating API key name:', error)
     }
   };
   const columns = useMemo(() => [
@@ -367,34 +363,40 @@ export const DataAPI = ({
     },
   ], [editingRowId, apiKeys]);
   const getApiKey = async (id: string): Promise<ApiKey> => {
-    let response; 
+    let response
     try {
       response = await fetch(`/api/apiKeys/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      })
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `HTTP error! Status: ${response.status} ${response.statusText}`,
+        )
       }
-  
-      const data = await response.json();
-  
+
+      const data = await response.json()
+
       const apiKey: ApiKey = {
         id: data.id,
         name: data.name,
         key: data.value,
         createdDate: data.createdDate,
-        chains: ['Polygon', 'Optimism', 'Arbitrum', 'Ethereum','Solana']
-      };
-  
-      return apiKey;
+        chains: ['Polygon', 'Optimism', 'Arbitrum', 'Ethereum', 'Solana'],
+      }
+
+      return apiKey
     } catch (error) {
-      console.error('Failed to get API key.', error);
-      throw new Error(response ? `HTTP error! Status: ${response.status} ${response.statusText}` : 'Network error or unexpected error occurred.');
+      console.error('Failed to get API key.', error)
+      throw new Error(
+        response
+          ? `HTTP error! Status: ${response.status} ${response.statusText}`
+          : 'Network error or unexpected error occurred.',
+      )
     }
-  };
+  }
 
   const generateApiKey = async (name: string, orgId: string) => {
     try {
@@ -417,20 +419,20 @@ export const DataAPI = ({
         name: data.apiKeyDetails.name,
         key: data.apiKeyDetails.value,
         createdDate: data.apiKeyDetails.createdDate,
-        chains: ['Polygon', 'Optimism', 'Arbitrum', 'Ethereum','Solana'],
+        chains: ['Polygon', 'Optimism', 'Arbitrum', 'Ethereum', 'Solana'],
       }
-      setGeneratedKey(newKey);
+      setGeneratedKey(newKey)
       setShowCopyKeyDialog(true)
     } catch (error) {
       console.error('Error generating API key:', error)
-      setShowCopyKeyDialog(false) 
+      setShowCopyKeyDialog(false)
       setShowErrorDialog(true)
     }
-  };
+  }
 
-  const updateApiKeys = async (orgId:string,apiKeys: string[]) => {
-    console.log('Adding API keys:', apiKeys);
-    console.log('Org ID:', orgId) ;
+  const updateApiKeys = async (orgId: string, apiKeys: string[]) => {
+    console.log('Adding API keys:', apiKeys)
+    console.log('Org ID:', orgId)
     try {
       const response = await fetch('/api/apiKeys/add', {
         method: 'POST',
@@ -438,39 +440,43 @@ export const DataAPI = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ orgId, apiKeys }),
-        });
+      })
 
       if (!response.ok) {
         console.error('Failed to generate API key. Status:', response.status)
         throw new Error(`HTTP error! Status: ${response.status}`)
       }
-
     } catch (error) {
       console.error('Error generating API key:', error)
-      setShowCopyKeyDialog(false);
-      setShowErrorDialog(true);
+      setShowCopyKeyDialog(false)
+      setShowErrorDialog(true)
     }
-}
+  }
 
-  const onSubmit = async (data) => {
-    await generateApiKey(data.name, orgId);
+  const onSubmit = async (data: { name: string }) => {
+    await generateApiKey(data.name, orgId)
     apiDialog.onClose()
   }
   const onCloseErrorAlert = () => {
-    setApiKeyError(''); 
-    setShowErrorDialog(false);
-  };
+    setApiKeyError('')
+    setShowErrorDialog(false)
+  }
 
-  const bgColor = useColorModeValue('gray.50', 'gray.900');
-  const textColor = useColorModeValue('gray.800', 'gray.100');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const buttonBgColor = 'purple.500';
-  const hoverBgColor = 'purple.600';
-
-
+  const bgColor = useColorModeValue('gray.50', 'gray.900')
+  const textColor = useColorModeValue('gray.800', 'gray.100')
+  const borderColor = useColorModeValue('gray.200', 'gray.700')
+  const buttonBgColor = 'purple.500'
+  const hoverBgColor = 'purple.600'
 
   return (
-    <Box bg={bgColor} p={5} rounded="md" shadow="base" borderColor={borderColor} borderWidth="1px">
+    <Box
+      bg={bgColor}
+      p={5}
+      rounded="md"
+      shadow="base"
+      borderColor={borderColor}
+      borderWidth="1px"
+    >
       <VStack align="stretch" spacing={4}>
         <Box display="flex" justifyContent="space-between">
           <Text fontSize="xl" fontWeight="bold" color={textColor}>
@@ -487,24 +493,35 @@ export const DataAPI = ({
           </Button>
         </Box>
         <Text fontSize="sm" color={textColor}>
-          Your secret API keys are listed below. Please note that we do not display your secret API keys again after you generate them.
+          Your secret API keys are listed below. Please note that we do not
+          display your secret API keys again after you generate them.
         </Text>
         <Text fontSize="sm" color={textColor}>
-          Do not share your API key with others, or expose it in the browser or other client-side code.
+          Do not share your API key with others, or expose it in the browser or
+          other client-side code.
         </Text>
         {loadComplete ? (
           apiKeys.length > 0 ? (
             <Box overflowX="auto">
               <DataTable key={editingRowId} columns={columns} data={apiKeys} />
-            </Box>  
+            </Box>
           ) : (
             <Text color={textColor}>No API Keys found</Text>
           )
         ) : (
-          <Text color={textColor}>Loading...</Text> 
+          <Text color={textColor}>Loading...</Text>
         )}
-        <ApiCreateDialog apiProps={apiDialog} onSubmit={onSubmit} apiKeysCount={apiKeys.length} />
-        {showCopyKeyDialog && <CopyApiKeyDialog apiKey={generatedKey} onClose={() => setShowCopyKeyDialog(false)} />}
+        <ApiCreateDialog
+          apiProps={apiDialog}
+          onSubmit={onSubmit}
+          apiKeysCount={apiKeys.length}
+        />
+        {showCopyKeyDialog && (
+          <CopyApiKeyDialog
+            apiKey={generatedKey}
+            onClose={() => setShowCopyKeyDialog(false)}
+          />
+        )}
         <ErrorAlertDialog
           isOpen={showErrorDialog}
           onClose={onCloseErrorAlert}
@@ -513,22 +530,30 @@ export const DataAPI = ({
         />
       </VStack>
     </Box>
-
-
-  );
+  )
 }
 
-
 const CopyApiKeyDialog = ({ apiKey, onClose }) => {
-  const { hasCopied, onCopy } = useClipboard(apiKey.key);
-  const modalBgColor = useColorModeValue('gray.50', 'gray.800');
-  const textColor = useColorModeValue('gray.800', 'gray.100');
-  const buttonColorScheme = hasCopied ? 'green' : 'purple';
+  const { hasCopied, onCopy } = useClipboard(apiKey.key)
+  const modalBgColor = useColorModeValue('gray.50', 'gray.800')
+  const textColor = useColorModeValue('gray.800', 'gray.100')
+  const buttonColorScheme = hasCopied ? 'green' : 'purple'
 
   return (
-    <Modal motionPreset='slideInBottom' isOpen={!!apiKey} onClose={onClose} isCentered size="lg">
+    <Modal
+      motionPreset="slideInBottom"
+      isOpen={!!apiKey}
+      onClose={onClose}
+      isCentered
+      size="lg"
+    >
       <ModalOverlay />
-      <ModalContent bg={modalBgColor} color={textColor} rounded="lg" shadow="dark-lg">
+      <ModalContent
+        bg={modalBgColor}
+        color={textColor}
+        rounded="lg"
+        shadow="dark-lg"
+      >
         <ModalHeader>API Key Generated</ModalHeader>
         <ModalBody>
           <VStack spacing={4} align="start">
@@ -554,17 +579,17 @@ const CopyApiKeyDialog = ({ apiKey, onClose }) => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
 
 const ErrorAlertDialog = ({ isOpen, onClose, title, description }) => {
-  const cancelRef = useRef(); 
+  const cancelRef = useRef()
 
-  const dialogBgColor = useColorModeValue('white', 'gray.700'); 
+  const dialogBgColor = useColorModeValue('white', 'gray.700')
 
   return (
     <AlertDialog
-      motionPreset='slideInBottom'
+      motionPreset="slideInBottom"
       isOpen={isOpen}
       leastDestructiveRef={cancelRef}
       onClose={onClose}
@@ -577,9 +602,7 @@ const ErrorAlertDialog = ({ isOpen, onClose, title, description }) => {
             {title}
           </AlertDialogHeader>
 
-          <AlertDialogBody>
-            {description}
-          </AlertDialogBody>
+          <AlertDialogBody>{description}</AlertDialogBody>
 
           <AlertDialogFooter>
             <Button ref={cancelRef} colorScheme="red" onClick={onClose}>
@@ -589,29 +612,31 @@ const ErrorAlertDialog = ({ isOpen, onClose, title, description }) => {
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>
-  );
-};
+  )
+}
 
-
-
-
-
-const ApiCreateDialog = ({ apiProps, onSubmit, apiKeysCount }: { apiProps: any; onSubmit: any; apiKeysCount: number }) => {
+const ApiCreateDialog = ({
+  apiProps,
+  onSubmit,
+  apiKeysCount,
+}: {
+  apiProps: any
+  onSubmit: any
+  apiKeysCount: number
+}) => {
   if (apiKeysCount >= 3) {
     return (
-      <FormDialog
+      <ErrorAlertDialog
         title="Generate an API Key"
         {...apiProps}
         defaultValues={{
           name: '',
           description: '',
         }}
-      >
-        <Text>You cannot create more than 3 API keys.</Text>
-      </FormDialog>
-    );
+        description={'You cannot create more than 3 API keys.'}
+      ></ErrorAlertDialog>
+    )
   }
-
 
   return (
     <FormDialog
@@ -646,9 +671,9 @@ const ApiCreateDialog = ({ apiProps, onSubmit, apiKeysCount }: { apiProps: any; 
               'fantom',
               'near',
               'celo',
-            ];
-            const iconUrl = `https://icons.llamao.fi/icons/chains/rsz_`;
-            if (value == '') return null;
+            ]
+            const iconUrl = `https://icons.llamao.fi/icons/chains/rsz_`
+            if (value == '') return null
             return (
               <div className="flex gap-2 items-center ">
                 <AvatarGroup max={4} size={'xs'}>
@@ -663,7 +688,7 @@ const ApiCreateDialog = ({ apiProps, onSubmit, apiKeysCount }: { apiProps: any; 
                 </AvatarGroup>
                 All Chains
               </div>
-            );
+            )
           }}
           options={[
             {
@@ -674,5 +699,5 @@ const ApiCreateDialog = ({ apiProps, onSubmit, apiKeysCount }: { apiProps: any; 
         />
       </FormLayout>
     </FormDialog>
-  );
-};
+  )
+}
