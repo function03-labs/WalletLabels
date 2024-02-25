@@ -121,13 +121,6 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
         <SidebarSection overflowY="auto" flex="1">
           <NavGroup>
             <AppSidebarLink
-              // href={usePath()}
-              label="Dashboard"
-              isActive={false}
-              icon={<FiHome />}
-              hotkey="navigation.dashboard"
-            />
-            <AppSidebarLink
               href={usePath('apikeys')}
               isActive={useActivePath('', { end: false })}
               label="API Keys"
@@ -136,11 +129,21 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               hotkey="navigation.inbox"
             />
             <AppSidebarLink
+              // href={usePath()}
+              label="Dashboard"
+              isActive={false}
+              icon={<FiHome />}
+              hotkey="navigation.dashboard"
+              className="opacity-50"
+            />
+
+            <AppSidebarLink
               // href={usePath('explore')}
               isActive={useActivePath('explore', { end: false })}
               label="Explore"
               icon={<FiSearch />}
               hotkey="navigation.contacts"
+              className="opacity-50"
             />
             <AppSidebarLink
               href={'https://docs.walletlabels.xyz'}

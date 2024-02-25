@@ -22,7 +22,7 @@ const WorkspaceLogo: React.FC<AvatarProps> = (props) => {
   const { src, ...rest } = props
   return (
     <Avatar
-      display="inline-block"
+      // display="inline-block"
       src={src}
       size="xs"
       borderRadius="full"
