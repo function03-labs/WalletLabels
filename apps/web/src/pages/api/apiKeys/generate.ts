@@ -7,32 +7,7 @@ import {
 } from "@aws-sdk/client-api-gateway";
 import { z } from "zod";
 import { NextApiRequest, NextApiResponse } from 'next'
-import { createCipheriv } from 'crypto';
 import { supabase } from "../../../../../../packages/app-config/src";
-
-
-const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY; // Ensure this is 32 bytes for AES-256-CBC
-const IV = process.env.IV; // Ensure this is 16 bytes for AES-256-CBC
-
-// Helper function to encrypt a message
-function encrypt(text: string) {
-  if (!ENCRYPTION_KEY) {
-    throw new Error('ENCRYPTION_KEY is undefined')
-  }
-
-  if (!IV) {
-    throw new Error('IV is undefined')
-  }
-
-  const cipher = createCipheriv(
-    "aes-256-cbc",
-    Buffer.from(ENCRYPTION_KEY, "hex"),
-    Buffer.from(IV, "hex"),
-  );
-  let encrypted = cipher.update(text, 'utf8', 'hex')
-  encrypted += cipher.final('hex')
-  return encrypted
-}
 
 
 // Updated request body schema
@@ -105,10 +80,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!usagePlanKeyResponse.id) {
       throw new Error("Usage plan key creation failed");
     }
-
-    // Encrypt the API Key
-    const encryptedApiKey = encrypt(apiKeyResponse.value);
-
 
     return res.status(200).json({
       message: "API key and usage plan key created successfully",
