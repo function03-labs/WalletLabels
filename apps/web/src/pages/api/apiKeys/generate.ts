@@ -64,12 +64,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error("API key creation failed");
     }
 
-    const { data: org } = await supabase
-      .from('organizations')
-      .select()
-      .eq('id', orgId)
-
-
     // Associate API Key with Usage Plan
     const createUsagePlanKeyCommand = new CreateUsagePlanKeyCommand({
       keyId: apiKeyResponse.id,

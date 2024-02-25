@@ -188,26 +188,49 @@ export const DataAPI = ({
       setShowErrorDialog(true);
     }
   };
-  const CustomEditableCell = ({ isEditing, defaultValue, onUpdate, onCancel }) => {
-    const initialFocusRef = useRef(null);
+  const CustomEditableCell = ({
+    isEditing,
+    defaultValue,
+    onUpdate,
+    onCancel
+  }: {
+    isEditing: boolean
+    defaultValue: string
+    onUpdate: (value: string) => void
+    onCancel?: () => void
+  }) => {
+
+    const handleUpdate = (value) => {
+      if (value !== defaultValue) {
+        onUpdate(value);
+      }
+    };
   
     return isEditing ? (
       <Editable
         defaultValue={defaultValue}
         isPreviewFocusable={false}
-        onSubmit={onUpdate}
+        onSubmit={handleUpdate}
+        onCancel={onCancel}
         startWithEditView={isEditing}
+        style={{ width: '100%', display: 'flex', flexDirection: 'row' }}
       >
-        <EditablePreview />
-        <EditableInput maxW={185} pl={1} mr={2} ref={initialFocusRef} />
+        <EditablePreview style={{ flexGrow: 1, overflow: 'hidden' }} />
+        <EditableInput
+          style={{ flexGrow: 1, flexShrink: 1, width: '100%', paddingRight: '10px' }}
+          pl={1}
+          mr={2}
+          onBlur={onCancel}
+        />
         <EditableControls />
       </Editable>
     ) : (
-      <Box >
-        <Text>{defaultValue}</Text>
+      <Box style={{ width: '100%' }}>
+        <Text isTruncated>{defaultValue}</Text>
       </Box>
     );
   };
+  
   const handleUpdateName = async (apiKeyId, newName, onSuccess) => {
     try {
       const response = await fetch(`/api/apiKeys/${apiKeyId}`, {
@@ -236,7 +259,7 @@ export const DataAPI = ({
       cell: (info) => {
         return (
           <CustomEditableCell
-          isEditing={editingRowId === info.row.id}
+          isEditing={editingRowId == info.row.id}
           defaultValue={info.getValue()}
           onUpdate={(newName) => {
             const apiKeyId = info.row.original.id;
@@ -246,6 +269,7 @@ export const DataAPI = ({
                   key.id === id ? { ...key, name: updatedName } : key
                 )
               );
+              setEditingRowId('')
             })
             .then(() => {
               console.log(`Updated name to: ${newName}`);
@@ -255,10 +279,13 @@ export const DataAPI = ({
             });
           }}
           onCancel={() => setEditingRowId('')}
+          onEdit = {() => setEditingRowId('')}
         />
         );
       },
-      size:200
+      enableResizing:true,
+      minSize:100,
+      maxSize:220,
     },
     {
       accessorKey: 'chains',
@@ -307,7 +334,7 @@ export const DataAPI = ({
       accessorKey: 'createdDate',
       header: 'Created At',
       cell: (info) => {
-        return <Text width={{ base: "80%", sm: "60%", lg: "40%" }}>{formatDate(new Date(info.getValue()))}</Text>;
+        return <Text width='full'>{formatDate(new Date(info.getValue()))}</Text>;
       },
       size:5
     },
@@ -322,7 +349,7 @@ export const DataAPI = ({
           >
             <EditIcon />
           </Button>
-          <Button
+          {/* <Button
             size="sm"
             colorScheme="red"
             onClick={() => {
@@ -333,7 +360,7 @@ export const DataAPI = ({
             }}
           >
             <DeleteIcon />
-          </Button>
+          </Button> */}
         </HStack>
       ),
       size:8

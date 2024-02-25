@@ -60,7 +60,6 @@ switch (method) {
     try {
       const getApiKeyCommand = new GetApiKeyCommand({ apiKey: apiKeyId as string, includeValue: true });
       const apiKeyDetails = await client.send(getApiKeyCommand);
-      // apiKeyDetails.value = randomizeMiddle(apiKeyDetails.value); // return randomized API key value
       res.status(200).json(apiKeyDetails);
     } catch (error: any) {
       if (error.name === 'NotFoundException') {
