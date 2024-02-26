@@ -7,8 +7,8 @@ import {
 } from "react-instantsearch"
 
 import { Badge } from "@/components/ui/badge"
-import { Grid } from "../pages"
-import SearchComponent from "../pages/searchBar"
+import { Grid } from "../pages2"
+import SearchComponent from "../pages2/searchBar"
 
 export function CustomSearchBox({
   initialQuery = "",

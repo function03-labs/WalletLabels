@@ -29,7 +29,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEnsResolver } from "@/hooks/useEnsResolver";
-import { fontMonoJetBrains } from "@/pages/_app";
+import { fontMonoJetBrains } from "@/pages2/_app";
 import { sociallabels_db1 } from "@prisma/client";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import axios from "axios";
