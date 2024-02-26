@@ -44,7 +44,7 @@ import CustomHitsTags, {
   CustomSearchBox,
 } from "../lib/CustomSearchBox"
 import { connectToDatabase } from "../lib/mongodb"
-import Footer from "./Footer"
+import Footer from "./footer"
 import header from "./header"
 
 export const Grid = dynamic(() => import("@/components/Grid"), { ssr: false })
