@@ -67,18 +67,15 @@ const formatDate = (date: Date) => {
 
   return `${month} ${day}, ${year}`
 }
-function EditableControls() {
+function EditableControls({ onSubmit }) {
   const {
     isEditing,
-    getSubmitButtonProps,
-    getCancelButtonProps,
-    getEditButtonProps,
   } = useEditableControls()
 
   return isEditing ? (
     <ButtonGroup ml={3} maxW={10} justifyContent="center" size="xs">
-      <IconButton bg="green" icon={<CheckIcon />} {...getSubmitButtonProps()} />
-      <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
+      <IconButton bg="green" icon={<CheckIcon />} onClick={onSubmit}  />
+      <IconButton icon={<CloseIcon />} />
     </ButtonGroup>
   ) : (
     <></>
@@ -86,7 +83,6 @@ function EditableControls() {
 }
 
 export const DataAPI = ({ organization }: { organization: any }) => {
-  console.log(organization)
   const apiKeysIds = organization?.api_keys ?? []
   const orgId = organization?.id ?? ''
 
@@ -198,10 +194,11 @@ export const DataAPI = ({ organization }: { organization: any }) => {
 
     const handleUpdate = (value) => {
       if (value !== defaultValue) {
+        console.log('Updating value:', value)
         onUpdate(value);
       }
     };
-  
+
     return isEditing ? (
       <Editable
         defaultValue={defaultValue}
@@ -218,7 +215,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
           mr={2}
           onBlur={onCancel}
         />
-        <EditableControls />
+        <EditableControls onSubmit={handleUpdate} />
       </Editable>
     ) : (
       <Box style={{ width: '100%' }}>
@@ -226,7 +223,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
       </Box>
     );
   };
-  
+
   const handleUpdateName = async (apiKeyId, newName, onSuccess) => {
     try {
       const response = await fetch(`/api/apiKeys/${apiKeyId}`, {
@@ -255,46 +252,45 @@ export const DataAPI = ({ organization }: { organization: any }) => {
       cell: (info) => {
         return (
           <CustomEditableCell
-          isEditing={editingRowId == info.row.id}
-          defaultValue={info.getValue()}
-          onUpdate={(newName) => {
-            const apiKeyId = info.row.original.id;
-            handleUpdateName(apiKeyId, newName, (id, updatedName) => {
-              setApiKeys((currentApiKeys) => 
-                currentApiKeys.map((key) => 
-                  key.id === id ? { ...key, name: updatedName } : key
-                )
-              );
-              setEditingRowId('')
-            })
-            .then(() => {
-              console.log(`Updated name to: ${newName}`);
-            })
-            .catch((error) => {
-              console.error('Failed to update name:', error);
-            });
-          }}
-          onCancel={() => setEditingRowId('')}
-          onEdit = {() => setEditingRowId('')}
-        />
+            isEditing={editingRowId == info.row.id}
+            defaultValue={info.getValue()}
+            onUpdate={(newName) => {
+              const apiKeyId = info.row.original.id;
+              handleUpdateName(apiKeyId, newName, (id, updatedName) => {
+                setApiKeys((currentApiKeys) =>
+                  currentApiKeys.map((key) =>
+                    key.id === id ? { ...key, name: updatedName } : key
+                  )
+                );
+                setEditingRowId('')
+              })
+                .then(() => {
+                  console.log(`Updated name to: ${newName}`);
+                })
+                .catch((error) => {
+                  console.error('Failed to update name:', error);
+                });
+            }}
+            onCancel={() => setEditingRowId('')}
+          />
         );
       },
-      enableResizing:true,
-      minSize:100,
-      maxSize:220,
+      enableResizing: true,
+      minSize: 100,
+      maxSize: 220,
     },
     {
       accessorKey: 'chains',
       header: 'Chains',
       cell: (info) => {
         return (
-          <Box  overflow="hidden">
-          <AvatarGroup size="xs" max={2}>
-            {info.row.original.chains.map((chain, index) => (
-              <Avatar key={index} name={chain} src={`https://icons.llamao.fi/icons/chains/rsz_${chain}.jpg`} />
-            ))}
-          </AvatarGroup>
-        </Box>
+          <Box overflow="hidden">
+            <AvatarGroup size="xs" max={2}>
+              {info.row.original.chains.map((chain, index) => (
+                <Avatar key={index} name={chain} src={`https://icons.llamao.fi/icons/chains/rsz_${chain}.jpg`} />
+              ))}
+            </AvatarGroup>
+          </Box>
         );
       },
       size: 5,
@@ -306,8 +302,8 @@ export const DataAPI = ({ organization }: { organization: any }) => {
         const { hasCopied, onCopy } = useClipboard(info.getValue())
 
         return (
-          <VStack 
-  
+          <VStack
+
             align="start"
           >
             <Flex align="center" justify="space-between" w="full">
@@ -315,7 +311,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
               <IconButton
                 aria-label="Copy API Key"
                 icon={<CopyIcon />}
-                onClick={onCopy} 
+                onClick={onCopy}
                 colorScheme={hasCopied ? 'green' : 'purple'}
                 variant="solid"
                 ml={2}
@@ -323,7 +319,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
             </Flex>
           </VStack>
         )
-           },
+      },
       size: 280,
     },
     {
@@ -332,7 +328,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
       cell: (info) => {
         return <Text width='full'>{formatDate(new Date(info.getValue()))}</Text>;
       },
-      size:5
+      size: 5
     },
     {
       id: 'actions',
@@ -359,7 +355,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
           </Button> */}
         </HStack>
       ),
-      size:8
+      size: 8
     },
   ], [editingRowId, apiKeys]);
   const getApiKey = async (id: string): Promise<ApiKey> => {

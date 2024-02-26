@@ -27,7 +27,7 @@ import { useCurrentUser } from '@app/features/common/hooks/use-current-user'
 
 export function ApiKeysPage() {
   const { data: user } = useCurrentUser() // Destructure to get data and isLoading
-  const workspace = useWorkspace()
+  const workspace = useWorkspace();
 
   const { data, isLoading } = useQuery({
     queryKey: [
