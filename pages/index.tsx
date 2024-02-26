@@ -186,8 +186,8 @@ export default function IndexPage(props) {
                 More than
                 <CountUp
                   start={0}
-                  end={72}
-                  duration={3}
+                  end={70}
+                  duration={6}
                   decimals={0}
                   prefix=" "
                   suffix="M "
