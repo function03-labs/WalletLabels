@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../../../../../packages/app-config/src";
+import { supabase } from "../../../../../../packages/app-config";
 
 
 const requestBodySchema = z.object({

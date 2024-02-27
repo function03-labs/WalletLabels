@@ -7,7 +7,6 @@ import {
 } from "@aws-sdk/client-api-gateway";
 import { z } from "zod";
 import { NextApiRequest, NextApiResponse } from 'next'
-import { supabase } from "../../../../../../packages/app-config/src";
 
 
 // Updated request body schema

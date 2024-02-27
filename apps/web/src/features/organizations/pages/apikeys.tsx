@@ -59,30 +59,30 @@ export function ApiKeysPage() {
     <Toolbar className="overview-toolbar" variant="ghost">
       <ToolbarButton
         as="a"
-        href="https://twitter.com/"
+        href="https://twitter.com/walletlabels"
         icon={<FaTwitter />}
         label="Share on Twitter"
       />
       <ToolbarButton
         as="a"
-        href="https://github.com/"
+        href="https://github.com/0xaaiden/WalletLabels"
         icon={<FaGithub />}
         label="Star on Github"
       />
       <ToolbarButton
         as="a"
-        href=""
+        href="https://t.me/+yDF9bnv2R7RkNWZk"
         icon={<FaTelegram />}
         label="Join Telegram"
       />
-      <ToolbarButton
+      {/* <ToolbarButton
         as="a"
         href=""
         label="Submit Labels"
         colorScheme="primary"
         variant="outline"
         className="pre-order"
-      />
+      /> */}
     </Toolbar>
   )
 
