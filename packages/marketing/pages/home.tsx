@@ -3,7 +3,7 @@
 import { Center, Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import { LinkButton, Logo } from '@ui/lib'
 import { useAuth } from '@saas-ui/auth'
-import WalletlabelsLogo from '../../../apps/web/src/components/Logo';
+import WalletlabelsLogo from '../../../apps/web/src/features/common/components/Logo';
 
 export const HomePage = () => {
   const { isAuthenticated, logOut } = useAuth()

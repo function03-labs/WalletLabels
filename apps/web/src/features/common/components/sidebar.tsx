@@ -111,15 +111,23 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             </>
           )}
         </SidebarSection>
-        <Box px={3}>
+        {/* <Box px={3}>
           {isCondensed ? (
             <IconButton icon={<FiSearch />} aria-label="Search" />
           ) : (
             <GlobalSearchInput />
           )}
-        </Box>
+        </Box> */}
         <SidebarSection overflowY="auto" flex="1">
           <NavGroup>
+          <AppSidebarLink
+              // href={usePath()}
+              label="Dashboard (coming soon)"
+              isActive={false}
+              icon={<FiHome />}
+              hotkey="navigation.dashboard"
+              className="opacity-50"
+            />
             <AppSidebarLink
               href={usePath('apikeys')}
               isActive={useActivePath('', { end: false })}
@@ -128,23 +136,16 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               icon={<FiKey />}
               hotkey="navigation.inbox"
             />
-            <AppSidebarLink
-              // href={usePath()}
-              label="Dashboard"
-              isActive={false}
-              icon={<FiHome />}
-              hotkey="navigation.dashboard"
-              className="opacity-50"
-            />
 
-            <AppSidebarLink
+
+            {/* <AppSidebarLink
               // href={usePath('explore')}
               isActive={useActivePath('explore', { end: false })}
               label="Explore"
               icon={<FiSearch />}
               hotkey="navigation.contacts"
               className="opacity-50"
-            />
+            /> */}
             <AppSidebarLink
               href={'https://docs.walletlabels.xyz'}
               isActive={false}

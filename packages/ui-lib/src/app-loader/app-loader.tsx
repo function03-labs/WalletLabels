@@ -2,7 +2,7 @@ import { SaasUIGlyph } from '../logo/saas-ui-glyph'
 
 import { LoadingOverlay, LoadingOverlayProps } from '@saas-ui/react'
 import { keyframes } from '@chakra-ui/react'
-import WalletlabelsLogo from '../../../../apps/web/src/components/Logo';
+import WalletlabelsLogo from '../../../../apps/web/src/features/common/components/Logo';
 
 const scale = keyframes`
   0% {

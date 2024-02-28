@@ -76,24 +76,24 @@ export const SettingsSidebar = () => {
           </Heading>
         </SidebarSection>
         <SidebarSection flex="1" overflowY="auto">
-          <Has feature="settings">
+          {/* <Has feature="settings"> */}
             <NavGroup title="Organization" icon={<FiFolder />}>
               <SettingsLink path="/">Overview</SettingsLink>
               <SettingsLink path="/organization">Organization</SettingsLink>
               <SettingsLink path="/members">Members</SettingsLink>
-              <SettingsLink path="/plans">Plans</SettingsLink>
-              <SettingsLink path="/billing">Billing</SettingsLink>
+              {/* <SettingsLink path="/plans">Plans</SettingsLink>
+              <SettingsLink path="/billing">Billing</SettingsLink> */}
             </NavGroup>
-          </Has>
+          {/* </Has> */}
 
-          <NavGroup title="Account" icon={<FiUser />}>
+          {/* <NavGroup title="Account" icon={<FiUser />}>
             <SettingsLink path="/account">Profile</SettingsLink>
             <SettingsLink path="/account/security">Security</SettingsLink>
             <SettingsLink path="/account/notifications">
               Notifications
             </SettingsLink>
             <SettingsLink path="/account/api">Api</SettingsLink>
-          </NavGroup>
+          </NavGroup> */}
         </SidebarSection>
         <SidebarOverlay />
         <ResizeHandle />
