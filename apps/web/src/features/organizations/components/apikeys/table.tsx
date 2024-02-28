@@ -4,10 +4,11 @@ import {
   FormLayout,
   Field,
   Modal,
-  Web3Address,
-  ColumnDef,
+  LoadingSpinner,
   CheckIcon,
   CloseIcon,
+  Snackbar,
+  useSnackbar
 } from '@saas-ui/react'
 import { FiAlertTriangle } from 'react-icons/fi'
 
@@ -47,6 +48,7 @@ import {
   EditablePreview,
   useBreakpointValue,
 } from '@chakra-ui/react'
+
 import { EditIcon, DeleteIcon, CopyIcon } from '@chakra-ui/icons'
 
 interface ApiKey {
@@ -74,7 +76,7 @@ function EditableControls({ onSubmit }) {
 
   return isEditing ? (
     <ButtonGroup ml={3} maxW={10} justifyContent="center" size="xs">
-      <IconButton bg="green" icon={<CheckIcon />} onClick={onSubmit}  />
+      <IconButton bg="green" icon={<CheckIcon />} onClick={onSubmit} />
       <IconButton icon={<CloseIcon />} />
     </ButtonGroup>
   ) : (
@@ -85,13 +87,12 @@ function EditableControls({ onSubmit }) {
 export const DataAPI = ({ organization }: { organization: any }) => {
   const apiKeysIds = organization?.api_keys ?? []
   const orgId = organization?.id ?? ''
-
+  const snackbar = useSnackbar()
   const [showCopyKeyDialog, setShowCopyKeyDialog] = useState(false)
   const [showErrorDialog, setShowErrorDialog] = useState(false)
   const [editingRowId, setEditingRowId] = useState('')
   const [generatedKey, setGeneratedKey] = useState<ApiKey | null>(null)
   const [deletedKey, setDeletedKey] = useState<ApiKey | null>(null)
-  const [apiKeyError, setApiKeyError] = useState('')
   const [apiKeys, setApiKeys] = React.useState<ApiKey[]>([])
   const [loadComplete, setLoadComplete] = useState(false) // New state to track load completion
 
@@ -101,13 +102,11 @@ export const DataAPI = ({ organization }: { organization: any }) => {
 
       // If a key is generated, add it to the apiKeys array
       if (generatedKey) {
-        console.log('Adding generated key to local apiKeys:', generatedKey)
         updatedApiKeys = [...updatedApiKeys, generatedKey]
       }
 
       // If a key is deleted, remove it from the apiKeys array
       if (deletedKey) {
-        console.log('Removing deleted key from local apiKeys:', deletedKey)
         setDeletedKey(null)
         updatedApiKeys = updatedApiKeys.filter(
           (key) => key.id !== deletedKey.id,
@@ -115,12 +114,10 @@ export const DataAPI = ({ organization }: { organization: any }) => {
       }
 
       // Update the apiKeys state with the new array
-      console.log('Updated local apiKeys:', updatedApiKeys)
       setApiKeys(updatedApiKeys)
 
       // Assuming updateApiKeys sends the updated list to a server or external store
       const apiKeysIds = updatedApiKeys.map((key) => key.id)
-      console.log('Updating apiKeys on server:', apiKeysIds)
       updateApiKeys(orgId, apiKeysIds)
     }
 
@@ -130,9 +127,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
     }
   }, [generatedKey, deletedKey])
   const loadAndSetApiKeys = async () => {
-    console.log(apiKeysIds)
     for (const apiKeyId of apiKeysIds) {
-      console.log('Loading API key:', apiKeyId)
       try {
         const apiKey: ApiKey = await getApiKey(apiKeyId)
         setApiKeys((prev) => [...prev, apiKey])
@@ -159,7 +154,6 @@ export const DataAPI = ({ organization }: { organization: any }) => {
       const errorBody = await response.text()
       throw new Error(`Failed to delete API key: ${errorBody}`)
     }
-    console.log('Deleted API key from server:', apiKeyId)
   }
 
   const removeKeyFromState = (apiKeyId: string): void => {
@@ -194,7 +188,6 @@ export const DataAPI = ({ organization }: { organization: any }) => {
 
     const handleUpdate = (value) => {
       if (value !== defaultValue) {
-        console.log('Updating value:', value)
         onUpdate(value);
       }
     };
@@ -265,10 +258,22 @@ export const DataAPI = ({ organization }: { organization: any }) => {
                 setEditingRowId('')
               })
                 .then(() => {
-                  console.log(`Updated name to: ${newName}`);
+                  snackbar({
+                    title: 'API Key Name Updated',
+                    description: `Updated name to ${newName}`,
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+                  })
                 })
                 .catch((error) => {
-                  console.error('Failed to update name:', error);
+                  snackbar({
+                    title: 'Error', 
+                    description: error.message,
+                    status: 'error',
+                    duration: 9000,
+                    isClosable: true,
+                  })
                 });
             }}
             onCancel={() => setEditingRowId('')}
@@ -505,7 +510,10 @@ export const DataAPI = ({ organization }: { organization: any }) => {
             <Text color={textColor}>No API Keys found</Text>
           )
         ) : (
-          <Text color={textColor}>Loading...</Text>
+          <div className="flex gap-2 justify-center">
+            <LoadingSpinner />
+          </div>
+
         )}
         <ApiCreateDialog
           apiProps={apiDialog}
