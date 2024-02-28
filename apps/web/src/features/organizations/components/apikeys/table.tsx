@@ -7,6 +7,7 @@ import {
   LoadingSpinner,
   CheckIcon,
   CloseIcon,
+  lockIcon,
   Snackbar,
   useSnackbar
 } from '@saas-ui/react'
@@ -268,7 +269,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
                 })
                 .catch((error) => {
                   snackbar({
-                    title: 'Error', 
+                    title: 'Error',
                     description: error.message,
                     status: 'error',
                     duration: 9000,
@@ -483,7 +484,7 @@ export const DataAPI = ({ organization }: { organization: any }) => {
           <Text fontSize="xl" fontWeight="bold" color={textColor}>
             API Keys
           </Text>
-          <Button
+          {apiKeys.length > 0 && (<Button
             onClick={apiDialog.onOpen}
             bg={buttonBgColor}
             color="white"
@@ -491,23 +492,47 @@ export const DataAPI = ({ organization }: { organization: any }) => {
             variant="solid"
           >
             Generate
-          </Button>
+          </Button>)}
         </Box>
-        <Text fontSize="sm" color={textColor}>
-          Your secret API keys are listed below. Please note that we do not
-          display your secret API keys again after you generate them.
-        </Text>
-        <Text fontSize="sm" color={textColor}>
-          Do not share your API key with others, or expose it in the browser or
-          other client-side code.
-        </Text>
+
         {loadComplete ? (
           apiKeys.length > 0 ? (
+
             <Box overflowX="auto">
+              <Box px={4} py={5}  borderRadius="md">
+
+                <Text fontSize="sm" fontWeight="medium" color="gray.400">
+                  Your secret API keys are listed below.
+                </Text>
+
+                <Text mt={2} fontSize="sm" color="gray.300">
+                  Do not share your API key with others, or expose it in the browser or
+                  other client-side code.
+                </Text>
+
+              </Box>
+
               <DataTable key={editingRowId} columns={columns} data={apiKeys} />
             </Box>
           ) : (
-            <Text color={textColor}>No API Keys found</Text>
+            <VStack spacing={4} align="center">
+              <Icon as={lockIcon} boxSize={12} />
+              <Text fontSize="lg" fontWeight="medium">
+                No API Keys found
+              </Text>
+              <Text textAlign="center">
+                Generate an API key to start accessing our APIs.
+              </Text>
+              <Button
+                onClick={apiDialog.onOpen}
+                bg={buttonBgColor}
+                color="white"
+                _hover={{ bg: hoverBgColor }}
+                variant="solid"
+              >
+                Generate Key
+              </Button>
+            </VStack>
           )
         ) : (
           <div className="flex gap-2 justify-center">
