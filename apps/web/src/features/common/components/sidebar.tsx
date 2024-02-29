@@ -65,8 +65,9 @@ import { getTags, Tags, User } from '@api/client'
 import { useCurrentUser } from '../hooks/use-current-user'
 
 import Link from 'next/link'
+import WalletlabelsLogo from './Logo'
 
-export interface AppSidebarProps extends SidebarProps {}
+export interface AppSidebarProps extends SidebarProps { }
 
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const user = useCurrentUser()
@@ -120,7 +121,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
         </Box> */}
         <SidebarSection overflowY="auto" flex="1">
           <NavGroup>
-          <AppSidebarLink
+            <AppSidebarLink
               // href={usePath()}
               label="Dashboard (coming soon)"
               isActive={false}
@@ -174,6 +175,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             >
               Invite people
             </NavItem> */}
+
+
             <NavItem
               onClick={() => help.open()}
               color="sidebar-muted"
@@ -181,6 +184,19 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             >
               Help &amp; support
             </NavItem>
+            <NavItem
+              icon={<Box width={200}><WalletlabelsLogo /></Box>}
+            >
+
+              <Link
+                href="https://www.walletlabels.xyz/"
+                target="_blank"
+              >
+                WalletLabels
+              </Link>
+
+            </NavItem>
+
           </NavGroup>
         </SidebarSection>
         {/* 

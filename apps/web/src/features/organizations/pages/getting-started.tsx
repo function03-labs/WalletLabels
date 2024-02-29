@@ -43,10 +43,9 @@ export const GettingStartedPage: React.FC = () => {
             <StepsItem title="Invite team members">
               <InviteTeamMembersStep />
             </StepsItem>
-            <StepsItem title="Subscribe to updates">
+            {/* <StepsItem title="Subscribe to updates">
               <SubscribeStep />
-            </StepsItem>
-
+            </StepsItem> */}
             <StepsCompleted>
               <OnboardingCompleted />
             </StepsCompleted>

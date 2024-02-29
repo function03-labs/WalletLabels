@@ -3,7 +3,7 @@ import { HTMLChakraProps, chakra , useColorModeValue} from '@chakra-ui/react';
 
 
 export const WalletlabelsLogo: React.FC<HTMLChakraProps<'svg'>> = (props) => {
-    const logoColor = useColorModeValue('white', 'black');
+    const logoColor = useColorModeValue('black', 'white');
 
     return (
     <chakra.svg

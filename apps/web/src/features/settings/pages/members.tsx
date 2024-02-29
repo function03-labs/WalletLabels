@@ -33,7 +33,7 @@ export function MembersSettingsPage() {
   if (!isLoading && !organization) {
     return null
   }
-
+  console.log(organization)
   const members =
     organization?.members.map(
       ({ roles, user: { id, email, name, status } }) => {
