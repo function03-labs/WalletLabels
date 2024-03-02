@@ -65,8 +65,9 @@ import { getTags, Tags, User } from '@api/client'
 import { useCurrentUser } from '../hooks/use-current-user'
 
 import Link from 'next/link'
+import WalletlabelsLogo from './Logo'
 
-export interface AppSidebarProps extends SidebarProps {}
+export interface AppSidebarProps extends SidebarProps { }
 
 export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
   const user = useCurrentUser()
@@ -111,21 +112,22 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             </>
           )}
         </SidebarSection>
-        <Box px={3}>
+        {/* <Box px={3}>
           {isCondensed ? (
             <IconButton icon={<FiSearch />} aria-label="Search" />
           ) : (
             <GlobalSearchInput />
           )}
-        </Box>
+        </Box> */}
         <SidebarSection overflowY="auto" flex="1">
           <NavGroup>
             <AppSidebarLink
               // href={usePath()}
-              label="Dashboard"
+              label="Dashboard (coming soon)"
               isActive={false}
               icon={<FiHome />}
               hotkey="navigation.dashboard"
+              className="opacity-50"
             />
             <AppSidebarLink
               href={usePath('apikeys')}
@@ -135,13 +137,16 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
               icon={<FiKey />}
               hotkey="navigation.inbox"
             />
-            <AppSidebarLink
+
+
+            {/* <AppSidebarLink
               // href={usePath('explore')}
               isActive={useActivePath('explore', { end: false })}
               label="Explore"
               icon={<FiSearch />}
               hotkey="navigation.contacts"
-            />
+              className="opacity-50"
+            /> */}
             <AppSidebarLink
               href={'https://docs.walletlabels.xyz'}
               isActive={false}
@@ -170,6 +175,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             >
               Invite people
             </NavItem> */}
+
+
             <NavItem
               onClick={() => help.open()}
               color="sidebar-muted"
@@ -177,6 +184,19 @@ export const AppSidebar: React.FC<AppSidebarProps> = (props) => {
             >
               Help &amp; support
             </NavItem>
+            <NavItem
+              icon={<Box width={200}><WalletlabelsLogo /></Box>}
+            >
+
+              <Link
+                href="https://www.walletlabels.xyz/"
+                target="_blank"
+              >
+                WalletLabels
+              </Link>
+
+            </NavItem>
+
           </NavGroup>
         </SidebarSection>
         {/* 

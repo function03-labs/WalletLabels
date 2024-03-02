@@ -29,10 +29,11 @@ export const InviteTeamMembersStep = () => {
     <OnboardingStep
       schema={schema}
       title="Invite your team"
-      description="Saas UI works better with your team."
+      description="Share the dashboard with your team."
       defaultValues={{ emails: '' }}
       onSubmit={async (data) => {
         if (workspace.value && data.emails) {
+          console.log('Inviting team members..., emails:', data.emails.split(/,\s?/))
           try {
             await invite({
               organizationId: workspace.value,
@@ -55,7 +56,7 @@ export const InviteTeamMembersStep = () => {
         <Field
           name="emails"
           label="Email addresses"
-          placeholder="member@acme.co, member2@acme.co"
+          placeholder="member@walletlabels.xyz, member2@gmail.com"
           type="textarea"
           autoFocus
         />

@@ -3,11 +3,11 @@ import { useAuth } from "@saas-ui/auth";
 import { supabase } from "../../../../../../packages/app-config/src";
 
 export const useRegisterOrg = () => {
-    const { user } = useAuth()
+    const { user } = useAuth();
     const registerOrg = async (orgData: any) => {
         const { data, error } = await supabase.from('organizations').insert({
             name: orgData,
-            useremail: user?.email,
+            user_ids: [user?.id] // Changed schema to include user_ids which is an array of user ids
 
         })
         if (error) {

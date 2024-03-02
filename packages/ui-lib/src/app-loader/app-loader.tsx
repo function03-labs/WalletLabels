@@ -2,13 +2,14 @@ import { SaasUIGlyph } from '../logo/saas-ui-glyph'
 
 import { LoadingOverlay, LoadingOverlayProps } from '@saas-ui/react'
 import { keyframes } from '@chakra-ui/react'
+import WalletlabelsLogo from '../../../../apps/web/src/features/common/components/Logo';
 
 const scale = keyframes`
   0% {
-    scale: 1.3;
+    scale: 2;
   }
   100% {
-    scale: 1;
+    scale: 1.4;
   }
 `
 
@@ -21,11 +22,11 @@ export const AppLoader: React.FC<LoadingOverlayProps> = (props) => {
       {...props}
       variant="fullscreen"
       children={
-        <SaasUIGlyph
-          boxSize="8"
-          animation={`5s ease-out ${scale}`}
-          opacity="0.8"
-        />
+        <WalletlabelsLogo
+        boxSize="8"
+        animation={`5s ease-out ${scale}`}
+        opacity="0.8"
+      />
       }
     />
   )

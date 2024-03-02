@@ -3,7 +3,6 @@ import { getOrganizations } from './organizations'
 
 export const getCurrentUser = async () => {
   const { user } = useAuth()
-  const { fetchOrgs } = useFetchOrgs()
   console.log("inside current user", user)
 
   return {

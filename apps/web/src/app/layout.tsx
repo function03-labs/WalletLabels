@@ -10,8 +10,8 @@ import { cookies } from 'next/headers'
 import '../styles/globals.css'
 export const metadata: Metadata = {
   title: {
-    template: '%s | Saas UI',
-    default: 'Saas UI',
+    template: '%s | Walletlabels',
+    default: 'Walletlabels',
   },
   icons: {
     icon: '/favicons/favicon-32x32.png',

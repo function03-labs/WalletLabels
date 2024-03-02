@@ -43,7 +43,7 @@ export function SettingsOverviewPage() {
         <SectionHeader title="Organization settings" />
         <SectionBody>
           <SimpleGrid columns={[1, null, 2]} spacing={4}>
-            <SettingsCard
+            {/* <SettingsCard
               title="Billing"
               description="Manage your subscription."
               icon={FiBriefcase}
@@ -64,7 +64,7 @@ export function SettingsOverviewPage() {
                   <Property label="Status" value={status} />
                 )}
               </PropertyList>
-            </SettingsCard>
+            </SettingsCard> */}
             <SettingsCard
               title="Organization"
               description="Manage your organization details."
@@ -89,7 +89,7 @@ export function SettingsOverviewPage() {
         </SectionBody>
       </Section>
 
-      <Section>
+      {/* <Section>
         <SectionHeader title="Your account" />
         <SectionBody>
           <SimpleGrid columns={[1, null, 2]} spacing={4}>
@@ -106,7 +106,7 @@ export function SettingsOverviewPage() {
             />
           </SimpleGrid>
         </SectionBody>
-      </Section>
+      </Section> */}
 
       <Section>
         <SectionHeader title="More" />
@@ -114,21 +114,21 @@ export function SettingsOverviewPage() {
           <SimpleGrid columns={[1, null, 3]} spacing={4}>
             <SupportCard
               title="Start guide"
-              description="Read how to get started with Saas UI Pro."
+              description="Read how to get started with Walletlabels APIs."
               icon={FiHelpCircle}
-              href="https://saas-ui.dev/docs/pro/overview"
+              href="https://docs.walletlabels.xyz/content/api-references"
             />
-            <SupportCard
+            {/* <SupportCard
               title="Components"
               description="See all components and how they work."
               icon={FiBox}
               href="https://www.saas-ui.dev/docs/components"
-            />
+            /> */}
             <SupportCard
               title="Roadmap"
               description="Post feedback, bugs and feature requests."
               icon={FiGithub}
-              href="https://roadmap.saas-ui.dev"
+              href="https://github.com/function03-labs/WalletLabels"
             />
           </SimpleGrid>
         </SectionBody>

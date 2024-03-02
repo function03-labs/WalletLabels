@@ -8,7 +8,6 @@ import { useCurrentUser } from './use-current-user'
  */
 export const useWorkspaces = () => {
   const currentUser = useCurrentUser()
-
   return (
     currentUser?.data?.organizations?.map((organization) => ({
       id: organization,

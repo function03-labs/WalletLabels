@@ -5,7 +5,6 @@ import {
   CardProps,
   Stack,
   Icon,
-  HStack,
   CardBody,
   DrawerBody,
   Spacer,
@@ -19,7 +18,7 @@ import {
   HotkeysSearch,
   useHotkeysContext,
 } from '@saas-ui/react'
-import { HelpCircleIcon, KeyIcon } from 'lucide-react'
+import { HelpCircleIcon, KeyIcon, TextSelect, Contact2Icon } from 'lucide-react'
 import { BackButton } from '@saas-ui-pro/react'
 
 const DiscordIcon = () => {
@@ -31,6 +30,7 @@ const DiscordIcon = () => {
 }
 
 import { useModals } from '../modals'
+import { FaTelegram } from 'react-icons/fa';
 
 export const useHelpCenter = () => {
   const modals = useModals()
@@ -85,21 +85,23 @@ export const HelpCenterDialog: React.FC<HelpCenterDialogProps> = (props) => {
         <HelpCard
           title="Documentation"
           icon={HelpCircleIcon}
-          href="https://saas-ui.dev/docs"
+          href="https://docs.walletlabels.xyz/content/api-references"
           target="_blank"
         />
         <HelpCard
-          title="Keyboard shortcuts"
-          icon={KeyIcon}
-          onClick={() => setView('keyboard')}
+          title="Contact us"
+          description="Email us your questions"
+          icon={Contact2Icon}
+          href="mailto:support@fn03.xyz"
+          target="_blank"
         />
 
         <Spacer />
         <HelpCard
-          title="Discord"
-          description="Join our Discord community"
-          icon={DiscordIcon}
-          href="https://discord.gg/4PmJGFcAjX"
+          title="Telegram"
+          description="Join our Telegram community"
+          icon={FaTelegram}
+          href="https://t.me/+yDF9bnv2R7RkNWZk"
           target="_blank"
         />
       </Stack>

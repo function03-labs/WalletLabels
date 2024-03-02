@@ -10,7 +10,9 @@ export const useCurrentUser = () => {
     if (!user || !isAuthenticated) {
       return []
     }
-    return fetchOrgs({ userEmail: user.email })
+    if (user.id) {
+      return fetchOrgs({ userId: user.id })
+    }
   }
 
   const { data: orgs, isLoading } = useQuery({
@@ -18,9 +20,8 @@ export const useCurrentUser = () => {
     queryFn: getOrgs,
     enabled: !!user && isAuthenticated, // Only run query if user is authenticated
   })
-
   const dataOrgs = orgs?.map((org: any) => org.name) ?? []
-
+  
   return {
     data: {
       ...user,

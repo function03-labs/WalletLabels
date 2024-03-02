@@ -44,7 +44,7 @@ export const CreateOrganizationStep = () => {
       schema={schema}
       formRef={formRef}
       title="Create a new organization"
-      description="Saas UI is multi-tenant and supports workspaces with multiple teams."
+      description="All your team members will work under this organization. You can always change it later."
       defaultValues={{ name: '', slug: '' }}
       onSubmit={async (data) => {
         try {
@@ -75,7 +75,7 @@ export const CreateOrganizationStep = () => {
         <Field
           name="slug"
           label="Organization URL"
-          paddingLeft="140px"
+          paddingLeft={170}
           leftAddon={
             <InputLeftElement
               bg="transparent"
@@ -83,7 +83,7 @@ export const CreateOrganizationStep = () => {
               ps="3"
               pointerEvents="none"
             >
-              <Text color="muted">https://saas-ui.dev/</Text>
+              <Text color="muted">https://walletlabels.xyz/</Text>
             </InputLeftElement>
           }
           rules={{
