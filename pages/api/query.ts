@@ -87,26 +87,54 @@ export default async function handler(req, res) {
 
       labels = await db.collection(clc_name).find().limit(limit).toArray()
     } else {
-      const queryAtlas = {
-        $text: {
-          $search: query,
+      // use search atlas index
+      const agg = [
+        {
+          $search: {
+            index: "public_eth2",
+            text: {
+              query: query,
+              path: ["label", "address_name", "label_type", "label_subtype"]
+
+            }
+          }
         },
-      }
-      const projection = {
-        address_name: 1,
-        label_type: 1,
-        label_subtype: 1,
-        address: 1,
-        label: 1,
-        score: { $meta: "textScore" },
-      }
+        {
+          $limit: limit,
+        },
+        {
+          $project: {
+            address_name: 1,
+            label_type: 1,
+            label_subtype: 1,
+            address: 1,
+            label: 1,
+            score: { $meta: "textScore" },
+          },
+        },
+        {
+          $sort: {
+            score: { $meta: "textScore" },
+          },
+        }
+      ]
+      // const projection = {
+      //   address_name: 1,
+      //   label_type: 1,
+      //   label_subtype: 1,
+      //   address: 1,
+      //   label: 1,
+      //   score: { $meta: "textScore" },
+      // }
 
-      const sort = {
-        score: { $meta: "textScore" },
-      }
+      // const sort = {
+      //   score: { $meta: "textScore" },
+      // }
 
-      const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).sort(sort).limit(limit)
+      const cursor = await db.collection(clc_name).aggregate(agg, { allowDiskUse: true });
+      console.log(cursor, "cursor")
       labels = await cursor.toArray();
+      console.log(labels, "labels")
 
       // console.log(labels, "labels");
 

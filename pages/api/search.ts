@@ -52,24 +52,41 @@ export default async function handler(req, res) {
     if (search === "") {
       labels = await db.collection(clc_name).find().limit(limit).toArray();
     } else {
-      const queryAtlas = {
-        $text: { $search: search },  // 'search' variable is used
-      };
 
-      const projection = {
-        address_name: 1,
-        label_type: 1,
-        label_subtype: 1,
-        address: 1,
-        label: 1,
-        score: { $meta: "textScore" },
-      };
+      const agg = [
+        {
+          $search: {
+            index: "public_eth2",
+            text: {
+              query: query,
+              path: ["label", "address_name", "label_type", "label_subtype"]
 
-      const sort = {
-        score: { $meta: "textScore" },
-      };
+            }
+          }
+        },
+        {
+          $limit: limit,
+        },
+        {
+          $project: {
+            address_name: 1,
+            label_type: 1,
+            label_subtype: 1,
+            address: 1,
+            label: 1,
+            score: { $meta: "textScore" },
+          },
+        },
+        {
+          $sort: {
+            score: { $meta: "textScore" },
+          },
+        }
+      ]
 
-      const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).sort(sort).limit(limit);
+
+      const cursor = await db.collection(clc_name).aggregate(agg, { allowDiskUse: true });
+
       labels = await cursor.toArray();
     }
 
