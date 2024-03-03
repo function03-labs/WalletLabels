@@ -58,7 +58,7 @@ export default async function handler(req, res) {
           $search: {
             index: "public_eth2",
             text: {
-              query: query,
+              query: search,
               path: ["label", "address_name", "label_type", "label_subtype"]
 
             }
