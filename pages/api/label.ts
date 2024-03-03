@@ -62,7 +62,7 @@ export default async function handler(req, res) {
       };
 
       const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
-        { locale: 'en', strength: 1 }
+        { locale: 'en', strength: 2 }
       )
         .limit(limit);
       labels = await cursor.toArray();
