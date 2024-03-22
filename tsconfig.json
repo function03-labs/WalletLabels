@@ -19,10 +19,10 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@components/*": ["./components/*"],
-      "@styles/*": ["./styles/*"],
+      "@component/*": ["./components/*"],
+      "@style/*": ["./styles/*"],
       "@utils/*": ["./utils/*"],
-      "@hooks/*": ["./hooks/*"],
+      "@hook/*": ["./hooks/*"],
       "@fonts/*": ["./fonts/*"],
       "@lib/*": ["./lib/*"],
       "@types/*": ["./types/*"],

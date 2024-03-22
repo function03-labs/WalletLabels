@@ -1,4 +1,4 @@
-import "@styles/globals.css";
+import "@style/globals.css";
 import fontSans from "@fonts/font-sans";
 
 import { cn } from "@lib/utils";
