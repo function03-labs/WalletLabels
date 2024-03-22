@@ -38,7 +38,7 @@ export async function GET(
   }
 
   let labels = [];
-  const clc_name = process.env.CLC_NAME_WLBLS_ARBITRUM!;
+  const clc_name = process.env.CLC_NAME_WLBLS_SOLANA!;
 
   try {
     const cursor = db

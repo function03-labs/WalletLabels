@@ -26,7 +26,7 @@ export async function GET(
   if (!query) {
     return new Response(
       JSON.stringify({
-        message: "Bad request: 'address' parameter missing",
+        message: "Bad request: 'search' parameter missing",
       }),
       {
         status: 400,
@@ -37,40 +37,59 @@ export async function GET(
     );
   }
 
-  let labels = [];
-  const clc_name = process.env.CLC_NAME_WLBLS_ARBITRUM!;
+  const clc_name = process.env.CLC_NAME_WLBLS_MEV!;
 
+  let labels = null;
   try {
-    const cursor = db
-      .collection(clc_name)
-      .find(
-        {
-          address: query,
-        },
-        {
+    if (query === "") {
+      labels = await db
+        .collection(clc_name)
+        .find()
+        .limit(limit)
+        .sort({ _id: -1 })
+        .toArray();
+    } else {
+      const queryAtlas = {
+        label_subtype: { $regex: query, $options: "i" },
+      };
+
+      const cursor = db
+        .collection(clc_name)
+        .find(queryAtlas, {
           projection: {
-            address_name: 1,
-            label_type: 1,
+            protocols: 1,
+            last_txs: 1,
+            label: 1,
             label_subtype: 1,
             address: 1,
-            label: 1,
+            blockchain: 1,
           },
-        }
-      )
-      .collation({ locale: "en", strength: 1 })
-      .limit(limit);
+        })
+        .sort({ _id: -1 })
+        .limit(limit);
+      labels = await cursor.toArray();
+    }
 
-    labels = await cursor.toArray();
     labels = labels.map((label) => ({
       address: label.address,
-      address_name: label.address_name,
-      label_type: label.label_type,
-      label_subtype: label.label_subtype,
+      blockchain: label.blockchain,
       label: label.label,
+      label_subtype: label.label_subtype,
+      last_txs: label.last_txs,
+      protocols: label.protocols,
     }));
   } catch (error) {
-    console.log(error);
-    throw new Error("Unable to fetch labels");
+    return new Response(
+      JSON.stringify({
+        message: "Internal server error",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   }
 
   return new Response(JSON.stringify(labels), { status: 200 });
