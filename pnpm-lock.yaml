@@ -10,10 +10,10 @@ dependencies:
     version: 2.8.2(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.48)(framer-motion@11.0.20)(react-dom@18.2.0)(react@18.2.0)
   "@glideapps/glide-data-grid":
     specifier: ^6.0.3
-    version: 6.0.3(lodash@4.17.21)(marked@4.3.0)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0)
+    version: 6.0.3(lodash@4.17.21)(marked@12.0.1)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0)
   "@glideapps/glide-data-grid-cells":
     specifier: ^6.0.3
-    version: 6.0.3(@types/react@18.2.48)(lodash@4.17.21)(marked@4.3.0)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0)
+    version: 6.0.3(@types/react@18.2.48)(lodash@4.17.21)(marked@12.0.1)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0)
   "@nextui-org/react":
     specifier: ^2.2.9
     version: 2.2.9(@types/react@18.2.48)(framer-motion@11.0.20)(react-dom@18.2.0)(react@18.2.0)(tailwind-variants@0.1.20)(tailwindcss@3.4.1)
@@ -44,6 +44,9 @@ dependencies:
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
+  cryptocurrency-icons:
+    specifier: ^0.18.1
+    version: 0.18.1
   express:
     specifier: ^4.19.1
     version: 4.19.1
@@ -53,12 +56,24 @@ dependencies:
   framer-motion:
     specifier: ^11.0.20
     version: 11.0.20(react-dom@18.2.0)(react@18.2.0)
+  fuse.js:
+    specifier: ^7.0.0
+    version: 7.0.0
+  hashcode:
+    specifier: ^1.0.3
+    version: 1.0.3
   husky:
     specifier: ^8.0.3
     version: 8.0.3
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   lucide-react:
     specifier: ^0.314.0
     version: 0.314.0(react@18.2.0)
+  marked:
+    specifier: ^12.0.1
+    version: 12.0.1
   mongodb:
     specifier: ^6.5.0
     version: 6.5.0
@@ -83,6 +98,9 @@ dependencies:
   react-instantsearch:
     specifier: ^7.7.0
     version: 7.7.0(algoliasearch@4.22.1)(react-dom@18.2.0)(react@18.2.0)
+  react-responsive-carousel:
+    specifier: ^3.2.23
+    version: 3.2.23
   tailwind-merge:
     specifier: ^2.2.1
     version: 2.2.1
@@ -2311,13 +2329,13 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@glideapps/glide-data-grid-cells@6.0.3(@types/react@18.2.48)(lodash@4.17.21)(marked@4.3.0)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0):
+  /@glideapps/glide-data-grid-cells@6.0.3(@types/react@18.2.48)(lodash@4.17.21)(marked@12.0.1)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0):
     resolution:
       {
         integrity: sha512-SOZ+zlXAqSEACyZ26w41O2y0tr5qhJnxYOu9W327L23+Z2Sz0xpyiP8FQOZx1mzdyXLO9eBqQIv9ByDTftLIIA==,
       }
     dependencies:
-      "@glideapps/glide-data-grid": 6.0.3(lodash@4.17.21)(marked@4.3.0)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0)
+      "@glideapps/glide-data-grid": 6.0.3(lodash@4.17.21)(marked@12.0.1)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0)
       "@linaria/react": 4.5.4(react@18.2.0)
       "@toast-ui/editor": 3.1.10
       "@toast-ui/react-editor": 3.1.10(react@18.2.0)
@@ -2332,7 +2350,7 @@ packages:
       - supports-color
     dev: false
 
-  /@glideapps/glide-data-grid@6.0.3(lodash@4.17.21)(marked@4.3.0)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0):
+  /@glideapps/glide-data-grid@6.0.3(lodash@4.17.21)(marked@12.0.1)(react-dom@18.2.0)(react-responsive-carousel@3.2.23)(react@18.2.0):
     resolution:
       {
         integrity: sha512-YXKggiNOaEemf0jP0jORq2EQKz+zXms+6mGzZc+q0mLMjmgzzoGLOQC1uYcynXSj1R61bd27JcPFsoH+Gj37Vg==,
@@ -2347,7 +2365,7 @@ packages:
       "@linaria/react": 4.5.4(react@18.2.0)
       canvas-hypertxt: 1.0.3
       lodash: 4.17.21
-      marked: 4.3.0
+      marked: 12.0.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-number-format: 5.3.4(react-dom@18.2.0)(react@18.2.0)
@@ -7248,6 +7266,13 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  /cryptocurrency-icons@0.18.1:
+    resolution:
+      {
+        integrity: sha512-dvR5O8JOmav3559Yb0Igpkia+3vpt/aeNvMu5ZIVUG2Bzpq9wNcOJRIQas49XJrPjtZ98GAEn3aDQO+w7uhS2w==,
+      }
+    dev: false
+
   /css-box-model@1.2.1:
     resolution:
       {
@@ -8340,6 +8365,14 @@ packages:
       }
     dev: true
 
+  /fuse.js@7.0.0:
+    resolution:
+      {
+        integrity: sha512-14F4hBIxqKvD4Zz/XjDc3y94mNZN6pRv3U13Udo0lNLCWRBUsrMv2xwcF/y/Z5sV6+FQW+/ow68cHpm4sunt8Q==,
+      }
+    engines: { node: ">=10" }
+    dev: false
+
   /gensync@1.0.0-beta.2:
     resolution:
       {
@@ -8551,6 +8584,13 @@ packages:
     dependencies:
       has-symbols: 1.0.3
     dev: true
+
+  /hashcode@1.0.3:
+    resolution:
+      {
+        integrity: sha512-tfCzdiaz69Ii8eIdtYSCEnU0jw5RrYRd0u3sHRvs5Oqu/bQPk+aonT5jgRUT2MIuphjSvjB5lmixhHl7+X4ruw==,
+      }
+    dev: false
 
   /hasown@2.0.0:
     resolution:
@@ -9331,12 +9371,12 @@ packages:
       react: 18.2.0
     dev: false
 
-  /marked@4.3.0:
+  /marked@12.0.1:
     resolution:
       {
-        integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==,
+        integrity: sha512-Y1/V2yafOcOdWQCX0XpAKXzDakPOpn6U0YLxTJs3cww6VxOzZV1BTOOYWLvH3gX38cq+iLwljHHTnMtlDfg01Q==,
       }
-    engines: { node: ">= 12" }
+    engines: { node: ">= 18" }
     hasBin: true
     dev: false
 

@@ -13,25 +13,20 @@ import {
 } from "react-instantsearch";
 import CountUp from "react-countup";
 
-import { badgeCategories } from "@config/badge-categories";
-
-import { Icons } from "@component/ui/Lucide";
-
 import getHistory from "@lib/get-history";
 import searchClient from "@lib/assemble-types";
 import { connectToDatabase } from "@lib/mongodb";
 
-import CustomHitsTags, {
-  CustomHits,
-  CustomSearchBox,
-} from "@component/SearchBox";
 import Footer from "@component/Footer";
 import { Badge } from "@component/ui/Badge";
 import { SiteHeader } from "@component/SiteHeader";
+import CustomHitsTags, { CustomHits, SearchBox } from "@component/SearchBox";
 
-export const Grid = dynamic(() => import("@/components/Grid"), { ssr: false });
+import { badgeCategories } from "@config/badge-categories";
 
-export async function getStaticProps() {
+export const Grid = dynamic(() => import("@component/Grid"), { ssr: false });
+
+async function getData() {
   let db = await connectToDatabase();
   let labels = await db.db
     .collection(process.env.CLC_NAME_WLBLS!)
@@ -40,6 +35,7 @@ export async function getStaticProps() {
     .toArray();
   labels = labels.map((label) => {
     return {
+      _id: label._id,
       address: label.address,
       address_name: label.address_name,
       label_type: label.label_type,
@@ -59,51 +55,22 @@ export async function getStaticProps() {
   });
 
   return {
-    props: {
-      data: data,
-    },
-
+    data: data,
     revalidate: 60 * 60 * 24,
   };
 }
 
-export default function IndexPage(props) {
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
+export default async function IndexPage() {
+  const { data } = await getData();
 
   const [searchInput, setSearchInput] = useState("");
   const [initialSearch, setinitialSearch] = useState(false);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.query.value);
-  };
   const toggleFilterVisibility = () => {
     setIsFilterVisible(!isFilterVisible);
   };
 
-  const OldSearchBar = (
-    <div className="flex w-full  items-end  justify-between">
-      <div className="w-full sm:w-auto">
-        <div className=" relative mt-2 rounded-md shadow-sm dark:bg-zinc-900">
-          <div className="pointer-events-none absolute inset-y-0 left-0  flex items-center pl-3">
-            <Icons.search
-              className="size-5 text-gray-400 dark:text-gray-400"
-              aria-hidden="true"
-            />
-          </div>
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              name="price"
-              id="query"
-              className="text-md mr-10	block	w-full truncate rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-300 dark:bg-zinc-900 dark:text-slate-400 dark:ring-gray-800 sm:text-sm sm:leading-6"
-              placeholder="Search by address or name.."
-            />
-          </form>
-        </div>
-      </div>
-    </div>
-  );
   return (
     <main>
       <SiteHeader />
@@ -158,7 +125,7 @@ export default function IndexPage(props) {
                 favorite wallets and exchanges.
               </p>
               <div className="mt-3 w-full text-center sm:w-4/5">
-                <CustomSearchBox
+                <SearchBox
                   initialQuery={searchInput}
                   setinitialSearch={setinitialSearch}
                 />
@@ -176,9 +143,7 @@ export default function IndexPage(props) {
                               setSearchInput(category.label);
                               setinitialSearch(true);
                             }}
-                            // @ts-ignore
-                            variant="none"
-                            className="hover:border-green-300 hover:text-foreground "
+                            className="hover:border-green-300 hover:text-foreground"
                           >
                             {category.emoji + " " + category.label}
                           </Badge>
@@ -194,7 +159,7 @@ export default function IndexPage(props) {
                   <Stats
                     className="hidden whitespace-nowrap text-sm text-muted-foreground  sm:block"
                     translationds={{
-                      stats(processingTimeMS) {
+                      stats(processingTimeMS: number) {
                         let hitCountPhrase;
                         return `${hitCountPhrase} found in ${processingTimeMS.toLocaleString()}ms`;
                       },
@@ -220,7 +185,6 @@ export default function IndexPage(props) {
                       limit={10}
                       showMore={true}
                       showMoreLimit={20}
-                      placeholder="Search by activity"
                       searchablePlaceholder="Search by activity"
                       searchable={true}
                       onClick={() => setinitialSearch(true)}
@@ -271,8 +235,8 @@ export default function IndexPage(props) {
               </div>
               {initialSearch ? (
                 <CustomHits />
-              ) : props.data ? (
-                <Grid data={props.data} />
+              ) : data ? (
+                <Grid data={data} />
               ) : (
                 "Loading..."
               )}

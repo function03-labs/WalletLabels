@@ -1,31 +1,28 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
-import {
-  UseSearchBoxProps,
-  useHits,
-  useInstantSearch,
-  useSearchBox,
-} from "react-instantsearch";
+import { useHits, useInstantSearch, useSearchBox } from "react-instantsearch";
 
-import { Badge } from "@/components/ui/Badge";
-import { Grid } from "../pages";
-import SearchComponent from "../pages/searchBar";
+import Grid from "@component/Grid";
+import { Badge } from "@component/ui/Badge";
+import SearchComponent from "@component/SearchBar";
 
-export function CustomSearchBox({
+export function SearchBox({
   initialQuery = "",
   setinitialSearch,
   ...props
 }: any) {
+  const { refresh } = useInstantSearch();
   const { query, refine } = useSearchBox(props);
   const [inputValue, setInputValue] = useState(initialQuery || query);
-  const { status, refresh } = useInstantSearch();
+
   useEffect(() => {
     if (initialQuery !== "") {
       setInputValue(initialQuery);
-      // setinitialSearch(true)
       refine(initialQuery);
       refresh();
     }
-  }, [initialQuery]);
+  }, [initialQuery, refine, refresh]);
 
   useEffect(() => {
     if (inputValue !== "") {
@@ -34,14 +31,12 @@ export function CustomSearchBox({
     if (inputValue == "") {
       setinitialSearch(false);
     }
-  }, [inputValue == ""]);
+  }, [inputValue, setinitialSearch]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const isSearchStalled = status === "stalled";
-
-  function setQuery(newQuery: string) {
+  function setQuery(newQuery: string | undefined) {
+    if (newQuery === undefined) return;
     setInputValue(newQuery);
-
     refine(newQuery);
   }
 
@@ -62,59 +57,41 @@ export function CustomSearchBox({
       >
         <SearchComponent
           handleSearchLogin={setQuery}
-          disabled={false}
           inputRef={inputRef}
           inputValue={inputValue}
         />
-        {/* <input
-              ref={inputRef}
-              autoComplete="off"
-              autoCorrect="off"
-              autoCapitalize="off"
-              placeholder="Search for products"
-              spellCheck={false}
-              maxLength={512}
-              type="search"
-              value={inputValue}
-              onChange={event => {
-                setQuery(event.currentTarget.value)
-              }}
-              autoFocus
-            />
-            <button type="submit">Submit</button>
-    
-            </button> */}
-        {/* <span hidden={!isSearchStalled}>Searching…</span> */}
       </form>
     </div>
   );
 }
+
 export function CustomHits() {
-  // Use the useHits() hook to get the hits
   const { hits } = useHits();
 
-  // Transform hits into the shape required by your Grid component
   const gridData = hits.map((hit) => ({
-    address: hit.address,
-    address_name: hit.address_name,
-    label_type: hit.label_type,
-    label_subtype: hit.label_subtype,
-    label: hit.label,
-    tag: hit.tag,
+    address: hit.address as string,
+    address_name: hit.address_name as string,
+    label_type: hit.label_type as string,
+    label_subtype: hit.label_subtype as string,
+    label: hit.label as string,
+    tag: hit.tag as string,
   }));
 
   return <Grid data={gridData} />;
 }
+
+type Hit = {
+  label: string;
+};
+
 export default function CustomHitsTags({
   setSearchInput,
 }: {
   setSearchInput: (value: string) => void;
 }) {
-  // Use the useHits() hook to get the hits
-  const { hits } = useHits();
+  const { hits } = useHits() as { hits: Hit[] };
 
-  // Remove duplicates based on 'address'
-  const uniqueHits = hits.reduce((acc, hit) => {
+  const uniqueHits = hits.reduce((acc: Hit[], hit) => {
     if (!acc.some((item) => item.label === hit.label)) {
       acc.push(hit);
     }
@@ -123,23 +100,19 @@ export default function CustomHitsTags({
 
   return (
     <div className="flex flex-wrap gap-1">
-      {uniqueHits
-        //limit to top 8
-        .slice(0, 8)
-        .map((category) => (
-          <Badge
-            key={category.label}
-            onClick={() => {
-              setSearchInput(category.label);
-            }}
-            // ignore ts error
-            // @ts-ignore
-            variant="none"
-            className="hover:border-green-300 hover:text-foreground "
-          >
-            {category.label}
-          </Badge>
-        ))}
+      {uniqueHits.slice(0, 8).map((category) => (
+        <Badge
+          key={category.label}
+          onClick={() => {
+            setSearchInput(category.label);
+          }}
+          // @ts-ignore
+          variant="none"
+          className="hover:border-green-300 hover:text-foreground"
+        >
+          {category.label}
+        </Badge>
+      ))}
     </div>
   );
 }

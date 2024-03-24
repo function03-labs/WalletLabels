@@ -35,6 +35,7 @@ import {
 import { SVGProps } from "react";
 
 import { FaTelegram } from "react-icons/fa";
+import { FaEthereum } from "react-icons/fa";
 
 export type Icon = LucideIcon;
 
@@ -96,4 +97,5 @@ export const Icons = {
   teacher: UserCogIcon,
   monitor: Monitor,
   telegram: FaTelegram,
+  ethereum: FaEthereum,
 };

@@ -1,4 +1,10 @@
 import React from "react";
+import hashCode from "hashcode";
+import { useTheme } from "next-themes";
+
+import pick from "@lib/color-picker";
+import CryptoIcon from "@lib/get-crypto-icons";
+import { splitTags } from "@lib/utils";
 
 import DataEditor, {
   DataEditorRef,
@@ -12,18 +18,11 @@ import DataEditor, {
   Theme,
 } from "@glideapps/glide-data-grid";
 import {
+  TagsCellType,
   ButtonCellType,
   SparklineCellType,
-  TagsCellType,
-  useExtraCells,
 } from "@glideapps/glide-data-grid-cells";
-import { GetRowThemeCallback } from "@glideapps/glide-data-grid/dist/ts/data-grid/data-grid-render";
-
-import { hashCode } from "hashcode";
-import { useTheme } from "next-themes";
-
-import pick from "@lib/colorPicker";
-import CryptoIcon from "@lib/getCryptoIcon";
+// import { GetRowThemeCallback } from "@glideapps/glide-data-grid/dist/ts/data-grid/data-grid-render";
 
 const darkTheme = {
   accentColor: "#8c96ff",
@@ -72,19 +71,10 @@ const RandomColor = (text: string) => {
   return `#${color.padEnd(6, "0")}`;
 };
 
-function splitTags(str) {
-  const delimiters = /[\s,\/\-\_\(\):]+/;
-
-  let tags = str.split(delimiters);
-  tags = tags.filter((tag) => tag.trim() !== "").map((tag) => tag.trim());
-  return tags;
-}
-
-export default function Grid(props) {
+export default function Grid(props: { data: { [key: string]: string }[] }) {
   const ref = React.useRef<DataEditorRef | null>(null);
   const [theme, setTheme] = React.useState<Partial<Theme>>({});
   const { resolvedTheme } = useTheme();
-  const customRenderers = useExtraCells();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getTagsFromLabels = (arg0: string) => {
@@ -268,7 +258,7 @@ export default function Grid(props) {
 
       if (indexes[col] === "balanceHistory") {
         const values: number[] = JSON.parse(dataRow[indexes[col]]).map(
-          (x) => x[1]
+          (x: string) => x[1]
         );
         return {
           kind: GridCellKind.Custom,
@@ -306,12 +296,11 @@ export default function Grid(props) {
     setHoverRow(args.kind !== "cell" ? undefined : row);
   }, []);
 
-  const getRowThemeOverride = React.useCallback<GetRowThemeCallback>(
+  /*   const getRowThemeOverride = React.useCallback<GetRowThemeCallback>(
     (row) => {
       if (row !== hoverRow) return undefined;
       if (resolvedTheme === "dark") {
         return {
-          // dark theme
           bgCell: "#222324",
           bgCellMedium: "#202027",
         };
@@ -327,39 +316,35 @@ export default function Grid(props) {
       };
     },
     [hoverRow, resolvedTheme]
-  );
+  ); */
 
   return (
-    <>
-      {" "}
-      <DataEditor
-        theme={theme}
-        className=" rounded-xl shadow-lg"
-        smoothScrollY={true}
-        width={"100%"}
-        height={"50em"}
-        getCellContent={getContent}
-        columns={
-          props.data[0] && props.data[0].balanceHistory
-            ? [
-                ...cols.slice(0, cols.length - 1),
-                ...cols_balanceChart,
-                ...cols.slice(cols.length - 1),
-              ]
-            : cols
-        }
-        rows={props.data.length}
-        keybindings={{ search: true }}
-        getCellsForSelection={true}
-        rowMarkers="number"
-        freezeColumns={1}
-        overscrollY={50}
-        getRowThemeOverride={getRowThemeOverride}
-        onItemHovered={onItemHovered}
-        smoothScrollX={true}
-        ref={ref}
-        {...customRenderers}
-      />
-    </>
+    <DataEditor
+      theme={theme}
+      className=" rounded-xl shadow-lg"
+      smoothScrollY={true}
+      width={"100%"}
+      height={"50em"}
+      getCellContent={getContent}
+      columns={
+        props.data[0] && props.data[0].balanceHistory
+          ? [
+              ...cols.slice(0, cols.length - 1),
+              ...cols_balanceChart,
+              ...cols.slice(cols.length - 1),
+            ]
+          : cols
+      }
+      rows={props.data.length}
+      keybindings={{ search: true }}
+      getCellsForSelection={true}
+      rowMarkers="number"
+      freezeColumns={1}
+      overscrollY={50}
+      //getRowThemeOverride={getRowThemeOverride}
+      onItemHovered={onItemHovered}
+      smoothScrollX={true}
+      ref={ref}
+    />
   );
 }
