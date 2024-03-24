@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 
 import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
@@ -13,9 +15,7 @@ import {
 } from "react-instantsearch";
 import CountUp from "react-countup";
 
-import getHistory from "@lib/get-history";
 import searchClient from "@lib/assemble-types";
-import { connectToDatabase } from "@lib/mongodb";
 
 import Footer from "@component/Footer";
 import { Badge } from "@component/ui/Badge";
@@ -26,42 +26,19 @@ import { badgeCategories } from "@config/badge-categories";
 
 export const Grid = dynamic(() => import("@component/Grid"), { ssr: false });
 
-async function getData() {
-  let db = await connectToDatabase();
-  let labels = await db.db
-    .collection(process.env.CLC_NAME_WLBLS!)
-    .find()
-    .limit(30)
-    .toArray();
-  labels = labels.map((label) => {
-    return {
-      _id: label._id,
-      address: label.address,
-      address_name: label.address_name,
-      label_type: label.label_type,
-      label_subtype: label.label_subtype,
-      label: label.label,
-    };
-  });
+export default function IndexPage() {
+  const [data, setData] = useState<any>(null);
 
-  let response = labels;
+  useEffect(() => {
+    async function getData() {
+      const data = await fetch("/api/db");
+      return data.json();
+    }
 
-  const addresses = response.map((item) => item.address);
-
-  const history = await getHistory(addresses);
-  const data = response.map((item, index) => {
-    item.balanceHistory = JSON.stringify(history[item["address"]]);
-    return item;
-  });
-
-  return {
-    data: data,
-    revalidate: 60 * 60 * 24,
-  };
-}
-
-export default async function IndexPage() {
-  const { data } = await getData();
+    getData().then((data) => {
+      setData(data.data);
+    });
+  }, []);
 
   const [searchInput, setSearchInput] = useState("");
   const [initialSearch, setinitialSearch] = useState(false);

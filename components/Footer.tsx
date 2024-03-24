@@ -1,5 +1,3 @@
-import styles from "styles/index.module.scss";
-
 import { useTheme } from "next-themes";
 import {
   DropdownMenu,
@@ -7,8 +5,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@component/ui/DropdownMenu";
-import { Button } from "@component/ui/Button";
 import { Icons } from "@component/ui/Lucide";
+import { Button } from "@component/ui/Button";
 
 type Theme = "dark" | "system" | "light";
 
@@ -16,8 +14,8 @@ export default function Footer() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <footer className={styles.footer} data-theme={theme ? theme : "light"}>
-      <div className={styles.footerText}>
+    <footer data-theme={theme ? theme : "light"}>
+      <div>
         Crafted by{" "}
         <a
           href="https://twitter.com/aiden0x4"

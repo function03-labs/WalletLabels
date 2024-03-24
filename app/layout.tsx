@@ -1,4 +1,4 @@
-import "@style/globals.scss";
+import "@style/globals.css";
 import "@glideapps/glide-data-grid/dist/index.css";
 import "@glideapps/glide-data-grid-cells/dist/index.css";
 
