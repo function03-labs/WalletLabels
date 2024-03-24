@@ -26,6 +26,7 @@
       "@fonts/*": ["./fonts/*"],
       "@lib/*": ["./lib/*"],
       "@types/*": ["./types/*"],
+      "@config/*": ["./config/*"],
     },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

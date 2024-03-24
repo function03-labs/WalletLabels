@@ -26,4 +26,6 @@ export const siteConfig: SiteConfig = {
     github: "https://github.com/0xaaiden/WalletLabels",
     docs: "/api-a",
   },
+  url: "https://walletlabels.xyz",
+  ogImage: "https://walletlabels.xyz/og.png",
 };

@@ -10,4 +10,6 @@ export interface SiteConfig {
     docs: string;
     style?: string;
   };
+  url: string;
+  ogImage: string;
 }
