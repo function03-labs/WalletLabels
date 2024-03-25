@@ -31,5 +31,3 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   },
 });
 export const searchClient = typesenseInstantsearchAdapter.searchClient;
-
-export default searchClient;

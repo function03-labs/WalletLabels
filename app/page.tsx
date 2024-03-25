@@ -1,52 +1,38 @@
-"use client";
-
-import { useState, useEffect } from "react";
-
-import dynamic from "next/dynamic";
-import { Box } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-
-import {
-  Configure,
-  HierarchicalMenu,
-  InstantSearch,
-  RefinementList,
-  Stats,
-} from "react-instantsearch";
 import CountUp from "react-countup";
+import { Configure, InstantSearch } from "react-instantsearch";
 
-import searchClient from "@lib/assemble-types";
-
-import Footer from "@component/Footer";
-import { Badge } from "@component/ui/Badge";
+import { Footer } from "@component/Footer";
+import { SearchBox } from "@component/SearchBox";
 import { SiteHeader } from "@component/SiteHeader";
-import CustomHitsTags, { CustomHits, SearchBox } from "@component/SearchBox";
+import { FindingFilter } from "@component/FindingFilter";
+import { FramerWrapper } from "@component/FramerWrapper";
+import { ActivityFilter } from "@component/ActivityFilter";
 
-import { badgeCategories } from "@config/badge-categories";
+import { searchClient } from "@lib/assemble-types";
 
-export const Grid = dynamic(() => import("@component/Grid"), { ssr: false });
+async function getData() {
+  try {
+    const data = await fetch("/api/db");
+    return data.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-export default function IndexPage() {
-  const [data, setData] = useState<any>(null);
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const data = await getData();
 
-  useEffect(() => {
-    async function getData() {
-      const data = await fetch("/api/db");
-      return data.json();
-    }
-
-    getData().then((data) => {
-      setData(data.data);
-    });
-  }, []);
-
-  const [searchInput, setSearchInput] = useState("");
+  /* const [searchInput, setSearchInput] = useState("");
   const [initialSearch, setinitialSearch] = useState(false);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
   const toggleFilterVisibility = () => {
     setIsFilterVisible(!isFilterVisible);
-  };
+  }; */
 
   return (
     <main>
@@ -56,13 +42,7 @@ export default function IndexPage() {
         searchClient={searchClient}
         insights={false}
       >
-        <motion.div
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -10, opacity: 0 }}
-          transition={{ ease: "easeOut", duration: 0.53 }}
-          className="z-30 "
-        >
+        <FramerWrapper>
           <Configure hitsPerPage={50} />
           <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10">
             <div className="flex flex-col items-center gap-6">
@@ -73,10 +53,6 @@ export default function IndexPage() {
                     href="https://docs.walletlabels.xyz/"
                     className="font-semibold text-blue-800 dark:text-white"
                   >
-                    <span
-                      className="absolute inset-0"
-                      aria-hidden="true"
-                    ></span>
                     Access now <span aria-hidden="true">&rarr;</span>
                   </a>
                 </div>
@@ -106,120 +82,13 @@ export default function IndexPage() {
                   initialQuery={searchInput}
                   setinitialSearch={setinitialSearch}
                 />
-                <div className=" flex justify-between">
-                  <Box className=" align-start flex gap-2  text-sm text-muted-foreground">
-                    <div className="hidden whitespace-nowrap  sm:block">
-                      Interesting finds:
-                    </div>
-                    {!initialSearch ? (
-                      <div className="flex flex-wrap gap-1">
-                        {badgeCategories.map((category) => (
-                          <Badge
-                            key={category.label}
-                            onClick={() => {
-                              setSearchInput(category.label);
-                              setinitialSearch(true);
-                            }}
-                            className="hover:border-green-300 hover:text-foreground"
-                          >
-                            {category.emoji + " " + category.label}
-                          </Badge>
-                        ))}
-                      </div>
-                    ) : (
-                      <div>
-                        {<CustomHitsTags setSearchInput={setSearchInput} />}
-                      </div>
-                    )}
-                  </Box>
-
-                  <Stats
-                    className="hidden whitespace-nowrap text-sm text-muted-foreground  sm:block"
-                    translationds={{
-                      stats(processingTimeMS: number) {
-                        let hitCountPhrase;
-                        return `${hitCountPhrase} found in ${processingTimeMS.toLocaleString()}ms`;
-                      },
-                    }}
-                  />
-                </div>
+                <FindingFilter params={searchParams} />
               </div>
             </div>
           </section>
-        </motion.div>
-        <div className="mx-2 mb-24 flex flex-col items-center gap-2 md:mx-8">
-          <div className="flex w-full auto-cols-auto">
-            <div
-              className={`w-1/4 ${isFilterVisible ? "mr-4 block" : "h-0 !w-0 opacity-0"} transition-opacity duration-200`}
-            >
-              <div className="flex flex-col justify-between">
-                <div className="mt-2">
-                  <div className="mr-4">
-                    <h5 className="">Filter by Activity</h5>
-                    <RefinementList
-                      className="mt-3"
-                      attribute="label_type"
-                      limit={10}
-                      showMore={true}
-                      showMoreLimit={20}
-                      searchablePlaceholder="Search by activity"
-                      searchable={true}
-                      onClick={() => setinitialSearch(true)}
-                      transformItems={(items) =>
-                        items.sort((a, b) => (a.count < b.count ? 1 : -1))
-                      }
-                    />
-                    <h5 className="mt-5">Contract Type</h5>
-                    <HierarchicalMenu
-                      onClick={() => setinitialSearch(true)}
-                      className="mt-3"
-                      attributes={["label_subtype"]}
-                      transformItems={(items) =>
-                        items.sort((a, b) => (a.count < b.count ? 1 : -1))
-                      }
-                    />
-                    <div className="mt-1">&nbsp;</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        </FramerWrapper>
 
-            <div className=" flex w-full flex-col transition-all">
-              <div className="hidden w-full items-center justify-between sm:flex">
-                <button
-                  className="mb-0.5 w-auto rounded-md p-1.5 text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:text-gray-200"
-                  onClick={toggleFilterVisibility}
-                  aria-label="Open sidebar"
-                >
-                  <svg className="size-5" viewBox="0 0 24 24" fill="none">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6H20M4 12H20M4 18H11"
-                    ></path>
-                  </svg>
-                </button>
-                <div>
-                  <p className="hidden text-sm text-slate-500 dark:text-slate-400 sm:block">
-                    <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-slate-100 bg-slate-100 px-1.5 font-mono text-[10px] font-medium text-slate-600 opacity-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-                      <span className="text-xs">⌘</span>F
-                    </kbd>
-                    to search the table
-                  </p>
-                </div>
-              </div>
-              {initialSearch ? (
-                <CustomHits />
-              ) : data ? (
-                <Grid data={data} />
-              ) : (
-                "Loading..."
-              )}
-            </div>
-          </div>
-        </div>
+        <ActivityFilter params={searchParams} />
       </InstantSearch>
       <Footer />
     </main>

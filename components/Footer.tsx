@@ -10,7 +10,7 @@ import { Button } from "@component/ui/Button";
 
 type Theme = "dark" | "system" | "light";
 
-export default function Footer() {
+export function Footer() {
   const { theme, setTheme } = useTheme();
 
   return (
