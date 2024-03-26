@@ -61,12 +61,14 @@ export default function Page({
                 favorite wallets and exchanges.
               </p>
               <div className="mt-3 w-full text-center sm:w-4/5">
-                {/* <SearchBox
-                  initialQuery={searchInput}
-                  setinitialSearch={setinitialSearch}
-                /> 
-              {/*                 <FindingFilter params={searchParams} />
-               */}{" "}
+                <SearchBox
+                  params={searchParams}
+                  /*   initialQuery={searchInput}
+                  setinitialSearch={setinitialSearch} */
+                />
+                {/*                 <FindingFilter params={searchParams} />
+               {" "}
+               */}
               </div>
             </div>
           </section>

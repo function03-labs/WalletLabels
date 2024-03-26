@@ -16,7 +16,7 @@ import { Icons } from "@component/ui/Lucide";
 
 const MotionBox = motion<BoxProps>(Box);
 
-export default function SearchComponent({
+export function SearchBar({
   handleSearchLogin,
   inputRef,
   inputValue,

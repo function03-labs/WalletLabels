@@ -1,64 +1,53 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useHits, useInstantSearch, useSearchBox } from "react-instantsearch";
 
 import { Grid } from "@component/Grid";
 import { Badge } from "@component/ui/Badge";
-import SearchComponent from "@component/SearchBar";
+import { SearchBar } from "@component/SearchBar";
 
 export function SearchBox({
-  initialQuery = "",
-  setinitialSearch,
-  ...props
-}: any) {
+  params,
+}: {
+  params: { [key: string]: string | string[] | undefined };
+}) {
+  const router = useRouter();
+  const initialQuery = params.query as string | undefined;
+  const [inputValue, setInputValue] = useState(initialQuery || "");
+
   const { refresh } = useInstantSearch();
-  const { query, refine } = useSearchBox(props);
-  const [inputValue, setInputValue] = useState(initialQuery || query);
+  const { query, refine } = useSearchBox();
 
   useEffect(() => {
     if (initialQuery !== "") {
-      setInputValue(initialQuery);
-      refine(initialQuery);
+      setInputValue(initialQuery as string);
+      refine(initialQuery as string);
       refresh();
     }
   }, [initialQuery, refine, refresh]);
 
-  useEffect(() => {
-    if (inputValue !== "") {
-      setinitialSearch(true);
-    }
-    if (inputValue == "") {
-      setinitialSearch(false);
-    }
-  }, [inputValue, setinitialSearch]);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  function setQuery(newQuery: string | undefined) {
-    if (newQuery === undefined) return;
-    setInputValue(newQuery);
-    refine(newQuery);
-  }
+  const handleSearchLogin = (value: string) => {
+    setInputValue(value);
+    refine(value);
+    refresh();
+    router.push(`?query=${encodeURIComponent(value)}` as string);
+  };
 
   return (
     <div>
       <form
-        action=""
         role="search"
         noValidate
         onSubmit={(event) => {
           event.preventDefault();
           event.stopPropagation();
-
-          if (inputRef.current) {
-            inputRef.current.blur();
-          }
         }}
       >
-        <SearchComponent
-          handleSearchLogin={setQuery}
-          inputRef={inputRef}
+        <SearchBar
           inputValue={inputValue}
+          handleSearchLogin={handleSearchLogin as any}
         />
       </form>
     </div>
@@ -106,8 +95,6 @@ export default function CustomHitsTags({
           onClick={() => {
             setSearchInput(category.label);
           }}
-          // @ts-ignore
-          variant="none"
           className="hover:border-green-300 hover:text-foreground"
         >
           {category.label}
