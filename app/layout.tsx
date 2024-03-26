@@ -14,6 +14,7 @@ import { NexUIWrapper } from "@component/wrapper/NexUIWrapper";
 import { QueryProvider } from "@component/wrapper/QueryProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
 
+import { cn } from "@lib/utils";
 import { siteConfig } from "@config/site";
 import { DM_Mono, Inter as FontSans, JetBrains_Mono } from "next/font/google";
 
@@ -121,8 +122,16 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body className={fontSans.className}>
-        <ThemeProvider attribute="class">
+      <body
+        className={cn(
+          "bg-white text-gray-900 transition-colors duration-300 dark:bg-black dark:text-white",
+          "font-sans antialiased",
+          "min-h-screen",
+          "overflow-x-hidden",
+          fontSans.className
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <NexUIWrapper>
             <QueryProvider>
               <ChakraProvider>
