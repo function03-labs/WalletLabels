@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     address = req.query.address;
   }
 
-  if (req.query.limit === "" || req.query.limit === undefined) {
+  if (req.query.limit === "" || req.query.limit === undefined || Number.isNaN(req.query.limit)) {
     limit = 20;
   } else {
     limit = Number(req.query.limit);
@@ -42,7 +42,8 @@ export default async function handler(req, res) {
 
   try {
     if (address === "") {
-      labels = await db.collection(clc_name).find().limit(limit).toArray();
+      res.status(200).json({ data: [] });
+      return;
     } else {
       // Adjust the MongoDB query to search by 'address'
       const queryAtlas = {

@@ -1,5 +1,5 @@
 import middlewares, { middlewares_special } from "@/lib/rateLimits"
-import { connectToDatabase } from "../../lib/mongodb"
+import { connectToDatabase } from "../../../lib/mongodb"
 import keys from "@/api_keys"
 import { PostHog } from 'posthog-node'
 
@@ -28,15 +28,16 @@ export default async function handler(req, res) {
   }
 
 
-  if (req.query.limit === "" || req.query.limit === undefined || Number.isNaN(req.query.limit)) {
+  if (req.query.limit === "" || req.query.limit === undefined) {
     limit = 20
   } else {
     limit = Number(req.query.limit)
   }
+  console.log(search);
 
   // max limit is 100
-  if (limit > 100) {
-    limit = 100
+  if (limit > 1000) {
+    limit = 1000
   }
 
   // limit to only GET method or throw error
@@ -44,59 +45,38 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" })
   }
 
-  const clc_name = process.env.CLC_NAME_WLBLS
+  const clc_name = process.env.CLC_NAME_WLBLS_MEV
 
   //if query is empty don't search
   let labels = null
   try {
     if (search === "") {
-      labels = await db.collection(clc_name).find().limit(limit).toArray();
+      labels = await db.collection(clc_name).find().limit(limit).sort({ _id: -1 }).toArray();
     } else {
+        const queryAtlas = {
+            label_subtype: { $regex: search, $options: 'i' },  // Using case-insensitive search
+          };
 
-      const agg = [
-        {
-          $search: {
-            index: "public_eth2",
-            text: {
-              query: search,
-              path: ["label", "address_name", "label_type", "label_subtype"]
+      const projection = {
+        protocols: 1,
+        last_txs: 1,
+        label: 1,
+        label_subtype: 1,
+        address: 1,
+        blockchain: 1,
+      };
 
-            }
-          }
-        },
-        {
-          $limit: limit,
-        },
-        {
-          $project: {
-            address_name: 1,
-            label_type: 1,
-            label_subtype: 1,
-            address: 1,
-            label: 1,
-            score: { $meta: "textScore" },
-          },
-        },
-        {
-          $sort: {
-            score: { $meta: "textScore" },
-          },
-        }
-      ]
-
-
-      const cursor = await db.collection(clc_name).aggregate(agg, { allowDiskUse: true });
-
+      const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).sort({ _id: -1 }).limit(limit);
       labels = await cursor.toArray();
     }
 
     labels = labels.map((label) => ({
-      address: label.address,
-      address_name: label.address_name,
-      label_type: label.label_type,
-      label_subtype: label.label_subtype,
-      label: label.label,
-      score: label.score,
+        address: label.address,
+        blockchain: label.blockchain,
+        label: label.label,
+        label_subtype: label.label_subtype,
+        last_txs: label.last_txs,
+        protocols: label.protocols,
     }));
   } catch (error) {
     console.log(error)

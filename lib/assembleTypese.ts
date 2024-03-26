@@ -1,5 +1,5 @@
 // ignore ts error all file 
-// @ts-nocheck
+//@ts-nocheck
 
 
 import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
@@ -15,7 +15,8 @@ export function assembleTypesenseServerConfig() {
             },
         ],
         numRetries: 3,
-        connectionTimeoutSeconds: 4
+        connectionTimeoutSeconds: 30,
+        cacheSearchResultsForSeconds: 2 * 60,
     };
 
 

@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     address = req.query.address;
   }
 
-  if (req.query.limit === "" || req.query.limit === undefined || Number.isNaN(req.query.limit)) {
+  if (req.query.limit === "" || req.query.limit === undefined) {
     limit = 20;
   } else {
     limit = Number(req.query.limit);
@@ -40,37 +40,42 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const clc_name = process.env.CLC_NAME_SC;
+  const clc_name = process.env.CLC_NAME_WLBLS_MEV;
   let labels = null;
 
   try {
     if (address === "") {
-      res.status(200).json({ data: [] });
-      return;
+      labels = await db.collection(clc_name).find().limit(limit).toArray();
     } else {
       // Adjust the MongoDB query to search by 'address'
       const queryAtlas = {
-        address: { $regex: address, $options: 'i' }
+        address: address,
       };
 
       const projection = {
-        address_name: 1,
-        label_type: 1,
+        protocols: 1,
+        last_txs: 1,
+        label: 1,
         label_subtype: 1,
         address: 1,
-        label: 1,
+        blockchain: 1,
       };
 
-      const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).limit(limit);
+      const cursor = await db.collection(clc_name).find(queryAtlas, { projection }).collation(
+        { locale: 'en', strength: 1 }
+      )
+        .limit(limit);
       labels = await cursor.toArray();
     }
+    console.log(labels)
 
     labels = labels.map((label) => ({
       address: label.address,
-      address_name: label.address_name,
-      label_type: label.label_type,
-      label_subtype: label.label_subtype,
+      blockchain: label.blockchain,
       label: label.label,
+      label_subtype: label.label_subtype,
+      last_txs: label.last_txs,
+      protocols: label.protocols,
     }));
 
   } catch (error) {
