@@ -7,9 +7,11 @@ import type { Viewport, Metadata } from "next";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
 
+import { Footer } from "@component/Footer";
 import { Toaster } from "@component/ui/Toaster";
-import { NexUIWrapper } from "@/components/wrapper/NexUIWrapper";
-import { QueryProvider } from "@/components/wrapper/QueryProvider";
+import { SiteHeader } from "@component/SiteHeader";
+import { NexUIWrapper } from "@component/wrapper/NexUIWrapper";
+import { QueryProvider } from "@component/wrapper/QueryProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
 
 import { siteConfig } from "@config/site";
@@ -120,10 +122,14 @@ export default function RootLayout({
     <html>
       <head />
       <body className={fontSans.className}>
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class">
           <NexUIWrapper>
             <QueryProvider>
-              <ChakraProvider>{children}</ChakraProvider>
+              <ChakraProvider>
+                <SiteHeader />
+                {children}
+                <Footer />
+              </ChakraProvider>
               <Toaster />
               <Analytics />
               <TailwindIndicator />

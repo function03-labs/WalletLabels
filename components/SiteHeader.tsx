@@ -1,11 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import { siteConfig } from "@config/site";
 
 import { Icons } from "@component/ui/Lucide";
 import { MainNav } from "@component/MainNav";
-import { buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@component/ui/Button";
+import { ThemeToggle } from "@component/config/ThemeToggle";
 
 export function SiteHeader() {
   return (
@@ -45,6 +44,7 @@ export function SiteHeader() {
                 <span className="sr-only">GitHub</span>
               </div>
             </Link>
+            <ThemeToggle />
           </nav>
         </div>
       </div>

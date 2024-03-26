@@ -1,5 +1,3 @@
-"use client";
-
 import { HierarchicalMenu, RefinementList } from "react-instantsearch";
 
 import {
