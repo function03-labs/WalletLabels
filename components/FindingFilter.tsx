@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Stats } from "react-instantsearch";
@@ -14,7 +16,7 @@ export function FindingFilter({
 }) {
   return (
     <div className="flex justify-between">
-      <Box className=" align-start flex gap-2  text-sm text-muted-foreground">
+      {/*       <Box className="align-start flex gap-2  text-sm text-muted-foreground">
         <div className="hidden whitespace-nowrap sm:block">
           Interesting finds:
         </div>
@@ -36,10 +38,10 @@ export function FindingFilter({
         ) : (
           <div>{<CustomHitsTags setSearchInput={setSearchInput} />}</div>
         )}
-      </Box>
+      </Box> */}
 
       <Stats
-        className="hidden whitespace-nowrap text-sm text-muted-foreground  sm:block"
+        className="hidden whitespace-nowrap text-sm text-muted-foreground sm:block"
         translationds={{
           stats(processingTimeMS: number) {
             let hitCountPhrase;

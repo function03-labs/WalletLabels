@@ -1,16 +1,15 @@
 import "@style/globals.css";
+import "@toast-ui/editor/dist/toastui-editor.css";
 import "@glideapps/glide-data-grid/dist/index.css";
-import "@glideapps/glide-data-grid-cells/dist/index.css";
 
 import { ThemeProvider } from "next-themes";
 import type { Viewport, Metadata } from "next";
 import { ChakraProvider } from "@chakra-ui/react";
-import { NextUIProvider } from "@nextui-org/react";
-
 import { Analytics } from "@vercel/analytics/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { Toaster } from "@/components/ui/Toaster";
+import { Toaster } from "@component/ui/Toaster";
+import { NexUIWrapper } from "@/components/wrapper/NexUIWrapper";
+import { QueryProvider } from "@/components/wrapper/QueryProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
 
 import { siteConfig } from "@config/site";
@@ -112,8 +111,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 };
 
-const queryClient = new QueryClient();
-
 export default function RootLayout({
   children,
 }: {
@@ -123,16 +120,16 @@ export default function RootLayout({
     <html>
       <head />
       <body className={fontSans.className}>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider attribute="class" defaultTheme="light">
-            <NextUIProvider>
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <NexUIWrapper>
+            <QueryProvider>
               <ChakraProvider>{children}</ChakraProvider>
-            </NextUIProvider>
-            <Toaster />
-            <Analytics />
-            <TailwindIndicator />
-          </ThemeProvider>
-        </QueryClientProvider>
+              <Toaster />
+              <Analytics />
+              <TailwindIndicator />
+            </QueryProvider>
+          </NexUIWrapper>
+        </ThemeProvider>
       </body>
     </html>
   );

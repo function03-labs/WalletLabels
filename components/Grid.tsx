@@ -1,17 +1,19 @@
+"use client";
+
 import React from "react";
 import { useTheme } from "next-themes";
-
-import pick from "@lib/color-picker";
-import { splitTags } from "@lib/utils";
-
-import { useGridContent } from "@hook/use-grid-content";
-import { useGridColumns } from "@hook/use-grid-columns";
 
 import DataEditor, {
   DataEditorRef,
   GridColumn,
   GridColumnIcon,
 } from "@glideapps/glide-data-grid";
+
+import pick from "@lib/color-picker";
+import { splitTags } from "@lib/utils";
+
+import { useGridContent } from "@hook/use-grid-content";
+import { useGridColumns } from "@hook/use-grid-columns";
 
 export function Grid(props: { data: { [key: string]: string }[] }) {
   const cols = useGridColumns();

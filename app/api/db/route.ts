@@ -2,7 +2,7 @@ import getHistory from "@lib/get-history";
 import { connectToDatabase } from "@lib/mongodb";
 
 export async function GET() {
-  let db = await connectToDatabase();
+  /*  let db = await connectToDatabase();
   let labels = await db.db
     .collection(process.env.CLC_NAME_WLBLS!)
     .find()
@@ -37,5 +37,12 @@ export async function GET() {
         "Content-Type": "application/json",
       },
     }
-  );
+  ); */
+
+  return new Response(JSON.stringify({ data: [], revalidate: 60 * 60 * 24 }), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }

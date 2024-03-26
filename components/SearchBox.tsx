@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useHits, useInstantSearch, useSearchBox } from "react-instantsearch";
 
-import Grid from "@component/Grid";
+import { Grid } from "@component/Grid";
 import { Badge } from "@component/ui/Badge";
 import SearchComponent from "@component/SearchBar";
 

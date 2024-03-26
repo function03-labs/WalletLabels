@@ -1,4 +1,7 @@
+"use client";
+
 import { useTheme } from "next-themes";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,13 +11,11 @@ import {
 import { Icons } from "@component/ui/Lucide";
 import { Button } from "@component/ui/Button";
 
-type Theme = "dark" | "system" | "light";
-
 export function Footer() {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   return (
-    <footer data-theme={theme ? theme : "light"}>
+    <footer>
       <div>
         Crafted by{" "}
         <a
