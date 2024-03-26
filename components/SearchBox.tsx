@@ -1,8 +1,13 @@
 "use client";
 
+import {
+  useHits,
+  useInstantSearch,
+  useSearchBox,
+  Stats,
+} from "react-instantsearch";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useHits, useInstantSearch, useSearchBox } from "react-instantsearch";
 
 import { Grid } from "@component/Grid";
 import { Badge } from "@component/ui/Badge";
@@ -74,10 +79,11 @@ type Hit = {
 };
 
 export default function CustomHitsTags({
-  setSearchInput,
+  params,
 }: {
-  setSearchInput: (value: string) => void;
+  params: { [key: string]: string | string[] | undefined };
 }) {
+  const router = useRouter();
   const { hits } = useHits() as { hits: Hit[] };
 
   const uniqueHits = hits.reduce((acc: Hit[], hit) => {
@@ -91,9 +97,12 @@ export default function CustomHitsTags({
     <div className="flex flex-wrap gap-1">
       {uniqueHits.slice(0, 8).map((category) => (
         <Badge
+          variant="outline"
           key={category.label}
           onClick={() => {
-            setSearchInput(category.label);
+            router.push(
+              `?query=${encodeURIComponent(category.label)}` as string
+            );
           }}
           className="hover:border-green-300 hover:text-foreground"
         >
@@ -101,5 +110,39 @@ export default function CustomHitsTags({
         </Badge>
       ))}
     </div>
+  );
+}
+
+export function CustomHitsBadge({
+  category,
+}: {
+  category: { label: string; emoji: string };
+}) {
+  const router = useRouter();
+
+  return (
+    <Badge
+      variant="outline"
+      onClick={() => {
+        router.push(`?query=${encodeURIComponent(category.label)}` as string);
+      }}
+      className="hover:border-green-300 hover:text-foreground"
+    >
+      {category.emoji + " " + category.label}
+    </Badge>
+  );
+}
+
+export function StatsWrapper() {
+  return (
+    <Stats
+      className="hidden whitespace-nowrap text-sm text-muted-foreground sm:block"
+      translationds={{
+        stats(processingTimeMS: number) {
+          let hitCountPhrase;
+          return `${hitCountPhrase} found in ${processingTimeMS.toLocaleString()}ms`;
+        },
+      }}
+    />
   );
 }
