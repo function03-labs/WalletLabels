@@ -7,6 +7,18 @@
   color: #fff;
 }
 
+.custom-filter-platforms {
+  text-align: center;
+  margin-bottom: 0px !important;
+}
+
+.custom-filter-platforms-icons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: center;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

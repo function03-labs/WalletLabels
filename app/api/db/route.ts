@@ -37,11 +37,4 @@ export async function GET() {
       },
     }
   );
-
-  return new Response(JSON.stringify({ data: [], revalidate: 60 * 60 * 24 }), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 }

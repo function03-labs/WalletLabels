@@ -46,7 +46,15 @@ export default async function Page({
             </h1>
             <p className="max-w-[700px] text-center text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
               More than
-              <CountingUp />
+              <CountingUp
+                start={0}
+                end={70}
+                duration={2}
+                decimals={0}
+                prefix=" "
+                suffix="M "
+                className="text-xl font-semibold text-slate-700 dark:text-slate-400"
+              />
               addresses labeled for you to easily identify your{" "}
               <br className="hidden sm:inline" />
               favorite wallets and exchanges.
