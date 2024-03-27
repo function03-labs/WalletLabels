@@ -104,7 +104,7 @@ export default function CustomHitsTags({
               `?query=${encodeURIComponent(category.label)}` as string
             );
           }}
-          className="hover:border-green-300 hover:text-foreground"
+          className="cursor-pointer hover:border-green-300 hover:text-foreground"
         >
           {category.label}
         </Badge>
@@ -126,7 +126,7 @@ export function CustomHitsBadge({
       onClick={() => {
         router.push(`?query=${encodeURIComponent(category.label)}` as string);
       }}
-      className="hover:border-green-300 hover:text-foreground"
+      className="cursor-pointer hover:border-green-300 hover:text-foreground"
     >
       {category.emoji + " " + category.label}
     </Badge>

@@ -1,15 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { HierarchicalMenu, RefinementList } from "react-instantsearch";
 
 export function Refinement() {
-  const router = useRouter();
-
-  const handleClick = (item: any) => {
-    router.push(`?query=${encodeURIComponent(item.value)}` as string);
-  };
-
   return (
     <RefinementList
       attribute="label_type"

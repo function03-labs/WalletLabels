@@ -1,35 +1,28 @@
+import { Grid } from "@component/Grid";
 import { SearchBox } from "@component/SearchBox";
+import { CountingUp } from "@component/CountingUp";
 import { FindingFilter } from "@component/FindingFilter";
 import { ActivityFilter } from "@component/ActivityFilter";
-
-import { CountingUp } from "@component/CountingUp";
 
 import { FramerWrapper } from "@component/wrapper/FramerWrapper";
 import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 
-/* async function getData() {
+async function getData() {
   try {
-    const data = await fetch("/api/db");
+    const data = await fetch("http://localhost:3000/api/db");
     return data.json();
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
-} */
+}
 
-export default function Page({
+export default async function Page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  //const data = await getData();
-
-  /* const [searchInput, setSearchInput] = useState("");
-  const [initialSearch, setinitialSearch] = useState(false);
-  const [isFilterVisible, setIsFilterVisible] = useState(false);
-
-  const toggleFilterVisibility = () => {
-    setIsFilterVisible(!isFilterVisible);
-  }; */
+  const data = await getData();
+  console.log(data);
 
   return (
     <FramerWrapper>
@@ -65,7 +58,10 @@ export default function Page({
             </div>
           </div>
         </section>
-        <ActivityFilter params={searchParams} />
+        {/* <ActivityFilter params={searchParams} /> */}
+        <div className="container">
+          <Grid data={data} />
+        </div>
       </SearchWrapper>
     </FramerWrapper>
   );

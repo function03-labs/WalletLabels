@@ -13,10 +13,8 @@ import {
 
 import CryptoIcon from "@lib/get-crypto-icons";
 
-type Label = { [key: string]: string };
-
 interface Props {
-  data: Label[];
+  data: { [key: string]: string }[];
   getTagsFromLabels: (labels: string) => { tag: string; color: string }[];
 }
 
@@ -24,13 +22,17 @@ export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
   return useCallback(
     (cell: Item): GridCell => {
       const [col, row] = cell;
-      const dataRow = data[row];
+      console.log(data);
+      // @ts-ignore: Unreachable code error
+      const dataRow = data.data[row];
       if (!dataRow) {
+        console.log("No data row found for row", row);
         return {
           kind: GridCellKind.Loading,
           allowOverlay: false,
         };
       }
+
       let indexes = [
         "address",
         "address_name",
@@ -40,6 +42,7 @@ export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
         "tag",
         "Etherscan",
       ];
+
       if (dataRow.balanceHistory) {
         indexes = [
           "address",
@@ -111,7 +114,9 @@ export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
           },
         };
         return d;
-      } else if (indexes[col] === "tag") {
+      }
+
+      if (indexes[col] === "tag") {
         return {
           kind: GridCellKind.Custom,
           allowOverlay: true,
