@@ -9,10 +9,10 @@ import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 
 async function getData() {
   try {
-    const data = await fetch("http://localhost:3000/api/db");
+    const data = await fetch(`${process.env.PUBLIC_URL}/api/db`);
     return data.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -22,7 +22,6 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const data = await getData();
-  console.log(data);
 
   return (
     <FramerWrapper>

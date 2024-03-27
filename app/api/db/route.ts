@@ -19,10 +19,7 @@ export async function GET() {
     };
   });
 
-  console.log(labels);
-
   let response = labels;
-
   const addresses = response.map((item) => item.address);
 
   const history = await getHistory(addresses);

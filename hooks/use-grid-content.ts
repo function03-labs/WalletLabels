@@ -1,15 +1,10 @@
 import { useCallback } from "react";
+
 import {
   TagsCellType,
-  ButtonCellType,
   SparklineCellType,
 } from "@glideapps/glide-data-grid-cells";
-import {
-  Item,
-  GridCell,
-  GridCellKind,
-  DrilldownCell,
-} from "@glideapps/glide-data-grid";
+import { Item, GridCell, GridCellKind } from "@glideapps/glide-data-grid";
 
 import CryptoIcon from "@lib/get-crypto-icons";
 
@@ -18,11 +13,10 @@ interface Props {
   getTagsFromLabels: (labels: string) => { tag: string; color: string }[];
 }
 
-export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
+export function useGridContent({ data, getTagsFromLabels }: Props) {
   return useCallback(
     (cell: Item): GridCell => {
       const [col, row] = cell;
-      console.log(data);
       // @ts-ignore: Unreachable code error
       const dataRow = data.data[row];
       if (!dataRow) {
@@ -57,21 +51,17 @@ export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
       }
 
       if (indexes[col] === "label") {
-        const path_to_img = `./assets/32/color/${CryptoIcon(
-          dataRow[indexes[col]]
-        )}.png`;
-        const d: DrilldownCell = {
+        return {
           kind: GridCellKind.Drilldown,
           cursor: "pointer",
           allowOverlay: false,
           data: [
             {
               text: dataRow[indexes[col]],
-              img: path_to_img,
+              img: `./assets/32/color/${CryptoIcon(dataRow[indexes[col]])}.png`,
             },
           ],
         };
-        return d;
       }
 
       if (indexes[col] === "address") {
@@ -89,7 +79,7 @@ export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
       }
 
       if (indexes[col] === "Etherscan") {
-        const d: ButtonCellType = {
+        return {
           kind: GridCellKind.Custom,
           cursor: "pointer",
           allowOverlay: false,
@@ -113,7 +103,6 @@ export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
             baseFontStyle: "700 12px",
           },
         };
-        return d;
       }
 
       if (indexes[col] === "tag") {
@@ -151,15 +140,14 @@ export const useGridContent = ({ data, getTagsFromLabels }: Props) => {
         } as SparklineCellType;
       }
 
-      const d = dataRow[indexes[col]];
       return {
         kind: GridCellKind.Text,
         allowOverlay: false,
-        displayData: d,
-        data: d,
+        displayData: dataRow[indexes[col]],
+        data: dataRow[indexes[col]],
       };
     },
 
     [data, getTagsFromLabels]
   );
-};
+}

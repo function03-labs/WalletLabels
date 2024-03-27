@@ -8,7 +8,6 @@ import DataEditor, {
   GridColumn,
   GridColumnIcon,
 } from "@glideapps/glide-data-grid";
-
 import pick from "@lib/color-picker";
 import { splitTags } from "@lib/utils";
 
@@ -50,7 +49,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
 
   return (
     <DataEditor
-      className="rounded-xl shadow-lg"
+      className=" rounded-xl shadow-lg"
       smoothScrollY={true}
       width={"100%"}
       height={"50em"}
