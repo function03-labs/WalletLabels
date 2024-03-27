@@ -1,5 +1,3 @@
-import { HierarchicalMenu, RefinementList } from "react-instantsearch";
-
 import {
   Sheet,
   SheetContent,
@@ -10,6 +8,7 @@ import {
 } from "@component/ui/Sheet";
 import { CustomHits } from "@component/SearchBox";
 import { Separator } from "@component/ui/Separator";
+import { Refinement } from "@component/InstantSearch";
 import { buttonVariants } from "@component/ui/Button";
 
 import { cn } from "@/lib/utils";
@@ -42,34 +41,25 @@ export function ActivityFilter({
           </svg>
         </button>
       </SheetTrigger>
-      <SheetContent className="w-[400px] sm:w-[540px]">
+      <SheetContent className="w-[400px] sm:w-[540px]" side={"left"}>
         <SheetHeader>
           <SheetTitle>Filter by Activity</SheetTitle>
-          <SheetDescription></SheetDescription>
-          <RefinementList
-            className="mt-3"
-            attribute="label_type"
-            limit={10}
-            showMore={true}
-            showMoreLimit={20}
-            searchablePlaceholder="Search by activity"
-            searchable={true}
-            // onClick={() => setinitialSearch(true)}
-            transformItems={(items) =>
-              items.sort((a, b) => (a.count < b.count ? 1 : -1))
-            }
-          />
+          <SheetDescription>
+            Filter by activity to find the right contract for you.
+          </SheetDescription>
+          <Refinement />
+
           <Separator orientation="horizontal" />
 
-          <h5 className="mt-5">Contract Type</h5>
-          <HierarchicalMenu
+          <SheetTitle>Contract Type</SheetTitle>
+          {/*   <HierarchicalMenu
             // onClick={() => setinitialSearch(true)}
             className="mt-3"
             attributes={["label_subtype"]}
             transformItems={(items) =>
               items.sort((a, b) => (a.count < b.count ? 1 : -1))
             }
-          />
+          /> */}
         </SheetHeader>
       </SheetContent>
     </Sheet>
