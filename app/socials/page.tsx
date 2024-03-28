@@ -165,13 +165,13 @@ const socialIcons = (
     },
   };
 } */
-export default function SocialsPage({
+export default function SocialsPage(/* {
   data,
   pageCount,
 }: {
   data: sociallabels_db1[];
   pageCount: number;
-}) {
+} */) {
   return (
     <section className="container items-center gap-10 pb-8 pt-12 md:py-14">
       <div className="flex flex-col items-center gap-4">

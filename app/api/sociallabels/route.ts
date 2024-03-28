@@ -14,7 +14,7 @@ export async function GET(
 ) {
   const { page, per_page, sort, name, status, priority } = await req.json();
 
-  const limit =
+  /*   const limit =
     typeof per_page === "string" ? Math.min(parseInt(per_page), 40) : 10;
   const offset = typeof page === "string" ? (parseInt(page) - 1) * limit : 0;
 
@@ -87,10 +87,15 @@ export async function GET(
     },
   });
 
-  const pageCount = Math.ceil(totalLabels / limit);
+  const pageCount = Math.ceil(totalLabels / limit); */
 
-  return new Response(JSON.stringify({ data: labels, pageCount }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  return new Response(
+    JSON.stringify({
+      /* data: labels, pageCount */
+    }),
+    {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    }
+  );
 }
