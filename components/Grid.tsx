@@ -8,6 +8,8 @@ import DataEditor, {
   GridColumn,
   GridColumnIcon,
 } from "@glideapps/glide-data-grid";
+import { allCells } from "@glideapps/glide-data-grid-cells";
+
 import pick from "@lib/color-picker";
 import { splitTags } from "@lib/utils";
 
@@ -49,13 +51,14 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
 
   return (
     <DataEditor
-      className=" rounded-xl shadow-lg"
+      className="rounded-xl shadow-lg"
       smoothScrollY={true}
       width={"100%"}
       height={"50em"}
       getCellContent={getContent}
       columns={
-        props.data[0] && props.data[0].balanceHistory
+        // @ts-ignore: Unreachable code error
+        props.data.data[0] && props.data.data[0].balanceHistory
           ? [
               ...cols.slice(0, cols.length - 1),
               ...cols_balanceChart,
@@ -63,7 +66,8 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
             ]
           : cols
       }
-      rows={props.data.length}
+      // @ts-ignore: Unreachable code error
+      rows={props.data.data.length}
       keybindings={{ search: true }}
       getCellsForSelection={true}
       rowMarkers="number"
@@ -71,6 +75,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
       overscrollY={50}
       smoothScrollX={true}
       ref={ref}
+      customRenderers={allCells}
     />
   );
 }

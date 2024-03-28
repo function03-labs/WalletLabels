@@ -66,7 +66,7 @@ export default async function Page({
           </div>
         </section>
         {/* <ActivityFilter params={searchParams} /> */}
-        <div className="container">
+        <div className="px-12">
           <Grid data={data} />
         </div>
       </SearchWrapper>

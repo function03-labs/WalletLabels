@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import {
   TagsCellType,
   SparklineCellType,
+  ButtonCellType,
 } from "@glideapps/glide-data-grid-cells";
 import { Item, GridCell, GridCellKind } from "@glideapps/glide-data-grid";
 
@@ -79,7 +80,7 @@ export function useGridContent({ data, getTagsFromLabels }: Props) {
       }
 
       if (indexes[col] === "Etherscan") {
-        return {
+        const d: ButtonCellType = {
           kind: GridCellKind.Custom,
           cursor: "pointer",
           allowOverlay: false,
@@ -103,18 +104,21 @@ export function useGridContent({ data, getTagsFromLabels }: Props) {
             baseFontStyle: "700 12px",
           },
         };
+        return d;
       }
 
       if (indexes[col] === "tag") {
+        const tags = getTagsFromLabels(dataRow[indexes[1]]);
+
         return {
           kind: GridCellKind.Custom,
           allowOverlay: true,
-          copyData: "tags",
+          copyData: "tags-cell",
           data: {
             kind: "tags-cell",
-            possibleTags: getTagsFromLabels(dataRow[indexes[1]]),
+            possibleTags: tags.map((t) => ({ tag: t.tag, color: t.color })),
             readonly: true,
-            tags: getTagsFromLabels(dataRow[indexes[1]]).map((t) => t.tag),
+            tags: tags.map((t) => t.tag),
           },
         } as TagsCellType;
       }

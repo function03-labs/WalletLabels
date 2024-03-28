@@ -10,7 +10,7 @@ import { CountingUp } from "@component/CountingUp";
 import { socialMediaProviders } from "@component/SocialMediaProviders";
 
 /* import DemoPage from "@/components/socials/page";
-*/
+ */
 
 interface SocialPageProps {
   query: {
