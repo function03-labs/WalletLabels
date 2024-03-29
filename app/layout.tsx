@@ -81,10 +81,10 @@ export const metadata: Metadata = {
       url: "https://www.findmalek.com",
     },
   ],
-  creator: "Aiden",
+  creator: "Function03 Labs",
   openGraph: {
     type: "website",
-    locale: "fr_FR",
+    locale: "en_EN",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,

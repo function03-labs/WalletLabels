@@ -1,5 +1,6 @@
 import { Grid } from "@component/Grid";
 import { SearchBox } from "@component/SearchBox";
+import { CustomHits } from "@component/CustomHits";
 import { CountingUp } from "@component/CountingUp";
 import { FindingFilter } from "@component/FindingFilter";
 import { ActivityFilter } from "@component/ActivityFilter";
@@ -7,9 +8,13 @@ import { ActivityFilter } from "@component/ActivityFilter";
 import { FramerWrapper } from "@component/wrapper/FramerWrapper";
 import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 
-async function getData() {
+async function getData(searchParams: {
+  [key: string]: string | string[] | undefined;
+}) {
   try {
-    const data = await fetch(`${process.env.PUBLIC_URL}/api/db`);
+    const url = new URL(`${process.env.PUBLIC_URL}/api/db`);
+    url.search = searchParams.toString();
+    const data = await fetch(url);
     return data.json();
   } catch (error) {
     console.error(error);
@@ -21,7 +26,9 @@ export default async function Page({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const data = await getData();
+  const data = await getData(
+    searchParams as { [key: string]: string | string[] | undefined }
+  );
 
   return (
     <FramerWrapper>
@@ -67,7 +74,7 @@ export default async function Page({
         </section>
         {/* <ActivityFilter params={searchParams} /> */}
         <div className="px-12">
-          <Grid data={data} />
+          {searchParams.query ? <CustomHits /> : <Grid data={data} />}
         </div>
       </SearchWrapper>
     </FramerWrapper>

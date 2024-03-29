@@ -1,7 +1,7 @@
 import getHistory from "@lib/get-history";
 import { connectToDatabase } from "@lib/mongodb";
 
-export async function GET() {
+export async function GET(request: Request) {
   let db = await connectToDatabase();
   let labels = await db.db
     .collection(process.env.CLC_NAME_WLBLS!)

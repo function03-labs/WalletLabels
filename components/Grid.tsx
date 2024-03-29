@@ -7,11 +7,13 @@ import DataEditor, {
   DataEditorRef,
   GridColumn,
   GridColumnIcon,
+  Theme,
 } from "@glideapps/glide-data-grid";
 import { allCells } from "@glideapps/glide-data-grid-cells";
 
 import pick from "@lib/color-picker";
 import { splitTags } from "@lib/utils";
+import { darkTheme } from "@config/theme";
 
 import { useGridContent } from "@hook/use-grid-content";
 import { useGridColumns } from "@hook/use-grid-columns";
@@ -20,6 +22,11 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
   const cols = useGridColumns();
   const { resolvedTheme } = useTheme();
   const ref = React.useRef<DataEditorRef | null>(null);
+  const [theme, setTheme] = React.useState<Partial<Theme>>({});
+
+  React.useEffect(() => {
+    setTheme(resolvedTheme === "dark" ? darkTheme : {});
+  }, [resolvedTheme]);
 
   const getTagsFromLabels = (arg0: string) => {
     const tags = splitTags(arg0);
@@ -51,6 +58,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
 
   return (
     <DataEditor
+      theme={theme}
       className="rounded-xl shadow-lg"
       smoothScrollY={true}
       width={"100%"}
