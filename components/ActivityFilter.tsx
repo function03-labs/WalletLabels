@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import {
   Sheet,
   SheetContent,
@@ -6,18 +10,36 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@component/ui/Sheet";
-import { CustomHits } from "@component/SearchBox";
+import { Checkbox } from "@component/ui/Checkbox";
 import { Separator } from "@component/ui/Separator";
-import { Refinement } from "@component/InstantSearch";
 import { buttonVariants } from "@component/ui/Button";
+import { Refinement, Hierarchical } from "@component/InstantSearch";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
+import { activities } from "@config/activities";
 
 export function ActivityFilter({
   params,
 }: {
   params: { [key: string]: string | string[] | undefined };
 }) {
+  const router = useRouter();
+  function handleCheckboxClick(activity, router, params) {
+    const { query } = router;
+    let updatedQuery = { ...query };
+
+    if (params.activity) {
+      const existingFindings = query.finding ? query.finding.split(" ") : [];
+      const newFindings = [...existingFindings, ...activity.finding];
+      updatedQuery.finding = newFindings.join(" ");
+    } else {
+      // If activity param doesn't exist, set the findings
+      updatedQuery.finding = activity.finding.join(" ");
+    }
+
+    // Update the URL with the new query parameters
+    router.push(`?query=${updatedQuery.query}&finding=${updatedQuery.finding}`);
+  }
   return (
     <Sheet>
       <SheetTrigger>
@@ -47,19 +69,23 @@ export function ActivityFilter({
           <SheetDescription>
             Filter by activity to find the right contract for you.
           </SheetDescription>
+          {activities.map((activity) => (
+            <div key={activity.label} className="flex items-center gap-2">
+              <Checkbox
+                id="terms1"
+                checked={params.activity === activity.label}
+                onClick={() => handleCheckboxClick(activity, router, params)}
+              />
+              <span className="text-sm">{activity.label}</span>
+            </div>
+          ))}
+
           <Refinement />
 
           <Separator orientation="horizontal" />
 
           <SheetTitle>Contract Type</SheetTitle>
-          {/*   <HierarchicalMenu
-            // onClick={() => setinitialSearch(true)}
-            className="mt-3"
-            attributes={["label_subtype"]}
-            transformItems={(items) =>
-              items.sort((a, b) => (a.count < b.count ? 1 : -1))
-            }
-          /> */}
+          <Hierarchical />
         </SheetHeader>
       </SheetContent>
     </Sheet>

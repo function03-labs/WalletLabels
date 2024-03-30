@@ -38,19 +38,6 @@ export function useGridContent({ data, getTagsFromLabels }: Props) {
         "Etherscan",
       ];
 
-      if (dataRow.balanceHistory) {
-        indexes = [
-          "address",
-          "address_name",
-          "label_type",
-          "label_subtype",
-          "label",
-          "tag",
-          "balanceHistory",
-          "Etherscan",
-        ];
-      }
-
       if (indexes[col] === "label") {
         return {
           kind: GridCellKind.Drilldown,
@@ -121,27 +108,6 @@ export function useGridContent({ data, getTagsFromLabels }: Props) {
             tags: tags.map((t) => t.tag),
           },
         } as TagsCellType;
-      }
-
-      if (indexes[col] === "balanceHistory") {
-        const values: number[] = JSON.parse(dataRow[indexes[col]]).map(
-          (x: string) => x[1]
-        );
-        return {
-          kind: GridCellKind.Custom,
-          allowOverlay: false,
-          copyData: "4",
-          data: {
-            kind: "sparkline-cell",
-            values: values,
-            displayValues: values.map((x) => Math.round(x).toString()),
-            color: Math.max(...values) > 1 ? "#77c4c4" : "#D98466",
-            yAxis: [
-              Math.round(Math.min(...values)),
-              Math.round(Math.max(...values)) + 1,
-            ],
-          },
-        } as SparklineCellType;
       }
 
       return {

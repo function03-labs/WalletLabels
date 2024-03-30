@@ -72,7 +72,7 @@ export default async function Page({
             </div>
           </div>
         </section>
-        {/* <ActivityFilter params={searchParams} /> */}
+        <ActivityFilter params={searchParams} />
         <div className="px-12">
           {searchParams.query ? <CustomHits /> : <Grid data={data} />}
         </div>

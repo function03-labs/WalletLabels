@@ -44,18 +44,6 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
     getTagsFromLabels,
   });
 
-  const cols_balanceChart = React.useMemo<GridColumn[]>(() => {
-    return [
-      {
-        title: "Balance History",
-        id: "balanceHistory",
-        icon: GridColumnIcon.HeaderGeoDistance,
-        grow: 1,
-        group: "Extra",
-      },
-    ];
-  }, []);
-
   return (
     <DataEditor
       theme={theme}
@@ -64,16 +52,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
       width={"100%"}
       height={"50em"}
       getCellContent={getContent}
-      columns={
-        // @ts-ignore: Unreachable code error
-        props.data.data[0] && props.data.data[0].balanceHistory
-          ? [
-              ...cols.slice(0, cols.length - 1),
-              ...cols_balanceChart,
-              ...cols.slice(cols.length - 1),
-            ]
-          : cols
-      }
+      columns={cols}
       // @ts-ignore: Unreachable code error
       rows={props.data.data.length}
       keybindings={{ search: true }}
