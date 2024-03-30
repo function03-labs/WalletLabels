@@ -12,4 +12,5 @@ export interface SiteConfig {
   };
   url: string;
   ogImage: string;
+  dns: string;
 }

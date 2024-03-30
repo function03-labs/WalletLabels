@@ -1,11 +1,22 @@
 import Link from "next/link";
 import * as React from "react";
+import Image from "next/image";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 import { NavItem } from "@/types/nav";
-import { siteConfig } from "@/config/site";
+import { chains } from "@config/chains";
+import { siteConfig } from "@config/site";
 
 import { Icons } from "@component/ui/Lucide";
+import { buttonVariants } from "@component/ui/Button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@component/ui/DropdownMenu";
 
 interface MainNavProps {
   items: NavItem[];
@@ -14,13 +25,46 @@ interface MainNavProps {
 export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex items-center gap-6 md:gap-10">
-      <Link
-        href="/"
-        className="flex items-center space-x-1.5 dark:text-slate-100"
-      >
-        <Icons.logo className="size-6 " />
-        <span className="font-bold sm:inline-block">{siteConfig.name}</span>
-      </Link>
+      <div className="flex items-center space-x-1.5 dark:text-slate-100">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+            <Icons.logo
+              className={cn(
+                buttonVariants({
+                  variant: "secondary",
+                  size: "icon",
+                }),
+                "mx-2 size-6 hover:opacity-80"
+              )}
+            />
+            <span className="font-bold sm:inline-block">{siteConfig.name}</span>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent>
+            <DropdownMenuLabel>
+              <span className="font-semibold">Our supported chains</span>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            {chains.map((chain, index) => (
+              <DropdownMenuItem key={index}>
+                <Link
+                  className="flex w-full items-center gap-2"
+                  href={`https://${chain.id}.${siteConfig.dns}`}
+                >
+                  <Image
+                    src={`https://placehold.co/100x100/?text=${chain.label}`}
+                    alt={chain.label}
+                    width={32}
+                    height={32}
+                    className="size-4 rounded-md"
+                  />
+                  <span>{chain.label}</span>
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
 
       <nav className="hidden gap-6 md:flex">
         {items?.map(

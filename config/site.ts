@@ -28,4 +28,5 @@ export const siteConfig: SiteConfig = {
   },
   url: "https://walletlabels.xyz",
   ogImage: "https://walletlabels.xyz/og.png",
+  dns: "walletlabels.xyz",
 };
