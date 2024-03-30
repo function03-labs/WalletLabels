@@ -55,7 +55,6 @@ export function SearchBar({
                   onChange={(e) => handleSearchLogin(e.target.value)}
                   type="text"
                   placeholder="Search by address or name.."
-                  color={colorMode === "light" ? "gray.600" : "whitesmoke"}
                   bg={colorMode === "light" ? "" : "gray.900"}
                   borderColor="gray.300"
                   borderRadius="xl"

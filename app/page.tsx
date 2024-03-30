@@ -4,6 +4,7 @@ import { CustomHits } from "@component/CustomHits";
 import { CountingUp } from "@component/CountingUp";
 import { FindingFilter } from "@component/FindingFilter";
 import { ActivityFilter } from "@component/ActivityFilter";
+import { HoverBorderGradient } from "@component/ui/HoverBorderGradient";
 
 import { FramerWrapper } from "@component/wrapper/FramerWrapper";
 import { SearchWrapper } from "@component/wrapper/SearchWrapper";
@@ -35,19 +36,25 @@ export default async function Page({
       <SearchWrapper>
         <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
           <div className="flex flex-col items-center gap-6">
-            <div className="hidden sm:flex sm:justify-center">
-              <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/30 hover:ring-gray-900/50 dark:text-gray-400 dark:ring-white/30 dark:hover:ring-white/50">
-                Check out our new API endpoints.{" "}
-                <a
-                  href="https://docs.walletlabels.xyz/"
-                  className="font-semibold text-blue-800 dark:text-white"
-                >
-                  Access now <span aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
+            <div className="flex justify-center text-center">
+              <HoverBorderGradient
+                containerClassName="rounded-full"
+                as="button"
+                className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
+              >
+                <div className="px-3 py-1 text-sm">
+                  Check out our new API endpoints.{" "}
+                  <a
+                    href="https://docs.walletlabels.xyz/"
+                    className="font-semibold text-blue-800 dark:text-white"
+                  >
+                    Access now <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </HoverBorderGradient>
             </div>
 
-            <h1 className="text-center text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="text-center text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
               What would you like to <br className="hidden sm:inline" />
               search today?
             </h1>
