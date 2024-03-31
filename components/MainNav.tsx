@@ -26,18 +26,19 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex items-center gap-6 md:gap-10">
       <div className="flex items-center space-x-1.5 dark:text-slate-100">
+        <Icons.logo
+          className={cn(
+            buttonVariants({
+              variant: "secondary",
+              size: "icon",
+            }),
+            "mx-2 size-6 hover:opacity-80"
+          )}
+        />
+        <span className="font-bold sm:inline-block">{siteConfig.name}</span>
         <DropdownMenu>
           <DropdownMenuTrigger className="rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
-            <Icons.logo
-              className={cn(
-                buttonVariants({
-                  variant: "secondary",
-                  size: "icon",
-                }),
-                "mx-2 size-6 hover:opacity-80"
-              )}
-            />
-            <span className="font-bold sm:inline-block">{siteConfig.name}</span>
+            <Icons.chevronsUpDown className="size-4" />
           </DropdownMenuTrigger>
 
           <DropdownMenuContent>
