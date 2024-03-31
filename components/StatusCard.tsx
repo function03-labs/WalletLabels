@@ -15,7 +15,7 @@ export function StatusCard({
   description: string;
 }) {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[350px] px-1">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

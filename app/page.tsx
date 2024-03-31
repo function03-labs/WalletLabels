@@ -74,7 +74,7 @@ export default async function Page({
               <br className="hidden sm:inline" />
               favorite wallets and exchanges.
             </p>
-            <div className="mt-3 w-full flex flex-col sm:flex-row sm:justify-center sm:w-4/5">
+            <div className="mt-3 w-full flex flex-col space-x-2 sm:flex-row sm:justify-center sm:w-4/5">
               <StatusCard
                 title="Explore"
                 description="Discover the latest addresses labeled by our community."
