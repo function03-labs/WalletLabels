@@ -37,8 +37,9 @@ export function MainNav({ items }: MainNavProps) {
         />
         <span className="font-bold sm:inline-block">{siteConfig.name}</span>
         <DropdownMenu>
-          <DropdownMenuTrigger className="rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
-            <Icons.ethereum className="size-4" />
+          <DropdownMenuTrigger className="flex items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+            <Icons.ethereum className="ml-2 size-5" />
+            <Icons.chevronsUpDown className="ml-2 size-3" />
           </DropdownMenuTrigger>
 
           <DropdownMenuContent>

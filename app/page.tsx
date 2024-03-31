@@ -1,5 +1,6 @@
 import { Grid } from "@component/Grid";
 import { SearchBox } from "@component/SearchBox";
+import { StatusCard } from "@component/StatusCard";
 import { CustomHits } from "@component/CustomHits";
 import { CountingUp } from "@component/CountingUp";
 import { FindingFilter } from "@component/FindingFilter";
@@ -8,6 +9,7 @@ import { HoverBorderGradient } from "@component/ui/HoverBorderGradient";
 
 import { FramerWrapper } from "@component/wrapper/FramerWrapper";
 import { SearchWrapper } from "@component/wrapper/SearchWrapper";
+import { Stat } from "@chakra-ui/react";
 
 async function getData(searchParams: {
   [key: string]: string | string[] | undefined;
@@ -53,7 +55,6 @@ export default async function Page({
                 </div>
               </HoverBorderGradient>
             </div>
-
             <h1 className="text-center text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
               What would you like to <br className="hidden sm:inline" />
               search today?
@@ -73,17 +74,32 @@ export default async function Page({
               <br className="hidden sm:inline" />
               favorite wallets and exchanges.
             </p>
+            <div className="mt-3 w-full flex flex-col sm:flex-row sm:justify-center sm:w-4/5">
+              <StatusCard
+                title="Explore"
+                description="Discover the latest addresses labeled by our community."
+              />
+              <StatusCard
+                title="Earn"
+                description="Contribute to the community by labeling addresses."
+              />
+              <StatusCard
+                title="Submit labels"
+                description="Submit your own labels to contribute to the community."
+              />
+            </div>
             <div className="mt-3 w-full text-center sm:w-4/5">
               <SearchBox params={searchParams} />
               <FindingFilter params={searchParams} />
-            </div>
+            </div>{" "}
+            *
           </div>
         </section>
-
         <ActivityFilter />
         <div className="px-12">
           {searchParams.query ? <CustomHits /> : <Grid data={data} />}
-        </div>
+        </div>{" "}
+        *
       </SearchWrapper>
     </FramerWrapper>
   );

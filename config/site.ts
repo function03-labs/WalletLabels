@@ -9,16 +9,17 @@ export const siteConfig: SiteConfig = {
       title: "Home",
       href: "/",
     },
-/*     {
+    /*     {
       title: "Social Labels",
       href: "/socials",
       disabled: false,
       new: true,
     },
- */    {
+ */ {
       title: "API",
       href: "https://docs.walletlabels.xyz",
       disabled: false,
+      new: true,
     },
   ],
   links: {
