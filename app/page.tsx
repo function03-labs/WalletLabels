@@ -1,15 +1,17 @@
 import { Grid } from "@component/Grid";
 import { SearchBox } from "@component/SearchBox";
-import { StatusCard } from "@component/StatusCard";
 import { CustomHits } from "@component/CustomHits";
 import { CountingUp } from "@component/CountingUp";
+import { Boxes } from "@component/ui/BackgroundBoxes";
 import { FindingFilter } from "@component/FindingFilter";
 import { ActivityFilter } from "@component/ActivityFilter";
+import { BentoGrid, BentoGridItem } from "@component/ui/BentoGrid";
 import { HoverBorderGradient } from "@component/ui/HoverBorderGradient";
 
 import { FramerWrapper } from "@component/wrapper/FramerWrapper";
 import { SearchWrapper } from "@component/wrapper/SearchWrapper";
-import { Stat } from "@chakra-ui/react";
+
+import { items } from "@config/grid";
 
 async function getData(searchParams: {
   [key: string]: string | string[] | undefined;
@@ -36,6 +38,7 @@ export default async function Page({
   return (
     <FramerWrapper>
       <SearchWrapper>
+        <Boxes />
         <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
           <div className="flex flex-col items-center gap-6">
             <div className="flex justify-center text-center">
@@ -74,32 +77,28 @@ export default async function Page({
               <br className="hidden sm:inline" />
               favorite wallets and exchanges.
             </p>
-            <div className="mt-3 w-full flex flex-col space-x-2 sm:flex-row sm:justify-center sm:w-4/5">
-              <StatusCard
-                title="Explore"
-                description="Discover the latest addresses labeled by our community."
-              />
-              <StatusCard
-                title="Earn"
-                description="Contribute to the community by labeling addresses."
-              />
-              <StatusCard
-                title="Submit labels"
-                description="Submit your own labels to contribute to the community."
-              />
-            </div>
+            <BentoGrid className="mx-auto ">
+              {items.map((item, i) => (
+                <BentoGridItem
+                  key={i}
+                  title={item.title}
+                  description={item.description}
+                  header={item.header}
+                  icon={item.icon}
+                  className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+                />
+              ))}
+            </BentoGrid>
             <div className="mt-3 w-full text-center sm:w-4/5">
               <SearchBox params={searchParams} />
               <FindingFilter params={searchParams} />
-            </div>{" "}
-            *
+            </div>
           </div>
         </section>
         <ActivityFilter />
         <div className="px-12">
           {searchParams.query ? <CustomHits /> : <Grid data={data} />}
-        </div>{" "}
-        *
+        </div>
       </SearchWrapper>
     </FramerWrapper>
   );
