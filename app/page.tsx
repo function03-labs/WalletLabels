@@ -2,7 +2,6 @@ import { Grid } from "@component/Grid";
 import { SearchBox } from "@component/SearchBox";
 import { CustomHits } from "@component/CustomHits";
 import { CountingUp } from "@component/CountingUp";
-import { Boxes } from "@component/ui/BackgroundBoxes";
 import { FindingFilter } from "@component/FindingFilter";
 import { ActivityFilter } from "@component/ActivityFilter";
 import { BentoGrid, BentoGridItem } from "@component/ui/BentoGrid";
@@ -38,7 +37,6 @@ export default async function Page({
   return (
     <FramerWrapper>
       <SearchWrapper>
-        <Boxes />
         <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
           <div className="flex flex-col items-center gap-6">
             <div className="flex justify-center text-center">
@@ -77,7 +75,7 @@ export default async function Page({
               <br className="hidden sm:inline" />
               favorite wallets and exchanges.
             </p>
-            <BentoGrid className="mx-auto ">
+            <BentoGrid className="mx-auto">
               {items.map((item, i) => (
                 <BentoGridItem
                   key={i}
