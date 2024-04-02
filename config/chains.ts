@@ -2,9 +2,9 @@ export const chains = [
   {
     id: "arbitrum",
     label: "Arbitrum",
-    img: "/chains/arbitrum.png",
+    img: "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029",
   },
-  {
+  /*  {
     id: "avax",
     label: "Avax",
     img: "/chains/avax.png",
@@ -13,13 +13,13 @@ export const chains = [
     id: "bsc",
     label: "BSC",
     img: "/chains/bsc.png",
-  },
+  }, */
   {
     id: "ethereum",
     label: "Ethereum",
-    img: "/chains/ethereum.png",
+    img: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029",
   },
-  {
+  /*  {
     id: "ftm",
     label: "FTM",
     img: "/chains/ftm.png",
@@ -33,15 +33,15 @@ export const chains = [
     id: "polygon",
     label: "Polygon",
     img: "/chains/polygon.png",
-  },
+  }, */
   {
     id: "solana",
     label: "Solana",
-    img: "/chains/solana.png",
+    img: "https://cryptologos.cc/logos/solana-sol-logo.png?v=029",
   },
-  {
+  /*   {
     id: "solo-stakers",
     label: "Solo Stakers",
     img: "/chains/solo-stakers.png",
-  },
+  }, */
 ];

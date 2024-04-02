@@ -9,7 +9,9 @@ import {
   InputLeftElement,
   useColorMode,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+
 import { ISearchProps } from "@/types";
 
 import { Icons } from "@component/ui/Lucide";
@@ -20,6 +22,7 @@ export function SearchBar({
   handleSearchLogin,
   inputRef,
   inputValue,
+  chain,
 }: ISearchProps): JSX.Element {
   const { colorMode } = useColorMode();
 
@@ -47,7 +50,22 @@ export function SearchBar({
                   pointerEvents="none"
                   color={colorMode === "light" ? "gray.500" : "whiteAlpha.900"}
                   // eslint-disable-next-line react/no-children-prop
-                  children={<Icons.ethereum size="1.5rem" />}
+                  children={
+                    <Image
+                      src={
+                        chain === "solana"
+                          ? "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
+                          : chain === "ethereum"
+                            ? "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+                            : chain === "arbitrum"
+                              ? "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
+                              : "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+                      }
+                      alt="Ethereum"
+                      width={20}
+                      height={20}
+                    />
+                  }
                 />
                 <Input
                   ref={inputRef}

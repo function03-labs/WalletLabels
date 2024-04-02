@@ -89,7 +89,7 @@ export default async function Page({
               ))}
             </BentoGrid>
             <div className="mt-3 w-full text-center sm:w-4/5">
-              <SearchBox params={searchParams} />
+              <SearchBox params={params} searchParams={searchParams} />
               <FindingFilter params={searchParams} />
             </div>
           </div>

@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import * as React from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@lib/utils";
 import { NavItem } from "@/types/nav";
@@ -23,22 +26,35 @@ interface MainNavProps {
 }
 
 export function MainNav({ items }: MainNavProps) {
+  const params = usePathname();
   return (
     <div className="flex items-center gap-6 md:gap-10">
       <div className="flex items-center space-x-1.5 dark:text-slate-100">
-        <Icons.logo
-          className={cn(
-            buttonVariants({
-              variant: "secondary",
-              size: "icon",
-            }),
-            "mx-2 size-6 hover:opacity-80"
-          )}
-        />
+        <Icons.ethereum className="size-6" />
         <span className="font-bold sm:inline-block">{siteConfig.name}</span>
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
-            <Icons.ethereum className="ml-2 size-5" />
+            <Image
+              src={
+                params === "/solana"
+                  ? "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
+                  : params === "/ethereum"
+                    ? "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+                    : params === "/arbitrum"
+                      ? "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
+                      : "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+              }
+              alt="Ethereum"
+              className={cn(
+                buttonVariants({
+                  variant: "secondary",
+                  size: "icon",
+                }),
+                "ml-2 size-5"
+              )}
+              width={20}
+              height={20}
+            />
             <Icons.chevronsUpDown className="ml-2 size-3" />
           </DropdownMenuTrigger>
 
@@ -51,10 +67,10 @@ export function MainNav({ items }: MainNavProps) {
               <DropdownMenuItem key={index}>
                 <Link
                   className="flex w-full items-center gap-2"
-                  href={`${process.env.PUBLIC_URL}/${chain.id}`}
+                  href={`/${chain.id}`}
                 >
                   <Image
-                    src={`https://placehold.co/100x100/?text=${chain.label}`}
+                    src={chain.img}
                     alt={chain.label}
                     width={32}
                     height={32}

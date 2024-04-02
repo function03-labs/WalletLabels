@@ -19,4 +19,5 @@ export interface ISearchProps {
   inputRef?: React.RefObject<HTMLInputElement>;
   togglePalette?: Function;
   inputValue?: string;
+  chain?: string;
 }

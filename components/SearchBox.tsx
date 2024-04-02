@@ -15,15 +15,17 @@ import { SearchBar } from "@component/SearchBar";
 
 export function SearchBox({
   params,
+  searchParams,
 }: {
-  params: { [key: string]: string | string[] | undefined };
+  params: { chainSlug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const router = useRouter();
-  const initialQuery = params.query as string | undefined;
+  const initialQuery = searchParams.query as string | undefined;
   const [inputValue, setInputValue] = useState(initialQuery || "");
 
+  const { refine } = useSearchBox();
   const { refresh } = useInstantSearch();
-  const { query, refine } = useSearchBox();
 
   useEffect(() => {
     if (initialQuery !== "") {
@@ -53,6 +55,7 @@ export function SearchBox({
         <SearchBar
           inputValue={inputValue}
           handleSearchLogin={handleSearchLogin as any}
+          chain={params.chainSlug}
         />
       </form>
     </div>
