@@ -39,6 +39,8 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
     });
   };
 
+  console.log(props.data);
+
   const getContent = useGridContent({
     data: props.data,
     getTagsFromLabels,

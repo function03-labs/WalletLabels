@@ -1,25 +1,35 @@
+import * as z from "zod";
+
 import getHistory from "@lib/get-history";
 import { connectToDatabase } from "@lib/mongodb";
+import { getChainEnv, normalizeLabels } from "@lib/utils";
 
-export async function GET(request: Request) {
+import { chains } from "@config/chains";
+
+const chainContextSchema = z.object({
+  params: z.object({
+    chainSlug: z.string().refine((val) => {
+      return chains.some((chain) => chain.id === val);
+    }),
+  }),
+});
+
+export async function GET(
+  request: Request,
+  context: z.infer<typeof chainContextSchema>
+) {
+  const {
+    params: { chainSlug },
+  } = chainContextSchema.parse(context);
+
   let db = await connectToDatabase();
   let labels = await db.db
-    .collection(process.env.CLC_NAME_WLBLS!)
+    .collection(getChainEnv(chainSlug)!)
     .find()
     .limit(30)
     .toArray();
-  labels = labels.map((label) => {
-    return {
-      _id: label._id,
-      address: label.address,
-      address_name: label.address_name,
-      label_type: label.label_type,
-      label_subtype: label.label_subtype,
-      label: label.label,
-    };
-  });
 
-  let response = labels;
+  let response = normalizeLabels(labels);
   const addresses = response.map((item) => item.address);
 
   const history = await getHistory(addresses);

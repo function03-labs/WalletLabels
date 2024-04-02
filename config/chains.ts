@@ -1,18 +1,28 @@
 export const chains = [
   {
-    id: "solana",
-    label: "Solana",
-    img: "/chains/solana.png",
-  },
-  {
     id: "arbitrum",
     label: "Arbitrum",
     img: "/chains/arbitrum.png",
   },
   {
-    id: "mev",
-    label: "MEV",
-    img: "/chains/mev.png",
+    id: "avax",
+    label: "Avax",
+    img: "/chains/avax.png",
+  },
+  {
+    id: "bsc",
+    label: "BSC",
+    img: "/chains/bsc.png",
+  },
+  {
+    id: "ethereum",
+    label: "Ethereum",
+    img: "/chains/ethereum.png",
+  },
+  {
+    id: "ftm",
+    label: "FTM",
+    img: "/chains/ftm.png",
   },
   {
     id: "optimism",
@@ -20,8 +30,18 @@ export const chains = [
     img: "/chains/optimism.png",
   },
   {
-    id: "social-labels",
-    label: "Social Labels",
-    img: "/chains/social-labels.png",
+    id: "polygon",
+    label: "Polygon",
+    img: "/chains/polygon.png",
+  },
+  {
+    id: "solana",
+    label: "Solana",
+    img: "/chains/solana.png",
+  },
+  {
+    id: "solo-stakers",
+    label: "Solo Stakers",
+    img: "/chains/solo-stakers.png",
   },
 ];

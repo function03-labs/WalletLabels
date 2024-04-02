@@ -51,7 +51,7 @@ export function MainNav({ items }: MainNavProps) {
               <DropdownMenuItem key={index}>
                 <Link
                   className="flex w-full items-center gap-2"
-                  href={`https://${chain.id}.${siteConfig.dns}`}
+                  href={`${process.env.PUBLIC_URL}/${chain.id}`}
                 >
                   <Image
                     src={`https://placehold.co/100x100/?text=${chain.label}`}

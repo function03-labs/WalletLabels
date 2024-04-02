@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 import { Grid } from "@component/Grid";
 import { SearchBox } from "@component/SearchBox";
 import { CustomHits } from "@component/CustomHits";
@@ -12,21 +14,26 @@ import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 
 import { items } from "@config/grid";
 
-async function getData() {
+async function getData({ params }: { params: { chainSlug: string } }) {
   try {
-    const data = await fetch(`${process.env.PUBLIC_URL}/api/ethereum`);
+    const data = await fetch(
+      `${process.env.PUBLIC_URL}/api/${params.chainSlug}`
+    );
     return data.json();
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    redirect("/");
   }
 }
 
 export default async function Page({
+  params,
   searchParams,
 }: {
+  params: { chainSlug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const data = await getData();
+  const data = await getData({ params });
 
   return (
     <FramerWrapper>
