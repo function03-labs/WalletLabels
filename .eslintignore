@@ -1,0 +1,6 @@
+**/generated/**-wagmi.ts
+**/generated/blockchain.ts
+**/components/shared/table/**
+**/generated
+.next/**
+tailwind.config.js
