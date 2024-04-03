@@ -9,7 +9,6 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Grid } from "@component/Grid";
 import { Badge } from "@component/ui/Badge";
 import { SearchBar } from "@component/SearchBar";
 
@@ -60,21 +59,6 @@ export function SearchBox({
       </form>
     </div>
   );
-}
-
-export function CustomHits() {
-  const { hits } = useHits();
-
-  const gridData = hits.map((hit) => ({
-    address: hit.address as string,
-    address_name: hit.address_name as string,
-    label_type: hit.label_type as string,
-    label_subtype: hit.label_subtype as string,
-    label: hit.label as string,
-    tag: hit.tag as string,
-  }));
-
-  return <Grid data={gridData} />;
 }
 
 type Hit = {

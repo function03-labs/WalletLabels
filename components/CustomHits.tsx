@@ -5,6 +5,7 @@ import { Grid } from "@component/Grid";
 
 export function CustomHits() {
   const { hits } = useHits();
+  console.log(hits);
 
   const props = {
     data: {

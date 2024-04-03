@@ -10,7 +10,7 @@ export function SearchWrapper({ children }: { children: React.ReactNode }) {
       searchClient={searchClient}
       insights={false}
     >
-      <Configure hitsPerPage={50} />
+      <Configure hitsPerPage={30} />
       {children}
     </InstantSearch>
   );

@@ -14,8 +14,6 @@ import { motion } from "framer-motion";
 
 import { ISearchProps } from "@/types";
 
-import { Icons } from "@component/ui/Lucide";
-
 const MotionBox = motion<BoxProps>(Box);
 
 export function SearchBar({

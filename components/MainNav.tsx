@@ -30,7 +30,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex items-center gap-6 md:gap-10">
       <div className="flex items-center space-x-1.5 dark:text-slate-100">
-        <Icons.ethereum className="size-6" />
+        <Icons.logo className="size-6" />
         <span className="font-bold sm:inline-block">{siteConfig.name}</span>
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
