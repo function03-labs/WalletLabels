@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes } from "react"
 
-
 import { Button } from "../ui/button"
 
 interface ContractWriteButtonProps

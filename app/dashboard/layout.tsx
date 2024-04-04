@@ -43,7 +43,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <Link href={siteConfig.links.twitter}>
                 <FaTwitter />
               </Link>
-              <Link href={siteConfig.links.discord}>
+              <Link href={siteConfig.links.telegram}>
                 <FaDiscord />
               </Link>
             </div>

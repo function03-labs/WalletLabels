@@ -62,9 +62,26 @@ const gnosisChiado = {
   iconUrl: "/icons/NetworkGnosis.svg",
 }
 
-export const ETH_CHAINS_TEST = [goerli, sepolia, optimismGoerli, arbitrumGoerli, polygonMumbai, celoAlfajores, gnosisChiado, baseGoerli]
+export const ETH_CHAINS_TEST = [
+  goerli,
+  sepolia,
+  optimismGoerli,
+  arbitrumGoerli,
+  polygonMumbai,
+  celoAlfajores,
+  gnosisChiado,
+  baseGoerli,
+]
 
-export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, gnosis, base]
+export const ETH_CHAINS_PROD = [
+  mainnet,
+  optimism,
+  arbitrum,
+  polygon,
+  celo,
+  gnosis,
+  base,
+]
 export const ETH_CHAINS_DEV =
   env.NEXT_PUBLIC_PROD_NETWORKS_DEV === "true"
     ? [...ETH_CHAINS_PROD, ...ETH_CHAINS_TEST]

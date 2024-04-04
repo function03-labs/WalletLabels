@@ -32,7 +32,7 @@ export function Footer({ className, ...props }: HTMLAttributes<HTMLElement>) {
         <LinkComponent href={`${siteConfig.links.twitter}`}>
           <FaTwitter />
         </LinkComponent>
-        <LinkComponent href={`${siteConfig.links.discord}`}>
+        <LinkComponent href={`${siteConfig.links.telegram}`}>
           <FaDiscord />
         </LinkComponent>
       </div>
