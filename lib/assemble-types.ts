@@ -26,7 +26,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: TYPESENSE_SERVER_CONFIG!,
   additionalSearchParameters: {
     query_by: "address, address_name, label_type",
-    limit_hits: 50,
+    limit_hits: 30,
     facet_by: "label_type",
   },
 });

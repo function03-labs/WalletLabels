@@ -14,7 +14,13 @@ import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 
 import { items } from "@config/grid";
 
-async function getData({ params }: { params: { chainSlug: string } }) {
+async function getData({
+  params,
+  searchParams,
+}: {
+  params: { chainSlug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   try {
     const data = await fetch(
       `${process.env.PUBLIC_URL}/api/${params.chainSlug}`
@@ -33,7 +39,7 @@ export default async function Page({
   params: { chainSlug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const data = await getData({ params });
+  const data = await getData({ params, searchParams });
 
   return (
     <FramerWrapper>
@@ -96,7 +102,11 @@ export default async function Page({
         </section>
         <ActivityFilter />
         <div className="px-12">
-          {searchParams.query ? <CustomHits /> : <Grid data={data} />}
+          {searchParams.query ? (
+            <CustomHits params={params} searchParams={searchParams} />
+          ) : (
+            <Grid data={data} />
+          )}
         </div>
       </SearchWrapper>
     </FramerWrapper>

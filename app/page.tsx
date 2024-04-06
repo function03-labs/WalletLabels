@@ -92,7 +92,14 @@ export default async function Page({
         </section>
         <ActivityFilter />
         <div className="px-12">
-          {searchParams.query ? <CustomHits /> : <Grid data={data} />}
+          {searchParams.query ? (
+            <CustomHits
+              params={{ chainSlug: "ethereum" }}
+              searchParams={searchParams}
+            />
+          ) : (
+            <Grid data={data} />
+          )}
         </div>
       </SearchWrapper>
     </FramerWrapper>
