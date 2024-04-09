@@ -24,3 +24,10 @@ export async function getQueryParams(req: Request): Promise<QueryParams> {
       : 20,
   });
 }
+
+export const indexMap = {
+  "/": "labels_v2",
+  "/ethereum": "labels_v2",
+  "/solana": "solana",
+  "/arbitrum": "arbitrum",
+};

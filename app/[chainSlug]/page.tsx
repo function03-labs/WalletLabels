@@ -102,11 +102,7 @@ export default async function Page({
         </section>
         <ActivityFilter />
         <div className="px-12">
-          {searchParams.query ? (
-            <CustomHits params={params} searchParams={searchParams} />
-          ) : (
-            <Grid data={data} />
-          )}
+          {searchParams.query ? <CustomHits /> : <Grid data={data} />}
         </div>
       </SearchWrapper>
     </FramerWrapper>

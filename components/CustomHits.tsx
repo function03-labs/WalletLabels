@@ -3,13 +3,7 @@
 import { useHits } from "react-instantsearch";
 import { Grid } from "@component/Grid";
 
-export function CustomHits({
-  params,
-  searchParams,
-}: {
-  params: { chainSlug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export function CustomHits() {
   const { hits } = useHits();
 
   const props = {
