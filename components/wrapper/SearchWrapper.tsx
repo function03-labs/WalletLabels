@@ -12,8 +12,6 @@ export function SearchWrapper({ children }: { children: React.ReactNode }) {
     return null;
   }
 
-  console.log("SearchWrapper", indexMap[pathname as keyof typeof indexMap]);
-
   return (
     <InstantSearch
       indexName={indexMap[pathname as keyof typeof indexMap]}
