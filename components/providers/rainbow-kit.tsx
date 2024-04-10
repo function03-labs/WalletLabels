@@ -44,6 +44,7 @@ const wagmiConfig = createConfig({
 
 export function RainbowKit({ children }: { children: ReactNode }) {
   const [colorMode] = useColorMode()
+
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider

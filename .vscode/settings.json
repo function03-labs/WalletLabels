@@ -28,5 +28,7 @@
   },
   "typescript.tsdk": "node_modules/.pnpm/typescript@4.9.4/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "prettier.prettierPath": "./node_modules/prettier" // Workaround fix for prettier force checking node modules.
+  "prettier.prettierPath": "./node_modules/prettier",
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true // Workaround fix for prettier force checking node modules.
 }

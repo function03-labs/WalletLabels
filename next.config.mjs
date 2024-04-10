@@ -12,6 +12,7 @@ const nextConfig = {
       "images.unsplash.com",
       "cloudflare-ipfs.com",
       "gateway.ipfs.io",
+      "avatars.jakerunzer.com",
     ],
   },
   env: {

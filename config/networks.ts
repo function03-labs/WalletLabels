@@ -63,7 +63,7 @@ const gnosisChiado = {
 }
 
 export const ETH_CHAINS_TEST = [
-  goerli,
+  //goerli,
   sepolia,
   optimismGoerli,
   arbitrumGoerli,
