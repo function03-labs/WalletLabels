@@ -13,7 +13,7 @@ export default function PageDashboard() {
   return (
     <motion.div
       animate="show"
-      className="flex h-full w-full items-center justify-center lg:py-8"
+      className="flex size-full items-center justify-center lg:py-8"
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}
       viewport={{ once: true }}
@@ -36,8 +36,17 @@ export default function PageDashboard() {
               </div>
             </span>
           </div>
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-white p-6 shadow-md">
+              <div className="text-xl font-medium text-black">Generate Key</div>
+            </div>
+            <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-white p-6 shadow-md">
+              <div className="text-xl font-medium text-black">Organization</div>
+            </div>
+          </div>
         </div>
       </IsWalletConnected>
+
       <IsWalletDisconnected>
         <h3 className="text-lg font-normal">
           Connect Wallet to view your personalized dashboard.

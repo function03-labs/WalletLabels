@@ -30,5 +30,6 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "prettier.prettierPath": "./node_modules/prettier",
   "WillLuke.nextjs.addTypesOnSave": true,
-  "WillLuke.nextjs.hasPrompted": true // Workaround fix for prettier force checking node modules.
+  "WillLuke.nextjs.hasPrompted": true,
+  "discord.enabled": true // Workaround fix for prettier force checking node modules.
 }

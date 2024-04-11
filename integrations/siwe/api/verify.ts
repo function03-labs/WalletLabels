@@ -19,7 +19,6 @@ const verifySchema = z.object({
     chainId: z.number(),
     nonce: z.string(),
     issuedAt: z.string(),
-    name: z.string(),
     avatar: z.string().optional(),
   }),
 })
@@ -49,13 +48,13 @@ export async function POST(req: Request) {
         update: {
           address: fields.address,
           name: `user-${fields.address.slice(0, 6)}`,
-          avatar: `https://avatars.jakerunzer.com//${fields.address}`,
+          avatar: `https://avatars.jakerunzer.com/${fields.address}`,
         },
         create: {
           id: fields.address,
           address: fields.address,
           name: `user-${fields.address.slice(0, 6)}`,
-          avatar: `https://avatars.jakerunzer.com//${fields.address}`,
+          avatar: `https://avatars.jakerunzer.com/${fields.address}`,
         },
       })
     }
