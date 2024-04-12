@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import { nextui } from "@nextui-org/theme";
 
 const {
   default: flattenColorPalette,
@@ -34,6 +33,10 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        "gradient-to-r-pink-violet":
+          "linear-gradient(to right, #f565c1, #8e54e9)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -101,7 +104,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), nextui(), addVariablesForColors],
+  plugins: [require("tailwindcss-animate"), addVariablesForColors],
 } satisfies Config;
 
 export default config;

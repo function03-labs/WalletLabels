@@ -38,7 +38,7 @@ export function SearchBox({
     setInputValue(value);
     refine(value);
     refresh();
-    router.push(`?query=${encodeURIComponent(value)}` as string);
+    router.push(`?query=${encodeURIComponent(value)}#search-box` as string);
   };
 
   return (
@@ -65,11 +65,7 @@ type Hit = {
   label: string;
 };
 
-export default function CustomHitsTags({
-  params,
-}: {
-  params: { [key: string]: string | string[] | undefined };
-}) {
+export default function CustomHitsTags() {
   const router = useRouter();
   const { hits } = useHits() as { hits: Hit[] };
 

@@ -10,7 +10,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@component/Footer";
 import { Toaster } from "@component/ui/Toaster";
 import { SiteHeader } from "@component/SiteHeader";
-import { NexUIWrapper } from "@component/wrapper/NexUIWrapper";
+import { FramerWrapper } from "@component/wrapper/FramerWrapper";
+import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 import { QueryProvider } from "@component/wrapper/QueryProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
 
@@ -132,18 +133,20 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <NexUIWrapper>
-            <QueryProvider>
-              <ChakraProvider>
-                <SiteHeader />
-                {children}
-                <Footer />
-              </ChakraProvider>
-              <Toaster />
-              <Analytics />
-              <TailwindIndicator />
-            </QueryProvider>
-          </NexUIWrapper>
+          <ChakraProvider>
+            <FramerWrapper>
+              <QueryProvider>
+                <SearchWrapper>
+                  <SiteHeader />
+                  {children}
+                  <Footer />
+                </SearchWrapper>
+                <Toaster />
+                <Analytics />
+                <TailwindIndicator />
+              </QueryProvider>
+            </FramerWrapper>
+          </ChakraProvider>
         </ThemeProvider>
       </body>
     </html>

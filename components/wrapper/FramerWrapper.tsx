@@ -14,7 +14,7 @@ export function FramerWrapper(props: { children: React.ReactNode }) {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ ease: "easeOut", duration: 0.53 }}
-      className="z-30 "
+      className="z-30"
     >
       <Spotlight
         className="-top-40 left-0 md:-top-20 md:left-60"

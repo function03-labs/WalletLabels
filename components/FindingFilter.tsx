@@ -26,7 +26,7 @@ export function FindingFilter({
             ))}
           </div>
         ) : (
-          <CustomHitsTags params={params} />
+          <CustomHitsTags />
         )}
       </Box>
       <StatsWrapper />
