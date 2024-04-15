@@ -47,7 +47,7 @@ const SkeletonOne = () => {
       >
         <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-sky-500 to-blue-500" />
         <div className="h-4 w-full rounded-full">
-          <p className="text-gray-500">0x5cf09a7a69aae368aef6f3...</p>
+          <p className="text-gray-500">0x5cf09a7a69aae3aef6f3...</p>
         </div>
       </motion.div>
       <motion.div
@@ -55,7 +55,7 @@ const SkeletonOne = () => {
         className="ml-auto flex w-3/4 flex-row items-center space-x-2 rounded-full border border-neutral-100 bg-white p-2 dark:border-white/[0.2] dark:bg-black"
       >
         <div className="h-4 w-full rounded-full">
-          <p className="text-gray-500">0x8fd1a3ea61b6be38...</p>
+          <p className="text-gray-500">0x8fd1a3eaeb66be38...</p>
         </div>
         <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600" />
       </motion.div>
@@ -65,7 +65,7 @@ const SkeletonOne = () => {
       >
         <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-red-500 to-pink-500" />
         <div className="h-4 w-full rounded-full">
-          <p className="text-gray-500">6fGsWEvArGqpLKQwotfw31uP...</p>
+          <p className="text-gray-500">6fGsWEvArGqpLwotfw31uP...</p>
         </div>
       </motion.div>
     </motion.div>
