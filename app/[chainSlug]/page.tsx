@@ -78,10 +78,7 @@ export default async function Page({
           </p>
           <Bento />
           <div className="mt-3 w-full text-center sm:w-4/5">
-            <SearchBox
-              params={{ chainSlug: "ethereum" }}
-              searchParams={searchParams}
-            />
+            <SearchBox params={params} searchParams={searchParams} />
             <FindingFilter params={searchParams} />
           </div>
         </div>
