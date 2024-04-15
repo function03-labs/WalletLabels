@@ -34,7 +34,7 @@ export function SearchBar({
         py="2"
         className="!w-full"
       >
-        <div className={colorMode === "light" ? "!w-full" : "!w-full dark"}>
+        <div className={colorMode === "light" ? "!w-full" : "dark !w-full"}>
           <div className="vercel w-full">
             <div className="shadow-box shadow-primary-500/10">
               <InputGroup

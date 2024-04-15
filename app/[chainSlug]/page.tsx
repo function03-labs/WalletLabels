@@ -9,13 +9,9 @@ import { FindingFilter } from "@component/FindingFilter";
 import { ActivityFilter } from "@component/ActivityFilter";
 import { HoverBorderGradient } from "@component/ui/HoverBorderGradient";
 
-async function getData({
-  params,
-  searchParams,
-}: {
-  params: { chainSlug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+import { SearchWrapper } from "@component/wrapper/SearchWrapper";
+
+async function getData({ params }: { params: { chainSlug: string } }) {
   try {
     const data = await fetch(
       `${process.env.PUBLIC_URL}/api/${params.chainSlug}`
@@ -34,10 +30,10 @@ export default async function Page({
   params: { chainSlug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const data = await getData({ params, searchParams });
+  const data = await getData({ params });
 
   return (
-    <main>
+    <SearchWrapper chainSlug={params.chainSlug}>
       <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
         <div className="flex flex-col items-center gap-6">
           <div className="flex justify-center text-center">
@@ -94,6 +90,6 @@ export default async function Page({
       <div className="px-12">
         {searchParams.query ? <CustomHits /> : <Grid data={data} />}
       </div>
-    </main>
+    </SearchWrapper>
   );
 }

@@ -27,7 +27,7 @@ export async function getQueryParams(req: Request): Promise<QueryParams> {
 
 export const indexMap = {
   "/": "labels_v2",
-  "/ethereum": "labels_v2",
-  "/solana": "solana",
-  "/arbitrum": "arbitrum",
+  ethereum: "labels_v2",
+  solana: "solana",
+  arbitrum: "arbitrum",
 };

@@ -11,7 +11,6 @@ import { Footer } from "@component/Footer";
 import { Toaster } from "@component/ui/Toaster";
 import { SiteHeader } from "@component/SiteHeader";
 import { FramerWrapper } from "@component/wrapper/FramerWrapper";
-import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 import { QueryProvider } from "@component/wrapper/QueryProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
 
@@ -136,11 +135,9 @@ export default function RootLayout({
           <ChakraProvider>
             <FramerWrapper>
               <QueryProvider>
-                <SearchWrapper>
-                  <SiteHeader />
-                  {children}
-                  <Footer />
-                </SearchWrapper>
+                <SiteHeader />
+                {children}
+                <Footer />
                 <Toaster />
                 <Analytics />
                 <TailwindIndicator />

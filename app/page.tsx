@@ -7,6 +7,8 @@ import { FindingFilter } from "@component/FindingFilter";
 import { ActivityFilter } from "@component/ActivityFilter";
 import { HoverBorderGradient } from "@component/ui/HoverBorderGradient";
 
+import { SearchWrapper } from "@component/wrapper/SearchWrapper";
+
 async function getData() {
   try {
     const data = await fetch(`${process.env.PUBLIC_URL}/api/ethereum`);
@@ -24,7 +26,7 @@ export default async function Page({
   const data = await getData();
 
   return (
-    <main>
+    <SearchWrapper chainSlug={"/"}>
       <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
         <div className="flex flex-col items-center gap-6">
           <div className="flex justify-center text-center">
@@ -81,6 +83,6 @@ export default async function Page({
       <div className="px-12">
         {searchParams.query ? <CustomHits /> : <Grid data={data} />}
       </div>
-    </main>
+    </SearchWrapper>
   );
 }

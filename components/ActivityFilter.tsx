@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRefinementList } from "react-instantsearch";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import {
@@ -11,20 +12,28 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@component/ui/Sheet";
+import { Badge } from "@component/ui/Badge";
 import { Checkbox } from "@component/ui/Checkbox";
 import { Separator } from "@component/ui/Separator";
 import { buttonVariants } from "@component/ui/Button";
-import { Hierarchical } from "@component/InstantSearch";
 
 import { cn } from "@lib/utils";
 import { Activity } from "@/types/label";
-import { activities } from "@config/activities";
 
 export function ActivityFilter() {
   const router = useRouter();
+
   const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
-  const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<string>();
+
+  const { items: activities } = useRefinementList({
+    attribute: "label_type",
+  });
+
+  const { items: contracts } = useRefinementList({
+    attribute: "label_subtype",
+  });
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -38,20 +47,15 @@ export function ActivityFilter() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  useEffect(() => {
-    const query = selectedActivities.join("%20");
-    router.push(`?query=${query}`);
-  }, [router, selectedActivities]);
-
   const handleCheckboxChange = (activity: Activity) => {
-    const findings = activity.finding;
+    const value = activity.value;
 
-    if (findings.every((finding) => selectedActivities.includes(finding))) {
-      setSelectedActivities(
-        selectedActivities.filter((a) => !findings.includes(a))
-      );
+    if (value === searchParams.get("query")) {
+      setSelectedActivity(undefined);
+      router.push("/?query=");
     } else {
-      setSelectedActivities([...selectedActivities, ...findings]);
+      setSelectedActivity(value);
+      router.push(`/?query=${value}`);
     }
   };
 
@@ -93,6 +97,7 @@ export function ActivityFilter() {
           <SheetDescription>
             Filter by activity to find the right contract for you.
           </SheetDescription>
+
           {activities.map((activity) => (
             <label
               key={activity.label}
@@ -101,9 +106,7 @@ export function ActivityFilter() {
             >
               <Checkbox
                 id={`checkbox-${activity.label}`}
-                checked={activity.finding.every((finding) =>
-                  searchParams.get("query")?.split(" ").includes(finding)
-                )}
+                checked={activity.label === selectedActivity}
                 onCheckedChange={() => handleCheckboxChange(activity)}
               />
 
@@ -116,11 +119,33 @@ export function ActivityFilter() {
 
           <Separator orientation="horizontal" />
 
-          {/*           <SheetTitle>Contract Type</SheetTitle>
+          <SheetTitle>Contract Type</SheetTitle>
           <SheetDescription>
             Filter by contract type to find the right contract for you.
           </SheetDescription>
-          <Hierarchical /> */}
+
+          <div className="flex flex-wrap gap-2">
+            {contracts.map((contract) => (
+              <label
+                key={contract.label}
+                htmlFor={`checkbox-${contract.label}`}
+                className="flex items-center"
+              >
+                <Badge
+                  variant={
+                    contract.label === selectedActivity ? "default" : "outline"
+                  }
+                  className="cursor-pointer"
+                  onClick={() => handleCheckboxChange(contract)}
+                >
+                  {contract.label}
+                  <Badge className="ml-1 p-0 text-xs" variant="secondary">
+                    {contract.count}
+                  </Badge>
+                </Badge>
+              </label>
+            ))}
+          </div>
         </SheetHeader>
       </SheetContent>
     </Sheet>

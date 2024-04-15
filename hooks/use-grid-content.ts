@@ -1,10 +1,6 @@
 import { useCallback } from "react";
 
-import {
-  TagsCellType,
-  SparklineCellType,
-  ButtonCellType,
-} from "@glideapps/glide-data-grid-cells";
+import { TagsCellType, ButtonCellType } from "@glideapps/glide-data-grid-cells";
 import { Item, GridCell, GridCellKind } from "@glideapps/glide-data-grid";
 
 import CryptoIcon from "@lib/get-crypto-icons";
@@ -56,13 +52,9 @@ export function useGridContent({ data, getTagsFromLabels }: Props) {
         return {
           kind: GridCellKind.Text,
           allowOverlay: true,
+          readonly: false,
           data: dataRow[indexes[col]],
-          displayData:
-            window.innerWidth > 600
-              ? dataRow[indexes[col]].slice(0, 24) + "..."
-              : dataRow[indexes[col]].slice(0, 6) +
-                "..." +
-                dataRow[indexes[col]].slice(-4),
+          displayData: dataRow[indexes[col]],
         };
       }
 

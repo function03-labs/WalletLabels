@@ -2,12 +2,13 @@
 
 import React from "react";
 import { useTheme } from "next-themes";
+import { createPortal } from "react-dom";
 
 import DataEditor, {
   DataEditorRef,
-  GridColumn,
-  GridColumnIcon,
+  GridMouseEventArgs,
   Theme,
+  GetRowThemeCallback,
 } from "@glideapps/glide-data-grid";
 import { allCells } from "@glideapps/glide-data-grid-cells";
 
@@ -28,6 +29,22 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
     setTheme(resolvedTheme === "dark" ? darkTheme : {});
   }, [resolvedTheme]);
 
+  const [hoverRow, setHoverRow] = React.useState<number | undefined>(undefined);
+  const onItemHovered = React.useCallback((args: GridMouseEventArgs) => {
+    const [_, row] = args.location;
+    setHoverRow(args.kind !== "cell" ? undefined : row);
+  }, []);
+  const getRowThemeOverride = React.useCallback<GetRowThemeCallback>(
+    (row) => {
+      if (row !== hoverRow) return undefined;
+      return {
+        bgCell: "#f7f7f7",
+        bgCellMedium: "#f0f0f0",
+      };
+    },
+    [hoverRow]
+  );
+
   const getTagsFromLabels = (arg0: string) => {
     const tags = splitTags(arg0);
 
@@ -45,24 +62,35 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
   });
 
   return (
-    <DataEditor
-      theme={theme}
-      className="rounded-xl shadow-lg"
-      smoothScrollY={true}
-      width={"100%"}
-      height={"50em"}
-      getCellContent={getContent}
-      columns={cols}
-      // @ts-ignore: Unreachable code error
-      rows={props.data.data.length}
-      keybindings={{ search: true }}
-      getCellsForSelection={true}
-      rowMarkers="number"
-      freezeColumns={1}
-      overscrollY={50}
-      smoothScrollX={true}
-      ref={ref}
-      customRenderers={allCells}
-    />
+    <>
+      <DataEditor
+        ref={ref}
+        theme={theme}
+        columns={cols}
+        width={"100%"}
+        height={"50em"}
+        overscrollY={30}
+        freezeColumns={1}
+        rowMarkers="number"
+        smoothScrollX={false}
+        smoothScrollY={false}
+        customRenderers={allCells}
+        getCellsForSelection={true}
+        getCellContent={getContent}
+        // @ts-ignore: Unreachable code error
+        rows={props.data.data.length}
+        onItemHovered={onItemHovered}
+        keybindings={{ search: true }}
+        className="rounded-xl shadow-lg"
+        getRowThemeOverride={getRowThemeOverride}
+      />
+      {createPortal(
+        <div
+          id="portal"
+          style={{ position: "fixed", left: 0, top: 0, zIndex: 9999 }}
+        />,
+        document.body
+      )}
+    </>
   );
 }

@@ -3,7 +3,7 @@ import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
 export function assembleTypesenseServerConfig(pathname: string) {
   let TYPESENSE_SERVER_CONFIG;
 
-  if (pathname === "/ethereum" || pathname === "/") {
+  if (pathname === "ethereum" || pathname === "/") {
     TYPESENSE_SERVER_CONFIG = {
       apiKey: process.env.NEXT_PUBLIC_TYPESENSE_SEARCH_ONLY_API_KEY!,
       nodes: [
@@ -51,7 +51,7 @@ export function getSearchClient(pathname: string) {
     additionalSearchParameters: {
       query_by: "address, address_name, label_type",
       limit_hits: 30,
-      facet_by: "label_type",
+      facet_by: "label_type, label_subtype",
     },
   });
   return typesenseInstantsearchAdapter.searchClient;

@@ -12,7 +12,9 @@ export interface Label {
 }
 
 export interface Activity {
-  label: string;
-  finding: string[];
   count: number;
+  isRefined: boolean;
+  value: string;
+  label: string;
+  highlighted?: string;
 }

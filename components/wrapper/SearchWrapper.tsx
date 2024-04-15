@@ -1,21 +1,25 @@
 "use client";
-import { usePathname } from "next/navigation";
+
 import { Configure, InstantSearch } from "react-instantsearch";
 
 import { indexMap } from "@lib/query-params";
 import { searchClient } from "@lib/assemble-types";
 
-export function SearchWrapper({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-
-  if (!(pathname in indexMap)) {
+export function SearchWrapper({
+  chainSlug,
+  children,
+}: {
+  chainSlug: string;
+  children: React.ReactNode;
+}) {
+  if (!(chainSlug in indexMap)) {
     return null;
   }
 
   return (
     <InstantSearch
-      indexName={indexMap[pathname as keyof typeof indexMap]}
-      searchClient={searchClient(pathname)}
+      indexName={indexMap[chainSlug as keyof typeof indexMap]}
+      searchClient={searchClient(chainSlug)}
       insights={false}
     >
       <Configure hitsPerPage={30} />
