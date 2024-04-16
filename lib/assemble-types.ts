@@ -49,7 +49,7 @@ export function getSearchClient(pathname: string) {
   const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     server: TYPESENSE_SERVER_CONFIG!,
     additionalSearchParameters: {
-      query_by: "address, address_name, label_type",
+      query_by: "address, address_name",
       limit_hits: 30,
       facet_by: "label_type, label_subtype",
     },

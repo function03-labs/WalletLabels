@@ -15,7 +15,7 @@ export function FindingFilter({
 }) {
   return (
     <div className="flex justify-between">
-      <Box className="align-start flex gap-2  text-sm text-muted-foreground">
+      <Box className="align-start flex gap-2 text-sm text-muted-foreground">
         <div className="hidden whitespace-nowrap sm:block">
           Interesting finds:
         </div>

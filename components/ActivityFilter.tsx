@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRefinementList } from "react-instantsearch";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useRefinementList, useInstantSearch } from "react-instantsearch";
 
 import {
   Sheet,
@@ -22,16 +22,17 @@ import { Activity } from "@/types/label";
 
 export function ActivityFilter() {
   const router = useRouter();
-
   const searchParams = useSearchParams();
+  const { refresh } = useInstantSearch();
   const [open, setOpen] = useState(false);
-  const [selectedActivity, setSelectedActivity] = useState<string>();
 
-  const { items: activities } = useRefinementList({
+  const query = searchParams.get("query");
+
+  const { items: activities, refine: refineActivity } = useRefinementList({
     attribute: "label_type",
   });
 
-  const { items: contracts } = useRefinementList({
+  const { items: contracts, refine: refineContract } = useRefinementList({
     attribute: "label_subtype",
   });
 
@@ -48,15 +49,15 @@ export function ActivityFilter() {
   }, []);
 
   const handleCheckboxChange = (activity: Activity) => {
-    const value = activity.value;
+    refineActivity(activity.value);
+    refresh();
+    router.push(`?query=${query}&isRefined=true`);
+  };
 
-    if (value === searchParams.get("query")) {
-      setSelectedActivity(undefined);
-      router.push("/?query=");
-    } else {
-      setSelectedActivity(value);
-      router.push(`/?query=${value}`);
-    }
+  const handleBadgeChange = (contract: Activity) => {
+    refineContract(contract.value);
+    refresh();
+    router.push(`?query=${query}&isRefined=true`);
   };
 
   return (
@@ -106,7 +107,7 @@ export function ActivityFilter() {
             >
               <Checkbox
                 id={`checkbox-${activity.label}`}
-                checked={activity.label === selectedActivity}
+                checked={activity.isRefined}
                 onCheckedChange={() => handleCheckboxChange(activity)}
               />
 
@@ -132,11 +133,9 @@ export function ActivityFilter() {
                 className="flex items-center"
               >
                 <Badge
-                  variant={
-                    contract.label === selectedActivity ? "default" : "outline"
-                  }
+                  variant={contract.isRefined ? "default" : "outline"}
                   className="cursor-pointer"
-                  onClick={() => handleCheckboxChange(contract)}
+                  onClick={() => handleBadgeChange(contract)}
                 >
                   {contract.label}
                   <Badge className="ml-1 p-0 text-xs" variant="secondary">

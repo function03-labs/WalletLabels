@@ -1,6 +1,8 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import { Activity } from "@/types/label";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -55,4 +57,8 @@ export function normalizeLabels(labels: any[]): any[] {
   }
 
   return normalizedLabels;
+}
+
+export function isRefined(items: Activity[]): boolean {
+  return items.some((item) => item.isRefined);
 }
