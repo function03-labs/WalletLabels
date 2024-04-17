@@ -48,21 +48,21 @@ const SkeletonOne = () => {
       >
         <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-sky-500 to-blue-500" />
         <div className="mr-auto h-4 w-full rounded-full pr-8">
-          <p className="mx-2 truncate text-xs text-gray-500">
+          <p className="mx-2 truncate text-xs text-gray-500 dark:text-gray-400">
             0x7b98e476de2c50b6fa284dbd410dd516f9a72b30
           </p>
         </div>
       </motion.div>
       <motion.div
         variants={variantsSecond}
-        className="relative ml-auto flex w-3/4 flex-row items-center space-x-2 rounded-full border border-neutral-100 bg-white p-2 dark:border-white/[0.2] dark:bg-black"
+        className="relative ml-auto flex w-fit flex-row items-center space-x-2 rounded-full border border-neutral-100 bg-white p-2 pl-4 dark:border-white/[0.2] dark:bg-black"
       >
         <div className="h-4 w-full rounded-full">
-          <p className="truncate text-xs text-gray-500">
-            0x625e7708f30ca75bfd92586e17077590jl7...
+          <p className="truncate pr-2 text-xs text-gray-500 dark:text-gray-400 sm:pr-8 md:text-right">
+            0x625e7708f30ca75bfd92586e17077590c60eb4cd
           </p>
         </div>
-        <div className="absolute right-0 size-6 shrink-0 rounded-full bg-gradient-to-l from-yellow-400 to-orange-600" />
+        <div className="absolute right-2 ml-4 size-6 shrink-0 rounded-full bg-gradient-to-l from-yellow-400 to-orange-600" />
       </motion.div>
 
       <motion.div
@@ -71,7 +71,7 @@ const SkeletonOne = () => {
       >
         <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-red-500 to-pink-500" />
         <div className="mr-auto h-4 w-full rounded-full pr-8">
-          <p className="mx-2 truncate text-xs text-gray-500">
+          <p className="mx-2 truncate text-xs text-gray-500 dark:text-gray-400">
             6fGrKBimG3YhVwngvPrwL68BS782A64MdTJK41StGyQe
           </p>
         </div>
@@ -113,32 +113,32 @@ const SkeletonTwo = () => {
         className="flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white p-4 dark:border-white/[0.1] dark:bg-black"
       >
         <Image
-          src="https://avatars.jakerunzer.com/aaaaaa"
+          src="/bento/arkham-data-logo.jpg"
           alt="avatar"
           height="100"
           width="100"
           className="size-10 rounded-full"
         />
-        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 sm:text-sm">
-          Wallet Labels is awesome
+        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 dark:text-neutral-200 sm:text-sm">
+          Arkham Data
         </p>
-        <p className="mt-4 rounded-full border border-red-500 bg-red-100 px-2 py-0.5 text-xs text-red-600 dark:bg-red-900/20">
-          10k labels
+        <p className="align-items-center mt-4 flex justify-center rounded-full border border-red-500 bg-red-100 px-2 py-0.5 text-xs text-red-600 dark:bg-red-900/20">
+          300k <span className="hidden pl-1 sm:block">labels</span>
         </p>
       </motion.div>
       <motion.div className="relative z-20 flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white p-4 dark:border-white/[0.1] dark:bg-black">
         <Image
-          src="https://avatars.jakerunzer.com/vvvv"
+          src="/bento/etherscan-logo.png"
           alt="avatar"
           height="100"
           width="100"
           className="size-10 rounded-full"
         />
-        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 sm:text-sm">
-          Great work! Keep it up!
+        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 dark:text-neutral-200 sm:text-sm">
+          Etherscan
         </p>
-        <p className="mt-4 rounded-full border border-green-500 bg-green-100 px-2 py-0.5 text-xs text-green-600 dark:bg-green-900/20">
-          1M labels
+        <p className="align-items-center mt-4 flex justify-center rounded-full border border-green-500 bg-green-100 px-2 py-0.5 text-xs text-green-600 dark:bg-green-900/20">
+          7M <span className="hidden pl-1 sm:block">labels</span>
         </p>
       </motion.div>
       <motion.div
@@ -146,17 +146,17 @@ const SkeletonTwo = () => {
         className="flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white p-4 dark:border-white/[0.1] dark:bg-black"
       >
         <Image
-          src="https://avatars.jakerunzer.com/eeeeeee"
+          src="/bento/nansen-logo.png"
           alt="avatar"
           height="100"
           width="100"
           className="size-10 rounded-full"
         />
-        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 sm:text-sm">
-          Amazing work!
+        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 dark:text-neutral-200 sm:text-sm">
+          Nansen
         </p>
-        <p className="mt-4 rounded-full border border-orange-500 bg-orange-100 px-2 py-0.5 text-xs text-orange-600 dark:bg-orange-900/20">
-          32k labels
+        <p className="align-items-center mt-4 flex justify-center rounded-full border border-orange-500 bg-orange-100 px-2 py-0.5 text-xs text-orange-600 dark:bg-orange-900/20">
+          2M <span className="hidden pl-1 sm:block">labels</span>
         </p>
       </motion.div>
     </motion.div>

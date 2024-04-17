@@ -62,7 +62,7 @@ export function ActivityFilter() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <div className="flex items-center justify-between px-12">
+      <div className="flex items-center justify-between px-1 sm:px-2 md:px-4 lg:px-12">
         <SheetTrigger>
           <button
             className={cn(

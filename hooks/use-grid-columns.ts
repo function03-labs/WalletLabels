@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { GridColumn, GridColumnIcon } from "@glideapps/glide-data-grid";
 
@@ -7,7 +9,16 @@ export function useGridColumns() {
       {
         title: "Address",
         id: "address",
-        grow: 0.5,
+        width:
+          window.innerWidth > 1200
+            ? 350
+            : window.innerWidth > 992
+              ? 350
+              : window.innerWidth > 768
+                ? 350
+                : window.innerWidth > 600
+                  ? 200
+                  : 100,
         icon: GridColumnIcon.HeaderString,
       },
       {

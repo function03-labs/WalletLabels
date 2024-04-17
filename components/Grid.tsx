@@ -21,8 +21,8 @@ import { useGridColumns } from "@hook/use-grid-columns";
 
 export function Grid(props: { data: { [key: string]: string }[] }) {
   const cols = useGridColumns();
-  const { resolvedTheme } = useTheme();
   const ref = React.useRef<DataEditorRef | null>(null);
+  const { resolvedTheme } = useTheme();
   const [theme, setTheme] = React.useState<Partial<Theme>>({});
 
   React.useEffect(() => {
@@ -37,12 +37,19 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
   const getRowThemeOverride = React.useCallback<GetRowThemeCallback>(
     (row) => {
       if (row !== hoverRow) return undefined;
-      return {
-        bgCell: "#f7f7f7",
-        bgCellMedium: "#f0f0f0",
-      };
+      if (resolvedTheme === "dark") {
+        return {
+          bgCell: "#1f1f1f",
+          bgCellMedium: "#2f2f2f",
+        };
+      } else {
+        return {
+          bgCell: "#f7f7f7",
+          bgCellMedium: "#f0f0f0",
+        };
+      }
     },
-    [hoverRow]
+    [hoverRow, resolvedTheme]
   );
 
   const getTagsFromLabels = (arg0: string) => {
@@ -72,7 +79,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
         overscrollY={30}
         freezeColumns={1}
         rowMarkers="number"
-        smoothScrollX={false}
+        smoothScrollX={true}
         smoothScrollY={false}
         customRenderers={allCells}
         getCellsForSelection={true}
@@ -81,7 +88,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
         rows={props.data.data.length}
         onItemHovered={onItemHovered}
         keybindings={{ search: true }}
-        className="rounded-xl shadow-lg"
+        className="rounded-md shadow-lg"
         getRowThemeOverride={getRowThemeOverride}
       />
       {createPortal(
