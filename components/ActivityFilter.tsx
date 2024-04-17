@@ -51,13 +51,13 @@ export function ActivityFilter() {
   const handleCheckboxChange = (activity: Activity) => {
     refineActivity(activity.value);
     refresh();
-    router.push(`?query=${query}&isRefined=true`);
+    router.push(`?query=${query || ""}&isRefined=true`);
   };
 
   const handleBadgeChange = (contract: Activity) => {
     refineContract(contract.value);
     refresh();
-    router.push(`?query=${query}&isRefined=true`);
+    router.push(`?query=${query || ""}&isRefined=true`);
   };
 
   return (

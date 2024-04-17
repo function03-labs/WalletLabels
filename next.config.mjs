@@ -21,6 +21,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.jakerunzer.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

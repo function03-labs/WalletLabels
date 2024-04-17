@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { Icons } from "@component/ui/Lucide";
@@ -54,13 +55,16 @@ const SkeletonOne = () => {
       </motion.div>
       <motion.div
         variants={variantsSecond}
-        className="ml-auto flex w-3/4 flex-row items-center space-x-2 rounded-full border border-neutral-100 bg-white p-2 dark:border-white/[0.2] dark:bg-black"
+        className="relative ml-auto flex w-3/4 flex-row items-center space-x-2 rounded-full border border-neutral-100 bg-white p-2 dark:border-white/[0.2] dark:bg-black"
       >
         <div className="h-4 w-full rounded-full">
-          <p className="text-xs text-gray-500">0x8fd1a3eaeb66be38...</p>
+          <p className="truncate text-xs text-gray-500">
+            0x625e7708f30ca75bfd92586e17077590jl7...
+          </p>
         </div>
-        <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600" />
+        <div className="absolute right-0 size-6 shrink-0 rounded-full bg-gradient-to-l from-yellow-400 to-orange-600" />
       </motion.div>
+
       <motion.div
         variants={variants}
         className="flex flex-row items-center space-x-2 rounded-full border border-neutral-100 bg-white p-2 dark:border-white/[0.2] dark:bg-black"
@@ -71,6 +75,89 @@ const SkeletonOne = () => {
             6fGrKBimG3YhVwngvPrwL68BS782A64MdTJK41StGyQe
           </p>
         </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const SkeletonTwo = () => {
+  const first = {
+    initial: {
+      x: 20,
+      rotate: -5,
+    },
+    hover: {
+      x: 0,
+      rotate: 0,
+    },
+  };
+  const second = {
+    initial: {
+      x: -20,
+      rotate: 5,
+    },
+    hover: {
+      x: 0,
+      rotate: 0,
+    },
+  };
+  return (
+    <motion.div
+      initial="initial"
+      animate="animate"
+      whileHover="hover"
+      className="dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex size-full min-h-[6rem] flex-1 flex-row space-x-2"
+    >
+      <motion.div
+        variants={first}
+        className="flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white p-4 dark:border-white/[0.1] dark:bg-black"
+      >
+        <Image
+          src="https://avatars.jakerunzer.com/aaaaaa"
+          alt="avatar"
+          height="100"
+          width="100"
+          className="size-10 rounded-full"
+        />
+        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 sm:text-sm">
+          Wallet Labels is awesome
+        </p>
+        <p className="mt-4 rounded-full border border-red-500 bg-red-100 px-2 py-0.5 text-xs text-red-600 dark:bg-red-900/20">
+          10k labels
+        </p>
+      </motion.div>
+      <motion.div className="relative z-20 flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white p-4 dark:border-white/[0.1] dark:bg-black">
+        <Image
+          src="https://avatars.jakerunzer.com/vvvv"
+          alt="avatar"
+          height="100"
+          width="100"
+          className="size-10 rounded-full"
+        />
+        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 sm:text-sm">
+          Great work! Keep it up!
+        </p>
+        <p className="mt-4 rounded-full border border-green-500 bg-green-100 px-2 py-0.5 text-xs text-green-600 dark:bg-green-900/20">
+          1M labels
+        </p>
+      </motion.div>
+      <motion.div
+        variants={second}
+        className="flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-neutral-200 bg-white p-4 dark:border-white/[0.1] dark:bg-black"
+      >
+        <Image
+          src="https://avatars.jakerunzer.com/eeeeeee"
+          alt="avatar"
+          height="100"
+          width="100"
+          className="size-10 rounded-full"
+        />
+        <p className="mt-4 text-center text-xs font-semibold text-neutral-500 sm:text-sm">
+          Amazing work!
+        </p>
+        <p className="mt-4 rounded-full border border-orange-500 bg-orange-100 px-2 py-0.5 text-xs text-orange-600 dark:bg-orange-900/20">
+          32k labels
+        </p>
       </motion.div>
     </motion.div>
   );
@@ -125,8 +212,8 @@ export const items = [
   },
   {
     title: "Earn",
-    description: "Contribute to the community by labeling addresses.",
-    header: <Skeleton />,
+    description: "Contribute new labels and get rewarded!",
+    header: <SkeletonTwo />,
     icon: <Icons.search className="size-4 text-neutral-500" />,
   },
   {
@@ -139,7 +226,7 @@ export const items = [
 
 export function Bento() {
   return (
-    <BentoGrid className="mx-auto">
+    <BentoGrid className="grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-3">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}

@@ -76,10 +76,6 @@ export const metadata: Metadata = {
       name: "Aiden",
       url: "https://github.com/0xaaiden",
     },
-    {
-      name: "FindMalek",
-      url: "https://www.findmalek.com",
-    },
   ],
   creator: "Function03 Labs",
   openGraph: {
