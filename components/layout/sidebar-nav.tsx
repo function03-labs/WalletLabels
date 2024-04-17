@@ -24,9 +24,9 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
           <Link aria-label={item.label} key={index} href={item.href}>
             <span
               className={cn(
-                "group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:bg-muted hover:text-foreground",
+                "group flex w-full cursor-pointer items-center rounded-md border border-transparent py-1 transition-all duration-200 ease-in-out hover:bg-muted hover:px-2 hover:text-foreground",
                 pathname === item.href
-                  ? "bg-muted font-medium text-foreground"
+                  ? "font-semibold text-primary"
                   : "text-muted-foreground"
               )}
             >

@@ -50,7 +50,7 @@ export function MobileNav() {
             variant="ghost"
             className="ml-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
           >
-            <LuMenu className="h-5 w-5" />
+            <LuMenu className="size-5" />
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger>
@@ -214,7 +214,7 @@ const NavMenuListItem = ({
             alt="icon"
             height={16}
             width={16}
-            className="h-4 w-4"
+            className="size-4"
           />
           <span className="text-sm font-medium leading-none">{name}</span>
         </div>

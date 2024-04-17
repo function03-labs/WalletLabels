@@ -1,7 +1,6 @@
 "use client"
 
 import { motion, MotionProps } from "framer-motion"
-import Balancer from "react-wrap-balancer"
 
 import { cn } from "@/lib/utils"
 import { fadeDownVariant, staggerContainer } from "@/lib/utils/motion"

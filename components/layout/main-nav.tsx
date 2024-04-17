@@ -127,7 +127,7 @@ const NavMenuListItem = ({
               alt="icon"
               height={24}
               width={24}
-              className="h-6 w-6"
+              className="size-6"
             />
             <span className="text-base font-medium leading-none">{name}</span>
           </div>

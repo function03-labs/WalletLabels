@@ -1,11 +1,12 @@
 import Link from "next/link"
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 
-import { menuAdmin } from "@/config/menu-admin"
 import { menuDashboard } from "@/config/menu-dashboard"
+import { menuResources } from "@/config/menu-resources"
 import { siteConfig } from "@/config/site"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { LoggedUser } from "@/components/layout/logged-user"
 import { SidebarNav } from "@/components/layout/sidebar-nav"
 import { SiteHeader } from "@/components/layout/site-header"
 
@@ -20,14 +21,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <aside className="fixed top-20 z-30 -ml-2 hidden h-[calc(100vh-5rem)] w-full shrink-0 justify-between overflow-y-auto border-r md:sticky md:flex md:flex-col">
           <ScrollArea className="py-6 pr-6 lg:py-8">
-            <h3 className="text-lg font-normal">User</h3>
+            <h3 className="pb-4 text-2xl font-semibold">Dashboard</h3>
             <SidebarNav items={menuDashboard} />
             <hr className="my-6 border-t border-muted" />
-            <h3 className="text-lg font-normal">Admin</h3>
-            <SidebarNav items={menuAdmin} />
+
+            <h3 className="pb-4 text-2xl font-semibold">Resources</h3>
+
+            <SidebarNav items={menuResources} />
           </ScrollArea>
           <footer className="fixed bottom-6 flex flex-col border-t pr-2 pt-4">
-            <h3 className="text-sm font-semibold">{siteConfig.title}</h3>
+            <LoggedUser />
             <a
               href="https://fn03.xyz"
               target="_blank"

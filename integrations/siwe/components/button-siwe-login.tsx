@@ -6,6 +6,7 @@ import { useAccount, useNetwork, useSignMessage } from "wagmi"
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { useToast } from "@/components/ui/use-toast"
 import { siweLogin } from "@/integrations/siwe/actions/siwe-login"
 
 interface ButtonSIWELoginProps extends HTMLAttributes<HTMLButtonElement> {
@@ -23,10 +24,18 @@ export const ButtonSIWELogin = ({
   const { isLoading, signMessageAsync } = useSignMessage()
   const { address } = useAccount()
   const { chain } = useNetwork()
+  const { toast } = useToast()
 
   const handleCreateMessage = async () => {
     try {
-      if (!address || !chain?.id) return
+      if (!address || !chain?.id) {
+        return toast({
+          title: "Error",
+          description:
+            "Please connect your wallet first, click on the 'Connect Wallet' button.",
+          variant: "destructive",
+        })
+      }
       await siweLogin({ address, chainId: chain?.id, signMessageAsync })
       await mutateUser()
     } catch (error) {

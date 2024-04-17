@@ -43,7 +43,7 @@ export default function SIWEPage() {
             rel="noreferrer noopener"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
-            <LuBook className="mr-2 h-4 w-4" />
+            <LuBook className="mr-2 size-4" />
             Documentation
           </Link>
         </PageHeaderCTA>

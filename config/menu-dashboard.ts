@@ -7,7 +7,11 @@ export const menuDashboard = [
     href: "/dashboard",
   },
   {
-    label: "Account",
-    href: "/dashboard/account",
+    label: "Profile",
+    href: "/dashboard/profile",
+  },
+  {
+    label: "API Keys",
+    href: "/dashboard/api-keys",
   },
 ]

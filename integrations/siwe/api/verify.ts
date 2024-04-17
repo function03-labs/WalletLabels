@@ -19,7 +19,6 @@ const verifySchema = z.object({
     chainId: z.number(),
     nonce: z.string(),
     issuedAt: z.string(),
-    avatar: z.string().optional(),
   }),
 })
 
@@ -41,14 +40,11 @@ export async function POST(req: Request) {
     }
     await session.save()
 
-    //  TODO: A user must have a name, a picture and an email
     if (env.DATABASE_URL) {
       await prisma.user.upsert({
         where: { id: fields.address },
         update: {
           address: fields.address,
-          name: `user-${fields.address.slice(0, 6)}`,
-          avatar: `https://avatars.jakerunzer.com/${fields.address}`,
         },
         create: {
           id: fields.address,
