@@ -10,15 +10,7 @@ export function useGridColumns() {
         title: "Address",
         id: "address",
         width:
-          window.innerWidth > 1200
-            ? 350
-            : window.innerWidth > 992
-              ? 350
-              : window.innerWidth > 768
-                ? 350
-                : window.innerWidth > 600
-                  ? 200
-                  : 100,
+          window.innerWidth > 768 ? 350 : window.innerWidth > 600 ? 200 : 100,
         icon: GridColumnIcon.HeaderString,
       },
       {

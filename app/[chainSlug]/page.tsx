@@ -44,7 +44,7 @@ export default async function Page({
               className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
             >
               <div className="px-3 py-1 text-sm">
-                Check out our new API endpoints.{" "}
+                Check out our API endpoints.{" "}
                 <a
                   href="https://docs.walletlabels.xyz/"
                   className="font-semibold text-blue-800 dark:text-white"
@@ -65,7 +65,7 @@ export default async function Page({
             More than
             <CountingUp
               start={0}
-              end={70}
+              end={200}
               duration={2}
               decimals={0}
               prefix=" "

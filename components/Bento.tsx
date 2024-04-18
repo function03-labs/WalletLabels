@@ -58,11 +58,17 @@ const SkeletonOne = () => {
         className="relative ml-auto flex w-fit flex-row items-center space-x-2 rounded-full border border-neutral-100 bg-white p-2 pl-4 dark:border-white/[0.2] dark:bg-black"
       >
         <div className="h-4 w-full rounded-full">
-          <p className="truncate pr-2 text-xs text-gray-500 dark:text-gray-400 sm:pr-8 md:text-right">
-            0x625e7708f30ca75bfd92586e17077590c60eb4cd
-          </p>
+          <div className="h-4 w-full rounded-full">
+            <p className="pr-8 text-xs text-gray-500 dark:text-gray-400 sm:hidden">
+              0x625e7708f30ca75bfd92586e17077590c60...
+            </p>
+            <p className="hidden pr-8 text-xs text-gray-500 dark:text-gray-400 sm:block md:text-right">
+              0x625e7708f30ca75bfd92586e17077590c60eb4cd
+            </p>
+          </div>
         </div>
-        <div className="absolute right-2 ml-4 size-6 shrink-0 rounded-full bg-gradient-to-l from-yellow-400 to-orange-600" />
+
+        <div className="absolute right-2 ml-4 size-6 shrink-0 rounded-full bg-gradient-to-l from-yellow-400 to-orange-600 " />
       </motion.div>
 
       <motion.div

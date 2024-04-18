@@ -88,7 +88,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
         rows={props.data.data.length}
         onItemHovered={onItemHovered}
         keybindings={{ search: true }}
-        className="rounded-md shadow-lg"
+        className="rounded-xl shadow-lg"
         getRowThemeOverride={getRowThemeOverride}
       />
       {createPortal(
