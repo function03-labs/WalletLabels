@@ -80,7 +80,7 @@ export default async function Page({
         </div>
       </section>
       <ActivityFilter />
-      <div className="px-1 sm:px-2 md:px-4 lg:px-12">
+      <div className="px-2 md:px-4 lg:px-12">
         {searchParams.query || searchParams.isRefined ? (
           <CustomHits />
         ) : (
