@@ -38,11 +38,11 @@ export function MainNav({ items }: MainNavProps) {
           <DropdownMenuTrigger className="flex items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
             <Image
               src={
-                params === "/solana"
+                params === "/chain/solana"
                   ? "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
-                  : params === "/ethereum"
+                  : params === "/chain/ethereum"
                     ? "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
-                    : params === "/arbitrum"
+                    : params === "/chain/arbitrum"
                       ? "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
                       : "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
               }
@@ -69,7 +69,7 @@ export function MainNav({ items }: MainNavProps) {
               <DropdownMenuItem key={index}>
                 <Link
                   className="flex w-full items-center gap-2"
-                  href={`/${chain.id}`}
+                  href={`/chain/${chain.id}`}
                 >
                   <Image
                     src={chain.img}
