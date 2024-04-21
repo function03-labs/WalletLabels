@@ -14,7 +14,7 @@ import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 async function getData({ params }: { params: { chainSlug: string } }) {
   try {
     const data = await fetch(
-      `${process.env.PUBLIC_URL}/api/${params.chainSlug}`
+      `${process.env.PUBLIC_URL}/api/chain/${params.chainSlug}`
     );
     return data.json();
   } catch (error) {

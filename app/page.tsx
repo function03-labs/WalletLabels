@@ -11,7 +11,7 @@ import { SearchWrapper } from "@component/wrapper/SearchWrapper";
 
 async function getData() {
   try {
-    const data = await fetch(`${process.env.PUBLIC_URL}/api/ethereum`);
+    const data = await fetch(`${process.env.PUBLIC_URL}/api/chain/ethereum`);
     return data.json();
   } catch (error) {
     console.error(error);
