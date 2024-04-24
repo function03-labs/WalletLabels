@@ -34,3 +34,13 @@ export async function connectToDatabase() {
     db: cachedDb,
   };
 }
+
+export async function connectDB() {
+  try {
+    const database = await connectToDatabase();
+    return database.db;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Unable to connect to database");
+  }
+}

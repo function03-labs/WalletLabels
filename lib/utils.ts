@@ -62,3 +62,12 @@ export function normalizeLabels(labels: any[]): any[] {
 export function isRefined(items: Activity[]): boolean {
   return items.some((item) => item.isRefined);
 }
+
+export function isAllowedApiKey(apiKey: string): boolean {
+  if (process.env.NODE_ENV === "development") {
+    return true;
+  }
+
+  const apiKeys = require("@/public/api_keys.json");
+  return apiKeys["api-keys"].includes(apiKey);
+}

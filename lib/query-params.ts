@@ -1,28 +1,46 @@
-import * as z from "zod";
-
-const queryParamsSchema = z.object({
-  query: z.string().optional(),
-  limit: z.coerce.number().optional().default(20),
-});
-
-type QueryParams = z.infer<typeof queryParamsSchema>;
-
-export async function getQueryParams(req: Request): Promise<QueryParams> {
+export function parseQueryParamsAddress(req: Request) {
   const url = new URL(req.url);
   const searchParams = url.searchParams;
-  const query = searchParams.get("address") || searchParams.get("search");
+  const address = searchParams.get("address") || "";
   const limit = searchParams.get("limit");
+  const apiKey = req.headers.get("x-api-key") || "";
 
-  return queryParamsSchema.parse({
-    query,
-    limit: limit
-      ? Number.isNaN(+limit)
-        ? 20
-        : +limit > 100
-          ? 100
-          : +limit
-      : 20,
-  });
+  let parsedLimit = limit ? Number(limit) : 20;
+  if (parsedLimit > 100) {
+    parsedLimit = 100;
+  }
+
+  return { address, limit: parsedLimit, apiKey };
+}
+
+export function parseQueryParamsSearch(req: Request) {
+  const url = new URL(req.url);
+  const searchParams = url.searchParams;
+  const search = searchParams.get("searchtext") || "";
+  const limit = searchParams.get("limit");
+  const apiKey = req.headers.get("x-api-key") || "";
+
+  let parsedLimit = limit ? Number(limit) : 20;
+  if (parsedLimit > 100) {
+    parsedLimit = 100;
+  }
+
+  return { search, limit: parsedLimit, apiKey };
+}
+
+export function parseQueryParamsLabel(req: Request) {
+  const url = new URL(req.url);
+  const searchParams = url.searchParams;
+  const label = searchParams.get("label") || "";
+  const limit = searchParams.get("limit");
+  const apiKey = req.headers.get("x-api-key") || "";
+
+  let parsedLimit = limit ? Number(limit) : 20;
+  if (parsedLimit > 100) {
+    parsedLimit = 100;
+  }
+
+  return { label, limit: parsedLimit, apiKey };
 }
 
 export const indexMap = {
