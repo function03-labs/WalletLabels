@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Flex, IconButton, Table } from "@radix-ui/themes"
+import { Box, Flex, IconButton } from "@radix-ui/themes"
 import { motion } from "framer-motion"
 import { CopyIcon, EditIcon } from "lucide-react"
 import { LuLaptop } from "react-icons/lu"
@@ -9,6 +9,16 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import ApiKeysTable from "@/components/api/api-keys-table"
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
@@ -51,6 +61,7 @@ export default function PageDashboardApiKeys() {
               </span>
               <ButtonSIWELogin />
             </div>
+            <ApiKeysTable></ApiKeysTable>
           </IsSignedOut>
         </div>
         <hr className="my-5 opacity-50" />
