@@ -2,10 +2,10 @@ import "@/styles/app.css"
 import "@/styles/globals.css"
 
 import { ReactNode } from "react"
+import { Inter as FontSans } from "next/font/google"
 import { env } from "@/env.mjs"
 
 import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import RootProvider from "@/components/providers/root-provider"
@@ -34,7 +34,10 @@ export const metadata = {
     description: siteConfig.description,
   },
 }
-
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>

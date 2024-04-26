@@ -84,16 +84,15 @@ export function ApiKeysTable() {
                 <div className="flex  items-center gap-2 space-x-2">
                   <Button
                     size="icon"
-                    className="max-h-8 max-w-8"
+                    className="hidden max-h-8 max-w-8"
                     type="submit"
-                    hidden={true}
                   >
                     <Check />
                   </Button>
                   <Button
                     size="icon"
                     type="submit"
-                    className="max-h-8 max-w-8"
+                    className="hidden max-h-8 max-w-8"
                     variant="destructive"
                     hidden={true}
                   >
