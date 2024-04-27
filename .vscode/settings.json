@@ -1,20 +1,10 @@
 {
-    "editor.formatOnSave": true,
-    "eslint.format.enable": true,
-    "tailwindCSS.includeLanguages": {
-        "html": "html",
-        "javascript": "javascript",
-        "css": "css",
-
-        
-    },
-    "files.associations": {
-        "*.css": "tailwindcss"
-      },
-      "editor.quickSuggestions": {
-        "strings": true
-     },
-     "css.validate": false,
-     "editor.inlineSuggest.enabled": true
-
+  "editor.formatOnSave": true,
+  "editer.formatOnPaste": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.format": "explicit"
+  },
+  "WillLuke.nextjs.hasPrompted": true
 }

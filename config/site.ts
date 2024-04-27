@@ -1,18 +1,4 @@
-import { NavItem } from "@/types/nav"
-import { tr } from "date-fns/locale"
-
-interface SiteConfig {
-  name: string
-  description: string
-  mainNav: NavItem[]
-  links: {
-    twitter: string
-    github: string
-    docs: string
-    style?: string
-  }
-
-}
+import { SiteConfig } from "@/types/site";
 
 export const siteConfig: SiteConfig = {
   name: "WalletLabels",
@@ -23,21 +9,25 @@ export const siteConfig: SiteConfig = {
       title: "Home",
       href: "/",
     },
-    {
+    /*     {
       title: "Social Labels",
       href: "/socials",
       disabled: false,
       new: true,
     },
-    {
+ */ {
       title: "API",
       href: "https://docs.walletlabels.xyz",
       disabled: false,
+      new: true,
     },
   ],
   links: {
-    twitter: "#",
-    github: "https://github.com/0xaaiden/WalletLabels",
+    twitter: "https://twitter.com/walletlabels",
+    github: "https://github.com/function03-labs/WalletLabels",
     docs: "/api-a",
   },
-}
+  url: "https://walletlabels.xyz",
+  ogImage: "https://walletlabels.xyz/og.png",
+  dns: "walletlabels.xyz",
+};
