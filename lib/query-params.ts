@@ -3,14 +3,13 @@ export function parseQueryParamsAddress(req: Request) {
   const searchParams = url.searchParams;
   const address = searchParams.get("address") || "";
   const limit = searchParams.get("limit");
-  const apiKey = req.headers.get("x-api-key") || "";
 
   let parsedLimit = limit ? Number(limit) : 20;
   if (parsedLimit > 100) {
     parsedLimit = 100;
   }
 
-  return { address, limit: parsedLimit, apiKey };
+  return { address, limit: parsedLimit };
 }
 
 export function parseQueryParamsSearch(req: Request) {
@@ -18,14 +17,13 @@ export function parseQueryParamsSearch(req: Request) {
   const searchParams = url.searchParams;
   const search = searchParams.get("searchtext") || "";
   const limit = searchParams.get("limit");
-  const apiKey = req.headers.get("x-api-key") || "";
 
   let parsedLimit = limit ? Number(limit) : 20;
   if (parsedLimit > 100) {
     parsedLimit = 100;
   }
 
-  return { search, limit: parsedLimit, apiKey };
+  return { search, limit: parsedLimit };
 }
 
 export function parseQueryParamsLabel(req: Request) {

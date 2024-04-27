@@ -1,26 +1,10 @@
 import { connectDB } from "@/lib/mongodb";
-import { isAllowedApiKey } from "@/lib/utils";
 import { parseQueryParamsSearch } from "@/lib/query-params";
 
 import { PipelineStage } from "@/types";
 
 export async function GET(request: Request) {
-  const { apiKey, search, limit } = parseQueryParamsSearch(request);
-
-  if (!isAllowedApiKey(apiKey)) {
-    return new Response(
-      JSON.stringify({
-        message:
-          "Unauthorized: Invalid API key provided. Please provide a valid API key.",
-      }),
-      {
-        status: 401,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  }
+  const { search, limit } = parseQueryParamsSearch(request);
 
   if (search === "") {
     return new Response(

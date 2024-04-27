@@ -1,18 +1,16 @@
 import { connectDB } from "@/lib/mongodb";
-import { isAllowedApiKey } from "@/lib/utils";
 import { parseQueryParamsAddress } from "@/lib/query-params";
 
 export async function GET(request: Request) {
-  const { apiKey, address, limit } = parseQueryParamsAddress(request);
+  const { address, limit } = parseQueryParamsAddress(request);
 
-  if (!isAllowedApiKey(apiKey)) {
+  if (address === "") {
     return new Response(
       JSON.stringify({
-        message:
-          "Unauthorized: Invalid API key provided. Please provide a valid API key.",
+        message: "Bad request: 'address' parameter missing",
       }),
       {
-        status: 401,
+        status: 200,
         headers: {
           "Content-Type": "application/json",
         },
@@ -20,19 +18,10 @@ export async function GET(request: Request) {
     );
   }
 
-  if (address === "") {
-    return new Response(JSON.stringify({ data: [] }), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-
   const db = await connectDB();
 
   const queryAtlas = {
-    address: { $regex: address, $options: "i" },
+    address: address,
   };
 
   const projection = {
@@ -45,9 +34,11 @@ export async function GET(request: Request) {
 
   try {
     const cursor = db
-      .collection(process.env.CLC_NAME_SC!)
+      .collection(process.env.CLC_NAME_WLBLS_OPTIMISM!)
       .find(queryAtlas, { projection })
+      .collation({ locale: "en", strength: 1 })
       .limit(limit);
+
     const labels = await cursor.toArray();
 
     const response = {
@@ -57,7 +48,6 @@ export async function GET(request: Request) {
         label_type: label.label_type,
         label_subtype: label.label_subtype,
         label: label.label,
-        metadata: label.metadata,
       })),
     };
 

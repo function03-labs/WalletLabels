@@ -1,24 +1,8 @@
 import { connectDB } from "@/lib/mongodb";
-import { isAllowedApiKey } from "@/lib/utils";
 import { parseQueryParamsAddress } from "@/lib/query-params";
 
 export async function GET(request: Request) {
-  const { apiKey, address, limit } = parseQueryParamsAddress(request);
-
-  if (!isAllowedApiKey(apiKey)) {
-    return new Response(
-      JSON.stringify({
-        message:
-          "Unauthorized: Invalid API key provided. Please provide a valid API key.",
-      }),
-      {
-        status: 401,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  }
+  const { address, limit } = parseQueryParamsAddress(request);
 
   if (address === "") {
     return new Response(
