@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Check, Edit2Icon, X } from "lucide-react"
 
 import { chains } from "@/config/networks"

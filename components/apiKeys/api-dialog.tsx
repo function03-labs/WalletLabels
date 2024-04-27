@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
+import { Loader2 } from "lucide-react"
 import { Controller, useForm } from "react-hook-form"
 
 import {
   Avatar,
-  AvatarFallback,
   AvatarGroup,
   AvatarGroupList,
   AvatarImage,
@@ -12,13 +12,14 @@ import {
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input" // Assuming shadcn provides these form components
+import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
   Select,
@@ -29,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useToast } from "@/components/ui/use-toast"
 
 const ApiCreateDialog = ({ onSubmit, apiKeysCount }) => {
   const {
@@ -38,10 +40,28 @@ const ApiCreateDialog = ({ onSubmit, apiKeysCount }) => {
   } = useForm({
     defaultValues: {
       name: "",
-      description: "",
       chain: "",
     },
   })
+  const { toast } = useToast()
+  const [isLoading, setIsLoading] = useState(false)
+  const [showDialog, setShowDialog] = useState(false)
+
+  const handleFormSubmit = async (data) => {
+    setIsLoading(true)
+    try {
+      await onSubmit(data)
+      setShowDialog(false) // Close the dialog on successful key generation
+    } catch (error) {
+      console.error("Error generating API key:", error)
+      toast({
+        variant: "destructive",
+        title: "Error generating API key",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const chains = [
     "ethereum",
@@ -71,16 +91,16 @@ const ApiCreateDialog = ({ onSubmit, apiKeysCount }) => {
   }
 
   return (
-    <Dialog>
+    <Dialog open={showDialog}>
       <DialogTrigger asChild>
-        <Button>Create API Key</Button>
+        <Button onClick={() => setShowDialog(true)}>Create API Key</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Generate API Key</DialogTitle>
         </DialogHeader>
         {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-        <form onSubmit={() => alert("hello")}>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
           <Controller
             name="name"
             control={control}
@@ -143,7 +163,12 @@ const ApiCreateDialog = ({ onSubmit, apiKeysCount }) => {
           />
 
           <DialogFooter>
-            <Button type="submit">Generate</Button>
+            <DialogClose asChild>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading && <Loader2 className="mr-2 size-4 animate-spin" />}{" "}
+                Generate
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>

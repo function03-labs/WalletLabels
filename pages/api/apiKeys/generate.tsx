@@ -11,7 +11,6 @@ import { z } from "zod"
 const requestBodySchema = z.object({
   usagePlanId: z.string().optional(),
   name: z.string(),
-  orgId: z.number(),
   description: z.string().optional(),
   customerId: z.string().optional(),
   tags: z.record(z.string()).optional(),
@@ -42,7 +41,6 @@ export default async function handler(
     description,
     customerId,
     tags,
-    orgId,
   } = parsedBody
 
   const config = {
