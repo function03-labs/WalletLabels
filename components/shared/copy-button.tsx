@@ -47,9 +47,9 @@ export function CopyButton({
       {children}
       <span className="sr-only">Copy</span>
       {hasCopied ? (
-        <LuCheck className="h-4 w-4" />
+        <LuCheck className="size-4" />
       ) : (
-        <LuCopy className="h-4 w-4" />
+        <LuCopy className="size-4" />
       )}
     </Button>
   )

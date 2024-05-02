@@ -1,13 +1,13 @@
 {
   "name": "@function03-labs/app-walletlabels",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint '**/*.{ts,tsx}'",
-    "lint-fix": "eslint '**/*.{ts,tsx}' --fix",
+    "lint-fix": "next lint --fix",
     "format": "prettier . --list-different",
     "fix": "prettier . --write",
     "run-ci": "concurrently -c \"auto\" -p \"name\" -n \"format,lint\" \"pnpm format\"  \"pnpm lint\"  ",

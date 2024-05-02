@@ -25,11 +25,12 @@ module.exports = {
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
     "no-unused-vars": "off",
+    "tailwindcss/no-custom-classname": "off",
   },
   settings: {
     tailwindcss: {
       callees: ["cn"],
-      config: "tailwind.config.js",
+      config: "tailwind.config.ts",
     },
     next: {
       rootDir: true,

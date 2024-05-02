@@ -34,7 +34,7 @@ export default async function DashboardLayout({
           <ScrollArea className="py-6 pr-6 lg:py-8">
             <h3 className="pb-4 text-2xl font-semibold">Dashboard</h3>
             <SidebarNav items={menuDashboard} />
-            <hr className="border-muted my-6 border-t" />
+            <hr className="my-6 border-t border-muted" />
 
             <h3 className="pb-4 text-2xl font-semibold">Resources</h3>
 
@@ -46,7 +46,7 @@ export default async function DashboardLayout({
               href="https://fn03.xyz"
               target="_blank"
               rel="noreferrer"
-              className="text-primary w-fit py-2 text-xs underline-offset-4 hover:underline"
+              className="w-fit py-2 text-xs text-primary underline-offset-4 hover:underline"
             >
               Built by Function03 Labs
             </a>

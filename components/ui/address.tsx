@@ -110,12 +110,12 @@ const Address = React.forwardRef<HTMLDivElement, AddressProps>(
       return (
         <AddressLink
           ref={ref}
-          address={selectedAddress}
+          address={selectedAddress as AddressType}
           className={className}
           {...props}
         >
           {copy ? (
-            <AddressCopy address={selectedAddress}>
+            <AddressCopy address={selectedAddress as AddressType}>
               {formattedAddress}
             </AddressCopy>
           ) : (
@@ -127,7 +127,11 @@ const Address = React.forwardRef<HTMLDivElement, AddressProps>(
 
     if (copy) {
       return (
-        <AddressCopy ref={ref} address={selectedAddress} {...props}>
+        <AddressCopy
+          ref={ref}
+          address={selectedAddress as AddressType}
+          {...props}
+        >
           {formattedAddress}
         </AddressCopy>
       )
