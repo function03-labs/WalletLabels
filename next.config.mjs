@@ -14,6 +14,7 @@ const nextConfig = {
       "gateway.ipfs.io",
       "avatars.jakerunzer.com",
       "icons.llamao.fi",
+      "cryptologos.cc",
     ],
   },
   env: {

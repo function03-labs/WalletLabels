@@ -2,14 +2,13 @@
 
 import React from "react"
 import Link from "next/link"
-import {
-  integrationCategories,
-  turboIntegrations,
-} from "@/data/turbo-integrations"
 
 import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 
 import { LightDarkImage } from "@/components/shared/light-dark-image"
+import { components, ListItem } from "@/components/shared/list-item"
+import { GlowingStarsBackgroundCard } from "@/components/ui/glowing-stars"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,11 +16,25 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Separator } from "@/components/ui/separator"
 
-import { LinkComponent } from "../shared/link-component"
+const links = [
+  {
+    title: "Documentation",
+    path: "https://docs.walletlabels.xyz/",
+    name: "docs",
+  },
+  {
+    title: "Open Source",
+    path: "https://github.com/function03-labs/WalletLabels",
+    name: "open-source",
+  },
+  {
+    title: "Updates",
+    path: "https://twitter.com/walletlabels",
+    name: "updates",
+  },
+]
 
 export function MainNav() {
   return (
@@ -30,12 +43,12 @@ export function MainNav() {
         <LightDarkImage
           LightImage="/logo-dark.png"
           DarkImage="/logo-light.png"
-          alt="TurboETH"
+          alt="WalletLabel Logo"
           className="rounded-full"
           height={32}
           width={32}
         />
-        <span className="hidden bg-gradient-to-br from-black to-stone-500 bg-clip-text text-2xl font-bold text-transparent dark:from-stone-100 dark:to-yellow-200 sm:inline-block">
+        <span className="hidden bg-clip-text text-2xl font-bold text-black dark:text-white sm:inline-block">
           {siteConfig.name}
         </span>
       </Link>
@@ -51,92 +64,66 @@ function MainNavMenu() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Integrations</NavigationMenuTrigger>
-          <NavigationMenuContent className="max-h-[768px] overflow-y-scroll">
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[768px] lg:grid-cols-3">
-              {integrationCategories.map((category) => {
-                const categoryIntegrations = Object.values(
-                  turboIntegrations
-                ).filter((integration) => integration.category === category)
-                return (
-                  categoryIntegrations.length > 0 && (
-                    <>
-                      <h4
-                        key={category}
-                        className="text-lg font-medium leading-none md:col-span-2 lg:col-span-3"
+          <ul className="mx-3 hidden space-x-2 text-sm font-medium md:flex">
+            <li>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
+                  <NavigationMenuContent className="bg-[#FDFDFC] dark:bg-[#121212]">
+                    <div className="flex">
+                      <Link
+                        href="https://www.walletlabels.xyz"
+                        className="border-r-DEFAULT border-border"
                       >
-                        {category.charAt(0).toUpperCase() + category.slice(1)}
-                      </h4>
-                      <Separator className="md:col-span-2 lg:col-span-3" />
-                      {categoryIntegrations.map(
-                        ({ name, href, description, imgDark, imgLight }) => (
-                          <NavMenuListItem
-                            key={name}
-                            name={name}
-                            href={href}
-                            description={description}
-                            lightImage={imgDark}
-                            darkImage={imgLight}
+                        <div className="mb-6 w-[215px]">
+                          <NavigationMenuLink asChild>
+                            <GlowingStarsBackgroundCard>
+                              <span className="text-lg font-medium">
+                                Wallet Labels Engine
+                              </span>
+                              <div className="flex items-end justify-between">
+                                <p className="line-clamp-2 text-sm leading-snug text-[#707070]">
+                                  One API to rule them all. Unlimited
+                                  connections.
+                                </p>
+                              </div>
+                            </GlowingStarsBackgroundCard>
+                          </NavigationMenuLink>
+                        </div>
+                      </Link>
+                      <ul className="flex w-[400px] flex-col p-4">
+                        {components.map((component) => (
+                          <ListItem
+                            key={component.title}
+                            title={component.title}
+                            href={component.href}
+                            image={component.image}
+                            external={component.external}
                           />
-                        )
-                      )}
-                    </>
-                  )
-                )
-              })}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <LinkComponent href="https://docs.turboeth.xyz/overview">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <span>Documentation</span>
-            </NavigationMenuLink>
-          </LinkComponent>
+                        ))}
+                      </ul>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </li>
+            {links.map(({ path, name, title }) => {
+              return (
+                <li key={path}>
+                  <Link
+                    href={path}
+                    className={cn(
+                      "mt-1 inline-flex h-8 items-center justify-center rounded-md px-3 py-4 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary"
+                    )}
+                  >
+                    {title}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-  )
-}
-
-interface NavMenuListItemProps {
-  name: string
-  description: string
-  href: string
-  lightImage: string
-  darkImage: string
-}
-
-const NavMenuListItem = ({
-  name,
-  description,
-  href,
-  lightImage,
-  darkImage,
-}: NavMenuListItemProps) => {
-  return (
-    <li className="w-full min-w-full" key={name}>
-      <NavigationMenuLink asChild>
-        <a
-          href={href}
-          className="flex select-none flex-col gap-y-2 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-        >
-          <div className="flex items-center gap-x-2">
-            <LightDarkImage
-              LightImage={lightImage}
-              DarkImage={darkImage}
-              alt="icon"
-              height={24}
-              width={24}
-              className="size-6"
-            />
-            <span className="text-base font-medium leading-none">{name}</span>
-          </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {description}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
   )
 }

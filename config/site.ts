@@ -9,7 +9,7 @@ interface SiteConfig {
   localeDefault: string
   links: {
     docs: string
-    telegram: string
+    website: string
     twitter: string
     github: string
   }
@@ -22,11 +22,11 @@ export const siteConfig: SiteConfig = {
   title: "WalletLabels - Easily identify addresses",
   emoji: "🪪",
   description:
-    "More than 70M addresses labeled for you to easily identify your favorite wallets and exchanges.",
+    "More than 200M addresses labeled for you to easily identify your favorite wallets and exchanges.",
   localeDefault: "en",
   links: {
     docs: "https://docs.walletlabels.xyz/",
-    telegram: "https://t.me/+yDF9bnv2R7RkNWZk",
+    website: "https://www.walletlabels.xyz/",
     twitter: "https://twitter.com/walletlabels",
     github: "https://github.com/function03-labs/WalletLabels",
   },

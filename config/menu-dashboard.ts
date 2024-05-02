@@ -3,15 +3,11 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 export const menuDashboard = [
   {
-    label: "Overview",
+    label: "API Key Management",
     href: "/dashboard",
   },
   {
     label: "Profile",
     href: "/dashboard/profile",
-  },
-  {
-    label: "API Keys",
-    href: "/dashboard/api-keys",
   },
 ]

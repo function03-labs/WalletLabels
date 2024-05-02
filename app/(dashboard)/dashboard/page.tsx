@@ -1,58 +1,52 @@
-"use client"
+import { redirect } from "next/navigation"
 
-import { motion } from "framer-motion"
+import { getApiKeys } from "@/lib/app/api-key"
+import { getSession } from "@/lib/session"
 
-import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { DashboardGenerateAPIkeysDialog } from "@/components/app/dashboard-generate-apikeys-dialog"
+import { DashboardTableAPIKeys } from "@/components/app/dashboard-table-apikeys"
+import { Card, CardContent } from "@/components/ui/card"
+import { PageHeader } from "@/components/ui/page-header"
 
-import { WalletAddress } from "@/components/blockchain/wallet-address"
-import { WalletBalance } from "@/components/blockchain/wallet-balance"
-import { WalletEnsName } from "@/components/blockchain/wallet-ens-name"
-import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
-import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
+import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
-export default function PageDashboard() {
+export const runtime = "edge"
+
+export default async function PageDashboardApiKeys() {
+  const session = await getSession()
+
+  if (!session || !session.user) {
+    redirect("/")
+  }
+
+  const apiKeys = await getApiKeys(session.user.id)
+
   return (
-    <motion.div
-      animate="show"
-      className="flex size-full items-center justify-center lg:py-8"
-      initial="hidden"
-      variants={FADE_DOWN_ANIMATION_VARIANTS}
-      viewport={{ once: true }}
-      whileInView="show"
-    >
-      <IsWalletConnected>
-        <div className="col-span-12 flex flex-col items-center justify-center lg:col-span-9">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold lg:text-6xl">
-              <span className="bg-gradient-to-br from-indigo-600 to-purple-700 bg-clip-text text-transparent dark:from-indigo-100 dark:to-purple-200">
-                hi 👋 <WalletEnsName />
-              </span>
-            </h3>
-            <span className="font-light">
-              <WalletAddress className="mt-5 block text-xl font-light" />
-              <div className="mt-4">
-                <span className="text-3xl font-light">
-                  Balance: <WalletBalance decimals={7} /> ETH
-                </span>
-              </div>
+    <section className="w-full p-10">
+      <div>
+        <PageHeader title="API Keys" description="Manage your API keys." />
+        <IsSignedOut>
+          <div className="flex items-center justify-between gap-x-5 text-center">
+            <span className="text-sm">
+              Authenticate to access your api keys.
             </span>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-white p-6 shadow-md">
-              <div className="text-xl font-medium text-black">Generate Key</div>
-            </div>
-            <div className="mx-auto flex max-w-sm items-center space-x-4 rounded-xl bg-white p-6 shadow-md">
-              <div className="text-xl font-medium text-black">Organization</div>
-            </div>
-          </div>
-        </div>
-      </IsWalletConnected>
+        </IsSignedOut>
+      </div>
+      <hr className="my-5 opacity-50" />
+      <IsSignedIn>
+        <Card className="w-full p-6">
+          <CardContent>
+            <DashboardGenerateAPIkeysDialog
+              userId={session.user.id}
+              apiKeysCount={apiKeys.length}
+            />
+          </CardContent>
 
-      <IsWalletDisconnected>
-        <h3 className="text-lg font-normal">
-          Connect Wallet to view your personalized dashboard.
-        </h3>
-      </IsWalletDisconnected>
-    </motion.div>
+          <DashboardTableAPIKeys apiKeys={apiKeys} />
+        </Card>
+      </IsSignedIn>
+    </section>
   )
 }

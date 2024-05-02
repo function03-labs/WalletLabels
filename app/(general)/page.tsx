@@ -1,6 +1,6 @@
-import Image from "next/image"
 import Link from "next/link"
-import { FaDiscord, FaGithub } from "react-icons/fa"
+import { Rss } from "lucide-react"
+import { FaGithub } from "react-icons/fa"
 import { LuBook } from "react-icons/lu"
 
 import { siteConfig } from "@/config/site"
@@ -12,7 +12,6 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/layout/page-header"
-import { CopyButton } from "@/components/shared/copy-button"
 import { ExampleDemos } from "@/components/shared/example-demos"
 import { buttonVariants } from "@/components/ui/button"
 
@@ -20,14 +19,7 @@ export default function HomePage() {
   return (
     <div className="container relative mt-20 px-0">
       <PageHeader className="pb-8">
-        <Image
-          src="/logo-gradient.png"
-          alt="TurboETH Logo"
-          width={80}
-          height={80}
-          className="size-20 rounded-2xl"
-        />
-        <PageHeaderHeading>Build Web3 in Turbo&nbsp;Mode</PageHeaderHeading>
+        <PageHeaderHeading>Search wallets like never before</PageHeaderHeading>
         <PageHeaderDescription>{siteConfig.description}</PageHeaderDescription>
         <PageHeaderCTA>
           <Link
@@ -49,24 +41,17 @@ export default function HomePage() {
             Github
           </Link>
           <Link
-            href={siteConfig.links.telegram}
+            href={siteConfig.links.website}
             target="_blank"
             rel="noreferrer noopener"
             className={cn(
               buttonVariants(),
-              "bg-[#7289da] text-white hover:bg-[#7289da]/80"
+              "bg-[#47accd] text-white hover:bg-[#47accd]/80"
             )}
           >
-            <FaDiscord className="mr-2 size-4" />
-            Discord
+            <Rss className="mr-2 size-4" />
+            Website
           </Link>
-        </PageHeaderCTA>
-        <PageHeaderCTA>
-          <CopyButton value="pnpm create turbo-eth@latest">
-            <span className="text-xs sm:text-base">
-              pnpm create turbo-eth@latest
-            </span>
-          </CopyButton>
         </PageHeaderCTA>
       </PageHeader>
       <ExampleDemos />

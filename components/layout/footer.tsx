@@ -1,12 +1,13 @@
 import { HTMLAttributes } from "react"
 import Link from "next/link"
-import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
+import { Rss } from "lucide-react"
+import { FaGithub, FaTwitter } from "react-icons/fa"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
-import { LinkComponent } from "../shared/link-component"
-import { buttonVariants } from "../ui/button"
+import { LinkComponent } from "@/components/shared/link-component"
+import { buttonVariants } from "@/components/ui/button"
 
 export function Footer({ className, ...props }: HTMLAttributes<HTMLElement>) {
   const classes = cn(
@@ -32,8 +33,8 @@ export function Footer({ className, ...props }: HTMLAttributes<HTMLElement>) {
         <LinkComponent href={`${siteConfig.links.twitter}`}>
           <FaTwitter />
         </LinkComponent>
-        <LinkComponent href={`${siteConfig.links.telegram}`}>
-          <FaDiscord />
+        <LinkComponent href={`${siteConfig.links.website}`}>
+          <Rss className="size-5" />
         </LinkComponent>
       </div>
     </footer>
