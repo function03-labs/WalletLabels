@@ -5,6 +5,7 @@ import { useBlockNumber, useNetwork } from "wagmi"
 
 import { cn } from "@/lib/utils"
 import { GetNetworkColor } from "@/lib/utils/get-network-color"
+
 import { Badge } from "@/components/ui/badge"
 
 const badgeVariants: Record<ReturnType<typeof GetNetworkColor>, string> = {

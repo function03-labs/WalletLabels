@@ -8,13 +8,33 @@ datasource db {
 }
 
 model User {
-  id        String   @id 
-  address   String  @unique
+  id             String   @id
 
+  name           String
+  email          String?
+  avatar         String
+
+  apiKeys        ApiKey[]
+  organizationSlug String?
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("users")
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  
   name      String
-  email     String?
-  avatar    String
+  chains    String[]
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("api_keys")
 }

@@ -1,16 +1,14 @@
-"use client"
-
-import { motion } from "framer-motion"
-
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
-import { Card } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
+
 import { AppAccountForm } from "@/components/app/app-account-form"
 import { WalletAddress } from "@/components/blockchain/wallet-address"
 import { WalletBalance } from "@/components/blockchain/wallet-balance"
 import { WalletNonce } from "@/components/blockchain/wallet-nonce"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { Card } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
@@ -25,16 +23,9 @@ async function getUser() {
 
 export default function PageDashboardAccount() {
   const user = getUser()
-  console.log(user)
+
   return (
-    <motion.div
-      animate="show"
-      className="flex size-full items-center justify-center py-6 lg:py-8"
-      initial="hidden"
-      variants={FADE_DOWN_ANIMATION_VARIANTS}
-      viewport={{ once: true }}
-      whileInView="show"
-    >
+    <section className="w-full p-10">
       <IsWalletConnected>
         <IsSignedIn>
           <Card className="w-full p-6">
@@ -77,6 +68,6 @@ export default function PageDashboardAccount() {
           Connect Wallet to view your personalized dashboard.
         </h3>
       </IsWalletDisconnected>
-    </motion.div>
+    </section>
   )
 }

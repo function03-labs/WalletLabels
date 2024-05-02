@@ -2,6 +2,7 @@ import { HTMLAttributes, useMemo } from "react"
 import { Address } from "wagmi"
 
 import { Address as AddressComponent } from "@/components/blockchain/address"
+
 import type { Users } from "@/app/api/app/users/route"
 
 import TableCore from "../shared/table/table-core"

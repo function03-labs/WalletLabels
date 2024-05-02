@@ -6,11 +6,12 @@ import { useAccount, useNetwork, type Address as AddressType } from "wagmi"
 import { mainnet } from "wagmi/chains"
 
 import { cn } from "@/lib/utils/index"
+
 import { toast } from "@/components/ui/use-toast"
 
 export interface AddressProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "children"> {
-  address?: AddressType
+  address?: AddressType | string
   truncate?: boolean
   truncateAmount?: number
   link?: boolean

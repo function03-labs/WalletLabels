@@ -13,6 +13,7 @@ const nextConfig = {
       "cloudflare-ipfs.com",
       "gateway.ipfs.io",
       "avatars.jakerunzer.com",
+      "icons.llamao.fi",
     ],
   },
   env: {

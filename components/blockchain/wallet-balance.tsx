@@ -22,6 +22,7 @@ export const WalletBalance = ({
 
   return (
     <span className={className} {...props}>
+      {/* eslint-disable-next-line @typescript-eslint/no-unsafe-call*/}
       {trimFormattedBalance(balance.formatted, decimals)}
     </span>
   )

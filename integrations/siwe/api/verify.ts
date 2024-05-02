@@ -4,9 +4,7 @@ import { SiweMessage } from "siwe"
 import { z } from "zod"
 
 import { prisma } from "@/lib/prisma"
-import { SERVER_SESSION_SETTINGS } from "@/lib/session"
-
-const admins = env.APP_ADMINS?.split(",") || []
+import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
 
 const verifySchema = z.object({
   signature: z.string(),
@@ -25,7 +23,11 @@ const verifySchema = z.object({
 export async function POST(req: Request) {
   try {
     const res = new Response(JSON.stringify({ ok: true }))
-    const session = await getIronSession(req, res, SERVER_SESSION_SETTINGS)
+    const session = await getIronSession<SessionData>(
+      req,
+      res,
+      SERVER_SESSION_SETTINGS
+    )
     const { message, signature } = verifySchema.parse(await req.json())
     const siweMessage = new SiweMessage(message)
     const fields = await siweMessage.validate(signature)
@@ -34,25 +36,25 @@ export async function POST(req: Request) {
         status: 422,
       })
     session.siwe = fields
-
-    if (admins.includes(fields.address)) {
-      session.isAdmin = true
-    }
     await session.save()
 
     if (env.DATABASE_URL) {
-      await prisma.user.upsert({
+      const user = await prisma.user.upsert({
         where: { id: fields.address },
         update: {
-          address: fields.address,
+          id: fields.address,
         },
         create: {
           id: fields.address,
-          address: fields.address,
           name: `user-${fields.address.slice(0, 6)}`,
+          organizationSlug: null,
           avatar: `https://avatars.jakerunzer.com/${fields.address}`,
         },
+        include: { apiKeys: true },
       })
+
+      session.user = user
+      await session.save()
     }
 
     return res

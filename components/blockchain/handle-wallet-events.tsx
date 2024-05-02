@@ -4,6 +4,7 @@ import { ReactNode } from "react"
 import { useAccount } from "wagmi"
 
 import { useUser } from "@/lib/hooks/use-user"
+
 import { siweLogout } from "@/integrations/siwe/actions/siwe-logout"
 
 interface HandleWalletEventsProps {

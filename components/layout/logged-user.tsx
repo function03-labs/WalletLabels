@@ -1,8 +1,10 @@
 "use client"
 
 import { useUser } from "@/lib/hooks/use-user"
+
 import { Address } from "@/components/ui/address"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 
 export function LoggedUser() {

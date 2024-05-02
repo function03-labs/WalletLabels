@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { LuCheck, LuCopy } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 
 interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {

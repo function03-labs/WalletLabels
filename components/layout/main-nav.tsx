@@ -8,6 +8,8 @@ import {
 } from "@/data/turbo-integrations"
 
 import { siteConfig } from "@/config/site"
+
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,7 +20,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
-import { LightDarkImage } from "@/components/shared/light-dark-image"
 
 import { LinkComponent } from "../shared/link-component"
 

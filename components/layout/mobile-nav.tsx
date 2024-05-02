@@ -12,6 +12,8 @@ import { LuMenu } from "react-icons/lu"
 import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import {
   Accordion,
   AccordionContent,
@@ -22,7 +24,6 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { LightDarkImage } from "@/components/shared/light-dark-image"
 
 import { ModeToggle } from "../shared/mode-toggle"
 

@@ -9,7 +9,7 @@
     "lint": "eslint '**/*.{ts,tsx}'",
     "lint-fix": "eslint '**/*.{ts,tsx}' --fix",
     "format": "prettier . --list-different",
-    "format-fix": "prettier . --write",
+    "fix": "prettier . --write",
     "run-ci": "concurrently -c \"auto\" -p \"name\" -n \"format,lint\" \"pnpm format\"  \"pnpm lint\"  ",
     "prepare": "husky ; prisma generate ; wagmi generate"
   },
@@ -32,7 +32,7 @@
   "dependencies": {
     "@aws-sdk/client-api-gateway": "^3.563.0",
     "@hookform/resolvers": "^3.1.1",
-    "@prisma/client": "^5.12.1",
+    "@prisma/client": "^5.13.0",
     "@radix-ui/react-accordion": "^1.1.0",
     "@radix-ui/react-alert-dialog": "^1.0.2",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -62,9 +62,10 @@
     "axios": "^1.2.2",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
+    "cmdk": "^1.0.0",
     "ethers": "^5.6.9",
     "framer-motion": "^8.4.3",
-    "iron-session": "^6.3.1",
+    "iron-session": "^8.0.1",
     "jotai": "^1.13.0",
     "lucide-react": "^0.367.0",
     "luxon": "^3.2.1",
@@ -129,7 +130,7 @@
     "postcss": "^8.4.19",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.0",
-    "prisma": "^5.12.1",
+    "prisma": "^5.13.0",
     "typescript": "5.0.4"
   }
 }

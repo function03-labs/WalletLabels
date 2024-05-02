@@ -69,7 +69,6 @@ export async function manageAvatar(
 }
 
 export async function uploadFiles(files: NamedBlob[], folderName: string) {
-  console.log(files)
   const uploadPromises = files.map((file) => {
     const filePath = `${folderName}/${file.name}`
     return supabase.storage.from("repositories").upload(filePath, file)

@@ -5,8 +5,10 @@ import { useAccount, useNetwork, useSignMessage } from "wagmi"
 
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
+
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
+
 import { siweLogin } from "@/integrations/siwe/actions/siwe-login"
 
 interface ButtonSIWELoginProps extends HTMLAttributes<HTMLButtonElement> {

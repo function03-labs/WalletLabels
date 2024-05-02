@@ -4,13 +4,15 @@ import Link from "next/link"
 
 import useScroll from "@/lib/hooks/use-scroll"
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { MainNav } from "@/components/layout/main-nav"
 import { MobileNav } from "@/components/layout/mobile-nav"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { ModeToggle } from "@/components/shared/mode-toggle"
+import { buttonVariants } from "@/components/ui/button"
+
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
