@@ -124,7 +124,7 @@ const Glow = ({ delay }: { delay: number }) => {
       exit={{
         opacity: 0,
       }}
-      className="bg-background shadow-primary/10 absolute left-1/2 z-10 size-[4px] -translate-x-1/2 rounded-full shadow-2xl blur-[1px]"
+      className="absolute left-1/2 z-10 size-[4px] -translate-x-1/2 rounded-full bg-background shadow-2xl shadow-primary/10 blur-[1px]"
     />
   )
 }
