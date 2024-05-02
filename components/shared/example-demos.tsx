@@ -36,7 +36,7 @@ const demos = [
         <IsWalletConnected>
           <div className="flex flex-col gap-5 lg:flex-row lg:gap-5 lg:pt-10">
             <div className=" block text-center">
-              <WalletAddress isLink truncate />
+              <WalletAddress truncate />
               <span className="mt-4 block font-mono text-xs font-semibold">
                 &lt;WalletAddress isLink truncate /&gt;
               </span>

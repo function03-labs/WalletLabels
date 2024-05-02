@@ -1,4 +1,11 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client/edge"
+import { withAccelerate } from "@prisma/extension-accelerate"
+
+const db = new PrismaClient().$extends(withAccelerate())
+
+export const prisma = db
+
+/* export const db = prisma
 
 declare global {
   // eslint-disable-next-line no-var
@@ -16,3 +23,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 export const prisma = prismaClient
+ */

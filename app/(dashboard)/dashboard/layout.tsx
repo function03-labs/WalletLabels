@@ -5,6 +5,7 @@ import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 import { menuDashboard } from "@/config/menu-dashboard"
 import { menuResources } from "@/config/menu-resources"
 import { siteConfig } from "@/config/site"
+import { getUser } from "@/lib/app/user-profile"
 import { getSession } from "@/lib/session"
 
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
@@ -26,6 +27,8 @@ export default async function DashboardLayout({
     redirect("/")
   }
 
+  const user = await getUser(session.user.id)
+
   return (
     <div className="relative flex min-h-screen flex-col">
       <SiteHeader />
@@ -41,7 +44,7 @@ export default async function DashboardLayout({
             <SidebarNav items={menuResources} />
           </ScrollArea>
           <footer className="fixed bottom-6 flex flex-col border-t pr-2 pt-4">
-            <LoggedUser />
+            <LoggedUser user={user} />
             <a
               href="https://fn03.xyz"
               target="_blank"

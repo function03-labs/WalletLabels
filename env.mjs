@@ -9,7 +9,7 @@ export const env = createEnv({
       .min(32)
       .default("complex_password_at_least_32_characters_long"),
     DATABASE_URL: z.string().url().optional(),
-    // Comma separated list of Ethereum addresses, accepts optinal whitespace after comma
+    DATABASE_URL_ACCELERATE: z.string().url().optional(),
     APP_ADMINS: z
       .string()
       .regex(/^(0x[a-fA-F0-9]{40}( *, *0x[a-fA-F0-9]{40})* *)*$/)
@@ -51,6 +51,7 @@ export const env = createEnv({
   runtimeEnv: {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
+    DATABASE_URL_ACCELERATE: process.env.DATABASE_URL_ACCELERATE,
     APP_ADMINS: process.env.APP_ADMINS,
     DISCO_API_KEY: process.env.DISCO_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,

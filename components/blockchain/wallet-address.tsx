@@ -1,7 +1,9 @@
+"use client"
+
 import { HTMLAttributes } from "react"
 import { useAccount } from "wagmi"
 
-import { Address } from "./address"
+import { Address } from "@/components/ui/address"
 
 export interface WalletAddressProps
   extends Omit<HTMLAttributes<HTMLElement>, "children"> {
@@ -22,7 +24,7 @@ export const WalletAddress = ({
     <Address
       address={address}
       className={className}
-      isLink={isLink}
+      //isLink={isLink}
       truncate={truncate}
       {...props}
     />

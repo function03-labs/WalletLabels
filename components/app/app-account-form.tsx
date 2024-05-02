@@ -1,10 +1,15 @@
 "use client"
 
+import React from "react"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { User } from "@prisma/client"
+import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { AccountFormSchema } from "@/config/schema"
+import { updateUser } from "@/lib/app/user-profile"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -18,21 +23,29 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-export function AppAccountForm() {
-  // 1. Define your form.
+export function AppAccountForm({ user }: { user: User }) {
+  const router = useRouter()
+  const [isLoading, setIsLoading] = React.useState(false)
   const form = useForm<z.infer<typeof AccountFormSchema>>({
     resolver: zodResolver(AccountFormSchema),
     defaultValues: {
-      name: "",
-      email: "",
+      name: user.name,
+      email: user.email || "",
+      organizationSlug: user.organizationSlug || "",
     },
   })
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof AccountFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof AccountFormSchema>) {
+    setIsLoading(true)
+
+    try {
+      await updateUser(user.id, values)
+      router.refresh()
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -45,7 +58,7 @@ export function AppAccountForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder={user.name} {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
@@ -54,6 +67,7 @@ export function AppAccountForm() {
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="email"
@@ -68,7 +82,25 @@ export function AppAccountForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+
+        <FormField
+          control={form.control}
+          name="organizationSlug"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Organization</FormLabel>
+              <FormControl>
+                <Input placeholder="function03" {...field} />
+              </FormControl>
+              <FormDescription>This is your organization slug.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit" disabled={isLoading}>
+          {isLoading && <Loader2 className="mr-2 size-4 animate-spin" />} Update
+        </Button>
       </form>
     </Form>
   )
