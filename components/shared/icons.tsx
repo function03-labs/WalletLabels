@@ -1,43 +1,11 @@
-import Image from "next/image"
-import {
-  AlertTriangle,
-  ArrowRight,
-  BookOpenText,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsUpDown,
-  Command,
-  CreditCard,
-  File,
-  FileText,
-  HelpCircle,
-  Image as ImageIcon,
-  Laptop,
-  Loader2,
-  LucideIcon,
-  MailIcon,
-  Monitor,
-  Moon,
-  MoreVertical,
-  PencilIcon,
-  PhoneIcon,
-  Pizza,
-  Plus,
-  Search,
-  Settings,
-  SunMedium,
-  Trash,
-  UserCircleIcon,
-  UserCogIcon,
-  X,
-} from "lucide-react"
-import { FaDiscord, FaGithub } from "react-icons/fa"
-import {
-  MdOutlineDescription,
-  MdOutlineIntegrationInstructions,
-  MdOutlineMemory,
-} from "react-icons/md"
+import Image from "next/image";
+import { AlertTriangle, ArrowRight, BookOpenText, Check, ChevronLeft, ChevronRight, ChevronsUpDown, Command, CreditCard, File, FileText, HelpCircle, Image as ImageIcon, Laptop, Loader2, LucideIcon, MailIcon, Monitor, Moon, MoreVertical, PencilIcon, PhoneIcon, Pizza, Plus, Search, Settings, SunMedium, Trash, UserCircleIcon, UserCogIcon, X } from "lucide-react";
+import { FaDiscord, FaGithub } from "react-icons/fa";
+import { MdOutlineDescription, MdOutlineIntegrationInstructions, MdOutlineMemory } from "react-icons/md";
+
+
+
+
 
 export type Icon = LucideIcon
 
@@ -49,6 +17,43 @@ function LogoIcon({ className }: { className?: string }) {
       className={className}
       width={32}
       height={32}
+    />
+  )
+}
+
+function SolanaIcon({ className }: { className?: string }) {
+  return (
+    <Image
+      src="https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
+      alt={"solana"}
+            className={className}
+
+      width={30}
+      height={30}
+    />
+  )
+}
+
+function ArbitrumIcon({ className }: { className?: string }) {
+  return (
+    <Image
+      src="https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
+      alt={"arbitrum"}
+      className={className}
+      width={30}
+      height={30}
+    />
+  )
+}
+
+function EthereumIcon({ className }: { className?: string }) {
+  return (
+    <Image
+      src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+      alt={"ethereum"}
+      className={className}
+      width={30}
+      height={30}
     />
   )
 }
@@ -91,4 +96,7 @@ export const Icons = {
   memory: MdOutlineMemory,
   integrationInstructions: MdOutlineIntegrationInstructions,
   description: MdOutlineDescription,
+  ethereum: EthereumIcon,
+  arbitrum: ArbitrumIcon,
+  solana: SolanaIcon,
 }

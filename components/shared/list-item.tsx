@@ -28,7 +28,7 @@ export const components: ListItemProps[] = [
   },
   {
     title: "Solana",
-    href: "https://twitter.com/walletlabels",
+    href: "https://twitter.com/walletlabels/chain/solana",
     image: "https://cryptologos.cc/logos/solana-sol-logo.png?v=029",
     external: true,
   },
