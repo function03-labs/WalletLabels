@@ -29,11 +29,6 @@ const links = [
     path: "https://github.com/function03-labs/WalletLabels",
     name: "open-source",
   },
-  {
-    title: "Updates",
-    path: "https://twitter.com/walletlabels",
-    name: "updates",
-  },
 ]
 
 export function MainNav() {

@@ -1,11 +1,43 @@
-import Image from "next/image";
-import { AlertTriangle, ArrowRight, BookOpenText, Check, ChevronLeft, ChevronRight, ChevronsUpDown, Command, CreditCard, File, FileText, HelpCircle, Image as ImageIcon, Laptop, Loader2, LucideIcon, MailIcon, Monitor, Moon, MoreVertical, PencilIcon, PhoneIcon, Pizza, Plus, Search, Settings, SunMedium, Trash, UserCircleIcon, UserCogIcon, X } from "lucide-react";
-import { FaDiscord, FaGithub } from "react-icons/fa";
-import { MdOutlineDescription, MdOutlineIntegrationInstructions, MdOutlineMemory } from "react-icons/md";
-
-
-
-
+import Image from "next/image"
+import {
+  AlertTriangle,
+  ArrowRight,
+  BookOpenText,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsUpDown,
+  Command,
+  CreditCard,
+  File,
+  FileText,
+  HelpCircle,
+  Image as ImageIcon,
+  Laptop,
+  Loader2,
+  LucideIcon,
+  MailIcon,
+  Monitor,
+  Moon,
+  MoreVertical,
+  PencilIcon,
+  PhoneIcon,
+  Pizza,
+  Plus,
+  Search,
+  Settings,
+  SunMedium,
+  Trash,
+  UserCircleIcon,
+  UserCogIcon,
+  X,
+} from "lucide-react"
+import { FaDiscord, FaGithub } from "react-icons/fa"
+import {
+  MdOutlineDescription,
+  MdOutlineIntegrationInstructions,
+  MdOutlineMemory,
+} from "react-icons/md"
 
 export type Icon = LucideIcon
 
@@ -26,8 +58,7 @@ function SolanaIcon({ className }: { className?: string }) {
     <Image
       src="https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
       alt={"solana"}
-            className={className}
-
+      className={className}
       width={30}
       height={30}
     />
