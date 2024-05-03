@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
-import { Rss } from "lucide-react"
 import { FaGithub, FaTwitter } from "react-icons/fa"
 
 import { menuDashboard } from "@/config/menu-dashboard"
@@ -60,9 +59,6 @@ export default async function DashboardLayout({
               </Link>
               <Link href={siteConfig.links.twitter}>
                 <FaTwitter />
-              </Link>
-              <Link href={siteConfig.links.website}>
-                <Rss className="size-5" />
               </Link>
             </div>
           </footer>

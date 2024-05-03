@@ -1,41 +1,45 @@
 import { HTMLAttributes } from "react"
 import Link from "next/link"
-import { Rss } from "lucide-react"
-import { FaGithub, FaTwitter } from "react-icons/fa"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
-import { LinkComponent } from "@/components/shared/link-component"
-import { buttonVariants } from "@/components/ui/button"
-
-export function Footer({ className, ...props }: HTMLAttributes<HTMLElement>) {
-  const classes = cn(
-    className,
-    "flex flex-col items-center justify-center px-4 py-6"
-  )
-
+export function Footer({ className }: HTMLAttributes<HTMLElement>) {
   return (
-    <footer className={classes} {...props}>
-      <h3>{siteConfig.title}</h3>
-      <Link
-        href="https://fn03.xyz"
-        target="_blank"
-        rel="noreferrer noopenner"
-        className={cn(buttonVariants({ variant: "link", size: "sm" }))}
-      >
-        Built by Function03 Labs
-      </Link>
-      <div className="mt-2 flex items-center space-x-2">
-        <LinkComponent href={`${siteConfig.links.github}`}>
-          <FaGithub />
-        </LinkComponent>
-        <LinkComponent href={`${siteConfig.links.twitter}`}>
-          <FaTwitter />
-        </LinkComponent>
-        <LinkComponent href={`${siteConfig.links.website}`}>
-          <Rss className="size-5" />
-        </LinkComponent>
+    <footer className={cn(className)}>
+      <div className="container flex flex-col items-center justify-between gap-4 py-10">
+        <div className="flex flex-col items-center gap-4 px-8 ">
+          <p className="text-center text-sm leading-loose">
+            Built by{" "}
+            <Link
+              href={siteConfig.url}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              {siteConfig.name}
+            </Link>
+            . Hosted on{" "}
+            <Link
+              href="https://vercel.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              Vercel
+            </Link>
+            . The source code is available on{" "}
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              GitHub
+            </Link>
+            .
+          </p>
+        </div>
       </div>
     </footer>
   )

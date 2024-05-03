@@ -2,13 +2,16 @@ import { HTMLAttributes, useMemo } from "react"
 import { Address } from "wagmi"
 
 import { Address as AddressComponent } from "@/components/blockchain/address"
+import TableCore from "@/components/shared/table/table-core"
+import { TimeFromUtc } from "@/components/shared/time-from-utc"
+import { Badge } from "@/components/ui/badge"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 import type { Users } from "@/app/api/app/users/route"
-
-import TableCore from "../shared/table/table-core"
-import { TimeFromUtc } from "../shared/time-from-utc"
-import { Badge } from "../ui/badge"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 
 interface AppUsersTableProps extends HTMLAttributes<HTMLElement> {
   data: Users | undefined

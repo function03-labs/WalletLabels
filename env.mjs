@@ -36,6 +36,7 @@ export const env = createEnv({
     AWS_SECRET_ACCESS_KEY: z.string().min(1).optional(),
     AWS_REGION: z.string().min(1).optional(),
     AWS_INVOKE_URL: z.string().min(1).optional(),
+    PUBLIC_URL: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.enum(["true", "false"]).default("true"),
@@ -83,5 +84,6 @@ export const env = createEnv({
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
     AWS_REGION: process.env.AWS_REGION,
     AWS_INVOKE_URL: process.env.AWS_INVOKE_URL,
+    PUBLIC_URL: process.env.PUBLIC_URL,
   },
 })

@@ -3,7 +3,7 @@ import { BaseError } from "viem"
 
 import { cn } from "@/lib/utils"
 
-import { BlockExplorerLink } from "./block-explorer-link"
+import { BlockExplorerLink } from "@/components/blockchain/block-explorer-link"
 
 interface TransactionStatusProps extends HTMLAttributes<HTMLDivElement> {
   error?: BaseError

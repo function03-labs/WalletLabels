@@ -1,9 +1,10 @@
 "use server"
 
-import { ApiKey as AwsApiKey } from "@/types"
 import { ApiKey } from "@prisma/client"
 
 import { prisma } from "@/lib/prisma"
+
+import { ApiKey as AwsApiKey } from "@/types/api"
 
 export async function getApiKey(id: string): Promise<ApiKey> {
   return (await prisma.apiKey.findUnique({

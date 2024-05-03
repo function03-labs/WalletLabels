@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react"
 
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 
 interface ContractWriteButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {

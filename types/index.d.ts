@@ -1,14 +1,43 @@
-import { ApiKey as AwsApiKey } from "@aws-sdk/client-api-gateway"
-
-export type ApiKey = AwsApiKey & {
-  key: string
-  id: string
-  name: string
-  chains: string[]
-}
-
-export type Chain = {
+export type Option = {
   label: string
   value: string
-  iconUrl: string
+  icon?: React.ComponentType<{ className?: string }>
 }
+
+export interface DataTableSearchableColumn<TData> {
+  id: keyof TData
+  title: string
+}
+
+export interface DataTableFilterableColumn<TData>
+  extends DataTableSearchableColumn<TData> {
+  options: Option[]
+}
+
+export interface ISearchProps {
+  handleSearchLogin: (ETHquery?: string) => void
+  inputRef?: React.RefObject<HTMLInputElement>
+  togglePalette?: Function
+  inputValue?: string
+  chain?: string
+}
+
+export type PipelineStage =
+  | {
+      $search: {
+        index: string
+        text: {
+          query: string
+          fuzzy: {}
+          path: {
+            wildcard: string
+          }
+        }
+      }
+    }
+  | {
+      $skip: number
+    }
+  | {
+      $limit: number
+    }
