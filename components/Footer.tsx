@@ -1,23 +1,44 @@
-import { cn } from "@lib/utils";
+import Link from "next/link";
 
-import { buttonVariants } from "@component/ui/Button";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 
-export function Footer() {
+export function Footer({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <footer className="flex items-center justify-center">
-      <div className="text-sm font-medium text-slate-500">
-        Crafted by{" "}
-        <a
-          href="https://twitter.com/aiden0x4"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            buttonVariants({ variant: "link" }),
-            "-ml-4 font-semibold text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-slate-100"
-          )}
-        >
-          WalletLabs
-        </a>
+    <footer className={cn(className)}>
+      <div className="container flex flex-col items-center justify-between gap-4 py-10">
+        <div className="flex flex-col items-center gap-4 px-8 ">
+          <p className="text-center text-sm leading-loose">
+            Built by{" "}
+            <Link
+              href={siteConfig.url}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              {siteConfig.name}
+            </Link>
+            . Hosted on{" "}
+            <Link
+              href="https://vercel.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              Vercel
+            </Link>
+            . The source code is available on{" "}
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              GitHub
+            </Link>
+            .
+          </p>
+        </div>
       </div>
     </footer>
   );

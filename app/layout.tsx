@@ -9,6 +9,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { Footer } from "@component/Footer";
 import { Toaster } from "@component/ui/Toaster";
+import { Opensource } from "@component/Opensource";
 import { SiteHeader } from "@component/SiteHeader";
 import { FramerWrapper } from "@component/wrapper/FramerWrapper";
 import { QueryProvider } from "@component/wrapper/QueryProvider";
@@ -133,6 +134,8 @@ export default function RootLayout({
               <QueryProvider>
                 <SiteHeader />
                 {children}
+                <Opensource />
+
                 <Footer />
                 <Toaster />
                 <Analytics />

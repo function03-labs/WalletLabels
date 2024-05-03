@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "App Wallet Labels",
+  "short_name": "app-walletlabels",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
