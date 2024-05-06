@@ -7,10 +7,6 @@ import { motion } from "framer-motion"
 import { Icons } from "@/components/shared/icons"
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
 
-const Skeleton = () => (
-  <div className="flex size-full min-h-24 flex-1 rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800"></div>
-)
-
 const SkeletonOne = () => {
   const variants = {
     initial: {

@@ -1,6 +1,7 @@
 "use client"
 
 import { HTMLAttributes } from "react"
+import { useRouter } from "next/navigation"
 import { useAccount, useNetwork, useSignMessage } from "wagmi"
 
 import { useUser } from "@/lib/hooks/use-user"
@@ -17,31 +18,40 @@ interface ButtonSIWELoginProps extends HTMLAttributes<HTMLButtonElement> {
 }
 export const ButtonSIWELogin = ({
   className,
-  label = "Sign-In With Ethereum",
+  label = "Dashboard",
   disabled,
   children,
   ...props
 }: ButtonSIWELoginProps) => {
-  const { mutateUser } = useUser()
+  const router = useRouter()
+  const { mutateUser, user } = useUser()
   const { isLoading, signMessageAsync } = useSignMessage()
   const { address } = useAccount()
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const { chain } = useNetwork()
   const { toast } = useToast()
 
   const handleCreateMessage = async () => {
-    try {
-      if (!address || !chain?.id) {
-        return toast({
-          title: "Error",
-          description:
-            "Please connect your wallet first, click on the 'Connect Wallet' button.",
-          variant: "destructive",
-        })
+    if (user.isLoggedIn) {
+      router.push("/dashboard")
+    } else {
+      try {
+        if (!address || !chain?.id) {
+          return toast({
+            title: "Error",
+            description:
+              "Please connect your wallet first, click on the 'Connect Wallet' button.",
+            variant: "destructive",
+          })
+        }
+        await siweLogin({ address, chainId: chain?.id, signMessageAsync })
+        await mutateUser()
+
+        router.refresh()
+        router.push("/dashboard")
+      } catch (error) {
+        console.error(error)
       }
-      await siweLogin({ address, chainId: chain?.id, signMessageAsync })
-      await mutateUser()
-    } catch (error) {
-      console.error(error)
     }
   }
   const classes = cn("relative", className)
@@ -51,7 +61,6 @@ export const ButtonSIWELogin = ({
 
   return (
     <Button
-      variant="emerald"
       size="lg"
       className={classes}
       disabled={disabled}

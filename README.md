@@ -1,135 +1,130 @@
-![image](https://user-images.githubusercontent.com/3408362/230732083-1c98e451-08af-41c2-b522-126370e8c6a5.png)
+# WalletLabels
 
-# ⚡ TurboETH - Web3 App Starter Kit
+WalletLabels is a powerful and user-friendly web app that simplifies searching and identifying Ethereum wallets with custom labels. The application provides an intuitive interface, allowing users to search for wallet addresses by name, label or address. Visit the live website at [https://walletlabels.xyz](https://walletlabels.xyz).
 
-![CI](https://github.com/turbo-eth/template-web3-app/actions/workflows/ci.yml/badge.svg)
-![TS](https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555)
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
+**Note**: This project provides the frontend and backend (API handling) for WalletLabels but does not include the database containing wallet addresses and labels. Users will need to set up their own database when deploying a local version of this project.
 
-Web3 App Template built using Next.js, RainbowKit, Tailwind, Sign-In With Ethereum, and more.
+## Table of Contents
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app&project-name=TurboETH&repository-name=turbo-eth&demo-title=TurboETH&env=NEXTAUTH_SECRET,DATABASE_URL&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app%2Fblob%integrations%2F.env.example)
+1. [Features](#features)
+2. [Folder Structure](#folder-structure)
+3. [Prerequisites](#prerequisites)
+4. [Getting Started](#getting-started)
+5. [API](#api)
+6. [Deployment](#deployment)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Support](#support)
 
-### [Documentation](https://docs.turboeth.xyz)
+## Features
 
-- Getting Started
-  - [Environment Variables](https://docs.turboeth.xyz/getting-started/environment)
-  - [JSON-RPC](https://docs.turboeth.xyz/getting-started/json-rpc)
-  - [WAGMI CLI](https://docs.turboeth.xyz/getting-started/wagmi-cli)
-  - [UI Components](https://docs.turboeth.xyz/getting-started/design-system)
-  - [Backend Database](https://docs.turboeth.xyz/getting-started/database)
-- Core Integrations
-  - [🌈 RainbowKit](https://docs.turboeth.xyz/integration/rainbowkit)
-  - [🔏 Sign-In With Ethereum](https://docs.turboeth.xyz/integration/sign-in-with-ethereum)
-- Smart Contract Integrations
-  - [ERC20](https://docs.turboeth.xyz/integration/smart-contract-erc20)
-- API Integrations
-  - [Disco](https://docs.turboeth.xyz/integration/disco)
-  - [Etherscan](https://docs.turboeth.xyz/integration/etherscan)
+- Search for wallet addresses by name, label type, or label subtype
+- Displays wallet balance history in a graph
+- Retrieves the last transaction for each address
+- Responsive design for mobile and desktop devices
+- Dark and light theme support
 
-# Getting Started
+## Folder Structure
 
-The `pnpm` CLI is the recommended package manager but `npm` and `yarn` should work too.
+Below is an overview of the important files and folders in the WalletLabels project:
+
+- `components/`: Contains reusable UI components and layout related components.
+- `hooks/`: Contains custom React hooks used in the project.
+- `lib/`: Contains utility functions and database related logic.
+- `pages/`: Contains the main pages of the application and their corresponding API endpoints.
+- `public/`: Contains public assets such as images and icons.
+- `styles/`: Contains global and module-specific stylesheets.
+- `tsconfig.json`: TypeScript configuration file.
+- `next.config.mjs`: Next.js configuration file.
+- `package.json`: Contains project dependencies and scripts.
+
+## Prerequisites
+
+To run WalletLabels locally, you need to have the following installed on your system:
+
+- Node.js (v14 or later)
+- npm (v6 or later)
+- MongoDB
+
+Additionally, you need to set up some environment variables:
+
+- `MONGODB_URI`: The MongoDB connection URI
+- `DB_NAME`: The name of your MongoDB database
+- `COVALENT_API`: The Covalent API key to load the graph for balance history
+- `NEXT_PUBLIC_COVALENT2_API`: The Covalent API key to fetch the last transaction for each address
+
+## Getting Started
+
+1. Clone the repository
 
 ```bash
-pnpm install
+git clone https://github.com/your-username/walletlabels.git
 ```
 
-#### Development
+2. Change the current directory to the project folder
 
 ```bash
-pnpm dev
+cd walletlabels
 ```
 
-#### Build
+3. Install the required dependencies
 
 ```bash
-pnpm build
+npm install
 ```
 
-### Web3 Core
-
-- [WAGMI CLI](https://wagmi.sh/cli/getting-started) - Automatic React Hook Generation
-- [RainbowKit](https://www.rainbowkit.com/) - Wallet connection manager
-- [Sign-In With Ethereum](https://login.xyz/) - Account authentication
-
-### Web2 Frameworks
-
-- [Vercel](https://vercel.com/) - App Infrastructure
-- [Prisma](https://www.prisma.io/) - Database ORM
-
-### Developer Experience
-
-- [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
-- [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
-- [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
-
-### User Interface
-
-- [TailwindCSS](https://tailwindcss.com) – Utility-first CSS framework for rapid UI development
-- [Radix](https://www.radix-ui.com/) – Primitives like modal, popover, etc. to build a stellar user experience
-- [Framer Motion](https://www.framer.com/motion/) – Motion library for React to animate components with ease
-- [React Icons](https://react-icons.github.io/react-icons) – Beautifully simple, pixel-perfect icons
-
-The [ui.shadcn.com](https://ui.shadcn.com) components are included in the `/components/shared/ui` folder.
-
-# 💻 Developer Experience
-
-### 🐕 What is husky
-
-Husky improves your git commits.
-
-You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports all Git hooks.
-
-#### 🪝 Hooks
-
-- pre-commit: lint app codebase
-- commit-msg: apply commintlint
-
-### 📋 What is commitlint
-
-commitlint checks if your commit messages meet the [conventional commit format](https://conventionalcommits.org).
-
-In general the pattern mostly looks like this:
-
-```sh
-type(scope?): subject  #scope is optional; multiple scopes are supported (current delimiter options: "/", "\" and ",")
-```
-
-Real world examples can look like this:
+4. Create a `.env.local` file in the project root and add your environment variables:
 
 ```
-chore: run tests on travis ci
+MONGODB_URI=your-mongodb-uri
+DB_NAME=your-db-name
+COVALENT_API=your-covalent-api-key
+NEXT_PUBLIC_COVALENT2_API=your-covalent2-api-key
 ```
 
-```
-fix(server): send cors headers
-```
+5. Start the development server
 
-```
-feat(blog): add comment section
+```bash
+npm run dev
 ```
 
-Common types according to [commitlint-config-conventional (based on the Angular convention)](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional#type-enum) can be:
+6. Open your browser, and navigate to [http://localhost:3000](http://localhost:3000)
 
-- build
-- chore
-- ci
-- docs
-- feat
-- fix
-- perf
-- refactor
-- revert
-- style
-- test
+## API
 
-# Acknowledgements
+WalletLabels provides a single API endpoint to fetch labeled Ethereum wallet addresses based on a search query.
 
-Original template was forked from https://github.com/wslyvh/nexth
+### Endpoint
 
-Thank you @wslyvh 🙏
+```
+GET /api/query?query={query}&limit={limit}
+```
 
-<hr/>
+### Parameters
 
-Copyright 2023 [Kames Geraghty](https://twitter.com/KamesGeraghty)
+- `query`: The search string to filter wallet addresses by name, label type, or label subtype. (required)
+- `limit`: The maximum number of results to return. Default is 20, and the maximum allowed value is 100. (optional)
+
+### Example
+
+```
+GET /api/query?query=exchange&limit=10
+```
+
+This request will return up to 10 wallet addresses containing the word "exchange" in their name, label type, or label subtype.
+
+## Deployment
+
+To deploy WalletLabels, you can use any platform that supports Next.js applications, like [Vercel](https://vercel.com) or [Netlify](https://netlify.com). Make sure to set your environment variables in your deployment platform.
+
+## Contributing
+
+If you would like to contribute to the project, please fork the repository, create a new branch, and submit a pull request with your changes.
+
+## License
+
+WalletLabels is released under the MIT License. See the LICENSE file for more details.
+
+## Support
+
+If you have any questions or issues, please open an issue on the GitHub repository or contact one of the maintainers.

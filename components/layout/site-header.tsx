@@ -26,17 +26,7 @@ export function SiteHeader() {
 
         <div className="hidden flex-1 items-center justify-between space-x-2 md:flex md:justify-end">
           <IsWalletConnected>
-            <IsSignedIn>
-              <Link
-                href="/dashboard"
-                className={buttonVariants({ variant: "ghost" })}
-              >
-                Dashboard
-              </Link>
-            </IsSignedIn>
-            <IsSignedOut>
-              <ButtonSIWELogin />
-            </IsSignedOut>
+            <ButtonSIWELogin />
           </IsWalletConnected>
           <IsWalletDisconnected>
             <div className="flex flex-1 items-center justify-end space-x-4">

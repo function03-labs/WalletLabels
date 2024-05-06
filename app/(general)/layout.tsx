@@ -20,10 +20,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Opensource />
         <Footer />
       </div>
-      <NetworkStatus />
+      {/*       <NetworkStatus />
       <div className="fixed bottom-6 right-6 hidden sm:block">
         <WalletConnect />
-      </div>
+      </div> */}
     </FramerWrapper>
   )
 }
