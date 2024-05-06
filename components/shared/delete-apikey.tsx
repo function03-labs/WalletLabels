@@ -32,10 +32,11 @@ export function DialogDeleteAPIKey({ apiKey }: { apiKey: ApiKey }) {
 
   async function deleteAPIKey() {
     try {
-      await deleteApiKey(apiKey.id, apiKey.userId)
+      await deleteApiKey(apiKey.id, apiKey.key, apiKey.userId)
       toast({ title: "API Key deleted successfully" })
       router.refresh()
     } catch (error) {
+      console.log(error)
       toast({ title: "An error occurred", variant: "destructive" })
     }
   }

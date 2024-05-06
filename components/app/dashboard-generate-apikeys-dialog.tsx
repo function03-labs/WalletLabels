@@ -12,7 +12,7 @@ import { z } from "zod"
 import { chains } from "@/config/blockchain-networks"
 import { ApiKeySchema } from "@/config/schema"
 import { createApiKey } from "@/lib/app/api-key"
-import { generateIds } from "@/lib/utils/index"
+import { generateUUID } from "@/lib/utils/index"
 
 import { DashboardCopyAPIKey } from "@/components/app/dashboard-copy-apikey"
 import { Button } from "@/components/ui/button"
@@ -67,13 +67,12 @@ export function DashboardGenerateAPIkeysDialog({
     setIsLoading(true)
 
     try {
-      const { id, key } = generateIds()
+      const id = generateUUID()
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
       const newKey = await createApiKey(
         {
           id,
-          key,
           name: values.name,
           chains: values.chain,
         },

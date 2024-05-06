@@ -37,25 +37,13 @@ export function truncateEthAddress(address: string) {
   return `${address.slice(0, 6)}...${address.slice(-4)}`
 }
 
-export function generateIds() {
-  const id = "xx-xx-xxxx".replace(/x/g, function () {
-    return Math.floor(Math.random() * 10).toString()
-  })
-
-  const key = generateUUID()
-
-  return { id, key }
-}
-
-function generateUUID() {
+export function generateUUID() {
   let d = new Date().getTime()
 
-  // If available, use performance.now() to add more randomness to the UUID
   if (window.performance && typeof window.performance.now === "function") {
     d += performance.now()
   }
 
-  // Generate the UUID using a combination of the timestamp and random values
   const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
     /[xy]/g,
     function (c) {
