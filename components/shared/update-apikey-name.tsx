@@ -35,7 +35,7 @@ export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
         {
           ...values,
           id: apiKey.id,
-          key: apiKey.key,
+          value: apiKey.key,
           chains: apiKey.chains,
         },
         apiKey.userId
