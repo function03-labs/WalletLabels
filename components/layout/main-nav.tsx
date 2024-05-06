@@ -32,7 +32,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex items-center gap-6 md:gap-10">
       <div className="flex items-center space-x-2 dark:text-slate-100">
-        <Link href="/" className="flex items-center gap-2 pr-6 md:pr-0">
+        <Link href="/" className="flex items-center gap-2">
           <Icons.logo className="size-6" />
           <span className="whitespace-nowrap font-bold sm:inline-block">
             {siteConfig.name}
@@ -56,12 +56,12 @@ export function MainNav({ items }: MainNavProps) {
                   variant: "secondary",
                   size: "icon",
                 }),
-                "ml-2 h-5 w-5"
+                "h-5 w-5"
               )}
               width={100}
               height={100}
             />
-            <Icons.chevronsUpDown className="ml-2 size-3" />
+            <Icons.chevronsUpDown className=" size-3" />
           </DropdownMenuTrigger>
 
           <DropdownMenuContent>

@@ -23,15 +23,21 @@ export function DashboardCopyAPIKey({ apiKey }: { apiKey: ApiKey }) {
   return (
     <div>
       <DialogHeader>
-        <DialogTitle>API Key Generated</DialogTitle>
+        <DialogTitle className="dark:text-white">API Key Generated</DialogTitle>
         <DialogClose />
       </DialogHeader>
       <DialogContent>
-        <p>Your API Key has been successfully generated.</p>
+        <p className="dark:text-white">
+          Your API Key has been successfully generated.
+        </p>
         <div className="flex w-full items-center justify-between space-x-3">
           <Input
             value={apiKey.key}
-            className={hasCopied ? "border-green-500 pr-4" : "pr-4"}
+            className={
+              hasCopied
+                ? "border-green-500 pr-4 dark:text-white"
+                : "pr-4 dark:text-white"
+            }
             readOnly
           />
           <Button
@@ -52,7 +58,7 @@ export function DashboardCopyAPIKey({ apiKey }: { apiKey: ApiKey }) {
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Done</Button>
+            <Button>Done</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

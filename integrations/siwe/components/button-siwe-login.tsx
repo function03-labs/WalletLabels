@@ -61,7 +61,7 @@ export const ButtonSIWELogin = ({
 
   return (
     <Button
-      size="lg"
+      size="sm"
       className={classes}
       disabled={disabled}
       type="button"

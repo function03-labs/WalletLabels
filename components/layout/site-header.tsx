@@ -14,23 +14,20 @@ import { ModeToggle } from "@/components/shared/mode-toggle"
 import { buttonVariants } from "@/components/ui/button"
 
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
-import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
-import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-slate-50 dark:border-b-slate-700 dark:bg-black">
-      <div className="container flex h-20 items-center">
+      <div className="flex h-20 items-center px-4 sm:container">
         <MainNav items={siteConfig.mainNav} />
-        <MobileNav />
 
-        <div className="hidden flex-1 items-center justify-between space-x-2 md:flex md:justify-end">
+        <div className="flex flex-1 items-center justify-end space-x-2">
           <IsWalletConnected>
             <ButtonSIWELogin />
           </IsWalletConnected>
           <IsWalletDisconnected>
             <div className="flex flex-1 items-center justify-end space-x-4">
-              <nav className="flex items-center space-x-1">
+              <nav className=" hidden items-center space-x-1 sm:block">
                 <Link
                   href="https://t.me/+yDF9bnv2R7RkNWZk"
                   target="_blank"
@@ -64,9 +61,13 @@ export function SiteHeader() {
                 </Link>
               </nav>
             </div>
-            <WalletConnect />
+            <div className="hidden sm:block">
+              <WalletConnect />
+            </div>
           </IsWalletDisconnected>
-          <ModeToggle />
+          <div className="hidden sm:block">
+            <ModeToggle />
+          </div>
         </div>
       </div>
     </header>

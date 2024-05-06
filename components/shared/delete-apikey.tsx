@@ -43,14 +43,18 @@ export function DialogDeleteAPIKey({ apiKey }: { apiKey: ApiKey }) {
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
-        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogTitle className="dark:text-white">
+          Are you absolutely sure?
+        </AlertDialogTitle>
         <AlertDialogDescription>
           This action cannot be undone. This will permanently delete the API
           key.
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogCancel className="dark:text-white">
+          Cancel
+        </AlertDialogCancel>
         <AlertDialogAction onClick={deleteAPIKey}>Continue</AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
@@ -68,7 +72,7 @@ export function DeleteAPIKey({ apiKey }: { apiKey: ApiKey }) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <AlertDialogTrigger className="w-full">
-            <DropdownMenuItem className="w-full"> Delete</DropdownMenuItem>
+            <DropdownMenuItem className="w-full">Delete</DropdownMenuItem>
           </AlertDialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>

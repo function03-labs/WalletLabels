@@ -127,16 +127,18 @@ export function DashboardGenerateAPIkeysDialog({
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <DialogHeader>
-                <DialogTitle>Generate API Key</DialogTitle>
+                <DialogTitle className="dark:text-white">
+                  Generate API Key
+                </DialogTitle>
               </DialogHeader>
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>API Name</FormLabel>
+                    <FormLabel className="dark:text-white">API Name</FormLabel>
                     <FormControl>
-                      <div className="mb-4">
+                      <div className="mb-4 dark:text-white">
                         <Input
                           {...field}
                           placeholder="Enter a name for the API Key"
@@ -152,7 +154,7 @@ export function DashboardGenerateAPIkeysDialog({
                 name="chain"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>API Name</FormLabel>
+                    <FormLabel className="dark:text-white">Chains</FormLabel>
                     <FormControl>
                       <MultiSelector
                         onValuesChange={field.onChange}

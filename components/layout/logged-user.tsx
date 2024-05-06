@@ -16,14 +16,16 @@ export function LoggedUser({ user }: { user: User }) {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div>
-              <h3 className="-mt-1 text-sm font-semibold">{user.name}</h3>
-              <span className="mt-1 text-xs">
+              <h3 className="-mt-1 text-sm font-semibold dark:text-white">
+                {user.name}
+              </h3>
+              <span className="mt-1 text-xs dark:text-white/80">
                 {user.email ? user.email : "No email"}
               </span>
             </div>
           </div>
         </div>
-        <div>
+        <div className="dark:text-white/80">
           <p className="mt-1 text-xs">Connected as</p>
           <Address
             link

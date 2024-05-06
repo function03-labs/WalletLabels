@@ -35,12 +35,16 @@ export default async function DashboardLayout({
       <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <aside className="fixed top-20 z-30 -ml-2 hidden h-[calc(100vh-5rem)] w-full shrink-0 justify-between overflow-y-auto border-r md:sticky md:flex md:flex-col">
           <ScrollArea className="py-6 pr-6 lg:py-8">
-            <h3 className="pb-4 text-2xl font-semibold">Dashboard</h3>
+            <h3 className="pb-4 text-2xl font-semibold dark:text-white/80">
+              Dashboard
+            </h3>
             <SidebarNav items={menuDashboard} />
+
             <hr className="my-6 border-t border-muted" />
 
-            <h3 className="pb-4 text-2xl font-semibold">Resources</h3>
-
+            <h3 className="pb-4 text-2xl font-semibold dark:text-white/80">
+              Resources
+            </h3>
             <SidebarNav items={menuResources} />
           </ScrollArea>
           <footer className="fixed bottom-6 flex flex-col border-t pr-2 pt-4">
@@ -53,7 +57,7 @@ export default async function DashboardLayout({
             >
               Built by Function03 Labs
             </a>
-            <div className="mt-2 flex items-center space-x-2">
+            <div className="mt-2 flex items-center space-x-2 dark:text-white/80">
               <Link href={siteConfig.links.github}>
                 <FaGithub />
               </Link>

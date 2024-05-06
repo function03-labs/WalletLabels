@@ -48,7 +48,7 @@ export default async function Page({
               </div>
             </HoverBorderGradient>
           </div>
-          <h1 className="text-center text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-center text-3xl font-bold leading-tight dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
             What would you like to <br className="hidden sm:inline" />
             search today?
           </h1>

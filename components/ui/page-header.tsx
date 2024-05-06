@@ -7,8 +7,10 @@ export function PageHeader({
 }) {
   return (
     <div className="space-y-1">
-      <h2 className="text-4xl font-bold">{title}</h2>
-      <p className="text-base text-gray-500">{description}</p>
+      <h2 className="text-4xl font-bold dark:text-white">{title}</h2>
+      <p className="text-base text-gray-500 dark:text-gray-200">
+        {description}
+      </p>
     </div>
   )
 }
