@@ -1,12 +1,6 @@
-**/.next
-**/_next
-**/next.config.js
+**/generated/**-wagmi.ts
+**/generated/blockchain.ts
+**/components/shared/table/**
 **/generated
-**/*.generated.*
-**/*.graphql.d.ts
-**/*.graphqls.d.ts
-
-apps/electron/app
-
-
-examples/**/*
+.next/**
+tailwind.config.js

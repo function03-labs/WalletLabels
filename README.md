@@ -1,94 +1,130 @@
-# Saas UI Pro
+# WalletLabels
 
-## Getting started
+WalletLabels is a powerful and user-friendly web app that simplifies searching and identifying Ethereum wallets with custom labels. The application provides an intuitive interface, allowing users to search for wallet addresses by name, label or address. Visit the live website at [https://walletlabels.xyz](https://walletlabels.xyz).
 
-First of all thanks a lot for signing up!
+**Note**: This project provides the frontend and backend (API handling) for WalletLabels but does not include the database containing wallet addresses and labels. Users will need to set up their own database when deploying a local version of this project.
 
-Come say hello at [Discord](https://discord.gg/4PmJGFcAjX), I'm always around to help and your feedback will really help move the project forward.
+## Table of Contents
 
-- [Documentation](https://saas-ui.dev/docs/pro/overview)
-- [Roadmap](https://roadmap.saas-ui.dev)
-- [Storybook](https://storybook.saas-ui.pro)
+1. [Features](#features)
+2. [Folder Structure](#folder-structure)
+3. [Prerequisites](#prerequisites)
+4. [Getting Started](#getting-started)
+5. [API](#api)
+6. [Deployment](#deployment)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Support](#support)
 
-## Installation
+## Features
 
-In case you use this repository as a reference or for testing purposes, go ahead and clone the repo. [Read more about cloning this repo](https://saas-ui.dev/docs/pro/installation/clone-repository).
+- Search for wallet addresses by name, label type, or label subtype
+- Displays wallet balance history in a graph
+- Retrieves the last transaction for each address
+- Responsive design for mobile and desktop devices
+- Dark and light theme support
 
-If you're using the repository as a template for a new project, download the source as a ZIP file, or use the `Use this template` button to create a new fresh repository without Saas UI's history.
+## Folder Structure
 
-Once you have a copy of the source on your computer, run yarn to install all dependencies.
+Below is an overview of the important files and folders in the WalletLabels project:
+
+- `components/`: Contains reusable UI components and layout related components.
+- `hooks/`: Contains custom React hooks used in the project.
+- `lib/`: Contains utility functions and database related logic.
+- `pages/`: Contains the main pages of the application and their corresponding API endpoints.
+- `public/`: Contains public assets such as images and icons.
+- `styles/`: Contains global and module-specific stylesheets.
+- `tsconfig.json`: TypeScript configuration file.
+- `next.config.mjs`: Next.js configuration file.
+- `package.json`: Contains project dependencies and scripts.
+
+## Prerequisites
+
+To run WalletLabels locally, you need to have the following installed on your system:
+
+- Node.js (v14 or later)
+- npm (v6 or later)
+- MongoDB
+
+Additionally, you need to set up some environment variables:
+
+- `MONGODB_URI`: The MongoDB connection URI
+- `DB_NAME`: The name of your MongoDB database
+- `COVALENT_API`: The Covalent API key to load the graph for balance history
+- `NEXT_PUBLIC_COVALENT2_API`: The Covalent API key to fetch the last transaction for each address
+
+## Getting Started
+
+1. Clone the repository
 
 ```bash
-yarn install
+git clone https://github.com/your-username/walletlabels.git
 ```
 
-## Install from NPM
-
-Instructions for installing `@saas-ui-pro/react` from NPM can be found in the [documentation](https://saas-ui.dev/docs/pro/installation/npm).
-
-## Configuration
-
-All client side app configuration files can be found in `packages/app-config`.
-
-## Running the apps
-
-Saas UI Pro comes with 2 example apps, Next.js, Electron.
-
-You can start the apps from their subfolder in `apps/`, or from the project root using one of these commands:
+2. Change the current directory to the project folder
 
 ```bash
-yarn dev:web
-
-yarn dev:desktop
+cd walletlabels
 ```
 
-### Authentication
+3. Install the required dependencies
 
-The apps mocks authentication by default. Follow these steps to configure Supabase for Next.js.
+```bash
+npm install
+```
 
-More [about authentication](https://beta.saas-ui.dev/docs/pro/authentication).
+4. Create a `.env.local` file in the project root and add your environment variables:
 
-## Project structure
+```
+MONGODB_URI=your-mongodb-uri
+DB_NAME=your-db-name
+COVALENT_API=your-covalent-api-key
+NEXT_PUBLIC_COVALENT2_API=your-covalent2-api-key
+```
 
-Saas UI Pro makes use of workspaces and uses the following folder structure.
+5. Start the development server
 
-| Path                           | Description                                                                          |
-| ------------------------------ | ------------------------------------------------------------------------------------ |
-| `saas-ui`                      | All Saas UI Pro packages and components live in here.                                |
-| `apps`                         | Example apps are in this folder.                                                     |
-| `apps/web`                     | Next.js frontend app.                                                                |
-| `apps/web/src/features/common` | The app's common functionality, for example layouts, that is shared across features. |
-| `apps/web/src/features/*`      | Domain specific code is grouped within individual features.                          |
-| `apps/desktop`                 | Nextron (Electron + Next.js) desktop app.                                            |
-| `packages`                     | This contains all shared application code, as well as your own custom packages.      |
-| `packages/api-client`          | The API client used to fetch data (re-exports demo-client by default).               |
-| `packages/api-demo-client`     | Demo client that returns mocked data for the demo application                        |
-| `packages/common-mocks`        | Mocked data used for the demo, and for testing purposes.                             |
-| `packages/common-i18n`         | I18n helpers, using React Intl                                                       |
-| `packages/app-config`          | Contains all client side configuration files.                                        |
-| `packages/app-nextjs`          | Next.js specific utility functions and hooks.                                        |
-| `packages/db-prisma`           | Prisma client and schema.                                                            |
-| `packages/ui-lib`              | This is your shared UI library, and included all custom pre-built components         |
-| `packages/ui-storybook`        | Your storybook.                                                                      |
-| `packages/ui-theme`            | Your custom Chakra UI theme. This extends the Saas UI Pro theme by default.          |
-| `tooling/test-utils`           | Helper functions for testing.                                                        |
+```bash
+npm run dev
+```
 
-### Package naming
+6. Open your browser, and navigate to [http://localhost:3000](http://localhost:3000)
 
-Packages that are prefixed with `app` contain frontend application code. Your UI library related codes lives in `ui` prefixed packages.
-API related code lives in `api` prefixed packages.
+## API
 
-### Features
+WalletLabels provides a single API endpoint to fetch labeled Ethereum wallet addresses based on a search query.
 
-Application code is grouped by feature, this means that all related assets, like components, hook, pages are grouped in a single feature folder. This setup will help to keep the code base maintainable as it (and your team) grows. It will make it easier to add/remove new features and prevent any unwanted side effects when refactoring or removing functionality, due to too much interdependencies.
+### Endpoint
 
-A few rules to make sure the codebase stays maintainable.
+```
+GET /api/query?query={query}&limit={limit}
+```
 
-- Shared functionality is located in the `common` feature, other features can import from here.
-- Treat features as standalone packages, only import from the top-level barrel (index.ts) file. Eg `import { BillingStatus } from '@app/features/billing`.
-- If a component is used in multiple features and doesn't depend on external state (like data fetching), consider adding it to the ui library, otherwise add it to the core feature.
-- Keep components clean, eg if there is complex business logic, like useQuery or useMutation hooks, move them into a separate hook in `hooks/`
+### Parameters
+
+- `query`: The search string to filter wallet addresses by name, label type, or label subtype. (required)
+- `limit`: The maximum number of results to return. Default is 20, and the maximum allowed value is 100. (optional)
+
+### Example
+
+```
+GET /api/query?query=exchange&limit=10
+```
+
+This request will return up to 10 wallet addresses containing the word "exchange" in their name, label type, or label subtype.
+
+## Deployment
+
+To deploy WalletLabels, you can use any platform that supports Next.js applications, like [Vercel](https://vercel.com) or [Netlify](https://netlify.com). Make sure to set your environment variables in your deployment platform.
+
+## Contributing
+
+If you would like to contribute to the project, please fork the repository, create a new branch, and submit a pull request with your changes.
 
 ## License
 
-See [LICENSE](./LICENSE).
+WalletLabels is released under the MIT License. See the LICENSE file for more details.
+
+## Support
+
+If you have any questions or issues, please open an issue on the GitHub repository or contact one of the maintainers.
