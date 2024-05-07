@@ -23,7 +23,7 @@ export default async function PageDashboardApiKeys() {
   const apiKeys = await getApiKeys(session.user.id)
 
   return (
-    <section className="w-full p-10">
+    <section className="w-full py-2 sm:p-10">
       <div>
         <PageHeader title="API Keys" description="Manage your API keys." />
         <IsSignedOut>

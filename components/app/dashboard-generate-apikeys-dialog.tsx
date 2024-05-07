@@ -114,7 +114,7 @@ export function DashboardGenerateAPIkeysDialog({
             }}
             className="ml-auto"
           >
-            New API Key
+            New Key
           </Button>
         </DialogTrigger>
       </div>

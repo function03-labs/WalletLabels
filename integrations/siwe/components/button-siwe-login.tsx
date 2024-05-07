@@ -1,13 +1,23 @@
 "use client"
 
 import { HTMLAttributes } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAccount, useNetwork, useSignMessage } from "wagmi"
 
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
 
+import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { useToast } from "@/components/ui/use-toast"
 
 import { siweLogin } from "@/integrations/siwe/actions/siwe-login"
@@ -16,6 +26,7 @@ interface ButtonSIWELoginProps extends HTMLAttributes<HTMLButtonElement> {
   label?: string
   disabled?: boolean
 }
+
 export const ButtonSIWELogin = ({
   className,
   label = "Dashboard",
@@ -24,12 +35,11 @@ export const ButtonSIWELogin = ({
   ...props
 }: ButtonSIWELoginProps) => {
   const router = useRouter()
+  const { toast } = useToast()
+  const { chain } = useNetwork()
+  const { address } = useAccount()
   const { mutateUser, user } = useUser()
   const { isLoading, signMessageAsync } = useSignMessage()
-  const { address } = useAccount()
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  const { chain } = useNetwork()
-  const { toast } = useToast()
 
   const handleCreateMessage = async () => {
     if (user.isLoggedIn) {
@@ -60,18 +70,55 @@ export const ButtonSIWELogin = ({
   })
 
   return (
-    <Button
-      size="sm"
-      className={classes}
-      disabled={disabled}
-      type="button"
-      onClick={() => void handleCreateMessage()}
-      {...props}
-    >
-      {isLoading && (
-        <span className="absolute left-1/2 top-1/2 inline-block size-5 -translate-x-1/2 -translate-y-1/2" />
+    <>
+      {user?.isLoggedIn ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              size="sm"
+              className={classes}
+              disabled={disabled}
+              type="button"
+              {...props}
+            >
+              {isLoading && (
+                <Icons.refresh className="absolute -left-6 animate-spin" />
+              )}
+              <span className={labelClasses}>
+                {children || label || "Logout"}
+              </span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Dashboard</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link className="w-full" href="/dashboard">
+                API Keys
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link className="w-full" href="/dashboard/profile">
+                Profile
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        <Button
+          size="sm"
+          className={classes}
+          disabled={disabled}
+          type="button"
+          onClick={() => void handleCreateMessage()}
+          {...props}
+        >
+          {isLoading && (
+            <Icons.refresh className="absolute -left-6 animate-spin" />
+          )}
+          <span className={labelClasses}>{children || label || "Logout"}</span>
+        </Button>
       )}
-      <span className={labelClasses}>{children || label || "Logout"}</span>
-    </Button>
+    </>
   )
 }

@@ -25,6 +25,7 @@ import {
   PhoneIcon,
   Pizza,
   Plus,
+  RefreshCw,
   Search,
   Settings,
   SunMedium,
@@ -165,6 +166,7 @@ const Opensea = (props: SVGProps<SVGSVGElement>) => (
 export const Icons = {
   logo: LogoIcon,
   close: X,
+  refresh: RefreshCw,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,

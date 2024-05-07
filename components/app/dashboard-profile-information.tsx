@@ -9,7 +9,7 @@ export function DashboardProfileInformation({ user }: { user: User }) {
     <div>
       <div className="mt-3 flex items-center">
         <span className="mr-1 font-bold">Address:</span>
-        <Address link copy className="text-xs" address={user.id} />
+        <Address link copy truncate className="text-xs" address={user.id} />
       </div>
       <div className="mt-3 flex items-center">
         <span className="mr-1 font-bold">Created Keys: </span>

@@ -6,7 +6,6 @@ import { siteConfig } from "@/config/site"
 
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { MainNav } from "@/components/layout/main-nav"
-import { MobileNav } from "@/components/layout/mobile-nav"
 import { Icons } from "@/components/shared/icons"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"

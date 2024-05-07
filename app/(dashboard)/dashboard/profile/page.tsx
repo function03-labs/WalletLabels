@@ -26,7 +26,7 @@ export default async function PageDashboardAccount() {
   const user = await getUser(session.user.id)
 
   return (
-    <section className="w-full p-10">
+    <section className="w-full py-4 sm:p-10">
       <PageHeader
         title="Account"
         description="Manage your account information"
