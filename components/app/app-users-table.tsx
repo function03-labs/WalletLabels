@@ -38,21 +38,6 @@ function AppUsersTable({ data, className, ...props }: AppUsersTableProps) {
           <TimeFromUtc date={value || "0"} />
         ),
       },
-      {
-        Header: () => null,
-        id: "actions",
-        accessor: "id",
-        Cell: () => (
-          <div className="flex items-center justify-end gap-2">
-            <Popover>
-              <PopoverTrigger>
-                <Badge variant={"outline"}>Profile</Badge>
-              </PopoverTrigger>
-              <PopoverContent>Add user profile information 🥳</PopoverContent>
-            </Popover>
-          </div>
-        ),
-      },
     ],
     []
   )

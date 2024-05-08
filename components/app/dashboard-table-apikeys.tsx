@@ -32,9 +32,8 @@ export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
         <TableRow>
           <TableHead className="w-[220px]">Name</TableHead>
           <TableHead className="mx-6">Chains</TableHead>
-          <TableHead>Key</TableHead>
+          <TableHead className="w-[420px]">Key</TableHead>
           <TableHead>Created At</TableHead>
-          <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -67,7 +66,7 @@ export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
             </TableCell>
 
             <TableCell>
-              <Address copy truncate address={apiKey.key} />
+              <Address copy address={apiKey.key} />
             </TableCell>
             <TableCell>
               {apiKey.createdAt.toLocaleDateString("en-US", {
@@ -75,10 +74,6 @@ export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
                 day: "numeric",
                 year: "numeric",
               })}
-            </TableCell>
-
-            <TableCell className="text-right">
-              <DeleteAPIKey apiKey={apiKey} />
             </TableCell>
           </TableRow>
         ))}

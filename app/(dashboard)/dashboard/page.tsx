@@ -39,7 +39,7 @@ export default async function PageDashboardApiKeys() {
         <Card className="w-full p-6">
           <CardContent>
             <DashboardGenerateAPIkeysDialog
-              userId={session.user.id}
+              user={session.user}
               apiKeysCount={apiKeys.length}
             />
           </CardContent>

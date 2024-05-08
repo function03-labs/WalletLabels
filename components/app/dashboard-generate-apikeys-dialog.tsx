@@ -2,9 +2,10 @@
 
 import React, { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ApiKey } from "@prisma/client"
+import { ApiKey, User } from "@prisma/client"
 import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -12,7 +13,6 @@ import { z } from "zod"
 import { chains } from "@/config/blockchain-networks"
 import { ApiKeySchema } from "@/config/schema"
 import { createApiKey } from "@/lib/app/api-key"
-import { generateUUID } from "@/lib/utils/index"
 
 import { DashboardCopyAPIKey } from "@/components/app/dashboard-copy-apikey"
 import { Button } from "@/components/ui/button"
@@ -44,11 +44,11 @@ import {
 import { useToast } from "@/components/ui/use-toast"
 
 export function DashboardGenerateAPIkeysDialog({
-  userId,
+  user,
   apiKeysCount,
 }: {
   apiKeysCount: number
-  userId: string
+  user: User
 }) {
   const { toast } = useToast()
   const router = useRouter()
@@ -67,16 +67,14 @@ export function DashboardGenerateAPIkeysDialog({
     setIsLoading(true)
 
     try {
-      const id = generateUUID()
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
       const newKey = await createApiKey(
         {
-          id,
           name: values.name,
           chains: values.chain,
         },
-        userId
+        user.id
       )
       setGeneratedKey(newKey)
       router.refresh()
@@ -111,6 +109,25 @@ export function DashboardGenerateAPIkeysDialog({
                   variant: "destructive",
                 })
               }
+
+              if (!user.organizationSlug) {
+                toast({
+                  variant: "destructive",
+                  title: "You need to create an organization first!",
+                  description: (
+                    <div>
+                      Go to{" "}
+                      <Link
+                        href="/dashboard/profile"
+                        className="pr-0.5 underline"
+                      >
+                        profile
+                      </Link>{" "}
+                      and fill your details.
+                    </div>
+                  ),
+                })
+              }
             }}
             className="ml-auto"
           >
@@ -121,7 +138,7 @@ export function DashboardGenerateAPIkeysDialog({
 
       {generatedKey && <DashboardCopyAPIKey apiKey={generatedKey} />}
 
-      {!generatedKey && apiKeysCount < 3 && (
+      {!generatedKey && apiKeysCount < 3 && user.organizationSlug && (
         <DialogContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

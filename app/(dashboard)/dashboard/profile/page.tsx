@@ -5,7 +5,6 @@ import { getSession } from "@/lib/session"
 
 import { AppAccountForm } from "@/components/app/app-account-form"
 import { DashboardProfileDeleteAccount } from "@/components/app/dashboard-profile-delete-account"
-import { DashboardProfileInformation } from "@/components/app/dashboard-profile-information"
 import { Card } from "@/components/ui/card"
 import { PageHeader } from "@/components/ui/page-header"
 import { Separator } from "@/components/ui/separator"
@@ -31,13 +30,8 @@ export default async function PageDashboardAccount() {
         title="Account"
         description="Manage your account information"
       />
+      <div className="h-4" />
       <IsSignedIn>
-        <Card className="mt-4 w-full p-6">
-          <h3 className="text-2xl font-semibold">Informations</h3>
-          <hr className="my-3 dark:opacity-30" />
-          <DashboardProfileInformation user={session.user} />
-        </Card>
-        <Separator className="my-3" />
         <Card className="w-full p-6">
           <h3 className="text-2xl font-semibold">Profile</h3>
           <hr className="my-3 dark:opacity-30" />

@@ -52,12 +52,14 @@ export async function createApiKey(
 
   const apiKeyParams = {
     name: data.name,
-    description: data.name,
+    description: userId,
     enabled: true,
     generateDistinctId: true,
-    customerId: data.id,
+    customerId: userId,
     tags: data.chains.reduce((acc, tag) => ({ ...acc, [tag]: tag }), {}),
   }
+
+  console.log
 
   const createApiKeyCommand = new CreateApiKeyCommand(apiKeyParams)
   const apiKeyResponse = await client.send(createApiKeyCommand)
@@ -77,9 +79,12 @@ export async function createApiKey(
     throw new Error("Usage plan key creation failed")
   }
 
+  console.log(usagePlanKeyResponse)
+  console.log(apiKeyResponse)
+
   return await prisma.apiKey.create({
     data: {
-      id: data.id,
+      id: apiKeyResponse.id,
       key: usagePlanKeyResponse.value as string,
       name: data.name,
       chains: data.chains,
