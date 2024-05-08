@@ -51,15 +51,13 @@ export async function createApiKey(
   const client = new APIGatewayClient(config)
 
   const apiKeyParams = {
-    name: data.name,
+    name: `${data.name}-${userId}`,
     description: userId,
     enabled: true,
     generateDistinctId: true,
     customerId: userId,
     tags: data.chains.reduce((acc, tag) => ({ ...acc, [tag]: tag }), {}),
   }
-
-  console.log
 
   const createApiKeyCommand = new CreateApiKeyCommand(apiKeyParams)
   const apiKeyResponse = await client.send(createApiKeyCommand)
