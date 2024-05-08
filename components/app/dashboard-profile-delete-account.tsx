@@ -36,14 +36,14 @@ export function DialogDeleteAccount({ user }: { user: User }) {
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
-        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogTitle className="dark:text-white">Are you absolutely sure?</AlertDialogTitle>
         <AlertDialogDescription>
           This action cannot be undone. This will permanently delete your
           account.
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogCancel className="dark:text-white">Cancel</AlertDialogCancel>
         <AlertDialogAction onClick={deleteAPIKey}>Continue</AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
