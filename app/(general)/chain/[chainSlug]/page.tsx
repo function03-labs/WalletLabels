@@ -28,7 +28,6 @@ export default async function Page({
   params: { chainSlug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  console.log(params, searchParams)
   const data = await getData({ params })
 
   return (

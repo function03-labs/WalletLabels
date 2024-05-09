@@ -77,9 +77,6 @@ export async function createApiKey(
     throw new Error("Usage plan key creation failed")
   }
 
-  console.log(usagePlanKeyResponse)
-  console.log(apiKeyResponse)
-
   return await prisma.apiKey.create({
     data: {
       id: apiKeyResponse.id,

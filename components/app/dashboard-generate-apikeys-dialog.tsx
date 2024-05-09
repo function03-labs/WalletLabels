@@ -1,48 +1,35 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { ApiKey, User } from "@prisma/client"
-import { Loader2 } from "lucide-react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ApiKey, User } from "@prisma/client";
+import { Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { chains } from "@/config/blockchain-networks"
-import { ApiKeySchema } from "@/config/schema"
-import { createApiKey } from "@/lib/app/api-key"
 
-import { DashboardCopyAPIKey } from "@/components/app/dashboard-copy-apikey"
-import { Icons } from "@/components/shared/icons"
-import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import {
-  MultiSelector,
-  MultiSelectorContent,
-  MultiSelectorInput,
-  MultiSelectorItem,
-  MultiSelectorList,
-  MultiSelectorTrigger,
-} from "@/components/ui/multi-select"
-import { useToast } from "@/components/ui/use-toast"
+
+import { chains } from "@/config/blockchain-networks";
+import { ApiKeySchema } from "@/config/schema";
+import { createApiKey } from "@/lib/app/api-key";
+
+
+
+import { DashboardCopyAPIKey } from "@/components/app/dashboard-copy-apikey";
+import { Icons } from "@/components/shared/icons";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { MultiSelector, MultiSelectorContent, MultiSelectorInput, MultiSelectorItem, MultiSelectorList, MultiSelectorTrigger } from "@/components/ui/multi-select";
+import { useToast } from "@/components/ui/use-toast";
+
+
+
+
 
 export function DashboardGenerateAPIkeysDialog({
   user,
@@ -68,15 +55,15 @@ export function DashboardGenerateAPIkeysDialog({
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      const newKey = await createApiKey(
+        const newKey = await createApiKey(
         {
           name: values.name,
           chains: values.chain,
         },
         user.id
-      )
+      ) 
       setGeneratedKey(newKey)
       router.refresh()
       toast({
@@ -98,7 +85,6 @@ export function DashboardGenerateAPIkeysDialog({
       <div className="flex justify-start">
         <DialogTrigger asChild>
           <Button
-            //size={"icon"}
             onClick={() => {
               if (generatedKey) {
                 setGeneratedKey(undefined)
