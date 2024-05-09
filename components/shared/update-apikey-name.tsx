@@ -1,5 +1,6 @@
 "use client"
 
+import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ApiKey } from "@prisma/client"
@@ -22,6 +23,8 @@ import { Input } from "@/components/ui/input"
 
 export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
   const router = useRouter()
+  const [inputFocused, setInputFocused] = useState(false)
+
   const form = useForm<z.infer<typeof TableApiKeysSchema>>({
     resolver: zodResolver(TableApiKeysSchema),
     defaultValues: {
@@ -49,23 +52,29 @@ export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex w-full max-w-sm items-center space-x-2"
+        className="flex max-w-sm items-center space-x-2"
       >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-[100px]">
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  onFocus={() => setInputFocused(true)}
+                  onBlur={() => setInputFocused(false)}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button size="icon" type="submit" variant={"secondary"}>
-          <Check className="size-5" />
-        </Button>
+        {inputFocused && (
+          <Button size="icon" type="submit" variant={"secondary"}>
+            <Check className="size-5" />
+          </Button>
+        )}
       </form>
     </Form>
   )

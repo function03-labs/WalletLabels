@@ -8,6 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronsUpDown,
+  CirclePlus,
   Command,
   CreditCard,
   File,
@@ -207,4 +208,5 @@ export const Icons = {
   solana: SolanaIcon,
   telegram: FaTelegram,
   farcaster: Farcaster,
+  addCircle: CirclePlus,
 }

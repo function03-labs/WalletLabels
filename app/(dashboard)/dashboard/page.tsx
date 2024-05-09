@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
 
 import { getApiKeys } from "@/lib/app/api-key"
+import { getUser } from "@/lib/app/user-profile"
 import { getSession } from "@/lib/session"
 
 import { DashboardGenerateAPIkeysDialog } from "@/components/app/dashboard-generate-apikeys-dialog"
@@ -21,6 +22,7 @@ export default async function PageDashboardApiKeys() {
   }
 
   const apiKeys = await getApiKeys(session.user.id)
+  const user = await getUser(session.user.id)
 
   return (
     <section className="w-full py-2 sm:p-10">
@@ -39,7 +41,7 @@ export default async function PageDashboardApiKeys() {
         <Card className="w-full p-6">
           <CardContent>
             <DashboardGenerateAPIkeysDialog
-              user={session.user}
+              user={user}
               apiKeysCount={apiKeys.length}
             />
           </CardContent>

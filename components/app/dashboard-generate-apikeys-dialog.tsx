@@ -15,6 +15,7 @@ import { ApiKeySchema } from "@/config/schema"
 import { createApiKey } from "@/lib/app/api-key"
 
 import { DashboardCopyAPIKey } from "@/components/app/dashboard-copy-apikey"
+import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -94,9 +95,10 @@ export function DashboardGenerateAPIkeysDialog({
 
   return (
     <Dialog>
-      <div className="flex justify-end">
+      <div className="flex justify-start">
         <DialogTrigger asChild>
           <Button
+            //size={"icon"}
             onClick={() => {
               if (generatedKey) {
                 setGeneratedKey(undefined)
@@ -110,7 +112,7 @@ export function DashboardGenerateAPIkeysDialog({
                 })
               }
 
-              if (!user.organizationSlug) {
+              if (!user.organizationSlug || user.organizationSlug === "") {
                 toast({
                   variant: "destructive",
                   title: "You need to create an organization first!",
@@ -129,9 +131,9 @@ export function DashboardGenerateAPIkeysDialog({
                 })
               }
             }}
-            className="ml-auto"
+            className="mx-auto space-x-2 font-bold sm:mx-0"
           >
-            New Key
+            <Icons.addCircle /> <span className="">Generate API Key</span>
           </Button>
         </DialogTrigger>
       </div>

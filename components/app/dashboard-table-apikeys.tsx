@@ -23,14 +23,13 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-// TODO: Not responsive yet
 export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
   return (
     <Table>
       <TableCaption>Currently, you are limited to 3 API Keys.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[220px]">Name</TableHead>
+          <TableHead className="w-[150px]">Name</TableHead>
           <TableHead className="mx-6">Chains</TableHead>
           <TableHead className="w-[420px]">Key</TableHead>
           <TableHead>Created At</TableHead>
