@@ -20,9 +20,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useToast } from "@/components/ui/use-toast"
 
 export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
   const router = useRouter()
+  const { toast } = useToast()
   const [inputFocused, setInputFocused] = useState(false)
 
   const form = useForm<z.infer<typeof TableApiKeysSchema>>({
@@ -43,6 +45,7 @@ export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
         },
         apiKey.userId
       )
+      toast({ title: "API Key name updated" })
       router.refresh()
     } catch (error) {
       console.error(error)
@@ -63,7 +66,7 @@ export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
                 <Input
                   {...field}
                   onFocus={() => setInputFocused(true)}
-                  onBlur={() => setInputFocused(false)}
+                  onBlur={() => setTimeout(() => setInputFocused(false), 250)}
                 />
               </FormControl>
               <FormMessage />

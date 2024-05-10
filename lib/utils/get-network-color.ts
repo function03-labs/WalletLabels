@@ -4,6 +4,8 @@ export function GetNetworkColor(chain?: string) {
   if (chain === "optimism") return "red"
   if (chain === "matic") return "purple"
   if (chain === "goerli") return "yellow"
+  if (chain === "solana") return "purple"
+  if (chain === "ethereum") return "green"
 
   return "gray"
 }

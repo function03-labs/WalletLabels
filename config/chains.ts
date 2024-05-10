@@ -3,16 +3,19 @@ export const chains = [
     id: "ethereum",
     label: "Ethereum",
     img: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029",
+    url: "https://etherscan.io/",
   },
   {
     id: "arbitrum",
     label: "Arbitrum",
     img: "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029",
+    url: "https://arbiscan.io/",
   },
   {
     id: "solana",
     label: "Solana",
     img: "https://cryptologos.cc/logos/solana-sol-logo.png?v=029",
+    url: "https://solscan.io/",
   },
   /*  {
     id: "avax",

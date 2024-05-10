@@ -52,7 +52,7 @@ export default async function Page({
               </div>
             </HoverBorderGradient>
           </div>
-          <h1 className="text-center text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-center text-3xl font-bold leading-tight dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
             What would you like to <br className="hidden sm:inline" />
             search today?
           </h1>
@@ -75,14 +75,14 @@ export default async function Page({
             favorite wallets and exchanges.
           </p>
           <Bento />
-          <div className="mt-3 w-full text-center sm:w-4/5">
+          <div id="search-box" className="mt-3 w-full text-center sm:w-4/5">
             <SearchBox params={params} searchParams={searchParams} />
             <FindingFilter params={searchParams} />
           </div>
         </div>
       </section>
       <ActivityFilter />
-      <div className="px-1 sm:px-2 md:px-4 lg:px-12">
+      <div className="px-2 md:px-4 lg:px-12">
         {searchParams.query || searchParams.isRefined ? (
           <CustomHits />
         ) : (
