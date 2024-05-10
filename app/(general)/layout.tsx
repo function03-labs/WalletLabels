@@ -21,7 +21,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Footer />
       </div>
       <NetworkStatus />
-      <div className="fixed bottom-6 right-6 block sm:hidden">
+      <div className="fixed bottom-6 right-6 z-50 block sm:hidden">
         <WalletConnect />
       </div>
     </FramerWrapper>

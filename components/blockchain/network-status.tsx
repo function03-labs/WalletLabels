@@ -1,8 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useBlockNumber, useNetwork } from "wagmi"
 
+import { chains } from "@/config/chains"
 import { cn } from "@/lib/utils"
 import { GetNetworkColor } from "@/lib/utils/get-network-color"
 
@@ -18,24 +20,24 @@ const badgeVariants: Record<ReturnType<typeof GetNetworkColor>, string> = {
 }
 
 export function NetworkStatus() {
+  const path = usePathname()
   const { data } = useBlockNumber()
-  const { chain } = useNetwork()
-  const blockExplorerUrl = chain?.blockExplorers?.default.url
-
-  if (!chain || !blockExplorerUrl) return null
+  const chainSelected = chains.find(
+    (c) => c.id === (path === "/" ? "ethereum" : path.split("/")[2])
+  )!
 
   return (
     <Link
-      href={blockExplorerUrl}
+      href={chainSelected.url}
       className="fixed bottom-6 left-6 z-10 flex items-center overflow-hidden rounded-full bg-muted text-muted-foreground shadow-md"
     >
       <Badge
         className={cn(
           "rounded-full py-2 text-xs font-bold uppercase leading-none tracking-wider",
-          badgeVariants[GetNetworkColor(chain.name)]
+          badgeVariants[GetNetworkColor(chainSelected.id)]
         )}
       >
-        {chain.name}
+        {chainSelected.label}
       </Badge>
       <p className="mx-2 text-xs">#{data?.toString()}</p>
     </Link>

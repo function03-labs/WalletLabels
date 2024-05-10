@@ -6,11 +6,9 @@ import useClipboard from "@/lib/hooks/use-clipboard"
 
 import { Button } from "@/components/ui/button"
 import {
-  Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
-  DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"

@@ -36,46 +36,48 @@ export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {apiKeys.map((apiKey, index) => (
-          <TableRow key={index}>
-            <TableCell className="font-medium">
-              <UpdateAPIKeyName apiKey={apiKey} />
-            </TableCell>
+        {apiKeys
+          .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+          .map((apiKey, index) => (
+            <TableRow key={index}>
+              <TableCell className="font-medium">
+                <UpdateAPIKeyName apiKey={apiKey} />
+              </TableCell>
 
-            <TableCell>
-              <AvatarGroup
-                limit={3}
-                className="size-2 items-center justify-start"
-              >
-                <AvatarGroupList>
-                  {chains
-                    .filter((chain) => apiKey.chains.includes(chain.value))
-                    .map((chain) => (
-                      <Avatar key={chain.label} className="size-8">
-                        <AvatarImage
-                          alt={chain.label}
-                          key={chain.label}
-                          src={chain.iconUrl}
-                        />
-                      </Avatar>
-                    ))}
-                </AvatarGroupList>
-                <AvatarOverflowIndicator />
-              </AvatarGroup>
-            </TableCell>
+              <TableCell>
+                <AvatarGroup
+                  limit={3}
+                  className="size-2 items-center justify-start"
+                >
+                  <AvatarGroupList>
+                    {chains
+                      .filter((chain) => apiKey.chains.includes(chain.value))
+                      .map((chain) => (
+                        <Avatar key={chain.label} className="size-8">
+                          <AvatarImage
+                            alt={chain.label}
+                            key={chain.label}
+                            src={chain.iconUrl}
+                          />
+                        </Avatar>
+                      ))}
+                  </AvatarGroupList>
+                  <AvatarOverflowIndicator />
+                </AvatarGroup>
+              </TableCell>
 
-            <TableCell>
-              <Address copy address={apiKey.key} />
-            </TableCell>
-            <TableCell>
-              {apiKey.createdAt.toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </TableCell>
-          </TableRow>
-        ))}
+              <TableCell>
+                <Address copy address={apiKey.key} />
+              </TableCell>
+              <TableCell>
+                {apiKey.createdAt.toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </TableCell>
+            </TableRow>
+          ))}
       </TableBody>
     </Table>
   )
