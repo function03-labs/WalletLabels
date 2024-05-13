@@ -4,7 +4,7 @@ import { connectDB } from "@/lib/mongodb"
 import { parseQueryParamsSearch } from "@/lib/query-params"
 
 export async function GET(request: Request) {
-  const { search, limit } = parseQueryParamsSearch(request)
+  const { search, limit, offset } = parseQueryParamsSearch(request)
 
   if (search === "") {
     return new Response(
@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
   const db = await connectDB()
 
-  const pipeline: PipelineStage[] = [{ $limit: limit }]
+  const pipeline: PipelineStage[] = [{ $skip: offset }, { $limit: limit }]
 
   pipeline.unshift({
     $search: {

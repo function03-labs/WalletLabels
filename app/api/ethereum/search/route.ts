@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/mongodb"
 import { parseQueryParamsSearch } from "@/lib/query-params"
 
 export async function GET(request: Request) {
-  const { search, limit } = parseQueryParamsSearch(request)
+  const { search, limit, offset } = parseQueryParamsSearch(request)
 
   if (search === "") {
     return new Response(
@@ -29,6 +29,9 @@ export async function GET(request: Request) {
           path: ["label", "address_name", "label_type", "label_subtype"],
         },
       },
+    },
+    {
+      $skip: offset,
     },
     {
       $limit: limit,

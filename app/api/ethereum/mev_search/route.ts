@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/mongodb"
 import { parseQueryParamsSearch } from "@/lib/query-params"
 
 export async function GET(request: Request) {
-  const { search, limit } = parseQueryParamsSearch(request)
+  const { search, limit, offset } = parseQueryParamsSearch(request)
 
   if (search === "") {
     return new Response(
@@ -38,6 +38,7 @@ export async function GET(request: Request) {
       .collection(process.env.CLC_NAME_WLBLS_MEV!)
       .find(queryAtlas, { projection })
       .sort({ _id: -1 })
+      .skip(offset)
       .limit(limit)
 
     const labels = await cursor.toArray()

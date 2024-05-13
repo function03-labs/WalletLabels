@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/mongodb"
 import { parseQueryParamsAddress } from "@/lib/query-params"
 
 export async function GET(request: Request) {
-  const { address, limit } = parseQueryParamsAddress(request)
+  const { address, limit, offset } = parseQueryParamsAddress(request)
 
   if (address === "") {
     return new Response(
@@ -38,6 +38,7 @@ export async function GET(request: Request) {
       .find(queryAtlas, { projection })
       .collation({ locale: "en", strength: 2, maxVariable: "punct" })
       .hint("ADDRESS_1")
+      .skip(offset)
       .limit(limit)
 
     const labels = await cursor.toArray()
