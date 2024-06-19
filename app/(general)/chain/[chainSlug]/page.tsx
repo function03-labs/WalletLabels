@@ -84,9 +84,9 @@ export default async function Page({
       <ActivityFilter />
       <div className="px-2 md:px-4 lg:px-12">
         {searchParams.query || searchParams.isRefined ? (
-          <CustomHits />
+          <CustomHits chainSlug={params.chainSlug} />
         ) : (
-          <Grid data={data} />
+          <Grid data={data} chainSlug={params.chainSlug} />
         )}
       </div>
     </SearchWrapper>

@@ -4,7 +4,7 @@ import { useHits } from "react-instantsearch"
 
 import { Grid } from "@/components/app/app-grid"
 
-export function CustomHits() {
+export function CustomHits({ chainSlug }: { chainSlug: string }) {
   const { hits } = useHits()
 
   const props = {
@@ -22,5 +22,5 @@ export function CustomHits() {
   }
 
   //@ts-ignore: Unreachable code error
-  return <Grid data={props.data} />
+  return <Grid data={props.data} chainSlug={chainSlug} />
 }

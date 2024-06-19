@@ -72,7 +72,8 @@ export function ActivityFilter() {
               buttonVariants({
                 variant: "ghost",
                 size: "icon",
-              })
+              }),
+              "dark:text-white"
             )}
             aria-label="Open sidebar"
           >
@@ -114,7 +115,9 @@ export function ActivityFilter() {
                 onCheckedChange={() => handleCheckboxChange(activity)}
               />
 
-              <span className="text-sm font-medium">{activity.label}</span>
+              <span className="text-sm font-medium dark:text-white">
+                {activity.label}
+              </span>
               <span className="ml-auto text-sm text-gray-500">
                 {activity.count}
               </span>

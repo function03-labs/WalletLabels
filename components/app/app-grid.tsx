@@ -17,7 +17,7 @@ import { useGridContent } from "@/lib/hooks/use-grid-content"
 import { splitTags } from "@/lib/utils"
 import pick from "@/lib/utils/color-picker"
 
-export function Grid(props: { data: { [key: string]: string }[] }) {
+export function Grid(props: { data: { [key: string]: string }[], chainSlug: string}) {
   const cols = useGridColumns()
   const ref = React.useRef<DataEditorRef | null>(null)
   const { resolvedTheme } = useTheme()
@@ -64,6 +64,7 @@ export function Grid(props: { data: { [key: string]: string }[] }) {
   const getContent = useGridContent({
     data: props.data,
     getTagsFromLabels,
+    chainSlug: props.chainSlug
   })
 
   return (
