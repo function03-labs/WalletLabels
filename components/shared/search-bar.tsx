@@ -75,7 +75,7 @@ export function SearchBar({
                   borderRadius="xl"
                   focusBorderColor="purple.500"
                   textOverflow="ellipsis"
-                  className="font-sans"
+                  className="font-sans dark:text-white"
                   _placeholder={{
                     color: colorMode === "light" ? "gray.400" : "gray.400",
                     fontSize: "16px",
