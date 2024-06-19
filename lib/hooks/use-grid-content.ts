@@ -4,13 +4,15 @@ import { GridCell, GridCellKind, Item } from "@glideapps/glide-data-grid"
 import { ButtonCellType, TagsCellType } from "@glideapps/glide-data-grid-cells"
 
 import CryptoIcon from "@/lib/get-crypto-icons"
+import { getLookUpURL } from "@/lib/utils"
 
 interface Props {
+  chainSlug: string
   data: { [key: string]: string }[]
   getTagsFromLabels: (labels: string) => { tag: string; color: string }[]
 }
 
-export function useGridContent({ data, getTagsFromLabels }: Props) {
+export function useGridContent({ data, getTagsFromLabels, chainSlug }: Props) {
   return useCallback(
     (cell: Item): GridCell => {
       const [col, row] = cell
@@ -74,7 +76,7 @@ export function useGridContent({ data, getTagsFromLabels }: Props) {
             title: "View Details",
             onClick: () => {
               window.open(
-                `https://etherscan.io/address/${dataRow[indexes[0]]}`,
+                getLookUpURL(chainSlug, dataRow[indexes[0]]),
                 "_blank"
               )
             },

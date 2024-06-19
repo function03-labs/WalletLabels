@@ -108,3 +108,14 @@ export function getChainEnv(chainSlug: string) {
       return process.env.CLC_NAME_WLBLS!
   }
 }
+
+export function getLookUpURL(chainSlug: string, address: string) {
+  if (chainSlug === "solana") {
+    return `https://solscan.io/account/${address}`
+  } else if (chainSlug === "arbitrum") {
+    return `https://arbiscan.io/address/${address}`
+  } else if (chainSlug === "ethereum") {
+    return `https://etherscan.io/address/${address}`
+  }
+  return `https://etherscan.io/address/${address}`
+}
