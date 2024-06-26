@@ -82,7 +82,7 @@ export const ButtonSIWELogin = ({
               {...props}
             >
               {isLoading && (
-                <Icons.refresh className="absolute -left-6 animate-spin" />
+                <Icons.loading className="absolute -left-6 size-3 animate-spin" />
               )}
               <span className={labelClasses}>
                 {children || label || "Logout"}
@@ -114,7 +114,7 @@ export const ButtonSIWELogin = ({
           {...props}
         >
           {isLoading && (
-            <Icons.refresh className="absolute -left-6 animate-spin" />
+            <Icons.loading className="absolute -left-6 size-5 animate-spin" />
           )}
           <span className={labelClasses}>{children || label || "Logout"}</span>
         </Button>

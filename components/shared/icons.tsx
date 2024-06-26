@@ -17,6 +17,7 @@ import {
   Image as ImageIcon,
   Laptop,
   Loader2,
+  LoaderCircleIcon,
   LucideIcon,
   MailIcon,
   Monitor,
@@ -209,4 +210,5 @@ export const Icons = {
   telegram: FaTelegram,
   farcaster: Farcaster,
   addCircle: CirclePlus,
+  loading: LoaderCircleIcon
 }
