@@ -24,11 +24,11 @@ importers:
         specifier: ^3.1.1
         version: 3.3.4(react-hook-form@7.51.2(react@18.2.0))
       '@prisma/client':
-        specifier: ^5.13.0
-        version: 5.13.0(prisma@5.13.0)
+        specifier: ^5.16.0
+        version: 5.16.0(prisma@5.16.0)
       '@prisma/extension-accelerate':
         specifier: ^1.0.0
-        version: 1.0.0(@prisma/client@5.13.0(prisma@5.13.0))
+        version: 1.0.0(@prisma/client@5.16.0(prisma@5.16.0))
       '@radix-ui/react-accordion':
         specifier: ^1.1.0
         version: 1.1.2(@types/react-dom@18.2.17)(@types/react@18.2.38)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -205,10 +205,10 @@ importers:
         version: 1.14.0
       tailwindcss:
         specifier: ^3.3.3
-        version: 3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))
+        version: 3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3)))
+        version: 1.0.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)))
       typesense-instantsearch-adapter:
         specifier: ^2.8.0
         version: 2.8.0(@babel/runtime@7.24.1)
@@ -236,7 +236,7 @@ importers:
         version: 17.8.1
       '@graphprotocol/client-cli':
         specifier: ^3.0.0
-        version: 3.0.0(@babel/core@7.18.5)(@envelop/core@3.0.6)(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/store@0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/delegate@10.0.4(graphql@16.8.1))(@graphql-tools/merge@9.0.3(graphql@16.8.1))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(@graphql-tools/wrap@10.0.5(graphql@16.8.1))(@types/node@17.0.45)(bufferutil@4.0.8)(graphql-tag@2.12.6(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
+        version: 3.0.0(snpgyjfga24jtdzp7mp7i2xp2a)
       '@graphql-codegen/cli':
         specifier: ^5.0.0
         version: 5.0.2(@parcel/watcher@2.4.1)(@types/node@17.0.45)(bufferutil@4.0.8)(graphql@16.8.1)(typescript@5.0.4)(utf-8-validate@5.0.10)
@@ -314,7 +314,7 @@ importers:
         version: 7.0.0(eslint@8.30.0)
       eslint-plugin-tailwindcss:
         specifier: ^3.5.0
-        version: 3.15.1(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3)))
+        version: 3.15.1(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)))
       eslint-plugin-testing-library:
         specifier: ^5.5.1
         version: 5.11.1(eslint@8.30.0)(typescript@5.0.4)
@@ -337,8 +337,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.8(@ianvs/prettier-plugin-sort-imports@4.2.1(prettier@2.8.8))(prettier@2.8.8)
       prisma:
-        specifier: ^5.13.0
-        version: 5.13.0
+        specifier: ^5.16.0
+        version: 5.16.0
       typescript:
         specifier: 5.0.4
         version: 5.0.4
@@ -3115,8 +3115,8 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
-  '@prisma/client@5.13.0':
-    resolution: {integrity: sha512-uYdfpPncbZ/syJyiYBwGZS8Gt1PTNoErNYMuqHDa2r30rNSFtgTA/LXsSk55R7pdRTMi5pHkeP9B14K6nHmwkg==}
+  '@prisma/client@5.16.0':
+    resolution: {integrity: sha512-8NOQSzgrSgpU2YcNm4MsPR4/vNvZdUBPuyX89PwWlClSKZeDjPSZ8+eds/ffu1Ttrjnm8V8D0hjgqpyc6wyqDg==}
     engines: {node: '>=16.13'}
     peerDependencies:
       prisma: '*'
@@ -3124,14 +3124,14 @@ packages:
       prisma:
         optional: true
 
-  '@prisma/debug@5.13.0':
-    resolution: {integrity: sha512-699iqlEvzyCj9ETrXhs8o8wQc/eVW+FigSsHpiskSFydhjVuwTJEfj/nIYqTaWFYuxiWQRfm3r01meuW97SZaQ==}
+  '@prisma/debug@5.16.0':
+    resolution: {integrity: sha512-pfdOGxMShqZKkNNskYB0yXICsqL6rOkQUKNktouUZ9Y9ASd5736+ae2fpzif7onwJiIyEpu/yvOO3rFUbliKTA==}
 
-  '@prisma/engines-version@5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b':
-    resolution: {integrity: sha512-AyUuhahTINGn8auyqYdmxsN+qn0mw3eg+uhkp8zwknXYIqoT3bChG4RqNY/nfDkPvzWAPBa9mrDyBeOnWSgO6A==}
+  '@prisma/engines-version@5.16.0-24.34ace0eb2704183d2c05b60b52fba5c43c13f303':
+    resolution: {integrity: sha512-HkT2WbfmFZ9WUPyuJHhkiADxazHg8Y4gByrTSVeb3OikP6tjQ7txtSUGu9OBOBH0C13dPKN2qqH12xKtHu/Hiw==}
 
-  '@prisma/engines@5.13.0':
-    resolution: {integrity: sha512-hIFLm4H1boj6CBZx55P4xKby9jgDTeDG0Jj3iXtwaaHmlD5JmiDkZhh8+DYWkTGchu+rRF36AVROLnk0oaqhHw==}
+  '@prisma/engines@5.16.0':
+    resolution: {integrity: sha512-OGvi/GvLX3XwTWQ+k/57kLyHGidQ8rC8zB+Zq9nEE7gegjazyzgLYN9qzfdcCfyI8ilc6IMxOyX4sspwkv98hg==}
 
   '@prisma/extension-accelerate@1.0.0':
     resolution: {integrity: sha512-5oSpPtKCMfTl/sSXaS/7vBsPqfm+eEVB6/5KPBJITFatDoFcmjx/PIC/T93mHLiHI98xKwosPN59NGXjDDhcFA==}
@@ -3139,11 +3139,11 @@ packages:
     peerDependencies:
       '@prisma/client': '>=4.16.1'
 
-  '@prisma/fetch-engine@5.13.0':
-    resolution: {integrity: sha512-Yh4W+t6YKyqgcSEB3odBXt7QyVSm0OQlBSldQF2SNXtmOgMX8D7PF/fvH6E6qBCpjB/yeJLy/FfwfFijoHI6sA==}
+  '@prisma/fetch-engine@5.16.0':
+    resolution: {integrity: sha512-8C8y6J9eWRl+R/aO3vQ2HlmM9IbjAmrZaaEAdC0OJfG3CHvbTOcL7VRY6CEUKo8RwZ8bdATOePaSMS634fHWgw==}
 
-  '@prisma/get-platform@5.13.0':
-    resolution: {integrity: sha512-B/WrQwYTzwr7qCLifQzYOmQhZcFmIFhR81xC45gweInSUn2hTEbfKUPd2keAog+y5WI5xLAFNJ3wkXplvSVkSw==}
+  '@prisma/get-platform@5.16.0':
+    resolution: {integrity: sha512-ynp2jAYfYdd7OObX+uWaFRpvhPVmpF0nsRMhbrWdVVUj39q3Zr8dGz5WDj2g+BTUE++u1T1Am3RyM3PBQdDZXA==}
 
   '@radix-ui/colors@3.0.0':
     resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
@@ -8812,8 +8812,8 @@ packages:
   pretty-format@3.8.0:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
 
-  prisma@5.13.0:
-    resolution: {integrity: sha512-kGtcJaElNRAdAGsCNykFSZ7dBKpL14Cbs+VaQ8cECxQlRPDjBlMHNFYeYt0SKovAVy2Y65JXQwB3A5+zIQwnTg==}
+  prisma@5.16.0:
+    resolution: {integrity: sha512-T1ZWJT/vgzp3rtRmd1iCSnPPsgOItXnnny+/cfpHraowiBEvUMD2pEI6yEOL6CP2EelTmq4wKDbXbYucy4Fd+A==}
     engines: {node: '>=16.13'}
     hasBin: true
 
@@ -9292,6 +9292,7 @@ packages:
 
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@2.7.1:
@@ -13489,13 +13490,13 @@ snapshots:
       '@commitlint/types': 17.8.1
       '@types/node': 20.5.1
       chalk: 4.1.2
-      cosmiconfig: 8.3.6(typescript@5.0.4)
-      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.4.3))(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))(typescript@5.4.3)
+      cosmiconfig: 8.3.6(typescript@5.4.3)
+      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.0.4))(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))(typescript@5.4.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.2(@types/node@17.0.45)(typescript@5.0.4)
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.3)
       typescript: 5.4.3
     transitivePeerDependencies:
       - '@swc/core'
@@ -14086,15 +14087,15 @@ snapshots:
       graphql: 16.8.1
       tslib: 2.6.2
 
-  ? '@graphprotocol/client-cli@3.0.0(@babel/core@7.18.5)(@envelop/core@3.0.6)(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/store@0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/delegate@10.0.4(graphql@16.8.1))(@graphql-tools/merge@9.0.3(graphql@16.8.1))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(@graphql-tools/wrap@10.0.5(graphql@16.8.1))(@types/node@17.0.45)(bufferutil@4.0.8)(graphql-tag@2.12.6(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)'
-  : dependencies:
+  '@graphprotocol/client-cli@3.0.0(snpgyjfga24jtdzp7mp7i2xp2a)':
+    dependencies:
       '@graphprotocol/client-add-source-name': 2.0.0(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/delegate@10.0.4(graphql@16.8.1))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(@graphql-tools/wrap@10.0.5(graphql@16.8.1))(graphql@16.8.1)
       '@graphprotocol/client-auto-pagination': 2.0.0(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/delegate@10.0.4(graphql@16.8.1))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(@graphql-tools/wrap@10.0.5(graphql@16.8.1))(graphql@16.8.1)
       '@graphprotocol/client-auto-type-merging': 2.0.0(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/delegate@10.0.4(graphql@16.8.1))(graphql@16.8.1)
       '@graphprotocol/client-block-tracking': 2.0.0(@graphql-tools/delegate@10.0.4(graphql@16.8.1))(graphql@16.8.1)
       '@graphprotocol/client-polling-live': 2.0.0(@envelop/core@3.0.6)(@graphql-tools/merge@9.0.3(graphql@16.8.1))(graphql@16.8.1)
       '@graphql-mesh/cli': 0.82.35(@babel/core@7.18.5)(@types/node@17.0.45)(bufferutil@4.0.8)(graphql-tag@2.12.6(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))(utf-8-validate@5.0.10)
-      '@graphql-mesh/graphql': 0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/store@0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(@types/node@17.0.45)(bufferutil@4.0.8)(graphql@16.8.1)(tslib@2.6.2)(utf-8-validate@5.0.10)
+      '@graphql-mesh/graphql': 0.93.1(7xm6ptbak5subjcj765bix3n6i)
       graphql: 16.8.1
       tslib: 2.6.2
     transitivePeerDependencies:
@@ -14456,9 +14457,9 @@ snapshots:
       '@graphql-codegen/typescript-generic-sdk': 3.1.0(graphql-tag@2.12.6(graphql@16.8.1))(graphql@16.8.1)
       '@graphql-codegen/typescript-operations': 3.0.4(graphql@16.8.1)
       '@graphql-codegen/typescript-resolvers': 3.2.1(graphql@16.8.1)
-      '@graphql-mesh/config': 0.93.1(@babel/core@7.18.5)(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/runtime@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/store@0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)
+      '@graphql-mesh/config': 0.93.1(tlzjceswe37phhgytgz7iaku2a)
       '@graphql-mesh/cross-helpers': 0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))
-      '@graphql-mesh/http': 0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/runtime@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(graphql@16.8.1)(tslib@2.6.2)
+      '@graphql-mesh/http': 0.93.2(4tj7yvntaylshtcbgv5acdx54m)
       '@graphql-mesh/runtime': 0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)
       '@graphql-mesh/store': 0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)
       '@graphql-mesh/types': 0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)
@@ -14497,8 +14498,8 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  ? '@graphql-mesh/config@0.93.1(@babel/core@7.18.5)(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/runtime@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/store@0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)'
-  : dependencies:
+  '@graphql-mesh/config@0.93.1(tlzjceswe37phhgytgz7iaku2a)':
+    dependencies:
       '@envelop/core': 3.0.6
       '@graphql-mesh/cache-localforage': 0.93.1(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(graphql@16.8.1)(tslib@2.6.2)
       '@graphql-mesh/cross-helpers': 0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))
@@ -14533,8 +14534,8 @@ snapshots:
       - react-native
       - react-native-windows
 
-  ? '@graphql-mesh/graphql@0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/store@0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(@types/node@17.0.45)(bufferutil@4.0.8)(graphql@16.8.1)(tslib@2.6.2)(utf-8-validate@5.0.10)'
-  : dependencies:
+  '@graphql-mesh/graphql@0.93.1(7xm6ptbak5subjcj765bix3n6i)':
+    dependencies:
       '@graphql-mesh/cross-helpers': 0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))
       '@graphql-mesh/store': 0.93.1(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-mesh/utils@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)
       '@graphql-mesh/string-interpolation': 0.4.4(graphql@16.8.1)(tslib@2.6.2)
@@ -14553,8 +14554,8 @@ snapshots:
       - encoding
       - utf-8-validate
 
-  ? '@graphql-mesh/http@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/runtime@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(graphql@16.8.1)(tslib@2.6.2)'
-  : dependencies:
+  '@graphql-mesh/http@0.93.2(4tj7yvntaylshtcbgv5acdx54m)':
+    dependencies:
       '@graphql-mesh/cross-helpers': 0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))
       '@graphql-mesh/runtime': 0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-mesh/utils@0.93.2(@graphql-mesh/cross-helpers@0.3.4(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10)))(@graphql-mesh/types@0.93.2)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2))(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)
       '@graphql-mesh/types': 0.93.2(@graphql-mesh/store@0.93.1)(@graphql-tools/utils@9.2.1(graphql@16.8.1))(graphql@16.8.1)(tslib@2.6.2)
@@ -15547,34 +15548,34 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@prisma/client@5.13.0(prisma@5.13.0)':
+  '@prisma/client@5.16.0(prisma@5.16.0)':
     optionalDependencies:
-      prisma: 5.13.0
+      prisma: 5.16.0
 
-  '@prisma/debug@5.13.0': {}
+  '@prisma/debug@5.16.0': {}
 
-  '@prisma/engines-version@5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b': {}
+  '@prisma/engines-version@5.16.0-24.34ace0eb2704183d2c05b60b52fba5c43c13f303': {}
 
-  '@prisma/engines@5.13.0':
+  '@prisma/engines@5.16.0':
     dependencies:
-      '@prisma/debug': 5.13.0
-      '@prisma/engines-version': 5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
-      '@prisma/fetch-engine': 5.13.0
-      '@prisma/get-platform': 5.13.0
+      '@prisma/debug': 5.16.0
+      '@prisma/engines-version': 5.16.0-24.34ace0eb2704183d2c05b60b52fba5c43c13f303
+      '@prisma/fetch-engine': 5.16.0
+      '@prisma/get-platform': 5.16.0
 
-  '@prisma/extension-accelerate@1.0.0(@prisma/client@5.13.0(prisma@5.13.0))':
+  '@prisma/extension-accelerate@1.0.0(@prisma/client@5.16.0(prisma@5.16.0))':
     dependencies:
-      '@prisma/client': 5.13.0(prisma@5.13.0)
+      '@prisma/client': 5.16.0(prisma@5.16.0)
 
-  '@prisma/fetch-engine@5.13.0':
+  '@prisma/fetch-engine@5.16.0':
     dependencies:
-      '@prisma/debug': 5.13.0
-      '@prisma/engines-version': 5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
-      '@prisma/get-platform': 5.13.0
+      '@prisma/debug': 5.16.0
+      '@prisma/engines-version': 5.16.0-24.34ace0eb2704183d2c05b60b52fba5c43c13f303
+      '@prisma/get-platform': 5.16.0
 
-  '@prisma/get-platform@5.13.0':
+  '@prisma/get-platform@5.16.0':
     dependencies:
-      '@prisma/debug': 5.13.0
+      '@prisma/debug': 5.16.0
 
   '@radix-ui/colors@3.0.0': {}
 
@@ -19304,11 +19305,11 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.4.3))(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))(typescript@5.4.3):
+  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.0.4))(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))(typescript@5.4.3):
     dependencies:
       '@types/node': 20.5.1
-      cosmiconfig: 8.3.6(typescript@5.0.4)
-      ts-node: 10.9.2(@types/node@17.0.45)(typescript@5.0.4)
+      cosmiconfig: 8.3.6(typescript@5.4.3)
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.3)
       typescript: 5.4.3
 
   cosmiconfig@5.2.1:
@@ -19334,6 +19335,15 @@ snapshots:
       path-type: 4.0.0
     optionalDependencies:
       typescript: 5.0.4
+
+  cosmiconfig@8.3.6(typescript@5.4.3):
+    dependencies:
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      parse-json: 5.2.0
+      path-type: 4.0.0
+    optionalDependencies:
+      typescript: 5.4.3
 
   countup.js@2.8.0: {}
 
@@ -19941,11 +19951,11 @@ snapshots:
     dependencies:
       eslint: 8.30.0
 
-  eslint-plugin-tailwindcss@3.15.1(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))):
+  eslint-plugin-tailwindcss@3.15.1(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))):
     dependencies:
       fast-glob: 3.3.2
       postcss: 8.4.38
-      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))
+      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
 
   eslint-plugin-testing-library@5.11.1(eslint@8.30.0)(typescript@5.0.4):
     dependencies:
@@ -22629,13 +22639,13 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.38
 
-  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3)):
+  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)):
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.1
     optionalDependencies:
       postcss: 8.4.38
-      ts-node: 10.9.2(@types/node@17.0.45)(typescript@5.0.4)
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.3)
 
   postcss-nested@6.0.1(postcss@8.4.38):
     dependencies:
@@ -22714,9 +22724,9 @@ snapshots:
 
   pretty-format@3.8.0: {}
 
-  prisma@5.13.0:
+  prisma@5.16.0:
     dependencies:
-      '@prisma/engines': 5.13.0
+      '@prisma/engines': 5.16.0
 
   process-nextick-args@2.0.1: {}
 
@@ -23851,11 +23861,11 @@ snapshots:
 
   tailwind-merge@1.14.0: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))):
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))):
     dependencies:
-      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))
+      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
 
-  tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3)):
+  tailwindcss@3.4.3(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -23874,7 +23884,7 @@ snapshots:
       postcss: 8.4.38
       postcss-import: 15.1.0(postcss@8.4.38)
       postcss-js: 4.0.1(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
       postcss-nested: 6.0.1(postcss@8.4.38)
       postcss-selector-parser: 6.0.16
       resolve: 1.22.8
@@ -24042,6 +24052,24 @@ snapshots:
       diff: 4.0.2
       make-error: 1.3.6
       typescript: 5.0.4
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+
+  ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.3):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 20.5.1
+      acorn: 8.11.3
+      acorn-walk: 8.3.2
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.4.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 

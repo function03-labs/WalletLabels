@@ -5,36 +5,57 @@ generator client {
 datasource db {
   provider = "postgres"
   url      = env("DATABASE_URL_ACCELERATE")
+  directUrl = env("DATABASE_URL_SUPABASE")
 }
 
 model User {
-  id             String   @id
+  id String @id
 
-  name           String
-  email          String?
-  avatar         String
-
-  apiKeys        ApiKey[]
+  name             String
+  email            String?
+  avatar           String
   organizationSlug String?
 
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  apiKeys      ApiKey[]
+  AddressLabel AddressLabel[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("users")
 }
 
 model ApiKey {
-  id        String   @id @default(cuid())
-  key       String   @unique
-  
-  name      String
-  chains    String[]
+  id  String @id @default(cuid())
+  key String @unique
 
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  name   String
+  chains String[]
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
 
   @@index([userId])
   @@map("api_keys")
+}
+
+model AddressLabel {
+  id           String  @id @default(cuid())
+  blockchain   String
+  address      String
+  addressName  String
+  labelType    String
+  labelSubtype String?
+  label        String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("address_labels")
 }

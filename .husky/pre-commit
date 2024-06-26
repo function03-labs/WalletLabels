@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-yarn lint:staged
-=======
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# npm run lint
->>>>>>> refactor
+pnpm run lint
