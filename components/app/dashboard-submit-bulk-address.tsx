@@ -3,6 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
+import Papa from "papaparse"
 import { DropzoneOptions } from "react-dropzone"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -96,9 +97,18 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
 
   async function onSubmit(values: z.infer<typeof uploadFileSchema>) {
     setLoading(true)
+    console.log(values)
+    const file = values.files[0]
     const interval = simulateUpload()
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      Papa.parse(file, {
+        header: true,
+        complete: (results: any) => {
+          console.log(results)
+        },
+      })
       await new Promise((resolve) => setTimeout(resolve, 5000))
       form.reset()
     } catch (error) {
@@ -119,7 +129,7 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
         <DialogHeader>
           <DialogTitle>Bulk Upload</DialogTitle>
           <DialogDescription>
-            Upload a CSV file with multiple addresses to submit in bulk.
+            Upload a CSV file with multiple addresses to submit in bulk .
             Checkout our template{" "}
             <Link
               target="_blank"
