@@ -23,6 +23,7 @@ import {
   Monitor,
   Moon,
   MoreVertical,
+  PaperclipIcon,
   PencilIcon,
   PhoneIcon,
   Pizza,
@@ -210,5 +211,6 @@ export const Icons = {
   telegram: FaTelegram,
   farcaster: Farcaster,
   addCircle: CirclePlus,
-  loading: LoaderCircleIcon
+  loading: LoaderCircleIcon,
+  paperclip: PaperclipIcon,
 }

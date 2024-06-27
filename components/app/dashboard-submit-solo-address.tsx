@@ -81,7 +81,7 @@ export function DashboardSubmitSoloAddress({ userId }: { userId: string }) {
                 <div className="mt-2 flex rounded-md shadow-sm">
                   <TooltipHover
                     name="Blockchain"
-                    content="Name of the blockchain  network"
+                    content="Name of the blockchain network"
                   />
 
                   <input

@@ -34,15 +34,13 @@ export default async function SubmitPage() {
       <div className="h-4" />
       <IsSignedIn>
         <Card className="w-full p-6">
-          <h3 className="text-2xl font-semibold">Bulk</h3>
-          <hr className="my-3 dark:opacity-30" />
-          <DashboardSubmitBulkAddress />
-        </Card>
-        <Separator />
-        <Card className="w-full p-6">
-          <h3 className="text-2xl font-semibold">Submit Label</h3>
+          <h3 className="text-2xl font-semibold">Solo submission</h3>
           <hr className="my-3 dark:opacity-30" />
           <DashboardSubmitSoloAddress userId={user.id} />
+        </Card>
+        <Separator className="my-6" />
+        <Card className="w-full p-6">
+          <DashboardSubmitBulkAddress userId={user.id} />
         </Card>
       </IsSignedIn>
       <IsSignedOut>

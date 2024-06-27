@@ -23,3 +23,15 @@ export const addressLabelSchema = z.object({
   labelSubType: z.string().min(2).max(50),
   label: z.string().min(2).max(50),
 })
+
+export const uploadFileSchema = z.object({
+  files: z
+    .array(
+      z.instanceof(File).refine((file) => file.size < 25 * 1024 * 1024, {
+        message: "File size must be less than 25MB",
+      })
+    )
+    .max(1, {
+      message: "Only one file can be uploaded",
+    }),
+})
