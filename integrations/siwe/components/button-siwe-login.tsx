@@ -102,6 +102,11 @@ export const ButtonSIWELogin = ({
                 Profile
               </Link>
             </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link className="w-full" href="/dashboard/submit">
+                Submission
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (

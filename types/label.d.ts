@@ -18,3 +18,12 @@ export interface Activity {
   label: string
   highlighted?: string
 }
+
+export type AddressLabelType = {
+  blockchain: string
+  address: string
+  addressName: string
+  labelType: string
+  labelSubType: string
+  label: string
+}

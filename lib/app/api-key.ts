@@ -6,10 +6,8 @@ import {
   APIGatewayClientConfig,
   CreateApiKeyCommand,
   CreateUsagePlanKeyCommand,
-  DeleteApiKeyCommand,
 } from "@aws-sdk/client-api-gateway"
 import { ApiKey } from "@prisma/client"
-import { z } from "zod"
 
 import { prisma } from "@/lib/prisma"
 

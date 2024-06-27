@@ -47,7 +47,7 @@ model AddressLabel {
   address      String
   addressName  String
   labelType    String
-  labelSubtype String?
+  labelSubType String
   label        String
 
   userId String

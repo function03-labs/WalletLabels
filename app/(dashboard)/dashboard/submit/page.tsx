@@ -4,16 +4,15 @@ import { redirect } from "next/navigation"
 import { getUser } from "@/lib/app/user-profile"
 import { getSession } from "@/lib/session"
 
-import { Card } from "@/components/ui/card"
-import { PageHeader } from "@/components/ui/page-header"
 import { DashboardSubmitBulkAddress } from "@/components/app/dashboard-submit-bulk-address"
 import { DashboardSubmitSoloAddress } from "@/components/app/dashboard-submit-solo-address"
+import { Card } from "@/components/ui/card"
+import { PageHeader } from "@/components/ui/page-header"
 import { Separator } from "@/components/ui/separator"
 
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
-
 
 export const runtime = "edge"
 
@@ -43,7 +42,7 @@ export default async function SubmitPage() {
         <Card className="w-full p-6">
           <h3 className="text-2xl font-semibold">Submit Label</h3>
           <hr className="my-3 dark:opacity-30" />
-          <DashboardSubmitSoloAddress />
+          <DashboardSubmitSoloAddress userId={user.id} />
         </Card>
       </IsSignedIn>
       <IsSignedOut>

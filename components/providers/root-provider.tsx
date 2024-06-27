@@ -11,6 +11,7 @@ import { useIsMounted } from "@/lib/hooks/use-is-mounted"
 import HandleWalletEvents from "@/components/blockchain/handle-wallet-events"
 import { RainbowKit } from "@/components/providers/rainbow-kit"
 import { TailwindIndicator } from "@/components/providers/tailwind-indicator"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 interface RootProviderProps {
   children: ReactNode
@@ -32,7 +33,7 @@ export default function RootProvider({ children }: RootProviderProps) {
           <RWBProvider>
             <RainbowKit>
               <HandleWalletEvents>
-                {children}
+                <TooltipProvider>{children}</TooltipProvider>
                 <TailwindIndicator />
               </HandleWalletEvents>
             </RainbowKit>
