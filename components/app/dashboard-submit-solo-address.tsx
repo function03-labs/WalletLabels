@@ -11,6 +11,17 @@ import { createAddressLabel } from "@/lib/app/label"
 import { useToast } from "@/lib/hooks/use-toast"
 
 import { Icons } from "@/components/shared/icons"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -50,6 +61,7 @@ function TooltipHover({ name, content }: { name: string; content: string }) {
 export function DashboardSubmitSoloAddress({ userId }: { userId: string }) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [showConfirmation, setShowConfirmation] = useState(false)
 
   const form = useForm<z.infer<typeof addressLabelSchema>>({
     resolver: zodResolver(addressLabelSchema),
@@ -63,11 +75,14 @@ export function DashboardSubmitSoloAddress({ userId }: { userId: string }) {
     },
   })
 
-  async function onSubmit(values: z.infer<typeof addressLabelSchema>) {
+  function onSubmit(values: z.infer<typeof addressLabelSchema>) {
+    setShowConfirmation(true)
+  }
+
+  async function handleConfirmSubmit() {
     setLoading(true)
-    console.log(values)
     try {
-      await createAddressLabel(values, userId)
+      await createAddressLabel(form.getValues(), userId)
       form.reset()
       toast({
         title: "Label created successfully",
@@ -79,6 +94,7 @@ export function DashboardSubmitSoloAddress({ userId }: { userId: string }) {
       })
     } finally {
       setLoading(false)
+      setShowConfirmation(false)
     }
   }
 
@@ -103,7 +119,7 @@ export function DashboardSubmitSoloAddress({ userId }: { userId: string }) {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a chain for the wallet label" />
+                        <SelectValue placeholder="Select a chain for the  wallet label" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -247,10 +263,33 @@ export function DashboardSubmitSoloAddress({ userId }: { userId: string }) {
         />
 
         <Separator />
-        <Button type="submit" disabled={loading}>
-          {loading && <Icons.loading className="mr-2 size-4 animate-spin" />}
-          Submit label
-        </Button>
+        <AlertDialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+          <AlertDialogTrigger asChild>
+            <Button type="submit" disabled={loading}>
+              {loading && (
+                <Icons.loading className="mr-2 size-4 animate-spin" />
+              )}
+              Submit label
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will submit the label. This action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleConfirmSubmit}>
+                {loading && (
+                  <Icons.loading className="mr-2 size-4 animate-spin" />
+                )}
+                Confirm
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </form>
     </Form>
   )

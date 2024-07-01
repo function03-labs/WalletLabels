@@ -175,7 +175,7 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
                                 key={i}
                                 index={i}
                               >
-                                <Icons.paperclip className="h-4 w-4 stroke-current" />
+                                <Icons.paperclip className="size-4 stroke-current" />
                                 <span className="pr-8">{file.name}</span>
                               </FileUploaderItem>
                             ))}
