@@ -8,7 +8,6 @@ import { DashboardSubmitBulkAddress } from "@/components/app/dashboard-submit-bu
 import { DashboardSubmitSoloAddress } from "@/components/app/dashboard-submit-solo-address"
 import { Card } from "@/components/ui/card"
 import { PageHeader } from "@/components/ui/page-header"
-import { Separator } from "@/components/ui/separator"
 
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
@@ -34,13 +33,12 @@ export default async function SubmitPage() {
       <div className="h-4" />
       <IsSignedIn>
         <Card className="w-full p-6">
-          <h3 className="text-2xl font-semibold">Solo submission</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-2xl font-semibold">Submit labels</h3>
+            <DashboardSubmitBulkAddress userId={user.id} />
+          </div>
           <hr className="my-3 dark:opacity-30" />
           <DashboardSubmitSoloAddress userId={user.id} />
-        </Card>
-        <Separator className="my-6" />
-        <Card className="w-full p-6">
-          <DashboardSubmitBulkAddress userId={user.id} />
         </Card>
       </IsSignedIn>
       <IsSignedOut>
