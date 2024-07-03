@@ -20,3 +20,21 @@ export async function createAddressLabel(
     },
   })
 }
+
+export async function bulkCreateAddressLabel(
+  data: AddressLabelType[],
+  userId: string
+): Promise<AddressLabelType[]> {
+  // @ts-ignore: Unreachable code error
+  return await prisma.addressLabel.createMany({
+    data: data.map((d) => ({
+      blockchain: d.blockchain,
+      address: d.address,
+      addressName: d.addressName,
+      labelType: d.labelType,
+      label: d.label,
+      labelSubType: d.labelSubType,
+      userId,
+    })),
+  })
+}

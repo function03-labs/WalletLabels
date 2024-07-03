@@ -2,6 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Papa from "papaparse"
 import { DropzoneOptions } from "react-dropzone"
@@ -9,6 +10,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { uploadFileSchema } from "@/config/schema"
+import { bulkCreateAddressLabel } from "@/lib/app/label"
+import { extractLabelData } from "@/lib/utils/label"
 
 import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
@@ -63,6 +66,7 @@ function FileSvgDraw() {
 }
 
 export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
+  const router = useRouter()
   const [progress, setProgress] = React.useState<number>(0)
   const [loading, setLoading] = React.useState<boolean>(false)
 
@@ -95,9 +99,8 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
     return interval
   }
 
-  async function onSubmit(values: z.infer<typeof uploadFileSchema>) {
+  function onSubmit(values: z.infer<typeof uploadFileSchema>) {
     setLoading(true)
-    console.log(values)
     const file = values.files[0]
     const interval = simulateUpload()
 
@@ -105,14 +108,18 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       Papa.parse(file, {
         header: true,
-        complete: (results: any) => {
-          console.log(results)
+        skipEmptyLines: true,
+        complete: async (results: any) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          const data = extractLabelData(results.data.slice(2))
+          await bulkCreateAddressLabel(data, userId)
+          router.reload()
         },
       })
-      await new Promise((resolve) => setTimeout(resolve, 5000))
+
       form.reset()
     } catch (error) {
-      console.error(error)
+      console.log(error)
     } finally {
       clearInterval(interval)
       setLoading(false)
@@ -122,7 +129,7 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="w-full py-2">Bulk submission</Button>
+        <Button className="w-full py-2">Bulk submit</Button>
       </DialogTrigger>
 
       <DialogContent>

@@ -33,7 +33,9 @@ import {
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
@@ -119,15 +121,20 @@ export function DashboardSubmitSoloAddress({ userId }: { userId: string }) {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a chain for the  wallet label" />
+                        <SelectValue placeholder="Select a chain for the wallet label" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {chains.map((chain) => (
-                        <SelectItem key={chain.id} value={chain.id}>
-                          {chain.label}
-                        </SelectItem>
-                      ))}
+                      <SelectGroup>
+                        <SelectLabel>
+                          Select a chain for the wallet label
+                        </SelectLabel>
+                        {chains.map((chain) => (
+                          <SelectItem key={chain.id} value={chain.id}>
+                            {chain.label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
                     </SelectContent>
                   </Select>
                 </div>
