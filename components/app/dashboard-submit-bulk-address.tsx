@@ -2,7 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Papa from "papaparse"
 import { DropzoneOptions } from "react-dropzone"
@@ -113,7 +113,7 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           const data = extractLabelData(results.data.slice(2))
           await bulkCreateAddressLabel(data, userId)
-          router.reload()
+          router.refresh()
         },
       })
 
