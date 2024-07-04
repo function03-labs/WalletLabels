@@ -133,9 +133,7 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           const data = extractLabelData(results.data.slice(2))
           const submittedLabels = await bulkCreateAddressLabel(data, userId)
-          console.log("len", data)
           setLabels(submittedLabels.count)
-          console.log("Labels submitted", labels)
         },
       })
 
