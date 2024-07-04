@@ -56,3 +56,16 @@ export const indexMap = {
   solana: "solana",
   arbitrum: "arbitrum",
 }
+
+export function parseQueryParamsLimit(req: Request) {
+  const url = new URL(req.url)
+  const searchParams = url.searchParams
+  const limit = searchParams.get("limit")
+
+  let parsedLimit = limit ? Number(limit) : 10
+  if (parsedLimit > 50) {
+    parsedLimit = 50
+  }
+
+  return { limit: parsedLimit }
+}
