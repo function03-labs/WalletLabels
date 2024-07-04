@@ -55,7 +55,7 @@ model AddressLabel {
   labelType    String
   labelSubType String
   label        String
-    status       AddressLabelStatus @default(PENDING)
+  status       AddressLabelStatus @default(PENDING)
 
   userId String
   user   User   @relation(fields: [userId], references: [id])
