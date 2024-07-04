@@ -17,6 +17,7 @@ import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -31,6 +32,23 @@ import {
 } from "@/components/ui/file-upload"
 import { Form, FormField, FormItem } from "@/components/ui/form"
 import { Progress } from "@/components/ui/progress"
+
+function SubmittedLabels({ length }: { length: number }) {
+  console.log(length)
+  return (
+    <>
+      <Icons.check className="mb-3 h-8 w-8 text-gray-500 dark:text-gray-400" />
+      <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
+        <span className="font-semibold">
+          <span className="text-gray-900 dark:text-gray-100">
+            {length} labels submitted.{" "}
+          </span>
+        </span>
+        We thank you for your contribution.
+      </p>
+    </>
+  )
+}
 
 function FileSvgDraw() {
   return (
@@ -69,6 +87,8 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
   const router = useRouter()
   const [progress, setProgress] = React.useState<number>(0)
   const [loading, setLoading] = React.useState<boolean>(false)
+  const [submitted, setSubmitted] = React.useState<boolean>(false)
+  const [labels, setLabels] = React.useState<number>(0)
 
   const form = useForm<z.infer<typeof uploadFileSchema>>({
     resolver: zodResolver(uploadFileSchema),
@@ -92,17 +112,17 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
           clearInterval(interval)
           return prev
         }
-        return prev + 2
+        return prev + 15
       })
     }, 500)
 
     return interval
   }
 
-  function onSubmit(values: z.infer<typeof uploadFileSchema>) {
+  async function onSubmit(values: z.infer<typeof uploadFileSchema>) {
     setLoading(true)
     const file = values.files[0]
-    const interval = simulateUpload()
+    const progress = simulateUpload()
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -112,16 +132,25 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
         complete: async (results: any) => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           const data = extractLabelData(results.data.slice(2))
-          await bulkCreateAddressLabel(data, userId)
-          router.refresh()
+          const submittedLabels = await bulkCreateAddressLabel(data, userId)
+          console.log("len", data)
+          setLabels(submittedLabels.count)
+          console.log("Labels submitted", labels)
         },
       })
 
-      form.reset()
+      await new Promise((resolve) => setTimeout(resolve, 5000))
+      setProgress(100)
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      setSubmitted(true)
+      console.log("Labels submitted", labels)
+
+      router.refresh()
+      form.reset({ files: [] })
     } catch (error) {
       console.log(error)
     } finally {
-      clearInterval(interval)
+      clearInterval(progress)
       setLoading(false)
     }
   }
@@ -129,7 +158,7 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="w-full py-2">Bulk submit</Button>
+        <Button className="w-full py-2 ">Bulk submit</Button>
       </DialogTrigger>
 
       <DialogContent>
@@ -155,50 +184,56 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
                 form.watch("files") ? "pt-4" : "pt-2"
               }`}
             >
-              <FormField
-                control={form.control}
-                name="files"
-                render={({ field }) => (
-                  <FormItem>
-                    <FileUploader
-                      value={field.value}
-                      onValueChange={field.onChange}
-                      dropzoneOptions={dropzone}
-                      reSelect={true}
-                      className="relative rounded-lg bg-background p-2"
-                    >
-                      <div className="flex w-full flex-col items-center justify-center">
-                        <FileInput className="w-full outline-dashed outline-1 outline-white">
-                          <div className="flex flex-col items-center justify-center pb-4 pt-3">
-                            <FileSvgDraw />
-                          </div>
-                        </FileInput>
+              {submitted ? (
+                <>
+                  <SubmittedLabels length={labels} />
+                </>
+              ) : (
+                <FormField
+                  control={form.control}
+                  name="files"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FileUploader
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        dropzoneOptions={dropzone}
+                        reSelect={true}
+                        className="relative rounded-lg bg-background p-2"
+                      >
+                        <div className="flex w-full flex-col items-center justify-center">
+                          <FileInput className="w-full outline-dashed outline-1 outline-white">
+                            <div className="flex flex-col items-center justify-center pb-4 pt-3">
+                              <FileSvgDraw />
+                            </div>
+                          </FileInput>
 
-                        {field.value && field.value.length > 0 && (
-                          <FileUploaderContent className="w-full text-center">
-                            {field.value.map((file, i) => (
-                              <FileUploaderItem
-                                uploading={loading}
-                                key={i}
-                                index={i}
-                              >
-                                <Icons.paperclip className="size-4 stroke-current" />
-                                <span className="pr-8">{file.name}</span>
-                              </FileUploaderItem>
-                            ))}
-                            {progress != 0 && (
-                              <Progress
-                                value={progress}
-                                className="h-1 w-full bg-zinc-200"
-                              />
-                            )}
-                          </FileUploaderContent>
-                        )}
-                      </div>
-                    </FileUploader>
-                  </FormItem>
-                )}
-              />
+                          {field.value && field.value.length > 0 && (
+                            <FileUploaderContent className="w-full text-center">
+                              {field.value.map((file, i) => (
+                                <FileUploaderItem
+                                  uploading={loading}
+                                  key={i}
+                                  index={i}
+                                >
+                                  <Icons.paperclip className="size-4 stroke-current" />
+                                  <span className="pr-8">{file.name}</span>
+                                </FileUploaderItem>
+                              ))}
+                              {progress != 0 && (
+                                <Progress
+                                  value={progress}
+                                  className="h-1 w-full bg-zinc-200"
+                                />
+                              )}
+                            </FileUploaderContent>
+                          )}
+                        </div>
+                      </FileUploader>
+                    </FormItem>
+                  )}
+                />
+              )}
             </div>
             {form.formState.errors && (
               <div className="text-sm text-destructive">
@@ -208,16 +243,29 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
               </div>
             )}
             <div className="h-3" />
-            <Button
-              type="submit"
-              className="h-8 w-full py-2"
-              disabled={loading}
-            >
-              {loading && (
-                <Icons.spinner className="mr-2 size-4 animate-spin" />
-              )}
-              Upload labels
-            </Button>
+            {submitted ? (
+              <DialogClose className="h-8 w-full py-2">
+                <Button
+                  onClick={() => {
+                    setSubmitted(false)
+                    setLabels(0)
+                  }}
+                >
+                  Close
+                </Button>
+              </DialogClose>
+            ) : (
+              <Button
+                type="submit"
+                className="h-8 w-full py-2"
+                disabled={loading}
+              >
+                {loading && (
+                  <Icons.spinner className="mr-2 size-4 animate-spin" />
+                )}
+                Upload labels
+              </Button>
+            )}
           </form>
         </Form>
       </DialogContent>

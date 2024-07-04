@@ -4,6 +4,10 @@ import { prisma } from "@/lib/prisma"
 
 import { AddressLabelType } from "@/types/label"
 
+type CountType = {
+  count: number
+}
+
 export async function createAddressLabel(
   data: AddressLabelType,
   userId: string
@@ -24,7 +28,7 @@ export async function createAddressLabel(
 export async function bulkCreateAddressLabel(
   data: AddressLabelType[],
   userId: string
-): Promise<AddressLabelType[]> {
+): Promise<CountType> {
   // @ts-ignore: Unreachable code error
   return await prisma.addressLabel.createMany({
     data: data.map((d) => ({

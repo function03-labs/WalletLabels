@@ -8,6 +8,12 @@ datasource db {
   directUrl = env("DATABASE_URL_SUPABASE")
 }
 
+enum AddressLabelStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
 model User {
   id String @id
 
@@ -49,6 +55,7 @@ model AddressLabel {
   labelType    String
   labelSubType String
   label        String
+    status       AddressLabelStatus @default(PENDING)
 
   userId String
   user   User   @relation(fields: [userId], references: [id])
