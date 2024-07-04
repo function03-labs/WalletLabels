@@ -7,6 +7,7 @@ import { parseQueryParamsLimit } from "@/lib/query-params"
 const routeContextSchema = z.object({
   params: z.object({
     offset: z.string(),
+    chainSlug: z.string(),
   }),
 })
 
@@ -15,7 +16,7 @@ export async function GET(
   context: z.infer<typeof routeContextSchema>
 ) {
   const {
-    params: { offset },
+    params: { offset, chainSlug },
   } = routeContextSchema.parse(context)
   const { limit } = parseQueryParamsLimit(req)
 
@@ -23,7 +24,8 @@ export async function GET(
     skip: Number(offset) * limit,
     take: limit,
     where: {
-      status: "ACCEPTED",
+      /* status: "ACCEPTED", */
+      blockchain: chainSlug,
     },
   })
 
