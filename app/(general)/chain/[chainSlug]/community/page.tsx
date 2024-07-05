@@ -2,9 +2,9 @@ import React from "react"
 import { env } from "@/env.mjs"
 
 import { DataTableSkeleton } from "@/components/app/chain-community-labels-data-table-skeleton"
+import { LabelTable } from "@/components/app/chain-community-labels-table"
 import { ChainCommunityLabelsTableProvider } from "@/components/app/chain-community-labels-table-provider"
 import { Shell } from "@/components/ui/shell"
-import { Skeleton } from "@/components/ui/skeleton"
 
 async function getCommunityData({
   chainSlug,
@@ -52,8 +52,10 @@ export default async function CommunityPage({
             />
           }
         >
-
-          <TasksTable tasksPromise={tasksPromise} />
+          <LabelTable
+            data={data}
+            offset={parseInt(searchParams.offset?.toString() || "0")}
+          />
         </React.Suspense>
       </ChainCommunityLabelsTableProvider>
     </Shell>

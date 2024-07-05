@@ -12,12 +12,10 @@ import { getColumns } from "@/components/app/chain-community-labels-table-column
 
 interface LabelTableProps {
   data: AddressLabel[]
-  offset: string
+  offset: number
 }
 
 export function LabelTable({ data, offset }: LabelTableProps) {
-  // Feature flags for showcasing some additional features. Feel free to remove them.
-
   // Memoize the columns so they don't re-render on every render
   const columns = React.useMemo(() => getColumns(), [])
 
@@ -43,7 +41,7 @@ export function LabelTable({ data, offset }: LabelTableProps) {
   const { table } = useDataTable({
     data,
     columns,
-    offset,
+    pageCount: offset,
     // optional props
     filterFields,
     defaultPerPage: 10,
