@@ -1,6 +1,7 @@
 import React from "react"
 import { env } from "@/env.mjs"
 
+import { DataTableSkeleton } from "@/components/app/chain-community-labels-data-table-skeleton"
 import { ChainCommunityLabelsTableProvider } from "@/components/app/chain-community-labels-table-provider"
 import { Shell } from "@/components/ui/shell"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -39,10 +40,6 @@ export default async function CommunityPage({
 
   return (
     <Shell className="gap-2">
-      {/**
-       * The `TasksTableProvider` is use to enable some feature flags for the `TasksTable` component.
-       * Feel free to remove this, as it's not required for the `TasksTable` component to work.
-       */}
       <ChainCommunityLabelsTableProvider>
         <React.Suspense
           fallback={
@@ -55,10 +52,7 @@ export default async function CommunityPage({
             />
           }
         >
-          {/**
-           * Passing promises and consuming them using React.use for triggering the suspense fallback.
-           * @see https://react.dev/reference/react/use
-           */}
+
           <TasksTable tasksPromise={tasksPromise} />
         </React.Suspense>
       </ChainCommunityLabelsTableProvider>
