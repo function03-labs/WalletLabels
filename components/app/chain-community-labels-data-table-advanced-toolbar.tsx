@@ -7,13 +7,12 @@ import type { Table } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
 
-import { DataTableFilterCombobox } from "@/components/data-table/advanced/data-table-filter-combobox"
-import { DataTableViewOptions } from "@/components/data-table/data-table-view-options"
+import { DataTableFilterCombobox } from "@/components/app/chain-community-labels-data-table-advanced-combobox"
+import { DataTableFilterItem } from "@/components/app/chain-community-labels-data-table-advanced-item"
+import { DataTableMultiFilter } from "@/components/app/chain-community-labels-data-table-advanced-multi-filter"
+import { DataTableViewOptions } from "@/components/app/chain-community-labels-data-table-view-options"
 import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
-
-import { DataTableFilterItem } from "./data-table-filter-item"
-import { DataTableMultiFilter } from "./data-table-multi-filter"
 
 interface DataTableAdvancedToolbarProps<TData>
   extends React.HTMLAttributes<HTMLDivElement> {

@@ -10,6 +10,8 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronUp,
+  ChevronsLeft,
+  ChevronsRight,
   ChevronsUpDown,
   CirclePlus,
   Command,
@@ -37,6 +39,7 @@ import {
   RefreshCw,
   Search,
   Settings,
+  Settings2Icon,
   SunMedium,
   Trash,
   UserCircleIcon,
@@ -225,4 +228,7 @@ export const Icons = {
   sort: ArrowUpDownIcon,
   down: ChevronDown,
   up: ChevronUp,
+  doubleRight: ChevronsRight,
+  doubleLeft: ChevronsLeft,
+  setting: Settings2Icon
 }
