@@ -21,7 +21,7 @@ export function getColumns(): ColumnDef<AddressLabel>[] {
     {
       accessorKey: "addressName",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Title" />
+        <DataTableColumnHeader column={column} title="Address name" />
       ),
       cell: ({ row }) => {
         /*         const label = tasks.label.enumValues.find(
@@ -41,7 +41,7 @@ export function getColumns(): ColumnDef<AddressLabel>[] {
     {
       accessorKey: "labelType",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Status" />
+        <DataTableColumnHeader column={column} title="Label type" />
       ),
       cell: ({ row }) => {
         /* const status = tasks.status.enumValues.find(
@@ -61,7 +61,7 @@ export function getColumns(): ColumnDef<AddressLabel>[] {
     {
       accessorKey: "labelSubType",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Priority" />
+        <DataTableColumnHeader column={column} title="Label Sub-type" />
       ),
       cell: ({ row }) => {
         /* const priority = tasks.priority.enumValues.find(
@@ -83,7 +83,7 @@ export function getColumns(): ColumnDef<AddressLabel>[] {
     {
       accessorKey: "label",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Created At" />
+        <DataTableColumnHeader column={column} title="Label" />
       ),
       cell: ({ row }) => {
         /* const priority = tasks.priority.enumValues.find(
