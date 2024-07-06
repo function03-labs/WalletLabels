@@ -12,16 +12,17 @@ async function getCommunityData({
   limit,
 }: {
   chainSlug: string
-  offset: string
+  offset: number
   limit: string
 }) {
   try {
     const data = await fetch(
-      `${env.PUBLIC_URL}/api/labels/${chainSlug}/${offset}?limit=${limit}`
+      `${env.PUBLIC_URL}/api/labels/${chainSlug}/${offset - 1}?limit=${limit}`
     )
     return data.json()
   } catch (error) {
-    console.error(error)
+    console.log(error)
+    return []
   }
 }
 
@@ -34,8 +35,8 @@ export default async function CommunityPage({
 }) {
   const data = await getCommunityData({
     chainSlug: params.chainSlug,
-    offset: searchParams.offset?.toString() || "0",
-    limit: searchParams.limit?.toString() || "10",
+    offset: parseInt(searchParams.page?.toString() ?? "1"),
+    limit: searchParams.per_page?.toString() || "10",
   })
 
   return (
@@ -54,7 +55,7 @@ export default async function CommunityPage({
         >
           <LabelTable
             data={data}
-            offset={parseInt(searchParams.offset?.toString() || "0")}
+            offset={parseInt(searchParams.page?.toString() || "1") - 1}
           />
         </React.Suspense>
       </ChainCommunityLabelsTableProvider>

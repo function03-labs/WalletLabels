@@ -1,5 +1,3 @@
-import { Icons } from "@/components/shared/icons"
-
 export type DataTableConfig = typeof dataTableConfig
 
 export const dataTableConfig = {
@@ -31,20 +29,5 @@ export const dataTableConfig = {
       description: "At least one condition must be met",
     },
   ],
-  featureFlags: [
-    {
-      label: "Advanced filter",
-      value: "advancedFilter" as const,
-      icon: Icons.settings,
-      tooltipTitle: "Toggle advanced filter",
-      tooltipDescription: "A notion like query builder to filter rows.",
-    },
-    {
-      label: "Floating bar",
-      value: "floatingBar" as const,
-      icon: Icons.monitor,
-      tooltipTitle: "Toggle floating bar",
-      tooltipDescription: "A floating bar that sticks to the top of the table.",
-    },
-  ],
+  featureFlags: [],
 }

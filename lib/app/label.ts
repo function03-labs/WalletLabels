@@ -32,7 +32,7 @@ export async function bulkCreateAddressLabel(
   // @ts-ignore: Unreachable code error
   return await prisma.addressLabel.createMany({
     data: data.map((d) => ({
-      blockchain: d.blockchain,
+      blockchain: d.blockchain.toLowerCase(),
       address: d.address,
       addressName: d.addressName,
       labelType: d.labelType,
