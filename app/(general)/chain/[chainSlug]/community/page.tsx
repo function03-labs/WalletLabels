@@ -17,7 +17,12 @@ async function getCommunityData({
 }) {
   try {
     const data = await fetch(
-      `${env.PUBLIC_URL}/api/labels/${chainSlug}/${offset - 1}?limit=${limit}`
+      `${env.PUBLIC_URL}/api/labels/${chainSlug}/${offset - 1}?limit=${limit}`,
+      {
+        next: {
+          revalidate: 60,
+        },
+      }
     )
     return data.json()
   } catch (error) {
