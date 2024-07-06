@@ -27,22 +27,6 @@ export async function updateUser(
   })
 }
 
-export async function deleteUser(userId: string): Promise<User> {
-  await Logout()
-
-  await prisma.apiKey.deleteMany({
-    where: {
-      userId,
-    },
-  })
-
-  return await prisma.user.delete({
-    where: {
-      id: userId,
-    },
-  })
-}
-
 export async function getUser(userId: string): Promise<User> {
   const user = await prisma.user.findUnique({
     where: {
