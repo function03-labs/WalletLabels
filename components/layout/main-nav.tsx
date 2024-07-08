@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation"
 
 import { chains } from "@/config/chains"
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
+import { cn, getChainImage, getChainURL } from "@/lib/utils"
 
 import { Icons } from "@/components/shared/icons"
 import { buttonVariants } from "@/components/ui/button"
@@ -29,6 +29,10 @@ interface MainNavProps {
 
 export function MainNav({ items }: MainNavProps) {
   const params = usePathname()
+  const chainImage = getChainImage(params)
+  console.log(params)
+  console.log(params.split("/")[2])
+
   return (
     <div className="flex items-center gap-6 md:gap-10">
       <div className="flex items-center space-x-2 dark:text-slate-100">
@@ -41,15 +45,7 @@ export function MainNav({ items }: MainNavProps) {
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
             <Image
-              src={
-                params === "/chain/solana"
-                  ? "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
-                  : params === "/chain/ethereum"
-                  ? "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
-                  : params === "/chain/arbitrum"
-                  ? "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
-                  : "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
-              }
+              src={chainImage}
               alt="Ethereum"
               className={cn(
                 buttonVariants({
@@ -73,7 +69,7 @@ export function MainNav({ items }: MainNavProps) {
               <DropdownMenuItem key={index}>
                 <Link
                   className="flex w-full items-center gap-2"
-                  href={`/chain/${chain.id}`}
+                  href={getChainURL(params, chain.id)}
                 >
                   <Image
                     src={chain.img}
@@ -114,6 +110,20 @@ export function MainNav({ items }: MainNavProps) {
               </div>
             )
         )}
+        <div>
+          <Link
+            href={`/chain/${params.split("/")[2] || "ethereum"}/community`}
+            className={cn(
+              "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm"
+            )}
+          >
+            Community labels
+            <span className="relative bottom-[7px] flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex size-2 rounded-full bg-sky-500"></span>
+            </span>
+          </Link>
+        </div>
       </nav>
     </div>
   )

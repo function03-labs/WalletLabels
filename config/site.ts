@@ -19,12 +19,7 @@ export const siteConfig: SiteConfig = {
       title: "API",
       href: "https://docs.walletlabels.xyz",
       disabled: false,
-        },
-    {
-      title: "Community labels",
-      href: "/chain/ethereum/community",
-      new: true,
-    }
+    },
   ],
   links: {
     docs: "https://docs.walletlabels.xyz/",

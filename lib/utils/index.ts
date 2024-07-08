@@ -119,3 +119,26 @@ export function getLookUpURL(chainSlug: string, address: string) {
   }
   return `https://etherscan.io/address/${address}`
 }
+
+export function getChainImage(path: string) {
+  const chainSlug = path.split("/")[2]
+
+  switch (chainSlug) {
+    case "arbitrum":
+      return "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
+    case "solana":
+      return "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
+    case "ethereum":
+      return "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+    default:
+      return "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+  }
+}
+
+export function getChainURL(path: string, chainSlug: string) {
+  const dest = path.split("/")[3]
+
+  if (!dest) return `/chain/${chainSlug}`
+
+  return `/chain/${chainSlug}/${dest}`
+}
