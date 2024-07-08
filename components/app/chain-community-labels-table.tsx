@@ -49,8 +49,10 @@ export function LabelTable({ data, offset }: LabelTableProps) {
 
   return (
     <DataTable table={table}>
-      <DataTableToolbar table={table} filterFields={filterFields}>
-      </DataTableToolbar>
+      <DataTableToolbar
+        table={table}
+        filterFields={filterFields}
+      ></DataTableToolbar>
     </DataTable>
   )
 }

@@ -9,10 +9,10 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
   ChevronsLeft,
   ChevronsRight,
   ChevronsUpDown,
+  ChevronUp,
   CirclePlus,
   Command,
   CopyIcon,
@@ -230,5 +230,5 @@ export const Icons = {
   up: ChevronUp,
   doubleRight: ChevronsRight,
   doubleLeft: ChevronsLeft,
-  setting: Settings2Icon
+  setting: Settings2Icon,
 }

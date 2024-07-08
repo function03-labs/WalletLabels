@@ -53,10 +53,7 @@ export function DataTableFilterCombobox<TData>({
             role="combobox"
             className="capitalize"
           >
-            <Icons.filter
-              className="mr-2 size-4 shrink-0"
-              aria-hidden="true"
-            />
+            <Icons.filter className="mr-2 size-4 shrink-0" aria-hidden="true" />
             Filter
           </Button>
         )}
@@ -95,7 +92,10 @@ export function DataTableFilterCombobox<TData>({
                         aria-hidden="true"
                       />
                     ) : (
-                      <Icons.description className="mr-2 size-4" aria-hidden="true" />
+                      <Icons.description
+                        className="mr-2 size-4"
+                        aria-hidden="true"
+                      />
                     )}
                     {option.label}
                   </CommandItem>
