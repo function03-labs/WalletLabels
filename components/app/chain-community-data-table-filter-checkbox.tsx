@@ -25,7 +25,7 @@ export function DataTableFilterCheckobox<TData>({
   options,
   component,
 }: DataTableFilterCheckoboxProps<TData>) {
-  const value = _value as string
+  const value = _value 
   const [inputValue, setInputValue] = useState("")
   const updateSearchParams = useUpdateSearchParams()
   const router = useRouter()
@@ -58,13 +58,13 @@ export function DataTableFilterCheckobox<TData>({
       {options.length > 4 ? (
         <InputWithAddons
           placeholder="Search"
-          leading={<Icons.search className="mt-0.5 h-4 w-4" />}
+          leading={<Icons.search className="mt-0.5 size-4" />}
           containerClassName="mb-2 h-9 rounded-lg"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
       ) : null}
-      <div className="rounded-lg border border-border overflow-hidden empty:border-none">
+      <div className="overflow-hidden rounded-lg border border-border empty:border-none">
         <div className="max-h-40 overflow-y-scroll">
           {filterOptions.map((option, index) => {
             const checked = filters.includes(option.value)
@@ -101,7 +101,7 @@ export function DataTableFilterCheckobox<TData>({
                   ) : (
                     <span className="truncate font-normal">{option.label}</span>
                   )}
-                  <span className="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs">
+                  <span className="ml-auto flex size-4 items-center justify-center font-mono text-xs">
                     {facetedValue?.get(option.value)}
                   </span>
                 </Label>

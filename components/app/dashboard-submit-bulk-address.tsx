@@ -37,7 +37,7 @@ function SubmittedLabels({ length }: { length: number }) {
   console.log(length)
   return (
     <>
-      <Icons.check className="mb-3 h-8 w-8 text-gray-500 dark:text-gray-400" />
+      <Icons.check className="mb-3 size-8 text-gray-500 dark:text-gray-400" />
       <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
         <span className="font-semibold">
           <span className="text-gray-900 dark:text-gray-100">
@@ -54,7 +54,7 @@ function FileSvgDraw() {
   return (
     <>
       <svg
-        className="mb-3 h-8 w-8 text-gray-500 dark:text-gray-400"
+        className="mb-3 size-8 text-gray-500 dark:text-gray-400"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

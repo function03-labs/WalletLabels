@@ -19,7 +19,7 @@ export function DataTableFilterResetButton<TData>({
   table,
   value: _value,
 }: DataTableFilterResetButtonProps<TData>) {
-  const value = _value as string
+  const value = _value 
   const updateSearchParams = useUpdateSearchParams()
   const router = useRouter()
   const column = table.getColumn(value)
@@ -53,7 +53,7 @@ export function DataTableFilterResetButton<TData>({
       {/* REMINDER: `AccordionTrigger` is also a button(!) and we get Hydration error when rendering button within button */}
       <div role="button">
         <span>{filters.length}</span>
-        <Icons.close className="ml-1 h-2.5 w-2.5 text-muted-foreground" />
+        <Icons.close className="ml-1 size-2.5 text-muted-foreground" />
       </div>
     </Button>
   )

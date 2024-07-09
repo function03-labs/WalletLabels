@@ -69,18 +69,18 @@ export function DataTableFilterBar<TData, TValue>({
       <Accordion
         type="multiple"
         // REMINDER: open all filters by default
-        defaultValue={filterFields?.map(({ value }) => value as string)}
+        defaultValue={filterFields?.map(({ value }) => value)}
       >
         {filterFields?.map((field) => {
           return (
             <AccordionItem
-              key={field.value as string}
-              value={field.value as string}
+              key={field.value }
+              value={field.value }
               className="border-none"
             >
               <AccordionTrigger className="p-2 hover:no-underline">
                 <div className="flex items-center gap-2">
-                  <p className="font-medium text-foreground text-sm">
+                  <p className="text-sm font-medium text-foreground">
                     {field.label}
                   </p>
                   <DataTableFilterResetButton table={table} {...field} />
