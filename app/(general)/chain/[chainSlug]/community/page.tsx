@@ -1,23 +1,30 @@
 import React from "react"
 import { env } from "@/env.mjs"
 
-import { DataTableSkeleton } from "@/components/app/chain-community-labels-data-table-skeleton"
-import { LabelTable } from "@/components/app/chain-community-labels-table"
-import { ChainCommunityLabelsTableProvider } from "@/components/app/chain-community-labels-table-provider"
-import { Shell } from "@/components/ui/shell"
+import { communityLabelSchema } from "@/config/schema"
+import { getFilterFields } from "@/lib/utils/label"
 
-async function getCommunityData({
-  chainSlug,
-  offset,
-  limit,
-}: {
-  chainSlug: string
-  offset: number
-  limit: string
-}) {
+import { columns } from "@/components/app/chain-community-columns"
+import { DataTable } from "@/components/app/chain-community-data-table"
+
+async function getCommunityData({ chainSlug }: { chainSlug: string }) {
+  try {
+    const data = await fetch(`${env.PUBLIC_URL}/api/labels/${chainSlug}/`, {
+      next: {
+        revalidate: 60,
+      },
+    })
+    return data.json()
+  } catch (error) {
+    console.log(error)
+    return []
+  }
+}
+
+async function getCommunityFilter({ chainSlug }: { chainSlug: string }) {
   try {
     const data = await fetch(
-      `${env.PUBLIC_URL}/api/labels/${chainSlug}/${offset - 1}?limit=${limit}`,
+      `${env.PUBLIC_URL}/api/labels/${chainSlug}/filter`,
       {
         next: {
           revalidate: 60,
@@ -38,32 +45,30 @@ export default async function CommunityPage({
   params: { chainSlug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+  const search = communityLabelSchema.safeParse(searchParams)
+  if (!search.success) {
+    console.log(search.error)
+    return null
+  }
+
   const data = await getCommunityData({
     chainSlug: params.chainSlug,
-    offset: parseInt(searchParams.page?.toString() ?? "1"),
-    limit: searchParams.per_page?.toString() || "10",
+  })
+  const filter = await getCommunityFilter({
+    chainSlug: params.chainSlug,
   })
 
+  const filterFields = getFilterFields(filter)
+
   return (
-    <Shell className="gap-2">
-      <ChainCommunityLabelsTableProvider>
-        <React.Suspense
-          fallback={
-            <DataTableSkeleton
-              columnCount={5}
-              searchableColumnCount={1}
-              filterableColumnCount={2}
-              cellWidths={["10rem", "40rem", "12rem", "12rem", "8rem"]}
-              shrinkZero
-            />
-          }
-        >
-          <LabelTable
-            data={data}
-            offset={parseInt(searchParams.page?.toString() || "1") - 1}
-          />
-        </React.Suspense>
-      </ChainCommunityLabelsTableProvider>
-    </Shell>
+    <DataTable
+      columns={columns}
+      data={data}
+      filterFields={filterFields}
+      defaultColumnFilters={Object.entries(search).map(([key, value]) => ({
+        id: key,
+        value,
+      }))}
+    />
   )
 }

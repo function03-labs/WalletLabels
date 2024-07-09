@@ -35,3 +35,13 @@ export const uploadFileSchema = z.object({
       message: "Only one file can be uploaded",
     }),
 })
+
+export const communityLabelSchema = z.object({
+  address: z.string().min(2).max(50),
+  labelType: z.string().min(2).max(50),
+  addressName: z.string().min(2).max(50),
+  labelSubType: z.string().min(2).max(50),
+  label: z.string().min(2).max(50),
+})
+
+export type LabelSchema = z.infer<typeof communityLabelSchema>
