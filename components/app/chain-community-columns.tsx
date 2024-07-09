@@ -17,7 +17,7 @@ export const columns: ColumnDef<Schema>[] = [
   },
   {
     accessorKey: "labelType",
-    header: "label Type",
+    header: "Label Type",
   },
   {
     accessorKey: "addressName",
@@ -31,17 +31,11 @@ export const columns: ColumnDef<Schema>[] = [
       if (typeof value === "string") return value === String(rowValue)
       if (Array.isArray(value)) return value.includes(rowValue)
       return false
-
-      /* const array = row.getValue(id) as string[]
-      if (typeof value === "string") return array.includes(value)
-      // up to the user to define either `.some` or `.every`
-      if (Array.isArray(value)) return value.some((i) => array.includes(i))
-      return false */
     },
   },
   {
     accessorKey: "labelSubType",
-    header: "label Sub-type",
+    header: "Label Sub-type",
     cell: ({ row }) => {
       const value = row.getValue("labelSubType")
       // TODO: Add the dark theme
@@ -52,12 +46,6 @@ export const columns: ColumnDef<Schema>[] = [
       if (typeof value === "string") return value === String(rowValue)
       if (Array.isArray(value)) return value.includes(rowValue)
       return false
-
-      /* const array = row.getValue(id) as string[]
-      if (typeof value === "string") return array.includes(value)
-      // up to the user to define either `.some` or `.every`
-      if (Array.isArray(value)) return value.some((i) => array.includes(i))
-      return false */
     },
   },
   {
@@ -72,12 +60,6 @@ export const columns: ColumnDef<Schema>[] = [
       if (typeof value === "string") return value === String(rowValue)
       if (Array.isArray(value)) return value.includes(rowValue)
       return false
-
-      /* const array = row.getValue(id) as string[]
-      if (typeof value === "string") return array.includes(value)
-      // up to the user to define either `.some` or `.every`
-      if (Array.isArray(value)) return value.some((i) => array.includes(i))
-      return false */
     },
   },
 ]

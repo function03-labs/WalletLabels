@@ -37,11 +37,11 @@ export const uploadFileSchema = z.object({
 })
 
 export const communityLabelSchema = z.object({
-  address: z.string().min(2).max(50),
-  labelType: z.string().min(2).max(50),
-  addressName: z.string().min(2).max(50),
-  labelSubType: z.string().min(2).max(50),
-  label: z.string().min(2).max(50),
+  address: z.string().min(2).max(50).optional(),
+  labelType: z.string().min(2).max(50).optional(),
+  addressName: z.string().min(2).max(50).optional(),
+  labelSubType: z.string().min(2).max(50).optional(),
+  label: z.string().min(2).max(50).optional(),
 })
 
 export type LabelSchema = z.infer<typeof communityLabelSchema>

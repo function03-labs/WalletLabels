@@ -18,48 +18,43 @@ export function extractLabelData(data: any[]): AddressLabelType[] {
     }
   })
 }
+export function getFilterFields(filter: FilterLabelType) {
+  const removeDuplicatesAndSlice = (arr: string[], limit: number) => {
+    return Array.from(new Set(arr))
+      .slice(0, limit)
+      .map((item) => ({
+        label: item,
+        value: item.toLowerCase(),
+      }))
+  }
 
-export function getFilterFields(filter: FilterLabelType[]) {
-  return [
+  const fields = [
     {
       label: "Label Type",
       value: "labelType",
-      options: filter.slice(0, 5).map((item) => ({
-        label: item.toString(),
-        value: item.toString().toLowerCase(),
-      })),
+      options: removeDuplicatesAndSlice(filter.labelTypes, 5),
     },
     {
       label: "Label Sub-Type",
       value: "labelSubType",
-      options: filter.slice(0, 5).map((item) => ({
-        label: item.toString(),
-        value: item.toString().toLowerCase(),
-      })),
+      options: removeDuplicatesAndSlice(filter.labelSubTypes, 5),
     },
     {
       label: "Address Name",
       value: "addressName",
-      options: filter.slice(0, 5).map((item) => ({
-        label: item.toString(),
-        value: item.toString().toLowerCase(),
-      })),
+      options: removeDuplicatesAndSlice(filter.addressNames, 5),
     },
     {
       label: "Label",
       value: "label",
-      options: filter.slice(0, 5).map((item) => ({
-        label: item.toString(),
-        value: item.toString().toLowerCase(),
-      })),
+      options: removeDuplicatesAndSlice(filter.labelNames, 5),
     },
-  ].filter((field) =>
-    filter.some(
-      (item) =>
-        item[field.value as keyof FilterLabelType].toString().toLowerCase() ===
-        field.value
-    )
-  )
+  ]
+
+  return fields.filter((field) => {
+    const filterArray = filter[`${field.value}s` as keyof FilterLabelType]
+    return Array.isArray(filterArray) && filterArray.length > 0
+  })
 }
 
 export function deserialize<T extends z.AnyZodObject>(schema: T) {
