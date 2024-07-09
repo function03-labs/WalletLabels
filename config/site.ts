@@ -12,10 +12,6 @@ export const siteConfig: SiteConfig = {
     "More than 200M addresses labeled for you to easily identify your favorite wallets and exchanges.",
   mainNav: [
     {
-      title: "Home",
-      href: "/",
-    },
-    {
       title: "API",
       href: "https://docs.walletlabels.xyz",
       disabled: false,
