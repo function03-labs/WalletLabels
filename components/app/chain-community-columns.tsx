@@ -31,6 +31,12 @@ export const columns: ColumnDef<Schema>[] = [
         <div className="font-semibold text-primary">{`${value as string}`}</div>
       )
     },
+    filterFn: (row, id, value) => {
+      const rowValue = row.getValue(id)
+      if (typeof value === "string") return value === String(rowValue)
+      if (Array.isArray(value)) return value.includes(rowValue)
+      return false
+    },
   },
   {
     accessorKey: "addressName",

@@ -30,7 +30,10 @@ export function getFilterFields(filter: FilterLabelType) {
     {
       label: "Label Type",
       value: "labelType",
-      options: removeDuplicatesAndSlice(filter.labelTypes),
+      options: Array.from(new Set(filter.labelTypes)).map((item) => ({
+        label: item,
+        value: item,
+      })),
     },
     {
       label: "Label Sub-Type",

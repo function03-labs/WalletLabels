@@ -34,7 +34,6 @@ import { Form, FormField, FormItem } from "@/components/ui/form"
 import { Progress } from "@/components/ui/progress"
 
 function SubmittedLabels({ length }: { length: number }) {
-  console.log(length)
   return (
     <>
       <Icons.check className="mb-3 size-8 text-gray-500 dark:text-gray-400" />
@@ -141,7 +140,6 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
       setProgress(100)
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setSubmitted(true)
-      console.log("Labels submitted", labels)
 
       router.refresh()
       form.reset({ files: [] })

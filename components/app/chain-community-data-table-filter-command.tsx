@@ -215,6 +215,7 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                   if (!currentWord.includes(`${value}:`)) return null
                   const column = table.getColumn(value)
                   const facetedValue = column?.getFacetedUniqueValues()
+
                   return options?.map(({ value: optionValue }) => {
                     return (
                       <CommandItem
@@ -236,7 +237,6 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                               return `${input.trim()} `
                             }
                             const input = prev.replace(currentWord, value)
-                            console.log(input)
                             return `${input.trim()} `
                           })
                           setCurrentWord("")
@@ -244,15 +244,16 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                       >
                         {`${optionValue}`}
                         <span className="ml-auto font-mono text-muted-foreground">
-                          {/*   {facetedValue?.get(optionValue)} */}
-                          {`${optionValue}`}
+                          {facetedValue?.get(optionValue)}
                         </span>
                       </CommandItem>
                     )
                   })
                 })}
               </CommandGroup>
-              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandEmpty>
+                <span className="text-muted-foreground">No results found</span>
+              </CommandEmpty>
             </CommandList>
             <div
               className="flex flex-wrap gap-3 border-t bg-accent/50 px-2 py-1.5 text-sm text-accent-foreground"

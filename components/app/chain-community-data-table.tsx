@@ -13,7 +13,6 @@ import {
   type ColumnFiltersState,
   type Table as TTable,
 } from "@tanstack/react-table"
-import { z } from "zod"
 
 import { communityLabelSchema } from "@/config/schema"
 

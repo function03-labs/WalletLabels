@@ -36,7 +36,5 @@ export async function GET(
     label: convertSpacesToHyphens(label.label),
   }))
 
-  console.log(processedLabels)
-
   return NextResponse.json(processedLabels)
 }
