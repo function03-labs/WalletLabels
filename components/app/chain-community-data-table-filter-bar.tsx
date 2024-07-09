@@ -48,6 +48,7 @@ export function DataTableFilterBar<TData, TValue>({
           {filters.length ? (
             <Button
               variant="outline"
+              className="text-primary"
               size="sm"
               onClick={() => {
                 table.resetColumnFilters()
@@ -74,8 +75,8 @@ export function DataTableFilterBar<TData, TValue>({
         {filterFields?.map((field) => {
           return (
             <AccordionItem
-              key={field.value }
-              value={field.value }
+              key={field.value}
+              value={field.value}
               className="border-none"
             >
               <AccordionTrigger className="p-2 hover:no-underline">

@@ -93,7 +93,7 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
     <div>
       <div
         className={cn(
-          "group flex w-full items-center rounded-lg border border-input bg-background px-3 text-muted-foreground ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 hover:bg-accent hover:text-accent-foreground",
+          "group flex w-full items-center rounded-lg border border-primary/40 bg-background px-3 text-muted-foreground ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 hover:bg-accent hover:text-accent-foreground",
           open ? "hidden" : "visible"
         )}
       >
@@ -226,16 +226,17 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                         }}
                         onSelect={(value) => {
                           setInputValue((prev) => {
-                            if (currentWord.includes(",")) {
-                              const words = currentWord.split(",")
+                            if (currentWord.includes(" ")) {
+                              const words = currentWord.split(" ")
                               words[words.length - 1] = `${optionValue}`
                               const input = prev.replace(
                                 currentWord,
-                                words.join(",")
+                                words.join("-")
                               )
                               return `${input.trim()} `
                             }
                             const input = prev.replace(currentWord, value)
+                            console.log(input)
                             return `${input.trim()} `
                           })
                           setCurrentWord("")
@@ -243,7 +244,8 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                       >
                         {`${optionValue}`}
                         <span className="ml-auto font-mono text-muted-foreground">
-                          {facetedValue?.get(optionValue)}
+                          {/*   {facetedValue?.get(optionValue)} */}
+                          {`${optionValue}`}
                         </span>
                       </CommandItem>
                     )

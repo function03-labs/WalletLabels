@@ -9,6 +9,10 @@ const routeContextSchema = z.object({
   }),
 })
 
+function convertSpacesToHyphens(str: string): string {
+  return str.replace(/\s+/g, "-")
+}
+
 export async function GET(
   req: Request,
   context: z.infer<typeof routeContextSchema>
@@ -24,5 +28,15 @@ export async function GET(
     },
   })
 
-  return NextResponse.json(labels)
+  const processedLabels = labels.map((label) => ({
+    ...label,
+    addressName: convertSpacesToHyphens(label.addressName),
+    labelType: convertSpacesToHyphens(label.labelType),
+    labelSubType: convertSpacesToHyphens(label.labelSubType),
+    label: convertSpacesToHyphens(label.label),
+  }))
+
+  console.log(processedLabels)
+
+  return NextResponse.json(processedLabels)
 }

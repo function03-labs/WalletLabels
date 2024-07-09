@@ -58,6 +58,9 @@ export default async function CommunityPage({
     chainSlug: params.chainSlug,
   })
 
+  console.log(data)
+  console.log(filter)
+
   const filterFields = getFilterFields(filter)
 
   return (
