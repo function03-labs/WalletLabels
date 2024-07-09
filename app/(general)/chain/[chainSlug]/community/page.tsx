@@ -58,13 +58,10 @@ export default async function CommunityPage({
     chainSlug: params.chainSlug,
   })
 
-  console.log(data)
-  console.log(filter)
-
   const filterFields = getFilterFields(filter)
 
   return (
-    <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
+    <section className="md:py-17 container items-center pb-8 pt-10">
       <DataTable
         columns={columns}
         data={data}
