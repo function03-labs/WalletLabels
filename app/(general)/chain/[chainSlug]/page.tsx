@@ -32,7 +32,7 @@ export default async function Page({
 
   return (
     <SearchWrapper chainSlug={params.chainSlug}>
-      <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
+      <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10">
         <div className="flex flex-col items-center gap-6">
           <div className="flex justify-center text-center">
             <HoverBorderGradient

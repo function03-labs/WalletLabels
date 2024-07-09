@@ -61,14 +61,16 @@ export default async function CommunityPage({
   const filterFields = getFilterFields(filter)
 
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      filterFields={filterFields}
-      defaultColumnFilters={Object.entries(search).map(([key, value]) => ({
-        id: key,
-        value,
-      }))}
-    />
+    <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
+      <DataTable
+        columns={columns}
+        data={data}
+        filterFields={filterFields}
+        defaultColumnFilters={Object.entries(search).map(([key, value]) => ({
+          id: key,
+          value,
+        }))}
+      />
+    </section>
   )
 }
