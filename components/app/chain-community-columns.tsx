@@ -1,6 +1,7 @@
 "use client"
 
 import type { ColumnDef } from "@tanstack/react-table"
+import { Addreth } from "addreth"
 import { z } from "zod"
 
 import type { communityLabelSchema } from "@/config/schema"
@@ -14,10 +15,22 @@ export const columns: ColumnDef<Schema>[] = [
   {
     accessorKey: "address",
     header: "Address",
+    cell: ({ row }) => {
+      const value = row.getValue("address")
+
+      // @ts-ignore: Unreachable code error
+      return <Addreth address={value} theme="unified-light" />
+    },
   },
   {
     accessorKey: "labelType",
     header: "Label Type",
+    cell: ({ row }) => {
+      const value = row.getValue("labelType")
+      return (
+        <div className="font-semibold text-primary">{`${value as string}`}</div>
+      )
+    },
   },
   {
     accessorKey: "addressName",
@@ -34,12 +47,11 @@ export const columns: ColumnDef<Schema>[] = [
     },
   },
   {
-    accessorKey: "labelSubType",
-    header: "Label Sub-type",
+    accessorKey: "label",
+    header: "Label",
     cell: ({ row }) => {
-      const value = row.getValue("labelSubType")
-      // TODO: Add the dark theme
-      return <Badge className={pick(value as string)}>{value as string}</Badge>
+      const value = row.getValue("label")
+      return <div className="text-muted-foreground">{`${value as string}`}</div>
     },
     filterFn: (row, id, value) => {
       const rowValue = row.getValue(id)
@@ -49,11 +61,12 @@ export const columns: ColumnDef<Schema>[] = [
     },
   },
   {
-    accessorKey: "label",
-    header: "Label",
+    accessorKey: "labelSubType",
+    header: "Label Sub-type",
     cell: ({ row }) => {
-      const value = row.getValue("label")
-      return <div className="text-muted-foreground">{`${value as string}`}</div>
+      const value = row.getValue("labelSubType")
+      // TODO: Add the dark theme
+      return <Badge className={pick(value as string)}>{value as string}</Badge>
     },
     filterFn: (row, id, value) => {
       const rowValue = row.getValue(id)

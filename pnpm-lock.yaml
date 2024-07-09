@@ -119,6 +119,9 @@ importers:
       '@web3modal/siwe':
         specifier: ^4.1.6
         version: 4.1.6(@types/react@18.2.38)(react@18.2.0)
+      addreth:
+        specifier: ^2.0.0
+        version: 2.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(wagmi@1.3.10(@types/react@18.2.38)(bufferutil@4.0.8)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))(react@18.2.0)(typescript@5.0.4)(utf-8-validate@5.0.10)(viem@1.21.4(bufferutil@4.0.8)(typescript@5.0.4)(utf-8-validate@5.0.10)(zod@3.22.4))(zod@3.22.4))
       axios:
         specifier: ^1.2.2
         version: 1.6.8
@@ -5170,6 +5173,13 @@ packages:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  addreth@2.0.0:
+    resolution: {integrity: sha512-Ni87wC0+3FAwuIlE37M7uFD+VxHoWFeUUljj6OwLGz8qzNQZCG1BXQ5d0b5aJxuhTQaA6EVuoFPyCXSCfJEL/A==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+      wagmi: '>=2.0.0'
 
   aes-js@3.0.0:
     resolution: {integrity: sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==}
@@ -18689,6 +18699,12 @@ snapshots:
   acorn-walk@8.3.2: {}
 
   acorn@8.11.3: {}
+
+  addreth@2.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(wagmi@1.3.10(@types/react@18.2.38)(bufferutil@4.0.8)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))(react@18.2.0)(typescript@5.0.4)(utf-8-validate@5.0.10)(viem@1.21.4(bufferutil@4.0.8)(typescript@5.0.4)(utf-8-validate@5.0.10)(zod@3.22.4))(zod@3.22.4)):
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      wagmi: 1.3.10(@types/react@18.2.38)(bufferutil@4.0.8)(react-dom@18.2.0(react@18.2.0))(react-native@0.73.6(@babel/core@7.18.5)(@babel/preset-env@7.24.3(@babel/core@7.18.5))(bufferutil@4.0.8)(react@18.2.0)(utf-8-validate@5.0.10))(react@18.2.0)(typescript@5.0.4)(utf-8-validate@5.0.10)(viem@1.21.4(bufferutil@4.0.8)(typescript@5.0.4)(utf-8-validate@5.0.10)(zod@3.22.4))(zod@3.22.4)
 
   aes-js@3.0.0: {}
 

@@ -19,35 +19,33 @@ export function extractLabelData(data: any[]): AddressLabelType[] {
   })
 }
 export function getFilterFields(filter: FilterLabelType) {
-  const removeDuplicatesAndSlice = (arr: string[], limit: number) => {
-    return Array.from(new Set(arr))
-      .slice(0, limit)
-      .map((item) => ({
-        label: item,
-        value: item.toLowerCase(),
-      }))
+  const removeDuplicatesAndSlice = (arr: string[]) => {
+    return Array.from(new Set(arr)).map((item) => ({
+      label: item,
+      value: item.toLowerCase(),
+    }))
   }
 
   const fields = [
     {
       label: "Label Type",
       value: "labelType",
-      options: removeDuplicatesAndSlice(filter.labelTypes, 5),
+      options: removeDuplicatesAndSlice(filter.labelTypes),
     },
     {
       label: "Label Sub-Type",
       value: "labelSubType",
-      options: removeDuplicatesAndSlice(filter.labelSubTypes, 5),
+      options: removeDuplicatesAndSlice(filter.labelSubTypes),
     },
     {
       label: "Address Name",
       value: "addressName",
-      options: removeDuplicatesAndSlice(filter.addressNames, 5),
+      options: removeDuplicatesAndSlice(filter.addressNames),
     },
     {
       label: "Label",
       value: "label",
-      options: removeDuplicatesAndSlice(filter.labelNames, 5),
+      options: removeDuplicatesAndSlice(filter.labelNames),
     },
   ]
 

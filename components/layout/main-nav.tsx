@@ -30,8 +30,6 @@ interface MainNavProps {
 export function MainNav({ items }: MainNavProps) {
   const params = usePathname()
   const chainImage = getChainImage(params)
-  console.log(params)
-  console.log(params.split("/")[2])
 
   return (
     <div className="flex items-center gap-6 md:gap-10">

@@ -3,6 +3,7 @@
 import { ReactNode } from "react"
 import { ChakraProvider } from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { AddrethConfig } from "addreth"
 import { ThemeProvider } from "next-themes"
 import { Provider as RWBProvider } from "react-wrap-balancer"
 
@@ -33,7 +34,9 @@ export default function RootProvider({ children }: RootProviderProps) {
           <RWBProvider>
             <RainbowKit>
               <HandleWalletEvents>
-                <TooltipProvider>{children}</TooltipProvider>
+                <TooltipProvider>
+                  <AddrethConfig>{children}</AddrethConfig>
+                </TooltipProvider>
                 <TailwindIndicator />
               </HandleWalletEvents>
             </RainbowKit>
