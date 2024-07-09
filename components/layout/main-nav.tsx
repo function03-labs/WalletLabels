@@ -31,6 +31,13 @@ export function MainNav({ items }: MainNavProps) {
   const params = usePathname()
   const chainImage = getChainImage(params)
 
+  let path: string = ""
+  if (params.split("/")[2] === "submit" || params.split("/")[2] === "profile") {
+    path = "/chain/ethereum/community"
+  } else {
+    path = `/chain/${params.split("/")[2] || "ethereum"}/community`
+  }
+
   return (
     <div className="flex items-center gap-6 md:gap-10">
       <div className="flex items-center space-x-2 dark:text-slate-100">
@@ -110,7 +117,7 @@ export function MainNav({ items }: MainNavProps) {
         )}
         <div>
           <Link
-            href={`/chain/${params.split("/")[2] || "ethereum"}/community`}
+            href={path}
             className={cn(
               "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm"
             )}
