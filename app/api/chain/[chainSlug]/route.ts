@@ -12,7 +12,7 @@ const chainContextSchema = z.object({
   }),
 })
 
-export const maxDuration = 60
+export const maxDuration = 10
 
 export async function GET(
   request: Request,
