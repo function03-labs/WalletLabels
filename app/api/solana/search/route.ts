@@ -1,4 +1,4 @@
-import { PipelineStage } from "@/types"
+import { PipelineStage } from "types"
 
 import { connectDB } from "@/lib/mongodb"
 import { parseQueryParamsSearch } from "@/lib/query-params"

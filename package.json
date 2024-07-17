@@ -9,10 +9,9 @@
     "lint": "eslint '**/*.{ts,tsx}'",
     "lint-fix": "next lint --fix",
     "format": "prettier . --list-different",
-    "postinstall": "prisma generate --no-engine",
     "fix": "prettier . --write",
     "run-ci": "concurrently -c \"auto\" -p \"name\" -n \"format,lint\" \"pnpm format\"  \"pnpm lint\"  ",
-    "prepare": "husky ; prisma generate --no-engine ; wagmi generate"
+    "prepare": "husky ; wagmi generate"
   },
   "husky": {
     "hooks": {
