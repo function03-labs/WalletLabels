@@ -56,3 +56,13 @@ export const indexMap = {
   solana: "solana",
   arbitrum: "arbitrum",
 }
+
+export function checkOrigin(request: Request) {
+  const origin = request.headers.get("Origin")
+
+  if (origin !== "https://api-c.walletlabels.xyz") {
+    return false
+  }
+
+  return true
+}

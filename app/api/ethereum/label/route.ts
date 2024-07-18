@@ -1,14 +1,14 @@
 import { connectDB } from "@/lib/mongodb"
-import { parseQueryParamsAddress } from "@/lib/query-params"
+import { checkOrigin, parseQueryParamsAddress } from "@/lib/query-params"
 
 export async function GET(request: Request) {
-  const origin = request.headers.get("Origin")
+  const { address, limit, offset } = parseQueryParamsAddress(request)
 
-  if (origin !== "https://api-c.walletlabels.xyz") {
+  if (checkOrigin(request) === false) {
     return new Response(
       JSON.stringify({
         message:
-          "Please use the api-c.walletlabels.xyz endpoint instead. We decline your request from this endpoint.",
+          "Please use the 'api-c.walletlabels.xyz' endpoint instead. We decline your request from this endpoint.",
       }),
       {
         status: 403,
@@ -18,8 +18,6 @@ export async function GET(request: Request) {
       }
     )
   }
-
-  const { address, limit, offset } = parseQueryParamsAddress(request)
 
   if (address === "") {
     return new Response(
