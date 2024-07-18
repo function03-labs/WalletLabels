@@ -2,6 +2,23 @@ import { connectDB } from "@/lib/mongodb"
 import { parseQueryParamsAddress } from "@/lib/query-params"
 
 export async function GET(request: Request) {
+  const origin = request.headers.get("Origin")
+
+  if (origin !== "https://api-c.walletlabels.xyz") {
+    return new Response(
+      JSON.stringify({
+        message:
+          "Please use the api-c.walletlabels.xyz endpoint instead. We decline your request from this endpoint.",
+      }),
+      {
+        status: 403,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+  }
+
   const { address, limit, offset } = parseQueryParamsAddress(request)
 
   if (address === "") {
