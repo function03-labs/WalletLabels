@@ -11,6 +11,7 @@ import { z } from "zod"
 
 import { uploadFileSchema } from "@/config/schema"
 import { bulkCreateAddressLabel } from "@/lib/app/label"
+import { useToast } from "@/lib/hooks/use-toast"
 import { extractLabelData } from "@/lib/utils/label"
 
 import { Icons } from "@/components/shared/icons"
@@ -32,6 +33,14 @@ import {
 } from "@/components/ui/file-upload"
 import { Form, FormField, FormItem } from "@/components/ui/form"
 import { Progress } from "@/components/ui/progress"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 function SubmittedLabels({ length }: { length: number }) {
   return (
@@ -84,10 +93,15 @@ function FileSvgDraw() {
 
 export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
   const router = useRouter()
+  const { toast } = useToast()
+
+  const [labels, setLabels] = React.useState<number>(0)
   const [progress, setProgress] = React.useState<number>(0)
   const [loading, setLoading] = React.useState<boolean>(false)
   const [submitted, setSubmitted] = React.useState<boolean>(false)
-  const [labels, setLabels] = React.useState<number>(0)
+  const [errors, setErrors] = React.useState<
+    { line: number; columns: string[] }[]
+  >([])
 
   const form = useForm<z.infer<typeof uploadFileSchema>>({
     resolver: zodResolver(uploadFileSchema),
@@ -119,7 +133,9 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
   }
 
   async function onSubmit(values: z.infer<typeof uploadFileSchema>) {
+    setErrors([])
     setLoading(true)
+
     const file = values.files[0]
     const progress = simulateUpload()
 
@@ -128,23 +144,57 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
       Papa.parse(file, {
         header: true,
         skipEmptyLines: true,
-        complete: async (results: any) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-          const data = extractLabelData(results.data.slice(2))
-          const submittedLabels = await bulkCreateAddressLabel(data, userId)
-          setLabels(submittedLabels.count)
+        complete: async (results: Papa.ParseResult<Record<string, string>>) => {
+          const data = results.data.slice(2)
+          const newErrors: { line: number; columns: string[] }[] = []
+
+          data.forEach((row, index) => {
+            const emptyColumns = Object.entries(row)
+              .filter(([_, value]) => value.trim() === "")
+              .map(([key]) => key)
+
+            if (emptyColumns.length > 0) {
+              newErrors.push({ line: index + 3, columns: emptyColumns })
+            }
+          })
+
+          if (newErrors.length > 0) {
+            setErrors(newErrors)
+            clearInterval(progress)
+          } else {
+            const extractedData = extractLabelData(data)
+            const submittedLabels = await bulkCreateAddressLabel(
+              extractedData,
+              userId
+            )
+            setLabels(submittedLabels.count)
+            setSubmitted(true)
+          }
         },
       })
 
       await new Promise((resolve) => setTimeout(resolve, 5000))
       setProgress(100)
       await new Promise((resolve) => setTimeout(resolve, 1000))
-      setSubmitted(true)
 
-      router.refresh()
+      if (errors.length === 0) {
+        toast({
+          title: "Labels submitted successfully",
+        })
+        router.refresh()
+      } else {
+        toast({
+          title: "Please verify the CSV file",
+          variant: "destructive",
+        })
+      }
       form.reset({ files: [] })
     } catch (error) {
-      console.log(error)
+      console.error(error)
+      toast({
+        title: "An error occurred",
+        variant: "destructive",
+      })
     } finally {
       clearInterval(progress)
       setLoading(false)
@@ -162,10 +212,10 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Bulk Upload</DialogTitle>
+          <DialogTitle className="dark:text-white">Bulk Upload</DialogTitle>
           <DialogDescription>
-            Upload a CSV file with multiple addresses to submit in bulk .
-            Checkout our template{" "}
+            Upload a CSV file with multiple addresses to submit in bulk. Check
+            out our template{" "}
             <Link
               target="_blank"
               href="https://docs.google.com/spreadsheets/d/1NAfxMJyUp8Yna4JlnFM0LzQQlF1NEr2vDFEh1V3TDl4/edit?usp=sharing"
@@ -178,15 +228,9 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div
-              className={`flex w-full flex-col items-center justify-center gap-x-2 rounded-md px-2 pb-1 outline outline-1 outline-border ${
-                form.watch("files") ? "pt-4" : "pt-2"
-              }`}
-            >
+            <div className="flex w-full flex-col items-center justify-center gap-x-2 rounded-md px-2 pb-1 outline outline-1 outline-border">
               {submitted ? (
-                <>
-                  <SubmittedLabels length={labels} />
-                </>
+                <SubmittedLabels length={labels} />
               ) : (
                 <FormField
                   control={form.control}
@@ -219,7 +263,7 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                                   <span className="pr-8">{file.name}</span>
                                 </FileUploaderItem>
                               ))}
-                              {progress != 0 && (
+                              {progress !== 0 && (
                                 <Progress
                                   value={progress}
                                   className="h-1 w-full bg-zinc-200"
@@ -241,13 +285,42 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                 ))}
               </div>
             )}
+            {errors.length > 0 && (
+              <div className="mt-4">
+                <h3 className="mb-2 text-lg font-semibold text-secondary-foreground">
+                  CSV Errors
+                </h3>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Line</TableHead>
+                      <TableHead>Empty Columns</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {errors.map((error, index) => (
+                      <TableRow key={index}>
+                        <TableCell className="text-secondary-foreground/80">
+                          {error.line + 1}
+                        </TableCell>
+                        <TableCell className="text-secondary-foreground/80">
+                          Missing attributes
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            )}
             <div className="h-3" />
             {submitted ? (
               <DialogClose className="h-8 w-full py-2">
                 <Button
+                  type="button"
                   onClick={() => {
                     setSubmitted(false)
                     setLabels(0)
+                    setErrors([])
                   }}
                 >
                   Close
