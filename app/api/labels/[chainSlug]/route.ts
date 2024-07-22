@@ -23,7 +23,7 @@ export async function GET(
 
   const labels = await prisma.addressLabel.findMany({
     where: {
-      /* status: "ACCEPTED", */
+      status: "ACCEPTED",
       blockchain: chainSlug,
     },
   })

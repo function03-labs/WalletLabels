@@ -11,18 +11,8 @@ import { createAddressLabel } from "@/lib/app/label"
 import { useToast } from "@/lib/hooks/use-toast"
 
 import { DashboardSubmitBulkLabels } from "@/components/app/dashboard-submit-bulk-labels"
+import { DashboardSubmitLabelConfirm } from "@/components/app/dashboard-submit-label-confirm"
 import { Icons } from "@/components/shared/icons"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { CardFooter } from "@/components/ui/card"
 import {
@@ -68,11 +58,14 @@ export function DashboardSubmitLabel({ userId }: { userId: string }) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [addressLabel, setAddressLabel] = useState<z.infer<
+    typeof addressLabelSchema
+  > | null>(null)
 
   const form = useForm<z.infer<typeof addressLabelSchema>>({
     resolver: zodResolver(addressLabelSchema),
     defaultValues: {
-      blockchain: "",
+      blockchain: chains[0].id,
       address: "",
       addressName: "",
       labelType: "",
@@ -85,6 +78,7 @@ export function DashboardSubmitLabel({ userId }: { userId: string }) {
     // check values are safe to submit
     console.log(values)
     if (values) {
+      setAddressLabel(values)
       setShowConfirmation(true)
     }
   }
@@ -270,6 +264,9 @@ export function DashboardSubmitLabel({ userId }: { userId: string }) {
           <Button type="submit">Save Address</Button>
         </CardFooter>
       </form>
+      {showConfirmation && addressLabel && (
+        <DashboardSubmitLabelConfirm label={addressLabel} userId={userId} />
+      )}
     </Form>
   )
 }
