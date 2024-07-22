@@ -238,7 +238,7 @@ export function DashboardSubmitLabel({ userId }: { userId: string }) {
         </div>
         <CardFooter className="flex justify-between px-0">
           <DashboardSubmitBulkLabels userId={userId} />
-          <Button type="submit">Save Address</Button>
+          <Button type="submit">Submit label</Button>
         </CardFooter>
       </form>
       {showConfirmation && addressLabel && (
