@@ -55,8 +55,6 @@ function TooltipHover({
 }
 
 export function DashboardSubmitLabel({ userId }: { userId: string }) {
-  const { toast } = useToast()
-  const [loading, setLoading] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [addressLabel, setAddressLabel] = useState<z.infer<
     typeof addressLabelSchema
@@ -75,30 +73,9 @@ export function DashboardSubmitLabel({ userId }: { userId: string }) {
   })
 
   function onSubmit(values: z.infer<typeof addressLabelSchema>) {
-    // check values are safe to submit
-    console.log(values)
     if (values) {
       setAddressLabel(values)
       setShowConfirmation(true)
-    }
-  }
-
-  async function handleConfirmSubmit() {
-    setLoading(true)
-    try {
-      await createAddressLabel(form.getValues(), userId)
-      form.reset()
-      toast({
-        title: "Label created successfully",
-      })
-    } catch (error) {
-      toast({
-        title: "An error occurred",
-        variant: "destructive",
-      })
-    } finally {
-      setLoading(false)
-      setShowConfirmation(false)
     }
   }
 
