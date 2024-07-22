@@ -5,6 +5,7 @@ import { ApiKey } from "@prisma/client"
 import { Ellipsis } from "lucide-react"
 
 import { deleteApiKey } from "@/lib/app/api-key"
+import { useToast } from "@/lib/hooks/use-toast"
 
 import {
   AlertDialog,
@@ -24,7 +25,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useToast } from "@/components/ui/use-toast"
 
 export function DialogDeleteAPIKey({ apiKey }: { apiKey: ApiKey }) {
   const router = useRouter()

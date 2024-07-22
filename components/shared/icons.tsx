@@ -23,6 +23,7 @@ import {
   FilterIcon,
   HelpCircle,
   Image as ImageIcon,
+  InfoIcon,
   Laptop,
   Loader2,
   LoaderCircleIcon,
@@ -42,6 +43,7 @@ import {
   Settings2Icon,
   SunMedium,
   Trash,
+  UploadIcon,
   UserCircleIcon,
   UserCogIcon,
   X,
@@ -231,4 +233,6 @@ export const Icons = {
   doubleRight: ChevronsRight,
   doubleLeft: ChevronsLeft,
   setting: Settings2Icon,
+  info: InfoIcon,
+  upload: UploadIcon
 }

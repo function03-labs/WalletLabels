@@ -13,6 +13,7 @@ import { z } from "zod"
 import { chains } from "@/config/blockchain-networks"
 import { ApiKeySchema } from "@/config/schema"
 import { createApiKey } from "@/lib/app/api-key"
+import { useToast } from "@/lib/hooks/use-toast"
 
 import { DashboardCopyAPIKey } from "@/components/app/dashboard-copy-apikey"
 import { Icons } from "@/components/shared/icons"
@@ -42,7 +43,6 @@ import {
   MultiSelectorList,
   MultiSelectorTrigger,
 } from "@/components/ui/multi-select"
-import { useToast } from "@/components/ui/use-toast"
 
 export function DashboardGenerateAPIkeysDialog({
   user,

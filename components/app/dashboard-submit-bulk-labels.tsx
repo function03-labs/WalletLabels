@@ -82,7 +82,7 @@ function FileSvgDraw() {
   )
 }
 
-export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
+export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
   const router = useRouter()
   const [progress, setProgress] = React.useState<number>(0)
   const [loading, setLoading] = React.useState<boolean>(false)
@@ -154,7 +154,10 @@ export function DashboardSubmitBulkAddress({ userId }: { userId: string }) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="w-full py-2 ">Bulk submit</Button>
+        <Button variant="outline" type="button">
+          <Icons.upload className="mr-2 size-4" />
+          Bulk Upload
+        </Button>
       </DialogTrigger>
 
       <DialogContent>

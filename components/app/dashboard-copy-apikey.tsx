@@ -3,6 +3,7 @@ import { ApiKey } from "@prisma/client"
 import { CheckIcon, CopyIcon } from "lucide-react"
 
 import useClipboard from "@/lib/hooks/use-clipboard"
+import { useToast } from "@/lib/hooks/use-toast"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -12,7 +13,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { useToast } from "@/components/ui/use-toast"
 
 export function DashboardCopyAPIKey({ apiKey }: { apiKey: ApiKey }) {
   const router = useRouter()

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAccount, useNetwork, useSignMessage } from "wagmi"
 
+import { useToast } from "@/lib/hooks/use-toast"
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
 
@@ -18,7 +19,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useToast } from "@/components/ui/use-toast"
 
 import { siweLogin } from "@/integrations/siwe/actions/siwe-login"
 

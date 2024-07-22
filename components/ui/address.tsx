@@ -5,9 +5,8 @@ import { Copy } from "lucide-react"
 import { useAccount, useNetwork, type Address as AddressType } from "wagmi"
 import { mainnet } from "wagmi/chains"
 
+import { toast } from "@/lib/hooks/use-toast"
 import { cn } from "@/lib/utils/index"
-
-import { toast } from "@/components/ui/use-toast"
 
 export interface AddressProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "children"> {
