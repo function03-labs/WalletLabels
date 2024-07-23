@@ -115,20 +115,6 @@ export function MainNav({ items }: MainNavProps) {
               </div>
             )
         )}
-        <div>
-          <Link
-            href={path}
-            className={cn(
-              "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm"
-            )}
-          >
-            Community labels
-            <span className="relative bottom-[7px] flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-              <span className="relative inline-flex size-2 rounded-full bg-sky-500"></span>
-            </span>
-          </Link>
-        </div>
       </nav>
     </div>
   )

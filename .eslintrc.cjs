@@ -26,6 +26,7 @@ module.exports = {
     "@typescript-eslint/no-unsafe-argument": "off",
     "no-unused-vars": "off",
     "tailwindcss/no-custom-classname": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
   },
   settings: {
     tailwindcss: {
