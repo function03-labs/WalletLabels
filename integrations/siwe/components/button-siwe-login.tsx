@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAccount, useNetwork, useSignMessage } from "wagmi"
 
+import { useToast } from "@/lib/hooks/use-toast"
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
 
@@ -18,7 +19,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useToast } from "@/components/ui/use-toast"
 
 import { siweLogin } from "@/integrations/siwe/actions/siwe-login"
 
@@ -82,7 +82,7 @@ export const ButtonSIWELogin = ({
               {...props}
             >
               {isLoading && (
-                <Icons.refresh className="absolute -left-6 animate-spin" />
+                <Icons.loading className="absolute -left-6 size-3 animate-spin" />
               )}
               <span className={labelClasses}>
                 {children || label || "Logout"}
@@ -102,6 +102,11 @@ export const ButtonSIWELogin = ({
                 Profile
               </Link>
             </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link className="w-full" href="/dashboard/submit">
+                Submit
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
@@ -114,7 +119,7 @@ export const ButtonSIWELogin = ({
           {...props}
         >
           {isLoading && (
-            <Icons.refresh className="absolute -left-6 animate-spin" />
+            <Icons.loading className="absolute -left-6 size-5 animate-spin" />
           )}
           <span className={labelClasses}>{children || label || "Logout"}</span>
         </Button>

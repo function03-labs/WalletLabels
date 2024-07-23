@@ -15,7 +15,7 @@ import { darkTheme } from "@/config/theme"
 import { useGridColumns } from "@/lib/hooks/use-grid-columns"
 import { useGridContent } from "@/lib/hooks/use-grid-content"
 import { splitTags } from "@/lib/utils"
-import pick from "@/lib/utils/color-picker"
+import { pick } from "@/lib/utils/color-picker"
 
 export function Grid(props: {
   data: { [key: string]: string }[]

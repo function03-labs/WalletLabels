@@ -1,16 +1,15 @@
 // Inspired by react-hot-toast library
+import * as React from "react"
 
-import { ReactNode, useEffect, useState } from "react"
-
-import { ToastActionElement, type ToastProps } from "@/components/ui/toast"
+import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000
+const TOAST_REMOVE_DELAY = 1000000
 
 type ToasterToast = ToastProps & {
   id: string
-  title?: ReactNode
-  description?: ReactNode
+  title?: React.ReactNode
+  description?: React.ReactNode
   action?: ToastActionElement
 }
 
@@ -125,7 +124,6 @@ export const reducer = (state: State, action: Action): State => {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
@@ -169,9 +167,9 @@ function toast({ ...props }: Toast) {
 }
 
 function useToast() {
-  const [state, setState] = useState<State>(memoryState)
+  const [state, setState] = React.useState<State>(memoryState)
 
-  useEffect(() => {
+  React.useEffect(() => {
     listeners.push(setState)
     return () => {
       const index = listeners.indexOf(setState)

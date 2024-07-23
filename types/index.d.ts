@@ -41,3 +41,27 @@ export type PipelineStage =
   | {
       $limit: number
     }
+
+export interface DataTableFilterOption<TData> {
+  id: string
+  label: string
+  value: keyof TData
+  options: OptionTable[]
+  filterValues?: string[]
+  filterOperator?: string
+  isMulti?: boolean
+}
+
+export interface OptionTable {
+  label: string
+  value: string
+  icon?: React.ComponentType<{ className?: string }>
+  withCount?: boolean
+}
+
+export interface DataTableFilterField<TData> {
+  label: string
+  value: keyof TData
+  placeholder?: string
+  options?: OptionTable[]
+}

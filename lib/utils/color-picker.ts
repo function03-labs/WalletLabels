@@ -129,7 +129,7 @@ const colors = [
     cmyk: "0, 0.024, 0.165, 0",
   },
 ]
-function pick(str: string, dark = false) {
+export function pick(str: string, dark = false) {
   const index =
     str.split("").reduce((a, b) => a + b.charCodeAt(0), 0) % colors.length
 
@@ -138,5 +138,3 @@ function pick(str: string, dark = false) {
   }
   return colors[index].hex
 }
-
-export default pick
