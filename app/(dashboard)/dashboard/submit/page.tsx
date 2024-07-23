@@ -12,8 +12,6 @@ import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-logi
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
-export const runtime = "edge"
-
 export default async function SubmitPage() {
   const session = await getSession()
 

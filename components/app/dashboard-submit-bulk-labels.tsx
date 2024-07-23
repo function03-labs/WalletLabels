@@ -161,6 +161,12 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
           if (newErrors.length > 0) {
             setErrors(newErrors)
             clearInterval(progress)
+            setProgress(0)
+            setLoading(false)
+            toast({
+              title: "Please verify the CSV file",
+              variant: "destructive",
+            })
           } else {
             const extractedData = extractLabelData(data)
             const submittedLabels = await bulkCreateAddressLabel(
@@ -177,17 +183,13 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
       setProgress(100)
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      if (errors.length === 0) {
+      if (errors.length === 0 && submitted) {
         toast({
           title: "Labels submitted successfully",
         })
         router.refresh()
-      } else {
-        toast({
-          title: "Please verify the CSV file",
-          variant: "destructive",
-        })
       }
+      
       form.reset({ files: [] })
     } catch (error) {
       console.error(error)
@@ -252,7 +254,7 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                           </FileInput>
 
                           {field.value && field.value.length > 0 && (
-                            <FileUploaderContent className="w-full text-center">
+                            <FileUploaderContent className="w-full text-center dark:text-white">
                               {field.value.map((file, i) => (
                                 <FileUploaderItem
                                   uploading={loading}
@@ -260,7 +262,9 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                                   index={i}
                                 >
                                   <Icons.paperclip className="size-4 stroke-current" />
-                                  <span className="pr-8">{file.name}</span>
+                                  <span className="pr-8 dark:text-white">
+                                    {file.name}
+                                  </span>
                                 </FileUploaderItem>
                               ))}
                               {progress !== 0 && (

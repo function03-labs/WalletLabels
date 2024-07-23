@@ -9,7 +9,7 @@ import { DataTable } from "@/components/app/chain-community-data-table"
 
 async function getCommunityData({ chainSlug }: { chainSlug: string }) {
   try {
-    const data = await fetch(`${env.PUBLIC_URL}/api/labels/${chainSlug}/`, {
+    const data = await fetch(`${env.PUBLIC_URL}/api/labels/${chainSlug}`, {
       next: {
         revalidate: 60,
       },

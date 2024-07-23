@@ -27,7 +27,7 @@ export const addressLabelSchema = z.object({
 export const uploadFileSchema = z.object({
   files: z
     .array(
-      z.instanceof(File).refine((file) => file.size < 25 * 1024 * 1024, {
+      z.any().refine((file) => file.size < 25 * 1024 * 1024, {
         message: "File size must be less than 25MB",
       })
     )

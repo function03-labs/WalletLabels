@@ -64,8 +64,10 @@ export function DashboardSubmitLabelConfirm({
     >
       <AlertDialogContent className="sm:max-w-[800px]">
         <AlertDialogHeader>
-          <AlertDialogTitle>Confirm Action</AlertDialogTitle>
-          <AlertDialogDescription>
+          <AlertDialogTitle className="dark:text-white">
+            Confirm Action
+          </AlertDialogTitle>
+          <AlertDialogDescription className="">
             Please review the details below and confirm the action.
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -87,21 +89,31 @@ export function DashboardSubmitLabelConfirm({
                   {/* @ts-ignore: Unreachable code error */}
                   <Addreth address={label.address} theme="unified-light" />
                 </TableCell>
-                <TableCell>{label.addressName}</TableCell>
+                <TableCell className="dark:text-white">
+                  {label.addressName}
+                </TableCell>
                 <TableCell>
                   <Badge variant="outline" className="capitalize">
                     {label.blockchain}
                   </Badge>
                 </TableCell>
-                <TableCell>{label.labelType}</TableCell>
-                <TableCell>{label.labelSubType}</TableCell>
-                <TableCell className="text-right">{label.label}</TableCell>
+                <TableCell className="dark:text-white">
+                  {label.labelType}
+                </TableCell>
+                <TableCell className="dark:text-white">
+                  {label.labelSubType}
+                </TableCell>
+                <TableCell className="text-right dark:text-white">
+                  {label.label}
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={loading}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="dark:text-white" disabled={loading}>
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction disabled={loading} onClick={handleConfirmSubmit}>
             {loading && (
               <Icons.loading className="-ml-1 mr-2 size-5 animate-spin" />
