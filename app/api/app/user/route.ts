@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+
 import { getIronSession } from "iron-session"
 
 import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
