@@ -189,7 +189,7 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
         })
         router.refresh()
       }
-      
+
       form.reset({ files: [] })
     } catch (error) {
       console.error(error)

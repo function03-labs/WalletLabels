@@ -234,5 +234,5 @@ export const Icons = {
   doubleLeft: ChevronsLeft,
   setting: Settings2Icon,
   info: InfoIcon,
-  upload: UploadIcon
+  upload: UploadIcon,
 }

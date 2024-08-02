@@ -10,6 +10,7 @@ import { z } from "zod"
 
 import { TableApiKeysSchema } from "@/config/schema"
 import { updateApiKey } from "@/lib/app/api-key"
+import { useToast } from "@/lib/hooks/use-toast"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -20,7 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useToast } from "@/lib/hooks/use-toast"
 
 export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
   const router = useRouter()
