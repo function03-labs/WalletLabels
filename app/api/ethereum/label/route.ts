@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/mongodb"
 import { checkOrigin, parseQueryParamsAddresses } from "@/lib/query-params"
 
 export async function GET(request: Request) {
-  const { addresses, limit, offset } = parseQueryParamsAddresses(request)
+  const { addresses, limit, offset, error } = parseQueryParamsAddresses(request)
 
   /*   if (checkOrigin(request) === false) {
     return new Response(
@@ -20,10 +20,19 @@ export async function GET(request: Request) {
   }
  */
 
+  if (error) {
+    return new Response(JSON.stringify({ message: error }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  }
+
   if (!addresses || addresses.length === 0) {
     return new Response(
       JSON.stringify({
-        message: "Bad request: 'address' parameter missing or empty",
+        message: "Bad request: 'address' or 'addresses' parameter missing or empty",
       }),
       {
         status: 200,
@@ -37,7 +46,7 @@ export async function GET(request: Request) {
   if (addresses.length > 10) {
     return new Response(
       JSON.stringify({
-        message: "Bad request: 'address' parameter exceeds the limit of 10",
+        message: "Bad request: 'addresses' parameter exceeds the limit of 10",
       }),
       {
         status: 200,

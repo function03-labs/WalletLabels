@@ -1,7 +1,8 @@
-export function parseQueryParamsAddresses(req: Request) {
+export function   parseQueryParamsAddresses(req: Request) {
   const url = new URL(req.url)
   const searchParams = url.searchParams
-  const addresses = searchParams.get("address") || ""
+  const addressFromParams = searchParams.get("address") || ""
+  const addressesFromHeaders = req.headers.get("addresses") || ""
   const limit = searchParams.get("limit")
   const offset = searchParams.get("offset")
 
@@ -11,9 +12,27 @@ export function parseQueryParamsAddresses(req: Request) {
   }
 
   const parsedOffset = offset ? Number(offset) : 0
-  const addressesArray = addresses.split(",").map((address) => address.trim())
 
-  return { addresses: addressesArray, limit: parsedLimit, offset: parsedOffset }
+  let error = null
+  if (addressFromParams && addressesFromHeaders) {
+    error = "Addresses cannot be sent both in URL parameters and headers"
+  }
+
+  let addressesArray: string[] = []
+  if (addressesFromHeaders) {
+    addressesArray = addressesFromHeaders
+      .split(",")
+      .map((address) => address.trim())
+  } else if (addressFromParams) {
+    addressesArray = [addressFromParams.trim()]
+  }
+
+  return {
+    addresses: addressesArray,
+    limit: parsedLimit,
+    offset: parsedOffset,
+    error,
+  }
 }
 
 export function parseQueryParamsSearch(req: Request) {
