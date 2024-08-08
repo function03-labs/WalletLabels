@@ -50,35 +50,37 @@ export async function GET(request: Request) {
   const db = await connectDB()
 
   const queryAtlas = {
-    ADDRESS: { $in: addresses },
+    address: { $in: addresses.map((address) => address.toLowerCase()) },
   }
 
   const projection = {
-    ADDRESS_NAME: 1,
-    LABEL_TYPE: 1,
-    LABEL_SUBTYPE: 1,
-    ADDRESS: 1,
-    LABEL: 1,
+    address: 1,
+    blockchain: 1,
+    source_of_blacklisting: 1,
+    reason_for_blacklisting: 1,
+    date_of_blacklisting: 1,
+    last_transaction_date: 1,
+    entities: 1,
   }
 
   try {
     const cursor = db
-      .collection(process.env.CLC_NAME_WLBLS_SOLANA!)
+      .collection("blacklisted")
       .find(queryAtlas, { projection })
-      .collation({ locale: "en", strength: 2, maxVariable: "punct" })
-      .hint("ADDRESS_1")
       .skip(offset)
       .limit(limit)
 
-    const labels = await cursor.toArray()
+    const blacklisted = await cursor.toArray()
 
     const response = {
-      data: labels.map((label) => ({
-        address: label.ADDRESS,
-        address_name: label.ADDRESS_NAME,
-        label_type: label.LABEL_TYPE,
-        label_subtype: label.LABEL_TYPE,
-        label: label.LABEL,
+      data: blacklisted.map((item) => ({
+        address: item.address,
+        blockchain: item.blockchain,
+        source_of_blacklisting: item.source_of_blacklisting,
+        reason_for_blacklisting: item.reason_for_blacklisting,
+        date_of_blacklisting: item.date_of_blacklisting,
+        last_transaction_date: item.last_transaction_date,
+        entities: item.entities,
       })),
     }
 

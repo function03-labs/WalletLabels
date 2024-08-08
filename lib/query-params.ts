@@ -1,7 +1,7 @@
-export function parseQueryParamsAddress(req: Request) {
+export function parseQueryParamsAddresses(req: Request) {
   const url = new URL(req.url)
   const searchParams = url.searchParams
-  const address = searchParams.get("address") || ""
+  const addresses = searchParams.get("address") || ""
   const limit = searchParams.get("limit")
   const offset = searchParams.get("offset")
 
@@ -11,8 +11,9 @@ export function parseQueryParamsAddress(req: Request) {
   }
 
   const parsedOffset = offset ? Number(offset) : 0
+  const addressesArray = addresses.split(",").map((address) => address.trim())
 
-  return { address, limit: parsedLimit, offset: parsedOffset }
+  return { addresses: addressesArray, limit: parsedLimit, offset: parsedOffset }
 }
 
 export function parseQueryParamsSearch(req: Request) {
@@ -55,4 +56,14 @@ export const indexMap = {
   ethereum: "labels_v2",
   solana: "solana",
   arbitrum: "arbitrum",
+}
+
+export function checkOrigin(request: Request) {
+  const origin = request.headers.get("Origin")
+
+  if (origin !== "https://api-c.walletlabels.xyz") {
+    return false
+  }
+
+  return true
 }

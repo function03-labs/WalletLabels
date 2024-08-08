@@ -1,13 +1,42 @@
 import { connectDB } from "@/lib/mongodb"
-import { parseQueryParamsAddress } from "@/lib/query-params"
+import { checkOrigin, parseQueryParamsAddresses } from "@/lib/query-params"
 
 export async function GET(request: Request) {
-  const { address, limit, offset } = parseQueryParamsAddress(request)
+  const { addresses, limit, offset } = parseQueryParamsAddresses(request)
 
-  if (address === "") {
+  if (checkOrigin(request) === false) {
     return new Response(
       JSON.stringify({
-        message: "Bad request: 'address' parameter missing",
+        message:
+          "Please use the 'api-c.walletlabels.xyz' endpoint instead. We decline your request from this endpoint.",
+      }),
+      {
+        status: 403,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+  }
+
+  if (!addresses || addresses.length === 0) {
+    return new Response(
+      JSON.stringify({
+        message: "Bad request: 'address' parameter missing or empty",
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+  }
+
+  if (addresses.length > 10) {
+    return new Response(
+      JSON.stringify({
+        message: "Bad request: 'address' parameter exceeds the limit of 10",
       }),
       {
         status: 200,
@@ -21,7 +50,7 @@ export async function GET(request: Request) {
   const db = await connectDB()
 
   const queryAtlas = {
-    address: address,
+    address: { $in: addresses },
   }
 
   const projection = {
