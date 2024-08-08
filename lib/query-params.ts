@@ -60,7 +60,10 @@ export const indexMap = {
 
 export function checkOrigin(request: Request) {
   const origin = request.headers.get("Origin")
-  console.log(origin)
+
+  if (process.env.ORIGIN === "all" ) {
+    return true
+  }
 
   if (origin !== "https://api-c.walletlabels.xyz") {
     return false

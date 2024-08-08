@@ -4,7 +4,7 @@ import { checkOrigin, parseQueryParamsAddresses } from "@/lib/query-params"
 export async function GET(request: Request) {
   const { addresses, limit, offset } = parseQueryParamsAddresses(request)
 
-/*   if (checkOrigin(request) === false) {
+  if (checkOrigin(request) === false) {
     return new Response(
       JSON.stringify({
         message:
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
         },
       }
     )
-  } */
+  }
 
   if (!addresses || addresses.length === 0) {
     return new Response(
