@@ -4,7 +4,7 @@ import "@glideapps/glide-data-grid/dist/index.css"
 
 import { ReactNode } from "react"
 import type { Metadata, Viewport } from "next"
-import { DM_Mono, Inter as FontSans, JetBrains_Mono } from "next/font/google"
+import { Inter as FontSans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 
 import { siteConfig } from "@/config/site"
@@ -16,20 +16,6 @@ import { Toaster } from "@/components/ui/toaster"
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap",
-})
-
-export const fontMono = DM_Mono({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-})
-
-export const fontMonoJetBrains = JetBrains_Mono({
-  weight: "variable",
-  subsets: ["latin"],
-  variable: "--font-mono",
   display: "swap",
 })
 

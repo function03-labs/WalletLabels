@@ -15,6 +15,12 @@ export const siteConfig: SiteConfig = {
       title: "API",
       href: "https://docs.walletlabels.xyz",
       disabled: false,
+      new: false,
+    },
+    {
+      title: "Pricing",
+      href: "https://www.walletlabels.xyz/pricing",
+      disabled: false,
       new: true,
     },
   ],

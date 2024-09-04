@@ -4,7 +4,7 @@ let cachedDb: Db | null = null
 let cachedClient: MongoClient | null = null
 
 export async function connectToDatabase() {
-  const MONGODB_URI = process.env.MONGODB_URI_NEW
+  const MONGODB_URI = process.env.MONGODB_URI
   const MONGODB_DB = process.env.DB_NAME_NEW
 
   if (!MONGODB_URI) {

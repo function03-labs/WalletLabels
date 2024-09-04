@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     session.siwe = fields
     await session.save()
 
-    if (env.DATABASE_URL) {
+    if (env.DATABASE_URL_SUPABASE) {
       const user = await prisma.user.upsert({
         where: { id: fields.address },
         update: {

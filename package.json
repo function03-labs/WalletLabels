@@ -29,14 +29,13 @@
     "npm": ">=7.0.0",
     "node": ">=18.0.0"
   },
-  "packageManager": "pnpm@9.0.4",
   "dependencies": {
     "@aws-sdk/client-api-gateway": "^3.563.0",
     "@chakra-ui/react": "^2.8.2",
     "@glideapps/glide-data-grid": "^6.0.3",
     "@glideapps/glide-data-grid-cells": "^6.0.3",
     "@hookform/resolvers": "^3.1.1",
-    "@prisma/client": "^5.17.0",
+    "@prisma/client": "^5.19.1",
     "@prisma/extension-accelerate": "^1.0.0",
     "@radix-ui/react-accordion": "^1.1.0",
     "@radix-ui/react-alert-dialog": "^1.0.2",
@@ -49,6 +48,7 @@
     "@radix-ui/react-navigation-menu": "^1.1.1",
     "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-progress": "^1.0.1",
+    "@radix-ui/react-radio-group": "^1.2.0",
     "@radix-ui/react-scroll-area": "^1.0.2",
     "@radix-ui/react-select": "^1.2.0",
     "@radix-ui/react-separator": "^1.0.1",
@@ -150,7 +150,7 @@
     "postcss": "^8.4.19",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.0",
-    "prisma": "^5.17.0",
+    "prisma": "^5.19.1",
     "typescript": "5.0.4"
   }
 }
