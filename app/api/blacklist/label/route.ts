@@ -65,7 +65,7 @@ export async function GET(request: Request) {
 
   try {
     const cursor = db
-      .collection("blacklisted")
+      .collection(process.env.CLC_NAME_WLBLS_BLACKLIST!)
       .find(queryAtlas, { projection })
       .skip(offset)
       .limit(limit)
