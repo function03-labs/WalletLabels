@@ -13,7 +13,7 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 
 async function getData() {
   try {
-    const data = await fetch(`${env.PUBLIC_URL}/api/chain/ethereum`)
+    const data = await fetch(`${env.NEXT_PUBLIC_SITE_URL}/api/chain/ethereum`)
     return data.json()
   } catch (error) {
     console.error(error)

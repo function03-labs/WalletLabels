@@ -7,7 +7,7 @@ export type Users = Awaited<ReturnType<typeof prisma.user.findMany>>
 export async function GET(req: Request) {
   try {
     let users: Users = []
-    if (env.DATABASE_URL) {
+    if (env.DATABASE_URL_SUPABASE) {
       users = await prisma.user.findMany()
     }
     return new Response(JSON.stringify({ users, object: "Users" }))

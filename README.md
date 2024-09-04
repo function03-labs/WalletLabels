@@ -50,8 +50,6 @@ Additionally, you need to set up some environment variables:
 
 - `MONGODB_URI`: The MongoDB connection URI
 - `DB_NAME`: The name of your MongoDB database
-- `COVALENT_API`: The Covalent API key to load the graph for balance history
-- `NEXT_PUBLIC_COVALENT2_API`: The Covalent API key to fetch the last transaction for each address
 
 ## Getting Started
 
@@ -78,8 +76,6 @@ npm install
 ```
 MONGODB_URI=your-mongodb-uri
 DB_NAME=your-db-name
-COVALENT_API=your-covalent-api-key
-NEXT_PUBLIC_COVALENT2_API=your-covalent2-api-key
 ```
 
 5. Start the development server

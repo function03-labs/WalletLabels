@@ -13,7 +13,9 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 
 async function getData({ params }: { params: { chainSlug: string } }) {
   try {
-    const data = await fetch(`${env.PUBLIC_URL}/api/chain/${params.chainSlug}`)
+    const data = await fetch(
+      `${env.NEXT_PUBLIC_SITE_URL}/api/chain/${params.chainSlug}`
+    )
     return data.json()
   } catch (error) {
     console.log(error)
