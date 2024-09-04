@@ -34,6 +34,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@glideapps/glide-data-grid": "^6.0.3",
     "@glideapps/glide-data-grid-cells": "^6.0.3",
+    "@headlessui/react": "^2.1.5",
     "@hookform/resolvers": "^3.1.1",
     "@prisma/client": "^5.19.1",
     "@prisma/extension-accelerate": "^1.0.0",

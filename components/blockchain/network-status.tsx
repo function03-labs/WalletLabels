@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useBlockNumber, useNetwork } from "wagmi"
+import { useBlockNumber } from "wagmi"
 
 import { chains } from "@/config/chains"
 import { cn } from "@/lib/utils"
@@ -22,6 +22,9 @@ const badgeVariants: Record<ReturnType<typeof GetNetworkColor>, string> = {
 export function NetworkStatus() {
   const path = usePathname()
   const { data } = useBlockNumber()
+
+  if (path === "/pricing") return null
+
   const chainSelected = chains.find(
     (c) => c.id === (path === "/" ? "ethereum" : path.split("/")[2])
   )!
