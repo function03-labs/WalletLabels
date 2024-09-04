@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
       href: "https://www.walletlabels.xyz/pricing",
       disabled: false,
       new: true,
-    }
+    },
   ],
   links: {
     docs: "https://docs.walletlabels.xyz/",

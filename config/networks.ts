@@ -112,7 +112,6 @@ if (env.NEXT_PUBLIC_INFURA_API_KEY) {
   )
 }
 
-
 if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === "true") {
   PROVIDERS.push(publicProvider())
 }

@@ -65,3 +65,9 @@ export interface DataTableFilterField<TData> {
   placeholder?: string
   options?: OptionTable[]
 }
+
+export type FrequencyType = {
+  value: string
+  label: string
+  priceSuffix: string
+}

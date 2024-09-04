@@ -1,19 +1,17 @@
-"use client"
-
-import React, { useState } from "react"
-import { Radio, RadioGroup } from "@headlessui/react"
+import React from "react"
 
 import { cn } from "@/lib/utils"
 
+import { AppPricingRadio } from "@/components/app/app-pricing-radio"
 import { Icons } from "@/components/shared/icons"
 
-/* export function generateMetadata() {
+export function generateMetadata() {
   return {
     title: "Pricing",
     description:
       "Get started with our free plan or upgrade to a paid plan for more features.",
   }
-} */
+}
 
 const frequencies = [
   { value: "monthly", label: "Monthly", priceSuffix: "/month" },
@@ -23,106 +21,108 @@ const frequencies = [
 
 const tiers = [
   {
-    name: "Freelancer",
-    id: "tier-freelancer",
-    href: "#",
-    price: { monthly: "$15", biannually: "$50", annually: "$144" },
-    description: "The essentials to provide your best work for clients.",
+    name: "Free Tier",
+    id: "tier-free",
+    href: "/dashboard",
+    price: { monthly: "$0", biannually: "$0", annually: "$0" },
+    description: "Get started with our free plan.",
     features: [
-      "5 products",
-      "Up to 1,000 subscribers",
-      "Basic analytics",
-      "48-hour support response time",
+      "300,000 API calls per month",
+      "Up to 10 API calls per second",
+      "3 API keys",
+    ],
+    featured: false,
+    cta: "Get started",
+  },
+  {
+    name: "Basic Plan",
+    id: "tier-basic",
+    href: "mailto:aiden@fn03.xyz",
+    price: { monthly: "$250", biannually: "$675", annually: "$2100" },
+    description: "A plan for small businesses.",
+    features: [
+      "500,000 API calls per month",
+      "Up to 20 API calls per second",
+      "3 API keys",
+      "Custom support",
     ],
     featured: false,
     cta: "Buy plan",
   },
   {
-    name: "Startup",
-    id: "tier-startup",
-    href: "#",
-    price: { monthly: "$30", biannually: "$50", annually: "$288" },
-    description: "A plan that scales with your rapidly growing business.",
+    name: "Pro Plan",
+    id: "tier-pro",
+    href: "mailto:aiden@fn03.xyz",
+    price: { monthly: "$500", biannually: "$2700", annually: "$4200" },
+    description: "A plan for growing businesses.",
     features: [
-      "25 products",
-      "Up to 10,000 subscribers",
-      "Advanced analytics",
-      "24-hour support response time",
-      "Marketing automations",
+      "1.5 million API calls per month",
+      "Up to 30 API calls per second",
+      "10 API keys",
+      "Custom support",
+      "Request features",
     ],
     featured: false,
     cta: "Buy plan",
   },
   {
-    name: "Enterprise",
+    name: "Enterprise Plans",
     id: "tier-enterprise",
-    href: "#",
-    price: "Custom",
-    description: "Dedicated support and infrastructure for your company.",
+    href: "mailto:aiden@fn03.xyz",
+    price: "$1000",
+    description: "Tailored solutions for large enterprises.",
     features: [
-      "Unlimited products",
-      "Unlimited subscribers",
-      "Advanced analytics",
-      "1-hour, dedicated support response time",
-      "Marketing automations",
-      "Custom reporting tools",
+      "Unlimited API calls per month",
+      "Unlimited API calls per second",
+      "Up to 100 API keys",
+      "Priority support",
+      "Request features",
+      "Direct access to stored datasets",
     ],
     featured: true,
     cta: "Contact sales",
   },
 ]
 
-export default function PricingPage() {
-  const [frequency, setFrequency] = useState(frequencies[0])
+export default function PricingPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const frequency =
+    frequencies.find((option) => option.value === searchParams.option) ||
+    frequencies[0]
 
   return (
     <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10">
       <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-        <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-6xl">
+        <h1 className="text-center text-3xl font-bold leading-tight dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
           Pricing
-        </h2>
+        </h1>
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
           Wallet Labels is an open-source project, and we are proud to share our
           code
         </p>
       </div>
-      <div className="mt-16 flex justify-center">
-        <fieldset aria-label="Payment frequency">
-          <RadioGroup
-            value={frequency}
-            onChange={setFrequency}
-            className="grid grid-cols-3 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200"
-          >
-            {frequencies.map((option) => (
-              <Radio
-                key={option.value}
-                value={option}
-                className={({ checked }: { checked: boolean }) =>
-                  cn(
-                    checked ? "bg-indigo-600 text-white" : "text-gray-500",
-                    "cursor-pointer rounded-full px-2.5 py-1"
-                  )
-                }
-              >
-                {option.label}
-              </Radio>
-            ))}
-          </RadioGroup>
-        </fieldset>
-      </div>
-      <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <AppPricingRadio frequencies={frequencies} />
+
+      <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
         {tiers.map((tier) => (
           <div
             key={tier.id}
             className={cn(
-              tier.featured ? "bg-gray-900 ring-gray-900" : "ring-gray-200",
+              tier.featured
+                ? "bg-secondary-foreground ring-secondary-foreground"
+                : "ring-secondary",
               "rounded-3xl p-8 ring-1 xl:p-10"
             )}
           >
             <h3
               id={tier.id}
               className={cn(
-                tier.featured ? "text-white" : "text-gray-900",
+                tier.featured
+                  ? "text-primary-foreground"
+                  : "text-secondary-foreground",
                 "text-lg font-semibold leading-8"
               )}
             >
@@ -130,7 +130,9 @@ export default function PricingPage() {
             </h3>
             <p
               className={cn(
-                tier.featured ? "text-gray-300" : "text-gray-600",
+                tier.featured
+                  ? "text-secondary"
+                  : "text-secondary-foreground/70",
                 "mt-4 text-sm leading-6"
               )}
             >
@@ -139,7 +141,9 @@ export default function PricingPage() {
             <p className="mt-6 flex items-baseline gap-x-1">
               <span
                 className={cn(
-                  tier.featured ? "text-white" : "text-gray-900",
+                  tier.featured
+                    ? "text-primary-foreground"
+                    : "text-secondary-foreground",
                   "text-4xl font-bold tracking-tight"
                 )}
               >
@@ -150,7 +154,9 @@ export default function PricingPage() {
               {typeof tier.price !== "string" ? (
                 <span
                   className={cn(
-                    tier.featured ? "text-gray-300" : "text-gray-600",
+                    tier.featured
+                      ? "text-secondary"
+                      : "text-secondary-foreground/70",
                     "text-sm font-semibold leading-6"
                   )}
                 >
@@ -163,8 +169,8 @@ export default function PricingPage() {
               aria-describedby={tier.id}
               className={cn(
                 tier.featured
-                  ? "bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white"
-                  : "bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-indigo-600",
+                  ? "bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 focus-visible:outline-primary-foreground"
+                  : "bg-primary text-primary-foreground shadow-sm hover:bg-primary focus-visible:outline-primary",
                 "mt-6 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               )}
             >
@@ -173,7 +179,9 @@ export default function PricingPage() {
             <ul
               role="list"
               className={cn(
-                tier.featured ? "text-gray-300" : "text-gray-600",
+                tier.featured
+                  ? "text-secondary"
+                  : "text-secondary-foreground/70",
                 "mt-8 space-y-3 text-sm leading-6 xl:mt-10"
               )}
             >
@@ -181,7 +189,7 @@ export default function PricingPage() {
                 <li key={feature} className="flex gap-x-3">
                   <Icons.check
                     className={cn(
-                      tier.featured ? "text-white" : "text-indigo-600",
+                      tier.featured ? "text-primary-secondary" : "text-primary",
                       "h-6 w-5 flex-none"
                     )}
                     aria-hidden="true"
