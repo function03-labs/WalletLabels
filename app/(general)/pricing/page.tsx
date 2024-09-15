@@ -24,8 +24,7 @@ const tiers = [
     id: "tier-free",
     href: "/dashboard",
     price: { monthly: "$0", biannually: "$0", annually: "$0" },
-    description:
-      "Get started with our free plan, suitable for small projects or testing purposes.",
+    description: "Suitable for small projects or testing purposes.",
     features: [
       "100,000 API calls per month",
       "Up to 5 API calls per second",
