@@ -1,53 +1,72 @@
 "use client"
 
 import React from "react"
-import { useRouter, useSearchParams } from "next/navigation"
 
 import { cn } from "@/lib/utils"
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
-import { FrequencyType } from "types"
+interface AppPricingRadioProps {
+  frequencies: Array<{
+    value: string
+    label: string
+    priceSuffix: string
+    discount?: number
+  }>
+  selectedFrequency: {
+    value: string
+    label: string
+    priceSuffix: string
+    discount?: number
+  }
+  onFrequencyChange: (frequency: {
+    value: string
+    label: string
+    priceSuffix: string
+    discount?: number
+  }) => void
+}
 
 export function AppPricingRadio({
   frequencies,
-}: {
-  frequencies: FrequencyType[]
-}) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const selected = searchParams.get("option") || "monthly"
-
+  selectedFrequency,
+  onFrequencyChange,
+}: AppPricingRadioProps) {
   return (
-    <div className="mt-4 flex justify-center">
-      <fieldset aria-label="Payment frequency">
-        <RadioGroup
-          defaultValue="monthly"
-          className="grid grid-cols-3 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200"
-        >
-          {frequencies.map((option) => (
-            <div
-              key={option.value}
+    <div className="flex justify-center">
+      <RadioGroup
+        value={selectedFrequency.value}
+        onValueChange={(value) => {
+          const frequency = frequencies.find((f) => f.value === value)
+          if (frequency) onFrequencyChange(frequency)
+        }}
+        className="inline-flex rounded-full bg-secondary p-1 text-secondary-foreground"
+      >
+        {frequencies.map((option) => (
+          <div key={option.value} className="relative">
+            <RadioGroupItem
+              value={option.value}
+              id={option.value}
+              className="peer sr-only"
+            />
+            <label
+              htmlFor={option.value}
               className={cn(
-                option.value === selected
-                  ? "bg-primary text-primary-foreground"
-                  : "text-secondary-foreground",
-                "cursor-pointer rounded-full px-2.5 py-1"
+                "flex cursor-pointer select-none items-center justify-center rounded-full px-3 py-1.5 text-sm font-medium transition-all hover:bg-primary/10",
+                "peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground",
+                "peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2"
               )}
             >
-              <RadioGroupItem
-                id={option.value}
-                value={option.value}
-                className="hidden"
-                onClick={() => router.push(`?option=${option.value}`)}
-              />
-              <label htmlFor={option.value} className="cursor-pointer">
-                {option.label}
-              </label>
-            </div>
-          ))}
-        </RadioGroup>
-      </fieldset>
+              {option.label}
+              {option.discount && (
+                <span className="absolute -right-2 -top-2 flex h-5 min-w-7 rotate-12 items-center justify-center rounded-full bg-green-700 px-1 text-[10px] font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:scale-110">
+                  -{option.discount}%
+                </span>
+              )}
+            </label>
+          </div>
+        ))}
+      </RadioGroup>
     </div>
   )
 }
