@@ -7,7 +7,7 @@ import { SiteConfig } from "@/types/site"
 export const SITE_CANONICAL = "https://walletlabels.xyz"
 
 export const siteConfig: SiteConfig = {
-  name: "Wallet Labels",
+  name: "WalletLabels",
   description:
     "More than 200M addresses labeled for you to easily identify your favorite wallets and exchanges.",
   mainNav: [

@@ -71,7 +71,7 @@ export function MainNav({ items }: MainNavProps) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             {chains.map((chain, index) => (
-              <DropdownMenuItem key={index}>
+              <DropdownMenuItem key={index} disabled={chain.disabled}>
                 <Link
                   className="flex w-full items-center gap-2"
                   href={getChainURL(params, chain.id)}
