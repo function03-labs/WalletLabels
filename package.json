@@ -128,7 +128,7 @@
     "@types/luxon": "^3.2.0",
     "@types/node": "^17.0.31",
     "@types/papaparse": "^5.3.14",
-    "@types/react": "^18.3.6",
+    "@types/react": "18.2.38",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "18.2.17",
     "@types/react-table": "^7.7.14",
