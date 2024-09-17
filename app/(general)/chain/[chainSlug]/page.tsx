@@ -14,19 +14,13 @@ import { cp } from "fs"
 
 async function getData({ params }: { params: { chainSlug: string } }) {
   try {
-    const response = await fetch(
+    const data = await fetch(
       `${env.NEXT_PUBLIC_SITE_URL}/api/chain/${params.chainSlug}`
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${env.NEXT_PUBLIC_SITE_URL}/api/chain/${params.chainSlug}`);
-    }
-
-    const data = await response.json();
-    return data;
+    )
+    return data.json()
   } catch (error) {
-    console.log(error);
-    redirect("/");
+    console.log(error)
+    redirect("/")
   }
 }
 
