@@ -55,6 +55,8 @@ export const indexMap = {
   ethereum: "labels_v2",
   solana: "solana",
   arbitrum: "arbitrum",
+  base:"base",
+  bitcoin:"bitcoin"
 }
 
 export function checkOrigin(request: Request) {

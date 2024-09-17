@@ -28,16 +28,22 @@ export async function GET(
     },
   })
 
-  const labelTypes = labels.map((label) =>
+  type Label = {
+    labelType: string
+    labelSubType: string
+    addressName: string
+    label: string
+  }
+  const labelTypes = labels.map((label:Label) =>
     replaceSpacesWithHyphens(label.labelType)
   )
-  const labelSubTypes = labels.map((label) =>
+  const labelSubTypes = labels.map((label:Label) =>
     replaceSpacesWithHyphens(label.labelSubType)
   )
-  const addressNames = labels.map((label) =>
+  const addressNames = labels.map((label:Label) =>
     replaceSpacesWithHyphens(label.addressName)
   )
-  const labelNames = labels.map((label) =>
+  const labelNames = labels.map((label:Label) =>
     replaceSpacesWithHyphens(label.label)
   )
 

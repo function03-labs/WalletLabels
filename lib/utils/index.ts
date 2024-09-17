@@ -102,6 +102,10 @@ export function getChainEnv(chainSlug: string) {
       return process.env.CLC_NAME_WLBLS_POLYGON
     case "solo-stakers":
       return process.env.CLC_NAME_WLBLS_SOLOSTAKERS
+    case "base":
+      return process.env.CLC_NAME_WLBLS_BASE
+    case "bitcoin":
+      return process.env.CLC_NAME_WLBLS_BITCOIN
     case "mev":
       return process.env.CLC_NAME_WLBLS_MEV
     default:
@@ -134,6 +138,10 @@ export function getChainImage(path: string) {
       return "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
     case "ethereum":
       return "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+    case "base":
+      return "https://github.com/base-org/brand-kit/raw/main/logo/in-product/Base_Network_Logo.svg"
+    case "bitcoin":
+      return "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
     default:
       return "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
   }
