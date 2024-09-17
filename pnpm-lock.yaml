@@ -14,12 +14,15 @@ importers:
       '@chakra-ui/react':
         specifier: ^2.8.2
         version: 2.8.2(@emotion/react@11.13.3(@types/react@18.2.38)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.2.38)(react@18.3.1))(@types/react@18.2.38)(react@18.3.1))(@types/react@18.2.38)(framer-motion@8.5.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@emotion/styled':
+        specifier: ^11.13.0
+        version: 11.13.0(@emotion/react@11.13.3(@types/react@18.2.38)(react@18.3.1))(@types/react@18.2.38)(react@18.3.1)
       '@glideapps/glide-data-grid':
         specifier: ^6.0.3
-        version: 6.0.3(lodash@4.17.21)(marked@4.3.0)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)
+        version: 6.0.3(lodash@4.17.21)(marked@14.1.2)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)
       '@glideapps/glide-data-grid-cells':
         specifier: ^6.0.3
-        version: 6.0.3(@types/react@18.2.38)(lodash@4.17.21)(marked@4.3.0)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)
+        version: 6.0.3(@types/react@18.2.38)(lodash@4.17.21)(marked@14.1.2)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)
       '@hookform/resolvers':
         specifier: ^3.1.1
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -119,6 +122,9 @@ importers:
       '@vercel/analytics':
         specifier: ^1.2.2
         version: 1.3.1(next@14.2.11(@babel/core@7.18.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@wagmi/cli':
+        specifier: ^1.1.0
+        version: 1.5.2(@wagmi/core@1.3.9(@types/react@18.2.38)(encoding@0.1.13)(react@18.3.1)(typescript@5.0.4)(viem@1.21.4(typescript@5.0.4)(zod@3.23.8))(zod@3.23.8))(typescript@5.0.4)(wagmi@1.3.10(@types/react@18.2.38)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.0.4)(viem@1.21.4(typescript@5.0.4)(zod@3.23.8))(zod@3.23.8))
       '@web3modal/siwe':
         specifier: ^4.1.6
         version: 4.2.3(@types/react@18.2.38)(react@18.3.1)
@@ -161,6 +167,9 @@ importers:
       luxon:
         specifier: ^3.2.1
         version: 3.5.0
+      marked:
+        specifier: ^14.1.2
+        version: 14.1.2
       moment:
         specifier: ^2.29.4
         version: 2.30.1
@@ -208,10 +217,13 @@ importers:
         version: 4.12.0(react@18.3.1)
       react-instantsearch:
         specifier: ^7.7.3
-        version: 7.13.1(algoliasearch@5.4.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.13.1(algoliasearch@5.4.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-markdown:
         specifier: ^8.0.4
         version: 8.0.7(@types/react@18.2.38)(react@18.3.1)
+      react-responsive-carousel:
+        specifier: ^3.2.23
+        version: 3.2.23
       react-table:
         specifier: ^7.8.0
         version: 7.8.0(react@18.3.1)
@@ -232,10 +244,10 @@ importers:
         version: 1.14.0
       tailwindcss:
         specifier: ^3.3.3
-        version: 3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
+        version: 3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)))
+        version: 1.0.7(tailwindcss@3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)))
       typesense-instantsearch-adapter:
         specifier: ^2.8.0
         version: 2.8.0(@babel/runtime@7.25.6)
@@ -306,9 +318,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^5.59.11
         version: 5.62.0(eslint@8.30.0)(typescript@5.0.4)
-      '@wagmi/cli':
-        specifier: ^1.1.0
-        version: 1.5.2(@wagmi/core@1.3.9(@types/react@18.2.38)(encoding@0.1.13)(react@18.3.1)(typescript@5.0.4)(viem@1.21.4(typescript@5.0.4)(zod@3.23.8))(zod@3.23.8))(typescript@5.0.4)(wagmi@1.3.10(@types/react@18.2.38)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.0.4)(viem@1.21.4(typescript@5.0.4)(zod@3.23.8))(zod@3.23.8))
       autoprefixer:
         specifier: ^10.4.13
         version: 10.4.20(postcss@8.4.47)
@@ -344,7 +353,7 @@ importers:
         version: 7.0.0(eslint@8.30.0)
       eslint-plugin-tailwindcss:
         specifier: ^3.5.0
-        version: 3.17.4(tailwindcss@3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)))
+        version: 3.17.4(tailwindcss@3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)))
       eslint-plugin-testing-library:
         specifier: ^5.5.1
         version: 5.11.1(eslint@8.30.0)(typescript@5.0.4)
@@ -375,43 +384,43 @@ packages:
   '@adraffy/ens-normalize@1.10.0':
     resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
 
-  '@algolia/client-abtesting@5.4.3':
-    resolution: {integrity: sha512-VJoRo1KH+vCg0ny8TLWhL+vTHw54AqgAwM/eobOnPGJ6j+hkjUac7Z8MakiKu4ilANxq1UtGBbCRJWOx0tsFTQ==}
+  '@algolia/client-abtesting@5.4.1':
+    resolution: {integrity: sha512-wJQDAqGPnvKxBnE3IZ9hKaYAumlGN3zAcAXQiFdvDDj5EXwwNrdLDjmvzt+e/QGPgYPqSIjCeiQMqDHevBmMLA==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-analytics@5.4.3':
-    resolution: {integrity: sha512-lI6oDbfMjF5UNFmsIjpWb8Se7LsS8M4WjHNBiF/IWc8wkWsEEYKS6ocD6hJHs6yLB8+m9m+hK9Lt4194XVqhuw==}
+  '@algolia/client-analytics@5.4.1':
+    resolution: {integrity: sha512-u8jb5wvfDDOQj/u/qOacd+1GJjSjazFUtGBMFJ8SAlKmU0u/GL+sMrEC0fz0RmPqP/ivZ25qcyCk1n8CpSQGwg==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-common@5.4.3':
-    resolution: {integrity: sha512-6BoqQ1/Xjwol7kL5Z7TwSphff0mN4pwpydTi6VOkKs7X3piBj6cuJ3FLjHnaVCwMvcaO9hW3gbx+M0u1sYekig==}
+  '@algolia/client-common@5.4.1':
+    resolution: {integrity: sha512-IffPD+CETiR8YJMVC1lcjnhETLpJ2L0ORZCbbRvwo/S11D1j/keR7AqKVMn4TseRJCfjmBFOcFrC+m4sXjyQWA==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-personalization@5.4.3':
-    resolution: {integrity: sha512-rHg1dE13FNvownKqu5mKGica9XnUEjh7rIQjDoamW4OQTmMvJTnvaCFa0F21naZmxwTP+yXfnm8OsvQY91oDyg==}
+  '@algolia/client-personalization@5.4.1':
+    resolution: {integrity: sha512-WqxZRlOBcsJlxO6I0abnGkA1Grjcw0rEs4hEu0SZb+GL9lUsZnIVGNAn5h2GLaMx6kR48W8Ep4xU10jP0NNvKA==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-search@5.4.3':
-    resolution: {integrity: sha512-SJ2ofwdyknkwfSXQi7xvrOR93lNxjsgS1+vOdOkOF1t6HgWxnPXHZoP2hUSsrKExSQWmeE7UUbpvhHZkFxGLeA==}
+  '@algolia/client-search@5.4.1':
+    resolution: {integrity: sha512-nCgWY2p0tZgBqJKmA5E6B3VW+7uqxi1Orf88zNWOihJBRFeOV932pzG4vGrX9l0+p0o/vJabYxuomO35rEt5dw==}
     engines: {node: '>= 14.0.0'}
 
   '@algolia/events@4.0.1':
     resolution: {integrity: sha512-FQzvOCgoFXAbf5Y6mYozw2aj5KCJoA3m4heImceldzPSMbdyS4atVjJzXKMsfX3wnZTFYwkkt8/z8UesLHlSBQ==}
 
-  '@algolia/recommend@5.4.3':
-    resolution: {integrity: sha512-hX5D4+0q1ZuUvj8reZNa6Cr9i3rQvWpwJy8X/3Llel1P6umzqPH2HP5y+IgichRprFfMjixlMl5tMwcb23iYOg==}
+  '@algolia/recommend@5.4.1':
+    resolution: {integrity: sha512-OgXki3OHFthEVrsv8GtKNxqQw7ww4u2m0iXl+9a/E+FhTD0iJcS2rACrYB8y6/HRTFQMqML509M0I1B/dXy6ig==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-browser-xhr@5.4.3':
-    resolution: {integrity: sha512-XgxyUzUQei5MDNkjss5ioID00sRkazgYAojZpz8B1gNvWaSx/FQd/7MlVoi4HBtSJNi1pkgpsVGGlMp6nTZdyA==}
+  '@algolia/requester-browser-xhr@5.4.1':
+    resolution: {integrity: sha512-J6+YfU+maR0nIbsYRHoq0UpneilX97hrZzPuuvSoBojQmPo8PeCXKGeT/F0D8uFI6G4CMTKEPGmQYrC9IpCbcQ==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-fetch@5.4.3':
-    resolution: {integrity: sha512-Z6VuKQrBd6+TzyL1jsLI1kkoeXTY/g3SR01Z674vTZpdZlimiI9HMMHkgHthtK1speMjfPGDcTggi4TcOxXpMQ==}
+  '@algolia/requester-fetch@5.4.1':
+    resolution: {integrity: sha512-AO/C1pqqpIS8p2IsfM5x92S+UBKkcIen5dHfMEh1rnV0ArWDreeqrtxMD2A+6AjQVwYeZNy56w7o7PVIm6mc8g==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-node-http@5.4.3':
-    resolution: {integrity: sha512-gNIaj31fFz3pbIM7LiS1iu4/1ZX+lJdWd+UiM9ECaGtZYpkdxxqbfyMHieISVLNsVezOpYgS2BYeKe8d5+se/Q==}
+  '@algolia/requester-node-http@5.4.1':
+    resolution: {integrity: sha512-2Y3vffc91egwFxz0SjXFEH4q8nvlNJHcz+0//NaWItRU68AvD+3aI/j66STPjkLQOC0Ku6ckA9ChhbOVfrv+Uw==}
     engines: {node: '>= 14.0.0'}
 
   '@alloc/quick-lru@5.2.0':
@@ -5172,8 +5181,8 @@ packages:
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
 
-  algoliasearch@5.4.3:
-    resolution: {integrity: sha512-S2WI0DnFhtGfUiz5tAw6SgdePjDaFiDVJjpyqDA9UMKVNVewmUKrtqUb54h6RUadLMlqQuJ0sUCe8l5DcSHa6Q==}
+  algoliasearch@5.4.1:
+    resolution: {integrity: sha512-8LpK9JOiZQMUVXGrvieMhgG9rhNXD5TTycBCXMV/KShHFPklMkeHVo+HmFOH3lnQFi74M0Qhs/RXu+dfomCMWQ==}
     engines: {node: '>= 14.0.0'}
 
   ansi-escapes@4.3.2:
@@ -6140,8 +6149,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.24:
-    resolution: {integrity: sha512-0x0wLCmpdKFCi9ulhvYZebgcPmHTkFVUfU2wzDykadkslKwT4oAmDTHEKLnlrDsMGZe4B+ksn8quZfZjYsBetA==}
+  electron-to-chromium@1.5.23:
+    resolution: {integrity: sha512-mBhODedOXg4v5QWwl21DjM5amzjmI1zw9EPrPK/5Wx7C8jt33bpZNrC7OhHUG3pxRtbLpr3W2dXT+Ph1SsfRZA==}
 
   elliptic@6.5.4:
     resolution: {integrity: sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==}
@@ -7755,9 +7764,9 @@ packages:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
 
-  marked@4.3.0:
-    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
-    engines: {node: '>= 12'}
+  marked@14.1.2:
+    resolution: {integrity: sha512-f3r0yqpz31VXiDB/wj9GaOB0a2PRLQl6vJmXiFrniNwjkKdvakqJRULhjFKJpxOchlCRiG5fcacoUZY5Xa6PEQ==}
+    engines: {node: '>= 18'}
     hasBin: true
 
   mdast-util-definitions@5.1.2:
@@ -9576,8 +9585,8 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
 
-  tailwindcss@3.4.12:
-    resolution: {integrity: sha512-Htf/gHj2+soPb9UayUNci/Ja3d8pTmu9ONTfh4QY8r3MATTZOzmv6UYWF7ZwikEIC8okpfqmGqrmDehua8mF8w==}
+  tailwindcss@3.4.11:
+    resolution: {integrity: sha512-qhEuBcLemjSJk5ajccN9xJFtM/h0AVCPaA6C92jNP+M2J8kX+eMJHI7R2HFKUvvAsMpcfLILMCFYSeDwpMmlUg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -9626,8 +9635,8 @@ packages:
       uglify-js:
         optional: true
 
-  terser@5.33.0:
-    resolution: {integrity: sha512-JuPVaB7s1gdFKPKTelwUyRq5Sid2A3Gko2S0PncwdBq7kN9Ti9HPWDQ06MPsEDGsZeVESjKEnyGy68quBk1w6g==}
+  terser@5.32.0:
+    resolution: {integrity: sha512-v3Gtw3IzpBJ0ugkxEX8U0W6+TnPKRRCWGh1jC/iM/e3Ki5+qvO1L1EAZ56bZasc64aXHwRHNIQEzm6//i5cemQ==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -9738,9 +9747,6 @@ packages:
 
   tslib@2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-
-  tslib@2.4.1:
-    resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
 
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
@@ -10414,56 +10420,56 @@ snapshots:
 
   '@adraffy/ens-normalize@1.10.0': {}
 
-  '@algolia/client-abtesting@5.4.3':
+  '@algolia/client-abtesting@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
-      '@algolia/requester-browser-xhr': 5.4.3
-      '@algolia/requester-fetch': 5.4.3
-      '@algolia/requester-node-http': 5.4.3
+      '@algolia/client-common': 5.4.1
+      '@algolia/requester-browser-xhr': 5.4.1
+      '@algolia/requester-fetch': 5.4.1
+      '@algolia/requester-node-http': 5.4.1
 
-  '@algolia/client-analytics@5.4.3':
+  '@algolia/client-analytics@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
-      '@algolia/requester-browser-xhr': 5.4.3
-      '@algolia/requester-fetch': 5.4.3
-      '@algolia/requester-node-http': 5.4.3
+      '@algolia/client-common': 5.4.1
+      '@algolia/requester-browser-xhr': 5.4.1
+      '@algolia/requester-fetch': 5.4.1
+      '@algolia/requester-node-http': 5.4.1
 
-  '@algolia/client-common@5.4.3': {}
+  '@algolia/client-common@5.4.1': {}
 
-  '@algolia/client-personalization@5.4.3':
+  '@algolia/client-personalization@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
-      '@algolia/requester-browser-xhr': 5.4.3
-      '@algolia/requester-fetch': 5.4.3
-      '@algolia/requester-node-http': 5.4.3
+      '@algolia/client-common': 5.4.1
+      '@algolia/requester-browser-xhr': 5.4.1
+      '@algolia/requester-fetch': 5.4.1
+      '@algolia/requester-node-http': 5.4.1
 
-  '@algolia/client-search@5.4.3':
+  '@algolia/client-search@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
-      '@algolia/requester-browser-xhr': 5.4.3
-      '@algolia/requester-fetch': 5.4.3
-      '@algolia/requester-node-http': 5.4.3
+      '@algolia/client-common': 5.4.1
+      '@algolia/requester-browser-xhr': 5.4.1
+      '@algolia/requester-fetch': 5.4.1
+      '@algolia/requester-node-http': 5.4.1
 
   '@algolia/events@4.0.1': {}
 
-  '@algolia/recommend@5.4.3':
+  '@algolia/recommend@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
-      '@algolia/requester-browser-xhr': 5.4.3
-      '@algolia/requester-fetch': 5.4.3
-      '@algolia/requester-node-http': 5.4.3
+      '@algolia/client-common': 5.4.1
+      '@algolia/requester-browser-xhr': 5.4.1
+      '@algolia/requester-fetch': 5.4.1
+      '@algolia/requester-node-http': 5.4.1
 
-  '@algolia/requester-browser-xhr@5.4.3':
+  '@algolia/requester-browser-xhr@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
+      '@algolia/client-common': 5.4.1
 
-  '@algolia/requester-fetch@5.4.3':
+  '@algolia/requester-fetch@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
+      '@algolia/client-common': 5.4.1
 
-  '@algolia/requester-node-http@5.4.3':
+  '@algolia/requester-node-http@5.4.1':
     dependencies:
-      '@algolia/client-common': 5.4.3
+      '@algolia/client-common': 5.4.1
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -13227,7 +13233,7 @@ snapshots:
       '@types/node': 20.5.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.6.2)
-      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.6.2))(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.6.2))(typescript@5.6.2)
+      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.0.4))(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))(typescript@5.6.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -13785,9 +13791,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.8': {}
 
-  '@glideapps/glide-data-grid-cells@6.0.3(@types/react@18.2.38)(lodash@4.17.21)(marked@4.3.0)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)':
+  '@glideapps/glide-data-grid-cells@6.0.3(@types/react@18.2.38)(lodash@4.17.21)(marked@14.1.2)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)':
     dependencies:
-      '@glideapps/glide-data-grid': 6.0.3(lodash@4.17.21)(marked@4.3.0)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)
+      '@glideapps/glide-data-grid': 6.0.3(lodash@4.17.21)(marked@14.1.2)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)
       '@linaria/react': 4.5.4(react@18.3.1)
       '@toast-ui/editor': 3.1.10
       '@toast-ui/react-editor': 3.1.10(react@18.3.1)
@@ -13801,12 +13807,12 @@ snapshots:
       - react-responsive-carousel
       - supports-color
 
-  '@glideapps/glide-data-grid@6.0.3(lodash@4.17.21)(marked@4.3.0)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)':
+  '@glideapps/glide-data-grid@6.0.3(lodash@4.17.21)(marked@14.1.2)(react-dom@18.3.1(react@18.3.1))(react-responsive-carousel@3.2.23)(react@18.3.1)':
     dependencies:
       '@linaria/react': 4.5.4(react@18.3.1)
       canvas-hypertxt: 1.0.3
       lodash: 4.17.21
-      marked: 4.3.0
+      marked: 14.1.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-number-format: 5.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -14006,7 +14012,7 @@ snapshots:
       graphql: 16.9.0
       import-from: 4.0.0
       lodash: 4.17.21
-      tslib: 2.4.1
+      tslib: 2.4.0
 
   '@graphql-codegen/plugin-helpers@3.1.2(graphql@16.9.0)':
     dependencies:
@@ -14016,7 +14022,7 @@ snapshots:
       graphql: 16.9.0
       import-from: 4.0.0
       lodash: 4.17.21
-      tslib: 2.4.1
+      tslib: 2.4.0
 
   '@graphql-codegen/plugin-helpers@5.0.4(graphql@16.9.0)':
     dependencies:
@@ -14054,7 +14060,7 @@ snapshots:
       auto-bind: 4.0.0
       graphql: 16.9.0
       graphql-tag: 2.12.6(graphql@16.9.0)
-      tslib: 2.4.1
+      tslib: 2.4.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -14108,7 +14114,7 @@ snapshots:
       graphql: 16.9.0
       graphql-tag: 2.12.6(graphql@16.9.0)
       parse-filepath: 1.0.2
-      tslib: 2.4.1
+      tslib: 2.4.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -14453,7 +14459,7 @@ snapshots:
     dependencies:
       graphql: 16.9.0
       lodash.sortby: 4.7.0
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   '@graphql-tools/executor-graphql-ws@1.2.0(graphql@16.9.0)':
     dependencies:
@@ -14611,7 +14617,7 @@ snapshots:
   '@graphql-tools/optimize@2.0.0(graphql@16.9.0)':
     dependencies:
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   '@graphql-tools/prisma-loader@8.0.4(@types/node@17.0.45)(encoding@0.1.13)(graphql@16.9.0)':
     dependencies:
@@ -14654,7 +14660,7 @@ snapshots:
       '@ardatan/relay-compiler': 12.0.0(encoding@0.1.13)(graphql@16.9.0)
       '@graphql-tools/utils': 10.5.4(graphql@16.9.0)
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.7.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -18092,22 +18098,22 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
-  algoliasearch-helper@3.22.5(algoliasearch@5.4.3):
+  algoliasearch-helper@3.22.5(algoliasearch@5.4.1):
     dependencies:
       '@algolia/events': 4.0.1
-      algoliasearch: 5.4.3
+      algoliasearch: 5.4.1
 
-  algoliasearch@5.4.3:
+  algoliasearch@5.4.1:
     dependencies:
-      '@algolia/client-abtesting': 5.4.3
-      '@algolia/client-analytics': 5.4.3
-      '@algolia/client-common': 5.4.3
-      '@algolia/client-personalization': 5.4.3
-      '@algolia/client-search': 5.4.3
-      '@algolia/recommend': 5.4.3
-      '@algolia/requester-browser-xhr': 5.4.3
-      '@algolia/requester-fetch': 5.4.3
-      '@algolia/requester-node-http': 5.4.3
+      '@algolia/client-abtesting': 5.4.1
+      '@algolia/client-analytics': 5.4.1
+      '@algolia/client-common': 5.4.1
+      '@algolia/client-personalization': 5.4.1
+      '@algolia/client-search': 5.4.1
+      '@algolia/recommend': 5.4.1
+      '@algolia/requester-browser-xhr': 5.4.1
+      '@algolia/requester-fetch': 5.4.1
+      '@algolia/requester-node-http': 5.4.1
 
   ansi-escapes@4.3.2:
     dependencies:
@@ -18479,7 +18485,7 @@ snapshots:
   browserslist@4.23.3:
     dependencies:
       caniuse-lite: 1.0.30001660
-      electron-to-chromium: 1.5.24
+      electron-to-chromium: 1.5.23
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.3)
 
@@ -18835,7 +18841,7 @@ snapshots:
     dependencies:
       browserslist: 4.23.3
 
-  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.6.2))(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.6.2))(typescript@5.6.2):
+  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.0.4))(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))(typescript@5.6.2):
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@5.6.2)
@@ -19171,7 +19177,7 @@ snapshots:
     dependencies:
       jake: 10.9.2
 
-  electron-to-chromium@1.5.24: {}
+  electron-to-chromium@1.5.23: {}
 
   elliptic@6.5.4:
     dependencies:
@@ -19505,11 +19511,11 @@ snapshots:
     dependencies:
       eslint: 8.30.0
 
-  eslint-plugin-tailwindcss@3.17.4(tailwindcss@3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))):
+  eslint-plugin-tailwindcss@3.17.4(tailwindcss@3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))):
     dependencies:
       fast-glob: 3.3.2
       postcss: 8.4.47
-      tailwindcss: 3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
+      tailwindcss: 3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
 
   eslint-plugin-testing-library@5.11.1(eslint@8.30.0)(typescript@5.0.4):
     dependencies:
@@ -20189,7 +20195,7 @@ snapshots:
   graphql-tag@2.12.6(graphql@16.9.0):
     dependencies:
       graphql: 16.9.0
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   graphql-ws@5.16.0(graphql@16.9.0):
     dependencies:
@@ -20395,15 +20401,15 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.6
 
-  instantsearch.js@4.74.1(algoliasearch@5.4.3):
+  instantsearch.js@4.74.1(algoliasearch@5.4.1):
     dependencies:
       '@algolia/events': 4.0.1
       '@types/dom-speech-recognition': 0.0.1
       '@types/google.maps': 3.58.0
       '@types/hogan.js': 3.0.5
       '@types/qs': 6.9.16
-      algoliasearch: 5.4.3
-      algoliasearch-helper: 3.22.5(algoliasearch@5.4.3)
+      algoliasearch: 5.4.1
+      algoliasearch-helper: 3.22.5(algoliasearch@5.4.1)
       hogan.js: 3.0.2
       htm: 3.1.1
       instantsearch-ui-components: 0.9.0
@@ -20530,7 +20536,7 @@ snapshots:
 
   is-lower-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   is-map@2.0.3: {}
 
@@ -20619,7 +20625,7 @@ snapshots:
 
   is-upper-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   is-weakmap@2.0.2: {}
 
@@ -21012,11 +21018,11 @@ snapshots:
 
   lower-case-first@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   lower-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   lru-cache@10.4.3: {}
 
@@ -21070,7 +21076,7 @@ snapshots:
 
   map-obj@4.3.0: {}
 
-  marked@4.3.0: {}
+  marked@14.1.2: {}
 
   mdast-util-definitions@5.1.2:
     dependencies:
@@ -22240,24 +22246,24 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  react-instantsearch-core@7.13.1(algoliasearch@5.4.3)(react@18.3.1):
+  react-instantsearch-core@7.13.1(algoliasearch@5.4.1)(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.25.6
-      algoliasearch: 5.4.3
-      algoliasearch-helper: 3.22.5(algoliasearch@5.4.3)
-      instantsearch.js: 4.74.1(algoliasearch@5.4.3)
+      algoliasearch: 5.4.1
+      algoliasearch-helper: 3.22.5(algoliasearch@5.4.1)
+      instantsearch.js: 4.74.1(algoliasearch@5.4.1)
       react: 18.3.1
       use-sync-external-store: 1.2.2(react@18.3.1)
 
-  react-instantsearch@7.13.1(algoliasearch@5.4.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-instantsearch@7.13.1(algoliasearch@5.4.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.25.6
-      algoliasearch: 5.4.3
+      algoliasearch: 5.4.1
       instantsearch-ui-components: 0.9.0
-      instantsearch.js: 4.74.1(algoliasearch@5.4.3)
+      instantsearch.js: 4.74.1(algoliasearch@5.4.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-instantsearch-core: 7.13.1(algoliasearch@5.4.3)(react@18.3.1)
+      react-instantsearch-core: 7.13.1(algoliasearch@5.4.1)(react@18.3.1)
 
   react-is@16.13.1: {}
 
@@ -22588,7 +22594,7 @@ snapshots:
       jest-worker: 26.6.2
       rollup: 2.79.1
       serialize-javascript: 4.0.0
-      terser: 5.33.0
+      terser: 5.32.0
 
   rollup@2.79.1:
     optionalDependencies:
@@ -22857,7 +22863,7 @@ snapshots:
 
   sponge-case@1.0.1:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   sprintf-js@1.1.3:
     optional: true
@@ -23042,7 +23048,7 @@ snapshots:
 
   swap-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   symbol-observable@4.0.0:
     optional: true
@@ -23051,11 +23057,11 @@ snapshots:
 
   tailwind-merge@1.14.0: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))):
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))):
     dependencies:
-      tailwindcss: 3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
+      tailwindcss: 3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4))
 
-  tailwindcss@3.4.12(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)):
+  tailwindcss@3.4.11(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.0.4)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -23138,12 +23144,12 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
-      terser: 5.33.0
+      terser: 5.32.0
       webpack: 5.94.0(esbuild@0.16.17)
     optionalDependencies:
       esbuild: 0.16.17
 
-  terser@5.33.0:
+  terser@5.32.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
       acorn: 8.12.1
@@ -23182,7 +23188,7 @@ snapshots:
 
   title-case@3.0.3:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   tmp@0.0.33:
     dependencies:
@@ -23250,8 +23256,6 @@ snapshots:
   tslib@1.14.1: {}
 
   tslib@2.4.0: {}
-
-  tslib@2.4.1: {}
 
   tslib@2.6.2: {}
 
@@ -23470,11 +23474,11 @@ snapshots:
 
   upper-case-first@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   upper-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   uqr@0.1.2: {}
 
