@@ -114,6 +114,10 @@ export function getLookUpURL(chainSlug: string, address: string) {
     return `https://solscan.io/account/${address}`
   } else if (chainSlug === "arbitrum") {
     return `https://arbiscan.io/address/${address}`
+  } else if (chainSlug === "base") {
+    return `https://basescan.org/address/${address}`
+  } else if (chainSlug === "bitcoin") {
+    return `https://btcscan.io/address/${address}`
   } else if (chainSlug === "ethereum") {
     return `https://etherscan.io/address/${address}`
   }
