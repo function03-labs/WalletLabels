@@ -25,14 +25,14 @@ export const chains = [
     label: "Base",
     img: "https://github.com/base-org/brand-kit/raw/main/logo/in-product/Base_Network_Logo.svg",
     url: "https://basescan.org/",
-    disabled: true,
+    disabled: false,
   },
   {
     id: "bitcoin",
     label: "Bitcoin",
     img: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029",
     url: "https://blockchain.com/explorer",
-    disabled: true,
+    disabled: false,
   },
   /*  {
     id: "avax",

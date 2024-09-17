@@ -10,6 +10,7 @@ import { Bento } from "@/components/shared/bento"
 import { CountingUp } from "@/components/shared/counting-up"
 import { SearchBox } from "@/components/shared/search-box"
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
+import { cp } from "fs"
 
 async function getData({ params }: { params: { chainSlug: string } }) {
   try {
@@ -22,6 +23,7 @@ async function getData({ params }: { params: { chainSlug: string } }) {
     redirect("/")
   }
 }
+
 
 export default async function Page({
   params,

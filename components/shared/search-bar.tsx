@@ -56,6 +56,10 @@ export function SearchBar({
                           ? "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
                           : chain === "arbitrum"
                           ? "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
+                          : chain === "base"
+                          ? "https://github.com/base-org/brand-kit/raw/main/logo/in-product/Base_Network_Logo.svg"
+                          : chain === "bitcoin"
+                          ? "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
                           : "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
                       }
                       alt="Ethereum"

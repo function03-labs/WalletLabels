@@ -28,7 +28,14 @@ export async function GET(
     },
   })
 
-  const processedLabels = labels.map((label) => ({
+  type Label = {
+    labelType: string
+    labelSubType: string
+    addressName: string
+    label: string
+  }
+
+  const processedLabels = labels.map((label:Label) => ({
     ...label,
     addressName: convertSpacesToHyphens(label.addressName),
     labelType: convertSpacesToHyphens(label.labelType),

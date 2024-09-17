@@ -21,7 +21,7 @@ export async function GET(
   const {
     params: { chainSlug },
   } = chainContextSchema.parse(context)
-
+  console.log(getChainEnv(chainSlug));
   const db = await connectToDatabase()
   const labels = await db.db
     .collection(getChainEnv(chainSlug)!)
