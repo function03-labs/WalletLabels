@@ -15,6 +15,7 @@ const nextConfig = {
       "avatars.jakerunzer.com",
       "icons.llamao.fi",
       "cryptologos.cc",
+      "i.redd.it",
     ],
   },
   env: {

@@ -2,15 +2,18 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { motion } from "framer-motion"
 
 import { chains } from "@/config/chains"
 import { siteConfig } from "@/config/site"
 import { cn, getChainImage, getChainURL } from "@/lib/utils"
 
 import { Icons } from "@/components/shared/icons"
+import { SuggestChainModal } from "@/components/suggest-chain-modal"
 import { buttonVariants } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -28,6 +31,7 @@ interface MainNavProps {
 }
 
 export function MainNav({ items }: MainNavProps) {
+  const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false)
   const params = usePathname()
   const chainImage = getChainImage(params)
 
@@ -87,6 +91,35 @@ export function MainNav({ items }: MainNavProps) {
                 </Link>
               </DropdownMenuItem>
             ))}
+            <DropdownMenuItem onSelect={() => setIsSuggestModalOpen(true)}>
+              <motion.div
+                className="flex w-full items-center gap-2 rounded-md transition-all duration-300"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+              >
+                <motion.div
+                  className="relative"
+                  animate={{
+                    y: [0, -1, 0],
+                    rotate: [0, -5, 5, 0],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 2,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Image
+                    src="https://i.redd.it/5unqv87oj8y91.gif"
+                    alt="Suggest a chain"
+                    width={32}
+                    height={32}
+                    className="size-4 rounded-md"
+                  />
+                </motion.div>
+                <span className="">Suggest a new chain</span>
+              </motion.div>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -116,6 +149,11 @@ export function MainNav({ items }: MainNavProps) {
             )
         )}
       </nav>
+
+      <SuggestChainModal
+        isOpen={isSuggestModalOpen}
+        onClose={() => setIsSuggestModalOpen(false)}
+      />
     </div>
   )
 }
