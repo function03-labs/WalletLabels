@@ -26,7 +26,7 @@ export function NetworkStatus() {
   if (path === "/pricing") return null
 
   const chainSelected = chains.find(
-    (c) => c.id === (path === "/" ? "ethereum" : path.split("/")[2])
+    (c) => c.id === (path === "/" ? "ethereum" : path?.split("/")[2])
   )!
 
   return (

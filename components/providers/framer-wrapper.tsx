@@ -12,7 +12,7 @@ export function FramerWrapper(props: { children: React.ReactNode }) {
 
   //if path is '/' or begins with "/chains"
   let isHome: boolean = false
-  if (path === "/" || !path.includes("/community")) {
+  if (path === "/" || !path?.includes("/community")) {
     isHome = true
   }
 

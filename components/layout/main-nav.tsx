@@ -33,6 +33,8 @@ interface MainNavProps {
 export function MainNav({ items }: MainNavProps) {
   const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false)
   const params = usePathname()
+  if (!params) return null
+
   const chainImage = getChainImage(params)
 
   let path: string = ""

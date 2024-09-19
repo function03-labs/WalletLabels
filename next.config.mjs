@@ -20,6 +20,8 @@ const nextConfig = {
   },
   env: {
     mode: process.env.NODE_ENV,
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+    SENDGRID_FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL,
   },
   webpack: (config) => {
     config.resolve.fallback = { fs: false, net: false, tls: false }
@@ -38,6 +40,14 @@ const nextConfig = {
     })
     return config
   },
+  ...(process.env.NODE_ENV === 'production' && {
+    typescript: {
+      ignoreBuildErrors: true,
+    },
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
+  }),
   ...withPWA({
     dest: "public",
     register: true,

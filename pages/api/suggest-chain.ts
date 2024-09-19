@@ -8,21 +8,27 @@ export default async function handler(
   if (req.method === "POST") {
     const { chainName } = req.body
 
-    // Create a nodemailer transporter
+    // Create a nodemailer transporter using SendGrid's SMTP server
     const transporter = nodemailer.createTransport({
-      // Configure your email service here
-      // For example, using Gmail:
-      service: "gmail",
+      host: "smtp.sendgrid.net",
+      port: 587,
+      secure: false, // Use TLS
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: "apikey", // This is always 'apikey' for SendGrid
+        pass: process.env.SENDGRID_API_KEY,
       },
     })
+
+    // Ensure SENDGRID_FROM_EMAIL is set
+    if (!process.env.SENDGRID_FROM_EMAIL) {
+      console.error("SENDGRID_FROM_EMAIL is not set in environment variables")
+      return res.status(500).json({ error: "Server configuration error" })
+    }
 
     try {
       // Send email
       await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: process.env.SENDGRID_FROM_EMAIL, // Make sure this is set in your .env file
         to: "aiden@fn03.xyz",
         subject: "New Chain Suggestion",
         text: `A new chain has been suggested: ${chainName}`,

@@ -29,7 +29,7 @@ export function ActivityFilter() {
   const { refresh } = useInstantSearch()
   const [open, setOpen] = useState(false)
 
-  const query = searchParams.get("query")
+  const query = searchParams?.get("query") ?? ""
 
   const { items: activities, refine: refineActivity } = useRefinementList({
     attribute: "label_type",

@@ -118,7 +118,7 @@ export function useDataTable<TData, TValue>({
   const searchParams = useSearchParams()
 
   // Search params
-  const search = schema.parse(Object.fromEntries(searchParams))
+  const search = schema.parse(Object.fromEntries(searchParams ?? new URLSearchParams()))
   const page = search.page
   const perPage = search.per_page ?? defaultPerPage
   const sort = search.sort ?? defaultSort
@@ -152,7 +152,7 @@ export function useDataTable<TData, TValue>({
 
   // Initial column filters
   const initialColumnFilters: ColumnFiltersState = React.useMemo(() => {
-    return Array.from(searchParams.entries()).reduce<ColumnFiltersState>(
+    return Array.from(searchParams?.entries() ?? []).reduce<ColumnFiltersState>(
       (filters, [key, value]) => {
         const filterableColumn = filterableColumns.find(
           (column) => column.value === key
@@ -202,18 +202,20 @@ export function useDataTable<TData, TValue>({
   )
 
   React.useEffect(() => {
-    router.push(
-      `${pathname}?${createQueryString({
-        page: pageIndex + 1,
-        per_page: pageSize,
-      })}`,
-      {
-        scroll: false,
-      }
-    )
+    if (pathname) {
+      router.push(
+        `${pathname}?${createQueryString({
+          page: pageIndex + 1,
+          per_page: pageSize,
+        })}`,
+        {
+          scroll: false,
+        }
+      )
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageIndex, pageSize])
+  }, [pageIndex, pageSize, pathname])
 
   // Handle server-side sorting
   const [sorting, setSorting] = React.useState<SortingState>([
@@ -224,16 +226,18 @@ export function useDataTable<TData, TValue>({
   ])
 
   React.useEffect(() => {
-    router.push(
-      `${pathname}?${createQueryString({
-        page,
-        sort: sorting[0]?.id
-          ? `${sorting[0]?.id}.${sorting[0]?.desc ? "desc" : "asc"}`
-          : null,
-      })}`
-    )
+    if (pathname) {
+      router.push(
+        `${pathname}?${createQueryString({
+          page,
+          sort: sorting[0]?.id
+            ? `${sorting[0]?.id}.${sorting[0]?.desc ? "desc" : "asc"}`
+            : null,
+        })}`
+      )
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sorting])
+  }, [sorting, pathname])
 
   // Handle server-side filtering
   const debouncedSearchableColumnFilters = JSON.parse(
@@ -285,7 +289,7 @@ export function useDataTable<TData, TValue>({
     }
 
     // Remove deleted values
-    for (const key of searchParams.keys()) {
+    for (const key of searchParams?.keys() ?? []) {
       if (
         (searchableColumns.find((column) => column.value === key) &&
           !debouncedSearchableColumnFilters.find(
@@ -299,7 +303,9 @@ export function useDataTable<TData, TValue>({
     }
 
     // After cumulating all the changes, push new params
-    router.push(`${pathname}?${createQueryString(newParamsObject)}`)
+    if (pathname) {
+      router.push(`${pathname}?${createQueryString(newParamsObject)}`)
+    }
 
     table.setPageIndex(0)
 
