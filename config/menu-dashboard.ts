@@ -11,7 +11,12 @@ export const menuDashboard = [
     href: "/dashboard/profile",
   },
   {
+    label: "Subscription",
+    href: "/dashboard/subscription",
+  },
+  {
     label: "Submit",
     href: "/dashboard/submit",
-  },
+  }
+
 ]
