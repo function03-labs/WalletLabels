@@ -3,66 +3,59 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL_ACCELERATE")
+  provider  = "postgres"
+  url       = env("DATABASE_URL_ACCELERATE")
   directUrl = env("DATABASE_URL_SUPABASE")
 }
 
-enum AddressLabelStatus {
-  PENDING
-  ACCEPTED
-  DECLINED
-}
-
 model User {
-  id String @id
-
-  name             String
-  email            String?
-  avatar           String
-  organizationSlug String?
-
-  apiKeys      ApiKey[]
-  AddressLabel AddressLabel[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                  String         @id
+  name                String
+  email               String?
+  avatar              String
+  organizationSlug    String?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  airwallexCustomerId String?        @unique
+  AddressLabel        AddressLabel[]
+  apiKeys             ApiKey[]
 
   @@map("users")
 }
 
 model ApiKey {
-  id  String @id @default(cuid())
-  key String @unique
-
-  name   String
-  chains String[]
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
+  id        String   @id @default(cuid())
+  key       String   @unique
+  name      String
+  chains    String[]
+  userId    String
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@map("api_keys")
 }
 
 model AddressLabel {
-  id           String  @id @default(cuid())
+  id           String             @id @default(cuid())
   blockchain   String
   address      String
   addressName  String
   labelType    String
-  labelSubType String
   label        String
+  userId       String
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  labelSubType String
   status       AddressLabelStatus @default(PENDING)
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user         User               @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@map("address_labels")
+}
+
+enum AddressLabelStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
 }

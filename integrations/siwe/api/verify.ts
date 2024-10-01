@@ -5,6 +5,7 @@ import { z } from "zod"
 
 import { prisma } from "@/lib/prisma"
 import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
+import { createAirwallexCustomer } from "@/integrations/airwallex" // Import the Airwallex function
 
 const verifySchema = z.object({
   signature: z.string(),
@@ -39,22 +40,14 @@ export async function POST(req: Request) {
     await session.save()
 
     if (env.DATABASE_URL_SUPABASE) {
-      const user = await prisma.user.upsert({
-        where: { id: fields.address },
-        update: {
-          id: fields.address,
-        },
-        create: {
-          id: fields.address,
-          name: `user-${fields.address.slice(0, 6)}`,
-          organizationSlug: null,
-          avatar: `https://avatars.jakerunzer.com/${fields.address}`,
-        },
-        include: { apiKeys: true },
-      })
+      const user = await createUser(fields); // Use the createUser function
 
-      session.user = user
-      await session.save()
+      if (user) {
+        session.user = user
+        await session.save()
+      } else {
+        throw new Error("User not found")
+      }
     }
 
     return res
@@ -64,3 +57,33 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ ok: false }))
   }
 }
+
+const createUser = async (fields: SiweMessage) => {
+  if (env.DATABASE_URL_SUPABASE) {
+    try {
+      // Create Airwallex customer 
+      const airwallexCustomer = await createAirwallexCustomer(fields.address);
+
+      const user = await prisma.user.upsert({
+        where: { id: fields.address },
+        update: {
+          id: fields.address,
+          airwallexCustomerId: airwallexCustomer.id,
+        },
+        create: {
+          id: fields.address,
+          name: `user-${fields.address.slice(0, 6)}`,
+          organizationSlug: null,
+          avatar: `https://avatars.jakerunzer.com/${fields.address}`,
+          airwallexCustomerId: airwallexCustomer.id,
+        },
+        include: { apiKeys: true },
+      });
+
+      return user;
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  }
+};

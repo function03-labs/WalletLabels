@@ -12,6 +12,9 @@ export const env = createEnv({
     AWS_REGION: z.string().min(1),
     AWS_INVOKE_URL: z.string().url(),
     ORIGIN: z.string().min(1),
+    AIRWALLEX_API_KEY: z.string().min(1),
+    AIRWALLEX_API_URL: z.string().url(),
+    AIRWALLEX_CLIENT_ID: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1),
@@ -52,5 +55,8 @@ export const env = createEnv({
     NEXT_PUBLIC_TYPESENSE_SEARCH_ONLY_API_KEY:
       process.env.NEXT_PUBLIC_TYPESENSE_SEARCH_ONLY_API_KEY,
     ORIGIN: process.env.ORIGIN,
+    AIRWALLEX_API_KEY: process.env.AIRWALLEX_API_KEY,
+    AIRWALLEX_API_URL: process.env.AIRWALLEX_API_URL,
+    AIRWALLEX_CLIENT_ID: process.env.AIRWALLEX_CLIENT_ID,
   },
 })
