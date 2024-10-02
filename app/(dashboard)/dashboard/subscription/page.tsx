@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { ChevronDown, CreditCard, Lock, Wallet, X } from "lucide-react"
 
+import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
 
 import { AppPricingRadio } from "@/components/app/app-pricing-radio"
@@ -27,6 +28,7 @@ export default function SubscriptionPage() {
   const [showPromoInput, setShowPromoInput] = useState(false)
   const [showFreeTierFeatures, setShowFreeTierFeatures] = useState(false)
   const [isFreeTier, setIsFreeTier] = useState(true)
+  const { user } = useUser()
 
   const selectedPlan =
     tiers.find((tier) => tier.id === selectedPlanId) || tiers[0]

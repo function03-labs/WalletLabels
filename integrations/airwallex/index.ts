@@ -47,7 +47,7 @@ function generateRequestId(prefix: string) {
 }
 
 export async function createAirwallexCustomer(address: string) {
-  const airwallexAuth = new AirwallexAuth(); // Create a new instance for each request
+  const airwallexAuth = new AirwallexAuth();
   const authToken = await airwallexAuth.getAuthToken();
 
   const requestBody = {
@@ -75,12 +75,18 @@ export async function createAirwallexCustomer(address: string) {
     );
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorBody = await response.text();
+      console.error('Airwallex API error response:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorBody,
+      });
+      throw new Error(`Airwallex API error: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
     return data as AirwallexCustomer;
   } catch (error) {
     console.error('Error creating Airwallex customer:', error);
-    throw error;
+    throw new Error('Failed to create Airwallex customer');
   }
 }

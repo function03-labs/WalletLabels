@@ -3,9 +3,9 @@ import { getIronSession } from "iron-session"
 import { SiweMessage } from "siwe"
 import { z } from "zod"
 
-import { prisma } from "@/lib/prisma"
 import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
-import { createAirwallexCustomer } from "@/integrations/airwallex" // Import the Airwallex function
+import { getUser, updateUser, createUser } from '@/lib/app/user-profile'
+import { createAirwallexCustomer } from "@/integrations/airwallex"
 
 const verifySchema = z.object({
   signature: z.string(),
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     await session.save()
 
     if (env.DATABASE_URL_SUPABASE) {
-      const user = await createUser(fields); // Use the createUser function
+      const user = await handleUserCreation(fields.address, `user-${fields.address.slice(0, 6)}`, null);
 
       if (user) {
         session.user = user
@@ -58,32 +58,33 @@ export async function POST(req: Request) {
   }
 }
 
-const createUser = async (fields: SiweMessage) => {
-  if (env.DATABASE_URL_SUPABASE) {
-    try {
-      // Create Airwallex customer 
-      const airwallexCustomer = await createAirwallexCustomer(fields.address);
+async function handleUserCreation(address: string, name: string, email: string | null) {
+  try {
+    let user = await getUser(address);
 
-      const user = await prisma.user.upsert({
-        where: { id: fields.address },
-        update: {
-          id: fields.address,
-          airwallexCustomerId: airwallexCustomer.id,
-        },
-        create: {
-          id: fields.address,
-          name: `user-${fields.address.slice(0, 6)}`,
-          organizationSlug: null,
-          avatar: `https://avatars.jakerunzer.com/${fields.address}`,
-          airwallexCustomerId: airwallexCustomer.id,
-        },
-        include: { apiKeys: true },
+    // If user exists, check for Airwallex customer ID
+    if (user) {
+      if (!user.airwallexCustomerId) {
+        // User exists but doesn't have an Airwallex customer ID, create one
+        const airwallexCustomer = await createAirwallexCustomer(address);
+        user = await updateUser(address, { airwallexCustomerId: airwallexCustomer.id });
+      }
+    } else {
+      // User doesn't exist, create new user and Airwallex customer
+      const airwallexCustomer = await createAirwallexCustomer(address);
+      user = await createUser({
+        id: address,
+        name,
+        email,
+        avatar: `https://avatars.jakerunzer.com/${address}`,
+        airwallexCustomerId: airwallexCustomer.id,
+        organizationSlug: null,
       });
-
-      return user;
-    } catch (error) {
-      console.error('Error creating user:', error);
-      throw error;
     }
+
+    return user;
+  } catch (error) {
+    console.error('Error in handleUserCreation:', error);
+    throw error;
   }
-};
+}
