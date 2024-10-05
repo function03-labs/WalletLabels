@@ -66,11 +66,7 @@ export interface DataTableFilterField<TData> {
   options?: OptionTable[]
 }
 
-export type FrequencyType = {
-  value: string
-  label: string
-  priceSuffix: string
-}
+
 export interface AirwallexCustomer {
   address: {
     [key: string]: any;

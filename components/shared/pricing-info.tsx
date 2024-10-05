@@ -1,15 +1,15 @@
-const frequencies = [
+export const frequencies = [
   { value: "monthly", label: "Monthly", priceSuffix: "/month" },
   {
     value: "biannually",
     label: "Biannually",
-    priceSuffix: "/month",
+    priceSuffix: "/6 months",
     discount: 20,
   },
-  { value: "annually", label: "Annually", priceSuffix: "/month", discount: 30 },
+  { value: "annually", label: "Annually", priceSuffix: "/year", discount: 30 },
 ]
 
-const tiers = [
+export const tiers = [
   {
     name: "Free Tier",
     id: "tier-free",
@@ -23,6 +23,7 @@ const tiers = [
     ],
     featured: false,
     cta: "Get started",
+    productId: "prd_sgpdtlgsrh08xw5m75f",
   },
   {
     name: "Basic Plan",
@@ -40,6 +41,7 @@ const tiers = [
     ],
     featured: false,
     cta: "Buy plan",
+    productId: "prd_sgpdtlgsrh08xw6002c",
   },
   {
     name: "Pro Plan",
@@ -57,6 +59,7 @@ const tiers = [
     ],
     featured: false,
     cta: "Buy plan",
+    productId: "prd_sgpdtlgsrh08xw6sw6t",
   },
   {
     name: "Enterprise Plans",
@@ -76,7 +79,19 @@ const tiers = [
     ],
     featured: true,
     cta: "Contact us",
+    productId: "prd_sgpdvvs57h08xw7j0tg",
   },
 ]
 
-export { frequencies, tiers }
+export const priceIds = {
+  "tier-basic": {
+    monthly: "pri_sgpdvvs57h08xw67oca",
+    biannually: "pri_sgpdkcfqdh08xw6g6lk",
+    annually: "pri_sgpdkcfqdh08xw6nbjl",
+  },
+  "tier-pro": {
+    monthly: "pri_sgpdvvs57h08xw6yxtn",
+    biannually: "pri_sgpdtlgsrh08xw769o6",
+    annually: "pri_sgpdtlgsrh08xw7d5cv",
+  },
+}
