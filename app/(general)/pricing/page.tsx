@@ -22,7 +22,7 @@ const tiers = [
   {
     name: "Free Tier",
     id: "tier-free",
-    href: "/dashboard",
+    href: "https://tally.so/r/3XMq5P", // Updated href
     price: { monthly: "$0", biannually: "$0", annually: "$0" },
     description: "Suitable for small projects or testing purposes.",
     features: [
@@ -36,7 +36,7 @@ const tiers = [
   {
     name: "Basic Plan",
     id: "tier-basic",
-    href: "mailto:aiden@fn03.xyz",
+    href: "https://tally.so/r/3XMq5P", // Updated href
     price: { monthly: "$250", biannually: "$200", annually: "$175" },
     description:
       "Ideal for small businesses looking to scale with moderate API needs.",
@@ -53,7 +53,7 @@ const tiers = [
   {
     name: "Pro Plan",
     id: "tier-pro",
-    href: "mailto:aiden@fn03.xyz",
+    href: "https://tally.so/r/3XMq5P", // Updated href
     price: { monthly: "$500", biannually: "$400", annually: "$375" },
     description: "Designed for growing businesses with higher API demand.",
     features: [
@@ -70,7 +70,7 @@ const tiers = [
   {
     name: "Enterprise Plans",
     id: "tier-enterprise",
-    href: "mailto:aiden@fn03.xyz",
+    href: "https://tally.so/r/3XMq5P", // Updated href
     price: "Contact us",
     description:
       "Enterprise-level support with high scalability and tailored services.",
