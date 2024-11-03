@@ -1,6 +1,3 @@
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-// Menu Dashboard
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 export const menuDashboard = [
   {
     label: "API Key Management",
@@ -13,5 +10,9 @@ export const menuDashboard = [
   {
     label: "Submit",
     href: "/dashboard/submit",
+  },
+  {
+    label: "Datasets",
+    href: "/dashboard/datasets",
   },
 ]
