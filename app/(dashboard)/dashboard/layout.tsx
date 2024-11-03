@@ -46,6 +46,9 @@ export default async function DashboardLayout({
               Resources
             </h3>
             <SidebarNav items={menuResources} />
+            <Link href="/dashboard/datasets" className="block py-2 text-sm text-muted-foreground hover:text-foreground">
+              Datasets
+            </Link>
           </ScrollArea>
           <footer className="fixed bottom-6 flex flex-col border-t pr-2 pt-4">
             <LoggedUser user={user} />
