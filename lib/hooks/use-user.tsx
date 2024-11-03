@@ -7,6 +7,12 @@ import { useQuery } from "@tanstack/react-query"
 export function useUser({ redirectTo = "", redirectIfFound = false } = {}) {
   const { data: user, refetch: mutateUser } = useQuery(["user"], {
     queryFn: () => fetch("/api/app/user").then((res) => res.json()),
+    staleTime: 60 * 1000, // 60 seconds
+    cacheTime: 5 * 60 * 1000, // 5 minutes
+    retry: 3, // Retry failed requests 3 times
+    retryDelay: 1000, // Wait 1 second between retries
+    refetchOnMount: true,
+    refetchOnReconnect: true,
   })
 
   const Router = useRouter()

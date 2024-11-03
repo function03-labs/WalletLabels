@@ -67,22 +67,3 @@ export interface DataTableFilterField<TData> {
 }
 
 
-export interface AirwallexCustomer {
-  address: {
-    [key: string]: any;
-  };
-  business_name: string;
-  client_secret?: string;
-  created_at: string;
-  email: string;
-  first_name: string;
-  id: string;
-  last_name: string;
-  merchant_customer_id: string;
-  metadata: {
-    [key: string]: string;
-  };
-  phone_number: string;
-  request_id: string;
-  updated_at: string;
-}

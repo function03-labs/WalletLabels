@@ -2,10 +2,12 @@ import { env } from "@/env.mjs"
 import { getIronSession } from "iron-session"
 import { SiweMessage } from "siwe"
 import { z } from "zod"
+import { PrismaClient } from '@prisma/client'
 
 import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
-import { getUser, updateUser, createUser } from '@/lib/app/user-profile'
-import { createAirwallexCustomer } from "@/integrations/airwallex"
+import { getCurrentSubscription } from "@/lib/app/actions"
+
+const prisma = new PrismaClient()
 
 const verifySchema = z.object({
   signature: z.string(),
@@ -40,7 +42,12 @@ export async function POST(req: Request) {
     await session.save()
 
     if (env.DATABASE_URL_SUPABASE) {
-      const user = await handleUserCreation(fields.address, `user-${fields.address.slice(0, 6)}`, null);
+      const tempEmail = `${fields.address.toLowerCase()}@temporary.com`
+      const user = await handleUserCreation(
+        fields.address,
+        `user-${fields.address.slice(0, 6)}`,
+        tempEmail
+      );
 
       if (user) {
         session.user = user
@@ -58,33 +65,31 @@ export async function POST(req: Request) {
   }
 }
 
-async function handleUserCreation(address: string, name: string, email: string | null) {
+async function handleUserCreation(address: string, name: string, email: string) {
   try {
-    let user = await getUser(address);
+    let user = await prisma.user.findUnique({ where: { id: address } });
 
-    // If user exists, check for Airwallex customer ID
-    if (user) {
-      if (!user.airwallexCustomerId) {
-        // User exists but doesn't have an Airwallex customer ID, create one
-        const airwallexCustomer = await createAirwallexCustomer(address);
-        user = await updateUser(address, { airwallexCustomerId: airwallexCustomer.id });
-      }
-    } else {
-      // User doesn't exist, create new user and Airwallex customer
-      const airwallexCustomer = await createAirwallexCustomer(address);
-      user = await createUser({
-        id: address,
-        name,
-        email,
-        avatar: `https://avatars.jakerunzer.com/${address}`,
-        airwallexCustomerId: airwallexCustomer.id,
-        organizationSlug: null,
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          id: address,
+          name,
+          email,
+          avatar: `https://avatars.jakerunzer.com/${address}`,
+        },
       });
     }
 
     return user;
   } catch (error) {
-    console.error('Error in handleUserCreation:', error);
+    console.error('Error in handleUserCreation:', {
+      address,
+      name,
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    });
     throw error;
   }
 }
+
+

@@ -34,8 +34,8 @@ export type PromoCode = {
 export type Subscription = {
   id: string
   userId: string
-  tier: 'FREE' | 'BASIC' | 'PRO' | 'ENTERPRISE'
-  status: 'ACTIVE' | 'CANCELLED' | 'PAST_DUE' | 'UNPAID'
+  tier: "FREE" | "BASIC" | "PRO" | "ENTERPRISE"
+  status: "ACTIVE" | "CANCELLED" | "PAST_DUE" | "UNPAID"
   currentPeriodStart: Date
   currentPeriodEnd: Date
   cancelAtPeriodEnd: boolean

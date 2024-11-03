@@ -9,16 +9,17 @@ datasource db {
 }
 
 model User {
-  id                  String         @id
-  name                String
-  email               String?
-  avatar              String
-  organizationSlug    String?
-  createdAt           DateTime       @default(now())
-  updatedAt           DateTime       @updatedAt
-  airwallexCustomerId String?        @unique
-  AddressLabel        AddressLabel[]
-  apiKeys             ApiKey[]
+  id                     String         @id
+  name                   String
+  email                  String?
+  avatar                 String
+  organizationSlug       String?
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+  lemonSqueezyCustomerId String?        @unique
+  AddressLabel           AddressLabel[]
+  apiKeys                ApiKey[]
+  subscriptions          Subscription[]
 
   @@map("users")
 }
@@ -54,8 +55,66 @@ model AddressLabel {
   @@map("address_labels")
 }
 
+model Plan {
+  id            Int            @id @default(autoincrement())
+  lemonId       String          // Store the Lemon Squeezy product ID
+  variantId     String         @unique // Store the Lemon Squeezy variant ID
+  name          String
+  description   String?
+  features      String[]       // Store features as an array
+  price         Int
+  interval      String         // monthly, biannually, annually
+  intervalCount Int
+  status        String         @default("published")
+  isCustom      Boolean        @default(false) // For enterprise/custom plans
+  featured      Boolean        @default(false)
+  sort          Int           @default(0)
+  subscriptions Subscription[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("plans")
+}
+
+model Subscription {
+  id                 String             @id @default(cuid())
+  lemonSqueezyId     String             @unique
+  orderId            String
+  status             SubscriptionStatus
+  renewsAt           DateTime?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  userId             String
+  planId             Int
+  user               User               @relation(fields: [userId], references: [id])
+  plan               Plan               @relation(fields: [planId], references: [id])
+
+  @@map("subscriptions")
+}
+
+model WebhookEvent {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  eventName       String
+  processed       Boolean  @default(false)
+  body            Json
+  processingError String?
+
+  @@map("webhook_events")
+}
+
 enum AddressLabelStatus {
   PENDING
   ACCEPTED
   DECLINED
+}
+
+enum SubscriptionStatus {
+  ON_TRIAL
+  ACTIVE
+  PAUSED
+  PAST_DUE
+  UNPAID
+  CANCELLED
+  EXPIRED
 }

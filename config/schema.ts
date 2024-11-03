@@ -2,7 +2,7 @@ import { z } from "zod"
 
 export const AccountFormSchema = z.object({
   name: z.string().min(2).max(50),
-  email: z.string().email().optional(),
+  email: z.string().email("Please enter a valid email address"),
   organizationSlug: z.string().min(2).max(50),
 })
 

@@ -23,12 +23,12 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.1.1
     version: 3.9.0(react-hook-form@7.53.0)
-  '@prisma/client':
-    specifier: ^5.19.1
-    version: 5.19.1(prisma@5.19.1)
+  '@lemonsqueezy/lemonsqueezy.js':
+    specifier: ^3.3.1
+    version: 3.3.1
   '@prisma/extension-accelerate':
     specifier: ^1.0.0
-    version: 1.1.0(@prisma/client@5.19.1)
+    version: 1.1.0(@prisma/client@5.21.1)
   '@radix-ui/react-accordion':
     specifier: ^1.1.0
     version: 1.2.0(@types/react-dom@18.2.17)(@types/react@18.2.38)(react-dom@18.3.1)(react@18.3.1)
@@ -194,9 +194,6 @@ dependencies:
   papaparse:
     specifier: ^5.4.1
     version: 5.4.1
-  prisma:
-    specifier: ^5.19.1
-    version: 5.19.1
   react:
     specifier: ^18.2.0
     version: 18.3.1
@@ -289,6 +286,9 @@ devDependencies:
   '@ianvs/prettier-plugin-sort-imports':
     specifier: ^4.1.0
     version: 4.3.1(prettier@2.8.8)
+  '@prisma/client':
+    specifier: ^5.21.1
+    version: 5.21.1(prisma@5.21.1)
   '@svgr/webpack':
     specifier: ^6.5.1
     version: 6.5.1
@@ -379,6 +379,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.2.0
     version: 0.2.8(@ianvs/prettier-plugin-sort-imports@4.3.1)(prettier@2.8.8)
+  prisma:
+    specifier: ^5.21.1
+    version: 5.21.1
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -6087,7 +6090,7 @@ packages:
       yargs: 17.7.2
     optionalDependencies:
       node-libcurl: 4.0.0
-      uWebSockets.js: github.com/uNetworking/uWebSockets.js/51ae1d1fd92dff77cbbdc7c431021f85578da1a6
+      uWebSockets.js: github.com/uNetworking/uWebSockets.js/442087c0a01bf146acb7386910739ec81df06700
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -7078,6 +7081,11 @@ packages:
     resolution: {integrity: sha512-mDJsOucVW8m3Lk2fdQst+P74SgiKebvq1iBk4sXLbADQOwhL9bWGaArvO+tW7jPJZwEfSPWBdHcHoYi11XAwZw==}
     dev: false
 
+  /@lemonsqueezy/lemonsqueezy.js@3.3.1:
+    resolution: {integrity: sha512-gM/FdNsK3BlrD6JRrhmiyqBXQsCpzSUdKSoZwJMQfXqfqcK321og+uMssc6HYcygUMrGvPnNJyJ1RqZPFDrgtg==}
+    engines: {node: '>=20'}
+    dev: false
+
   /@linaria/core@4.5.4:
     resolution: {integrity: sha512-vMs/5iU0stxjfbBCxobIgY+wSQx4G8ukNwrhjPVD+6bF9QrTwi5rl0mKaCMxaGMjnfsLRiiM3i+hnWLIEYLdSg==}
     engines: {node: ^12.16.0 || >=13.7.0}
@@ -7691,8 +7699,8 @@ packages:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
-  /@prisma/client@5.19.1(prisma@5.19.1):
-    resolution: {integrity: sha512-x30GFguInsgt+4z5I4WbkZP2CGpotJMUXy+Gl/aaUjHn2o1DnLYNTA+q9XdYmAQZM8fIIkvUiA2NpgosM3fneg==}
+  /@prisma/client@5.21.1(prisma@5.21.1):
+    resolution: {integrity: sha512-3n+GgbAZYjaS/k0M03yQsQfR1APbr411r74foknnsGpmhNKBG49VuUkxIU6jORgvJPChoD4WC4PqoHImN1FP0w==}
     engines: {node: '>=16.13'}
     requiresBuild: true
     peerDependencies:
@@ -7701,49 +7709,43 @@ packages:
       prisma:
         optional: true
     dependencies:
-      prisma: 5.19.1
-    dev: false
+      prisma: 5.21.1
 
-  /@prisma/debug@5.19.1:
-    resolution: {integrity: sha512-lAG6A6QnG2AskAukIEucYJZxxcSqKsMK74ZFVfCTOM/7UiyJQi48v6TQ47d6qKG3LbMslqOvnTX25dj/qvclGg==}
-    dev: false
+  /@prisma/debug@5.21.1:
+    resolution: {integrity: sha512-uY8SAhcnORhvgtOrNdvWS98Aq/nkQ9QDUxrWAgW8XrCZaI3j2X7zb7Xe6GQSh6xSesKffFbFlkw0c2luHQviZA==}
 
-  /@prisma/engines-version@5.19.1-2.69d742ee20b815d88e17e54db4a2a7a3b30324e3:
-    resolution: {integrity: sha512-xR6rt+z5LnNqTP5BBc+8+ySgf4WNMimOKXRn6xfNRDSpHvbOEmd7+qAOmzCrddEc4Cp8nFC0txU14dstjH7FXA==}
-    dev: false
+  /@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36:
+    resolution: {integrity: sha512-qvnEflL0//lh44S/T9NcvTMxfyowNeUxTunPcDfKPjyJNrCNf2F1zQLcUv5UHAruECpX+zz21CzsC7V2xAeM7Q==}
 
-  /@prisma/engines@5.19.1:
-    resolution: {integrity: sha512-kR/PoxZDrfUmbbXqqb8SlBBgCjvGaJYMCOe189PEYzq9rKqitQ2fvT/VJ8PDSe8tTNxhc2KzsCfCAL+Iwm/7Cg==}
+  /@prisma/engines@5.21.1:
+    resolution: {integrity: sha512-hGVTldUkIkTwoV8//hmnAAiAchi4oMEKD3aW5H2RrnI50tTdwza7VQbTTAyN3OIHWlK5DVg6xV7X8N/9dtOydA==}
     requiresBuild: true
     dependencies:
-      '@prisma/debug': 5.19.1
-      '@prisma/engines-version': 5.19.1-2.69d742ee20b815d88e17e54db4a2a7a3b30324e3
-      '@prisma/fetch-engine': 5.19.1
-      '@prisma/get-platform': 5.19.1
-    dev: false
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/fetch-engine': 5.21.1
+      '@prisma/get-platform': 5.21.1
 
-  /@prisma/extension-accelerate@1.1.0(@prisma/client@5.19.1):
+  /@prisma/extension-accelerate@1.1.0(@prisma/client@5.21.1):
     resolution: {integrity: sha512-sESjhBZ4ywQjAVpKzsfhxyNu+9txIM5I6M1MPBaJBq/xDlqmniIAhlwIEt9KLtO80zqPxqbZYes18zrkgYqNiQ==}
     engines: {node: '>=16'}
     peerDependencies:
       '@prisma/client': '>=4.16.1'
     dependencies:
-      '@prisma/client': 5.19.1(prisma@5.19.1)
+      '@prisma/client': 5.21.1(prisma@5.21.1)
     dev: false
 
-  /@prisma/fetch-engine@5.19.1:
-    resolution: {integrity: sha512-pCq74rtlOVJfn4pLmdJj+eI4P7w2dugOnnTXpRilP/6n5b2aZiA4ulJlE0ddCbTPkfHmOL9BfaRgA8o+1rfdHw==}
+  /@prisma/fetch-engine@5.21.1:
+    resolution: {integrity: sha512-70S31vgpCGcp9J+mh/wHtLCkVezLUqe/fGWk3J3JWZIN7prdYSlr1C0niaWUyNK2VflLXYi8kMjAmSxUVq6WGQ==}
     dependencies:
-      '@prisma/debug': 5.19.1
-      '@prisma/engines-version': 5.19.1-2.69d742ee20b815d88e17e54db4a2a7a3b30324e3
-      '@prisma/get-platform': 5.19.1
-    dev: false
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/get-platform': 5.21.1
 
-  /@prisma/get-platform@5.19.1:
-    resolution: {integrity: sha512-sCeoJ+7yt0UjnR+AXZL7vXlg5eNxaFOwC23h0KvW1YIXUoa7+W2ZcAUhoEQBmJTW4GrFqCuZ8YSP0mkDa4k3Zg==}
+  /@prisma/get-platform@5.21.1:
+    resolution: {integrity: sha512-sRxjL3Igst3ct+e8ya/x//cDXmpLbZQ5vfps2N4tWl4VGKQAmym77C/IG/psSMsQKszc8uFC/q1dgmKFLUgXZQ==}
     dependencies:
-      '@prisma/debug': 5.19.1
-    dev: false
+      '@prisma/debug': 5.21.1
 
   /@radix-ui/colors@3.0.0:
     resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
@@ -18603,16 +18605,15 @@ packages:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
     dev: false
 
-  /prisma@5.19.1:
-    resolution: {integrity: sha512-c5K9MiDaa+VAAyh1OiYk76PXOme9s3E992D7kvvIOhCrNsBQfy2mP2QAQtX0WNj140IgG++12kwZpYB9iIydNQ==}
+  /prisma@5.21.1:
+    resolution: {integrity: sha512-PB+Iqzld/uQBPaaw2UVIk84kb0ITsLajzsxzsadxxl54eaU5Gyl2/L02ysivHxK89t7YrfQJm+Ggk37uvM70oQ==}
     engines: {node: '>=16.13'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 5.19.1
+      '@prisma/engines': 5.21.1
     optionalDependencies:
       fsevents: 2.3.3
-    dev: false
 
   /proc-log@3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
@@ -21795,10 +21796,10 @@ packages:
       use-sync-external-store: 1.2.2(react@18.3.1)
     dev: false
 
-  github.com/uNetworking/uWebSockets.js/51ae1d1fd92dff77cbbdc7c431021f85578da1a6:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/51ae1d1fd92dff77cbbdc7c431021f85578da1a6}
+  github.com/uNetworking/uWebSockets.js/442087c0a01bf146acb7386910739ec81df06700:
+    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/442087c0a01bf146acb7386910739ec81df06700}
     name: uWebSockets.js
-    version: 20.48.0
+    version: 20.49.0
     requiresBuild: true
     dev: true
     optional: true

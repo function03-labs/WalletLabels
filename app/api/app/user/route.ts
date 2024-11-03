@@ -1,31 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
-import { getIronSession } from "iron-session"
+import { getCurrentSubscription } from "@/lib/app/actions"
+import { getSession } from "@/lib/session"
+import { NextResponse } from "next/server"
 
-import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
+export async function GET() {
+  const session = await getSession()
+  const user = session?.user
 
-export async function GET(req: Request) {
-  const res = new Response()
-  const session = await getIronSession<SessionData>(
-    req,
-    res,
-    SERVER_SESSION_SETTINGS
-  )
-  if (session.siwe) {
-    return new Response(
-      JSON.stringify({
-        address: session.siwe.address,
-        isLoggedIn: true,
-        user: session.user,
-      }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
-    )
-  } else {
-    return new Response(
-      JSON.stringify({
-        isLoggedIn: false,
-      }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
-    )
+  if (!user) {
+    return NextResponse.json(null)
   }
+
+  // Get subscription data for the user
+  const subscription = await getCurrentSubscription(user.id)
+  // Return combined user and subscription data
+  return NextResponse.json({
+    ...user,
+    subscription
+  })
 }

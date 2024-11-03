@@ -23,7 +23,12 @@ export const tiers = [
     ],
     featured: false,
     cta: "Get started",
-    productId: "prd_sgpdtlgsrh08xw5m75f",
+    lemonSqueezy: {
+      productId: "375159",
+      variantId: "562578",
+      checkoutUrl:
+        "https://walletlabs.lemonsqueezy.com/checkout/buy/d2fcccda-af60-4723-b54a-1598b89ef06e",
+    },
   },
   {
     name: "Basic Plan",
@@ -41,7 +46,26 @@ export const tiers = [
     ],
     featured: false,
     cta: "Buy plan",
-    productId: "prd_sgpdtlgsrh08xw6002c",
+    lemonSqueezy: {
+      productId: 375174,
+      variants: {
+        monthly: {
+          id: 562610,
+          checkoutUrl:
+            "https://walletlabs.lemonsqueezy.com/checkout/buy/644e623a-0b21-4ddd-9fd1-0e735a13154a",
+        },
+        biannually: {
+          id: 562607,
+          checkoutUrl:
+            "https://walletlabs.lemonsqueezy.com/checkout/buy/04198584-8588-4468-82fc-a6f8006efd72",
+        },
+        annually: {
+          id: 562608,
+          checkoutUrl:
+            "https://walletlabs.lemonsqueezy.com/checkout/buy/1c5cd8d0-0e6f-489b-8dc1-1f2be07e7495",
+        },
+      },
+    },
   },
   {
     name: "Pro Plan",
@@ -59,7 +83,26 @@ export const tiers = [
     ],
     featured: false,
     cta: "Buy plan",
-    productId: "prd_sgpdtlgsrh08xw6sw6t",
+    lemonSqueezy: {
+      productId: 375177,
+      variants: {
+        monthly: {
+          id: 562613,
+          checkoutUrl:
+            "https://walletlabs.lemonsqueezy.com/checkout/buy/d62be5dd-a939-40ad-a8a8-15df805b9752",
+        },
+        biannually: {
+          id: 562806,
+          checkoutUrl:
+            "https://walletlabs.lemonsqueezy.com/checkout/buy/d35c1961-ce8d-4c67-83bf-bac0da63ab5f",
+        },
+        annually: {
+          id: 562807,
+          checkoutUrl:
+            "https://walletlabs.lemonsqueezy.com/checkout/buy/bc969a0a-af52-41e2-bebd-24cfc41c8667",
+        },
+      },
+    },
   },
   {
     name: "Enterprise Plans",
@@ -79,19 +122,5 @@ export const tiers = [
     ],
     featured: true,
     cta: "Contact us",
-    productId: "prd_sgpdvvs57h08xw7j0tg",
   },
 ]
-
-export const priceIds = {
-  "tier-basic": {
-    monthly: "pri_sgpdvvs57h08xw67oca",
-    biannually: "pri_sgpdkcfqdh08xw6g6lk",
-    annually: "pri_sgpdkcfqdh08xw6nbjl",
-  },
-  "tier-pro": {
-    monthly: "pri_sgpdvvs57h08xw6yxtn",
-    biannually: "pri_sgpdtlgsrh08xw769o6",
-    annually: "pri_sgpdtlgsrh08xw7d5cv",
-  },
-}
