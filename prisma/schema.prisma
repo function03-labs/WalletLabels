@@ -110,7 +110,6 @@ enum AddressLabelStatus {
 }
 
 enum SubscriptionStatus {
-  ON_TRIAL
   ACTIVE
   PAUSED
   PAST_DUE

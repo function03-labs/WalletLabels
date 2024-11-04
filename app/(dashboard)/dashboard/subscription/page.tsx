@@ -23,10 +23,14 @@ export default function SubscriptionPage() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const { user } = useUser()
+  console.log("user", user)
+
+  const [currentPlanId, setCurrentPlanId] = useState<number | null>(null)
 
   useEffect(() => {
     if (user?.subscription) {
       setIsFreeTier(user.subscription.planId === 0)
+      setCurrentPlanId(user.subscription.planId)
     }
   }, [user?.subscription])
 
@@ -68,10 +72,12 @@ export default function SubscriptionPage() {
       {isFreeTier && <FreeTierCard />}
       <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
         <h1 className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl">
-          Choose Your Plan
+          {isFreeTier ? "Choose Your Plan" : "Manage Your Subscription"}
         </h1>
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          Select the plan that best fits your needs
+          {isFreeTier
+            ? "Select the plan that best fits your needs"
+            : "View your current plan or upgrade to a different tier"}
         </p>
       </div>
       <AppPricingRadio
@@ -88,6 +94,7 @@ export default function SubscriptionPage() {
               tier={tier}
               selectedFrequency={selectedFrequency}
               handlePlanSelection={handlePlanSelection}
+              isCurrentPlan={tier.planId === currentPlanId}
               isFreeTier={isFreeTier}
             />
           ))}

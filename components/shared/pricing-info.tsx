@@ -13,6 +13,7 @@ export const tiers = [
   {
     name: "Free Tier",
     id: "tier-free",
+    planId: 0,
     href: "/dashboard",
     price: { monthly: "$0", biannually: "$0", annually: "$0" },
     description: "Suitable for small projects or testing purposes.",
@@ -33,6 +34,7 @@ export const tiers = [
   {
     name: "Basic Plan",
     id: "tier-basic",
+    planId: 1,
     href: "mailto:aiden@fn03.xyz",
     price: { monthly: "$250", biannually: "$200", annually: "$175" },
     description:
@@ -51,16 +53,19 @@ export const tiers = [
       variants: {
         monthly: {
           id: 562610,
+          planId: 1,
           checkoutUrl:
             "https://walletlabs.lemonsqueezy.com/checkout/buy/644e623a-0b21-4ddd-9fd1-0e735a13154a",
         },
         biannually: {
           id: 562607,
+          planId: 2,
           checkoutUrl:
             "https://walletlabs.lemonsqueezy.com/checkout/buy/04198584-8588-4468-82fc-a6f8006efd72",
         },
         annually: {
           id: 562608,
+          planId: 3,
           checkoutUrl:
             "https://walletlabs.lemonsqueezy.com/checkout/buy/1c5cd8d0-0e6f-489b-8dc1-1f2be07e7495",
         },
@@ -70,6 +75,7 @@ export const tiers = [
   {
     name: "Pro Plan",
     id: "tier-pro",
+    planId: 4,
     href: "mailto:aiden@fn03.xyz",
     price: { monthly: "$500", biannually: "$400", annually: "$375" },
     description: "Designed for growing businesses with higher API demand.",
@@ -88,16 +94,19 @@ export const tiers = [
       variants: {
         monthly: {
           id: 562613,
+          planId: 4,
           checkoutUrl:
             "https://walletlabs.lemonsqueezy.com/checkout/buy/d62be5dd-a939-40ad-a8a8-15df805b9752",
         },
         biannually: {
           id: 562806,
+          planId: 5,
           checkoutUrl:
             "https://walletlabs.lemonsqueezy.com/checkout/buy/d35c1961-ce8d-4c67-83bf-bac0da63ab5f",
         },
         annually: {
           id: 562807,
+          planId: 6,
           checkoutUrl:
             "https://walletlabs.lemonsqueezy.com/checkout/buy/bc969a0a-af52-41e2-bebd-24cfc41c8667",
         },
@@ -107,6 +116,7 @@ export const tiers = [
   {
     name: "Enterprise Plans",
     id: "tier-enterprise",
+    planId: 7,
     href: "mailto:aiden@fn03.xyz",
     price: "Contact us",
     description:

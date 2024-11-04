@@ -37,7 +37,6 @@ export async function getCheckoutURL(variantId: number, embed = false) {
   configureLemonSqueezy();
 
   const session = await getSession();
-  console.log(session)
 
   if (!session?.user) {
     throw new Error("User is not authenticated.");
@@ -463,7 +462,6 @@ export async function getUserSubscriptions() {
  * Returns a FREE tier subscription if no active subscription is found.
  */
 export async function getCurrentSubscription(userId: string): Promise<Subscription> {
-  console.log("userId", userId)
   const subscription = await prisma.subscription.findFirst({
     where: {
       userId,

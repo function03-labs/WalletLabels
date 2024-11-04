@@ -2,12 +2,11 @@ import { env } from "@/env.mjs"
 import { getIronSession } from "iron-session"
 import { SiweMessage } from "siwe"
 import { z } from "zod"
-import { PrismaClient } from '@prisma/client'
 
+import { prisma } from "@/lib/prisma"
 import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
 import { getCurrentSubscription } from "@/lib/app/actions"
 
-const prisma = new PrismaClient()
 
 const verifySchema = z.object({
   signature: z.string(),

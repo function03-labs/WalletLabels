@@ -15,6 +15,7 @@ export type Tier = {
   featured: boolean
   cta: string
   productId: string
+  planId?: number
 }
 
 export type PaymentMethod = {
