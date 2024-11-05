@@ -13,7 +13,7 @@ export const tiers = [
   {
     name: "Free Tier",
     id: "tier-free",
-    planId: 0,
+    planIds: [0],
     href: "/dashboard",
     price: { monthly: "$0", biannually: "$0", annually: "$0" },
     description: "Suitable for small projects or testing purposes.",
@@ -34,7 +34,7 @@ export const tiers = [
   {
     name: "Basic Plan",
     id: "tier-basic",
-    planId: 1,
+    planIds: [1, 2, 3],
     href: "mailto:aiden@fn03.xyz",
     price: { monthly: "$250", biannually: "$200", annually: "$175" },
     description:
@@ -75,7 +75,7 @@ export const tiers = [
   {
     name: "Pro Plan",
     id: "tier-pro",
-    planId: 4,
+    planIds: [4, 5, 6],
     href: "mailto:aiden@fn03.xyz",
     price: { monthly: "$500", biannually: "$400", annually: "$375" },
     description: "Designed for growing businesses with higher API demand.",
@@ -116,7 +116,7 @@ export const tiers = [
   {
     name: "Enterprise Plans",
     id: "tier-enterprise",
-    planId: 7,
+    planIds: [7],
     href: "mailto:aiden@fn03.xyz",
     price: "Contact us",
     description:

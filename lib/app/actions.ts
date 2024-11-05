@@ -98,122 +98,191 @@ export async function getUserSubscriptions() {
 
 
 
-// /**
-//  * This action will cancel a subscription on Lemon Squeezy.
-//  */
-// export async function cancelSub(id: string) {
-//   configureLemonSqueezy();
+/**
+ * Cancels a subscription in Lemon Squeezy
+ */
+export async function cancelSub(id: string) {
+  configureLemonSqueezy()
 
-//   // Get user subscriptions
-//   const userSubscriptions = await getUserSubscriptions();
+  const cancelledSub = await cancelSubscription(id)
 
-//   // Check if the subscription exists
-//   const subscription = userSubscriptions.find(
-//     (sub) => sub.lemonSqueezyId === id,
-//   );
+  if (cancelledSub.error) {
+    throw new Error(cancelledSub.error.message)
+  }
 
-//   if (!subscription) {
-//     throw new Error(`Subscription #${id} not found.`);
-//   }
+  // Update the subscription in your database
+  try {
+    await prisma.subscription.update({
+      where: {
+        lemonSqueezyId: id
+      },
+      data: {
+        status: cancelledSub.data?.data.attributes.status,
+        statusFormatted: cancelledSub.data?.data.attributes.status_formatted,
+        endsAt: cancelledSub.data?.data.attributes.ends_at,
+      }
+    })
+  } catch (error) {
+    throw new Error(`Failed to cancel Subscription #${id} in the database.`)
+  }
 
-//   const cancelledSub = await cancelSubscription(id);
+  revalidatePath('/dashboard/subscription')
+  return cancelledSub
+}
 
-//   if (cancelledSub.error) {
-//     throw new Error(cancelledSub.error.message);
-//   }
+/**
+ * Pauses a subscription in Lemon Squeezy
+ */
+export async function pauseUserSubscription(id: string) {
+  configureLemonSqueezy()
 
-//   // Update the db
-//   try {
-//     await prisma.subscription.update({
-//       where: { lemonSqueezyId: id },
-//       data: {
-//         status: cancelledSub.data.data.attributes.status,
-//         statusFormatted: cancelledSub.data.data.attributes.status_formatted,
-//         endsAt: cancelledSub.data.data.attributes.ends_at,
-//       },
-//     });
-//   } catch (error) {
-//     throw new Error(`Failed to cancel Subscription #${id} in the database.`);
-//   }
+  const returnedSub = await updateSubscription(id, {
+    pause: {
+      mode: 'void',
+    },
+  })
 
-//   revalidatePath("/");
+  // Update the subscription in your database
+  try {
+    await prisma.subscription.update({
+      where: {
+        lemonSqueezyId: id
+      },
+      data: {
+        status: returnedSub.data?.data.attributes.status,
+        statusFormatted: returnedSub.data?.data.attributes.status_formatted,
+        endsAt: returnedSub.data?.data.attributes.ends_at,
+        isPaused: returnedSub.data?.data.attributes.pause !== null,
+      }
+    })
+  } catch (error) {
+    throw new Error(`Failed to pause Subscription #${id} in the database.`)
+  }
 
-//   return cancelledSub;
-// }
+  revalidatePath('/dashboard/subscription')
+  return returnedSub
+}
 
-// /**
-//  * This action will check if a webhook exists on Lemon Squeezy.
-//  */
-// export async function hasWebhook() {
-//   configureLemonSqueezy();
+/**
+ * Unpauses a subscription in Lemon Squeezy
+ */
+export async function unpauseUserSubscription(id: string) {
+  configureLemonSqueezy()
 
-//   if (!process.env.WEBHOOK_URL) {
-//     throw new Error(
-//       "Missing required WEBHOOK_URL env variable. Please, set it in your .env file.",
-//     );
-//   }
+  const returnedSub = await updateSubscription(id, {
+    pause: null,
+  })
 
-//   // Check if a webhook exists on Lemon Squeezy.
-//   const allWebhooks = await listWebhooks({
-//     filter: { storeId: process.env.LEMONSQUEEZY_STORE_ID },
-//   });
+  // Update the subscription in your database
+  try {
+    await prisma.subscription.update({
+      where: {
+        lemonSqueezyId: id
+      },
+      data: {
+        status: returnedSub.data?.data.attributes.status,
+        statusFormatted: returnedSub.data?.data.attributes.status_formatted,
+        endsAt: returnedSub.data?.data.attributes.ends_at,
+        isPaused: false,
+      }
+    })
+  } catch (error) {
+    throw new Error(`Failed to unpause Subscription #${id} in the database.`)
+  }
 
-//   // Check if WEBHOOK_URL ends with a slash. If not, add it.
-//   let webhookUrl = process.env.WEBHOOK_URL;
-//   if (!webhookUrl.endsWith("/")) {
-//     webhookUrl += "/";
-//   }
-//   webhookUrl += "api/webhook";
+  revalidatePath('/dashboard/subscription')
+  return returnedSub
+}
 
-//   const webhook = allWebhooks.data?.data.find(
-//     (wh) => wh.attributes.url === webhookUrl && wh.attributes.test_mode,
-//   );
+/**
+ * This action will change the plan of a subscription on Lemon Squeezy.
+ */
+export async function changePlan(currentPlanId: number, newPlanId: number) {
+  configureLemonSqueezy();
 
-//   revalidatePath("/");
+  // Get user subscriptions
+  const userSubscriptions = await getUserSubscriptions();
 
-//   return webhook;
-// }
+  // Check if the subscription exists
+  const subscription = userSubscriptions.find(
+    (sub) => sub.planId === currentPlanId,
+  );
 
-// /**
-//  * This action will set up a webhook on Lemon Squeezy.
-//  */
-// export async function setupWebhook() {
-//   configureLemonSqueezy();
+  if (!subscription) {
+    throw new Error(
+      `No subscription with plan id #${currentPlanId} was found.`,
+    );
+  }
 
-//   if (!process.env.WEBHOOK_URL) {
-//     throw new Error(
-//       "Missing required WEBHOOK_URL env variable. Please, set it in your .env file.",
-//     );
-//   }
+  // Get the new plan details from the database
+  const newPlan = await prisma.plan.findUniqueOrThrow({
+    where: { id: newPlanId },
+  });
 
-//   // Check if WEBHOOK_URL ends with a slash. If not, add it.
-//   let webhookUrl = process.env.WEBHOOK_URL;
-//   if (!webhookUrl.endsWith("/")) {
-//     webhookUrl += "/";
-//   }
-//   webhookUrl += "api/webhook";
+  // Send request to Lemon Squeezy to change the subscription
+  const updatedSub = await updateSubscription(subscription.lemonSqueezyId, {
+    variantId: newPlan.variantId,
+  });
 
-//   // Do not set a webhook on Lemon Squeezy if it already exists.
-//   let webhook = await hasWebhook();
+  // Save in db
+  try {
+    await prisma.subscription.update({
+      where: { lemonSqueezyId: subscription.lemonSqueezyId },
+      data: {
+        planId: newPlanId,
+        price: newPlan.price,
+        endsAt: updatedSub.data?.data.attributes.ends_at,
+      },
+    });
+  } catch (error) {
+    throw new Error(
+      `Failed to update Subscription #${subscription.lemonSqueezyId} in the database.`,
+    );
+  }
 
-//   // If the webhook does not exist, create it.
-//   if (!webhook) {
-//     const newWebhook = await createWebhook(process.env.LEMONSQUEEZY_STORE_ID!, {
-//       secret: process.env.LEMONSQUEEZY_WEBHOOK_SECRET!,
-//       url: webhookUrl,
-//       testMode: true,
-//       events: [
-//         "subscription_created",
-//         "subscription_expired",
-//         "subscription_updated",
-//       ],
-//     });
+  revalidatePath("/");
 
-//     webhook = newWebhook.data?.data;
-//   }
+  return updatedSub;
+}
 
-//   revalidatePath("/");
-// }
+/**
+ * Gets the current subscription for a user.
+ * Returns a FREE tier subscription if no active subscription is found.
+ */
+export async function getCurrentSubscription(userId: string): Promise<Subscription> {
+  const subscription = await prisma.subscription.findFirst({
+    where: {
+      userId,
+      status: "active"
+    }
+  })
+
+  if (!subscription) {
+    console.log("no subscription found")
+    return {
+      id: `free-${userId}`,
+      lemonSqueezyId: "",
+      orderId: 0,
+      status: "active",
+      renewsAt: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      userId,
+      planId: 0,
+      name: "Free Plan",
+      email: "",
+      statusFormatted: "Active",
+      endsAt: null,
+      price: "0",
+      isUsageBased: false,
+      isPaused: false,
+      subscriptionItemId: 0,
+      variantId: 0
+    }
+  }
+
+  return subscription
+}
 
 /**
  * This action will store a webhook event in the database.
@@ -325,178 +394,4 @@ export async function processWebhookEvent(webhookEvent: any) {
       processingError,
     },
   });
-}
-
-// /**
-//  * This action will pause a subscription on Lemon Squeezy.
-//  */
-// export async function pauseUserSubscription(id: string) {
-//   configureLemonSqueezy();
-
-//   // Get user subscriptions
-//   const userSubscriptions = await getUserSubscriptions();
-
-//   // Check if the subscription exists
-//   const subscription = userSubscriptions.find(
-//     (sub) => sub.lemonSqueezyId === id,
-//   );
-
-//   if (!subscription) {
-//     throw new Error(`Subscription #${id} not found.`);
-//   }
-
-//   const returnedSub = await updateSubscription(id, {
-//     pause: {
-//       mode: "void",
-//     },
-//   });
-
-//   // Update the db
-//   try {
-//     await prisma.subscription.update({
-//       where: { lemonSqueezyId: id },
-//       data: {
-//         status: returnedSub.data?.data.attributes.status,
-//         statusFormatted: returnedSub.data?.data.attributes.status_formatted,
-//         endsAt: returnedSub.data?.data.attributes.ends_at,
-//         isPaused: returnedSub.data?.data.attributes.pause !== null,
-//       },
-//     });
-//   } catch (error) {
-//     throw new Error(`Failed to pause Subscription #${id} in the database.`);
-//   }
-
-//   revalidatePath("/");
-
-//   return returnedSub;
-// }
-
-// /**
-//  * This action will unpause a subscription on Lemon Squeezy.
-//  */
-// export async function unpauseUserSubscription(id: string) {
-//   configureLemonSqueezy();
-
-//   // Get user subscriptions
-//   const userSubscriptions = await getUserSubscriptions();
-
-//   // Check if the subscription exists
-//   const subscription = userSubscriptions.find(
-//     (sub) => sub.lemonSqueezyId === id,
-//   );
-
-//   if (!subscription) {
-//     throw new Error(`Subscription #${id} not found.`);
-//   }
-
-//   const returnedSub = await updateSubscription(id, { pause: null });
-
-//   // Update the db
-//   try {
-//     await prisma.subscription.update({
-//       where: { lemonSqueezyId: id },
-//       data: {
-//         status: returnedSub.data?.data.attributes.status,
-//         statusFormatted: returnedSub.data?.data.attributes.status_formatted,
-//         endsAt: returnedSub.data?.data.attributes.ends_at,
-//         isPaused: returnedSub.data?.data.attributes.pause !== null,
-//       },
-//     });
-//   } catch (error) {
-//     throw new Error(`Failed to unpause Subscription #${id} in the database.`);
-//   }
-
-//   revalidatePath("/");
-
-//   return returnedSub;
-// }
-
-// /**
-//  * This action will change the plan of a subscription on Lemon Squeezy.
-//  */
-// export async function changePlan(currentPlanId: number, newPlanId: number) {
-//   configureLemonSqueezy();
-
-//   // Get user subscriptions
-//   const userSubscriptions = await getUserSubscriptions();
-
-//   // Check if the subscription exists
-//   const subscription = userSubscriptions.find(
-//     (sub) => sub.planId === currentPlanId,
-//   );
-
-//   if (!subscription) {
-//     throw new Error(
-//       `No subscription with plan id #${currentPlanId} was found.`,
-//     );
-//   }
-
-//   // Get the new plan details from the database
-//   const newPlan = await prisma.plan.findUniqueOrThrow({
-//     where: { id: newPlanId },
-//   });
-
-//   // Send request to Lemon Squeezy to change the subscription
-//   const updatedSub = await updateSubscription(subscription.lemonSqueezyId, {
-//     variantId: newPlan.variantId,
-//   });
-
-//   // Save in db
-//   try {
-//     await prisma.subscription.update({
-//       where: { lemonSqueezyId: subscription.lemonSqueezyId },
-//       data: {
-//         planId: newPlanId,
-//         price: newPlan.price,
-//         endsAt: updatedSub.data?.data.attributes.ends_at,
-//       },
-//     });
-//   } catch (error) {
-//     throw new Error(
-//       `Failed to update Subscription #${subscription.lemonSqueezyId} in the database.`,
-//     );
-//   }
-
-//   revalidatePath("/");
-
-//   return updatedSub;
-// }
-
-/**
- * Gets the current subscription for a user.
- * Returns a FREE tier subscription if no active subscription is found.
- */
-export async function getCurrentSubscription(userId: string): Promise<Subscription> {
-  const subscription = await prisma.subscription.findFirst({
-    where: {
-      userId,
-      status: "active"
-    }
-  })
-
-  if (!subscription) {
-    console.log("no subscription found")
-    return {
-      id: `free-${userId}`,
-      lemonSqueezyId: "",
-      orderId: 0,
-      status: "active",
-      renewsAt: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      userId,
-      planId: 0,
-      name: "Free Plan",
-      email: "",
-      statusFormatted: "Active",
-      endsAt: null,
-      price: "0",
-      isUsageBased: false,
-      isPaused: false,
-      subscriptionItemId: 0,
-      variantId: 0
-    }
-  }
-
-  return subscription
 }
