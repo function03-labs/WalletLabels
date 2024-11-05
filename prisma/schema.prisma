@@ -57,8 +57,8 @@ model AddressLabel {
 
 model Plan {
   id            Int            @id @default(autoincrement())
-  lemonId       String          // Store the Lemon Squeezy product ID
-  variantId     String         @unique // Store the Lemon Squeezy variant ID
+  lemonId       String         
+  variantId     Int           @unique  
   name          String
   description   String?
   features      String[]       // Store features as an array
@@ -79,9 +79,18 @@ model Plan {
 model Subscription {
   id                 String             @id @default(cuid())
   lemonSqueezyId     String             @unique
-  orderId            String
-  status             SubscriptionStatus
+  orderId            Int                
+  status             String           
   renewsAt           DateTime?
+  name               String
+  email              String
+  statusFormatted    String
+  endsAt             DateTime?
+  trialEndsAt        DateTime?
+  price              String
+  isUsageBased       Boolean            @default(false)
+  isPaused           Boolean            @default(false)
+  subscriptionItemId Int                @unique
   createdAt          DateTime           @default(now())
   updatedAt          DateTime           @updatedAt
   userId             String
@@ -107,13 +116,4 @@ enum AddressLabelStatus {
   PENDING
   ACCEPTED
   DECLINED
-}
-
-enum SubscriptionStatus {
-  ACTIVE
-  PAUSED
-  PAST_DUE
-  UNPAID
-  CANCELLED
-  EXPIRED
 }

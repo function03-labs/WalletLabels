@@ -22,6 +22,7 @@ import { getSession } from "@/lib/session";
 // import { webhookHasData, webhookHasMeta } from "@/lib/typeguards";
 import { siweLogout } from "@/integrations/siwe/actions/siwe-logout";
 import { Subscription } from "@prisma/client"
+import { webhookHasMeta, webhookHasData } from "../typeguards";
 
 /**
  * This action will log out the current user.
@@ -214,113 +215,117 @@ export async function getUserSubscriptions() {
 //   revalidatePath("/");
 // }
 
-// /**
-//  * This action will store a webhook event in the database.
-//  */
-// export async function storeWebhookEvent(
-//   eventName: string,
-//   body: any, // Replace with proper type
-// ) {
-//   const id = crypto.randomInt(100000000, 1000000000);
+/**
+ * This action will store a webhook event in the database.
+ */
+export async function storeWebhookEvent(
+  eventName: string,
+  body: any, // Replace with proper type
+) {
+  const id = crypto.randomInt(100000000, 1000000000);
 
-//   const webhookEvent = await prisma.webhookEvent.create({
-//     data: {
-//       id,
-//       eventName,
-//       processed: false,
-//       body,
-//     },
-//   });
+  const webhookEvent = await prisma.webhookEvent.create({
+    data: {
+      id,
+      eventName,
+      processed: false,
+      body,
+    },
+  });
 
-//   return webhookEvent;
-// }
-
-
+  return webhookEvent;
+}
 
 
-// /**
-//  * This action will process a webhook event in the database.
-//  */
-// export async function processWebhookEvent(webhookEvent: any) {
-//   configureLemonSqueezy();
 
-//   const dbwebhookEvent = await prisma.webhookEvent.findUnique({
-//     where: { id: webhookEvent.id },
-//   });
 
-//   if (!dbwebhookEvent) {
-//     throw new Error(`Webhook event #${webhookEvent.id} not found in the database.`);
-//   }
+/**
+ * This action will process a webhook event in the database.
+ */
+export async function processWebhookEvent(webhookEvent: any) {
+  configureLemonSqueezy();
 
-//   let processingError = "";
-//   const eventBody = webhookEvent.body;
+  const dbwebhookEvent = await prisma.webhookEvent.findUnique({
+    where: { id: webhookEvent.id },
+  });
 
-//   if (!webhookHasMeta(eventBody)) {
-//     processingError = "Event body is missing the 'meta' property.";
-//   } else if (webhookHasData(eventBody)) {
-//     if (webhookEvent.eventName.startsWith("subscription_")) {
-//       const attributes = eventBody.data.attributes;
-//       const variantId = attributes.variant_id as string;
+  if (!dbwebhookEvent) {
+    throw new Error(`Webhook event #${webhookEvent.id} not found in the database.`);
+  }
 
-//       // Get the plan from the database
-//       const plan = await prisma.plan.findFirst({
-//         where: { variantId: parseInt(variantId, 10) },
-//       });
+  let processingError = "";
+  const eventBody = webhookEvent.body;
 
-//       if (!plan) {
-//         processingError = `Plan with variantId ${variantId} not found.`;
-//       } else {
-//         const priceId = attributes.first_subscription_item.price_id;
+  if (!webhookHasMeta(eventBody)) {
+    processingError = "Event body is missing the 'meta' property.";
+  } else if (webhookHasData(eventBody)) {
+    if (webhookEvent.eventName.startsWith("subscription_")) {
+      const attributes = eventBody.data.attributes;
+      const variantId = attributes.variant_id as string;
 
-//         // Get the price data from Lemon Squeezy
-//         const priceData = await getPrice(priceId);
-//         if (priceData.error) {
-//           processingError = `Failed to get price data for subscription ${eventBody.data.id}.`;
-//         }
+      // Get the plan from the database
+      const plan = await prisma.plan.findFirst({
+        where: { variantId: parseInt(variantId, 10) },
+      });
 
-//         try {
-//           await prisma.subscription.upsert({
-//             where: { lemonSqueezyId: eventBody.data.id },
-//             create: {
-//               lemonSqueezyId: eventBody.data.id,
-//               orderId: attributes.order_id as number,
-//               status: attributes.status as string,
-//               statusFormatted: attributes.status_formatted as string,
-//               renewsAt: attributes.renews_at as string,
-//               endsAt: attributes.ends_at as string,
-//               price: priceData.data?.data.attributes.unit_price.toString() ?? "",
-//               isUsageBased: attributes.first_subscription_item.is_usage_based,
-//               isPaused: false,
-//               subscriptionItemId: attributes.first_subscription_item.id,
-//               userId: eventBody.meta.custom_data.user_id,
-//               planId: plan.id,
-//             },
-//             update: {
-//               status: attributes.status as string,
-//               statusFormatted: attributes.status_formatted as string,
-//               renewsAt: attributes.renews_at as string,
-//               endsAt: attributes.ends_at as string,
-//               price: priceData.data?.data.attributes.unit_price.toString() ?? "",
-//               isPaused: false,
-//             },
-//           });
-//         } catch (error) {
-//           processingError = `Failed to upsert Subscription #${eventBody.data.id}`;
-//           console.error(error);
-//         }
-//       }
-//     }
-//   }
+      if (!plan) {
+        processingError = `Plan with variantId ${variantId} not found.`;
+      } else {
+        const priceId = attributes.first_subscription_item.price_id;
 
-//   // Update the webhook event status
-//   await prisma.webhookEvent.update({
-//     where: { id: webhookEvent.id },
-//     data: {
-//       processed: true,
-//       processingError,
-//     },
-//   });
-// }
+        // Get the price data from Lemon Squeezy
+        const priceData = await getPrice(priceId);
+        if (priceData.error) {
+          processingError = `Failed to get price data for subscription ${eventBody.data.id}.`;
+        }
+
+        try {
+          await prisma.subscription.upsert({
+            where: { lemonSqueezyId: eventBody.data.id },
+            create: {
+              lemonSqueezyId: eventBody.data.id,
+              orderId: attributes.order_id as number,
+              status: attributes.status as string,
+              statusFormatted: attributes.status_formatted as string,
+              renewsAt: attributes.renews_at as string,
+              endsAt: attributes.ends_at as string,
+              price: priceData.data?.data.attributes.unit_price.toString() ?? "",
+              isUsageBased: attributes.first_subscription_item.is_usage_based,
+              isPaused: false,
+              subscriptionItemId: attributes.first_subscription_item.id,
+              userId: eventBody.meta.custom_data.user_id,
+              planId: plan.id,
+              name: attributes.user_name as string,
+              email: attributes.user_email as string,
+            },
+            update: {
+              status: attributes.status as string,
+              statusFormatted: attributes.status_formatted as string,
+              renewsAt: attributes.renews_at as string,
+              endsAt: attributes.ends_at as string,
+              price: priceData.data?.data.attributes.unit_price.toString() ?? "",
+              isPaused: false,
+              name: attributes.user_name as string,
+              email: attributes.user_email as string,
+            },
+          });
+        } catch (error) {
+          processingError = `Failed to upsert Subscription #${eventBody.data.id}`;
+          console.error(error);
+        }
+      }
+    }
+  }
+
+  // Update the webhook event status
+  await prisma.webhookEvent.update({
+    where: { id: webhookEvent.id },
+    data: {
+      processed: true,
+      processingError,
+    },
+  });
+}
 
 // /**
 //  * This action will pause a subscription on Lemon Squeezy.
@@ -465,7 +470,7 @@ export async function getCurrentSubscription(userId: string): Promise<Subscripti
   const subscription = await prisma.subscription.findFirst({
     where: {
       userId,
-      status: "ACTIVE"
+      status: "active"
     }
   })
 
@@ -474,13 +479,22 @@ export async function getCurrentSubscription(userId: string): Promise<Subscripti
     return {
       id: `free-${userId}`,
       lemonSqueezyId: "",
-      orderId: "",
-      status: "ACTIVE",
+      orderId: 0,
+      status: "active",
       renewsAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
       userId,
       planId: 0,
+      name: "Free Plan",
+      email: "",
+      statusFormatted: "Active",
+      endsAt: null,
+      price: "0",
+      isUsageBased: false,
+      isPaused: false,
+      subscriptionItemId: 0,
+      variantId: 0
     }
   }
 

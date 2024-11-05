@@ -23,19 +23,22 @@ export default function SubscriptionPage() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const { user } = useUser()
-  console.log("user", user)
 
   const [currentPlanId, setCurrentPlanId] = useState<number | null>(null)
 
   useEffect(() => {
     if (user?.subscription) {
+      console.log("User subscription detected:", user.subscription)
       setIsFreeTier(user.subscription.planId === 0)
       setCurrentPlanId(user.subscription.planId)
     }
   }, [user?.subscription])
 
   const handlePlanSelection = async (planId: string) => {
+    console.log("Plan selection initiated:", planId)
+
     if (!user?.email) {
+      console.log("No user email found, redirecting to profile")
       toast.error(
         "Please add an email address to your profile before subscribing"
       )
@@ -46,6 +49,7 @@ export default function SubscriptionPage() {
     const selectedPlan = tiers.find((tier) => tier.id === planId)
 
     if (selectedPlan?.id === "tier-enterprise") {
+      console.log("Enterprise tier selected, redirecting to email")
       window.location.href = "mailto:aiden@fn03.xyz"
       return
     }
@@ -55,8 +59,10 @@ export default function SubscriptionPage() {
         setLoading(true)
         const variant =
           selectedPlan.lemonSqueezy.variants[selectedFrequency.value]
+        console.log("Initiating checkout for variant:", variant)
         const checkoutUrl = await getCheckoutURL(variant.id)
         if (checkoutUrl) {
+          console.log("Redirecting to checkout:", checkoutUrl)
           window.location.href = checkoutUrl
         }
       } catch (error) {
