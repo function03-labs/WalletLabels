@@ -3,66 +3,117 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL_ACCELERATE")
+  provider  = "postgres"
+  url       = env("DATABASE_URL_ACCELERATE")
   directUrl = env("DATABASE_URL_SUPABASE")
 }
 
-enum AddressLabelStatus {
-  PENDING
-  ACCEPTED
-  DECLINED
-}
-
 model User {
-  id String @id
-
-  name             String
-  email            String?
-  avatar           String
-  organizationSlug String?
-
-  apiKeys      ApiKey[]
-  AddressLabel AddressLabel[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                     String         @id
+  name                   String
+  email                  String?
+  avatar                 String
+  organizationSlug       String?
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+  lemonSqueezyCustomerId String?        @unique
+  AddressLabel           AddressLabel[]
+  apiKeys                ApiKey[]
+  subscriptions          Subscription[]
 
   @@map("users")
 }
 
 model ApiKey {
-  id  String @id @default(cuid())
-  key String @unique
-
-  name   String
-  chains String[]
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
+  id        String   @id @default(cuid())
+  key       String   @unique
+  name      String
+  chains    String[]
+  userId    String
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@map("api_keys")
 }
 
 model AddressLabel {
-  id           String  @id @default(cuid())
+  id           String             @id @default(cuid())
   blockchain   String
   address      String
   addressName  String
   labelType    String
-  labelSubType String
   label        String
+  userId       String
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  labelSubType String
   status       AddressLabelStatus @default(PENDING)
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user         User               @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@map("address_labels")
+}
+
+model Plan {
+  id            Int            @id @default(autoincrement())
+  lemonId       String         
+  variantId     Int           @unique  
+  name          String
+  description   String?
+  features      String[]       // Store features as an array
+  price         Int
+  interval      String         // monthly, biannually, annually
+  intervalCount Int
+  status        String         @default("published")
+  isCustom      Boolean        @default(false) // For enterprise/custom plans
+  featured      Boolean        @default(false)
+  sort          Int           @default(0)
+  subscriptions Subscription[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("plans")
+}
+
+model Subscription {
+  id                 String             @id @default(cuid())
+  lemonSqueezyId     String             @unique
+  orderId            Int                
+  status             String           
+  renewsAt           DateTime?
+  name               String
+  email              String
+  statusFormatted    String
+  endsAt             DateTime?
+  trialEndsAt        DateTime?
+  price              String
+  isUsageBased       Boolean            @default(false)
+  isPaused           Boolean            @default(false)
+  subscriptionItemId Int                @unique
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  userId             String
+  planId             Int
+  user               User               @relation(fields: [userId], references: [id])
+  plan               Plan               @relation(fields: [planId], references: [id])
+
+  @@map("subscriptions")
+}
+
+model WebhookEvent {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  eventName       String
+  processed       Boolean  @default(false)
+  body            Json
+  processingError String?
+
+  @@map("webhook_events")
+}
+
+enum AddressLabelStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
 }

@@ -73,11 +73,13 @@ export function AppAccountForm({ user }: { user: User }) {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>
+                Email<span className="text-red-500">*</span>
+              </FormLabel>
               <FormControl>
-                <Input placeholder="example@email.com" {...field} />
+                <Input placeholder="example@email.com" {...field} required />
               </FormControl>
-              <FormDescription>This is your email address.</FormDescription>
+              <FormDescription>Your email address is required.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

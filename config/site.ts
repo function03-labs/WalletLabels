@@ -19,7 +19,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: "Pricing",
-      href: "./pricing",
+      href: "/pricing",
       disabled: false,
       new: true,
     },

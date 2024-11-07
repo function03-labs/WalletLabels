@@ -5,6 +5,8 @@ import { z } from "zod"
 
 import { prisma } from "@/lib/prisma"
 import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
+import { getCurrentSubscription } from "@/lib/app/actions"
+
 
 const verifySchema = z.object({
   signature: z.string(),
@@ -39,22 +41,19 @@ export async function POST(req: Request) {
     await session.save()
 
     if (env.DATABASE_URL_SUPABASE) {
-      const user = await prisma.user.upsert({
-        where: { id: fields.address },
-        update: {
-          id: fields.address,
-        },
-        create: {
-          id: fields.address,
-          name: `user-${fields.address.slice(0, 6)}`,
-          organizationSlug: null,
-          avatar: `https://avatars.jakerunzer.com/${fields.address}`,
-        },
-        include: { apiKeys: true },
-      })
+      const tempEmail = `${fields.address.toLowerCase()}@temporary.com`
+      const user = await handleUserCreation(
+        fields.address,
+        `user-${fields.address.slice(0, 6)}`,
+        tempEmail
+      );
 
-      session.user = user
-      await session.save()
+      if (user) {
+        session.user = user
+        await session.save()
+      } else {
+        throw new Error("User not found")
+      }
     }
 
     return res
@@ -64,3 +63,32 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ ok: false }))
   }
 }
+
+async function handleUserCreation(address: string, name: string, email: string) {
+  try {
+    let user = await prisma.user.findUnique({ where: { id: address } });
+
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          id: address,
+          name,
+          email,
+          avatar: `https://avatars.jakerunzer.com/${address}`,
+        },
+      });
+    }
+
+    return user;
+  } catch (error) {
+    console.error('Error in handleUserCreation:', {
+      address,
+      name,
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    throw error;
+  }
+}
+
+

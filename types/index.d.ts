@@ -24,23 +24,23 @@ export interface ISearchProps {
 
 export type PipelineStage =
   | {
-      $search: {
-        index: string
-        text: {
-          query: string
-          fuzzy: {}
-          path: {
-            wildcard: string
-          }
+    $search: {
+      index: string
+      text: {
+        query: string
+        fuzzy: {}
+        path: {
+          wildcard: string
         }
       }
     }
+  }
   | {
-      $skip: number
-    }
+    $skip: number
+  }
   | {
-      $limit: number
-    }
+    $limit: number
+  }
 
 export interface DataTableFilterOption<TData> {
   id: string
@@ -66,8 +66,4 @@ export interface DataTableFilterField<TData> {
   options?: OptionTable[]
 }
 
-export type FrequencyType = {
-  value: string
-  label: string
-  priceSuffix: string
-}
+

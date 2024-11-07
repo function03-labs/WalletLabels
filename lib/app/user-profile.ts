@@ -38,3 +38,8 @@ export async function getUser(userId: string): Promise<User> {
   }
   return user
 }
+export async function createUser(data: Omit<User, 'createdAt' | 'updatedAt'>): Promise<User> {
+  return await prisma.user.create({
+    data,
+  })
+}

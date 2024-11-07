@@ -6,16 +6,52 @@ import withPWA from "next-pwa"
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "avatars.githubusercontent.com",
-      "app.aave.com",
-      "images.unsplash.com",
-      "cloudflare-ipfs.com",
-      "gateway.ipfs.io",
-      "avatars.jakerunzer.com",
-      "icons.llamao.fi",
-      "cryptologos.cc",
-      "i.redd.it",
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'app.aave.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cloudflare-ipfs.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'gateway.ipfs.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.jakerunzer.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'icons.llamao.fi',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cryptologos.cc',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.redd.it',
+        pathname: '/**',
+      },
     ],
   },
   env: {

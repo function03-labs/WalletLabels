@@ -12,6 +12,10 @@ export const env = createEnv({
     AWS_REGION: z.string().min(1),
     AWS_INVOKE_URL: z.string().url(),
     ORIGIN: z.string().min(1),
+    // Move Lemonsqueezy variables to server section
+    LEMONSQUEEZY_API_KEY: z.string().min(1),
+    LEMONSQUEEZY_STORE_ID: z.string().min(1),
+    LEMONSQUEEZY_WEBHOOK_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1),
@@ -52,5 +56,8 @@ export const env = createEnv({
     NEXT_PUBLIC_TYPESENSE_SEARCH_ONLY_API_KEY:
       process.env.NEXT_PUBLIC_TYPESENSE_SEARCH_ONLY_API_KEY,
     ORIGIN: process.env.ORIGIN,
+    LEMONSQUEEZY_API_KEY: process.env.LEMONSQUEEZY_API_KEY,
+    LEMONSQUEEZY_STORE_ID: process.env.LEMONSQUEEZY_STORE_ID,
+    LEMONSQUEEZY_WEBHOOK_SECRET: process.env.LEMONSQUEEZY_WEBHOOK_SECRET,
   },
 })
