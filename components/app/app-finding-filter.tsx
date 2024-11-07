@@ -30,7 +30,7 @@ export function FindingFilter({
           <CustomHitsTags />
         )}
       </Box>
-      <StatsWrapper />
+      {/* <StatsWrapper /> */}
     </div>
   )
 }

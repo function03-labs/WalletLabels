@@ -79,8 +79,11 @@ type Hit = {
 }
 
 export default function CustomHitsTags() {
-  const router = useRouter()
   const { hits } = useHits() as { hits: Hit[] }
+  
+  const handleClick = () => {
+    window.open('https://docs.walletlabels.xyz', '_blank', 'noopener,noreferrer');
+  };
 
   const uniqueHits = hits.reduce((acc: Hit[], hit) => {
     if (!acc.some((item) => item.label === hit.label)) {
@@ -95,9 +98,7 @@ export default function CustomHitsTags() {
         <Badge
           variant="outline"
           key={category.label}
-          onClick={() => {
-            router.push(`?query=${encodeURIComponent(category.label)}`)
-          }}
+          onClick={handleClick}
           className="cursor-pointer hover:border-green-300 hover:text-foreground"
         >
           {category.label}
@@ -112,14 +113,14 @@ export function CustomHitsBadge({
 }: {
   category: { label: string; emoji: string }
 }) {
-  const router = useRouter()
+  const handleClick = () => {
+    window.open('https://docs.walletlabels.xyz', '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <Badge
       variant="outline"
-      onClick={() => {
-        router.push(`?query=${encodeURIComponent(category.label)}`)
-      }}
+      onClick={handleClick}
       className="cursor-pointer hover:border-green-300 hover:text-foreground"
     >
       {category.emoji + " " + category.label}

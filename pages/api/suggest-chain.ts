@@ -12,7 +12,7 @@ export default async function handler(
     const transporter = nodemailer.createTransport({
       host: "smtp.sendgrid.net",
       port: 587,
-      secure: false, // Use TLS
+      secure: true, // Use TLS
       auth: {
         user: "apikey", // This is always 'apikey' for SendGrid
         pass: process.env.SENDGRID_API_KEY,
