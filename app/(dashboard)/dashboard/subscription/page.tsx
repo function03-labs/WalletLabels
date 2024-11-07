@@ -79,12 +79,15 @@ export default function SubscriptionPage() {
           selectedPlan.lemonSqueezy.variants[
             selectedFrequency.value as keyof typeof selectedPlan.lemonSqueezy.variants
           ]
+        console.log("found variant", variant)
         const checkoutUrl = await getCheckoutURL(variant.id)
         if (checkoutUrl) {
           window.location.href = checkoutUrl
         }
       } catch (error) {
         console.error("Error creating checkout:", error)
+        console.error("Full error details:", JSON.stringify(error, null, 2))
+        toast.error("Failed to create checkout. Please try again later.")
       } finally {
         setLoading(false)
       }
