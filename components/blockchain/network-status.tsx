@@ -23,7 +23,8 @@ export function NetworkStatus() {
   const path = usePathname()
   const { data } = useBlockNumber()
 
-  if (path === "/pricing") return null
+  if (path === "/pricing" || path === "/privacy" || path === "/terms")
+    return null
 
   const chainSelected = chains.find(
     (c) => c.id === (path === "/" ? "ethereum" : path?.split("/")[2])

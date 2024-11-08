@@ -10,34 +10,19 @@ export function Footer({ className }: HTMLAttributes<HTMLElement>) {
       <div className="container flex flex-col items-center justify-between gap-4 py-10">
         <div className="flex flex-col items-center gap-4 px-8 ">
           <p className="text-center text-sm leading-loose dark:text-gray-400">
-            Built by{" "}
             <Link
-              href={siteConfig.url}
-              target="_blank"
-              rel="noreferrer"
+              href="/terms"
               className="font-medium underline underline-offset-4"
             >
-              {siteConfig.name}
-            </Link>
-            . Hosted on{" "}
+              Terms & Conditions
+            </Link>{" "}
+            |{" "}
             <Link
-              href="https://vercel.com/"
-              target="_blank"
-              rel="noreferrer"
+              href="/privacy"
               className="font-medium underline underline-offset-4"
             >
-              Vercel
+              Privacy Policy
             </Link>
-            . The source code is available on{" "}
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GitHub
-            </Link>
-            .
           </p>
         </div>
       </div>
