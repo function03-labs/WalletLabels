@@ -61,8 +61,8 @@ export async function getCheckoutURL(variantId: number, embed = false) {
       productOptions: {
         enabledVariants: [variantId],
         redirectUrl: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_APP_URL}/dashboard/subscription`,
-        receiptButtonText: "Go to Dashboard",
-        receiptThankYouNote: "Thank you for signing up to Lemon Stand!",
+        receiptButtonText: "Go back to Dashboard",
+        receiptThankYouNote: "Thank you for signing up to WalletLabels!",
       },
     },
   );
@@ -261,23 +261,25 @@ export async function getCurrentSubscription(userId: string): Promise<Subscripti
     console.log("no subscription found")
     return {
       id: `free-${userId}`,
-      lemonSqueezyId: "",
+      lemonSqueezyId: "free",
       orderId: 0,
       status: "active",
       renewsAt: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      userId,
-      planId: 0,
       name: "Free Plan",
       email: "",
       statusFormatted: "Active",
       endsAt: null,
+      trialEndsAt: null,
       price: "0",
       isUsageBased: false,
       isPaused: false,
       subscriptionItemId: 0,
-      variantId: 0
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      userId,
+      planId: 0,
+      user: null!,
+      plan: null!,
     }
   }
 
