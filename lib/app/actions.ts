@@ -230,7 +230,7 @@ export async function changePlan(currentPlanId: number, newPlanId: number) {
       where: { lemonSqueezyId: subscription.lemonSqueezyId },
       data: {
         planId: newPlanId,
-        price: newPlan.price,
+        price: newPlan.price.toString(),
         endsAt: updatedSub.data?.data.attributes.ends_at,
       },
     });

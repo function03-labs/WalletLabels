@@ -5,18 +5,18 @@ import { useRouter } from "next/navigation"
 import { ArrowLeft, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
 
-import { getCheckoutURL } from "@/lib/app/actions"
+import { useTiers } from "@/lib/hooks/use-tiers"
 import { useUser } from "@/lib/hooks/use-user"
 
 import { AppPricingRadio } from "@/components/app/app-pricing-radio"
 import { FreeTierCard } from "@/components/app/dashboard-free-tier-card"
 import { PricingCard } from "@/components/app/dashboard-pricing-card"
 import { SubscriptionActions } from "@/components/app/subscription-actions"
-import { frequencies, tiers } from "@/components/shared/pricing-info"
+import { frequencies } from "@/components/shared/pricing-info"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
-import { Frequency, Tier } from "@/types/subscription"
+import type { Frequency } from "@/types/pricing"
 
 export default function SubscriptionPage() {
   const [selectedFrequency, setSelectedFrequency] = useState<Frequency>(
@@ -26,6 +26,8 @@ export default function SubscriptionPage() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const { user: tempUser } = useUser()
+  const { data: pricingData, isLoading: isPricingLoading } = useTiers()
+
   const user = tempUser?.user
   const subscription = tempUser?.subscription
 
@@ -34,24 +36,23 @@ export default function SubscriptionPage() {
     frequencies[0]
   )
 
-  const currentTier = tiers.find((tier) =>
+  const currentTier = pricingData?.tiers.find((tier) =>
     tier.planIds.includes(subscription?.planId || 0)
   )
 
   useEffect(() => {
-    if (subscription) {
+    if (subscription && currentTier?.lemonSqueezy?.variants) {
       setCurrentPlanId(subscription.planId)
 
-      if (currentTier?.lemonSqueezy?.variants) {
-        const frequency = frequencies.find(
-          (freq) =>
-            currentTier.lemonSqueezy.variants[freq.value]?.planId ===
-            subscription.planId
-        )
-        if (frequency) {
-          setSelectedFrequency(frequency)
-          setCurrentFrequency(frequency)
-        }
+      const frequency = frequencies.find(
+        (freq) =>
+          currentTier.lemonSqueezy.variants[
+            freq.value as keyof typeof currentTier.lemonSqueezy.variants
+          ]?.planId === subscription.planId
+      )
+      if (frequency) {
+        setSelectedFrequency(frequency)
+        setCurrentFrequency(frequency)
       }
     }
   }, [subscription, currentTier])
@@ -65,7 +66,7 @@ export default function SubscriptionPage() {
       return
     }
 
-    const selectedPlan = tiers.find((tier) => tier.id === planId)
+    const selectedPlan = pricingData?.tiers.find((tier) => tier.id === planId)
 
     if (selectedPlan?.id === "tier-enterprise") {
       window.location.href = "mailto:aiden@fn03.xyz"
@@ -83,7 +84,7 @@ export default function SubscriptionPage() {
         const response = await fetch("/api/payment/create-checkout", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ variantId: Number(variant.id), embed: false }),
+          body: JSON.stringify({ variantId: variant?.id, embed: false }),
         })
 
         const data = await response.json()
@@ -97,6 +98,13 @@ export default function SubscriptionPage() {
         setLoading(false)
       }
     }
+  }
+
+  const paidTiers =
+    pricingData?.tiers.filter((tier) => tier.id !== "tier-free-plan") || []
+  console.log(paidTiers)
+  if (isPricingLoading) {
+    return <div>Loading...</div>
   }
 
   if (!subscription?.planId) {
@@ -117,18 +125,17 @@ export default function SubscriptionPage() {
           onFrequencyChange={setSelectedFrequency}
         />
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {tiers
-            .filter((tier) => tier.id !== "tier-free")
-            .map((tier) => (
-              <PricingCard
-                key={tier.id}
-                tier={tier as Tier}
-                selectedFrequency={selectedFrequency}
-                handlePlanSelection={handlePlanSelection}
-                isCurrentPlan={false}
-                isFreeTier={true}
-              />
-            ))}
+          {paidTiers.map((tier) => (
+            <PricingCard
+              key={tier.id}
+              tier={tier}
+              selectedFrequency={selectedFrequency}
+              handlePlanSelection={handlePlanSelection}
+              isCurrentPlan={false}
+              isLoading={loading}
+              isFreeTier={true}
+            />
+          ))}
         </div>
       </Card>
     )
@@ -162,18 +169,17 @@ export default function SubscriptionPage() {
             onFrequencyChange={setSelectedFrequency}
           />
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {tiers
-              .filter((tier) => tier.id !== "tier-free")
-              .map((tier) => (
-                <PricingCard
-                  key={tier.id}
-                  tier={tier as Tier}
-                  selectedFrequency={selectedFrequency}
-                  handlePlanSelection={handlePlanSelection}
-                  isCurrentPlan={tier.planIds.includes(currentPlanId || 0)}
-                  isFreeTier={false}
-                />
-              ))}
+            {paidTiers.map((tier) => (
+              <PricingCard
+                key={tier.id}
+                tier={tier}
+                selectedFrequency={selectedFrequency}
+                handlePlanSelection={handlePlanSelection}
+                isCurrentPlan={tier.planIds.includes(currentPlanId || 0)}
+                isLoading={loading}
+                isFreeTier={false}
+              />
+            ))}
           </div>
         </>
       ) : (
@@ -201,7 +207,7 @@ export default function SubscriptionPage() {
                       ·
                     </span>
                     <p className="text-lg font-medium text-muted-foreground">
-                      ${subscription?.price / 100} / {currentFrequency.value}
+                      ${subscription?.price} / {currentFrequency.value}
                     </p>
                   </div>
                 </div>
