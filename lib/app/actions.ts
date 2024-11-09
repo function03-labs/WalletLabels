@@ -23,6 +23,7 @@ import { getSession } from "@/lib/session";
 import { siweLogout } from "@/integrations/siwe/actions/siwe-logout";
 import { Subscription } from "@prisma/client"
 import { webhookHasMeta, webhookHasData } from "../typeguards";
+import { WebhookEvent } from "@prisma/client";
 
 /**
  * This action will log out the current user.
@@ -60,7 +61,7 @@ export async function getCheckoutURL(variantId: number, embed = false) {
       },
       productOptions: {
         enabledVariants: [variantId],
-        redirectUrl: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_APP_URL}/dashboard/subscription`,
+        redirectUrl: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_APP_URL!}/dashboard/subscription`,
         receiptButtonText: "Go back to Dashboard",
         receiptThankYouNote: "Thank you for signing up to WalletLabels!",
       },
@@ -278,8 +279,6 @@ export async function getCurrentSubscription(userId: string): Promise<Subscripti
       updatedAt: new Date(),
       userId,
       planId: 0,
-      user: null!,
-      plan: null!,
     }
   }
 
@@ -313,7 +312,7 @@ export async function storeWebhookEvent(
 /**
  * This action will process a webhook event in the database.
  */
-export async function processWebhookEvent(webhookEvent: any) {
+export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' | 'body' | 'eventName'>) {
   configureLemonSqueezy();
 
   const dbwebhookEvent = await prisma.webhookEvent.findUnique({
