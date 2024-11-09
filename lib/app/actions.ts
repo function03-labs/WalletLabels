@@ -259,7 +259,6 @@ export async function getCurrentSubscription(userId: string): Promise<Subscripti
   })
 
   if (!subscription) {
-    console.log("no subscription found")
     return {
       id: `free-${userId}`,
       lemonSqueezyId: "free",

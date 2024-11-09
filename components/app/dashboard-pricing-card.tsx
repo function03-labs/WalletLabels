@@ -1,11 +1,12 @@
 import React from "react"
+import { Loader2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
 import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 
-import { Frequency, Tier } from "@/types/subscription"
+import { Frequency, Tier } from "@/types/pricing"
 
 interface PricingCardProps {
   tier: Tier
@@ -13,6 +14,7 @@ interface PricingCardProps {
   handlePlanSelection: (planId: string) => void
   isCurrentPlan: boolean
   isFreeTier: boolean
+  loadingPlanId?: string | null
 }
 
 export const PricingCard: React.FC<PricingCardProps> = ({
@@ -21,7 +23,10 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   handlePlanSelection,
   isCurrentPlan,
   isFreeTier,
+  loadingPlanId,
 }) => {
+  const isLoading = loadingPlanId?.toString() === tier.id
+
   return (
     <div
       className={cn(
@@ -66,10 +71,20 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             ? "bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-primary"
             : "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline-primary"
         )}
-        disabled={isCurrentPlan}
+        disabled={isLoading || isCurrentPlan}
         variant={isCurrentPlan ? "outline" : "default"}
       >
-        {isCurrentPlan ? "Current Plan" : isFreeTier ? tier.cta : "Upgrade"}
+        {isLoading ? (
+          <div className="flex items-center justify-center">
+            <Loader2 className="size-4 animate-spin" />
+          </div>
+        ) : isCurrentPlan ? (
+          "Current Plan"
+        ) : isFreeTier ? (
+          tier.cta
+        ) : (
+          "Upgrade"
+        )}
       </Button>
       <ul
         role="list"
