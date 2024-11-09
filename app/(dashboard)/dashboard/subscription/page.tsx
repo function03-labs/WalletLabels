@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import type { Plan, Subscription } from "@prisma/client"
 import { ArrowLeft, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -12,6 +11,7 @@ import { useUser } from "@/lib/hooks/use-user"
 import { AppPricingRadio } from "@/components/app/app-pricing-radio"
 import { FreeTierCard } from "@/components/app/dashboard-free-tier-card"
 import { PricingCard } from "@/components/app/dashboard-pricing-card"
+import { PricingLoading } from "@/components/app/pricing-loading"
 import { SubscriptionActions } from "@/components/app/subscription-actions"
 import { frequencies } from "@/components/shared/pricing-info"
 import { Button } from "@/components/ui/button"
@@ -112,9 +112,8 @@ export default function SubscriptionPage() {
   const paidTiers =
     pricingData?.tiers.filter((tier: Tier) => tier.id !== "tier-free-plan") ||
     []
-  console.log(paidTiers)
   if (isPricingLoading) {
-    return <div>Loading...</div>
+    return <PricingLoading />
   }
 
   if (!subscription?.planId) {
