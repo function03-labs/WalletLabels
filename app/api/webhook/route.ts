@@ -15,7 +15,6 @@ export async function POST(request: Request) {
 
   // Get the raw body content.
   const rawBody = await request.text();
-  console.log(rawBody);
 
   // Get the webhook secret from the environment variables.
   const secret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
