@@ -2,13 +2,13 @@
 
 import { useState } from "react"
 import { MoreHorizontal } from "lucide-react"
-import { toast } from "sonner"
 
 import {
   cancelSub,
   pauseUserSubscription,
   unpauseUserSubscription,
 } from "@/lib/app/actions"
+import { toast } from "@/lib/hooks/use-toast"
 
 import { Button } from "@/components/ui/button"
 import {
