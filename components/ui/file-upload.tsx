@@ -18,8 +18,8 @@ import {
   FileRejection,
   useDropzone,
 } from "react-dropzone"
-import { toast } from "sonner"
 
+import { toast } from "@/lib/hooks/use-toast"
 import { cn } from "@/lib/utils"
 
 import { buttonVariants } from "@/components/ui/button"
