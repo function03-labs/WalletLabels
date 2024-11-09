@@ -36,39 +36,54 @@ export async function logout() {
  * This action will create a checkout on Lemon Squeezy.
  */
 export async function getCheckoutURL(variantId: number, embed = false) {
-  configureLemonSqueezy();
+  try {
+    configureLemonSqueezy();
 
-  const session = await getSession();
+    const session = await getSession();
 
-  if (!session?.user) {
-    throw new Error("User is not authenticated.");
-  }
+    if (!session?.user) {
+      throw new Error("Authentication required. Please sign in to continue.");
+    }
 
-  const checkout = await createCheckout(
-    process.env.LEMONSQUEEZY_STORE_ID!,
-    variantId,
-    {
-      checkoutOptions: {
-        embed,
-        media: false,
-        logo: !embed,
-      },
-      checkoutData: {
-        email: session.user.email ?? undefined,
-        custom: {
-          user_id: session.user.id,
+    if (!process.env.LEMONSQUEEZY_STORE_ID) {
+      throw new Error("LemonSqueezy store ID is not configured.");
+    }
+
+    const checkout = await createCheckout(
+      process.env.LEMONSQUEEZY_STORE_ID,
+      variantId,
+      {
+        checkoutOptions: {
+          embed,
+          media: false,
+          logo: !embed,
+        },
+        checkoutData: {
+          email: session.user.email ?? undefined,
+          custom: {
+            user_id: session.user.id,
+          },
+        },
+        productOptions: {
+          enabledVariants: [variantId],
+          redirectUrl: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_APP_URL!}/dashboard/subscription`,
+          receiptButtonText: "Go back to Dashboard",
+          receiptThankYouNote: "Thank you for signing up to WalletLabels!",
         },
       },
-      productOptions: {
-        enabledVariants: [variantId],
-        redirectUrl: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_APP_URL!}/dashboard/subscription`,
-        receiptButtonText: "Go back to Dashboard",
-        receiptThankYouNote: "Thank you for signing up to WalletLabels!",
-      },
-    },
-  );
+    );
 
-  return checkout.data?.data.attributes.url;
+    if (!checkout.data?.data.attributes.url) {
+      throw new Error("Failed to generate checkout URL.");
+    }
+
+    return checkout.data.data.attributes.url;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error("An unexpected error occurred while creating the checkout.");
+  }
 }
 
 

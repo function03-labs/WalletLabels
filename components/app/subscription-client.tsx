@@ -72,46 +72,51 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
 
   const handlePlanSelection = async (planId: string) => {
     setLoadingPlanId(planId)
-    if (!user?.email) {
-      toast.error(
-        "Please add an email address to your profile before subscribing"
-      )
-      router.push("/dashboard/profile")
-      setLoadingPlanId(null)
-      return
-    }
-
-    const selectedPlan = initialData.tiers.find((tier) => tier.id === planId)
-
-    if (selectedPlan?.id === "tier-enterprise") {
-      window.location.href = "mailto:aiden@fn03.xyz"
-      setLoadingPlanId(null)
-      return
-    }
-
-    if (selectedPlan?.lemonSqueezy?.variants) {
-      try {
-        const variant =
-          selectedPlan.lemonSqueezy.variants[
-            selectedFrequency.value as keyof typeof selectedPlan.lemonSqueezy.variants
-          ]
-
-        const response = await fetch("/api/payment/create-checkout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ variantId: variant?.id, embed: false }),
-        })
-
-        const data = await response.json()
-        if (data.url) {
-          window.location.href = data.url
-        }
-      } catch (error) {
-        console.error("Error creating checkout:", error)
-        toast.error("Failed to create checkout. Please try again later.")
-      } finally {
-        setLoadingPlanId(null)
+    try {
+      if (!user?.email) {
+        toast.error("Please add an email address to your profile before subscribing")
+        router.push("/dashboard/profile")
+        return
       }
+
+      const selectedPlan = initialData.tiers.find((tier) => tier.id === planId)
+
+      if (selectedPlan?.id === "tier-enterprise") {
+        window.location.href = "mailto:aiden@fn03.xyz"
+        return
+      }
+
+      if (!selectedPlan?.lemonSqueezy?.variants) {
+        toast.error("Invalid plan selected. Please try again.")
+        return
+      }
+
+      const variant =
+        selectedPlan.lemonSqueezy.variants[
+          selectedFrequency.value as keyof typeof selectedPlan.lemonSqueezy.variants
+        ]
+
+      const response = await fetch("/api/payment/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ variantId: variant?.id, embed: false }),
+      })
+
+      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to create checkout")
+      }
+      
+      if (!data.url) {
+        throw new Error("No checkout URL received")
+      }
+
+      window.location.href = data.url
+    } catch (error) {
+      console.error("Error creating checkout:", error)
+      toast.error(error instanceof Error ? error.message : "Failed to create checkout. Please try again later.")
+    } finally {
+      setLoadingPlanId(null)
     }
   }
 
