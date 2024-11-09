@@ -2,21 +2,22 @@
 
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import type { Plan, Subscription } from "@prisma/client"
 import { ArrowLeft, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
 
-import { getCheckoutURL } from "@/lib/app/actions"
+import { useTiers } from "@/lib/hooks/use-tiers"
 import { useUser } from "@/lib/hooks/use-user"
 
 import { AppPricingRadio } from "@/components/app/app-pricing-radio"
 import { FreeTierCard } from "@/components/app/dashboard-free-tier-card"
 import { PricingCard } from "@/components/app/dashboard-pricing-card"
 import { SubscriptionActions } from "@/components/app/subscription-actions"
-import { frequencies, tiers } from "@/components/shared/pricing-info"
+import { frequencies } from "@/components/shared/pricing-info"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
-import { Frequency, Tier } from "@/types/subscription"
+import type { Frequency, Tier } from "@/types/pricing"
 
 export default function SubscriptionPage() {
   const [selectedFrequency, setSelectedFrequency] = useState<Frequency>(
@@ -26,6 +27,10 @@ export default function SubscriptionPage() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const { user: tempUser } = useUser()
+  const { data: pricingData, isLoading: isPricingLoading } = useTiers<{
+    tiers: Tier[]
+  }>()
+
   const user = tempUser?.user
   const subscription = tempUser?.subscription
 
@@ -34,24 +39,23 @@ export default function SubscriptionPage() {
     frequencies[0]
   )
 
-  const currentTier = tiers.find((tier) =>
-    tier.planIds.includes(subscription?.planId || 0)
+  const currentTier = pricingData?.tiers.find((tier: Tier) =>
+    tier.planIds?.includes(subscription?.planId || 0)
   )
 
   useEffect(() => {
-    if (subscription) {
+    if (subscription && currentTier?.lemonSqueezy?.variants) {
       setCurrentPlanId(subscription.planId)
 
-      if (currentTier?.lemonSqueezy?.variants) {
-        const frequency = frequencies.find(
-          (freq) =>
-            currentTier.lemonSqueezy.variants[freq.value]?.planId ===
-            subscription.planId
-        )
-        if (frequency) {
-          setSelectedFrequency(frequency)
-          setCurrentFrequency(frequency)
-        }
+      const frequency = frequencies.find(
+        (freq) =>
+          currentTier?.lemonSqueezy?.variants?.[
+            freq.value as keyof typeof currentTier.lemonSqueezy.variants
+          ]?.planId === subscription.planId
+      )
+      if (frequency) {
+        setSelectedFrequency(frequency as Frequency)
+        setCurrentFrequency(frequency as Frequency)
       }
     }
   }, [subscription, currentTier])
@@ -65,7 +69,9 @@ export default function SubscriptionPage() {
       return
     }
 
-    const selectedPlan = tiers.find((tier) => tier.id === planId)
+    const selectedPlan = pricingData?.tiers.find(
+      (tier: Tier) => tier.id === planId
+    )
 
     if (selectedPlan?.id === "tier-enterprise") {
       window.location.href = "mailto:aiden@fn03.xyz"
@@ -76,19 +82,39 @@ export default function SubscriptionPage() {
       try {
         setLoading(true)
         const variant =
-          selectedPlan.lemonSqueezy.variants[
+          selectedPlan.lemonSqueezy?.variants[
             selectedFrequency.value as keyof typeof selectedPlan.lemonSqueezy.variants
           ]
-        const checkoutUrl = await getCheckoutURL(variant.id)
-        if (checkoutUrl) {
-          window.location.href = checkoutUrl
+
+        if (!variant?.id) {
+          throw new Error("Invalid variant ID")
+        }
+
+        const response = await fetch("/api/payment/create-checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ variantId: variant.id, embed: false }),
+        })
+
+        const data: { url?: string } = await response.json()
+        if (data.url) {
+          window.location.href = data.url
         }
       } catch (error) {
         console.error("Error creating checkout:", error)
+        toast.error("Failed to create checkout. Please try again later.")
       } finally {
         setLoading(false)
       }
     }
+  }
+
+  const paidTiers =
+    pricingData?.tiers.filter((tier: Tier) => tier.id !== "tier-free-plan") ||
+    []
+  console.log(paidTiers)
+  if (isPricingLoading) {
+    return <div>Loading...</div>
   }
 
   if (!subscription?.planId) {
@@ -109,18 +135,16 @@ export default function SubscriptionPage() {
           onFrequencyChange={setSelectedFrequency}
         />
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {tiers
-            .filter((tier) => tier.id !== "tier-free")
-            .map((tier) => (
-              <PricingCard
-                key={tier.id}
-                tier={tier as Tier}
-                selectedFrequency={selectedFrequency}
-                handlePlanSelection={handlePlanSelection}
-                isCurrentPlan={false}
-                isFreeTier={true}
-              />
-            ))}
+          {paidTiers.map((tier: Tier) => (
+            <PricingCard
+              key={tier.id}
+              tier={tier}
+              selectedFrequency={selectedFrequency}
+              handlePlanSelection={handlePlanSelection}
+              isCurrentPlan={false}
+              isFreeTier={true}
+            />
+          ))}
         </div>
       </Card>
     )
@@ -154,18 +178,18 @@ export default function SubscriptionPage() {
             onFrequencyChange={setSelectedFrequency}
           />
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {tiers
-              .filter((tier) => tier.id !== "tier-free")
-              .map((tier) => (
-                <PricingCard
-                  key={tier.id}
-                  tier={tier as Tier}
-                  selectedFrequency={selectedFrequency}
-                  handlePlanSelection={handlePlanSelection}
-                  isCurrentPlan={tier.planIds.includes(currentPlanId || 0)}
-                  isFreeTier={false}
-                />
-              ))}
+            {paidTiers.map((tier: Tier) => (
+              <PricingCard
+                key={tier.id}
+                tier={tier}
+                selectedFrequency={selectedFrequency}
+                handlePlanSelection={handlePlanSelection}
+                isCurrentPlan={
+                  tier.planIds?.includes(currentPlanId || 0) ?? false
+                }
+                isFreeTier={false}
+              />
+            ))}
           </div>
         </>
       ) : (
@@ -193,7 +217,7 @@ export default function SubscriptionPage() {
                       ·
                     </span>
                     <p className="text-lg font-medium text-muted-foreground">
-                      ${subscription?.price / 100} / {currentFrequency.value}
+                      ${subscription?.price} / {currentFrequency.value}
                     </p>
                   </div>
                 </div>
@@ -211,12 +235,16 @@ export default function SubscriptionPage() {
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold">Plan Features</h3>
                   <ul className="grid gap-2 sm:grid-cols-2">
-                    {currentTier?.features.map((feature, index) => (
-                      <li key={index} className="flex items-center gap-2">
-                        <CheckCircle2 className="size-4 text-green-500" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
+                    {currentTier?.features.map(
+                      (feature: string, index: React.Key) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <CheckCircle2 className="size-4 text-green-500" />
+                          <span className="text-muted-foreground">
+                            {feature}
+                          </span>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
 

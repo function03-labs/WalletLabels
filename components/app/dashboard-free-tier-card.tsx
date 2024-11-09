@@ -1,16 +1,25 @@
+"use client"
+
 import React, { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 
+import { useTiers } from "@/lib/hooks/use-tiers"
 import { cn } from "@/lib/utils"
 
 import { Icons } from "@/components/shared/icons"
-import { tiers } from "@/components/shared/pricing-info"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
 export const FreeTierCard: React.FC = () => {
   const [showFreeTierFeatures, setShowFreeTierFeatures] = useState(false)
+  const { data } = useTiers()
+
+  const freeTier = data?.tiers.find((tier) => tier.id === "tier-free")
+
+  if (!freeTier) {
+    return null
+  }
 
   return (
     <Card className="overflow-hidden rounded-3xl border border-border">
@@ -44,14 +53,12 @@ export const FreeTierCard: React.FC = () => {
                   These are the features available on the Free Tier.
                 </h3>
                 <ul className="space-y-2">
-                  {tiers
-                    .find((tier) => tier.id === "tier-free")
-                    ?.features.map((feature, index) => (
-                      <li key={index} className="flex items-center">
-                        <Icons.check className="mr-2 size-5 text-green-500" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
+                  {freeTier.features.map((feature, index) => (
+                    <li key={index} className="flex items-center">
+                      <Icons.check className="mr-2 size-5 text-green-500" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </motion.div>

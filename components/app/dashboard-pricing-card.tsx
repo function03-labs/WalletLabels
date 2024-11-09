@@ -58,7 +58,6 @@ export const PricingCard: React.FC<PricingCardProps> = ({
       </p>
       <Button
         onClick={() => {
-          console.log("[PricingCard] Plan selected:", tier.id)
           handlePlanSelection(tier.id)
         }}
         className={cn(

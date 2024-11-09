@@ -57,46 +57,46 @@ model AddressLabel {
 
 model Plan {
   id            Int            @id @default(autoincrement())
-  lemonId       String         
-  variantId     Int           @unique  
+  lemonId       String
+  variantId     Int            @unique
   name          String
   description   String?
-  features      String[]       // Store features as an array
+  features      String[]
   price         Int
-  interval      String         // monthly, biannually, annually
+  interval      String
   intervalCount Int
   status        String         @default("published")
-  isCustom      Boolean        @default(false) // For enterprise/custom plans
+  isCustom      Boolean        @default(false)
   featured      Boolean        @default(false)
-  sort          Int           @default(0)
+  sort          Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   subscriptions Subscription[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
 
   @@map("plans")
 }
 
 model Subscription {
-  id                 String             @id @default(cuid())
-  lemonSqueezyId     String             @unique
-  orderId            Int                
-  status             String           
+  id                 String    @id @default(cuid())
+  lemonSqueezyId     String    @unique
+  orderId            Int
+  status             String
   renewsAt           DateTime?
-  name               String
-  email              String
-  statusFormatted    String
-  endsAt             DateTime?
-  trialEndsAt        DateTime?
-  price              String
-  isUsageBased       Boolean            @default(false)
-  isPaused           Boolean            @default(false)
-  subscriptionItemId Int                @unique
-  createdAt          DateTime           @default(now())
-  updatedAt          DateTime           @updatedAt
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
   userId             String
   planId             Int
-  user               User               @relation(fields: [userId], references: [id])
-  plan               Plan               @relation(fields: [planId], references: [id])
+  email              String
+  endsAt             DateTime?
+  isPaused           Boolean   @default(false)
+  isUsageBased       Boolean   @default(false)
+  name               String
+  price              String
+  statusFormatted    String
+  subscriptionItemId Int       @unique
+  trialEndsAt        DateTime?
+  plan               Plan      @relation(fields: [planId], references: [id])
+  user               User      @relation(fields: [userId], references: [id])
 
   @@map("subscriptions")
 }

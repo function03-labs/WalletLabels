@@ -1,3 +1,20 @@
+// LemonSqueezy specific types
+export interface LemonSqueezyVariant {
+  id: number
+  planId: number
+}
+
+export interface LemonSqueezyTierInfo {
+  productId: number
+  variants?: {
+    monthly?: LemonSqueezyVariant
+    biannually?: LemonSqueezyVariant
+    annually?: LemonSqueezyVariant
+  }
+  variantId?: number // For free tier
+}
+
+// Core pricing and subscription types
 export type Frequency = {
   value: string
   label: string
@@ -5,7 +22,7 @@ export type Frequency = {
   discount?: number
 }
 
-export type Tier = {
+export interface Tier {
   name: string
   id: string
   href: string
@@ -14,10 +31,12 @@ export type Tier = {
   features: string[]
   featured: boolean
   cta: string
-  productId: string
   planId?: number
+  planIds?: number[]
+  lemonSqueezy?: LemonSqueezyTierInfo
 }
 
+// Payment related types
 export type PaymentMethod = {
   card: {
     number: string
@@ -47,3 +66,7 @@ export type PriceIds = {
     [key: string]: string
   }
 }
+
+export type PricingResponse = {
+  tiers: Tier[]
+} 
