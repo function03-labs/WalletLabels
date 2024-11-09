@@ -5,7 +5,6 @@ import { z } from "zod"
 
 import { prisma } from "@/lib/prisma"
 import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
-import { getCurrentSubscription } from "@/lib/app/actions"
 
 
 const verifySchema = z.object({

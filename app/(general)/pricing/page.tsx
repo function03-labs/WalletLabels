@@ -1,17 +1,23 @@
 "use client"
 
-import React, { useState } from "react"
+import { useState } from "react"
 
+import { useTiers } from "@/lib/hooks/use-tiers"
 import { cn } from "@/lib/utils"
 
 import { AppPricingRadio } from "@/components/app/app-pricing-radio"
 import { Icons } from "@/components/shared/icons"
-import { frequencies, tiers } from "@/components/shared/pricing-info"
-
-
+import { frequencies } from "@/components/shared/pricing-info"
 
 export default function PricingPage() {
-  const [frequency, setFrequency] = useState(frequencies[0])
+  const { data, isLoading } = useTiers()
+  const [frequency, setFrequency] = useState(
+    data?.frequencies?.[0] || frequencies[0]
+  )
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10">
@@ -31,7 +37,7 @@ export default function PricingPage() {
       />
 
       <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-        {tiers.map((tier) => (
+        {data?.tiers?.map((tier) => (
           <div
             key={tier.id}
             className={cn(
