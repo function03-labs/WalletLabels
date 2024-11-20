@@ -5,6 +5,7 @@ import { getUser } from "@/lib/app/user-profile"
 import { getSession } from "@/lib/session"
 
 import { DashboardSubmitLabel } from "@/components/app/dashboard-submit-label"
+import { DashboardSubmitBulkLabels } from "@/components/app/dashboard-submit-bulk-labels"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { PageHeader } from "@/components/ui/page-header"
 
@@ -34,6 +35,7 @@ export default async function SubmitPage() {
           </CardHeader>
           <CardContent>
             <DashboardSubmitLabel userId={user.id} />
+            <DashboardSubmitBulkLabels userId={user.id} />
           </CardContent>
         </Card>
       </IsSignedIn>
