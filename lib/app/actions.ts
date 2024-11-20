@@ -66,7 +66,7 @@ export async function getCheckoutURL(variantId: number, embed = false) {
         },
         productOptions: {
           enabledVariants: [variantId],
-          redirectUrl: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_APP_URL!}/dashboard/subscription`,
+          redirectUrl: `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_SITE_URL!}/dashboard/subscription`,
           receiptButtonText: "Go back to Dashboard",
           receiptThankYouNote: "Thank you for signing up to WalletLabels!",
         },
