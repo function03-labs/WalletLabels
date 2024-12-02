@@ -34,6 +34,8 @@ export function PricingClient({ initialData }: PricingClientProps) {
     return <PricingLoading />
   }
 
+  const paidTiers = initialData.tiers.filter(tier => tier.id !== "tier-free")
+
   return (
     <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 duration-500 animate-in fade-in-50">
       <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
@@ -52,7 +54,7 @@ export function PricingClient({ initialData }: PricingClientProps) {
       />
 
       <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-        {initialData.tiers.map((tier) => (
+        {paidTiers.map((tier) => (
           <div
             key={tier.id}
             className={cn(

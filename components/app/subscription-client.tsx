@@ -8,7 +8,6 @@ import { useToast } from "@/lib/hooks/use-toast"
 import { useUser } from "@/lib/hooks/use-user"
 
 import { AppPricingRadio } from "@/components/app/app-pricing-radio"
-import { FreeTierCard } from "@/components/app/dashboard-free-tier-card"
 import { PricingCard } from "@/components/app/dashboard-pricing-card"
 import { PricingLoading } from "@/components/app/pricing-loading"
 import { SubscriptionActions } from "@/components/app/subscription-actions"
@@ -136,14 +135,11 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
     return <PricingLoading />
   }
 
-  const paidTiers = initialData.tiers.filter(
-    (tier) => tier.id !== "tier-free-plan"
-  )
+  const paidTiers = initialData.tiers
 
   if (!subscription?.planId) {
     return (
       <Card className="container mt-4 grid items-center gap-5 rounded-3xl py-8">
-        <FreeTierCard />
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
           <h1 className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl">
             Choose Your Plan
