@@ -135,7 +135,9 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
     return <PricingLoading />
   }
 
-  const paidTiers = initialData.tiers
+  const paidTiers = initialData.tiers.filter(
+    (tier) => tier.id !== "tier-free-plan"
+  )
 
   if (!subscription?.planId) {
     return (

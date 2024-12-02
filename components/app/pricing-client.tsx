@@ -34,7 +34,10 @@ export function PricingClient({ initialData }: PricingClientProps) {
     return <PricingLoading />
   }
 
-  const paidTiers = initialData.tiers.filter(tier => tier.id !== "tier-free")
+  const paidTiers = initialData.tiers.filter(
+    (tier) => tier.id !== "tier-free-plan"
+  )
+  console.log(paidTiers)
 
   return (
     <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 duration-500 animate-in fade-in-50">
@@ -53,7 +56,7 @@ export function PricingClient({ initialData }: PricingClientProps) {
         onFrequencyChange={setFrequency}
       />
 
-      <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+      <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {paidTiers.map((tier) => (
           <div
             key={tier.id}
@@ -61,7 +64,7 @@ export function PricingClient({ initialData }: PricingClientProps) {
               tier.featured
                 ? "bg-secondary-foreground ring-secondary-foreground"
                 : "ring-secondary",
-              "rounded-3xl p-8 ring-1 xl:p-10"
+              "rounded-3xl p-8 ring-1 xl:m-5 xl:p-10"
             )}
           >
             <h3
