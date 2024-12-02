@@ -61,7 +61,7 @@ export async function getTiers() {
     return acc
   }, [])
 
-  return { tiers: [...paidTiers] }
+  return { tiers: paidTiers }
 }
 
 export async function GET() {
@@ -75,4 +75,4 @@ export async function GET() {
       { status: 500 }
     )
   }
-} 
+}

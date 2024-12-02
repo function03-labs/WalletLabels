@@ -16,7 +16,6 @@ model User {
   organizationSlug       String?
   createdAt              DateTime       @default(now())
   updatedAt              DateTime       @updatedAt
-  lemonSqueezyCustomerId String?        @unique
   AddressLabel           AddressLabel[]
   apiKeys                ApiKey[]
   subscriptions          Subscription[]
