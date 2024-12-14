@@ -9,6 +9,7 @@ import { useToast } from "@/lib/hooks/use-toast"
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
 
+import { useMagic } from "@/components/context/magicProvider"
 import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 import {
@@ -35,6 +36,8 @@ export const ButtonSIWELogin = ({
   ...props
 }: ButtonSIWELoginProps) => {
   const router = useRouter()
+  const { magic } = useMagic()
+
   const { toast } = useToast()
   const { chain } = useNetwork()
   const { address } = useAccount()
@@ -68,10 +71,15 @@ export const ButtonSIWELogin = ({
   const labelClasses = cn({
     "opacity-0": isLoading,
   })
+  const handleAccount = async () => {
+    if (magic?.user.isLoggedIn) {
+      await magic.wallet.showUI()
+    }
+  }
 
   return (
     <>
-      {user?.isLoggedIn ? (
+      {magic?.user.isLoggedIn ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -98,9 +106,9 @@ export const ButtonSIWELogin = ({
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link className="w-full" href="/dashboard/profile">
+              <span className="w-full" onClick={handleAccount}>
                 Profile
-              </Link>
+              </span>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link className="w-full" href="/dashboard/subscription">

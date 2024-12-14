@@ -1,23 +1,28 @@
 import { HtmlHTMLAttributes } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 
+import { useMagic } from "@/components/context/magicProvider"
+
+import { Button } from "../ui/button"
+
 export const WalletConnect = ({
   className,
   ...props
 }: HtmlHTMLAttributes<HTMLSpanElement>) => {
+  const { magic } = useMagic()
+
+  const handleConnect = async () => {
+    if (!magic) {
+      return
+    }
+    await magic.wallet.connectWithUI()
+  }
+
   return (
     <span className={className} {...props}>
-      <ConnectButton
-        showBalance={false}
-        accountStatus={{
-          smallScreen: "avatar",
-          largeScreen: "avatar",
-        }}
-        chainStatus={{
-          smallScreen: "icon",
-          largeScreen: "icon",
-        }}
-      />
+      <Button variant="default" onClick={handleConnect}>
+        Log in
+      </Button>
     </span>
   )
 }

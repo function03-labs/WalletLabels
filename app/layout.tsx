@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
+import MagicProvider from "@/components/context/magicProvider"
 import RootProvider from "@/components/providers/root-provider"
 import { Toaster } from "@/components/ui/toaster"
 
@@ -93,19 +94,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <RootProvider>{children}</RootProvider>
-          <Analytics />
-          <Toaster />
-        </body>
-      </html>
-    </>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <RootProvider>{children}</RootProvider>
+        <Analytics />
+        <Toaster />
+      </body>
+    </html>
   )
 }
