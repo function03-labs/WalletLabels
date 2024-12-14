@@ -83,6 +83,7 @@
     "jotai": "^1.13.0",
     "lucide-react": "^0.367.0",
     "luxon": "^3.2.1",
+    "magic-sdk": "^28.19.1",
     "marked": "^14.1.2",
     "moment": "^2.29.4",
     "mongodb": "^6.6.0",

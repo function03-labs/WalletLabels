@@ -3,6 +3,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 import { Button } from "@/components/ui/button"
 
+import { useMagic } from "../context/magicProvider"
+
 interface WalletConnectCustomProps extends HTMLAttributes<HTMLDivElement> {
   classNameConnect?: string
   classNameConnected?: string
@@ -17,6 +19,15 @@ export const WalletConnectCustom = ({
   labelWrongNetwork = "Wrong Network",
   ...props
 }: WalletConnectCustomProps) => {
+  const { magic } = useMagic()
+  const handleConnect = async () => {
+    if (!magic) {
+      return
+    }
+
+    await magic.wallet.connectWithUI()
+  }
+
   return (
     <ConnectButton.Custom>
       {({
@@ -37,7 +48,7 @@ export const WalletConnectCustom = ({
               if (!connected) {
                 return (
                   <>
-                    <Button variant="default" onClick={openConnectModal}>
+                    <Button variant="default" onClick={handleConnect}>
                       {labelConnect}
                     </Button>
                   </>
