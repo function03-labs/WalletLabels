@@ -72,6 +72,7 @@ export default async function DashboardLayout({
       <div className="fixed bottom-6 right-6">
         <button onClick={() => signIn("google")}>Sign in with Google</button>
         <button onClick={() => signIn("github")}>Sign in with GitHub</button>
+        <button onClick={() => signIn("email")}>Sign in with Email</button>
       </div>
     </div>
   )

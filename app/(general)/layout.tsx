@@ -28,6 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <>
             <button onClick={() => signIn("google")}>Sign in with Google</button>
             <button onClick={() => signIn("github")}>Sign in with GitHub</button>
+            <button onClick={() => signIn("email")}>Sign in with Email</button>
           </>
         ) : (
           <p>Welcome, {session.user.name}</p>

@@ -7,8 +7,6 @@ import { siteConfig } from "@/config/site"
 
 import { MainNav } from "@/components/layout/main-nav"
 import { Icons } from "@/components/shared/icons"
-import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
-import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { ModeToggle } from "@/components/shared/mode-toggle"
 import { buttonVariants } from "@/components/ui/button"
 
@@ -25,6 +23,7 @@ export function SiteHeader() {
             <>
               <button onClick={() => signIn("google")}>Sign in with Google</button>
               <button onClick={() => signIn("github")}>Sign in with GitHub</button>
+              <button onClick={() => signIn("email")}>Sign in with Email</button>
             </>
           ) : (
             <p>Welcome, {session.user.name}</p>
