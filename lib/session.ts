@@ -3,6 +3,7 @@ import { env } from "@/env.mjs"
 import { User } from "@prisma/client"
 import { getIronSession, SessionOptions } from "iron-session"
 import { type SiweMessage } from "siwe"
+import { getSession as getNextAuthSession } from "next-auth/react"
 
 import { siteConfig } from "@/config/site"
 
@@ -32,10 +33,15 @@ export const SERVER_SESSION_SETTINGS: SessionOptions = {
 }
 
 export async function getSession() {
-  const session = await getIronSession<SessionData>(
+  const session = await getNextAuthSession()
+  if (session) {
+    return session
+  }
+
+  const ironSession = await getIronSession<SessionData>(
     cookies(),
     SERVER_SESSION_SETTINGS
   )
 
-  return session
+  return ironSession
 }

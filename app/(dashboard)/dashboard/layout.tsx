@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { FaGithub, FaTwitter } from "react-icons/fa"
+import { useSession, signIn } from "next-auth/react"
 
 import { menuDashboard } from "@/config/menu-dashboard"
 import { menuResources } from "@/config/menu-resources"
@@ -8,7 +9,6 @@ import { siteConfig } from "@/config/site"
 import { getUser } from "@/lib/app/user-profile"
 import { getSession } from "@/lib/session"
 
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { LoggedUser } from "@/components/layout/logged-user"
 import { SidebarNav } from "@/components/layout/sidebar-nav"
 import { SiteHeader } from "@/components/layout/site-header"
@@ -70,7 +70,8 @@ export default async function DashboardLayout({
         <main className="flex w-full flex-col overflow-hidden">{children}</main>
       </div>
       <div className="fixed bottom-6 right-6">
-        <WalletConnect />
+        <button onClick={() => signIn("google")}>Sign in with Google</button>
+        <button onClick={() => signIn("github")}>Sign in with GitHub</button>
       </div>
     </div>
   )
