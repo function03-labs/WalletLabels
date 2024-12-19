@@ -1,15 +1,14 @@
 "use client"
 
-import React from "react"
-import { useRouter } from "next/navigation"
+import { useTransition } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { User } from "@prisma/client"
 import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import * as z from "zod"
 
-import { AccountFormSchema } from "@/config/schema"
 import { updateUser } from "@/lib/app/user-profile"
+import { useToast } from "@/lib/hooks/use-toast"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -23,46 +22,58 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  organizationSlug: z.string().optional(),
+})
+
 export function AppAccountForm({ user }: { user: User }) {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = React.useState(false)
-  const form = useForm<z.infer<typeof AccountFormSchema>>({
-    resolver: zodResolver(AccountFormSchema),
+  const [isLoading, startTransition] = useTransition()
+  const { toast } = useToast()
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
-      name: user.name,
+      name: user.name || "",
       email: user.email || "",
       organizationSlug: user.organizationSlug || "",
     },
   })
 
-  async function onSubmit(values: z.infer<typeof AccountFormSchema>) {
-    setIsLoading(true)
-
-    try {
-      await updateUser(user.id, values)
-      router.refresh()
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setIsLoading(false)
-    }
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    startTransition(async () => {
+      try {
+        await updateUser(user.id, values)
+        toast({
+          title: "Profile updated",
+          description: "Your profile has been updated successfully.",
+        })
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to update profile. Please try again.",
+          variant: "destructive",
+        })
+      }
+    })
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>
+                Name<span className="text-red-500">*</span>
+              </FormLabel>
               <FormControl>
-                <Input placeholder={user.name} {...field} />
+                <Input placeholder="John Doe" {...field} required />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              <FormDescription>This is your display name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -11,7 +11,8 @@
     "format": "prettier . --list-different",
     "fix": "prettier . --write",
     "run-ci": "concurrently -c \"auto\" -p \"name\" -n \"format,lint\" \"pnpm format\"  \"pnpm lint\"  ",
-    "prepare": "husky ; prisma generate --no-engine ; wagmi generate"
+    "prepare": "husky ; prisma generate --no-engine ; wagmi generate",
+    "generate:auth": "prisma generate --schema=./prisma/schema2.prisma"
   },
   "husky": {
     "hooks": {
@@ -29,6 +30,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.7.4",
     "@aws-sdk/client-api-gateway": "^3.563.0",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/styled": "^11.13.0",
@@ -84,6 +86,7 @@
     "lucide-react": "^0.367.0",
     "luxon": "^3.2.1",
     "marked": "^14.1.2",
+    "md5": "^2.3.0",
     "moment": "^2.29.4",
     "mongodb": "^6.6.0",
     "next": "^14.2.4",
@@ -124,7 +127,7 @@
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
-    "@prisma/client": "^5.21.1",
+    "@prisma/client": "^6.1.0",
     "@svgr/webpack": "^6.5.1",
     "@tsconfig/next": "^1.0.4",
     "@types/luxon": "^3.2.0",

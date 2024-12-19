@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { FaGithub, FaTwitter } from "react-icons/fa"
-import { useSession, signIn } from "next-auth/react"
 
 import { menuDashboard } from "@/config/menu-dashboard"
 import { menuResources } from "@/config/menu-resources"
@@ -23,11 +22,15 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   const session = await getSession()
 
-  if (!session || !session.user) {
+  if (!session?.user) {
     redirect("/")
   }
 
   const user = await getUser(session.user.id)
+
+  if (!user) {
+    redirect("/")
+  }
 
   return (
     <div className="relative flex min-h-screen flex-col">
@@ -68,11 +71,6 @@ export default async function DashboardLayout({
           </footer>
         </aside>
         <main className="flex w-full flex-col overflow-hidden">{children}</main>
-      </div>
-      <div className="fixed bottom-6 right-6">
-        <button onClick={() => signIn("google")}>Sign in with Google</button>
-        <button onClick={() => signIn("github")}>Sign in with GitHub</button>
-        <button onClick={() => signIn("email")}>Sign in with Email</button>
       </div>
     </div>
   )

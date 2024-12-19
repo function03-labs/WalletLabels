@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgres"
+  url       = env("DATABASE_URL_ACCELERATE")
+  directUrl = env("DATABASE_URL_SUPABASE")
+}
+
+model User {
+  id                     String         @id
+  name                   String
+  email                  String?
+  avatar                 String
+  organizationSlug       String?
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+  lemonSqueezyCustomerId String?        @unique
+  AddressLabel           AddressLabel[]
+  apiKeys                ApiKey[]
+  subscriptions          Subscription[]
+
+  @@map("users")
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  name      String
+  chains    String[]
+  userId    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("api_keys")
+}
+
+model AddressLabel {
+  id           String             @id @default(cuid())
+  blockchain   String
+  address      String
+  addressName  String
+  labelType    String
+  label        String
+  userId       String
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  labelSubType String
+  status       AddressLabelStatus @default(PENDING)
+  user         User               @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("address_labels")
+}
+
+model Plan {
+  id            Int            @id @default(autoincrement())
+  lemonId       String
+  variantId     Int            @unique
+  name          String
+  description   String?
+  features      String[]
+  price         Int
+  interval      String
+  intervalCount Int
+  status        String         @default("published")
+  isCustom      Boolean        @default(false)
+  featured      Boolean        @default(false)
+  sort          Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  subscriptions Subscription[]
+
+  @@map("plans")
+}
+
+model Subscription {
+  id                 String    @id @default(cuid())
+  lemonSqueezyId     String    @unique
+  orderId            Int
+  status             String
+  renewsAt           DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  userId             String
+  planId             Int
+  email              String
+  endsAt             DateTime?
+  isPaused           Boolean   @default(false)
+  isUsageBased       Boolean   @default(false)
+  name               String
+  price              String
+  statusFormatted    String
+  subscriptionItemId Int       @unique
+  trialEndsAt        DateTime?
+  plan               Plan      @relation(fields: [planId], references: [id])
+  user               User      @relation(fields: [userId], references: [id])
+
+  @@map("subscriptions")
+}
+
+model WebhookEvent {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  eventName       String
+  processed       Boolean  @default(false)
+  body            Json
+  processingError String?
+
+  @@map("webhook_events")
+}
+
+enum AddressLabelStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}

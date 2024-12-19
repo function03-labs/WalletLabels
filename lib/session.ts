@@ -2,7 +2,6 @@ import { cookies } from "next/headers"
 import { env } from "@/env.mjs"
 import { User } from "@prisma/client"
 import { getIronSession, SessionOptions } from "iron-session"
-import { type SiweMessage } from "siwe"
 import { getSession as getNextAuthSession } from "next-auth/react"
 
 import { siteConfig } from "@/config/site"
