@@ -8,7 +8,6 @@ import { siteConfig } from "@/config/site"
 import { getUser } from "@/lib/app/user-profile"
 import { getSession } from "@/lib/session"
 
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { LoggedUser } from "@/components/layout/logged-user"
 import { SidebarNav } from "@/components/layout/sidebar-nav"
 import { SiteHeader } from "@/components/layout/site-header"
@@ -23,11 +22,15 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   const session = await getSession()
 
-  if (!session || !session.user) {
+  if (!session?.user) {
     redirect("/")
   }
 
   const user = await getUser(session.user.id)
+
+  if (!user) {
+    redirect("/")
+  }
 
   return (
     <div className="relative flex min-h-screen flex-col">
@@ -68,9 +71,6 @@ export default async function DashboardLayout({
           </footer>
         </aside>
         <main className="flex w-full flex-col overflow-hidden">{children}</main>
-      </div>
-      <div className="fixed bottom-6 right-6">
-        <WalletConnect />
       </div>
     </div>
   )

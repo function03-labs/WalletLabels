@@ -1,10 +1,11 @@
 import { env } from "@/env.mjs"
 
+import { getSession } from "@/lib/session"
+
 import { ActivityFilter } from "@/components/app/app-activity-filter"
 import { CustomHits } from "@/components/app/app-custom-hits"
 import { FindingFilter } from "@/components/app/app-finding-filter"
 import { Grid } from "@/components/app/app-grid"
-import { PageHeader } from "@/components/layout/page-header"
 import { SearchWrapper } from "@/components/providers/search-wrapper"
 import { Bento } from "@/components/shared/bento"
 import { CountingUp } from "@/components/shared/counting-up"
@@ -26,29 +27,51 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
   const data = await getData()
+  const session = await getSession()
 
   return (
     <SearchWrapper chainSlug={"/"}>
       <section className="md:py-17 container grid items-center gap-10 pb-8 pt-10 ">
         <div className="flex flex-col items-center gap-6">
-          <div className="flex justify-center text-center">
-            <HoverBorderGradient
-              clockwise
-              containerClassName="rounded-full"
-              as="button"
-              className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
-            >
-              <div className="px-3 py-1 text-sm">
-                Check out our API endpoints.{" "}
-                <a
-                  href="https://docs.walletlabels.xyz/"
-                  className="font-semibold text-blue-800 dark:text-white"
-                >
-                  Access now <span aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
-            </HoverBorderGradient>
-          </div>
+          {!session?.user ? (
+            <div className="flex justify-center text-center">
+              <HoverBorderGradient
+                clockwise
+                containerClassName="rounded-full"
+                as="button"
+                className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
+              >
+                <div className="px-3 py-1 text-sm">
+                  Check out our API endpoints.{" "}
+                  <a
+                    href="https://docs.walletlabels.xyz/"
+                    className="font-semibold text-blue-800 dark:text-white"
+                  >
+                    Access now <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </HoverBorderGradient>
+            </div>
+          ) : (
+            <div className="flex justify-center text-center">
+              <HoverBorderGradient
+                clockwise
+                containerClassName="rounded-full"
+                as="button"
+                className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
+              >
+                <div className="px-3 py-1 text-sm">
+                  Welcome back! Go to your{" "}
+                  <a
+                    href="/dashboard"
+                    className="font-semibold text-blue-800 dark:text-white"
+                  >
+                    Dashboard <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </HoverBorderGradient>
+            </div>
+          )}
           <h1 className="text-center text-3xl font-bold leading-tight dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
             What would you like to <br className="hidden sm:inline" />
             search today?

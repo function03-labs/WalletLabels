@@ -14,22 +14,20 @@ import {
   updateSubscription,
   type Variant,
 } from "@lemonsqueezy/lemonsqueezy.js";
+import { signOut } from "next-auth/react";
 import { revalidatePath } from "next/cache";
 import { notFound } from "next/navigation";
 import { configureLemonSqueezy } from "@/config/lemonsqueezy";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
-// import { webhookHasData, webhookHasMeta } from "@/lib/typeguards";
-import { siweLogout } from "@/integrations/siwe/actions/siwe-logout";
-import { Subscription } from "@prisma/client"
 import { webhookHasMeta, webhookHasData } from "../typeguards";
-import { WebhookEvent } from "@prisma/client";
+import { Subscription, WebhookEvent } from "@prisma/client";
 
 /**
  * This action will log out the current user.
  */
 export async function logout() {
-  await siweLogout();
+  await signOut({ redirect: true, callbackUrl: "/" });
 }
 
 /**
@@ -61,7 +59,7 @@ export async function getCheckoutURL(variantId: number, embed = false) {
         checkoutData: {
           email: session.user.email ?? undefined,
           custom: {
-            user_id: session.user.id,
+            user_email: session.user.email,
           },
         },
         productOptions: {
@@ -86,23 +84,20 @@ export async function getCheckoutURL(variantId: number, embed = false) {
   }
 }
 
-
-
-
 /**
  * This action will get the subscriptions for the current user.
  */
 export async function getUserSubscriptions() {
   const session = await getSession();
-  const userId = session?.user?.id;
+  const userEmail = session?.user?.email;
 
-  if (!userId) {
+  if (!userEmail) {
     notFound();
   }
 
   const userSubscriptions = await prisma.subscription.findMany({
     where: {
-      userId,
+      email: userEmail,
     },
   });
 
@@ -110,9 +105,6 @@ export async function getUserSubscriptions() {
 
   return userSubscriptions;
 }
-
-
-
 
 /**
  * Cancels a subscription in Lemon Squeezy
@@ -265,23 +257,23 @@ export async function changePlan(currentPlanId: number, newPlanId: number) {
  * Gets the current subscription for a user.
  * Returns a FREE tier subscription if no active subscription is found.
  */
-export async function getCurrentSubscription(userId: string): Promise<Subscription> {
+export async function getCurrentSubscription(userEmail: string): Promise<Subscription> {
   const subscription = await prisma.subscription.findFirst({
     where: {
-      userId,
+      email: userEmail,
       status: "active"
     }
   })
 
   if (!subscription) {
     return {
-      id: `free-${userId}`,
+      id: `free-${userEmail}`,
       lemonSqueezyId: "free",
       orderId: 0,
       status: "active",
       renewsAt: null,
       name: "Free Plan",
-      email: "",
+      email: userEmail,
       statusFormatted: "Active",
       endsAt: null,
       trialEndsAt: null,
@@ -291,7 +283,7 @@ export async function getCurrentSubscription(userId: string): Promise<Subscripti
       subscriptionItemId: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
-      userId,
+      userId: userEmail,
       planId: 0,
     }
   }
@@ -319,9 +311,6 @@ export async function storeWebhookEvent(
 
   return webhookEvent;
 }
-
-
-
 
 /**
  * This action will process a webhook event in the database.
@@ -377,7 +366,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
               isUsageBased: attributes.first_subscription_item.is_usage_based,
               isPaused: false,
               subscriptionItemId: attributes.first_subscription_item.id,
-              userId: eventBody.meta.custom_data.user_id,
+              userId: eventBody.meta.custom_data.user_email,
               planId: plan.id,
               name: attributes.user_name as string,
               email: attributes.user_email as string,
