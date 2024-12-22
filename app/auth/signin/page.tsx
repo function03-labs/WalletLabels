@@ -21,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { FloatingLabel } from "@/components/ui/floating-label"
 import {
   Form,
   FormControl,
@@ -35,6 +36,165 @@ import { Separator } from "@/components/ui/separator"
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
 })
+
+const labels = [
+  { text: "ChainAdmin", icon: "shield", color: "#FF6B6B" },
+  { text: "CeFi Exchange", icon: "building", color: "#4ECDC4" },
+  { text: "NFT Tokens", icon: "image", color: "#45B7D1" },
+  {
+    text: "ChainAdmin",
+    icon: "Shield",
+    color: "#FF6B6B",
+    category: "ChainAdmin",
+  },
+  {
+    text: "CeFi Exchange",
+    icon: "Building2",
+    color: "#4ECDC4",
+    category: "CeFiEx",
+  },
+  {
+    text: "NFT Tokens",
+    icon: "Image",
+    color: "#45B7D1",
+    category: "UniqueTokens",
+  },
+  {
+    text: "DeFi Apps",
+    icon: "Workflow",
+    color: "#96CEB4",
+    category: "FinDApps",
+  },
+  {
+    text: "Bridge",
+    icon: "Link",
+    color: "#FF8C42",
+    category: "InteropBridges",
+  },
+  { text: "DEX", icon: "ArrowLeftRight", color: "#D4A5A5", category: "DeEx" },
+  { text: "GameFi", icon: "Gamepad2", color: "#9B5DE5", category: "GameFi" },
+  { text: "Tokens", icon: "Coins", color: "#00BBF9", category: "CryptoTokens" },
+  { text: "dApps", icon: "LayoutGrid", color: "#F15BB5", category: "DecApps" },
+  { text: "Network", icon: "Network", color: "#FEE440", category: "NetOps" },
+  { text: "Treasury", icon: "Wallet", color: "#2EC4B6", category: "treasury" },
+  {
+    text: "Mining Pool",
+    icon: "Pickaxe",
+    color: "#FF9F1C",
+    category: "mining_pool",
+  },
+  {
+    text: "Governance",
+    icon: "GanttChartSquare",
+    color: "#E71D36",
+    category: "governance",
+  },
+  { text: "Oracle", icon: "Eye", color: "#3A86FF", category: "oracle" },
+  { text: "DAO", icon: "Users", color: "#8338EC", category: "dao" },
+  {
+    text: "Staking",
+    icon: "LockKeyhole",
+    color: "#FB5607",
+    category: "staking_contract",
+  },
+  {
+    text: "NFT Market",
+    icon: "Store",
+    color: "#FF006E",
+    category: "marketplace",
+  },
+  { text: "Bridge", icon: "Link", color: "#3A86FF", category: "bridge" },
+  {
+    text: "Hot Wallet",
+    icon: "Flame",
+    color: "#FF0000",
+    category: "hot_wallet",
+  },
+  {
+    text: "Cold Wallet",
+    icon: "Snowflake",
+    color: "#0096C7",
+    category: "cold_wallet",
+  },
+  { text: "ChainAdmin", icon: "shield", color: "#FF6B6B" },
+  { text: "CeFi Exchange", icon: "building", color: "#4ECDC4" },
+  { text: "NFT Tokens", icon: "image", color: "#45B7D1" },
+  {
+    text: "ChainAdmin",
+    icon: "Shield",
+    color: "#FF6B6B",
+    category: "ChainAdmin",
+  },
+  {
+    text: "CeFi Exchange",
+    icon: "Building2",
+    color: "#4ECDC4",
+    category: "CeFiEx",
+  },
+  {
+    text: "NFT Tokens",
+    icon: "Image",
+    color: "#45B7D1",
+    category: "UniqueTokens",
+  },
+  {
+    text: "DeFi Apps",
+    icon: "Workflow",
+    color: "#96CEB4",
+    category: "FinDApps",
+  },
+  {
+    text: "Bridge",
+    icon: "Link",
+    color: "#FF8C42",
+    category: "InteropBridges",
+  },
+  { text: "DEX", icon: "ArrowLeftRight", color: "#D4A5A5", category: "DeEx" },
+  { text: "GameFi", icon: "Gamepad2", color: "#9B5DE5", category: "GameFi" },
+  { text: "Tokens", icon: "Coins", color: "#00BBF9", category: "CryptoTokens" },
+  { text: "dApps", icon: "LayoutGrid", color: "#F15BB5", category: "DecApps" },
+  { text: "Network", icon: "Network", color: "#FEE440", category: "NetOps" },
+  { text: "Treasury", icon: "Wallet", color: "#2EC4B6", category: "treasury" },
+  {
+    text: "Mining Pool",
+    icon: "Pickaxe",
+    color: "#FF9F1C",
+    category: "mining_pool",
+  },
+  {
+    text: "Governance",
+    icon: "GanttChartSquare",
+    color: "#E71D36",
+    category: "governance",
+  },
+  { text: "Oracle", icon: "Eye", color: "#3A86FF", category: "oracle" },
+  { text: "DAO", icon: "Users", color: "#8338EC", category: "dao" },
+  {
+    text: "Staking",
+    icon: "LockKeyhole",
+    color: "#FB5607",
+    category: "staking_contract",
+  },
+  {
+    text: "NFT Market",
+    icon: "Store",
+    color: "#FF006E",
+    category: "marketplace",
+  },
+  { text: "Bridge", icon: "Link", color: "#3A86FF", category: "bridge" },
+  {
+    text: "Hot Wallet",
+    icon: "Flame",
+    color: "#FF0000",
+    category: "hot_wallet",
+  },
+  {
+    text: "Cold Wallet",
+    icon: "Snowflake",
+    color: "#0096C7",
+    category: "cold_wallet",
+  },
+]
 
 export default function SignIn() {
   const router = useRouter()
@@ -98,8 +258,21 @@ export default function SignIn() {
   }
 
   return (
-    <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <Card className="w-full max-w-[350px]">
+    <div className="container relative flex h-screen w-screen flex-col items-center justify-center">
+      <div className="fixed inset-0 overflow-hidden">
+        {labels.map((label, index) => (
+          <FloatingLabel
+            key={index}
+            text={label.text}
+            icon={label.icon as keyof typeof Icons}
+            color={label.color}
+            speed={Math.random() * 15 + 50}
+            delay={0}
+          />
+        ))}
+      </div>
+
+      <Card className="relative w-full max-w-[350px] bg-background/95 backdrop-blur-sm">
         <CardHeader className="space-y-1">
           <div className="mx-auto mb-4 flex h-16 w-auto items-center gap-2">
             <Icons.logo className="size-8" />
