@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "./generated/client"
+  provider      = "prisma-client-js"
+  output        = "./generated/client"
+  binaryTargets = ["native", "windows"]
 }
 
 datasource db {
@@ -10,17 +11,26 @@ datasource db {
 }
 
 model User {
-  id                     String         @id
-  name                   String
-  email                  String?
-  avatar                 String
-  organizationSlug       String?
-  createdAt              DateTime       @default(now())
-  updatedAt              DateTime       @updatedAt
-  lemonSqueezyCustomerId String?        @unique
-  AddressLabel           AddressLabel[]
-  apiKeys                ApiKey[]
-  subscriptions          Subscription[]
+  id               String    @id @default(cuid())
+  name             String?
+  email            String?   @unique
+  emailVerified    DateTime?
+  image            String?
+  avatar           String?
+  organizationSlug String?
+
+  // Relations from first schema
+  AddressLabel  AddressLabel[]
+  apiKeys       ApiKey[]
+  subscriptions Subscription[]
+
+  // Relations from second schema
+  accounts       Account[]
+  sessions       Session[]
+  authenticators Authenticator[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("users")
 }
@@ -111,6 +121,56 @@ model WebhookEvent {
   processingError String?
 
   @@map("webhook_events")
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
 }
 
 enum AddressLabelStatus {

@@ -6,7 +6,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 
 
 import { env } from "@/env.mjs"
-import { prisma, prisma2 } from "@/lib/prisma"
+import { prisma } from "@/lib/prisma"
 
 const handler = NextAuth({
   providers: [
@@ -31,7 +31,7 @@ const handler = NextAuth({
       maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
     }),
   ],
-  adapter: PrismaAdapter(prisma2),
+  adapter: PrismaAdapter(prisma),
   pages: {
     signIn: '/auth/signin',
     verifyRequest: '/auth/verify-request',
