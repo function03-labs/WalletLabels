@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import EmailProvider from "next-auth/providers/email"
+import GitHubProvider from "next-auth/providers/github"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 
 import { env } from "@/env.mjs"
@@ -8,14 +9,10 @@ import { prisma } from "@/lib/prisma"
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    // GoogleProvider({
-    //   clientId: env.GOOGLE_CLIENT_ID,
-    //   clientSecret: env.GOOGLE_CLIENT_SECRET,
-    // }),
-    // GitHubProvider({
-    //   clientId: env.GITHUB_CLIENT_ID,
-    //   clientSecret: env.GITHUB_CLIENT_SECRET,
-    // }),
+    GitHubProvider({
+      clientId: env.GITHUB_ID,
+      clientSecret: env.GITHUB_SECRET,
+    }),
     EmailProvider({
       server: {
         host: "smtp.sendgrid.net",
@@ -26,7 +23,7 @@ export const authOptions = {
         },
       },
       from: env.SENDGRID_FROM_EMAIL,
-      maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
+      maxAge: 1 * 60 * 60, // How long email links are valid for (default 1h)
     }),
   ],
   pages: {

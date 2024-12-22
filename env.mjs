@@ -18,6 +18,8 @@ export const env = createEnv({
     LEMONSQUEEZY_WEBHOOK_SECRET: z.string().min(1),
     SENDGRID_API_KEY: z.string().min(1),
     SENDGRID_FROM_EMAIL: z.string().email(),
+    GITHUB_ID: z.string().min(1),
+    GITHUB_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1),
@@ -63,5 +65,7 @@ export const env = createEnv({
     LEMONSQUEEZY_WEBHOOK_SECRET: process.env.LEMONSQUEEZY_WEBHOOK_SECRET,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     SENDGRID_FROM_EMAIL: process.env.SENDGRID_FROM_EMAIL,
+    GITHUB_ID: process.env.GITHUB_ID,
+    GITHUB_SECRET: process.env.GITHUB_SECRET
   },
 })

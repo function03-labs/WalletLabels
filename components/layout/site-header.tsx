@@ -88,34 +88,15 @@ export function SiteHeader() {
           {!session ? (
             <div className="flex items-center space-x-2">
               <button
-                onClick={() => signIn("google")}
+                onClick={() => signIn()}
                 className={buttonVariants({
                   size: "sm",
                   variant: "outline",
-                  className: "text-slate-700 dark:text-slate-400",
+                  className:
+                    " bg-slate-900 text-slate-50 dark:bg-white dark:text-slate-900",
                 })}
               >
-                Sign in with Google
-              </button>
-              <button
-                onClick={() => signIn("github")}
-                className={buttonVariants({
-                  size: "sm",
-                  variant: "outline",
-                  className: "text-slate-700 dark:text-slate-400",
-                })}
-              >
-                Sign in with GitHub
-              </button>
-              <button
-                onClick={() => signIn("email")}
-                className={buttonVariants({
-                  size: "sm",
-                  variant: "outline",
-                  className: "text-slate-700 dark:text-slate-400",
-                })}
-              >
-                Sign in with Email
+                Connect
               </button>
             </div>
           ) : (

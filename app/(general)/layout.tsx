@@ -27,15 +27,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       {/* <NetworkStatus /> */}
       <div className="fixed bottom-6 right-6 z-50 block sm:hidden">
         {!session ? (
-          <>
-            <button onClick={() => signIn("google")}>
-              Sign in with Google
-            </button>
-            <button onClick={() => signIn("github")}>
-              Sign in with GitHub
-            </button>
-            <button onClick={() => signIn("email")}>Sign in with Email</button>
-          </>
+          <button
+            onClick={() => signIn()}
+            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+          >
+            Sign in
+          </button>
         ) : (
           <p>Welcome, {session.user.name}</p>
         )}
