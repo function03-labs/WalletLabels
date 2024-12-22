@@ -1,14 +1,12 @@
 import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import GitHubProvider from "next-auth/providers/github"
 import EmailProvider from "next-auth/providers/email"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-
 
 import { env } from "@/env.mjs"
 import { prisma } from "@/lib/prisma"
 
-const handler = NextAuth({
+export const authOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     // GoogleProvider({
     //   clientId: env.GOOGLE_CLIENT_ID,
@@ -31,13 +29,21 @@ const handler = NextAuth({
       maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
     }),
   ],
-  adapter: PrismaAdapter(prisma),
   pages: {
     signIn: '/auth/signin',
     verifyRequest: '/auth/verify-request',
-
+  },
+  callbacks: {
+    async session({ session, user }) {
+      if (session.user) {
+        session.user.id = user.id
+      }
+      return session
+    }
   },
   secret: env.NEXTAUTH_SECRET,
-})
+}
+
+const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
 

@@ -15,7 +15,7 @@ export default async function SubmitPage() {
   }
 
   // Get user from database using email
-  const user = await getUser(session.user.email!)
+  const user = await getUser(session.user.id!)
 
   if (!user) {
     redirect("/")

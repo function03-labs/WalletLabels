@@ -3,7 +3,7 @@ import { ApiKey } from "@prisma/client"
 
 import { chains } from "@/config/blockchain-networks"
 
-import { Address } from "@/components//ui/address"
+// import { Address } from "@/components//ui/address"
 import { DeleteAPIKey } from "@/components/shared/delete-apikey"
 import { UpdateAPIKeyName } from "@/components/shared/update-apikey-name"
 import {
@@ -67,7 +67,7 @@ export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
               </TableCell>
 
               <TableCell>
-                <Address copy address={apiKey.key} />
+                {/* <Address copy address={apiKey.key} /> */}
               </TableCell>
               <TableCell>
                 {apiKey.createdAt.toLocaleDateString("en-US", {

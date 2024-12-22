@@ -3,8 +3,6 @@
 import { User } from "@prisma/client"
 import md5 from "md5"
 import { useSession } from "next-auth/react"
-
-import { Address } from "@/components/ui/address"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function LoggedUser({ user }: { user: User }) {
@@ -36,16 +34,6 @@ export function LoggedUser({ user }: { user: User }) {
             </span>
           </div>
         </div>
-      </div>
-      <div className="dark:text-white/80">
-        <p className="mt-1 text-xs">Connected as</p>
-        <Address
-          link
-          copy
-          className="mt-1 text-xs"
-          truncate
-          address={user.email}
-        />
       </div>
     </div>
   )
