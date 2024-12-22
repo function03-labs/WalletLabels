@@ -1,10 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import { signIn, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { signIn, signOut, useSession } from "next-auth/react"
 
 import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
+import { useToast } from "@/lib/hooks/use-toast"
 
 import { MainNav } from "@/components/layout/main-nav"
 import { Icons } from "@/components/shared/icons"
@@ -21,6 +23,23 @@ import {
 
 export function SiteHeader() {
   const { data: session } = useSession()
+  const router = useRouter()
+  const { toast } = useToast()
+
+  const handleSignOut = async () => {
+    try {
+      await signOut({ redirect: false })
+      toast({
+        title: "Signed out successfully",
+      })
+      router.push("/")
+    } catch (error) {
+      toast({
+        title: "Error signing out",
+        variant: "destructive",
+      })
+    }
+  }
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-slate-50 dark:border-b-slate-700 dark:bg-black">
@@ -108,11 +127,25 @@ export function SiteHeader() {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {menuDashboard.map((item, index) => (
-                  <DropdownMenuItem key={index} asChild>
-                    <Link href={item.href}>{item.label}</Link>
-                  </DropdownMenuItem>
-                ))}
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/apikeys">API Key Management</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/profile">Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/subscription">Subscription</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/submit">Submit</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="text-red-600 dark:text-red-400"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
