@@ -1,19 +1,7 @@
 "use server"
-
-import { cookies } from "next/headers"
 import { User } from "@prisma/client"
-import { getIronSession } from "iron-session"
-
 import { prisma } from "@/lib/prisma"
-import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
 
-export async function Logout() {
-  const session = await getIronSession<SessionData>(
-    cookies(),
-    SERVER_SESSION_SETTINGS
-  )
-  session.destroy()
-}
 
 export async function updateUser(
   userId: string,

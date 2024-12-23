@@ -1,28 +1,12 @@
-import { getIronSession } from "iron-session"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
 import { prisma } from "@/lib/prisma"
-import { SERVER_SESSION_SETTINGS, SessionData } from "@/lib/session"
 
 export async function GET(req: Request) {
-  const res = new Response()
-  const session = await getIronSession<SessionData>(
-    req,
-    res,
-    SERVER_SESSION_SETTINGS
-  )
-  const user = await prisma.user.findUnique({
-    where: { id: session.siwe.address },
-  })
+  const session = await getServerSession(authOptions)
 
-  if (user) {
-    return new Response(
-      JSON.stringify({
-        user,
-        isLoggedIn: true,
-      }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
-    )
-  } else {
+  if (!session?.user?.email) {
     return new Response(
       JSON.stringify({
         isLoggedIn: false,
@@ -30,4 +14,16 @@ export async function GET(req: Request) {
       { status: 200, headers: { "Content-Type": "application/json" } }
     )
   }
+
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email },
+  })
+
+  return new Response(
+    JSON.stringify({
+      user,
+      isLoggedIn: true,
+    }),
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  )
 }
