@@ -86,14 +86,14 @@ export function SiteHeader() {
           </div>
 
           {!session ? (
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 ">
               <button
                 onClick={() => signIn()}
                 className={buttonVariants({
                   size: "sm",
-                  variant: "outline",
+                  variant: "ghost",
                   className:
-                    " bg-slate-900 text-slate-50 dark:bg-white dark:text-slate-900",
+                    "bg-black text-slate-50 hover:bg-slate-800 hover:text-slate-50 dark:bg-white dark:text-slate-700 dark:hover:bg-slate-700 dark:hover:text-white",
                 })}
               >
                 Connect

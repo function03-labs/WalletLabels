@@ -90,7 +90,7 @@ const labels = [
     category: "governance",
   },
   { text: "Oracle", icon: "Eye", color: "#3A86FF", category: "oracle" },
-  { text: "DAO", icon: "Users", color: "#8338EC", category: "dao" },
+  { text: "DAO", icon: "Users", color: "#260257FF", category: "dao" },
   {
     text: "Staking",
     icon: "LockKeyhole",
@@ -117,7 +117,7 @@ const labels = [
     category: "cold_wallet",
   },
   { text: "ChainAdmin", icon: "shield", color: "#FF6B6B" },
-  { text: "CeFi Exchange", icon: "building", color: "#4ECDC4" },
+  { text: "CeFi Exchange", icon: "building", color: "#0B4743FF" },
   { text: "NFT Tokens", icon: "image", color: "#45B7D1" },
   {
     text: "ChainAdmin",
@@ -133,8 +133,8 @@ const labels = [
   },
   {
     text: "NFT Tokens",
-    icon: "Image",
-    color: "#45B7D1",
+    icon: "image",
+    color: "#C15C95FF",
     category: "UniqueTokens",
   },
   {
@@ -146,15 +146,20 @@ const labels = [
   {
     text: "Bridge",
     icon: "Link",
-    color: "#FF8C42",
+    color: "#080808FF",
     category: "InteropBridges",
   },
   { text: "DEX", icon: "ArrowLeftRight", color: "#D4A5A5", category: "DeEx" },
   { text: "GameFi", icon: "Gamepad2", color: "#9B5DE5", category: "GameFi" },
   { text: "Tokens", icon: "Coins", color: "#00BBF9", category: "CryptoTokens" },
   { text: "dApps", icon: "LayoutGrid", color: "#F15BB5", category: "DecApps" },
-  { text: "Network", icon: "Network", color: "#FEE440", category: "NetOps" },
-  { text: "Treasury", icon: "Wallet", color: "#2EC4B6", category: "treasury" },
+  { text: "Network", icon: "Network", color: "#413D21FF", category: "NetOps" },
+  {
+    text: "Treasury",
+    icon: "Wallet",
+    color: "#9F693DFF",
+    category: "treasury",
+  },
   {
     text: "Mining Pool",
     icon: "Pickaxe",
@@ -175,12 +180,6 @@ const labels = [
     color: "#FB5607",
     category: "staking_contract",
   },
-  {
-    text: "NFT Market",
-    icon: "Store",
-    color: "#FF006E",
-    category: "marketplace",
-  },
   { text: "Bridge", icon: "Link", color: "#3A86FF", category: "bridge" },
   {
     text: "Hot Wallet",
@@ -200,7 +199,8 @@ export default function SignIn() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { toast } = useToast()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isEmailLoading, setIsEmailLoading] = useState<boolean>(false)
+  const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -210,7 +210,7 @@ export default function SignIn() {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true)
+    setIsEmailLoading(true)
     try {
       const result = await signIn("email", {
         email: values.email,
@@ -237,12 +237,12 @@ export default function SignIn() {
         variant: "destructive",
       })
     } finally {
-      setIsLoading(false)
+      setIsEmailLoading(false)
     }
   }
 
   const handleGithubSignIn = async () => {
-    setIsLoading(true)
+    setIsGithubLoading(true)
     try {
       await signIn("github", {
         callbackUrl: searchParams?.get("callbackUrl") || "/dashboard",
@@ -253,13 +253,13 @@ export default function SignIn() {
         description: "Something went wrong with GitHub sign in.",
         variant: "destructive",
       })
-      setIsLoading(false)
+      setIsGithubLoading(false)
     }
   }
 
   return (
     <div className="container relative flex h-screen w-screen flex-col items-center justify-center">
-      <div className="fixed inset-0 overflow-hidden">
+      <div className="fixed inset-0 scale-125 overflow-hidden">
         {labels.map((label, index) => (
           <FloatingLabel
             key={index}
@@ -289,9 +289,9 @@ export default function SignIn() {
           <Button
             variant="outline"
             onClick={handleGithubSignIn}
-            disabled={isLoading}
+            disabled={isGithubLoading}
           >
-            {isLoading ? (
+            {isGithubLoading ? (
               <Icons.spinner className="mr-2 size-4 animate-spin" />
             ) : (
               <Github className="mr-2 size-4" />
@@ -321,15 +321,19 @@ export default function SignIn() {
                         placeholder="name@example.com"
                         {...field}
                         type="email"
-                        disabled={isLoading}
+                        disabled={isEmailLoading}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading && (
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={isEmailLoading}
+              >
+                {isEmailLoading && (
                   <Icons.spinner className="mr-2 size-4 animate-spin" />
                 )}
                 Sign in with Email

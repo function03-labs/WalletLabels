@@ -266,7 +266,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\gtvah\\Desktop\\fn03\\WalletLabels\\prisma\\generated\\client",
+      "value": "C:\\Users\\Ahmed Kallel\\Downloads\\WalletLabels\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -284,7 +284,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\gtvah\\Desktop\\fn03\\WalletLabels\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Ahmed Kallel\\Downloads\\WalletLabels\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -298,6 +298,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

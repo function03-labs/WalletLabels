@@ -14,7 +14,7 @@ interface FloatingLabelProps {
 }
 
 export function FloatingLabel(props: FloatingLabelProps) {
-  const { text, icon, color, speed = 20, size = 24, delay = 0 } = props
+  const { text, icon, color, speed = 20, size = 24 } = props
   const Icon = Icons[icon] || Icons.help
   if (!Icon) {
     console.warn(`Icon "${icon}" not found`)
@@ -25,7 +25,7 @@ export function FloatingLabel(props: FloatingLabelProps) {
     if (labelRef.current) {
       const x = `${Math.random() * 80 + 20}vw`
       const y = `${Math.random() * 80 + 20}vh`
-      const driftX = `${Math.random() * 20 - 10}vw`
+      const driftX = `${Math.random() * 20 - 20}vw`
       const driftY = `${Math.random() * 20 - 10}vh`
       const rotate = `${Math.random() * 20 - 10}deg`
       labelRef.current.style.setProperty("--x", x)
@@ -38,11 +38,10 @@ export function FloatingLabel(props: FloatingLabelProps) {
   return (
     <div
       ref={labelRef}
-      className="fixed flex items-center gap-2 rounded-full bg-opacity-10 px-3 py-1.5 backdrop-blur-sm transition-transform"
+      className="bg-opacity/10 fixed flex scale-150 items-center gap-2 rounded-full px-3 py-1.5 backdrop-blur-sm transition-transform"
       style={{
         backgroundColor: color,
         animation: `float ${speed}s ease-in-out infinite`,
-        animationDelay: `${delay}s`,
       }}
     >
       <Icon className="size-6 text-white" aria-hidden="true" />
