@@ -102,7 +102,7 @@ export function SiteHeader() {
           ) : (
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span>{session.user.name}</span>
+                <span>{session.user.name || "Dashboard"}</span>
                 <Icons.chevronsUpDown className="size-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
