@@ -1,21 +1,30 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import EmailProvider from "next-auth/providers/email"
+import GithubProvider from "next-auth/providers/github"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 
 import { env } from "@/env.mjs"
 import { prisma } from "@/lib/prisma"
 
-export const authOptions = {
+// Extend the built-in session types
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string
+      name?: string | null
+      email?: string | null
+      image?: string | null
+    }
+    accessToken?: string
+  }
+}
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    // GoogleProvider({
-    //   clientId: env.GOOGLE_CLIENT_ID,
-    //   clientSecret: env.GOOGLE_CLIENT_SECRET,
-    // }),
-    // GitHubProvider({
-    //   clientId: env.GITHUB_CLIENT_ID,
-    //   clientSecret: env.GITHUB_CLIENT_SECRET,
-    // }),
+    GithubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+    }),
     EmailProvider({
       server: {
         host: "smtp.sendgrid.net",
@@ -30,16 +39,46 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: '/auth/signin',
-    verifyRequest: '/auth/verify-request',
+    signIn: "/auth/sign-in",
+    verifyRequest: "/auth/verify-request",
+    newUser: "/auth/sign-up", // Redirect new users here
   },
   callbacks: {
-    async session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id
+    async signIn({ user, account, email }) {
+      // Always allow OAuth sign-ins
+      if (account?.provider === "github") {
+        return true
+      }
+
+      // For email sign-ins, check if user exists
+      const userExists = await prisma.user.findUnique({
+        where: { email: user.email || email?.email },
+      })
+
+      if (userExists) {
+        return true // Send magic link if user exists
+      }
+
+      return "/auth/sign-up" // Redirect to sign-up if user doesn't exist
+    },
+    async jwt({ token, user, account }) {
+      // Add the user id to the token right after sign in
+      if (user) {
+        token.sub = user.id
+        token.accessToken = account?.access_token
+      }
+      return token
+    },
+    async session({ session, token }) {
+      // Add the user id from token to the session
+      if (token && session.user) {
+        session.user.id = token.sub as string
       }
       return session
-    }
+    },
+  },
+  session: {
+    strategy: "jwt",
   },
   secret: env.NEXTAUTH_SECRET,
 }

@@ -1758,6 +1758,8 @@ export namespace Prisma {
     image: string | null
     avatar: string | null
     organizationSlug: string | null
+    password: string | null
+    company: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1770,6 +1772,8 @@ export namespace Prisma {
     image: string | null
     avatar: string | null
     organizationSlug: string | null
+    password: string | null
+    company: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1782,6 +1786,8 @@ export namespace Prisma {
     image: number
     avatar: number
     organizationSlug: number
+    password: number
+    company: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1796,6 +1802,8 @@ export namespace Prisma {
     image?: true
     avatar?: true
     organizationSlug?: true
+    password?: true
+    company?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1808,6 +1816,8 @@ export namespace Prisma {
     image?: true
     avatar?: true
     organizationSlug?: true
+    password?: true
+    company?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1820,6 +1830,8 @@ export namespace Prisma {
     image?: true
     avatar?: true
     organizationSlug?: true
+    password?: true
+    company?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1905,6 +1917,8 @@ export namespace Prisma {
     image: string | null
     avatar: string | null
     organizationSlug: string | null
+    password: string | null
+    company: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1934,6 +1948,8 @@ export namespace Prisma {
     image?: boolean
     avatar?: boolean
     organizationSlug?: boolean
+    password?: boolean
+    company?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     AddressLabel?: boolean | User$AddressLabelArgs<ExtArgs>
@@ -1953,6 +1969,8 @@ export namespace Prisma {
     image?: boolean
     avatar?: boolean
     organizationSlug?: boolean
+    password?: boolean
+    company?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1965,6 +1983,8 @@ export namespace Prisma {
     image?: boolean
     avatar?: boolean
     organizationSlug?: boolean
+    password?: boolean
+    company?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -1998,6 +2018,8 @@ export namespace Prisma {
       image: string | null
       avatar: string | null
       organizationSlug: string | null
+      password: string | null
+      company: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -2406,6 +2428,8 @@ export namespace Prisma {
     readonly image: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
     readonly organizationSlug: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly company: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -11848,6 +11872,8 @@ export namespace Prisma {
     image: 'image',
     avatar: 'avatar',
     organizationSlug: 'organizationSlug',
+    password: 'password',
+    company: 'company',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12137,6 +12163,8 @@ export namespace Prisma {
     image?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     organizationSlug?: StringNullableFilter<"User"> | string | null
+    password?: StringNullableFilter<"User"> | string | null
+    company?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     AddressLabel?: AddressLabelListRelationFilter
@@ -12155,6 +12183,8 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
     organizationSlug?: SortOrderInput | SortOrder
+    password?: SortOrderInput | SortOrder
+    company?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     AddressLabel?: AddressLabelOrderByRelationAggregateInput
@@ -12176,6 +12206,8 @@ export namespace Prisma {
     image?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     organizationSlug?: StringNullableFilter<"User"> | string | null
+    password?: StringNullableFilter<"User"> | string | null
+    company?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     AddressLabel?: AddressLabelListRelationFilter
@@ -12194,6 +12226,8 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
     organizationSlug?: SortOrderInput | SortOrder
+    password?: SortOrderInput | SortOrder
+    company?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -12212,6 +12246,8 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     organizationSlug?: StringNullableWithAggregatesFilter<"User"> | string | null
+    password?: StringNullableWithAggregatesFilter<"User"> | string | null
+    company?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -12929,6 +12965,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelCreateNestedManyWithoutUserInput
@@ -12947,6 +12985,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelUncheckedCreateNestedManyWithoutUserInput
@@ -12965,6 +13005,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUpdateManyWithoutUserNestedInput
@@ -12983,6 +13025,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUncheckedUpdateManyWithoutUserNestedInput
@@ -13001,6 +13045,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13013,6 +13059,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13025,6 +13073,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13929,6 +13979,8 @@ export namespace Prisma {
     image?: SortOrder
     avatar?: SortOrder
     organizationSlug?: SortOrder
+    password?: SortOrder
+    company?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13941,6 +13993,8 @@ export namespace Prisma {
     image?: SortOrder
     avatar?: SortOrder
     organizationSlug?: SortOrder
+    password?: SortOrder
+    company?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13953,6 +14007,8 @@ export namespace Prisma {
     image?: SortOrder
     avatar?: SortOrder
     organizationSlug?: SortOrder
+    password?: SortOrder
+    company?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15664,6 +15720,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelCreateNestedManyWithoutUserInput
@@ -15681,6 +15739,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelUncheckedCreateNestedManyWithoutUserInput
@@ -15714,6 +15774,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUpdateManyWithoutUserNestedInput
@@ -15731,6 +15793,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUncheckedUpdateManyWithoutUserNestedInput
@@ -15748,6 +15812,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     apiKeys?: ApiKeyCreateNestedManyWithoutUserInput
@@ -15765,6 +15831,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     apiKeys?: ApiKeyUncheckedCreateNestedManyWithoutUserInput
@@ -15798,6 +15866,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     apiKeys?: ApiKeyUpdateManyWithoutUserNestedInput
@@ -15815,6 +15885,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     apiKeys?: ApiKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -15938,6 +16010,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelCreateNestedManyWithoutUserInput
@@ -15955,6 +16029,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelUncheckedCreateNestedManyWithoutUserInput
@@ -16034,6 +16110,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUpdateManyWithoutUserNestedInput
@@ -16051,6 +16129,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUncheckedUpdateManyWithoutUserNestedInput
@@ -16068,6 +16148,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelCreateNestedManyWithoutUserInput
@@ -16085,6 +16167,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelUncheckedCreateNestedManyWithoutUserInput
@@ -16118,6 +16202,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUpdateManyWithoutUserNestedInput
@@ -16135,6 +16221,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUncheckedUpdateManyWithoutUserNestedInput
@@ -16152,6 +16240,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelCreateNestedManyWithoutUserInput
@@ -16169,6 +16259,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelUncheckedCreateNestedManyWithoutUserInput
@@ -16202,6 +16294,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUpdateManyWithoutUserNestedInput
@@ -16219,6 +16313,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUncheckedUpdateManyWithoutUserNestedInput
@@ -16236,6 +16332,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelCreateNestedManyWithoutUserInput
@@ -16253,6 +16351,8 @@ export namespace Prisma {
     image?: string | null
     avatar?: string | null
     organizationSlug?: string | null
+    password?: string | null
+    company?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     AddressLabel?: AddressLabelUncheckedCreateNestedManyWithoutUserInput
@@ -16286,6 +16386,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUpdateManyWithoutUserNestedInput
@@ -16303,6 +16405,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     organizationSlug?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AddressLabel?: AddressLabelUncheckedUpdateManyWithoutUserNestedInput

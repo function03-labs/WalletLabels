@@ -18,6 +18,8 @@ model User {
   image                  String?
   avatar                 String?
   organizationSlug       String?
+  password              String?
+  company               String?
   
   // Relations from first schema
   AddressLabel           AddressLabel[]
