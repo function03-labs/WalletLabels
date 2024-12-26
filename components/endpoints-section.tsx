@@ -9,7 +9,7 @@ import JSONPretty from "react-json-pretty"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
-export const endpoints = [
+export const endpoints = [why 
   {
     name: "Income Statements",
     method: "GET",
