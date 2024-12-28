@@ -23,20 +23,25 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+import { Address } from "../ui/address"
+
 export function DashboardTableAPIKeys({
   apiKeys,
   user,
+  apiKeyLimit,
 }: {
   apiKeys: ApiKey[]
   user: User
+  apiKeyLimit: number
 }) {
   return (
     <Table>
-      <TableCaption>Currently, you are limited to 3 API Keys.</TableCaption>
+      <TableCaption>
+        Currently, you are limited to {apiKeyLimit} API Keys.
+      </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[150px]">Name</TableHead>
-          <TableHead className="mx-6">Chains</TableHead>
           <TableHead className="w-[420px]">Key</TableHead>
           <TableHead>Created At</TableHead>
           <TableHead>Actions</TableHead>
@@ -52,29 +57,7 @@ export function DashboardTableAPIKeys({
               </TableCell>
 
               <TableCell>
-                <AvatarGroup
-                  limit={3}
-                  className="size-2 items-center justify-start"
-                >
-                  <AvatarGroupList>
-                    {chains
-                      .filter((chain) => apiKey.chains.includes(chain.value))
-                      .map((chain) => (
-                        <Avatar key={chain.label} className="size-8">
-                          <AvatarImage
-                            alt={chain.label}
-                            key={chain.label}
-                            src={chain.iconUrl}
-                          />
-                        </Avatar>
-                      ))}
-                  </AvatarGroupList>
-                  <AvatarOverflowIndicator />
-                </AvatarGroup>
-              </TableCell>
-
-              <TableCell>
-                {/* <Address copy address={apiKey.key} /> */}
+                {apiKey.key.slice(0, 20)}.........{apiKey.key.slice(-15)}
               </TableCell>
               <TableCell>
                 {apiKey.createdAt.toLocaleDateString("en-US", {

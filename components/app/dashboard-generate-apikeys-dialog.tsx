@@ -1,11 +1,10 @@
 "use client"
 
 import React, { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ApiKey, Subscription, User } from "@prisma/client"
+import { ApiKey, User } from "@prisma/client"
 import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -22,6 +21,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogPortal,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
@@ -35,29 +35,19 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-const planToApiKeyLimit: Record<number, number> = {
-  0: 0, // Free
-  1: 3, // Basic Monthly
-  2: 3, // Basic Bi-Annually
-  3: 3, // Basic Annually
-  4: 5, // Pro Monthly
-  5: 5, // Pro Bi-Annually
-  6: 5, // Pro Annually
-  7: 25, // Enterprise
-}
-
 export function DashboardGenerateAPIkeysDialog({
   user,
   apiKeysCount,
-  subscription,
+  apiKeyLimit,
 }: {
   apiKeysCount: number
   user: User
-  subscription: Subscription
+  apiKeyLimit: number
 }) {
   const { toast } = useToast()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const [open, setOpen] = useState(false)
   const [generatedKey, setGeneratedKey] = useState<ApiKey | undefined>()
   const form = useForm<z.infer<typeof ApiKeySchema>>({
     resolver: zodResolver(ApiKeySchema),
@@ -65,7 +55,6 @@ export function DashboardGenerateAPIkeysDialog({
       name: "",
     },
   })
-  const apiKeyLimit = planToApiKeyLimit[subscription.planId]
 
   async function onSubmit(values: z.infer<typeof ApiKeySchema>) {
     setIsLoading(true)
@@ -102,52 +91,53 @@ export function DashboardGenerateAPIkeysDialog({
 
   return (
     <Dialog>
-      <div className="flex justify-start">
-        <DialogTrigger asChild>
-          <Button
-            onClick={() => {
-              if (generatedKey) {
-                setGeneratedKey(undefined)
-                form.reset()
-              }
+      <DialogTrigger asChild>
+        <Button
+          onClick={(e) => {
+            if (apiKeysCount >= apiKeyLimit) {
+              e.preventDefault()
+              toast({
+                title: `You cannot create more than ${apiKeyLimit} API keys.`,
+                variant: "destructive",
+              })
+              return
+            }
 
-              if (apiKeysCount >= apiKeyLimit) {
-                toast({
-                  title: `You cannot create more than ${apiKeyLimit} API keys.`,
-                  variant: "destructive",
-                })
-              }
+            if (!user.organizationSlug || user.organizationSlug === "") {
+              e.preventDefault()
+              toast({
+                variant: "destructive",
+                title: "You need to create an organization first!",
+                description: (
+                  <div>
+                    Go to{" "}
+                    <Link
+                      href="/dashboard/profile"
+                      className="pr-0.5 underline"
+                    >
+                      profile
+                    </Link>{" "}
+                    and fill your details.
+                  </div>
+                ),
+              })
+              return
+            }
 
-              if (!user.organizationSlug || user.organizationSlug === "") {
-                toast({
-                  variant: "destructive",
-                  title: "You need to create an organization first!",
-                  description: (
-                    <div>
-                      Go to{" "}
-                      <Link
-                        href="/dashboard/profile"
-                        className="pr-0.5 underline"
-                      >
-                        profile
-                      </Link>{" "}
-                      and fill your details.
-                    </div>
-                  ),
-                })
-              }
-            }}
-            className="mx-auto space-x-2 font-bold sm:mx-0"
-          >
-            <Icons.addCircle /> <span className="">Generate API Key</span>
-          </Button>
-        </DialogTrigger>
-      </div>
-
-      {generatedKey && <DashboardCopyAPIKey apiKey={generatedKey} />}
-
-      {!generatedKey && apiKeysCount < apiKeyLimit && user.organizationSlug && (
-        <DialogContent>
+            if (generatedKey) {
+              setGeneratedKey(undefined)
+              form.reset()
+            }
+          }}
+          className="mx-auto space-x-2 font-bold sm:mx-0"
+        >
+          <Icons.addCircle /> <span>Generate API Key</span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        {generatedKey ? (
+          <DashboardCopyAPIKey apiKey={generatedKey} />
+        ) : (
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <DialogHeader>
@@ -183,8 +173,8 @@ export function DashboardGenerateAPIkeysDialog({
               </DialogFooter>
             </form>
           </Form>
-        </DialogContent>
-      )}
+        )}
+      </DialogContent>
     </Dialog>
   )
 }

@@ -12,6 +12,20 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { PageHeader } from "@/components/ui/page-header"
 
+// Always revalidate the page to get the latest user data in case of an update
+export const revalidate = 0
+
+const planToApiKeyLimit: Record<number, number> = {
+  0: 0, // Free
+  1: 3, // Basic Monthly
+  2: 3, // Basic Bi-Annually
+  3: 3, // Basic Annually
+  4: 5, // Pro Monthly
+  5: 5, // Pro Bi-Annually
+  6: 5, // Pro Annually
+  7: 25, // Enterprise
+}
+
 export default async function PageDashboardApiKeys() {
   const session = await getSession()
 
@@ -23,6 +37,7 @@ export default async function PageDashboardApiKeys() {
   const user = await getUser(session.user.id)
   const subscription = await getCurrentSubscription(user.id)
   const isFreeTier = subscription.planId === 0
+  const apiKeyLimit = planToApiKeyLimit[subscription.planId]
 
   if (!user) {
     redirect("/")
@@ -59,15 +74,22 @@ export default async function PageDashboardApiKeys() {
         </div>
       ) : (
         <>
+          <div>
+            <PageHeader title="API Keys" description="Manage your API keys." />
+          </div>
           <hr className="my-5 opacity-50" />
           <Card className="w-full p-6">
             <CardContent>
               <DashboardGenerateAPIkeysDialog
                 user={user}
                 apiKeysCount={apiKeys.length}
-                subscription={subscription}
+                apiKeyLimit={apiKeyLimit}
               />
-              <DashboardTableAPIKeys apiKeys={apiKeys} user={user} />
+              <DashboardTableAPIKeys
+                apiKeys={apiKeys}
+                user={user}
+                apiKeyLimit={apiKeyLimit}
+              />
             </CardContent>
           </Card>
         </>

@@ -63,6 +63,7 @@ export async function createApiKey(
     let developer
     try {
       developer = await apigee.getDeveloper(userEmail)
+      console.log("developer", developer)
     } catch (error: any) {
       if (error.message?.includes('PERMISSION_DENIED')) {
         throw new Error(`Service account lacks permissions for Apigee organization "${env.APIGEE_ORG_NAME}". Please ensure the service account has the "Apigee Developer Admin" role.`)
@@ -89,11 +90,12 @@ export async function createApiKey(
       developer.email,
       {
         name: appName,
-        apiProducts: [apiProduct], // Single product based on subscription
+        apiProducts: [apiProduct as string], // Ensure apiProduct is a string
         keyExpiresIn: '-1',
         status: 'approved'
-      }
+      },
     )
+
 
     if (!app.apiKey) {
       throw new Error("API key creation failed")
