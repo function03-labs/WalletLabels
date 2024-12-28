@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ApiKey, User } from "@prisma/client"
+import { ApiKey, Subscription, User } from "@prisma/client"
 import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -35,12 +35,25 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+const planToApiKeyLimit: Record<number, number> = {
+  0: 0, // Free
+  1: 3, // Basic Monthly
+  2: 3, // Basic Bi-Annually
+  3: 3, // Basic Annually
+  4: 5, // Pro Monthly
+  5: 5, // Pro Bi-Annually
+  6: 5, // Pro Annually
+  7: 25, // Enterprise
+}
+
 export function DashboardGenerateAPIkeysDialog({
   user,
   apiKeysCount,
+  subscription,
 }: {
   apiKeysCount: number
   user: User
+  subscription: Subscription
 }) {
   const { toast } = useToast()
   const router = useRouter()
@@ -52,6 +65,7 @@ export function DashboardGenerateAPIkeysDialog({
       name: "",
     },
   })
+  const apiKeyLimit = planToApiKeyLimit[subscription.planId]
 
   async function onSubmit(values: z.infer<typeof ApiKeySchema>) {
     setIsLoading(true)
@@ -97,9 +111,9 @@ export function DashboardGenerateAPIkeysDialog({
                 form.reset()
               }
 
-              if (apiKeysCount >= 3) {
+              if (apiKeysCount >= apiKeyLimit) {
                 toast({
-                  title: "You cannot create more than 3 API keys.",
+                  title: `You cannot create more than ${apiKeyLimit} API keys.`,
                   variant: "destructive",
                 })
               }
@@ -132,7 +146,7 @@ export function DashboardGenerateAPIkeysDialog({
 
       {generatedKey && <DashboardCopyAPIKey apiKey={generatedKey} />}
 
-      {!generatedKey && apiKeysCount < 3 && user.organizationSlug && (
+      {!generatedKey && apiKeysCount < apiKeyLimit && user.organizationSlug && (
         <DialogContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

@@ -4,7 +4,6 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { signIn, signOut, useSession } from "next-auth/react"
 
-import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
 import { useToast } from "@/lib/hooks/use-toast"
 
@@ -101,15 +100,15 @@ export function SiteHeader() {
             </div>
           ) : (
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span>{session.user.name || "Dashboard"}</span>
+              <DropdownMenuTrigger className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm font-medium text-primary hover:bg-slate-100 dark:hover:bg-slate-800">
+                <span>{session.user?.name || "Your Dashboard"}</span>
                 <Icons.chevronsUpDown className="size-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link href="/dashboard/apikeys">API Key Management</Link>
+                  <Link href="/dashboard">API Key Management</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/dashboard/profile">Profile</Link>

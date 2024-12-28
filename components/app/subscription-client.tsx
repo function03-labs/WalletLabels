@@ -123,14 +123,11 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
       setLoadingPlanId(null)
     }
   }
-
   if (isLoading) {
-    return <PricingLoading />
+    return <PricingLoading isDashboard={true} />
   }
 
-  const paidTiers = initialData.tiers.filter(
-    (tier) => tier.id !== "tier-free-plan"
-  )
+  const paidTiers = initialData.tiers || []
 
   if (!subscription?.planId) {
     return (
@@ -234,8 +231,7 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
                       ·
                     </span>
                     <p className="text-lg font-medium text-muted-foreground">
-                      ${parseInt(subscription?.price, 10) / 100} /{" "}
-                      {currentFrequency.value}
+                      ${subscription?.price} / {currentFrequency.value}
                     </p>
                   </div>
                 </div>

@@ -377,7 +377,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
               statusFormatted: attributes.status_formatted as string,
               renewsAt: attributes.renews_at as string,
               endsAt: attributes.ends_at as string,
-              price: priceData.data?.data.attributes.unit_price.toString() ?? "",
+              price: (priceData.data?.data?.attributes?.unit_price ?? 0 / 100).toString() ?? "",
               isUsageBased: attributes.first_subscription_item.is_usage_based,
               isPaused: false,
               subscriptionItemId: attributes.first_subscription_item.id,

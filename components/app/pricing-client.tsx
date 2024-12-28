@@ -18,20 +18,12 @@ interface PricingClientProps {
 }
 
 export function PricingClient({ initialData }: PricingClientProps) {
-  const [isLoading, setIsLoading] = useState(true)
   const [frequency, setFrequency] = useState(frequencies[0])
-
-  useEffect(() => {
-    // Add a small delay to ensure smooth transition
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 300)
-
-    return () => clearTimeout(timer)
-  }, [])
+  const [isLoading, setIsLoading] = useState(initialData.tiers.length === 0)
+  const [tiers, setTiers] = useState(initialData.tiers)
 
   if (isLoading) {
-    return <PricingLoading />
+    return <PricingLoading isDashboard={false} />
   }
 
   return (
@@ -40,9 +32,9 @@ export function PricingClient({ initialData }: PricingClientProps) {
         <h1 className="text-center text-3xl font-bold leading-tight dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
           Pricing
         </h1>
-        <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          Wallet Labels is an open-source project, and we are proud to share our
-          code
+        <p className="max-w-full leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+          Choose the perfect plan for your needs and unlock the full potential
+          of WalletLabels.
         </p>
       </div>
       <AppPricingRadio
@@ -51,8 +43,8 @@ export function PricingClient({ initialData }: PricingClientProps) {
         onFrequencyChange={setFrequency}
       />
 
-      <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-        {initialData.tiers.map((tier) => (
+      <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-10 lg:max-w-none lg:grid-cols-3">
+        {tiers.map((tier) => (
           <div
             key={tier.id}
             className={cn(
