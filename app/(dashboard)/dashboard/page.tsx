@@ -23,6 +23,10 @@ export default async function PageDashboardApiKeys() {
     redirect("/")
   }
 
+  if (!user.email) {
+    redirect("/dashboard/profile")
+  }
+
   // Get API keys for the user
   const apiKeys = await getApiKeys(user.id)
 
@@ -40,7 +44,7 @@ export default async function PageDashboardApiKeys() {
           />
         </CardContent>
 
-        <DashboardTableAPIKeys apiKeys={apiKeys} />
+        <DashboardTableAPIKeys apiKeys={apiKeys} user={user} />
       </Card>
     </section>
   )

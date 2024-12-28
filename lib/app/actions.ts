@@ -257,23 +257,23 @@ export async function changePlan(currentPlanId: number, newPlanId: number) {
  * Gets the current subscription for a user.
  * Returns a FREE tier subscription if no active subscription is found.
  */
-export async function getCurrentSubscription(userEmail: string): Promise<Subscription> {
+export async function getCurrentSubscription(userId: string): Promise<Subscription> {
   const subscription = await prisma.subscription.findFirst({
     where: {
-      email: userEmail,
+      userId: userId,
       status: "active"
     }
   })
 
   if (!subscription) {
     return {
-      id: `free-${userEmail}`,
+      id: `free-tier`,
       lemonSqueezyId: "free",
       orderId: 0,
       status: "active",
       renewsAt: null,
       name: "Free Plan",
-      email: userEmail,
+      email: userId,
       statusFormatted: "Active",
       endsAt: null,
       trialEndsAt: null,
@@ -283,7 +283,7 @@ export async function getCurrentSubscription(userEmail: string): Promise<Subscri
       subscriptionItemId: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
-      userId: userEmail,
+      userId: userId,
       planId: 0,
     }
   }
@@ -334,12 +334,19 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
   } else if (webhookHasData(eventBody)) {
     if (webhookEvent.eventName.startsWith("subscription_")) {
       const attributes = eventBody.data.attributes;
-      const variantId = attributes.variant_id as string;
-
+      const variantId = parseInt(attributes.variant_id as string, 10);
       // Get the plan from the database
       const plan = await prisma.plan.findFirst({
-        where: { variantId: parseInt(variantId, 10) },
+        where: {
+          variantId: variantId
+        },
       });
+
+      // Add error handling
+      if (!plan) {
+        console.error(`No plan found for variant ID: ${variantId}`);
+        throw new Error(`Plan with variantId ${variantId} not found.`);
+      }
 
       if (!plan) {
         processingError = `Plan with variantId ${variantId} not found.`;
@@ -350,6 +357,14 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
         const priceData = await getPrice(priceId);
         if (priceData.error) {
           processingError = `Failed to get price data for subscription ${eventBody.data.id}.`;
+        }
+        // Verify user exists
+        const user = await prisma.user.findUnique({
+          where: { email: eventBody.meta.custom_data.user_email }
+        });
+
+        if (!user) {
+          throw new Error(`User with email ${eventBody.meta.custom_data.user_email} not found.`);
         }
 
         try {
@@ -366,7 +381,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
               isUsageBased: attributes.first_subscription_item.is_usage_based,
               isPaused: false,
               subscriptionItemId: attributes.first_subscription_item.id,
-              userId: eventBody.meta.custom_data.user_email,
+              userId: user.id,
               planId: plan.id,
               name: attributes.user_name as string,
               email: attributes.user_email as string,
@@ -385,6 +400,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
         } catch (error) {
           processingError = `Failed to upsert Subscription #${eventBody.data.id}`;
           console.error(error);
+          throw error
         }
       }
     }

@@ -14,6 +14,7 @@ export function webhookHasMeta(obj: unknown): obj is {
     event_name: string;
     custom_data: {
       user_id: string;
+      user_email: string;
     };
   };
 } {
@@ -22,7 +23,8 @@ export function webhookHasMeta(obj: unknown): obj is {
     isObject(obj.meta) &&
     typeof obj.meta.event_name === "string" &&
     isObject(obj.meta.custom_data) &&
-    typeof obj.meta.custom_data.user_id === "string"
+    (typeof obj.meta.custom_data.user_email === "string" ||
+      typeof obj.meta.custom_data.user_id === "string")
   ) {
     return true;
   }

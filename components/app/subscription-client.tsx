@@ -30,9 +30,8 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
     frequencies[0]
   )
   const [isChangingPlan, setIsChangingPlan] = useState(false)
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { user: tempUser } = useUser()
+  const { user: tempUser, isLoading } = useUser()
 
   const user = tempUser?.user
   const subscription = tempUser?.subscription
@@ -62,13 +61,6 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
       }
     }
   }, [subscription, currentTier])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 300)
-    return () => clearTimeout(timer)
-  }, [])
 
   const [loadingPlanId, setLoadingPlanId] = useState<string | null>(null)
 
@@ -132,7 +124,7 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
     }
   }
 
-  if (loading) {
+  if (isLoading) {
     return <PricingLoading />
   }
 
@@ -242,7 +234,8 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
                       ·
                     </span>
                     <p className="text-lg font-medium text-muted-foreground">
-                      ${subscription?.price} / {currentFrequency.value}
+                      ${parseInt(subscription?.price, 10) / 100} /{" "}
+                      {currentFrequency.value}
                     </p>
                   </div>
                 </div>

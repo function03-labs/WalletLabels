@@ -10,8 +10,6 @@ import { Provider as RWBProvider } from "react-wrap-balancer"
 
 import { useIsMounted } from "@/lib/hooks/use-is-mounted"
 
-// import HandleWalletEvents from "@/components/blockchain/handle-wallet-events"
-// import { RainbowKit } from "@/components/providers/rainbow-kit"
 import { TailwindIndicator } from "@/components/providers/tailwind-indicator"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
@@ -34,14 +32,10 @@ export default function RootProvider({ children }: RootProviderProps) {
         <QueryClientProvider client={queryClient}>
           <ChakraProvider>
             <RWBProvider>
-              {/* <RainbowKit> */}
-              {/* <HandleWalletEvents> */}
               <TooltipProvider>
                 <AddrethConfig>{children}</AddrethConfig>
               </TooltipProvider>
               <TailwindIndicator />
-              {/* </HandleWalletEvents> */}
-              {/* </RainbowKit> */}
             </RWBProvider>
           </ChakraProvider>
         </QueryClientProvider>

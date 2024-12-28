@@ -10,7 +10,6 @@ import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { chains } from "@/config/blockchain-networks"
 import { ApiKeySchema } from "@/config/schema"
 import { createApiKey } from "@/lib/app/api-key"
 import { useToast } from "@/lib/hooks/use-toast"
@@ -35,14 +34,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {
-  MultiSelector,
-  MultiSelectorContent,
-  MultiSelectorInput,
-  MultiSelectorItem,
-  MultiSelectorList,
-  MultiSelectorTrigger,
-} from "@/components/ui/multi-select"
 
 export function DashboardGenerateAPIkeysDialog({
   user,
@@ -55,12 +46,10 @@ export function DashboardGenerateAPIkeysDialog({
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [generatedKey, setGeneratedKey] = useState<ApiKey | undefined>()
-
   const form = useForm<z.infer<typeof ApiKeySchema>>({
     resolver: zodResolver(ApiKeySchema),
     defaultValues: {
       name: "",
-      chain: [],
     },
   })
 
@@ -70,12 +59,16 @@ export function DashboardGenerateAPIkeysDialog({
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
+      if (!user.email) {
+        throw new Error("User email is required")
+      }
+
       const newKey = await createApiKey(
         {
           name: values.name,
-          chains: values.chain,
         },
-        user.id
+        user.id,
+        user.email
       )
       setGeneratedKey(newKey)
       router.refresh()
@@ -83,7 +76,7 @@ export function DashboardGenerateAPIkeysDialog({
         description: "Your API Key is being Generated!",
       })
     } catch (error) {
-      console.log("Error generating API key:", error)
+      console.error("Error generating API key:", error)
       toast({
         variant: "destructive",
         title: "Error generating API key",
@@ -161,47 +154,6 @@ export function DashboardGenerateAPIkeysDialog({
                           placeholder="Enter a name for the API Key"
                         />
                       </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="chain"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="dark:text-white">Chains</FormLabel>
-                    <FormControl>
-                      <MultiSelector
-                        onValuesChange={field.onChange}
-                        values={field.value}
-                      >
-                        <MultiSelectorTrigger>
-                          <MultiSelectorInput placeholder="Select Chains" />
-                        </MultiSelectorTrigger>
-                        <MultiSelectorContent>
-                          <MultiSelectorList>
-                            {chains.map((chain) => (
-                              <MultiSelectorItem
-                                key={chain.value}
-                                value={chain.value}
-                              >
-                                <div className="flex items-center space-x-2">
-                                  <Image
-                                    src={chain.iconUrl}
-                                    alt={chain.label}
-                                    width={32}
-                                    height={32}
-                                    className="size-8 rounded-full"
-                                  />
-                                  <span>{chain.label}</span>
-                                </div>
-                              </MultiSelectorItem>
-                            ))}
-                          </MultiSelectorList>
-                        </MultiSelectorContent>
-                      </MultiSelector>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -1,5 +1,5 @@
 import React from "react"
-import { ApiKey } from "@prisma/client"
+import { ApiKey, User } from "@prisma/client"
 
 import { chains } from "@/config/blockchain-networks"
 
@@ -23,7 +23,13 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
+export function DashboardTableAPIKeys({
+  apiKeys,
+  user,
+}: {
+  apiKeys: ApiKey[]
+  user: User
+}) {
   return (
     <Table>
       <TableCaption>Currently, you are limited to 3 API Keys.</TableCaption>
@@ -33,6 +39,7 @@ export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
           <TableHead className="mx-6">Chains</TableHead>
           <TableHead className="w-[420px]">Key</TableHead>
           <TableHead>Created At</TableHead>
+          <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -75,6 +82,9 @@ export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
                   day: "numeric",
                   year: "numeric",
                 })}
+              </TableCell>
+              <TableCell>
+                <DeleteAPIKey apiKey={apiKey} userEmail={user.email} />
               </TableCell>
             </TableRow>
           ))}
