@@ -16,6 +16,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog"
 import {
   DropdownMenu,
@@ -54,20 +55,22 @@ function DialogDeleteAPIKey({
   }
 
   return (
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Delete API Key</DialogTitle>
-        <DialogDescription>
-          Are you sure you want to delete this API key? This action cannot be
-          undone.
-        </DialogDescription>
-      </DialogHeader>
-      <DialogFooter>
-        <Button variant="destructive" onClick={handleDelete}>
-          Delete
-        </Button>
-      </DialogFooter>
-    </DialogContent>
+    <Dialog>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Delete API Key</DialogTitle>
+          <DialogDescription>
+            Are you sure you want to delete this API key? This action cannot be
+            undone.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="destructive" onClick={handleDelete}>
+            Delete
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
 
@@ -79,7 +82,7 @@ export function DeleteAPIKey({
   userEmail: string | null
 }) {
   return (
-    <AlertDialog>
+    <Dialog>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Button size="icon" variant="ghost">
@@ -87,12 +90,12 @@ export function DeleteAPIKey({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <AlertDialogTrigger className="w-full">
+          <DialogTrigger className="w-full">
             <DropdownMenuItem className="w-full">Delete</DropdownMenuItem>
-          </AlertDialogTrigger>
+          </DialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
       <DialogDeleteAPIKey apiKey={apiKey} userEmail={userEmail} />
-    </AlertDialog>
+    </Dialog>
   )
 }

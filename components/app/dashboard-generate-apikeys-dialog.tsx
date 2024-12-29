@@ -21,7 +21,6 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogPortal,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
@@ -47,7 +46,6 @@ export function DashboardGenerateAPIkeysDialog({
   const { toast } = useToast()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [open, setOpen] = useState(false)
   const [generatedKey, setGeneratedKey] = useState<ApiKey | undefined>()
   const form = useForm<z.infer<typeof ApiKeySchema>>({
     resolver: zodResolver(ApiKeySchema),
@@ -93,6 +91,9 @@ export function DashboardGenerateAPIkeysDialog({
     <Dialog>
       <DialogTrigger asChild>
         <Button
+          type="button"
+          className="mx-auto space-x-2 font-bold sm:mx-0"
+          disabled={apiKeysCount >= apiKeyLimit || !user.organizationSlug}
           onClick={(e) => {
             if (apiKeysCount >= apiKeyLimit) {
               e.preventDefault()
@@ -129,7 +130,6 @@ export function DashboardGenerateAPIkeysDialog({
               form.reset()
             }
           }}
-          className="mx-auto space-x-2 font-bold sm:mx-0"
         >
           <Icons.addCircle /> <span>Generate API Key</span>
         </Button>

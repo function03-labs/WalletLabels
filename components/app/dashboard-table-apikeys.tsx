@@ -1,18 +1,8 @@
 import React from "react"
 import { ApiKey, User } from "@prisma/client"
 
-import { chains } from "@/config/blockchain-networks"
-
-// import { Address } from "@/components//ui/address"
 import { DeleteAPIKey } from "@/components/shared/delete-apikey"
 import { UpdateAPIKeyName } from "@/components/shared/update-apikey-name"
-import {
-  Avatar,
-  AvatarGroup,
-  AvatarGroupList,
-  AvatarImage,
-  AvatarOverflowIndicator,
-} from "@/components/ui/avatarGroup"
 import {
   Table,
   TableBody,
@@ -22,8 +12,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
-import { Address } from "../ui/address"
 
 export function DashboardTableAPIKeys({
   apiKeys,
