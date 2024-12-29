@@ -14,8 +14,8 @@ export function PricingLoading({ isDashboard }: { isDashboard: boolean }) {
         <div className="mx-auto w-full max-w-md">
           <div className="h-10 animate-pulse rounded-lg bg-muted" />
         </div>
-        <div className="grid gap-8 lg:grid-cols-4">
-          {[...Array(4)].map((_, i) => (
+        <div className="grid gap-8 lg:grid-cols-3">
+          {[...Array(3)].map((_, i) => (
             <div
               key={i}
               className="space-y-4 rounded-3xl p-8 ring-1 ring-secondary"

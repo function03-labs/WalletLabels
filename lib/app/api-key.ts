@@ -105,7 +105,7 @@ export async function createApiKey(
     return await prisma.apiKey.create({
       data: {
         id: uniqueId,
-        key: app.apiSecret,
+        key: app.apiKey,
         name: data.name,
         userId,
       },
@@ -118,7 +118,6 @@ export async function createApiKey(
 
 export async function deleteApiKey(
   id: string,
-  key: string,
   userId: string,
   userEmail: string
 ): Promise<ApiKey> {

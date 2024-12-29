@@ -18,6 +18,8 @@ import { Card } from "@/components/ui/card"
 
 import type { Frequency, Tier } from "@/types/pricing"
 
+import { SubscriptionLoading } from "./subscription-loading"
+
 interface SubscriptionClientProps {
   initialData: {
     tiers: Tier[]
@@ -123,8 +125,10 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
       setLoadingPlanId(null)
     }
   }
-  if (isLoading) {
+  if (isLoading && !subscription) {
     return <PricingLoading isDashboard={true} />
+  } else if (isLoading && subscription) {
+    return <SubscriptionLoading />
   }
 
   const paidTiers = initialData.tiers || []

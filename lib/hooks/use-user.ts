@@ -15,7 +15,6 @@ export function useUser({ redirectTo = "", redirectIfFound = false } = {}) {
     staleTime: 60 * 1000,
     retry: 3,
     retryDelay: 1000,
-    refetchOnMount: true,
     refetchOnReconnect: true,
     enabled: true,
   })
