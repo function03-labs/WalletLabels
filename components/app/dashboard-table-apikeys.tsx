@@ -22,6 +22,13 @@ export function DashboardTableAPIKeys({
   user: User
   apiKeyLimit: number
 }) {
+  // Create a stable sorted array to prevent unnecessary re-renders
+  const sortedApiKeys = React.useMemo(() => {
+    return [...apiKeys].sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    )
+  }, [apiKeys])
+
   return (
     <Table>
       <TableCaption>
@@ -36,29 +43,31 @@ export function DashboardTableAPIKeys({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {apiKeys
-          .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-          .map((apiKey, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">
-                <UpdateAPIKeyName apiKey={apiKey} />
-              </TableCell>
-
-              <TableCell>
-                {apiKey.key.slice(0, 20)}.........{apiKey.key.slice(-15)}
-              </TableCell>
-              <TableCell>
-                {apiKey.createdAt.toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </TableCell>
-              <TableCell>
-                <DeleteAPIKey apiKey={apiKey} userEmail={user.email} />
-              </TableCell>
-            </TableRow>
-          ))}
+        {sortedApiKeys.map((apiKey) => (
+          // Use a compound key that includes both id and name to force re-render when either changes
+          <TableRow key={`${apiKey.id}-${apiKey.name}`}>
+            <TableCell className="font-medium">
+              <UpdateAPIKeyName key={`name-${apiKey.id}`} apiKey={apiKey} />
+            </TableCell>
+            <TableCell>
+              {apiKey.key.slice(0, 20)}.........{apiKey.key.slice(-15)}
+            </TableCell>
+            <TableCell>
+              {apiKey.createdAt.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </TableCell>
+            <TableCell>
+              <DeleteAPIKey
+                key={`delete-${apiKey.id}`}
+                apiKey={apiKey}
+                userEmail={user.email}
+              />
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   )

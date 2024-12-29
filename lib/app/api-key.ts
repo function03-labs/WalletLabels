@@ -7,6 +7,7 @@ import { prisma } from "@/lib/prisma"
 import { ApiKeyRequest } from "@/lib/types/api"
 import { getCurrentSubscription } from "./actions"
 import { getUser } from "./user-profile"
+import crypto from "crypto"
 
 export async function getApiKey(id: string): Promise<ApiKey> {
   return (await prisma.apiKey.findUnique({
@@ -34,7 +35,6 @@ export async function createApiKey(
     throw new Error("You can only have 3 API keys")
   }
 
-  // Get user's subscription tier
   const user = await getUser(userId)
 
   // Map subscription to API Product
@@ -63,7 +63,6 @@ export async function createApiKey(
     let developer
     try {
       developer = await apigee.getDeveloper(userEmail)
-      console.log("developer", developer)
     } catch (error: any) {
       if (error.message?.includes('PERMISSION_DENIED')) {
         throw new Error(`Service account lacks permissions for Apigee organization "${env.APIGEE_ORG_NAME}". Please ensure the service account has the "Apigee Developer Admin" role.`)
@@ -85,26 +84,27 @@ export async function createApiKey(
       }
     }
 
-    const appName = [data.name, userId].join('-')
+    // Generate a unique ID first
+    const uniqueId = crypto.randomUUID()
+    const appName = uniqueId // Use the ID directly as the app name
+
     const app = await apigee.createDeveloperApp(
       developer.email,
       {
         name: appName,
-        apiProducts: [apiProduct as string], // Ensure apiProduct is a string
+        apiProducts: [apiProduct as string],
         keyExpiresIn: '-1',
         status: 'approved'
       },
     )
 
-
     if (!app.apiKey) {
       throw new Error("API key creation failed")
     }
 
-    // Store in database
     return await prisma.apiKey.create({
       data: {
-        id: app.apiKey,
+        id: uniqueId,
         key: app.apiSecret,
         name: data.name,
         userId,
@@ -122,20 +122,14 @@ export async function deleteApiKey(
   userId: string,
   userEmail: string
 ): Promise<ApiKey> {
-  const apigee = new ApigeeClient(env.APIGEE_ORG_NAME)
-
+  const apigee = new ApigeeClient(
+    env.APIGEE_ORG_NAME,
+    env.GOOGLE_SERVICE_ACCOUNT_KEY
+  )
   try {
-    // Get the API key to get its name
-    const apiKey = await getApiKey(id)
-    if (!apiKey) {
-      throw new Error("API key not found")
-    }
 
-    const appName = [apiKey.name, userId].join('-')
-    // Delete the app from Apigee
-    await apigee.deleteDeveloperApp(userEmail, appName)
+    await apigee.deleteDeveloperApp(userEmail, id)
 
-    // Delete the API key from the database
     return await prisma.apiKey.delete({
       where: {
         id,

@@ -1,5 +1,7 @@
+import { Suspense } from "react"
 import Link from "next/link"
 import { redirect } from "next/navigation"
+import { User } from "next-auth"
 
 import { getCurrentSubscription } from "@/lib/app/actions"
 import { getApiKeys } from "@/lib/app/api-key"
@@ -24,6 +26,24 @@ const planToApiKeyLimit: Record<number, number> = {
   5: 5, // Pro Bi-Annually
   6: 5, // Pro Annually
   7: 25, // Enterprise
+}
+
+async function APIKeysTable({
+  user,
+  apiKeyLimit,
+}: {
+  user: User
+  apiKeyLimit: number
+}) {
+  const apiKeys = await getApiKeys(user.id) // This will be fresh on each render
+
+  return (
+    <DashboardTableAPIKeys
+      apiKeys={apiKeys}
+      user={user}
+      apiKeyLimit={apiKeyLimit}
+    />
+  )
 }
 
 export default async function PageDashboardApiKeys() {
@@ -85,11 +105,9 @@ export default async function PageDashboardApiKeys() {
                 apiKeysCount={apiKeys.length}
                 apiKeyLimit={apiKeyLimit}
               />
-              <DashboardTableAPIKeys
-                apiKeys={apiKeys}
-                user={user}
-                apiKeyLimit={apiKeyLimit}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <APIKeysTable user={user} apiKeyLimit={apiKeyLimit} />
+              </Suspense>
             </CardContent>
           </Card>
         </>

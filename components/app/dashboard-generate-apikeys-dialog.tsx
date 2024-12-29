@@ -53,13 +53,10 @@ export function DashboardGenerateAPIkeysDialog({
       name: "",
     },
   })
-
   async function onSubmit(values: z.infer<typeof ApiKeySchema>) {
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
       if (!user.email) {
         throw new Error("User email is required")
       }
@@ -71,10 +68,16 @@ export function DashboardGenerateAPIkeysDialog({
         user.id,
         user.email
       )
+
+      // First set the generated key (for displaying in the dialog)
       setGeneratedKey(newKey)
+      console.log("newKey", newKey)
+
+      // Then refresh the router to update the table data
       router.refresh()
+
       toast({
-        description: "Your API Key is being Generated!",
+        description: "Your API Key has been Generated!",
       })
     } catch (error) {
       console.error("Error generating API key:", error)
@@ -86,7 +89,6 @@ export function DashboardGenerateAPIkeysDialog({
       setIsLoading(false)
     }
   }
-
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ApiKey } from "@prisma/client"
 import { MoreVertical } from "lucide-react"
@@ -7,7 +8,6 @@ import { MoreVertical } from "lucide-react"
 import { deleteApiKey } from "@/lib/app/api-key"
 import { useToast } from "@/lib/hooks/use-toast"
 
-import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -28,9 +28,11 @@ import {
 function DialogDeleteAPIKey({
   apiKey,
   userEmail,
+  onClose,
 }: {
   apiKey: ApiKey
   userEmail: string | null
+  onClose: () => void
 }) {
   const router = useRouter()
   const { toast } = useToast()
@@ -45,6 +47,7 @@ function DialogDeleteAPIKey({
         title: "API Key deleted",
       })
       router.refresh()
+      onClose()
     } catch (error) {
       console.error(error)
       toast({
@@ -55,22 +58,24 @@ function DialogDeleteAPIKey({
   }
 
   return (
-    <Dialog>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Delete API Key</DialogTitle>
-          <DialogDescription>
-            Are you sure you want to delete this API key? This action cannot be
-            undone.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <Button variant="destructive" onClick={handleDelete}>
-            Delete
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle className="mb-2 text-primary">Delete API Key</DialogTitle>
+        <DialogDescription className="text-primary">
+          Are you sure you want to delete this API key? This action cannot be
+          undone.
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <Button
+          variant="destructive"
+          className="mx-auto space-x-2 font-bold sm:mx-0"
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
+      </DialogFooter>
+    </DialogContent>
   )
 }
 
@@ -81,21 +86,36 @@ export function DeleteAPIKey({
   apiKey: ApiKey
   userEmail: string | null
 }) {
+  const [open, setOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
   return (
-    <Dialog>
-      <DropdownMenu>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenuTrigger>
           <Button size="icon" variant="ghost">
             <MoreVertical className="size-5" aria-label="More Options" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DialogTrigger className="w-full">
-            <DropdownMenuItem className="w-full">Delete</DropdownMenuItem>
+          <DialogTrigger asChild>
+            <DropdownMenuItem
+              className="w-full"
+              onClick={() => {
+                setDropdownOpen(false)
+                setOpen(true)
+              }}
+            >
+              Delete
+            </DropdownMenuItem>
           </DialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
-      <DialogDeleteAPIKey apiKey={apiKey} userEmail={userEmail} />
+      <DialogDeleteAPIKey
+        apiKey={apiKey}
+        userEmail={userEmail}
+        onClose={() => setOpen(false)}
+      />
     </Dialog>
   )
 }
