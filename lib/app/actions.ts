@@ -321,6 +321,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
   const dbwebhookEvent = await prisma.webhookEvent.findUnique({
     where: { id: webhookEvent.id },
   });
+  console.log(dbwebhookEvent)
 
   if (!dbwebhookEvent) {
     throw new Error(`Webhook event #${webhookEvent.id} not found in the database.`);
@@ -341,7 +342,6 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
           variantId: variantId
         },
       });
-
       // Add error handling
       if (!plan) {
         console.error(`No plan found for variant ID: ${variantId}`);
@@ -353,11 +353,11 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
       } else {
         const priceId = attributes.first_subscription_item.price_id;
 
-        // Get the price data from Lemon Squeezy
-        const priceData = await getPrice(priceId);
-        if (priceData.error) {
-          processingError = `Failed to get price data for subscription ${eventBody.data.id}.`;
-        }
+        // // Get the price data from Lemon Squeezy
+        // const priceData = await getPrice(priceId);
+        // if (priceData.error) {
+        //   processingError = `Failed to get price data for subscription ${eventBody.data.id}.`;
+        // }
         // Verify user exists
         const user = await prisma.user.findUnique({
           where: { email: eventBody.meta.custom_data.user_email }
@@ -377,7 +377,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
               statusFormatted: attributes.status_formatted as string,
               renewsAt: attributes.renews_at as string,
               endsAt: attributes.ends_at as string,
-              price: (priceData.data?.data?.attributes?.unit_price ?? 0 / 100).toString() ?? "",
+              price: plan.price.toString(),
               isUsageBased: attributes.first_subscription_item.is_usage_based,
               isPaused: false,
               subscriptionItemId: attributes.first_subscription_item.id,
@@ -391,7 +391,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
               statusFormatted: attributes.status_formatted as string,
               renewsAt: attributes.renews_at as string,
               endsAt: attributes.ends_at as string,
-              price: priceData.data?.data.attributes.unit_price.toString() ?? "",
+              price: plan.price.toString(),
               isPaused: false,
               name: attributes.user_name as string,
               email: attributes.user_email as string,
