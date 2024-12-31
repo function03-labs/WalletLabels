@@ -272,7 +272,7 @@ export default function SignIn() {
         ))}
       </div>
 
-      <Card className="relative w-full max-w-[350px] bg-background/95 backdrop-blur-sm">
+      <Card className="relative w-full max-w-[350px] bg-background/50 backdrop-blur-sm">
         <CardHeader className="space-y-1">
           <div className="mx-auto mb-4 flex h-16 w-auto items-center gap-2">
             <Icons.logo className="size-8" />
@@ -303,7 +303,7 @@ export default function SignIn() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
+              <span className="rounded-xl bg-background px-2 text-muted-foreground">
                 Or continue with
               </span>
             </div>
