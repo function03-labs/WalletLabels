@@ -107,7 +107,6 @@ export function DashboardGenerateAPIkeysDialog({
             }
 
             if (!user.organizationSlug || user.organizationSlug === "") {
-              e.preventDefault()
               toast({
                 variant: "destructive",
                 title: "You need to create an organization first!",
