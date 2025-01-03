@@ -125,10 +125,21 @@ export async function deleteApiKey(
     env.APIGEE_ORG_NAME,
     env.GOOGLE_SERVICE_ACCOUNT_KEY
   )
+
   try {
+    // First try to delete from Apigee
+    try {
+      // Use the id as the app name, since that's what we used during creation
+      await apigee.deleteDeveloperApp(userEmail, id)
+    } catch (apigeeError: any) {
+      // If the developer or app doesn't exist, we can still proceed with database deletion
+      if (!apigeeError.message?.includes('does not exist')) {
+        throw apigeeError
+      }
+      console.warn('Developer or app not found in Apigee, proceeding with database deletion')
+    }
 
-    await apigee.deleteDeveloperApp(userEmail, id)
-
+    // Then delete from database
     return await prisma.apiKey.delete({
       where: {
         id,
@@ -136,8 +147,8 @@ export async function deleteApiKey(
       },
     })
   } catch (error) {
-    console.error('Error deleting Apigee API key:', error)
-    throw new Error("Failed to delete API key")
+    console.error('Error deleting API key:', error)
+    throw error instanceof Error ? error : new Error("Failed to delete API key")
   }
 }
 
