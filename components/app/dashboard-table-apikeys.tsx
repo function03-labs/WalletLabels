@@ -1,18 +1,8 @@
 import React from "react"
-import { ApiKey } from "@prisma/client"
+import { ApiKey, User } from "@prisma/client"
 
-import { chains } from "@/config/blockchain-networks"
-
-import { Address } from "@/components//ui/address"
 import { DeleteAPIKey } from "@/components/shared/delete-apikey"
 import { UpdateAPIKeyName } from "@/components/shared/update-apikey-name"
-import {
-  Avatar,
-  AvatarGroup,
-  AvatarGroupList,
-  AvatarImage,
-  AvatarOverflowIndicator,
-} from "@/components/ui/avatarGroup"
 import {
   Table,
   TableBody,
@@ -23,61 +13,61 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-export function DashboardTableAPIKeys({ apiKeys }: { apiKeys: ApiKey[] }) {
+export function DashboardTableAPIKeys({
+  apiKeys,
+  user,
+  apiKeyLimit,
+}: {
+  apiKeys: ApiKey[]
+  user: User
+  apiKeyLimit: number
+}) {
+  // Create a stable sorted array to prevent unnecessary re-renders
+  const sortedApiKeys = React.useMemo(() => {
+    return [...apiKeys].sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    )
+  }, [apiKeys])
+
   return (
     <Table>
-      <TableCaption>Currently, you are limited to 3 API Keys.</TableCaption>
+      <TableCaption>
+        Currently, you are limited to {apiKeyLimit} API Keys.
+      </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[150px]">Name</TableHead>
-          <TableHead className="mx-6">Chains</TableHead>
           <TableHead className="w-[420px]">Key</TableHead>
           <TableHead>Created At</TableHead>
+          <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {apiKeys
-          .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-          .map((apiKey, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">
-                <UpdateAPIKeyName apiKey={apiKey} />
-              </TableCell>
-
-              <TableCell>
-                <AvatarGroup
-                  limit={3}
-                  className="size-2 items-center justify-start"
-                >
-                  <AvatarGroupList>
-                    {chains
-                      .filter((chain) => apiKey.chains.includes(chain.value))
-                      .map((chain) => (
-                        <Avatar key={chain.label} className="size-8">
-                          <AvatarImage
-                            alt={chain.label}
-                            key={chain.label}
-                            src={chain.iconUrl}
-                          />
-                        </Avatar>
-                      ))}
-                  </AvatarGroupList>
-                  <AvatarOverflowIndicator />
-                </AvatarGroup>
-              </TableCell>
-
-              <TableCell>
-                <Address copy address={apiKey.key} />
-              </TableCell>
-              <TableCell>
-                {apiKey.createdAt.toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </TableCell>
-            </TableRow>
-          ))}
+        {sortedApiKeys.map((apiKey) => (
+          // Use a compound key that includes both id and name to force re-render when either changes
+          <TableRow key={`${apiKey.id}-${apiKey.name}`}>
+            <TableCell className="font-medium">
+              <UpdateAPIKeyName key={`name-${apiKey.id}`} apiKey={apiKey} />
+            </TableCell>
+            <TableCell>
+              {apiKey.key.slice(0, 20)}.........{apiKey.key.slice(-15)}
+            </TableCell>
+            <TableCell>
+              {apiKey.createdAt.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </TableCell>
+            <TableCell>
+              <DeleteAPIKey
+                key={`delete-${apiKey.id}`}
+                apiKey={apiKey}
+                userEmail={user.email}
+              />
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   )

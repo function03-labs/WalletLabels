@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -10,7 +9,6 @@ import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { chains } from "@/config/blockchain-networks"
 import { ApiKeySchema } from "@/config/schema"
 import { createApiKey } from "@/lib/app/api-key"
 import { useToast } from "@/lib/hooks/use-toast"
@@ -35,55 +33,54 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {
-  MultiSelector,
-  MultiSelectorContent,
-  MultiSelectorInput,
-  MultiSelectorItem,
-  MultiSelectorList,
-  MultiSelectorTrigger,
-} from "@/components/ui/multi-select"
 
 export function DashboardGenerateAPIkeysDialog({
   user,
   apiKeysCount,
+  apiKeyLimit,
 }: {
   apiKeysCount: number
   user: User
+  apiKeyLimit: number
 }) {
   const { toast } = useToast()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [generatedKey, setGeneratedKey] = useState<ApiKey | undefined>()
-
   const form = useForm<z.infer<typeof ApiKeySchema>>({
     resolver: zodResolver(ApiKeySchema),
     defaultValues: {
       name: "",
-      chain: [],
     },
   })
-
   async function onSubmit(values: z.infer<typeof ApiKeySchema>) {
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      if (!user.email) {
+        throw new Error("User email is required")
+      }
 
       const newKey = await createApiKey(
         {
           name: values.name,
-          chains: values.chain,
         },
-        user.id
+        user.id,
+        user.email
       )
+
+      // First set the generated key (for displaying in the dialog)
       setGeneratedKey(newKey)
+      console.log("newKey", newKey)
+
+      // Then refresh the router to update the table data
       router.refresh()
+
       toast({
-        description: "Your API Key is being Generated!",
+        description: "Your API Key has been Generated!",
       })
     } catch (error) {
-      console.log("Error generating API key:", error)
+      console.error("Error generating API key:", error)
       toast({
         variant: "destructive",
         title: "Error generating API key",
@@ -92,55 +89,56 @@ export function DashboardGenerateAPIkeysDialog({
       setIsLoading(false)
     }
   }
-
   return (
     <Dialog>
-      <div className="flex justify-start">
-        <DialogTrigger asChild>
-          <Button
-            onClick={() => {
-              if (generatedKey) {
-                setGeneratedKey(undefined)
-                form.reset()
-              }
+      <DialogTrigger asChild>
+        <Button
+          type="button"
+          className="mx-auto space-x-2 font-bold sm:mx-0"
+          disabled={apiKeysCount >= apiKeyLimit || !user.organizationSlug}
+          onClick={(e) => {
+            if (apiKeysCount >= apiKeyLimit) {
+              e.preventDefault()
+              toast({
+                title: `You cannot create more than ${apiKeyLimit} API keys.`,
+                variant: "destructive",
+              })
+              return
+            }
 
-              if (apiKeysCount >= 3) {
-                toast({
-                  title: "You cannot create more than 3 API keys.",
-                  variant: "destructive",
-                })
-              }
+            if (!user.organizationSlug || user.organizationSlug === "") {
+              toast({
+                variant: "destructive",
+                title: "You need to create an organization first!",
+                description: (
+                  <div>
+                    Go to{" "}
+                    <Link
+                      href="/dashboard/profile"
+                      className="pr-0.5 underline"
+                    >
+                      profile
+                    </Link>{" "}
+                    and fill your details.
+                  </div>
+                ),
+              })
+              return
+            }
 
-              if (!user.organizationSlug || user.organizationSlug === "") {
-                toast({
-                  variant: "destructive",
-                  title: "You need to create an organization first!",
-                  description: (
-                    <div>
-                      Go to{" "}
-                      <Link
-                        href="/dashboard/profile"
-                        className="pr-0.5 underline"
-                      >
-                        profile
-                      </Link>{" "}
-                      and fill your details.
-                    </div>
-                  ),
-                })
-              }
-            }}
-            className="mx-auto space-x-2 font-bold sm:mx-0"
-          >
-            <Icons.addCircle /> <span className="">Generate API Key</span>
-          </Button>
-        </DialogTrigger>
-      </div>
-
-      {generatedKey && <DashboardCopyAPIKey apiKey={generatedKey} />}
-
-      {!generatedKey && apiKeysCount < 3 && user.organizationSlug && (
-        <DialogContent>
+            if (generatedKey) {
+              setGeneratedKey(undefined)
+              form.reset()
+            }
+          }}
+        >
+          <Icons.addCircle /> <span>Generate API Key</span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        {generatedKey ? (
+          <DashboardCopyAPIKey apiKey={generatedKey} />
+        ) : (
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <DialogHeader>
@@ -166,47 +164,6 @@ export function DashboardGenerateAPIkeysDialog({
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="chain"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="dark:text-white">Chains</FormLabel>
-                    <FormControl>
-                      <MultiSelector
-                        onValuesChange={field.onChange}
-                        values={field.value}
-                      >
-                        <MultiSelectorTrigger>
-                          <MultiSelectorInput placeholder="Select Chains" />
-                        </MultiSelectorTrigger>
-                        <MultiSelectorContent>
-                          <MultiSelectorList>
-                            {chains.map((chain) => (
-                              <MultiSelectorItem
-                                key={chain.value}
-                                value={chain.value}
-                              >
-                                <div className="flex items-center space-x-2">
-                                  <Image
-                                    src={chain.iconUrl}
-                                    alt={chain.label}
-                                    width={32}
-                                    height={32}
-                                    className="size-8 rounded-full"
-                                  />
-                                  <span>{chain.label}</span>
-                                </div>
-                              </MultiSelectorItem>
-                            ))}
-                          </MultiSelectorList>
-                        </MultiSelectorContent>
-                      </MultiSelector>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <DialogFooter>
                 <Button type="submit">
                   {isLoading && (
@@ -217,8 +174,8 @@ export function DashboardGenerateAPIkeysDialog({
               </DialogFooter>
             </form>
           </Form>
-        </DialogContent>
-      )}
+        )}
+      </DialogContent>
     </Dialog>
   )
 }

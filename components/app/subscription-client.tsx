@@ -18,6 +18,8 @@ import { Card } from "@/components/ui/card"
 
 import type { Frequency, Tier } from "@/types/pricing"
 
+import { SubscriptionLoading } from "./subscription-loading"
+
 interface SubscriptionClientProps {
   initialData: {
     tiers: Tier[]
@@ -30,9 +32,8 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
     frequencies[0]
   )
   const [isChangingPlan, setIsChangingPlan] = useState(false)
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { user: tempUser } = useUser()
+  const { user: tempUser, isLoading } = useUser()
 
   const user = tempUser?.user
   const subscription = tempUser?.subscription
@@ -62,13 +63,6 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
       }
     }
   }, [subscription, currentTier])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 300)
-    return () => clearTimeout(timer)
-  }, [])
 
   const [loadingPlanId, setLoadingPlanId] = useState<string | null>(null)
 
@@ -131,14 +125,13 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
       setLoadingPlanId(null)
     }
   }
-
-  if (loading) {
-    return <PricingLoading />
+  if (isLoading && !subscription) {
+    return <PricingLoading isDashboard={true} />
+  } else if (isLoading && subscription) {
+    return <SubscriptionLoading />
   }
 
-  const paidTiers = initialData.tiers.filter(
-    (tier) => tier.id !== "tier-free-plan"
-  )
+  const paidTiers = initialData.tiers || []
 
   if (!subscription?.planId) {
     return (

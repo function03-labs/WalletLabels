@@ -1,24 +1,23 @@
 "use client"
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ApiKey } from "@prisma/client"
-import { Ellipsis } from "lucide-react"
+import { MoreVertical } from "lucide-react"
 
 import { deleteApiKey } from "@/lib/app/api-key"
 import { useToast } from "@/lib/hooks/use-toast"
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,58 +25,97 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export function DialogDeleteAPIKey({ apiKey }: { apiKey: ApiKey }) {
+function DialogDeleteAPIKey({
+  apiKey,
+  userEmail,
+  onClose,
+}: {
+  apiKey: ApiKey
+  userEmail: string | null
+  onClose: () => void
+}) {
   const router = useRouter()
   const { toast } = useToast()
 
-  async function deleteAPIKey() {
+  const handleDelete = async () => {
     try {
-      await deleteApiKey(apiKey.id, apiKey.key, apiKey.userId)
-      toast({ title: "API Key deleted successfully" })
+      if (!userEmail) {
+        throw new Error("User email is required")
+      }
+      await deleteApiKey(apiKey.id, apiKey.key, apiKey.userId, userEmail)
+      toast({
+        title: "API Key deleted",
+      })
       router.refresh()
+      onClose()
     } catch (error) {
-      console.log(error)
-      toast({ title: "An error occurred", variant: "destructive" })
+      console.error(error)
+      toast({
+        variant: "destructive",
+        title: "Error deleting API key",
+      })
     }
   }
 
   return (
-    <AlertDialogContent>
-      <AlertDialogHeader>
-        <AlertDialogTitle className="dark:text-white">
-          Are you absolutely sure?
-        </AlertDialogTitle>
-        <AlertDialogDescription>
-          This action cannot be undone. This will permanently delete the API
-          key.
-        </AlertDialogDescription>
-      </AlertDialogHeader>
-      <AlertDialogFooter>
-        <AlertDialogCancel className="dark:text-white">
-          Cancel
-        </AlertDialogCancel>
-        <AlertDialogAction onClick={deleteAPIKey}>Continue</AlertDialogAction>
-      </AlertDialogFooter>
-    </AlertDialogContent>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle className="mb-2 text-primary">Delete API Key</DialogTitle>
+        <DialogDescription className="text-primary">
+          Are you sure you want to delete this API key? This action cannot be
+          undone.
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <Button
+          variant="destructive"
+          className="mx-auto space-x-2 font-bold sm:mx-0"
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
+      </DialogFooter>
+    </DialogContent>
   )
 }
 
-export function DeleteAPIKey({ apiKey }: { apiKey: ApiKey }) {
+export function DeleteAPIKey({
+  apiKey,
+  userEmail,
+}: {
+  apiKey: ApiKey
+  userEmail: string | null
+}) {
+  const [open, setOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
   return (
-    <AlertDialog>
-      <DropdownMenu>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenuTrigger>
           <Button size="icon" variant="ghost">
-            <Ellipsis className="size-5" aria-label="More Options" />
+            <MoreVertical className="size-5" aria-label="More Options" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <AlertDialogTrigger className="w-full">
-            <DropdownMenuItem className="w-full">Delete</DropdownMenuItem>
-          </AlertDialogTrigger>
+          <DialogTrigger asChild>
+            <DropdownMenuItem
+              className="w-full"
+              onClick={() => {
+                setDropdownOpen(false)
+                setOpen(true)
+              }}
+            >
+              Delete
+            </DropdownMenuItem>
+          </DialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
-      <DialogDeleteAPIKey apiKey={apiKey} />
-    </AlertDialog>
+      <DialogDeleteAPIKey
+        apiKey={apiKey}
+        userEmail={userEmail}
+        onClose={() => setOpen(false)}
+      />
+    </Dialog>
   )
 }

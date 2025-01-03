@@ -1,18 +1,22 @@
 "use client"
-
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
 
 export function useUser({ redirectTo = "", redirectIfFound = false } = {}) {
-  const { data: user, refetch: mutateUser } = useQuery(["user"], {
+  const {
+    data: user,
+    refetch: mutateUser,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["user"],
     queryFn: () => fetch("/api/app/user").then((res) => res.json()),
-    staleTime: 60 * 1000, // 60 seconds
-    cacheTime: 5 * 60 * 1000, // 5 minutes
-    retry: 3, // Retry failed requests 3 times
-    retryDelay: 1000, // Wait 1 second between retries
-    refetchOnMount: true,
+    staleTime: 60 * 1000,
+    retry: 3,
+    retryDelay: 1000,
     refetchOnReconnect: true,
+    enabled: true,
   })
 
   const Router = useRouter()
@@ -20,7 +24,7 @@ export function useUser({ redirectTo = "", redirectIfFound = false } = {}) {
   useEffect(() => {
     // if no redirect needed, just return (example: already on /dashboard)
     // if user data not yet there (fetch in progress, logged in or not) then don't do anything yet
-    if (!redirectTo || !user) return
+    if (!redirectTo || !user || isLoading) return
 
     if (
       // If redirectTo is set, redirect if the user was not found.
@@ -32,5 +36,9 @@ export function useUser({ redirectTo = "", redirectIfFound = false } = {}) {
     }
   }, [user, redirectIfFound, redirectTo])
 
-  return { user, mutateUser }
+  return {
+    user,
+    mutateUser,
+    isLoading: Boolean(isLoading || isFetching)
+  }
 }

@@ -87,3 +87,27 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(var(--x), var(--y)) rotate(var(--rotate));
+  }
+  25% {
+    transform: translate(
+      calc(var(--x) + var(--drift-x)), 
+      calc(var(--y) + var(--drift-y))
+    ) rotate(calc(var(--rotate) * -1));
+  }
+  50% {
+    transform: translate(
+      calc(var(--x) - var(--drift-x)), 
+      calc(var(--y) - var(--drift-y))
+    ) rotate(var(--rotate));
+  }
+  75% {
+    transform: translate(
+      calc(var(--x) + var(--drift-x)), 
+      calc(var(--y) - var(--drift-y))
+    ) rotate(calc(var(--rotate) * -1));
+  }
+}

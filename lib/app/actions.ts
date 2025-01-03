@@ -14,22 +14,20 @@ import {
   updateSubscription,
   type Variant,
 } from "@lemonsqueezy/lemonsqueezy.js";
+import { signOut } from "next-auth/react";
 import { revalidatePath } from "next/cache";
 import { notFound } from "next/navigation";
 import { configureLemonSqueezy } from "@/config/lemonsqueezy";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
-// import { webhookHasData, webhookHasMeta } from "@/lib/typeguards";
-import { siweLogout } from "@/integrations/siwe/actions/siwe-logout";
-import { Subscription } from "@prisma/client"
 import { webhookHasMeta, webhookHasData } from "../typeguards";
-import { WebhookEvent } from "@prisma/client";
+import { Subscription, WebhookEvent } from "@prisma/client";
 
 /**
  * This action will log out the current user.
  */
 export async function logout() {
-  await siweLogout();
+  await signOut({ redirect: true, callbackUrl: "/" });
 }
 
 /**
@@ -61,7 +59,7 @@ export async function getCheckoutURL(variantId: number, embed = false) {
         checkoutData: {
           email: session.user.email ?? undefined,
           custom: {
-            user_id: session.user.id,
+            user_email: session.user.email,
           },
         },
         productOptions: {
@@ -86,23 +84,20 @@ export async function getCheckoutURL(variantId: number, embed = false) {
   }
 }
 
-
-
-
 /**
  * This action will get the subscriptions for the current user.
  */
 export async function getUserSubscriptions() {
   const session = await getSession();
-  const userId = session?.user?.id;
+  const userEmail = session?.user?.email;
 
-  if (!userId) {
+  if (!userEmail) {
     notFound();
   }
 
   const userSubscriptions = await prisma.subscription.findMany({
     where: {
-      userId,
+      email: userEmail,
     },
   });
 
@@ -110,9 +105,6 @@ export async function getUserSubscriptions() {
 
   return userSubscriptions;
 }
-
-
-
 
 /**
  * Cancels a subscription in Lemon Squeezy
@@ -268,20 +260,20 @@ export async function changePlan(currentPlanId: number, newPlanId: number) {
 export async function getCurrentSubscription(userId: string): Promise<Subscription> {
   const subscription = await prisma.subscription.findFirst({
     where: {
-      userId,
+      userId: userId,
       status: "active"
     }
   })
 
   if (!subscription) {
     return {
-      id: `free-${userId}`,
+      id: `free-tier`,
       lemonSqueezyId: "free",
       orderId: 0,
       status: "active",
       renewsAt: null,
       name: "Free Plan",
-      email: "",
+      email: userId,
       statusFormatted: "Active",
       endsAt: null,
       trialEndsAt: null,
@@ -291,7 +283,7 @@ export async function getCurrentSubscription(userId: string): Promise<Subscripti
       subscriptionItemId: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
-      userId,
+      userId: userId,
       planId: 0,
     }
   }
@@ -320,9 +312,6 @@ export async function storeWebhookEvent(
   return webhookEvent;
 }
 
-
-
-
 /**
  * This action will process a webhook event in the database.
  */
@@ -332,6 +321,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
   const dbwebhookEvent = await prisma.webhookEvent.findUnique({
     where: { id: webhookEvent.id },
   });
+  console.log(dbwebhookEvent)
 
   if (!dbwebhookEvent) {
     throw new Error(`Webhook event #${webhookEvent.id} not found in the database.`);
@@ -345,22 +335,36 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
   } else if (webhookHasData(eventBody)) {
     if (webhookEvent.eventName.startsWith("subscription_")) {
       const attributes = eventBody.data.attributes;
-      const variantId = attributes.variant_id as string;
-
+      const variantId = parseInt(attributes.variant_id as string, 10);
       // Get the plan from the database
       const plan = await prisma.plan.findFirst({
-        where: { variantId: parseInt(variantId, 10) },
+        where: {
+          variantId: variantId
+        },
       });
+      // Add error handling
+      if (!plan) {
+        console.error(`No plan found for variant ID: ${variantId}`);
+        throw new Error(`Plan with variantId ${variantId} not found.`);
+      }
 
       if (!plan) {
         processingError = `Plan with variantId ${variantId} not found.`;
       } else {
         const priceId = attributes.first_subscription_item.price_id;
 
-        // Get the price data from Lemon Squeezy
-        const priceData = await getPrice(priceId);
-        if (priceData.error) {
-          processingError = `Failed to get price data for subscription ${eventBody.data.id}.`;
+        // // Get the price data from Lemon Squeezy
+        // const priceData = await getPrice(priceId);
+        // if (priceData.error) {
+        //   processingError = `Failed to get price data for subscription ${eventBody.data.id}.`;
+        // }
+        // Verify user exists
+        const user = await prisma.user.findUnique({
+          where: { email: eventBody.meta.custom_data.user_email }
+        });
+
+        if (!user) {
+          throw new Error(`User with email ${eventBody.meta.custom_data.user_email} not found.`);
         }
 
         try {
@@ -373,11 +377,11 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
               statusFormatted: attributes.status_formatted as string,
               renewsAt: attributes.renews_at as string,
               endsAt: attributes.ends_at as string,
-              price: priceData.data?.data.attributes.unit_price.toString() ?? "",
+              price: plan.price.toString(),
               isUsageBased: attributes.first_subscription_item.is_usage_based,
               isPaused: false,
               subscriptionItemId: attributes.first_subscription_item.id,
-              userId: eventBody.meta.custom_data.user_id,
+              userId: user.id,
               planId: plan.id,
               name: attributes.user_name as string,
               email: attributes.user_email as string,
@@ -387,7 +391,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
               statusFormatted: attributes.status_formatted as string,
               renewsAt: attributes.renews_at as string,
               endsAt: attributes.ends_at as string,
-              price: priceData.data?.data.attributes.unit_price.toString() ?? "",
+              price: plan.price.toString(),
               isPaused: false,
               name: attributes.user_name as string,
               email: attributes.user_email as string,
@@ -396,6 +400,7 @@ export async function processWebhookEvent(webhookEvent: Pick<WebhookEvent, 'id' 
         } catch (error) {
           processingError = `Failed to upsert Subscription #${eventBody.data.id}`;
           console.error(error);
+          throw error
         }
       }
     }
