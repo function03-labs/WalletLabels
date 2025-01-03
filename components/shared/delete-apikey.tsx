@@ -42,7 +42,7 @@ function DialogDeleteAPIKey({
       if (!userEmail) {
         throw new Error("User email is required")
       }
-      await deleteApiKey(apiKey.id, apiKey.key, apiKey.userId, userEmail)
+      await deleteApiKey(apiKey.id, apiKey.userId, userEmail)
       toast({
         title: "API Key deleted",
       })
