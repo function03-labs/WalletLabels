@@ -23,10 +23,11 @@ const SelectTrigger = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="korb3u8"
   >
     {children}
-    <SelectPrimitive.Icon asChild>
-      <LuChevronsUpDown className="size-4 opacity-50" />
+    <SelectPrimitive.Icon asChild data-oid="6x6pr0h">
+      <LuChevronsUpDown className="size-4 opacity-50" data-oid="b3itrzz" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ))
@@ -36,7 +37,7 @@ const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
 >(({ className, children, position = "popper", ...props }, ref) => (
-  <SelectPrimitive.Portal>
+  <SelectPrimitive.Portal data-oid="ytrdlkv">
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
@@ -47,6 +48,7 @@ const SelectContent = React.forwardRef<
       )}
       position={position}
       {...props}
+      data-oid="eegcu21"
     >
       <SelectPrimitive.Viewport
         className={cn(
@@ -54,6 +56,7 @@ const SelectContent = React.forwardRef<
           position === "popper" &&
             "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
         )}
+        data-oid="4wmizvd"
       >
         {children}
       </SelectPrimitive.Viewport>
@@ -70,6 +73,7 @@ const SelectLabel = React.forwardRef<
     ref={ref}
     className={cn("px-2 py-1.5 text-sm font-semibold", className)}
     {...props}
+    data-oid="0_tqj:c"
   />
 ))
 SelectLabel.displayName = SelectPrimitive.Label.displayName
@@ -85,13 +89,19 @@ const SelectItem = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="kr_:5t6"
   >
-    <span className="absolute right-2 flex size-3.5 items-center justify-center">
-      <SelectPrimitive.ItemIndicator>
-        <LuCheck className="size-4" />
+    <span
+      className="absolute right-2 flex size-3.5 items-center justify-center"
+      data-oid="..u2fp7"
+    >
+      <SelectPrimitive.ItemIndicator data-oid="i70m-ul">
+        <LuCheck className="size-4" data-oid="9hle0cs" />
       </SelectPrimitive.ItemIndicator>
     </span>
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+    <SelectPrimitive.ItemText data-oid="qs02:37">
+      {children}
+    </SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ))
 SelectItem.displayName = SelectPrimitive.Item.displayName
@@ -104,6 +114,7 @@ const SelectSeparator = React.forwardRef<
     ref={ref}
     className={cn("-mx-1 my-1 h-px bg-muted", className)}
     {...props}
+    data-oid="47cr3.o"
   />
 ))
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName

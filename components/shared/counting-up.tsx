@@ -31,6 +31,7 @@ export function CountingUp({
       suffix={suffix}
       separator={seperator}
       className={className}
+      data-oid="g3n0n8j"
     />
   )
 }

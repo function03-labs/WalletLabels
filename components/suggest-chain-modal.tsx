@@ -40,19 +40,23 @@ export function SuggestChainModal({ isOpen, onClose }: SuggestChainModalProps) {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Suggest a New Chain</DialogTitle>
+    <Dialog open={isOpen} onOpenChange={onClose} data-oid="v.y4juk">
+      <DialogContent data-oid="ns66gr.">
+        <DialogHeader data-oid="5i5c3kw">
+          <DialogTitle data-oid="w.yu315">Suggest a New Chain</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} data-oid="dmd4e52">
           <Input
             value={chainName}
             onChange={(e) => setChainName(e.target.value)}
             placeholder="Enter chain name"
             className="mb-4"
+            data-oid="5gta6le"
           />
-          <Button type="submit">Submit Suggestion</Button>
+
+          <Button type="submit" data-oid="f9.hi_1">
+            Submit Suggestion
+          </Button>
         </form>
       </DialogContent>
     </Dialog>

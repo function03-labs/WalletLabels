@@ -52,12 +52,14 @@ export const metadata: Metadata = {
     "blockchain",
     "wallet labels",
   ],
+
   authors: [
     {
       name: "Aiden",
       url: "https://github.com/0xaaiden",
     },
   ],
+
   creator: "Function03 Labs",
   openGraph: {
     type: "website",
@@ -94,16 +96,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning data-oid="l90xpxa">
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
             fontSans.variable
           )}
+          data-oid="bzr1box"
         >
-          <RootProvider>{children}</RootProvider>
-          <Analytics />
-          <Toaster />
+          <RootProvider data-oid="0krak95">{children}</RootProvider>
+          <Analytics data-oid="2-qyo.z" />
+          <Toaster data-oid="-cv:jpx" />
         </body>
       </html>
     </>

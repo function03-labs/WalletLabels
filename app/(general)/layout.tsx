@@ -17,24 +17,30 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const { data: session } = useSession()
 
   return (
-    <FramerWrapper>
-      <div className="relative flex min-h-screen flex-col">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <Opensource />
-        <Footer />
+    <FramerWrapper data-oid="dsu3i72">
+      <div className="relative flex min-h-screen flex-col" data-oid="0.xfmd0">
+        <SiteHeader data-oid=".14j77_" />
+        <main className="flex-1" data-oid="ijom9ea">
+          {children}
+        </main>
+        <Opensource data-oid="pvfh78a" />
+        <Footer data-oid="_34m-v9" />
       </div>
       {/* <NetworkStatus /> */}
-      <div className="fixed bottom-6 right-6 z-50 block sm:hidden">
+      <div
+        className="fixed bottom-6 right-6 z-50 block sm:hidden"
+        data-oid="rom7-gk"
+      >
         {!session ? (
           <button
             onClick={() => signIn()}
             className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+            data-oid=":1jrdns"
           >
             Sign in
           </button>
         ) : (
-          <p>Welcome, {session.user.name}</p>
+          <p data-oid="727k.gs">Welcome, {session.user.name}</p>
         )}
       </div>
     </FramerWrapper>

@@ -13,6 +13,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         stiffness: 380,
         damping: 30,
       }}
+      data-oid="_9be.bn"
     >
       {children}
     </motion.div>

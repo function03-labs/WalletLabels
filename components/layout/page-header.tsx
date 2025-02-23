@@ -22,6 +22,7 @@ function PageHeader({ className, children, ...props }: MotionHeaderProps) {
         className
       )}
       {...props}
+      data-oid="7dlo6r6"
     >
       {children}
     </motion.section>
@@ -41,6 +42,7 @@ function PageHeaderHeading({
         className
       )}
       {...props}
+      data-oid="q84:lav"
     >
       {children}
     </motion.h1>
@@ -60,6 +62,7 @@ function PageHeaderDescription({
         className
       )}
       {...props}
+      data-oid="c9hwwdj"
     >
       {children}
     </motion.p>
@@ -75,6 +78,7 @@ function PageHeaderCTA({ className, children, ...props }: MotionHeaderProps) {
         className
       )}
       {...props}
+      data-oid="u11fe_z"
     >
       {children}
     </motion.div>

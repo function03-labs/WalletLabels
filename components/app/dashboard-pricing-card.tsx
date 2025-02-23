@@ -37,26 +37,43 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         "rounded-3xl p-8 ring-1 xl:p-10",
         isCurrentPlan && "bg-primary/5 ring-primary"
       )}
+      data-oid="dcbwk7-"
     >
       {isCurrentPlan && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-green-500 px-3 py-1 text-sm text-primary-foreground">
+        <div
+          className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-green-500 px-3 py-1 text-sm text-primary-foreground"
+          data-oid="3j2am9y"
+        >
           Current Plan
         </div>
       )}
-      <h3 id={tier.id} className="text-lg font-semibold leading-8 text-primary">
+      <h3
+        id={tier.id}
+        className="text-lg font-semibold leading-8 text-primary"
+        data-oid="_cv0unb"
+      >
         {tier.name}
       </h3>
-      <p className="mt-4 text-sm leading-6 text-muted-foreground">
+      <p
+        className="mt-4 text-sm leading-6 text-muted-foreground"
+        data-oid="5-hfd7_"
+      >
         {tier.description}
       </p>
-      <p className="mt-6 flex items-baseline gap-x-1">
-        <span className="text-4xl font-bold tracking-tight text-primary">
+      <p className="mt-6 flex items-baseline gap-x-1" data-oid="296fjxy">
+        <span
+          className="text-4xl font-bold tracking-tight text-primary"
+          data-oid="qv53b5t"
+        >
           {typeof tier.price === "string"
             ? tier.price
             : tier.price[selectedFrequency.value]}
         </span>
         {typeof tier.price !== "string" && (
-          <span className="text-sm font-semibold leading-6 text-muted-foreground">
+          <span
+            className="text-sm font-semibold leading-6 text-muted-foreground"
+            data-oid="s86k8--"
+          >
             {selectedFrequency.priceSuffix}
           </span>
         )}
@@ -73,10 +90,11 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         )}
         disabled={isLoading || isCurrentPlan}
         variant={isCurrentPlan ? "outline" : "default"}
+        data-oid="9j13ftq"
       >
         {isLoading ? (
-          <div className="flex items-center justify-center">
-            <Loader2 className="size-4 animate-spin" />
+          <div className="flex items-center justify-center" data-oid="6lca7m_">
+            <Loader2 className="size-4 animate-spin" data-oid="8g.8t.3" />
           </div>
         ) : isCurrentPlan ? (
           "Current Plan"
@@ -89,13 +107,16 @@ export const PricingCard: React.FC<PricingCardProps> = ({
       <ul
         role="list"
         className="mt-8 space-y-3 text-sm leading-6 text-muted-foreground xl:mt-10"
+        data-oid="_31tne6"
       >
         {tier.features.map((feature) => (
-          <li key={feature} className="flex gap-x-3">
+          <li key={feature} className="flex gap-x-3" data-oid="t_3e2qk">
             <Icons.check
               className="h-6 w-5 flex-none text-primary"
               aria-hidden="true"
+              data-oid="c0q9sn:"
             />
+
             {feature}
           </li>
         ))}

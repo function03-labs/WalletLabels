@@ -45,16 +45,25 @@ export function MainNav({ items }: MainNavProps) {
   }
 
   return (
-    <div className="flex items-center gap-6 md:gap-10">
-      <div className="flex items-center space-x-2 dark:text-slate-100">
-        <Link href="/" className="flex items-center gap-2">
-          <Icons.logo className="size-6" />
-          <span className="whitespace-nowrap font-bold sm:inline-block">
+    <div className="flex items-center gap-6 md:gap-10" data-oid="gv_2742">
+      <div
+        className="flex items-center space-x-2 dark:text-slate-100"
+        data-oid="udd6dki"
+      >
+        <Link href="/" className="flex items-center gap-2" data-oid="f26:z6s">
+          <Icons.logo className="size-6" data-oid=":cqghzk" />
+          <span
+            className="whitespace-nowrap font-bold sm:inline-block"
+            data-oid="he_a:l0"
+          >
             {siteConfig.name}
           </span>
         </Link>
-        <DropdownMenu>
-          <DropdownMenuTrigger className="flex items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+        <DropdownMenu data-oid="yprh574">
+          <DropdownMenuTrigger
+            className="flex items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-slate-700"
+            data-oid="qarkby6"
+          >
             <Image
               src={chainImage}
               alt="Ethereum"
@@ -67,20 +76,29 @@ export function MainNav({ items }: MainNavProps) {
               )}
               width={100}
               height={100}
+              data-oid="zlr_0ya"
             />
-            <Icons.chevronsUpDown className=" size-3" />
+
+            <Icons.chevronsUpDown className=" size-3" data-oid="6x32opb" />
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent>
-            <DropdownMenuLabel>
-              <span className="font-semibold">Our supported chains</span>
+          <DropdownMenuContent data-oid="3s4orja">
+            <DropdownMenuLabel data-oid="v0mu:9y">
+              <span className="font-semibold" data-oid=".nf7unq">
+                Our supported chains
+              </span>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator data-oid="kvo8c40" />
             {chains.map((chain, index) => (
-              <DropdownMenuItem key={index} disabled={chain.disabled}>
+              <DropdownMenuItem
+                key={index}
+                disabled={chain.disabled}
+                data-oid="s.q._c_"
+              >
                 <Link
                   className="flex w-full items-center gap-2"
                   href={getChainURL(params, chain.id)}
+                  data-oid="py3srox"
                 >
                   <Image
                     src={chain.img}
@@ -88,16 +106,22 @@ export function MainNav({ items }: MainNavProps) {
                     width={32}
                     height={32}
                     className="size-4 rounded-md"
+                    data-oid="oodswln"
                   />
-                  <span>{chain.label}</span>
+
+                  <span data-oid="1d8goap">{chain.label}</span>
                 </Link>
               </DropdownMenuItem>
             ))}
-            <DropdownMenuItem onSelect={() => setIsSuggestModalOpen(true)}>
+            <DropdownMenuItem
+              onSelect={() => setIsSuggestModalOpen(true)}
+              data-oid="ziue8w5"
+            >
               <motion.div
                 className="flex w-full items-center gap-2 rounded-md transition-all duration-300"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
+                data-oid="ow309pi"
               >
                 <motion.div
                   className="relative"
@@ -110,6 +134,7 @@ export function MainNav({ items }: MainNavProps) {
                     duration: 2,
                     ease: "easeInOut",
                   }}
+                  data-oid="7bwrw.c"
                 >
                   <Image
                     src="https://i.redd.it/5unqv87oj8y91.gif"
@@ -117,20 +142,23 @@ export function MainNav({ items }: MainNavProps) {
                     width={32}
                     height={32}
                     className="size-4 rounded-md"
+                    data-oid="yjntwe_"
                   />
                 </motion.div>
-                <span className="">Suggest a new chain</span>
+                <span className="" data-oid="5blvi:.">
+                  Suggest a new chain
+                </span>
               </motion.div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
 
-      <nav className="hidden gap-6 md:flex">
+      <nav className="hidden gap-6 md:flex" data-oid="afgeufz">
         {items?.map(
           (item, index) =>
             item.href && (
-              <div key={index}>
+              <div key={index} data-oid="kf63nwb">
                 <Link
                   key={index}
                   href={item.href}
@@ -138,12 +166,22 @@ export function MainNav({ items }: MainNavProps) {
                     "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm",
                     item.disabled && "cursor-not-allowed opacity-80"
                   )}
+                  data-oid=":wc7:.g"
                 >
                   {item.title}
                   {item.new && (
-                    <span className="relative bottom-[7px] flex size-2">
-                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-                      <span className="relative inline-flex size-2 rounded-full bg-sky-500"></span>
+                    <span
+                      className="relative bottom-[7px] flex size-2"
+                      data-oid="vhxop4c"
+                    >
+                      <span
+                        className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75"
+                        data-oid="phuf.yk"
+                      ></span>
+                      <span
+                        className="relative inline-flex size-2 rounded-full bg-sky-500"
+                        data-oid="50ba41g"
+                      ></span>
                     </span>
                   )}
                 </Link>
@@ -155,6 +193,7 @@ export function MainNav({ items }: MainNavProps) {
       <SuggestChainModal
         isOpen={isSuggestModalOpen}
         onClose={() => setIsSuggestModalOpen(false)}
+        data-oid="yxcbedq"
       />
     </div>
   )

@@ -226,6 +226,7 @@ export const FileUploader = forwardRef<
           orientation,
           direction,
         }}
+        data-oid="g:6q-sw"
       >
         <div
           ref={ref}
@@ -240,6 +241,7 @@ export const FileUploader = forwardRef<
           )}
           dir={dir}
           {...props}
+          data-oid="mu44r-o"
         >
           {children}
         </div>
@@ -262,6 +264,7 @@ export const FileUploaderContent = forwardRef<
       className={cn("w-full px-1")}
       ref={containerRef}
       aria-description="content file holder"
+      data-oid="43x77nn"
     >
       <div
         {...props}
@@ -271,6 +274,7 @@ export const FileUploaderContent = forwardRef<
           orientation === "horizontal" ? "flex-raw flex-wrap" : "flex-col",
           className
         )}
+        data-oid="tvq:vsx"
       >
         {children}
       </div>
@@ -296,8 +300,12 @@ export const FileUploaderItem = forwardRef<
         isSelected ? "bg-muted" : ""
       )}
       {...props}
+      data-oid="154eehz"
     >
-      <div className="flex size-full items-center gap-1.5 font-medium leading-none tracking-tight">
+      <div
+        className="flex size-full items-center gap-1.5 font-medium leading-none tracking-tight"
+        data-oid="v9yii4-"
+      >
         {children}
       </div>
 
@@ -310,9 +318,15 @@ export const FileUploaderItem = forwardRef<
           uploading ? "cursor-not-allowed" : "cursor-pointer"
         )}
         onClick={() => removeFileFromSet(index)}
+        data-oid="yr306pw"
       >
-        <span className="sr-only">remove item {index}</span>
-        <RemoveIcon className="size-4 duration-200 ease-in-out hover:stroke-destructive" />
+        <span className="sr-only" data-oid="3qd.gq6">
+          remove item {index}
+        </span>
+        <RemoveIcon
+          className="size-4 duration-200 ease-in-out hover:stroke-destructive"
+          data-oid="9uagda3"
+        />
       </button>
     </div>
   )
@@ -333,6 +347,7 @@ export const FileInput = forwardRef<
       className={`relative w-full ${
         isLOF ? "cursor-not-allowed opacity-50 " : "cursor-pointer "
       }`}
+      data-oid="xqufe.y"
     >
       <div
         className={cn(
@@ -341,12 +356,14 @@ export const FileInput = forwardRef<
            dropzoneState.isDragAccept
              ? "border-green-500"
              : dropzoneState.isDragReject || isFileTooBig
-             ? "border-red-500"
-             : "border-gray-300"
+               ? "border-red-500"
+               : "border-gray-300"
          }`,
+
           className
         )}
         {...rootProps}
+        data-oid="96i0-hq"
       >
         {children}
       </div>
@@ -355,6 +372,7 @@ export const FileInput = forwardRef<
         disabled={isLOF}
         {...dropzoneState.getInputProps()}
         className={`${isLOF ? "cursor-not-allowed" : ""}`}
+        data-oid="7c:27nq"
       />
     </div>
   )

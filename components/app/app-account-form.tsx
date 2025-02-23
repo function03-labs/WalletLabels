@@ -60,59 +60,91 @@ export function AppAccountForm({ user }: { user: User }) {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    <Form {...form} data-oid="syvjf7w">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8"
+        data-oid="w-54lig"
+      >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Name<span className="text-red-500">*</span>
+            <FormItem data-oid="6c47ym7">
+              <FormLabel data-oid="b8gp7yq">
+                Name
+                <span className="text-red-500" data-oid="is7l3v3">
+                  *
+                </span>
               </FormLabel>
-              <FormControl>
-                <Input placeholder="John Doe" {...field} required />
+              <FormControl data-oid="rg:rfhf">
+                <Input
+                  placeholder="John Doe"
+                  {...field}
+                  required
+                  data-oid="lu0y08s"
+                />
               </FormControl>
-              <FormDescription>This is your display name.</FormDescription>
-              <FormMessage />
+              <FormDescription data-oid="2qcxsry">
+                This is your display name.
+              </FormDescription>
+              <FormMessage data-oid="yhn0pm-" />
             </FormItem>
           )}
+          data-oid="21235:b"
         />
 
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Email<span className="text-red-500">*</span>
+            <FormItem data-oid="1dnc7ej">
+              <FormLabel data-oid="x4aya82">
+                Email
+                <span className="text-red-500" data-oid="a4n71v0">
+                  *
+                </span>
               </FormLabel>
-              <FormControl>
-                <Input placeholder="example@email.com" {...field} required />
+              <FormControl data-oid="s5rceto">
+                <Input
+                  placeholder="example@email.com"
+                  {...field}
+                  required
+                  data-oid="_s:nfuc"
+                />
               </FormControl>
-              <FormDescription>Your email address is required.</FormDescription>
-              <FormMessage />
+              <FormDescription data-oid="3.k.o0-">
+                Your email address is required.
+              </FormDescription>
+              <FormMessage data-oid="ctnjabn" />
             </FormItem>
           )}
+          data-oid="aombxsv"
         />
 
         <FormField
           control={form.control}
           name="organizationSlug"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Organization</FormLabel>
-              <FormControl>
-                <Input placeholder="function03" {...field} />
+            <FormItem data-oid="wftt.t1">
+              <FormLabel data-oid="sak.ieo">Organization</FormLabel>
+              <FormControl data-oid="opw:7mu">
+                <Input placeholder="function03" {...field} data-oid="4aplj14" />
               </FormControl>
-              <FormDescription>This is your organization slug.</FormDescription>
-              <FormMessage />
+              <FormDescription data-oid="9b0-fg3">
+                This is your organization slug.
+              </FormDescription>
+              <FormMessage data-oid="fz2ihtn" />
             </FormItem>
           )}
+          data-oid="b.8uo1h"
         />
 
-        <Button type="submit" disabled={isLoading}>
-          {isLoading && <Loader2 className="mr-2 size-4 animate-spin" />} Update
+        <Button type="submit" disabled={isLoading} data-oid="ernsp5p">
+          {isLoading && (
+            <Loader2 className="mr-2 size-4 animate-spin" data-oid="7a6s3o-" />
+          )}{" "}
+          Update
         </Button>
       </form>
     </Form>

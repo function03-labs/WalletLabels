@@ -92,12 +92,16 @@ export function Grid(props: {
         keybindings={{ search: true }}
         className="rounded-xl shadow-lg"
         getRowThemeOverride={getRowThemeOverride}
+        data-oid="v8_slyf"
       />
+
       {createPortal(
         <div
           id="portal"
           style={{ position: "fixed", left: 0, top: 0, zIndex: 9999 }}
+          data-oid="3quc0g2"
         />,
+
         document.body
       )}
     </>

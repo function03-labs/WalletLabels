@@ -84,9 +84,9 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           rectB.top - containerRect.top + rectB.height / 2 + endYOffset
 
         const controlY = startY - curvature
-        const d = `M ${startX},${startY} Q ${
-          (startX + endX) / 2
-        },${controlY} ${endX},${endY}`
+        const d = `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${
+          endX
+        },${endY}`
         setPathD(d)
       }
     }
@@ -133,6 +133,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         className
       )}
       viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`}
+      data-oid="28gl5vm"
     >
       <path
         d={pathD}
@@ -140,15 +141,19 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         strokeWidth={pathWidth}
         strokeOpacity={pathOpacity}
         strokeLinecap="round"
+        data-oid="usg7dmj"
       />
+
       <path
         d={pathD}
         strokeWidth={pathWidth}
         stroke={`url(#${id})`}
         strokeOpacity="1"
         strokeLinecap="round"
+        data-oid="26:e9ma"
       />
-      <defs>
+
+      <defs data-oid="l_qmvt-">
         <motion.linearGradient
           className="transform-gpu"
           id={id}
@@ -166,14 +171,24 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
             repeat: Infinity,
             repeatDelay: 0,
           }}
+          data-oid="k8d_ej."
         >
-          <stop stopColor={gradientStartColor} stopOpacity="0"></stop>
-          <stop stopColor={gradientStartColor}></stop>
-          <stop offset="32.5%" stopColor={gradientStopColor}></stop>
+          <stop
+            stopColor={gradientStartColor}
+            stopOpacity="0"
+            data-oid="hbxie:r"
+          ></stop>
+          <stop stopColor={gradientStartColor} data-oid="2msgkfk"></stop>
+          <stop
+            offset="32.5%"
+            stopColor={gradientStopColor}
+            data-oid="iu5i2s1"
+          ></stop>
           <stop
             offset="100%"
             stopColor={gradientStopColor}
             stopOpacity="0"
+            data-oid="g.ft5n-"
           ></stop>
         </motion.linearGradient>
       </defs>

@@ -43,13 +43,16 @@ export function CopyButton({
         setHasCopied(true)
       }}
       {...props}
+      data-oid="r:ylik8"
     >
       {children}
-      <span className="sr-only">Copy</span>
+      <span className="sr-only" data-oid="zx7gjgn">
+        Copy
+      </span>
       {hasCopied ? (
-        <LuCheck className="size-4" />
+        <LuCheck className="size-4" data-oid="t3o.:ri" />
       ) : (
-        <LuCopy className="size-4" />
+        <LuCopy className="size-4" data-oid="774tyja" />
       )}
     </Button>
   )

@@ -16,9 +16,10 @@ const NavigationMenu = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="-_784s1"
   >
     {children}
-    <NavigationMenuViewport />
+    <NavigationMenuViewport data-oid="l9ir.o1" />
   </NavigationMenuPrimitive.Root>
 ))
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
@@ -34,6 +35,7 @@ const NavigationMenuList = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="fmf7khl"
   />
 ))
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
@@ -52,11 +54,13 @@ const NavigationMenuTrigger = React.forwardRef<
     ref={ref}
     className={cn(navigationMenuTriggerStyle(), "group", className)}
     {...props}
+    data-oid="k7fya8p"
   >
     {children}{" "}
     <LuChevronDown
       className="relative top-px ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
       aria-hidden="true"
+      data-oid="iym9oz-"
     />
   </NavigationMenuPrimitive.Trigger>
 ))
@@ -73,6 +77,7 @@ const NavigationMenuContent = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="te4sz5y"
   />
 ))
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
@@ -83,7 +88,10 @@ const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
 >(({ className, ...props }, ref) => (
-  <div className={cn("absolute left-0 top-full flex justify-center")}>
+  <div
+    className={cn("absolute left-0 top-full flex justify-center")}
+    data-oid="_8qn0st"
+  >
     <NavigationMenuPrimitive.Viewport
       className={cn(
         "relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
@@ -91,6 +99,7 @@ const NavigationMenuViewport = React.forwardRef<
       )}
       ref={ref}
       {...props}
+      data-oid="wn_yh30"
     />
   </div>
 ))
@@ -108,8 +117,12 @@ const NavigationMenuIndicator = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="6gts6or"
   >
-    <div className="relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
+    <div
+      className="relative top-[60%] size-2 rotate-45 rounded-tl-sm bg-border shadow-md"
+      data-oid="ttlgj5c"
+    />
   </NavigationMenuPrimitive.Indicator>
 ))
 NavigationMenuIndicator.displayName =

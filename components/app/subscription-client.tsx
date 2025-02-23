@@ -126,22 +126,34 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
     }
   }
   if (isLoading && !subscription) {
-    return <PricingLoading isDashboard={true} />
+    return <PricingLoading isDashboard={true} data-oid="ixgwlyo" />
   } else if (isLoading && subscription) {
-    return <SubscriptionLoading />
+    return <SubscriptionLoading data-oid="g4gloi6" />
   }
 
   const paidTiers = initialData.tiers || []
 
   if (!subscription?.planId) {
     return (
-      <Card className="container mt-4 grid items-center gap-5 rounded-3xl py-8">
-        <FreeTierCard />
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-          <h1 className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl">
+      <Card
+        className="container mt-4 grid items-center gap-5 rounded-3xl py-8"
+        data-oid="o5c0g.4"
+      >
+        <FreeTierCard data-oid="mbi63mn" />
+        <div
+          className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center"
+          data-oid="kjjelv."
+        >
+          <h1
+            className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+            data-oid="3yrib-9"
+          >
             Choose Your Plan
           </h1>
-          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+          <p
+            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+            data-oid="ld3h1pn"
+          >
             Select the plan that best fits your needs
           </p>
         </div>
@@ -149,8 +161,13 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
           frequencies={frequencies}
           selectedFrequency={selectedFrequency}
           onFrequencyChange={setSelectedFrequency}
+          data-oid="adl4pge"
         />
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+        <div
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          data-oid="hk-az96"
+        >
           {paidTiers.map((tier) => (
             <PricingCard
               key={tier.id}
@@ -160,6 +177,7 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
               isCurrentPlan={false}
               loadingPlanId={loadingPlanId}
               isFreeTier={true}
+              data-oid="r7sf73r"
             />
           ))}
         </div>
@@ -168,24 +186,37 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
   }
 
   return (
-    <Card className="container mt-4 grid items-center gap-5 rounded-3xl py-8">
+    <Card
+      className="container mt-4 grid items-center gap-5 rounded-3xl py-8"
+      data-oid="c4_pjai"
+    >
       {isChangingPlan ? (
         <>
-          <div className="flex w-full justify-between">
+          <div className="flex w-full justify-between" data-oid="f-lnf-6">
             <Button
               variant="ghost"
               className="w-fit"
               onClick={() => setIsChangingPlan(false)}
+              data-oid="o2qa:bv"
             >
-              <ArrowLeft className="mr-2 size-4" />
+              <ArrowLeft className="mr-2 size-4" data-oid="bykmmy8" />
               Back to subscription
             </Button>
           </div>
-          <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-            <h1 className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl">
+          <div
+            className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center"
+            data-oid="xo.0ry5"
+          >
+            <h1
+              className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+              data-oid="gftitsv"
+            >
               Change Your Plan
             </h1>
-            <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+            <p
+              className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+              data-oid="x5o2maf"
+            >
               Select a new plan to upgrade or downgrade your subscription
             </p>
           </div>
@@ -193,8 +224,13 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
             frequencies={frequencies}
             selectedFrequency={selectedFrequency}
             onFrequencyChange={setSelectedFrequency}
+            data-oid="6x:ys8k"
           />
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div
+            className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+            data-oid="6l67rc5"
+          >
             {paidTiers.map((tier) => (
               <PricingCard
                 key={tier.id}
@@ -206,67 +242,127 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
                 }
                 loadingPlanId={loadingPlanId}
                 isFreeTier={false}
+                data-oid="mvetbeo"
               />
             ))}
           </div>
         </>
       ) : (
-        <div className="mx-auto w-full max-w-3xl space-y-8">
-          <div className="flex flex-col items-center justify-center gap-4 text-center">
-            <h1 className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl">
+        <div className="mx-auto w-full max-w-3xl space-y-8" data-oid="0fjgbke">
+          <div
+            className="flex flex-col items-center justify-center gap-4 text-center"
+            data-oid="_vpapmh"
+          >
+            <h1
+              className="text-center text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+              data-oid=".y76z79"
+            >
               Your Subscription
             </h1>
-            <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+            <p
+              className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+              data-oid="30g0v-s"
+            >
               Manage your subscription and billing
             </p>
           </div>
 
-          <div className="relative overflow-hidden rounded-xl border bg-gradient-to-br from-gray-900/5 via-gray-800/20 to-black/20 p-8">
-            <div className="bg-grid-white/10 absolute inset-0" />
-            <div className="relative">
-              <div className="flex items-center justify-between">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold">{currentTier?.name}</h2>
-                  <div className="flex items-center gap-2">
-                    <p className="text-lg font-medium text-muted-foreground">
+          <div
+            className="relative overflow-hidden rounded-xl border bg-gradient-to-br from-gray-900/5 via-gray-800/20 to-black/20 p-8"
+            data-oid="o34b02q"
+          >
+            <div
+              className="bg-grid-white/10 absolute inset-0"
+              data-oid="h6zgl6t"
+            />
+
+            <div className="relative" data-oid="we11udd">
+              <div
+                className="flex items-center justify-between"
+                data-oid="9irhthr"
+              >
+                <div className="space-y-2" data-oid="jreejrb">
+                  <h2 className="text-3xl font-bold" data-oid="2tr70s8">
+                    {currentTier?.name}
+                  </h2>
+                  <div className="flex items-center gap-2" data-oid="4clz8tf">
+                    <p
+                      className="text-lg font-medium text-muted-foreground"
+                      data-oid="r4lk7tg"
+                    >
                       {currentFrequency.label} billing
                     </p>
-                    <span className="text-lg font-medium text-muted-foreground">
+                    <span
+                      className="text-lg font-medium text-muted-foreground"
+                      data-oid="ofvitj9"
+                    >
                       ·
                     </span>
-                    <p className="text-lg font-medium text-muted-foreground">
+                    <p
+                      className="text-lg font-medium text-muted-foreground"
+                      data-oid="hh2puf."
+                    >
                       ${subscription?.price} / {currentFrequency.value}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2 rounded-full bg-green-500/10 px-3 py-1">
-                    <CheckCircle2 className="size-4 text-green-500" />
-                    <span className="text-sm font-medium text-green-500">
+                <div className="flex items-center gap-4" data-oid="n:pu..t">
+                  <div
+                    className="flex items-center gap-2 rounded-full bg-green-500/10 px-3 py-1"
+                    data-oid="gcveiy."
+                  >
+                    <CheckCircle2
+                      className="size-4 text-green-500"
+                      data-oid="w8swote"
+                    />
+
+                    <span
+                      className="text-sm font-medium text-green-500"
+                      data-oid="xohh0k9"
+                    >
                       Active
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 space-y-6">
-                <div className="space-y-2">
-                  <h3 className="text-lg font-semibold">Plan Features</h3>
-                  <ul className="grid gap-2 sm:grid-cols-2">
+              <div className="mt-8 space-y-6" data-oid="mkd_68l">
+                <div className="space-y-2" data-oid="b04pm00">
+                  <h3 className="text-lg font-semibold" data-oid="aw3.bwj">
+                    Plan Features
+                  </h3>
+                  <ul className="grid gap-2 sm:grid-cols-2" data-oid="2u61hp1">
                     {currentTier?.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2">
-                        <CheckCircle2 className="size-4 text-green-500" />
-                        <span className="text-muted-foreground">{feature}</span>
+                      <li
+                        key={feature}
+                        className="flex items-center gap-2"
+                        data-oid=".vjvp.e"
+                      >
+                        <CheckCircle2
+                          className="size-4 text-green-500"
+                          data-oid=".acl.6z"
+                        />
+
+                        <span
+                          className="text-muted-foreground"
+                          data-oid="5pmql1j"
+                        >
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="flex items-center justify-between border-t pt-6">
+                <div
+                  className="flex items-center justify-between border-t pt-6"
+                  data-oid="gf49hh0"
+                >
                   <Button
                     variant="outline"
                     onClick={() => setIsChangingPlan(true)}
                     className="bg-background/60 backdrop-blur-sm hover:bg-background/80"
+                    data-oid="-d4s739"
                   >
                     Change Plan
                   </Button>
@@ -277,6 +373,7 @@ export function SubscriptionClient({ initialData }: SubscriptionClientProps) {
                       update_payment_method:
                         subscription.updatePaymentMethodUrl,
                     }}
+                    data-oid="rf7f7jv"
                   />
                 </div>
               </div>

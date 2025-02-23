@@ -23,6 +23,7 @@ const Separator = React.forwardRef<
         className
       )}
       {...props}
+      data-oid="a3z36yb"
     />
   )
 )

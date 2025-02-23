@@ -60,28 +60,35 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="flex flex-col gap-4 sm:flex-row">
-      <div className="w-full sm:max-w-56">
+    <div className="flex flex-col gap-4 sm:flex-row" data-oid="1v3kjbh">
+      <div className="w-full sm:max-w-56" data-oid="m4ius2b">
         <DataTableFilterBar
           table={table}
           columns={columns}
           filterFields={filterFields}
+          data-oid="40w15z5"
         />
       </div>
-      <div className="flex flex-1 flex-col gap-4">
+      <div className="flex flex-1 flex-col gap-4" data-oid="asayvmf">
         <DataTableFilterCommand
           table={table}
           schema={communityLabelSchema}
           filterFields={filterFields}
+          data-oid="1dee4j-"
         />
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader className="bg-muted/50">
+
+        <div className="rounded-md border" data-oid="q58ade6">
+          <Table data-oid=":52tka6">
+            <TableHeader className="bg-muted/50" data-oid="6e.n.6d">
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id} className="hover:bg-transparent">
+                <TableRow
+                  key={headerGroup.id}
+                  className="hover:bg-transparent"
+                  data-oid="23bxykl"
+                >
                   {headerGroup.headers.map((header) => {
                     return (
-                      <TableHead key={header.id}>
+                      <TableHead key={header.id} data-oid="nnst1cu">
                         {header.isPlaceholder
                           ? null
                           : flexRender(
@@ -94,15 +101,16 @@ export function DataTable<TData, TValue>({
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody className="bg-primary-foreground">
+            <TableBody className="bg-primary-foreground" data-oid="_43ar2s">
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
+                    data-oid="p2r2brp"
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell key={cell.id} data-oid="u9b7xo_">
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -112,10 +120,11 @@ export function DataTable<TData, TValue>({
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
+                <TableRow data-oid="qc2_p6-">
                   <TableCell
                     colSpan={columns.length}
                     className="h-24 text-center dark:text-gray-400"
+                    data-oid="0u6qlf8"
                   >
                     No results.
                   </TableCell>
@@ -124,7 +133,7 @@ export function DataTable<TData, TValue>({
             </TableBody>
           </Table>
         </div>
-        <DataTablePagination table={table} />
+        <DataTablePagination table={table} data-oid="w.kjweo" />
       </div>
     </div>
   )

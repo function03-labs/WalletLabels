@@ -33,7 +33,7 @@ export function AppPricingRadio({
   onFrequencyChange,
 }: AppPricingRadioProps) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center" data-oid="1e0t5rc">
       <RadioGroup
         value={selectedFrequency.value}
         onValueChange={(value) => {
@@ -41,14 +41,17 @@ export function AppPricingRadio({
           if (frequency) onFrequencyChange(frequency)
         }}
         className="inline-flex rounded-full bg-secondary p-1 text-secondary-foreground"
+        data-oid="sg86w_2"
       >
         {frequencies.map((option) => (
-          <div key={option.value} className="relative">
+          <div key={option.value} className="relative" data-oid="602v_kj">
             <RadioGroupItem
               value={option.value}
               id={option.value}
               className="peer sr-only"
+              data-oid="-rcpk60"
             />
+
             <label
               htmlFor={option.value}
               className={cn(
@@ -56,10 +59,14 @@ export function AppPricingRadio({
                 "peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground",
                 "peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2"
               )}
+              data-oid="m093xib"
             >
               {option.label}
               {option.discount && (
-                <span className="absolute -right-2 -top-2 flex h-5 min-w-7 rotate-12 items-center justify-center rounded-full bg-green-700 px-1 text-[10px] font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:scale-110">
+                <span
+                  className="absolute -right-2 -top-2 flex h-5 min-w-7 rotate-12 items-center justify-center rounded-full bg-green-700 px-1 text-[10px] font-bold text-white shadow-xl transition-all duration-300 ease-in-out hover:scale-110"
+                  data-oid="dbj5rq9"
+                >
                   -{option.discount}%
                 </span>
               )}

@@ -38,9 +38,10 @@ const Kbd = React.forwardRef<HTMLUnknownElement, KbdProps>(
         className={cn(kbdVariants({ variant, className }))}
         ref={ref}
         {...props}
+        data-oid="yr5zguc"
       >
         {abbrTitle ? (
-          <abbr title={abbrTitle} className="no-underline">
+          <abbr title={abbrTitle} className="no-underline" data-oid="vbc1df7">
             {children}
           </abbr>
         ) : (

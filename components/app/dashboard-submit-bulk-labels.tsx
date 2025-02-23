@@ -45,10 +45,17 @@ import {
 function SubmittedLabels({ length }: { length: number }) {
   return (
     <>
-      <Icons.check className="mb-3 size-8 text-gray-500 dark:text-gray-400" />
-      <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-        <span className="font-semibold">
-          <span className="text-gray-900 dark:text-gray-100">
+      <Icons.check
+        className="mb-3 size-8 text-gray-500 dark:text-gray-400"
+        data-oid="dkkogpw"
+      />
+
+      <p
+        className="mb-1 text-sm text-gray-500 dark:text-gray-400"
+        data-oid="unmaob6"
+      >
+        <span className="font-semibold" data-oid="4ej9f:u">
+          <span className="text-gray-900 dark:text-gray-100" data-oid="pv05kym">
             {length} labels submitted.{" "}
           </span>
         </span>
@@ -67,6 +74,7 @@ function FileSvgDraw() {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 20 16"
+        data-oid="tas4hag"
       >
         <path
           stroke="currentColor"
@@ -74,17 +82,24 @@ function FileSvgDraw() {
           strokeLinejoin="round"
           strokeWidth="2"
           d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+          data-oid="n:nh02x"
         />
       </svg>
-      <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-        <span className="font-semibold">
-          <span className="text-gray-900 dark:text-gray-100">
+      <p
+        className="mb-1 text-sm text-gray-500 dark:text-gray-400"
+        data-oid="gd89bpi"
+      >
+        <span className="font-semibold" data-oid="f5x.pq3">
+          <span className="text-gray-900 dark:text-gray-100" data-oid="3:tfu29">
             Choose a file{" "}
           </span>
         </span>
         or drag it here
       </p>
-      <p className="text-xs text-gray-500 dark:text-gray-400">
+      <p
+        className="text-xs text-gray-500 dark:text-gray-400"
+        data-oid="o2.s0u_"
+      >
         We only accept CSV files.
       </p>
     </>
@@ -204,65 +219,92 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger>
-        <Button variant="outline" type="button">
-          <Icons.upload className="mr-2 size-4" />
+    <Dialog data-oid="5ax8ja.">
+      <DialogTrigger data-oid="gkkb6b_">
+        <Button variant="outline" type="button" data-oid="l:5ymys">
+          <Icons.upload className="mr-2 size-4" data-oid="uwflos0" />
           Bulk Upload
         </Button>
       </DialogTrigger>
 
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle className="dark:text-white">Bulk Upload</DialogTitle>
-          <DialogDescription>
+      <DialogContent data-oid="fdyuj_s">
+        <DialogHeader data-oid="ocp29iu">
+          <DialogTitle className="dark:text-white" data-oid="d4ema6v">
+            Bulk Upload
+          </DialogTitle>
+          <DialogDescription data-oid="16ylqeu">
             Upload a CSV file with multiple addresses to submit in bulk. Check
             out our template{" "}
             <Link
               target="_blank"
               href="https://docs.google.com/spreadsheets/d/1NAfxMJyUp8Yna4JlnFM0LzQQlF1NEr2vDFEh1V3TDl4/edit?usp=sharing"
               className="text-blue-500 underline"
+              data-oid="8lg:ck6"
             >
               here
             </Link>
             .
           </DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="flex w-full flex-col items-center justify-center gap-x-2 rounded-md px-2 pb-1 outline outline-1 outline-border">
+        <Form {...form} data-oid="ptvs99d">
+          <form onSubmit={form.handleSubmit(onSubmit)} data-oid="3iae1_e">
+            <div
+              className="flex w-full flex-col items-center justify-center gap-x-2 rounded-md px-2 pb-1 outline outline-1 outline-border"
+              data-oid="bc6-z0e"
+            >
               {submitted ? (
-                <SubmittedLabels length={labels} />
+                <SubmittedLabels length={labels} data-oid=":.8d7r3" />
               ) : (
                 <FormField
                   control={form.control}
                   name="files"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem data-oid="-cwwb_d">
                       <FileUploader
                         value={field.value}
                         onValueChange={field.onChange}
                         dropzoneOptions={dropzone}
                         reSelect={true}
                         className="relative rounded-lg bg-background p-2"
+                        data-oid="q2.9nq2"
                       >
-                        <div className="flex w-full flex-col items-center justify-center">
-                          <FileInput className="w-full outline-dashed outline-1 outline-white">
-                            <div className="flex flex-col items-center justify-center pb-4 pt-3">
-                              <FileSvgDraw />
+                        <div
+                          className="flex w-full flex-col items-center justify-center"
+                          data-oid="ma6gzz."
+                        >
+                          <FileInput
+                            className="w-full outline-dashed outline-1 outline-white"
+                            data-oid="zhnksbn"
+                          >
+                            <div
+                              className="flex flex-col items-center justify-center pb-4 pt-3"
+                              data-oid="_bweh4v"
+                            >
+                              <FileSvgDraw data-oid="kx47sju" />
                             </div>
                           </FileInput>
 
                           {field.value && field.value.length > 0 && (
-                            <FileUploaderContent className="w-full text-center dark:text-white">
+                            <FileUploaderContent
+                              className="w-full text-center dark:text-white"
+                              data-oid="392br3p"
+                            >
                               {field.value.map((file, i) => (
                                 <FileUploaderItem
                                   uploading={loading}
                                   key={i}
                                   index={i}
+                                  data-oid=":5abm1u"
                                 >
-                                  <Icons.paperclip className="size-4 stroke-current" />
-                                  <span className="pr-8 dark:text-white">
+                                  <Icons.paperclip
+                                    className="size-4 stroke-current"
+                                    data-oid="jos0z9z"
+                                  />
+
+                                  <span
+                                    className="pr-8 dark:text-white"
+                                    data-oid="y9lui6h"
+                                  >
                                     {file.name}
                                   </span>
                                 </FileUploaderItem>
@@ -271,6 +313,7 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                                 <Progress
                                   value={progress}
                                   className="h-1 w-full bg-zinc-200"
+                                  data-oid="fovfcz0"
                                 />
                               )}
                             </FileUploaderContent>
@@ -279,35 +322,47 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                       </FileUploader>
                     </FormItem>
                   )}
+                  data-oid="4a11m_n"
                 />
               )}
             </div>
             {form.formState.errors && (
-              <div className="text-sm text-destructive">
+              <div className="text-sm text-destructive" data-oid="q68gzky">
                 {Object.values(form.formState.errors).map((error) => (
-                  <p key={error.message}>{error.message}</p>
+                  <p key={error.message} data-oid="inzvk75">
+                    {error.message}
+                  </p>
                 ))}
               </div>
             )}
             {errors.length > 0 && (
-              <div className="mt-4">
-                <h3 className="mb-2 text-lg font-semibold text-secondary-foreground">
+              <div className="mt-4" data-oid="xjffz:g">
+                <h3
+                  className="mb-2 text-lg font-semibold text-secondary-foreground"
+                  data-oid="vtv1b5i"
+                >
                   CSV Errors
                 </h3>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Line</TableHead>
-                      <TableHead>Empty Columns</TableHead>
+                <Table data-oid="048b4q3">
+                  <TableHeader data-oid="k:v0tdn">
+                    <TableRow data-oid="o7eqjcv">
+                      <TableHead data-oid="6sqrosm">Line</TableHead>
+                      <TableHead data-oid="gcj1v_k">Empty Columns</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody>
+                  <TableBody data-oid="g_qm0ks">
                     {errors.map((error, index) => (
-                      <TableRow key={index}>
-                        <TableCell className="text-secondary-foreground/80">
+                      <TableRow key={index} data-oid="4vuahgs">
+                        <TableCell
+                          className="text-secondary-foreground/80"
+                          data-oid="rrikawk"
+                        >
                           {error.line + 1}
                         </TableCell>
-                        <TableCell className="text-secondary-foreground/80">
+                        <TableCell
+                          className="text-secondary-foreground/80"
+                          data-oid="2ifck2l"
+                        >
                           Missing attributes
                         </TableCell>
                       </TableRow>
@@ -316,9 +371,9 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                 </Table>
               </div>
             )}
-            <div className="h-3" />
+            <div className="h-3" data-oid="7vnrh7t" />
             {submitted ? (
-              <DialogClose className="h-8 w-full py-2">
+              <DialogClose className="h-8 w-full py-2" data-oid="t_c6rvu">
                 <Button
                   type="button"
                   onClick={() => {
@@ -326,6 +381,7 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                     setLabels(0)
                     setErrors([])
                   }}
+                  data-oid="h-g71xl"
                 >
                   Close
                 </Button>
@@ -335,9 +391,13 @@ export function DashboardSubmitBulkLabels({ userId }: { userId: string }) {
                 type="submit"
                 className="h-8 w-full py-2"
                 disabled={loading}
+                data-oid="9t.z--o"
               >
                 {loading && (
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
+                  <Icons.spinner
+                    className="mr-2 size-4 animate-spin"
+                    data-oid="i.uy1xy"
+                  />
                 )}
                 Upload labels
               </Button>

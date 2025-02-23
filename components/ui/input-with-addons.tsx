@@ -19,9 +19,13 @@ const InputWithAddons = React.forwardRef<
         "group flex h-10 w-full overflow-hidden rounded-md border border-input bg-transparent text-sm ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
         containerClassName
       )}
+      data-oid="-9v7om7"
     >
       {leading ? (
-        <div className="border-r border-input bg-muted px-3 py-2">
+        <div
+          className="border-r border-input bg-muted px-3 py-2"
+          data-oid="ym6hazu"
+        >
           {leading}
         </div>
       ) : null}
@@ -32,9 +36,14 @@ const InputWithAddons = React.forwardRef<
         )}
         ref={ref}
         {...props}
+        data-oid="jq3spxy"
       />
+
       {trailing ? (
-        <div className="border-l border-input bg-muted px-3 py-2">
+        <div
+          className="border-l border-input bg-muted px-3 py-2"
+          data-oid="y-39xhn"
+        >
           {trailing}
         </div>
       ) : null}

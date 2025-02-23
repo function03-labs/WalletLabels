@@ -4,20 +4,34 @@ import { siteConfig } from "@/config/site"
 
 export function Opensource() {
   return (
-    <section id="open-source" className="container py-8 md:py-12 lg:py-24">
-      <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-        <h2 className="text-3xl font-bold leading-[1.1] text-slate-900 dark:text-slate-100 sm:text-3xl md:text-6xl">
+    <section
+      id="open-source"
+      className="container py-8 md:py-12 lg:py-24"
+      data-oid="m8qjemi"
+    >
+      <div
+        className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center"
+        data-oid="f:_8bo5"
+      >
+        <h2
+          className="text-3xl font-bold leading-[1.1] text-slate-900 dark:text-slate-100 sm:text-3xl md:text-6xl"
+          data-oid="fnqsl2g"
+        >
           Proudly Open Source
         </h2>
-        <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+        <p
+          className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+          data-oid="d30zcbb"
+        >
           Wallet Labels is an open-source project, and we are proud to share our
           code
-          <br /> The code is available on{" "}
+          <br data-oid="e08mwdh" /> The code is available on{" "}
           <Link
             href={siteConfig.links.github}
             target="_blank"
             rel="noreferrer"
             className="underline underline-offset-4"
+            data-oid="a:u8alr"
           >
             GitHub
           </Link>

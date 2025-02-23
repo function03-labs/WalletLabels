@@ -18,17 +18,23 @@ export const TableHead = ({
       defaultStyle,
   })
   return (
-    <thead className={styleBase} {...props}>
+    <thead className={styleBase} {...props} data-oid="9gcmova">
       {headerGroups.map((headerGroup: any, ihg: any) => (
-        <tr key={ihg} className="mt-3" {...headerGroup.getHeaderGroupProps()}>
+        <tr
+          key={ihg}
+          className="mt-3"
+          {...headerGroup.getHeaderGroupProps()}
+          data-oid="l.wj1fh"
+        >
           {headerGroup.headers.map((column: any, idx: number) => (
             <th
               key={idx}
               className="mt-3 px-3 text-left"
               {...column.getHeaderProps(column.getSortByToggleProps())}
+              data-oid="un0.7k5"
             >
               {column.render("Header")}
-              <span>
+              <span data-oid="b2efyge">
                 {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
               </span>
             </th>

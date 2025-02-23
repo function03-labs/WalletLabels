@@ -42,6 +42,7 @@ async function APIKeysTable({
       apiKeys={apiKeys}
       user={user}
       apiKeyLimit={apiKeyLimit}
+      data-oid="_7lquz8"
     />
   )
 }
@@ -71,22 +72,34 @@ export default async function PageDashboardApiKeys() {
   const apiKeys = await getApiKeys(user.id)
 
   return (
-    <section className="w-full py-2 sm:p-10">
+    <section className="w-full py-2 sm:p-10" data-oid="phivjx2">
       {isFreeTier ? (
-        <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
-          <div className="flex flex-col gap-4">
-            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+        <div
+          className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900"
+          data-oid="78fxmwe"
+        >
+          <div className="flex flex-col gap-4" data-oid="t45j_qr">
+            <h3
+              className="text-lg font-semibold text-neutral-900 dark:text-neutral-100"
+              data-oid="9suw_9e"
+            >
               Unlock WalletLabels API Access
             </h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p
+              className="text-sm text-neutral-600 dark:text-neutral-400"
+              data-oid="h6108t6"
+            >
               You’re currently on a free plan. To utilize the WalletLabels API
               and access advanced features, you’ll need to subscribe to one of
               our plans. Choose the plan that fits your needs and start
               leveraging powerful tools to analyze and categorize blockchain
               wallets.
             </p>
-            <Link href="/dashboard/subscription">
-              <Button className="w-full rounded-lg bg-secondary-foreground px-6 py-2 text-center font-semibold text-background transition-colors sm:w-auto">
+            <Link href="/dashboard/subscription" data-oid="qho4dzo">
+              <Button
+                className="w-full rounded-lg bg-secondary-foreground px-6 py-2 text-center font-semibold text-background transition-colors sm:w-auto"
+                data-oid="q7ttgc0"
+              >
                 Explore Plans
               </Button>
             </Link>
@@ -94,19 +107,32 @@ export default async function PageDashboardApiKeys() {
         </div>
       ) : (
         <>
-          <div>
-            <PageHeader title="API Keys" description="Manage your API keys." />
+          <div data-oid="rwhkq1b">
+            <PageHeader
+              title="API Keys"
+              description="Manage your API keys."
+              data-oid="-bicxn1"
+            />
           </div>
-          <hr className="my-5 opacity-50" />
-          <Card className="w-full p-6">
-            <CardContent>
+          <hr className="my-5 opacity-50" data-oid="mnic81m" />
+          <Card className="w-full p-6" data-oid="-3gi-zy">
+            <CardContent data-oid="hhuq4tt">
               <DashboardGenerateAPIkeysDialog
                 user={user}
                 apiKeysCount={apiKeys.length}
                 apiKeyLimit={apiKeyLimit}
+                data-oid="msv2ppu"
               />
-              <Suspense fallback={<div>Loading...</div>}>
-                <APIKeysTable user={user} apiKeyLimit={apiKeyLimit} />
+
+              <Suspense
+                fallback={<div data-oid="juj8eha">Loading...</div>}
+                data-oid="w__qm8k"
+              >
+                <APIKeysTable
+                  user={user}
+                  apiKeyLimit={apiKeyLimit}
+                  data-oid="dlj9b-_"
+                />
               </Suspense>
             </CardContent>
           </Card>

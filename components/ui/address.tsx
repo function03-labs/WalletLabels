@@ -35,10 +35,13 @@ const AddressCopy = React.forwardRef<
         })
       }}
       {...props}
+      data-oid="02g65k2"
     >
       {children ?? address}
-      <span className="sr-only">Copy address</span>
-      <Copy size={12} />
+      <span className="sr-only" data-oid=":bi3mow">
+        Copy address
+      </span>
+      <Copy size={12} data-oid="pm-sika" />
     </div>
   )
 })
@@ -64,12 +67,14 @@ const AddressLink = React.forwardRef<
         className
       )}
       {...props}
+      data-oid="6idh7mk"
     >
       {chain.blockExplorers?.default.url ? (
         <a
           target="_blank"
           rel="noopener noreferrer"
           href={`${chain.blockExplorers?.default.url}/address/${address}`}
+          data-oid="xax4di8"
         >
           {children ?? address}
         </a>
@@ -112,9 +117,13 @@ const Address = React.forwardRef<HTMLDivElement, AddressProps>(
           address={selectedAddress as AddressType}
           className={className}
           {...props}
+          data-oid="-4uuh33"
         >
           {copy ? (
-            <AddressCopy address={selectedAddress as AddressType}>
+            <AddressCopy
+              address={selectedAddress as AddressType}
+              data-oid="spu69hw"
+            >
               {formattedAddress}
             </AddressCopy>
           ) : (
@@ -130,6 +139,7 @@ const Address = React.forwardRef<HTMLDivElement, AddressProps>(
           ref={ref}
           address={selectedAddress as AddressType}
           {...props}
+          data-oid="o-h5ooo"
         >
           {formattedAddress}
         </AddressCopy>
@@ -137,7 +147,7 @@ const Address = React.forwardRef<HTMLDivElement, AddressProps>(
     }
 
     return (
-      <span ref={ref} className={className} {...props}>
+      <span ref={ref} className={className} {...props} data-oid="mbqdot_">
         {formattedAddress}
       </span>
     )

@@ -258,8 +258,14 @@ export default function SignIn() {
   }
 
   return (
-    <div className="container relative flex h-screen w-screen flex-col items-center justify-center">
-      <div className="fixed inset-0 scale-125 overflow-hidden">
+    <div
+      className="container relative flex h-screen w-screen flex-col items-center justify-center"
+      data-oid="vhdday."
+    >
+      <div
+        className="fixed inset-0 scale-125 overflow-hidden"
+        data-oid="4h3c4jl"
+      >
         {labels.map((label, index) => (
           <FloatingLabel
             key={index}
@@ -268,73 +274,109 @@ export default function SignIn() {
             color={label.color}
             speed={Math.random() * 15 + 50}
             delay={0}
+            data-oid="weg.11n"
           />
         ))}
       </div>
 
-      <Card className="relative w-full max-w-[350px] bg-background/50 backdrop-blur-sm">
-        <CardHeader className="space-y-1">
-          <div className="mx-auto mb-4 flex h-16 w-auto items-center gap-2">
-            <Icons.logo className="size-8" />
-            <span className="whitespace-nowrap text-2xl font-bold sm:inline-block">
+      <Card
+        className="relative w-full max-w-[350px] bg-background/50 backdrop-blur-sm"
+        data-oid="ih1kvgy"
+      >
+        <CardHeader className="space-y-1" data-oid="2mdkfm3">
+          <div
+            className="mx-auto mb-4 flex h-16 w-auto items-center gap-2"
+            data-oid="npmq2d_"
+          >
+            <Icons.logo className="size-8" data-oid=".6e.gtq" />
+            <span
+              className="whitespace-nowrap text-2xl font-bold sm:inline-block"
+              data-oid="s49uzc6"
+            >
               {siteConfig.name}
             </span>
           </div>
-          <CardTitle className="text-2xl">Sign in</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl" data-oid="nn.eeqp">
+            Sign in
+          </CardTitle>
+          <CardDescription data-oid="hf0eu66">
             Choose your preferred sign in method
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4">
+        <CardContent className="grid gap-4" data-oid="-05_.uq">
           <Button
             variant="outline"
             onClick={handleGithubSignIn}
             disabled={isGithubLoading}
+            data-oid="vjehess"
           >
             {isGithubLoading ? (
-              <Icons.spinner className="mr-2 size-4 animate-spin" />
+              <Icons.spinner
+                className="mr-2 size-4 animate-spin"
+                data-oid=".6qky4:"
+              />
             ) : (
-              <Github className="mr-2 size-4" />
+              <Github className="mr-2 size-4" data-oid="c3nd7om" />
             )}
             GitHub
           </Button>
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
+          <div className="relative" data-oid="osp4dqd">
+            <div
+              className="absolute inset-0 flex items-center"
+              data-oid="ucic-9j"
+            >
+              <span className="w-full border-t" data-oid="2xxpk9u" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="rounded-xl bg-background px-2 text-muted-foreground">
+            <div
+              className="relative flex justify-center text-xs uppercase"
+              data-oid="vml3znt"
+            >
+              <span
+                className="rounded-xl bg-background px-2 text-muted-foreground"
+                data-oid="e_kscqf"
+              >
                 Or continue with
               </span>
             </div>
           </div>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <Form {...form} data-oid="4bd3skb">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-4"
+              data-oid="ti.fxt:"
+            >
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
+                  <FormItem data-oid="ivqog1.">
+                    <FormLabel data-oid="for2f_t">Email</FormLabel>
+                    <FormControl data-oid=".ncu_lr">
                       <Input
                         placeholder="name@example.com"
                         {...field}
                         type="email"
                         disabled={isEmailLoading}
+                        data-oid="vk1:pik"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage data-oid="6oi1.m7" />
                   </FormItem>
                 )}
+                data-oid="pl_b0s3"
               />
+
               <Button
                 type="submit"
                 className="w-full"
                 disabled={isEmailLoading}
+                data-oid="v._s0sy"
               >
                 {isEmailLoading && (
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
+                  <Icons.spinner
+                    className="mr-2 size-4 animate-spin"
+                    data-oid="e3lnj85"
+                  />
                 )}
                 Sign in with Email
               </Button>

@@ -25,11 +25,14 @@ export const GlowingStarsBackgroundCard = ({
         setMouseEnter(false)
       }}
       className={className}
+      data-oid="guwragl"
     >
-      <div className="flex items-center justify-center">
-        <Illustration mouseEnter={mouseEnter} />
+      <div className="flex items-center justify-center" data-oid="xky2_ye">
+        <Illustration mouseEnter={mouseEnter} data-oid="6yuxrsz" />
       </div>
-      <div className="px-4 pb-0">{children}</div>
+      <div className="px-4 pb-0" data-oid="n25yrtk">
+        {children}
+      </div>
     </div>
   )
 }
@@ -61,6 +64,7 @@ export const Illustration = ({ mouseEnter }: { mouseEnter: boolean }) => {
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
         gap: "1px",
       }}
+      data-oid="3t3drdp"
     >
       {[...Array(stars)].map((_, starIdx) => {
         const isGlowing = glowingStars.includes(starIdx)
@@ -70,14 +74,17 @@ export const Illustration = ({ mouseEnter }: { mouseEnter: boolean }) => {
           <div
             key={`matrix-col-${starIdx.toString()}}`}
             className="relative flex items-center justify-center"
+            data-oid="0823j6t"
           >
             <Star
               isGlowing={mouseEnter ? true : isGlowing}
               delay={mouseEnter ? staticDelay : delay}
+              data-oid="yz809yl"
             />
-            {mouseEnter && <Glow delay={staticDelay} />}
-            <AnimatePresence mode="wait">
-              {isGlowing && <Glow delay={delay} />}
+
+            {mouseEnter && <Glow delay={staticDelay} data-oid="cd17c-u" />}
+            <AnimatePresence mode="wait" data-oid="zuorf7v">
+              {isGlowing && <Glow delay={delay} data-oid="9x:a3uq" />}
             </AnimatePresence>
           </div>
         )
@@ -103,6 +110,7 @@ const Star = ({ isGlowing, delay }: { isGlowing: boolean; delay: number }) => {
         delay: delay,
       }}
       className={cn("relative z-20 size-px rounded-full bg-[#666]")}
+      data-oid=":qn1k-u"
     />
   )
 }
@@ -125,6 +133,7 @@ const Glow = ({ delay }: { delay: number }) => {
         opacity: 0,
       }}
       className="absolute left-1/2 z-10 size-[4px] -translate-x-1/2 rounded-full bg-background shadow-2xl shadow-primary/10 blur-[1px]"
+      data-oid="3.y6pts"
     />
   )
 }

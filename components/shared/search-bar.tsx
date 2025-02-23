@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { ISearchProps } from "@/types"
 import {
   Box,
@@ -9,11 +10,10 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  useColorMode,
   Tooltip,
+  useColorMode,
 } from "@chakra-ui/react"
 import { motion } from "framer-motion"
-import { useRouter } from "next/navigation"
 
 const MotionBox = motion<BoxProps>(Box)
 
@@ -26,11 +26,15 @@ export function SearchBar({
   const { colorMode } = useColorMode()
 
   const handleClick = () => {
-    window.open('https://docs.walletlabels.xyz', '_blank', 'noopener,noreferrer');
-  };
+    window.open(
+      "https://docs.walletlabels.xyz",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
 
   return (
-    <MotionBox w="full" zIndex={3}>
+    <MotionBox w="full" zIndex={3} data-oid="jomrhyh">
       <HStack
         spacing="2"
         w="full"
@@ -38,28 +42,39 @@ export function SearchBar({
         alignItems="flex-start"
         py="2"
         className="!w-full"
+        data-oid="xebqu-t"
       >
-        <div className={colorMode === "light" ? "!w-full" : "dark !w-full"}>
-          <div className="vercel w-full">
-            <div className="shadow-box shadow-primary-500/10" >
+        <div
+          className={colorMode === "light" ? "!w-full" : "dark !w-full"}
+          data-oid="6dw.3b6"
+        >
+          <div className="vercel w-full" data-oid="-dvld.5">
+            <div
+              className="shadow-box shadow-primary-500/10"
+              data-oid="kvf4w1r"
+            >
               <Tooltip
                 label="🔍 Search functionality is available through our API - Click to view documentation"
                 hasArrow
                 placement="top"
                 onClick={handleClick}
+                data-oid="56mbvt2"
               >
                 <InputGroup
                   onClick={handleClick}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                   className="eth-input s !w-full"
                   zIndex={1}
                   size="lg"
                   variant="outline"
                   borderColor="gray.600"
+                  data-oid="9-hdr7k"
                 >
                   <InputLeftElement
                     pointerEvents="none"
-                    color={colorMode === "light" ? "gray.500" : "whiteAlpha.900"}
+                    color={
+                      colorMode === "light" ? "gray.500" : "whiteAlpha.900"
+                    }
                     // eslint-disable-next-line react/no-children-prop
                     children={
                       <Image
@@ -67,21 +82,24 @@ export function SearchBar({
                           chain === "solana"
                             ? "https://cryptologos.cc/logos/solana-sol-logo.png?v=029"
                             : chain === "ethereum"
-                            ? "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
-                            : chain === "arbitrum"
-                            ? "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
-                            : chain === "base"
-                            ? "https://github.com/base-org/brand-kit/raw/main/logo/in-product/Base_Network_Logo.svg"
-                            : chain === "bitcoin"
-                            ? "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
-                            : "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+                              ? "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
+                              : chain === "arbitrum"
+                                ? "https://cryptologos.cc/logos/arbitrum-arb-logo.png?v=029"
+                                : chain === "base"
+                                  ? "https://github.com/base-org/brand-kit/raw/main/logo/in-product/Base_Network_Logo.svg"
+                                  : chain === "bitcoin"
+                                    ? "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
+                                    : "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029"
                         }
                         alt="Ethereum"
                         width={20}
                         height={20}
+                        data-oid="e:t84fa"
                       />
                     }
+                    data-oid=":610-rr"
                   />
+
                   <Input
                     ref={inputRef}
                     value={inputValue}
@@ -89,10 +107,10 @@ export function SearchBar({
                     type="text"
                     placeholder="Search by address or name.."
                     onClick={handleClick}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                     _disabled={{
                       opacity: 0.7,
-                      cursor: 'pointer',
+                      cursor: "pointer",
                     }}
                     _hover={{
                       borderColor: "purple.300",
@@ -108,6 +126,7 @@ export function SearchBar({
                       fontSize: "16px",
                       textOverflow: "ellipsis",
                     }}
+                    data-oid="1evsl:j"
                   />
                 </InputGroup>
               </Tooltip>

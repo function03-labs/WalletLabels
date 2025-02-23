@@ -43,9 +43,18 @@ export function FloatingLabel(props: FloatingLabelProps) {
         backgroundColor: color,
         animation: `float ${speed}s ease-in-out infinite`,
       }}
+      data-oid="ecu9ln0"
     >
-      <Icon className="size-6 text-white" aria-hidden="true" />
-      <span className="whitespace-nowrap text-sm font-medium text-white">
+      <Icon
+        className="size-6 text-white"
+        aria-hidden="true"
+        data-oid="0.ys85_"
+      />
+
+      <span
+        className="whitespace-nowrap text-sm font-medium text-white"
+        data-oid="4z13yd3"
+      >
         {text}
       </span>
     </div>

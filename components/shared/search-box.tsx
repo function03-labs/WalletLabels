@@ -55,7 +55,7 @@ export function SearchBox({
   }, [])
 
   return (
-    <div>
+    <div data-oid="xxdv.g5">
       <form
         role="search"
         noValidate
@@ -63,11 +63,13 @@ export function SearchBox({
           event.preventDefault()
           event.stopPropagation()
         }}
+        data-oid="bc.t4yc"
       >
         <SearchBar
           inputValue={inputValue}
           handleSearchLogin={handleSearchLogin as any}
           chain={params.chainSlug}
+          data-oid="zgkyq0w"
         />
       </form>
     </div>
@@ -80,10 +82,14 @@ type Hit = {
 
 export default function CustomHitsTags() {
   const { hits } = useHits() as { hits: Hit[] }
-  
+
   const handleClick = () => {
-    window.open('https://docs.walletlabels.xyz', '_blank', 'noopener,noreferrer');
-  };
+    window.open(
+      "https://docs.walletlabels.xyz",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
 
   const uniqueHits = hits.reduce((acc: Hit[], hit) => {
     if (!acc.some((item) => item.label === hit.label)) {
@@ -93,13 +99,14 @@ export default function CustomHitsTags() {
   }, [])
 
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="flex flex-wrap gap-1" data-oid="k_ztvx2">
       {uniqueHits.slice(0, 8).map((category) => (
         <Badge
           variant="outline"
           key={category.label}
           onClick={handleClick}
           className="cursor-pointer hover:border-green-300 hover:text-foreground"
+          data-oid="kvufb:t"
         >
           {category.label}
         </Badge>
@@ -114,14 +121,19 @@ export function CustomHitsBadge({
   category: { label: string; emoji: string }
 }) {
   const handleClick = () => {
-    window.open('https://docs.walletlabels.xyz', '_blank', 'noopener,noreferrer');
-  };
+    window.open(
+      "https://docs.walletlabels.xyz",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
 
   return (
     <Badge
       variant="outline"
       onClick={handleClick}
       className="cursor-pointer hover:border-green-300 hover:text-foreground"
+      data-oid="12zn_kh"
     >
       {category.emoji + " " + category.label}
     </Badge>
@@ -138,6 +150,7 @@ export function StatsWrapper() {
           return `${hitCountPhrase} found in ${processingTimeMS.toLocaleString()}ms`
         },
       }}
+      data-oid="ck:ezti"
     />
   )
 }

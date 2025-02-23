@@ -35,6 +35,7 @@ const LightDarkImage = ({
       height={height}
       width={width}
       className={cn("object-contain", className)}
+      data-oid="2epz9lx"
     />
   )
 }

@@ -20,12 +20,17 @@ export function DashboardCopyAPIKey({ apiKey }: { apiKey: ApiKey }) {
   const { hasCopied, onCopy } = useClipboard(apiKey.key)
 
   return (
-    <DialogContent>
-      <DialogTitle className="dark:text-white">API Key Generated</DialogTitle>
-      <p className="dark:text-white">
+    <DialogContent data-oid="coes87o">
+      <DialogTitle className="dark:text-white" data-oid="_p-h2q3">
+        API Key Generated
+      </DialogTitle>
+      <p className="dark:text-white" data-oid="hk0eo6t">
         Your API Key has been successfully generated.
       </p>
-      <div className="flex w-full items-center justify-between space-x-3">
+      <div
+        className="flex w-full items-center justify-between space-x-3"
+        data-oid="yi-sdwy"
+      >
         <Input
           value={apiKey.key}
           className={
@@ -34,7 +39,9 @@ export function DashboardCopyAPIKey({ apiKey }: { apiKey: ApiKey }) {
               : "pr-4 dark:text-white"
           }
           readOnly
+          data-oid="_1sboh9"
         />
+
         <Button
           aria-label="Copy API Key"
           onClick={() => {
@@ -43,17 +50,18 @@ export function DashboardCopyAPIKey({ apiKey }: { apiKey: ApiKey }) {
             toast({ title: "Copied to clipboard" })
           }}
           variant="secondary"
+          data-oid="idoq_mn"
         >
           {hasCopied ? (
-            <CheckIcon className="size-5" />
+            <CheckIcon className="size-5" data-oid="-jih-jr" />
           ) : (
-            <CopyIcon className="size-5" />
+            <CopyIcon className="size-5" data-oid="4cwoj9x" />
           )}
         </Button>
       </div>
-      <DialogFooter>
-        <DialogClose asChild>
-          <Button>Done</Button>
+      <DialogFooter data-oid="orq_ynn">
+        <DialogClose asChild data-oid="w54:pq-">
+          <Button data-oid="b7u.z8e">Done</Button>
         </DialogClose>
       </DialogFooter>
     </DialogContent>

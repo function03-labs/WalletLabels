@@ -21,8 +21,9 @@ export function SearchWrapper({
       indexName={indexMap[chainSlug as keyof typeof indexMap]}
       searchClient={searchClient(chainSlug)}
       insights={false}
+      data-oid="zcm7j-_"
     >
-      <Configure hitsPerPage={30} />
+      <Configure hitsPerPage={30} data-oid="rc52wvi" />
       {children}
     </InstantSearch>
   )

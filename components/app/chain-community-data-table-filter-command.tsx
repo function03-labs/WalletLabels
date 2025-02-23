@@ -90,14 +90,19 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
   }, [open])
 
   return (
-    <div>
+    <div data-oid="8un68b.">
       <div
         className={cn(
           "group flex w-full items-center rounded-lg border border-primary/40 bg-background px-3 text-muted-foreground ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 hover:bg-accent hover:text-accent-foreground",
           open ? "hidden" : "visible"
         )}
+        data-oid="5peq_s_"
       >
-        <Search className="mr-2 size-4 shrink-0 text-muted-foreground opacity-50" />
+        <Search
+          className="mr-2 size-4 shrink-0 text-muted-foreground opacity-50"
+          data-oid="pgnjyxz"
+        />
+
         <button
           type="button"
           className="h-11 w-full max-w-sm truncate py-3 text-left text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50 md:max-w-xl lg:max-w-4xl xl:max-w-5xl"
@@ -105,17 +110,25 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
             e.preventDefault()
             setOpen(true)
           }}
+          data-oid="8fyu_.z"
         >
           {inputValue.trim() ? (
-            <span className="text-foreground">{inputValue}</span>
+            <span className="text-foreground" data-oid="4baafbj">
+              {inputValue}
+            </span>
           ) : (
-            <span>Search data table...</span>
+            <span data-oid="pbileku">Search data table...</span>
           )}
         </button>
         {/* add group-hover? */}
-        <Kbd className="ml-auto text-muted-foreground group-hover:text-accent-foreground">
-          <span className="mr-0.5">⌘</span>
-          <span>K</span>
+        <Kbd
+          className="ml-auto text-muted-foreground group-hover:text-accent-foreground"
+          data-oid="7ry1ij."
+        >
+          <span className="mr-0.5" data-oid="hu1w.u1">
+            ⌘
+          </span>
+          <span data-oid="__millm">K</span>
         </Kbd>
       </div>
       <Command
@@ -140,6 +153,7 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
           }
           return 0
         }}
+        data-oid="agja6x7"
       >
         <CommandInput
           ref={inputRef}
@@ -165,11 +179,16 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
           }}
           placeholder="Search data table..."
           className="text-foreground"
+          data-oid=".z48:rl"
         />
-        <div className="relative">
-          <div className="absolute top-2 z-10 w-full overflow-hidden rounded-lg border border-accent-foreground/30 bg-popover text-popover-foreground shadow-md outline-none animate-in">
-            <CommandList>
-              <CommandGroup heading="Filter">
+
+        <div className="relative" data-oid="w1jnib3">
+          <div
+            className="absolute top-2 z-10 w-full overflow-hidden rounded-lg border border-accent-foreground/30 bg-popover text-popover-foreground shadow-md outline-none animate-in"
+            data-oid="_5fg-bi"
+          >
+            <CommandList data-oid="6bn7:4y">
+              <CommandGroup heading="Filter" data-oid="57w:lw1">
                 {filterFields?.map(({ value, options }) => {
                   if (typeof value !== "string") return null
                   if (inputValue.includes(`${value}:`)) return null
@@ -199,17 +218,21 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                         setCurrentWord(`${value}:`)
                       }}
                       className="group"
+                      data-oid="4ydchhi"
                     >
                       {value}
-                      <span className="ml-1 hidden truncate text-muted-foreground/80 group-aria-[selected=true]:block">
+                      <span
+                        className="ml-1 hidden truncate text-muted-foreground/80 group-aria-[selected=true]:block"
+                        data-oid="9194u2k"
+                      >
                         {options?.map(({ value }) => `[${value}]`).join(" ")}
                       </span>
                     </CommandItem>
                   )
                 })}
               </CommandGroup>
-              <CommandSeparator />
-              <CommandGroup heading="Query">
+              <CommandSeparator data-oid="nipafgn" />
+              <CommandGroup heading="Query" data-oid="a5y-0-c">
                 {filterFields?.map(({ value, options }) => {
                   if (typeof value !== "string") return null
                   if (!currentWord.includes(`${value}:`)) return null
@@ -241,9 +264,13 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                           })
                           setCurrentWord("")
                         }}
+                        data-oid="8i4al62"
                       >
                         {`${optionValue}`}
-                        <span className="ml-auto font-mono text-muted-foreground">
+                        <span
+                          className="ml-auto font-mono text-muted-foreground"
+                          data-oid="rvl2r0f"
+                        >
                           {facetedValue?.get(optionValue)}
                         </span>
                       </CommandItem>
@@ -251,23 +278,38 @@ export function DataTableFilterCommand<TData, TSchema extends z.AnyZodObject>({
                   })
                 })}
               </CommandGroup>
-              <CommandEmpty>
-                <span className="text-muted-foreground">No results found</span>
+              <CommandEmpty data-oid="1cjsw25">
+                <span className="text-muted-foreground" data-oid="yn79zr:">
+                  No results found
+                </span>
               </CommandEmpty>
             </CommandList>
             <div
               className="flex flex-wrap gap-3 border-t bg-accent/50 px-2 py-1.5 text-sm text-accent-foreground"
               cmdk-footer=""
+              data-oid="9n:t7_d"
             >
-              <span>
-                Use <Kbd className="bg-background">↑</Kbd>{" "}
-                <Kbd className="bg-background">↓</Kbd> to navigate
+              <span data-oid=".s-u8m3">
+                Use{" "}
+                <Kbd className="bg-background" data-oid="bwli-5g">
+                  ↑
+                </Kbd>{" "}
+                <Kbd className="bg-background" data-oid="i7_o38u">
+                  ↓
+                </Kbd>{" "}
+                to navigate
               </span>
-              <span>
-                <Kbd className="bg-background">Enter</Kbd> to query
+              <span data-oid="t1m_8s1">
+                <Kbd className="bg-background" data-oid="drjynsp">
+                  Enter
+                </Kbd>{" "}
+                to query
               </span>
-              <span>
-                <Kbd className="bg-background">Esc</Kbd> to close
+              <span data-oid="d6wpk8l">
+                <Kbd className="bg-background" data-oid="cj6x8j.">
+                  Esc
+                </Kbd>{" "}
+                to close
               </span>
             </div>
           </div>

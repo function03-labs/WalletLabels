@@ -41,10 +41,15 @@ export function DataTableFilterBar<TData, TValue>({
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex h-[46px] items-center justify-between gap-3">
-        <p className="font-medium text-foreground">Filters</p>
-        <div>
+    <div className="flex flex-col gap-4" data-oid="cjfh-e9">
+      <div
+        className="flex h-[46px] items-center justify-between gap-3"
+        data-oid="u0npt65"
+      >
+        <p className="font-medium text-foreground" data-oid="yn33_z6">
+          Filters
+        </p>
+        <div data-oid="z0ck.mr">
           {filters.length ? (
             <Button
               variant="outline"
@@ -61,6 +66,7 @@ export function DataTableFilterBar<TData, TValue>({
                 )
                 updatePageSearchParams(resetValues)
               }}
+              data-oid="zexxsz0"
             >
               Reset
             </Button>
@@ -71,6 +77,7 @@ export function DataTableFilterBar<TData, TValue>({
         type="multiple"
         // REMINDER: open all filters by default
         defaultValue={filterFields?.map(({ value }) => value)}
+        data-oid="5j5datr"
       >
         {filterFields?.map((field) => {
           return (
@@ -78,17 +85,32 @@ export function DataTableFilterBar<TData, TValue>({
               key={field.value}
               value={field.value}
               className="border-none"
+              data-oid="_ptnb6z"
             >
-              <AccordionTrigger className="p-2 hover:no-underline">
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium text-foreground">
+              <AccordionTrigger
+                className="p-2 hover:no-underline"
+                data-oid="i:_n_5i"
+              >
+                <div className="flex items-center gap-2" data-oid="i5mxov9">
+                  <p
+                    className="text-sm font-medium text-foreground"
+                    data-oid="nnwcmeu"
+                  >
                     {field.label}
                   </p>
-                  <DataTableFilterResetButton table={table} {...field} />
+                  <DataTableFilterResetButton
+                    table={table}
+                    {...field}
+                    data-oid="2f5pa:0"
+                  />
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="-m-4 p-4">
-                <DataTableFilterCheckobox table={table} {...field} />
+              <AccordionContent className="-m-4 p-4" data-oid="fa6par8">
+                <DataTableFilterCheckobox
+                  table={table}
+                  {...field}
+                  data-oid="37coge7"
+                />
               </AccordionContent>
             </AccordionItem>
           )

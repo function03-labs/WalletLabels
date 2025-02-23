@@ -52,30 +52,39 @@ export function UpdateAPIKeyName({ apiKey }: { apiKey: ApiKey }) {
     }
   }
   return (
-    <Form {...form}>
+    <Form {...form} data-oid="ozxpj3n">
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex max-w-sm items-center space-x-2"
+        data-oid="smvs8lb"
       >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem className="w-[100px]">
-              <FormControl>
+            <FormItem className="w-[100px]" data-oid="vpq8a7_">
+              <FormControl data-oid="w04fbu-">
                 <Input
                   {...field}
                   onFocus={() => setInputFocused(true)}
                   onBlur={() => setTimeout(() => setInputFocused(false), 250)}
+                  data-oid="4.5kujo"
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-oid="-xhw_2e" />
             </FormItem>
           )}
+          data-oid="-j8q.42"
         />
+
         {inputFocused && (
-          <Button size="icon" type="submit" variant={"secondary"}>
-            <Check className="size-5" />
+          <Button
+            size="icon"
+            type="submit"
+            variant={"secondary"}
+            data-oid="kgoy5m0"
+          >
+            <Check className="size-5" data-oid="qfxwzkt" />
           </Button>
         )}
       </form>

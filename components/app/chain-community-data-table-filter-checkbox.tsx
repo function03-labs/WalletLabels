@@ -58,14 +58,23 @@ export function DataTableFilterCheckobox<TData>({
       {options.length > 4 ? (
         <InputWithAddons
           placeholder="Search"
-          leading={<Icons.search className="mt-0.5 size-4 text-primary" />}
+          leading={
+            <Icons.search
+              className="mt-0.5 size-4 text-primary"
+              data-oid="_iyerch"
+            />
+          }
           containerClassName="mb-2 h-9 rounded-lg"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          data-oid="sau0ccp"
         />
       ) : null}
-      <div className="overflow-hidden rounded-lg border border-primary/40 empty:border-none">
-        <div className="max-h-40 overflow-y-scroll">
+      <div
+        className="overflow-hidden rounded-lg border border-primary/40 empty:border-none"
+        data-oid="nlidqfr"
+      >
+        <div className="max-h-40 overflow-y-scroll" data-oid="j92wk20">
           {filterOptions.map((option, index) => {
             const checked = filters.includes(option.value)
 
@@ -76,6 +85,7 @@ export function DataTableFilterCheckobox<TData>({
                   "group flex items-center space-x-2 px-2 py-2.5 hover:bg-accent",
                   index !== filterOptions.length - 1 ? "border-b" : undefined
                 )}
+                data-oid="55uy99m"
               >
                 <Checkbox
                   id={`${value}-${option.value}`}
@@ -91,17 +101,25 @@ export function DataTableFilterCheckobox<TData>({
                     // FIXME: make it nullable!
                     updatePageSearchParams({ [value]: newValue })
                   }}
+                  data-oid="d8muhjj"
                 />
+
                 <Label
                   htmlFor={`${value}-${option.value}`}
                   className="flex w-full items-center justify-center gap-1 truncate text-muted-foreground group-hover:text-accent-foreground"
+                  data-oid="m2-6lb."
                 >
                   {Component ? (
-                    <Component {...option} />
+                    <Component {...option} data-oid="nzlfuxt" />
                   ) : (
-                    <span className="truncate font-normal">{option.label}</span>
+                    <span className="truncate font-normal" data-oid="hndexp6">
+                      {option.label}
+                    </span>
                   )}
-                  <span className="ml-auto flex size-4 items-center justify-center font-mono text-xs">
+                  <span
+                    className="ml-auto flex size-4 items-center justify-center font-mono text-xs"
+                    data-oid="a--a012"
+                  >
                     {facetedValue?.get(option.value)}
                   </span>
                 </Label>

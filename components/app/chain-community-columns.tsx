@@ -19,7 +19,9 @@ export const columns: ColumnDef<Schema>[] = [
       const value = row.getValue("address")
 
       // @ts-ignore: Unreachable code error
-      return <Addreth address={value} theme="unified-light" />
+      return (
+        <Addreth address={value} theme="unified-light" data-oid="u--yf4b" />
+      )
     },
   },
   {
@@ -28,7 +30,10 @@ export const columns: ColumnDef<Schema>[] = [
     cell: ({ row }) => {
       const value = row.getValue("labelType")
       return (
-        <div className="font-semibold text-primary">{`${value as string}`}</div>
+        <div
+          className="font-semibold text-primary"
+          data-oid="6.:izcl"
+        >{`${value as string}`}</div>
       )
     },
     filterFn: (row, id, value) => {
@@ -43,7 +48,12 @@ export const columns: ColumnDef<Schema>[] = [
     header: "Address Name",
     cell: ({ row }) => {
       const value = row.getValue("addressName")
-      return <div className="text-muted-foreground">{`${value as string}`}</div>
+      return (
+        <div
+          className="text-muted-foreground"
+          data-oid="kzbwkhf"
+        >{`${value as string}`}</div>
+      )
     },
     filterFn: (row, id, value) => {
       const rowValue = row.getValue(id)
@@ -57,7 +67,12 @@ export const columns: ColumnDef<Schema>[] = [
     header: "Label",
     cell: ({ row }) => {
       const value = row.getValue("label")
-      return <div className="text-muted-foreground">{`${value as string}`}</div>
+      return (
+        <div
+          className="text-muted-foreground"
+          data-oid="dmjs8g-"
+        >{`${value as string}`}</div>
+      )
     },
     filterFn: (row, id, value) => {
       const rowValue = row.getValue(id)
@@ -72,7 +87,11 @@ export const columns: ColumnDef<Schema>[] = [
     cell: ({ row }) => {
       const value = row.getValue("labelSubType")
       // TODO: Add the dark theme
-      return <Badge className={pick(value as string)}>{value as string}</Badge>
+      return (
+        <Badge className={pick(value as string)} data-oid="xpj___5">
+          {value as string}
+        </Badge>
+      )
     },
     filterFn: (row, id, value) => {
       const rowValue = row.getValue(id)

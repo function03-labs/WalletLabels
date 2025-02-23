@@ -17,8 +17,9 @@ export const Spotlight = ({ className, fill }: SpotlightProps) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 3787 2842"
       fill="none"
+      data-oid=".oeeyaj"
     >
-      <g filter="url(#filter)">
+      <g filter="url(#filter)" data-oid="xhvvuwq">
         <ellipse
           cx="1924.71"
           cy="273.501"
@@ -27,9 +28,10 @@ export const Spotlight = ({ className, fill }: SpotlightProps) => {
           transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)"
           fill={fill || "white"}
           fillOpacity="0.21"
+          data-oid="_kxqe29"
         ></ellipse>
       </g>
-      <defs>
+      <defs data-oid="crcx:sm">
         <filter
           id="filter"
           x="0.860352"
@@ -38,17 +40,24 @@ export const Spotlight = ({ className, fill }: SpotlightProps) => {
           height="2840.26"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
+          data-oid="7c.ygah"
         >
-          <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+          <feFlood
+            floodOpacity="0"
+            result="BackgroundImageFix"
+            data-oid="ud3j.bt"
+          ></feFlood>
           <feBlend
             mode="normal"
             in="SourceGraphic"
             in2="BackgroundImageFix"
             result="shape"
+            data-oid="a_rt5j7"
           ></feBlend>
           <feGaussianBlur
             stdDeviation="151"
             result="effect1_foregroundBlur_1065_8"
+            data-oid="mb7jt.w"
           ></feGaussianBlur>
         </filter>
       </defs>

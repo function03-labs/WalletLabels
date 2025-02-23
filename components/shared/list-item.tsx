@@ -42,8 +42,8 @@ export function ListItem({
   ...props
 }: ListItemProps) {
   return (
-    <li>
-      <NavigationMenuLink asChild>
+    <li data-oid="ed60k4m">
+      <NavigationMenuLink asChild data-oid="_02awu6">
         <Link
           target={external ? "_blank" : undefined}
           className={cn(
@@ -51,12 +51,24 @@ export function ListItem({
             className
           )}
           {...props}
+          data-oid="pho2bw:"
         >
-          <div className="flex items-center">
-            <div className="w-8">
-              <Image src={image} alt={title} width={30} height={30} />
+          <div className="flex items-center" data-oid="ci60on6">
+            <div className="w-8" data-oid="1fh-ngn">
+              <Image
+                src={image}
+                alt={title}
+                width={30}
+                height={30}
+                data-oid="3.3yjf0"
+              />
             </div>
-            <div className="px-4 text-sm font-medium leading-none">{title}</div>
+            <div
+              className="px-4 text-sm font-medium leading-none"
+              data-oid="8046zzm"
+            >
+              {title}
+            </div>
           </div>
         </Link>
       </NavigationMenuLink>

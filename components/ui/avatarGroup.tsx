@@ -14,6 +14,7 @@ const Avatar = React.forwardRef<
     ref={ref}
     className={cn("relative flex size-10 shrink-0 rounded-full", className)}
     {...props}
+    data-oid="_ezmqcp"
   />
 ))
 Avatar.displayName = AvatarPrimitive.Root.displayName
@@ -26,6 +27,7 @@ const AvatarImage = React.forwardRef<
     ref={ref}
     className={cn("aspect-square size-full rounded-full", className)}
     {...props}
+    data-oid="ei4hz.z"
   />
 ))
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
@@ -41,6 +43,7 @@ const AvatarFallback = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="c6qp0xc"
   />
 ))
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
@@ -75,6 +78,7 @@ const AvatarBadge = ({ className, position, ...props }: AvatarBadgeProps) => (
   <div
     className={cn(avatarBadgeVariants({ position }), className)}
     {...props}
+    data-oid="aimco-z"
   />
 )
 
@@ -102,6 +106,7 @@ const AvatarGroupProvider = ({
         setCount,
         limit,
       }}
+      data-oid="320f:z:"
     >
       {children}
     </AvatarGroupContext.Provider>
@@ -117,7 +122,7 @@ export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   ({ children, className, limit, ...props }, ref) => {
     return (
-      <AvatarGroupProvider limit={limit}>
+      <AvatarGroupProvider limit={limit} data-oid="c:06xu3">
         <div
           ref={ref}
           className={cn(
@@ -125,6 +130,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
             className
           )}
           {...props}
+          data-oid="kj8ya6b"
         >
           {children}
         </div>
@@ -161,6 +167,7 @@ const AvatarOverflowIndicator = React.forwardRef<
         className
       )}
       {...props}
+      data-oid="zlamvaa"
     >
       +{count - limit}
     </span>

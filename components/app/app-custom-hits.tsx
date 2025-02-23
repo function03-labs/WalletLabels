@@ -22,5 +22,5 @@ export function CustomHits({ chainSlug }: { chainSlug: string }) {
   }
 
   //@ts-ignore: Unreachable code error
-  return <Grid data={props.data} chainSlug={chainSlug} />
+  return <Grid data={props.data} chainSlug={chainSlug} data-oid="16q79cx" />
 }

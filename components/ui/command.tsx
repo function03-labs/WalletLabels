@@ -20,6 +20,7 @@ const Command = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="dydwqbq"
   />
 ))
 Command.displayName = CommandPrimitive.displayName
@@ -28,9 +29,15 @@ interface CommandDialogProps extends DialogProps {}
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
-    <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:size-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:size-5">
+    <Dialog {...props} data-oid="2l71v4c">
+      <DialogContent
+        className="overflow-hidden p-0 shadow-lg"
+        data-oid="1ei.8oc"
+      >
+        <Command
+          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:size-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:size-5"
+          data-oid="c01t68c"
+        >
           {children}
         </Command>
       </DialogContent>
@@ -42,8 +49,12 @@ const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-    <Search className="mr-2 size-4 shrink-0 opacity-50" />
+  <div
+    className="flex items-center border-b px-3"
+    cmdk-input-wrapper=""
+    data-oid="44:09wb"
+  >
+    <Search className="mr-2 size-4 shrink-0 opacity-50" data-oid="7oonoa8" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
@@ -51,6 +62,7 @@ const CommandInput = React.forwardRef<
         className
       )}
       {...props}
+      data-oid="s7tum1j"
     />
   </div>
 ))
@@ -65,6 +77,7 @@ const CommandList = React.forwardRef<
     ref={ref}
     className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className)}
     {...props}
+    data-oid="x8b1i2y"
   />
 ))
 
@@ -78,6 +91,7 @@ const CommandEmpty = React.forwardRef<
     ref={ref}
     className="py-6 text-center text-sm"
     {...props}
+    data-oid="-l-ci5z"
   />
 ))
 
@@ -94,6 +108,7 @@ const CommandGroup = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="1kc.kpt"
   />
 ))
 
@@ -107,6 +122,7 @@ const CommandSeparator = React.forwardRef<
     ref={ref}
     className={cn("-mx-1 h-px bg-border", className)}
     {...props}
+    data-oid="ms:qxl:"
   />
 ))
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName
@@ -122,6 +138,7 @@ const CommandItem = React.forwardRef<
       className
     )}
     {...props}
+    data-oid="j5cgbzi"
   />
 ))
 
@@ -138,6 +155,7 @@ const CommandShortcut = ({
         className
       )}
       {...props}
+      data-oid="j16sbp1"
     />
   )
 }

@@ -17,7 +17,7 @@ export const TimeFromUtc = ({
     }
   }, [])
   return (
-    <span className={className} {...props}>
+    <span className={className} {...props} data-oid="pto1f96">
       {timestamp}
     </span>
   )

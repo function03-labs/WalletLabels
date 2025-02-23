@@ -28,6 +28,7 @@ function AppUsersTable({ data, className, ...props }: AppUsersTableProps) {
             truncate
             address={value}
             className="text-sm font-medium"
+            data-oid="l9kr6m1"
           />
         ),
       },
@@ -35,15 +36,22 @@ function AppUsersTable({ data, className, ...props }: AppUsersTableProps) {
         Header: "Created",
         accessor: "createdAt",
         Cell: ({ value }: { value: string }) => (
-          <TimeFromUtc date={value || "0"} />
+          <TimeFromUtc date={value || "0"} data-oid="lu2mu3z" />
         ),
       },
     ],
+
     []
   )
   if (!data) return null
   return (
-    <TableCore className={className} columns={columns} data={data} {...props} />
+    <TableCore
+      className={className}
+      columns={columns}
+      data={data}
+      {...props}
+      data-oid="x7br4l6"
+    />
   )
 }
 

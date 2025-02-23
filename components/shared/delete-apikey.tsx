@@ -58,19 +58,22 @@ function DialogDeleteAPIKey({
   }
 
   return (
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle className="mb-2 text-primary">Delete API Key</DialogTitle>
-        <DialogDescription className="text-primary">
+    <DialogContent data-oid="hvt5-5z">
+      <DialogHeader data-oid="-e51s5l">
+        <DialogTitle className="mb-2 text-primary" data-oid="qa-anuq">
+          Delete API Key
+        </DialogTitle>
+        <DialogDescription className="text-primary" data-oid=".g:tsag">
           Are you sure you want to delete this API key? This action cannot be
           undone.
         </DialogDescription>
       </DialogHeader>
-      <DialogFooter>
+      <DialogFooter data-oid="ykxkf99">
         <Button
           variant="destructive"
           className="mx-auto space-x-2 font-bold sm:mx-0"
           onClick={handleDelete}
+          data-oid="jz-ks7v"
         >
           Delete
         </Button>
@@ -90,21 +93,30 @@ export function DeleteAPIKey({
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
-        <DropdownMenuTrigger>
-          <Button size="icon" variant="ghost">
-            <MoreVertical className="size-5" aria-label="More Options" />
+    <Dialog open={open} onOpenChange={setOpen} data-oid="1ftvn3k">
+      <DropdownMenu
+        open={dropdownOpen}
+        onOpenChange={setDropdownOpen}
+        data-oid="-itdyx5"
+      >
+        <DropdownMenuTrigger data-oid="q3hd93t">
+          <Button size="icon" variant="ghost" data-oid="ilantw6">
+            <MoreVertical
+              className="size-5"
+              aria-label="More Options"
+              data-oid="q-5kb1g"
+            />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DialogTrigger asChild>
+        <DropdownMenuContent data-oid="c6:ozco">
+          <DialogTrigger asChild data-oid="0kx_009">
             <DropdownMenuItem
               className="w-full"
               onClick={() => {
                 setDropdownOpen(false)
                 setOpen(true)
               }}
+              data-oid="p26jm6j"
             >
               Delete
             </DropdownMenuItem>
@@ -115,6 +127,7 @@ export function DeleteAPIKey({
         apiKey={apiKey}
         userEmail={userEmail}
         onClose={() => setOpen(false)}
+        data-oid="0q9y.q8"
       />
     </Dialog>
   )

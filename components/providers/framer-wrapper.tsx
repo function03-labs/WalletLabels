@@ -23,11 +23,13 @@ export function FramerWrapper(props: { children: React.ReactNode }) {
       exit={{ y: -10, opacity: 0 }}
       transition={{ ease: "easeOut", duration: 0.53 }}
       className="z-30"
+      data-oid="jo22jpm"
     >
       {isHome && (
         <Spotlight
           className="-top-40 left-0 md:-top-20 md:left-60"
           fill={theme === "dark" ? "#ADD8E6" : "#00008B"}
+          data-oid="4or7eg_"
         />
       )}
 

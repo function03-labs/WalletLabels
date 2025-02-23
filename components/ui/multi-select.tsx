@@ -137,6 +137,7 @@ const MultiSelector = ({
         activeIndex,
         setActiveIndex,
       }}
+      data-oid="497a_wz"
     >
       <Command
         onKeyDown={handleKeyDown}
@@ -146,6 +147,7 @@ const MultiSelector = ({
         )}
         dir={dir}
         {...props}
+        data-oid="jvckoja"
       >
         {children}
       </Command>
@@ -172,6 +174,7 @@ const MultiSelectorTrigger = forwardRef<
         className
       )}
       {...props}
+      data-oid="u6g_d3p"
     >
       {Array.isArray(value) &&
         value.map((item, index) => (
@@ -182,8 +185,9 @@ const MultiSelectorTrigger = forwardRef<
               activeIndex === index && "ring-2 ring-muted-foreground "
             )}
             variant={"secondary"}
+            data-oid="sw.ovg_"
           >
-            <span className="text-xs">
+            <span className="text-xs" data-oid="966u9-3">
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </span>
             <button
@@ -192,9 +196,15 @@ const MultiSelectorTrigger = forwardRef<
               type="button"
               onMouseDown={mousePreventDefault}
               onClick={() => onValueChange(item)}
+              data-oid="cvz:z-s"
             >
-              <span className="sr-only">Remove {item} option</span>
-              <RemoveIcon className="size-4 hover:stroke-destructive" />
+              <span className="sr-only" data-oid="4:s.ghu">
+                Remove {item} option
+              </span>
+              <RemoveIcon
+                className="size-4 hover:stroke-destructive"
+                data-oid="bdkn5o4"
+              />
             </button>
           </Badge>
         ))}
@@ -225,6 +235,7 @@ const MultiSelectorInput = forwardRef<
         className,
         activeIndex !== -1 && "caret-transparent"
       )}
+      data-oid="zfjbw47"
     />
   )
 })
@@ -237,7 +248,7 @@ const MultiSelectorContent = forwardRef<
 >(({ children }, ref) => {
   const { open } = useMultiSelect()
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative" data-oid="tez7l9.">
       {open && children}
     </div>
   )
@@ -256,10 +267,13 @@ const MultiSelectorList = forwardRef<
         "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted-foreground dark:scrollbar-thumb-muted scrollbar-thumb-rounded-lg absolute top-0 z-10 flex w-full flex-col gap-2 rounded-md border border-muted bg-background p-2 shadow-md transition-colors",
         className
       )}
+      data-oid="ag7ha93"
     >
       {children}
-      <CommandEmpty>
-        <span className="text-muted-foreground">No results found</span>
+      <CommandEmpty data-oid="5l93e7q">
+        <span className="text-muted-foreground" data-oid="_u-yjbf">
+          No results found
+        </span>
       </CommandEmpty>
     </CommandList>
   )
@@ -296,9 +310,10 @@ const MultiSelectorItem = forwardRef<
         props.disabled && "cursor-not-allowed opacity-50"
       )}
       onMouseDown={mousePreventDefault}
+      data-oid="s.fk1tp"
     >
       {children}
-      {isIncluded && <Check className="size-4" />}
+      {isIncluded && <Check className="size-4" data-oid="j-tumi7" />}
     </CommandItem>
   )
 })

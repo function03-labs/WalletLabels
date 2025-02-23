@@ -49,11 +49,17 @@ export function DataTableFilterResetButton<TData>({
         updatePageSearchParams({ [value]: null })
       }}
       asChild
+      data-oid="aud:zd_"
     >
       {/* REMINDER: `AccordionTrigger` is also a button(!) and we get Hydration error when rendering button within button */}
-      <div role="button">
-        <span className="text-muted-foreground">{filters.length}</span>
-        <Icons.close className="ml-1 size-2.5 text-muted-foreground" />
+      <div role="button" data-oid="wibb_7b">
+        <span className="text-muted-foreground" data-oid="z:g0yla">
+          {filters.length}
+        </span>
+        <Icons.close
+          className="ml-1 size-2.5 text-muted-foreground"
+          data-oid=":s1ktx4"
+        />
       </div>
     </Button>
   )

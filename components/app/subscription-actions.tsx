@@ -38,13 +38,18 @@ export function SubscriptionActions({
   const [loading, setLoading] = useState(false)
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" disabled={loading}>
-          <MoreHorizontal className="size-4" />
+    <DropdownMenu data-oid="n44_nun">
+      <DropdownMenuTrigger asChild data-oid="9.zras:">
+        <Button
+          variant="ghost"
+          size="icon"
+          disabled={loading}
+          data-oid="mq2hf6q"
+        >
+          <MoreHorizontal className="size-4" data-oid="ino7uib" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" data-oid="h1z79p.">
         {!subscription.isPaused && (
           <DropdownMenuItem
             onClick={async () => {
@@ -58,6 +63,7 @@ export function SubscriptionActions({
                 setLoading(false)
               }
             }}
+            data-oid="m00c4r."
           >
             Pause subscription
           </DropdownMenuItem>
@@ -76,28 +82,39 @@ export function SubscriptionActions({
                 setLoading(false)
               }
             }}
+            data-oid="ez9-qqs"
           >
             Resume subscription
           </DropdownMenuItem>
         )}
 
         {urls?.customer_portal && (
-          <DropdownMenuItem asChild>
-            <a href={urls.customer_portal} target="_blank" rel="noopener">
+          <DropdownMenuItem asChild data-oid="m-dxosu">
+            <a
+              href={urls.customer_portal}
+              target="_blank"
+              rel="noopener"
+              data-oid="tvfjvb-"
+            >
               Customer portal
             </a>
           </DropdownMenuItem>
         )}
 
         {urls?.update_payment_method && (
-          <DropdownMenuItem asChild>
-            <a href={urls.update_payment_method} target="_blank" rel="noopener">
+          <DropdownMenuItem asChild data-oid="3b090cr">
+            <a
+              href={urls.update_payment_method}
+              target="_blank"
+              rel="noopener"
+              data-oid="kick9kw"
+            >
               Update payment method
             </a>
           </DropdownMenuItem>
         )}
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator data-oid="xyg1uik" />
 
         <DropdownMenuItem
           className="text-destructive"
@@ -114,6 +131,7 @@ export function SubscriptionActions({
               }
             }
           }}
+          data-oid="ce73782"
         >
           Cancel subscription
         </DropdownMenuItem>

@@ -14,8 +14,9 @@ const SheetTrigger = SheetPrimitive.Trigger
 const SheetClose = SheetPrimitive.Close
 
 const SheetPortal = ({ ...props }: SheetPrimitive.DialogPortalProps) => (
-  <SheetPrimitive.Portal {...props} />
+  <SheetPrimitive.Portal {...props} data-oid="c1qw5rn" />
 )
+
 SheetPortal.displayName = SheetPrimitive.Portal.displayName
 
 const SheetOverlay = React.forwardRef<
@@ -29,6 +30,7 @@ const SheetOverlay = React.forwardRef<
     )}
     {...props}
     ref={ref}
+    data-oid="zihslud"
   />
 ))
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
@@ -60,17 +62,23 @@ const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
 >(({ side = "right", className, children, ...props }, ref) => (
-  <SheetPortal>
-    <SheetOverlay />
+  <SheetPortal data-oid=".u9wk-o">
+    <SheetOverlay data-oid="mtd_fx2" />
     <SheetPrimitive.Content
       ref={ref}
       className={cn(sheetVariants({ side }), className)}
       {...props}
+      data-oid="yafv-ny"
     >
       {children}
-      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-        <LuX className="size-4" />
-        <span className="sr-only">Close</span>
+      <SheetPrimitive.Close
+        className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
+        data-oid="2ll6nnq"
+      >
+        <LuX className="size-4" data-oid="fz5jbix" />
+        <span className="sr-only" data-oid="-8.unys">
+          Close
+        </span>
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
   </SheetPortal>
@@ -87,8 +95,10 @@ const SheetHeader = ({
       className
     )}
     {...props}
+    data-oid="uuozsf7"
   />
 )
+
 SheetHeader.displayName = "SheetHeader"
 
 const SheetFooter = ({
@@ -101,8 +111,10 @@ const SheetFooter = ({
       className
     )}
     {...props}
+    data-oid="7fkfwu-"
   />
 )
+
 SheetFooter.displayName = "SheetFooter"
 
 const SheetTitle = React.forwardRef<
@@ -113,6 +125,7 @@ const SheetTitle = React.forwardRef<
     ref={ref}
     className={cn("text-lg font-semibold text-foreground", className)}
     {...props}
+    data-oid="87pv33i"
   />
 ))
 SheetTitle.displayName = SheetPrimitive.Title.displayName
@@ -125,6 +138,7 @@ const SheetDescription = React.forwardRef<
     ref={ref}
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
+    data-oid="r_i4hb3"
   />
 ))
 SheetDescription.displayName = SheetPrimitive.Description.displayName

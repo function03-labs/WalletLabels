@@ -30,7 +30,11 @@ function Shell({
   ...props
 }: ShellProps) {
   return (
-    <Comp className={cn(shellVariants({ variant }), className)} {...props} />
+    <Comp
+      className={cn(shellVariants({ variant }), className)}
+      {...props}
+      data-oid="66uy18e"
+    />
   )
 }
 

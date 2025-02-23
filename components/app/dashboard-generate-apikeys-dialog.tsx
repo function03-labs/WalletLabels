@@ -90,8 +90,8 @@ export function DashboardGenerateAPIkeysDialog({
     }
   }
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <Dialog data-oid="amkvv:l">
+      <DialogTrigger asChild data-oid="af241:i">
         <Button
           type="button"
           className="mx-auto space-x-2 font-bold sm:mx-0"
@@ -111,11 +111,12 @@ export function DashboardGenerateAPIkeysDialog({
                 variant: "destructive",
                 title: "You need to create an organization first!",
                 description: (
-                  <div>
+                  <div data-oid="rdcz6bj">
                     Go to{" "}
                     <Link
                       href="/dashboard/profile"
                       className="pr-0.5 underline"
+                      data-oid="3l1t3jk"
                     >
                       profile
                     </Link>{" "}
@@ -131,18 +132,24 @@ export function DashboardGenerateAPIkeysDialog({
               form.reset()
             }
           }}
+          data-oid="4rdn13q"
         >
-          <Icons.addCircle /> <span>Generate API Key</span>
+          <Icons.addCircle data-oid="oevzv.a" />{" "}
+          <span data-oid="ef.wmgp">Generate API Key</span>
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent data-oid="9fhqizw">
         {generatedKey ? (
-          <DashboardCopyAPIKey apiKey={generatedKey} />
+          <DashboardCopyAPIKey apiKey={generatedKey} data-oid="r_h33cb" />
         ) : (
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <DialogHeader>
-                <DialogTitle className="dark:text-white">
+          <Form {...form} data-oid="htntmnl">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8"
+              data-oid="_y4j:3w"
+            >
+              <DialogHeader data-oid="tpyhjjz">
+                <DialogTitle className="dark:text-white" data-oid="2ml0zcv">
                   Generate API Key
                 </DialogTitle>
               </DialogHeader>
@@ -150,24 +157,32 @@ export function DashboardGenerateAPIkeysDialog({
                 control={form.control}
                 name="name"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="dark:text-white">API Name</FormLabel>
-                    <FormControl>
-                      <div className="mb-4 dark:text-white">
+                  <FormItem data-oid="bj849ji">
+                    <FormLabel className="dark:text-white" data-oid="qb0d5mf">
+                      API Name
+                    </FormLabel>
+                    <FormControl data-oid="zdw:kx9">
+                      <div className="mb-4 dark:text-white" data-oid="l:ckeha">
                         <Input
                           {...field}
                           placeholder="Enter a name for the API Key"
+                          data-oid="vgfv2ap"
                         />
                       </div>
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage data-oid="vaaqwuu" />
                   </FormItem>
                 )}
+                data-oid="siqwt3x"
               />
-              <DialogFooter>
-                <Button type="submit">
+
+              <DialogFooter data-oid="n1jz0ia">
+                <Button type="submit" data-oid="g-m17x7">
                   {isLoading && (
-                    <Loader2 className="mr-2 size-4 animate-spin" />
+                    <Loader2
+                      className="mr-2 size-4 animate-spin"
+                      data-oid="85fxvcg"
+                    />
                   )}{" "}
                   Generate
                 </Button>

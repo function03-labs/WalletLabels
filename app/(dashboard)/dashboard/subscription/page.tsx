@@ -6,5 +6,5 @@ export default async function SubscriptionPage() {
   // Fetch tiers data on the server
   const tiers = await getTiers()
 
-  return <SubscriptionClient initialData={tiers} />
+  return <SubscriptionClient initialData={tiers} data-oid="4t1e.93" />
 }

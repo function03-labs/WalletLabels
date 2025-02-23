@@ -53,17 +53,24 @@ export function TableCore({ className, columns, data, ...props }: TableProps) {
 
   // Render the UI for your table
   return (
-    <div className={className} {...props}>
-      <table className="w-full overflow-hidden " {...getTableProps()}>
+    <div className={className} {...props} data-oid="rq2e-5m">
+      <table
+        className="w-full overflow-hidden "
+        {...getTableProps()}
+        data-oid="1n4jpmn"
+      >
         <TableHead
           defaultStyle
           headerGroups={headerGroups}
           className=" bg-background text-foreground"
+          data-oid="q8-5dme"
         />
+
         <TableBody
           page={page}
           prepareRow={prepareRow}
           props={getTableBodyProps()}
+          data-oid="e6ctg4u"
         />
       </table>
       <TablePagination
@@ -76,6 +83,7 @@ export function TableCore({ className, columns, data, ...props }: TableProps) {
         setPageSize={setPageSize}
         canNextPage={canNextPage}
         canPreviousPage={canPreviousPage}
+        data-oid="_1e9vfc"
       />
     </div>
   )

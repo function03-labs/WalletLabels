@@ -22,20 +22,21 @@ const queryClient = new QueryClient()
 export default function RootProvider({ children }: RootProviderProps) {
   const isMounted = useIsMounted()
   return isMounted ? (
-    <SessionProvider>
+    <SessionProvider data-oid="lfjgfd3">
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
+        data-oid=".j4o-bk"
       >
-        <QueryClientProvider client={queryClient}>
-          <ChakraProvider>
-            <RWBProvider>
-              <TooltipProvider>
-                <AddrethConfig>{children}</AddrethConfig>
+        <QueryClientProvider client={queryClient} data-oid="x7-qip0">
+          <ChakraProvider data-oid="hhl2-ej">
+            <RWBProvider data-oid="2p369u9">
+              <TooltipProvider data-oid="0h4b7z0">
+                <AddrethConfig data-oid="ov.:ubw">{children}</AddrethConfig>
               </TooltipProvider>
-              <TailwindIndicator />
+              <TailwindIndicator data-oid="wrvao0v" />
             </RWBProvider>
           </ChakraProvider>
         </QueryClientProvider>

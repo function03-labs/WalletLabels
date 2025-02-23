@@ -24,7 +24,7 @@ export const TableBody = ({
     "border-b-2 border-gray-100 dark:border-neutral-700 px-4 py-3"
   )
   return (
-    <tbody {...props}>
+    <tbody {...props} data-oid="0h_43nj">
       {page.map((row, idx) => {
         prepareRow(row)
         const styleRow = cn("row py-3", {
@@ -32,10 +32,20 @@ export const TableBody = ({
           "bg-card": !row.original.disabled,
         })
         return (
-          <tr {...row.getRowProps()} className={styleRow} key={idx}>
+          <tr
+            {...row.getRowProps()}
+            className={styleRow}
+            key={idx}
+            data-oid="0_-37k0"
+          >
             {row.cells.map((cell: any, cIdx: number) => {
               return (
-                <td key={cIdx} className={styleCell} {...cell.getCellProps()}>
+                <td
+                  key={cIdx}
+                  className={styleCell}
+                  {...cell.getCellProps()}
+                  data-oid="3p.5ynz"
+                >
                   {cell.render("Cell")}
                 </td>
               )

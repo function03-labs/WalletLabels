@@ -22,6 +22,7 @@ function PageSection({ className, children, ...props }: MotionSectionProps) {
         className
       )}
       {...props}
+      data-oid="dfdkinr"
     >
       {children}
     </motion.section>
@@ -40,6 +41,7 @@ function PageSectionGrid({ className, children, ...prop }: MotionSectionProps) {
         className
       )}
       {...prop}
+      data-oid="3ixsxbr"
     >
       {children}
     </motion.section>

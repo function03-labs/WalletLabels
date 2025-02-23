@@ -35,6 +35,7 @@ export function LinkComponent({
         rel="noopener noreferrer"
         target={target}
         {...props}
+        data-oid="joeg8qw"
       >
         {children}
       </a>
@@ -42,7 +43,7 @@ export function LinkComponent({
   }
 
   return (
-    <Link className={classes} href={href} {...props}>
+    <Link className={classes} href={href} {...props} data-oid="ie56v6g">
       {children}
     </Link>
   )

@@ -69,12 +69,14 @@ export function HoverBorderGradient({
         containerClassName
       )}
       {...props}
+      data-oid="_e2gym_"
     >
       <div
         className={cn(
           "z-10 w-auto rounded-[inherit] bg-black px-4 py-2 text-white",
           className
         )}
+        data-oid="i1oy7i2"
       >
         {children}
       </div>
@@ -95,8 +97,13 @@ export function HoverBorderGradient({
             : movingMap[direction],
         }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
+        data-oid="0ge70hl"
       />
-      <div className="z-1 absolute inset-[2px] flex-none rounded-[100px] bg-black" />
+
+      <div
+        className="z-1 absolute inset-[2px] flex-none rounded-[100px] bg-black"
+        data-oid="zsnp9k1"
+      />
     </Tag>
   )
 }
